@@ -1,0 +1,16 @@
+//
+//  IvitGroupMembersController.h
+//  YLZG
+//
+//  Created by Chan_Sir on 16/9/20.
+//  Copyright © 2016年 陈振超. All rights reserved.
+//
+
+#import "SuperViewController.h"
+
+@interface IvitGroupMembersController : SuperViewController
+
+/** 选中的成员数组 */
+@property (copy,nonatomic) void (^MemebersBlock)(NSArray *members);
+
+@end
