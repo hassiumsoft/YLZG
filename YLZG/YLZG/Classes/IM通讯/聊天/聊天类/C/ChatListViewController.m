@@ -16,6 +16,7 @@
 #import "ClearCacheTool.h"
 #import "ChatListHeadView.h"
 #import "GroupListManager.h"
+#import "EaseConversationModel.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource,EMChatManagerDelegate,EMGroupManagerDelegate>
 
@@ -102,7 +103,9 @@
 #pragma mark - 从内存中获取聊天列表
 - (void)getDataFromRAM
 {
-    self.array = (NSMutableArray *)[[EMClient sharedClient].chatManager getAllConversations];
+    self.array = [NSMutableArray arrayWithArray:[[EMClient sharedClient].chatManager getAllConversations]];
+    
+    [self refreshAndSortView];
     
     [self.tableView.mj_header endRefreshing];
     
@@ -110,6 +113,44 @@
     
     [self.tableView reloadData];
 }
+
+// 数组排序
+-(void)refreshAndSortView
+{
+    if (self.array.count < 1) {
+        return;
+    }
+    
+    if ([[self.array firstObject] isKindOfClass:[EMConversation class]]) {
+        
+        NSArray *sortedArr = [self.array sortedArrayUsingComparator:^NSComparisonResult(EMConversation *obj1, EMConversation *obj2) {
+            EMMessage *message1 = obj1.latestMessage;
+            EMMessage *message2 = obj2.latestMessage;
+            
+            if(message1.timestamp > message2.timestamp) {
+                return(NSComparisonResult)NSOrderedAscending;
+            }else {
+                return(NSComparisonResult)NSOrderedDescending;
+            }
+            
+        }];
+        [self.array removeAllObjects];
+        [self.array addObjectsFromArray:sortedArr];
+        
+    }
+}
+
+//NSArray* sorted = [self.array sortedArrayUsingComparator:
+//                   ^(EMConversation *obj1, EMConversation* obj2){
+//                       EMMessage *message1 = obj1.latestMessage;
+//                       EMMessage *message2 = obj2.latestMessage;
+//                       if(message1.timestamp > message2.timestamp) {
+//                           return(NSComparisonResult)NSOrderedAscending;
+//                       }else {
+//                           return(NSComparisonResult)NSOrderedDescending;
+//                       }
+//                   }];
+
 #pragma mark - 表格相关
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -228,12 +269,6 @@
     return _searchBar;
 }
 
-- (NSMutableArray *)array
-{
-    if (!_array) {
-        _array = [[NSMutableArray alloc]init];
-    }
-    return _array;
-}
+
 
 @end

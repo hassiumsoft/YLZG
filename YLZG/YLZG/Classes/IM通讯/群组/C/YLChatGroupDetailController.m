@@ -179,14 +179,14 @@
             // 消息免打扰
         } else if(indexPath.row == 1){
             // 群名称设置  暂不开放
-//            GroupNameViewController *changeName = [GroupNameViewController new];
-//            changeName.nameType = ChangeNameType;
-//            changeName.YLGroupModelBlock = ^(YLGroup *groupModel){
-//                self.groupModel = groupModel;
-//                [self.tableView reloadData];
-//            };
-//            changeName.groupModel = self.groupModel;
-//            [self.navigationController pushViewController:changeName animated:YES];
+            GroupNameViewController *changeName = [GroupNameViewController new];
+            changeName.nameType = ChangeNameType;
+            changeName.YLGroupModelBlock = ^(YLGroup *groupModel){
+                self.groupModel = groupModel;
+                [self.tableView reloadData];
+            };
+            changeName.groupModel = self.groupModel;
+            [self.navigationController pushViewController:changeName animated:YES];
         }else if (indexPath.row == 2){
             // 群简介设置
             GroupNameViewController *changeName = [GroupNameViewController new];

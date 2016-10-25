@@ -34,7 +34,11 @@
 {
     _model = model;
     _nameLabel.text = model.realname.length > 0 ? model.realname : model.name;
-    [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"meng_bg"]];
+    if ([model.gender intValue] == 1) {
+        [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+    }else{
+        [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"male_place"]];
+    }
 }
 - (void)setupSubViews
 {

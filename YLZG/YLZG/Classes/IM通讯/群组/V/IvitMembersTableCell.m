@@ -33,7 +33,11 @@
 - (void)setModel:(ContactersModel *)model
 {
     _model = model;
-    [_headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+    if ([model.gender intValue] == 1) {
+        [_headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+    }else{
+        [_headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"male_place"]];
+    }
     _nameLabel.text = model.realname.length > 0 ? model.realname:model.name;
     if (!model.isSelected) {
         [self.selectBtn setImage:[UIImage imageNamed:@"selected_no"] forState:UIControlStateNormal];
