@@ -103,6 +103,7 @@ UIKIT_EXTERN NSString *const UDGreenComponent; // 存储主题切换时的G色�
 UIKIT_EXTERN NSString *const UDBlueComponent; // 存储主题切换时的B色值
 UIKIT_EXTERN NSString *const CFBundleVersion; // 第一次进来展示引导页
 UIKIT_EXTERN NSString *const UDUnApplyCount; // 未处理的好友请求
+UIKIT_EXTERN NSString *const UDLoginUserName; // 登录名缓存
 
 /************** 其他键值 *************/
 

@@ -55,6 +55,7 @@
     }else{
         _nickNameLabel.text = contactModel.nickname;
     }
+    
 }
 - (void)setupSubViews
 {

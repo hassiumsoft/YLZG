@@ -45,9 +45,9 @@
 
 - (void)initialization
 {
-    self.backgroundColor    = [UIColor clearColor];
+    self.backgroundColor    = [UIColor whiteColor];
     self.layer.cornerRadius = CGRectGetWidth(self.frame) / 2;
-    self.layer.borderColor  = [UIColor whiteColor].CGColor;
+    self.layer.borderColor  = WeChatColor.CGColor;
     self.layer.borderWidth  = 2;
 }
 
@@ -55,9 +55,9 @@
 - (void)changeActivityState:(BOOL)active
 {
     if (active) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = WeChatColor;
     } else {
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor whiteColor];
     }
 }
 

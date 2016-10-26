@@ -74,7 +74,9 @@
                 // 已经注册环信，登录环信
                 [[EMClient sharedClient] loginWithUsername:self.nameField.text password:self.passField.text completion:^(NSString *aUsername, EMError *aError) {
                     
-                    KGLog(@"aError = %@",aError);
+                    NSUserDefaults *UD = [NSUserDefaults standardUserDefaults];
+                    [UD setObject:self.nameField.text forKey:UDLoginUserName];
+                    [UD synchronize];
                     
                     if (!aError) {
                         // 登录环信成功
@@ -168,7 +170,7 @@
     self.nameField.background = [UIImage imageNamed:@"userImage"];
     self.nameField.placeholder = @"影楼ERP登录名";
     NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
-    self.nameField.text = [us objectForKey:@"userInfonametext"];
+    self.nameField.text = [us objectForKey:UDLoginUserName];
     self.nameField.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     self.nameField.keyboardType = UIKeyboardTypeDefault;
     self.nameField.tintColor = [UIColor whiteColor];
@@ -250,8 +252,6 @@
         [xian removeFromSuperview];
     }
     
-    self.nameField.text = @"aermei_dapeng";
-    self.passField.text = @"888888";
 }
 
 #pragma mark - 了解智诚

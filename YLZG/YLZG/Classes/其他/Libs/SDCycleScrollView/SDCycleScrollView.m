@@ -47,7 +47,7 @@ NSString * const ID = @"cycleCell";
 {
     if (self = [super initWithFrame:frame]) {
         self.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
-        _autoScrollTimeInterval = 1.0;
+        _autoScrollTimeInterval = 1.5;
         [self setupMainView];
     }
     return self;

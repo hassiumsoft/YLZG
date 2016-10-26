@@ -58,6 +58,7 @@ NSString *const UDGreenComponent = @"UDGreenComponent";
 NSString *const UDBlueComponent = @"UDBlueComponent";
 NSString *const CFBundleVersion = @"CFBundleVersion";
 NSString *const UDUnApplyCount = @"UDUnApplyCount";
+NSString *const UDLoginUserName = @"UDLoginUserName";
 
 
 /************** 其他键值 **************/
