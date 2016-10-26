@@ -1308,15 +1308,25 @@
     return NO;
 }
 
+// 发送gif图
 - (void)didSendText:(NSString *)text withExt:(NSDictionary*)ext
 {
     if ([ext objectForKey:EASEUI_EMOTION_DEFAULT_EXT]) {
         EaseEmotion *emotion = [ext objectForKey:EASEUI_EMOTION_DEFAULT_EXT];
         if (self.dataSource && [self.dataSource respondsToSelector:@selector(emotionExtFormessageViewController:easeEmotion:)]) {
             NSDictionary *ext = [self.dataSource emotionExtFormessageViewController:self easeEmotion:emotion];
-            [self sendTextMessage:emotion.emotionTitle withExt:ext];
+            // 构造消息，发送消息
+            
+            EMMessage *message = [IMChatManager sendGifEmoticonMsg:emotion.emotionTitle to:self.conversation.conversationId messageType:_chatType ext:ext];
+            [self _sendMessage:message];
+            
         } else {
-            [self sendTextMessage:emotion.emotionTitle withExt:@{MESSAGE_ATTR_EXPRESSION_ID:emotion.emotionId,MESSAGE_ATTR_IS_BIG_EXPRESSION:@(YES)}];
+            UserInfoModel *userModel = [UserInfoManager getUserInfo];
+            // 构造消息，发送消息
+            NSDictionary *ext = @{MESSAGE_ATTR_EXPRESSION_ID:emotion.emotionId,MESSAGE_ATTR_IS_BIG_EXPRESSION:@(YES),@"avatarURLPath":userModel.head,@"nickname":userModel.realname,@"uid":userModel.uid};
+            EMMessage *message = [IMChatManager sendGifEmoticonMsg:emotion.emotionTitle to:self.conversation.conversationId messageType:_chatType ext:ext];
+            [self _sendMessage:message];
+            
         }
         return;
     }
@@ -1782,7 +1792,6 @@
                 self.messageTimeIntervalTag = -1;
                 NSArray *formattedMessages = [self formatMessages:self.messsagesSource];
                 [self.dataArray removeAllObjects];
-                //                 ⚠️⚠️ 尝试把自己的图片地址发过去
                 [self.dataArray addObjectsFromArray:formattedMessages];
                 
                 [self.tableView reloadData];

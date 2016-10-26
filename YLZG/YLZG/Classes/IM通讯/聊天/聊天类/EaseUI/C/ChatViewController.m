@@ -233,7 +233,8 @@
 - (NSDictionary*)emotionExtFormessageViewController:(EaseMessageViewController *)viewController
                                         easeEmotion:(EaseEmotion*)easeEmotion
 {
-    return @{MESSAGE_ATTR_EXPRESSION_ID:easeEmotion.emotionId,MESSAGE_ATTR_IS_BIG_EXPRESSION:@(YES)};
+    UserInfoModel *userModel = [UserInfoManager getUserInfo];
+    return @{MESSAGE_ATTR_EXPRESSION_ID:easeEmotion.emotionId,MESSAGE_ATTR_IS_BIG_EXPRESSION:@(YES),@"avatarURLPath":userModel.head,@"nickname":userModel.realname,@"uid":userModel.uid};
 }
 
 #pragma mark - EaseMob

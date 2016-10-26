@@ -80,9 +80,6 @@
         KGLog(@"lastRecivedMsg.ext = %@",lastRecivedMsg.ext);
         KGLog(@"lastMessage.ext = %@",lastMessage.ext);
         KGLog(@"model.ext = %@",model.ext);
-        if (lastMessage) {
-            _lastMsgLabel.text = [self getSwitchMessage:lastMessage];
-        }
         
         if (lastRecivedMsg) {
             // 对方有发消息。只有文本消息有ext
@@ -94,10 +91,17 @@
             // 对方没有发消息
             [[YLZGDataManager sharedManager] getOneStudioByUserName:model.conversationId Block:^(ContactersModel *model) {
                 _nameLabel.text = model.realname.length>0 ? model.realname : model.nickname;
-//                _lastMsgLabel.text = @"";
-//                _timeLabel.text = @"";
                 [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
             }];
+        }
+        
+        if (lastMessage) {
+            NSString *lastStr = [self getSwitchMessage:lastMessage];
+            if (lastStr.length >= 1) {
+                _lastMsgLabel.text = lastStr;
+            }else{
+                _lastMsgLabel.text = @"[GIF]";
+            }
         }
         
     }else{
@@ -106,8 +110,12 @@
         EMMessage *lastMessage = model.latestMessage;
         if (lastMessage) {
             NSString *sendName = [[lastMessage.ext objectForKey:@"nickname"] description];
-            NSString *lastMsg = [self getSwitchMessage:lastMessage];
-            _lastMsgLabel.text = [NSString stringWithFormat:@"%@：%@",sendName,lastMsg];
+            NSString *lastStr = [self getSwitchMessage:lastMessage];
+            if (lastStr.length >= 1) {
+                _lastMsgLabel.text = [NSString stringWithFormat:@"%@：%@",sendName,lastStr];
+            }else{
+                _lastMsgLabel.text = [NSString stringWithFormat:@"%@：[GIF]",sendName];
+            }
         }
         // 通过model.conversationId来获取他信息
         [GroupListManager getGroupInfoByGroupID:model.conversationId Block:^(YLGroup *groupModel) {

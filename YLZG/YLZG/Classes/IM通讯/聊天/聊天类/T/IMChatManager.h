@@ -37,6 +37,20 @@
 
 
 /**
+ 构造gif消息
+
+ @param text        text
+ @param to          发送给谁-ConversationID
+ @param messageType 消息类型
+
+ @return EMMessage
+ */
++ (EMMessage *)sendGifEmoticonMsg:(NSString *)text
+                            to:(NSString *)to
+                   messageType:(EMChatType)messageType
+                           ext:(NSDictionary *)ext;
+
+/**
  构造语音消息
 
  @param localPath   语音路径

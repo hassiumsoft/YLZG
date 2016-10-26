@@ -48,6 +48,17 @@ static IMChatManager *manager = nil;
     message.chatType = messageType;
     return message;
 }
+#pragma mark - 发送gif表情
++ (EMMessage *)sendGifEmoticonMsg:(NSString *)text to:(NSString *)to messageType:(EMChatType)messageType ext:(NSDictionary *)ext
+{
+    // 表情映射
+    NSString *willSendText = [EaseConvertToCommonEmoticonsHelper convertToCommonEmoticons:text];
+    EMTextMessageBody *body = [[EMTextMessageBody alloc]initWithText:willSendText];
+    NSString *from = [[EMClient sharedClient] currentUsername];
+    EMMessage *message = [[EMMessage alloc]initWithConversationID:to from:from to:to body:body ext:ext];
+    message.chatType = messageType;
+    return message;
+}
 #pragma mark - 发送语音消息
 + (EMMessage *)sendVoiceMessageWithLocalPath:(NSString *)localPath
                                     duration:(NSInteger)duration
