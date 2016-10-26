@@ -49,6 +49,12 @@
 
 /** QQ */
 @property (copy,nonatomic) NSString *qq;
+/** vicp */
+@property (copy,nonatomic) NSString *vcip;
+/** 处于的考勤组 */
+@property (copy,nonatomic) NSString *attence_group;
+/** 所管理的考勤组 */
+@property (copy,nonatomic) NSString *attence_admin_group;
 /** 部门 */
 @property (copy,nonatomic) NSString *dept;
 /** 性别 */

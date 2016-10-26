@@ -28,7 +28,7 @@ static FMDatabase *_db;
     }
     
     // 建表语句 缺少head、
-    BOOL result = [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_user (id integer PRIMARY KEY AUTOINCREMENT,uid text,createtime text,username text,password text,store_simple_name text,nickname text,realname text,mobile text,birth text,type text,sid text,suid text,loginip text,logintime text,qq text,dept text,gender text,is_register_easemob bool,location text,head text);"];
+    BOOL result = [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_user (id integer PRIMARY KEY AUTOINCREMENT,uid text,createtime text,username text,password text,store_simple_name text,nickname text,realname text,mobile text,birth text,type text,sid text,suid text,loginip text,logintime text,qq text,dept text,gender text,is_register_easemob bool,location text,head text,vcip text,attence_admin_group text,attence_group text);"];
     if (result) {
         KGLog(@"表格创建成功");
     }else{
@@ -41,7 +41,7 @@ static FMDatabase *_db;
 {
     
     
-    NSString *sql = [NSString stringWithFormat:@"insert into t_user (uid,createtime,username,password,store_simple_name,nickname,realname,mobile,birth,type,sid,suid,loginip,logintime,qq,dept,gender,is_register_easemob,location,head) values ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",model.uid,model.createtime,model.username,model.password,model.store_simple_name,model.nickname,model.realname,model.mobile,model.birth,model.type,model.sid,model.suid,model.loginip,model.logintime,model.qq,model.dept,model.gender,model.is_register_easemob,model.location,model.head];
+    NSString *sql = [NSString stringWithFormat:@"insert into t_user (uid,createtime,username,password,store_simple_name,nickname,realname,mobile,birth,type,sid,suid,loginip,logintime,qq,dept,gender,is_register_easemob,location,head,vcip,attence_admin_group,attence_group) values ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",model.uid,model.createtime,model.username,model.password,model.store_simple_name,model.nickname,model.realname,model.mobile,model.birth,model.type,model.sid,model.suid,model.loginip,model.logintime,model.qq,model.dept,model.gender,model.is_register_easemob,model.location,model.head,model.vcip,model.attence_admin_group,model.attence_group];
     
     BOOL result = [_db executeUpdate:sql];
     if (result) {
@@ -90,6 +90,9 @@ static FMDatabase *_db;
         user.gender = [result stringForColumn:@"gender"];
         user.is_register_easemob = [result stringForColumn:@"is_register_easemob"];
         user.location = [result stringForColumn:@"location"];
+        user.vcip = [result stringForColumn:@"vcip"];
+        user.attence_admin_group = [result stringForColumn:@"attence_admin_group"];
+        user.attence_group = [result stringForColumn:@"attence_group"];
         
         [array addObject:user];
     }

@@ -136,7 +136,7 @@
         YLZGTitleLabel * label = [[YLZGTitleLabel alloc] init];
         label.text = self.titleArray[i];
         label.frame = CGRectMake(labelX, labelY, labelW, labelH);
-        label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+        label.font = [UIFont systemFontOfSize:15];
         label.tag = i;
         label.userInteractionEnabled = YES;
         [self.titleScrollView addSubview:label];

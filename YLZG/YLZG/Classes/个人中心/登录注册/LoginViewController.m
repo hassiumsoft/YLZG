@@ -63,7 +63,6 @@
     [self showHudMessage:@"登录中···"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        NSLog(@"responseObject = %@",responseObject);
         [self hideHud:0];
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
@@ -118,7 +117,7 @@
     
     // 到这步就可以把账户信息归档
     NSMutableDictionary *newDic = [NSMutableDictionary dictionary];
-//    NSDictionary *result = [json objectForKey:@"result"];
+    
     /** ⚠️ 使用FMDB存储数据 */
     UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:json];
     model.password = self.passField.text;

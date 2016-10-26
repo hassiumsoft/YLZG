@@ -113,8 +113,8 @@
 
     // 套系
     self.setLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-    self.setLabel.font = [UIFont systemFontOfSize:14];
-    self.setLabel.textColor = RGBACOLOR(196, 196, 196, 1);
+    self.setLabel.font = [UIFont systemFontOfSize:13];
+    self.setLabel.textColor = RGBACOLOR(106, 106, 106, 1);
     [_whiteView addSubview:self.setLabel];
     [self.setLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.guestLabel.mas_left);

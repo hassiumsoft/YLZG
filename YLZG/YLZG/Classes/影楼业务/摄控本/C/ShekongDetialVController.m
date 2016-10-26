@@ -10,6 +10,7 @@
 #import <MJExtension.h>
 #import "NSDate+Extension.h"
 #import <Masonry.h>
+#import "UserInfoManager.h"
 
 @interface ShekongDetialVController ()
 
@@ -138,7 +139,6 @@
     }];
     
     UILabel *phoneLabel = [[UILabel alloc]init];
-    phoneLabel.text = [NSString stringWithFormat:@"%@(点击拨打)",self.model.paphone];
     phoneLabel.font = [UIFont systemFontOfSize:15];
     phoneLabel.textColor = [UIColor blackColor];
     [self.view addSubview:phoneLabel];
@@ -148,15 +148,23 @@
         make.centerY.equalTo(phLabel.mas_centerY);
     }];
     
-    phoneLabel.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        NSString *phoneNum = self.model.paphone;
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
-        UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];
-        [webView loadRequest:[NSURLRequest requestWithURL:url]];
-        [self.view addSubview:webView];
-    }];
-    [phoneLabel addGestureRecognizer:tap];
+    UserInfoModel *userModel = [UserInfoManager getUserInfo];
+    if ([userModel.vcip intValue] == 1) {
+        phoneLabel.text = [NSString stringWithFormat:@"%@(点击拨打)",self.model.paphone];
+        phoneLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+            NSString *phoneNum = self.model.paphone;
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
+            UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];
+            [webView loadRequest:[NSURLRequest requestWithURL:url]];
+            [self.view addSubview:webView];
+        }];
+        [phoneLabel addGestureRecognizer:tap];
+    }else{
+        phoneLabel.text = @"电话号码保密(您暂无权限，可求助管理员)";
+    }
+    
+    
     
     // 分割线
     UIImageView *xian3 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xuxian"]];

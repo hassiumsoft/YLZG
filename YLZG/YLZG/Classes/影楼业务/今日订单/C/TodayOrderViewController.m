@@ -14,6 +14,7 @@
 #import "TodayOrderCell.h"
 #import "ZCAccountTool.h"
 #import "HTTPManager.h"
+#import "UserInfoManager.h"
 
 @interface TodayOrderViewController ()<UITableViewDelegate,UITableViewDataSource,TodayOrderCellDelegate,PDTSimpleCalendarViewDelegate>
 
@@ -127,15 +128,17 @@
 #pragma mark - TodayOrderCellDelegate
 - (void)openPhoneWebView:(TodayOrderModel *)model
 {
-    if (model.phone.length >= 11) {
+    UserInfoModel *userModel = [UserInfoManager getUserInfo];
+    if ([userModel.vcip intValue] == 1) {
         NSString *phone = [model.phone substringWithRange:NSMakeRange(0, 11)];
         NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phone]];
         UIWebView *phoneWeb = [[UIWebView alloc]initWithFrame:CGRectZero];
         [phoneWeb loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
         [self.view addSubview:phoneWeb];
     }else{
-        [self sendErrorWarning:@"该顾客留下的电话号码有误"];
+        [self sendErrorWarning:@"当前账号暂无权限，必要情况请联系管理员。"];
     }
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
