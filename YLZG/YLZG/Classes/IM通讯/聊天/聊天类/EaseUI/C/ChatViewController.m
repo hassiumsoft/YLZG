@@ -7,9 +7,9 @@
 //
 
 #import "ChatViewController.h"
-#import "EaseSelectorViewController.h"
 #import "YLZGChatManager.h"
 #import "EaseEmotionManager.h"
+#import "ReSendViewController.h"
 
 #import "UserInfoManager.h"
 #import "EaseEmoji.h"
@@ -325,17 +325,18 @@
     }
 }
 
+#pragma mark - 转发消息
 - (void)transpondMenuAction:(id)sender
 {
     if (self.menuIndexPath && self.menuIndexPath.row > 0) {
         id<IMessageModel> model = [self.dataArray objectAtIndex:self.menuIndexPath.row];
-        EaseSelectorViewController *listViewController = [[EaseSelectorViewController alloc] initWithNibName:nil bundle:nil];
+        ReSendViewController *listViewController = [[ReSendViewController alloc]init];
         listViewController.messageModel = model;
         [self.navigationController pushViewController:listViewController animated:YES];
     }
     self.menuIndexPath = nil;
 }
-
+#pragma mark - 复制
 - (void)copyMenuAction:(id)sender
 {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
@@ -346,7 +347,7 @@
     
     self.menuIndexPath = nil;
 }
-
+#pragma mark - 删除某条消息
 - (void)deleteMenuAction:(id)sender
 {
     if (self.menuIndexPath && self.menuIndexPath.row > 0) {
@@ -413,8 +414,7 @@
     }
 }
 
-#pragma mark - private
-
+#pragma mark - 转发、删除、复制
 - (void)showMenuViewController:(UIView *)showInView
                   andIndexPath:(NSIndexPath *)indexPath
                    messageType:(EMMessageBodyType)messageType
