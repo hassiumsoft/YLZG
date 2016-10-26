@@ -219,6 +219,7 @@
 		3BBEDD061DBD9957007075BD /* MineKaoqinTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEDCC61DBD9957007075BD /* MineKaoqinTableViewCell.m */; };
 		3BBEDD071DBD9957007075BD /* MineKaoqinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEDCC81DBD9957007075BD /* MineKaoqinView.m */; };
 		3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6C5061DC042C8008346BD /* NewFutherModel.m */; };
+		3BC6C50D1DC09C7A008346BD /* ReSendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6C50C1DC09C7A008346BD /* ReSendViewController.m */; };
 		3BCA323A1D9CC07600A0E980 /* YLConstKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32391D9CC07600A0E980 /* YLConstKey.m */; };
 		3BCA32401D9CC14100A0E980 /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA323E1D9CC14100A0E980 /* SuperViewController.m */; };
 		3BCA32431D9CC1A600A0E980 /* HomeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32421D9CC1A600A0E980 /* HomeNavigationController.m */; };
@@ -316,8 +317,6 @@
 		3BDD44261DBE13B300AB87EA /* EaseBubbleView+Voice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD44191DBE13B300AB87EA /* EaseBubbleView+Voice.m */; };
 		3BDD44271DBE13B300AB87EA /* EaseBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD441B1DBE13B300AB87EA /* EaseBubbleView.m */; };
 		3BDD442D1DBEF47B00AB87EA /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD442C1DBEF47B00AB87EA /* ChatViewController.m */; };
-		3BDD44331DBEFB9700AB87EA /* EaseSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD44321DBEFB9700AB87EA /* EaseSelectorViewController.m */; };
-		3BDD44361DBEFCD600AB87EA /* EaseUsersListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD44351DBEFCD600AB87EA /* EaseUsersListViewController.m */; };
 		3BDD447B1DBF35BE00AB87EA /* MoreToolButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD447A1DBF35BE00AB87EA /* MoreToolButton.m */; };
 		3BDD44871DBF397500AB87EA /* EaseConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD447D1DBF397500AB87EA /* EaseConversationModel.m */; };
 		3BDD44881DBF397500AB87EA /* EaseMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BDD447F1DBF397500AB87EA /* EaseMessageModel.m */; };
@@ -796,6 +795,8 @@
 		3BBEDCC81DBD9957007075BD /* MineKaoqinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineKaoqinView.m; sourceTree = "<group>"; };
 		3BC6C5051DC042C8008346BD /* NewFutherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFutherModel.h; sourceTree = "<group>"; };
 		3BC6C5061DC042C8008346BD /* NewFutherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFutherModel.m; sourceTree = "<group>"; };
+		3BC6C50B1DC09C7A008346BD /* ReSendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReSendViewController.h; sourceTree = "<group>"; };
+		3BC6C50C1DC09C7A008346BD /* ReSendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReSendViewController.m; sourceTree = "<group>"; };
 		3BCA32351D9CBF5200A0E980 /* YLZGHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLZGHeader.h; sourceTree = "<group>"; };
 		3BCA32361D9CC07600A0E980 /* PCH_HTTP_URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_HTTP_URL.h; sourceTree = "<group>"; };
 		3BCA32371D9CC07600A0E980 /* PCH_Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_Profile.h; sourceTree = "<group>"; };
@@ -989,10 +990,6 @@
 		3BDD441B1DBE13B300AB87EA /* EaseBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseBubbleView.m; sourceTree = "<group>"; };
 		3BDD442B1DBEF47B00AB87EA /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		3BDD442C1DBEF47B00AB87EA /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
-		3BDD44311DBEFB9700AB87EA /* EaseSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseSelectorViewController.h; sourceTree = "<group>"; };
-		3BDD44321DBEFB9700AB87EA /* EaseSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseSelectorViewController.m; sourceTree = "<group>"; };
-		3BDD44341DBEFCD600AB87EA /* EaseUsersListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseUsersListViewController.h; sourceTree = "<group>"; };
-		3BDD44351DBEFCD600AB87EA /* EaseUsersListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseUsersListViewController.m; sourceTree = "<group>"; };
 		3BDD44791DBF35BE00AB87EA /* MoreToolButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreToolButton.h; sourceTree = "<group>"; };
 		3BDD447A1DBF35BE00AB87EA /* MoreToolButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreToolButton.m; sourceTree = "<group>"; };
 		3BDD447C1DBF397500AB87EA /* EaseConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConversationModel.h; sourceTree = "<group>"; };
@@ -2883,10 +2880,8 @@
 				3BDD43DD1DBE12C600AB87EA /* EaseMessageViewController.m */,
 				3BDD43D91DBE124D00AB87EA /* EaseRefreshTableViewController.h */,
 				3BDD43DA1DBE124D00AB87EA /* EaseRefreshTableViewController.m */,
-				3BDD44341DBEFCD600AB87EA /* EaseUsersListViewController.h */,
-				3BDD44351DBEFCD600AB87EA /* EaseUsersListViewController.m */,
-				3BDD44311DBEFB9700AB87EA /* EaseSelectorViewController.h */,
-				3BDD44321DBEFB9700AB87EA /* EaseSelectorViewController.m */,
+				3BC6C50B1DC09C7A008346BD /* ReSendViewController.h */,
+				3BC6C50C1DC09C7A008346BD /* ReSendViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -3456,7 +3451,6 @@
 				3B7ABCF71DB6176600F3D12B /* EMVoiceConverter.mm in Sources */,
 				3BBEDD021DBD9957007075BD /* TeamKaoqinView.m in Sources */,
 				3BBEDCDC1DBD9957007075BD /* AddNewBanciController.m in Sources */,
-				3BDD44331DBEFB9700AB87EA /* EaseSelectorViewController.m in Sources */,
 				3B9331661DAB3FF600019894 /* SearchOrderModel.m in Sources */,
 				3B9331791DAB7AFC00019894 /* FinacialAnalysesCell.m in Sources */,
 				3BDD44221DBE13B300AB87EA /* EaseBubbleView+Image.m in Sources */,
@@ -3508,6 +3502,7 @@
 				3BF93D7E1DADDC950002EACA /* CalendarViewController.m in Sources */,
 				3BF8A3E71DB0822600B062AA /* MyApproveVController.m in Sources */,
 				3BDD44241DBE13B300AB87EA /* EaseBubbleView+Text.m in Sources */,
+				3BC6C50D1DC09C7A008346BD /* ReSendViewController.m in Sources */,
 				3B6E3A0A1DAA0F8400A9BA63 /* SearchTableViewCell.m in Sources */,
 				3B6E3A431DAA2D4E00A9BA63 /* OrderPhoneController.m in Sources */,
 				3BBEDCD51DBD9957007075BD /* qiaodaocountBtn.m in Sources */,
@@ -3677,7 +3672,6 @@
 				3BBEDCFD1DBD9957007075BD /* DeptTeamKaoqinModel.m in Sources */,
 				3BCF39B11D9E3CE900BEE236 /* PushNotificationViewController.m in Sources */,
 				3BCF39C31D9E3D5500BEE236 /* ContactersModel.m in Sources */,
-				3BDD44361DBEFCD600AB87EA /* EaseUsersListViewController.m in Sources */,
 				3BF93D7A1DADDC950002EACA /* CalendarHomeViewController.m in Sources */,
 				3BCA32581D9CC1F900A0E980 /* NSDate+Extension.m in Sources */,
 				3BDD44891DBF397500AB87EA /* EaseUserModel.m in Sources */,

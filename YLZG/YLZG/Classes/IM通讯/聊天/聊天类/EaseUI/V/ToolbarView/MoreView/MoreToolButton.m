@@ -32,9 +32,10 @@
         whiteView.layer.cornerRadius = 8;
         [self addSubview:whiteView];
         [whiteView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.mas_centerX);
             make.centerY.equalTo(self.mas_centerY).offset(-5);
-            make.width.and.height.equalTo(@50);
+            make.left.equalTo(self.mas_left);
+            make.width.equalTo(@55);
+            make.height.equalTo(@50);
         }];
         
         // icon
@@ -50,7 +51,7 @@
         // 标题
         UILabel *label = [[UILabel alloc]init];
         label.text = title;
-        label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+        label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption2];
         label.textColor = RGBACOLOR(52, 71, 94, 1);
         label.textAlignment = NSTextAlignmentCenter;
         [self addSubview:label];

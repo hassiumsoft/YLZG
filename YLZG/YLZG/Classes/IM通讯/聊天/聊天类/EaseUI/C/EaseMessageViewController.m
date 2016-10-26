@@ -10,9 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <Photos/Photos.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-
 #import "NSDate+Category.h"
-#import "EaseUsersListViewController.h"
 #import "EaseMessageReadManager.h"
 #import "EaseEmotionManager.h"
 #import "EaseEmoji.h"
@@ -27,7 +25,6 @@
 
 
 #define KHintAdjustY    50
-
 
 @implementation EaseAtTarget
 - (instancetype)initWithUserId:(NSString*)userId andNickname:(NSString*)nickname
@@ -1768,7 +1765,7 @@
     [self tableViewDidFinishTriggerHeader:YES reload:YES];
 }
 
-#pragma mark - 发送一条消息
+#pragma mark - 格式化消息
 - (void)_refreshAfterSentMessage:(EMMessage*)aMessage
 {
     if ([self.messsagesSource count] && [EMClient sharedClient].options.sortMessageByServerTime) {
@@ -1855,7 +1852,7 @@
     }
     
 }
-#pragma mark - 发送单聊消息--解决图片办法、消息扩展
+#pragma mark - 发送单聊消息
 - (void)sendTextMessage:(NSString *)text withExt:(NSDictionary*)ext
 {
     EMMessage *message = [IMChatManager sendTextMessage:text to:self.conversation.conversationId messageType:_chatType];
