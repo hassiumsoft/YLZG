@@ -218,6 +218,7 @@
 		3BBEDD051DBD9957007075BD /* DateMineKaoqinPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEDCC41DBD9957007075BD /* DateMineKaoqinPicker.m */; };
 		3BBEDD061DBD9957007075BD /* MineKaoqinTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEDCC61DBD9957007075BD /* MineKaoqinTableViewCell.m */; };
 		3BBEDD071DBD9957007075BD /* MineKaoqinView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BBEDCC81DBD9957007075BD /* MineKaoqinView.m */; };
+		3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6C5061DC042C8008346BD /* NewFutherModel.m */; };
 		3BCA323A1D9CC07600A0E980 /* YLConstKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32391D9CC07600A0E980 /* YLConstKey.m */; };
 		3BCA32401D9CC14100A0E980 /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA323E1D9CC14100A0E980 /* SuperViewController.m */; };
 		3BCA32431D9CC1A600A0E980 /* HomeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32421D9CC1A600A0E980 /* HomeNavigationController.m */; };
@@ -283,7 +284,6 @@
 		3BCF3A211D9E6A4800BEE236 /* MyStudioVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A181D9E6A4800BEE236 /* MyStudioVController.m */; };
 		3BCF3A221D9E6A4800BEE236 /* NewFutherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A1A1D9E6A4800BEE236 /* NewFutherViewController.m */; };
 		3BCF3A231D9E6A4800BEE236 /* SuggestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A1C1D9E6A4800BEE236 /* SuggestController.m */; };
-		3BCF3A241D9E6A4800BEE236 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A1E1D9E6A4800BEE236 /* WelcomeViewController.m */; };
 		3BCF3A371D9E6CF800BEE236 /* NSData+SDDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A271D9E6CF800BEE236 /* NSData+SDDataCache.m */; };
 		3BCF3A381D9E6CF800BEE236 /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A2A1D9E6CF800BEE236 /* TAAbstractDotView.m */; };
 		3BCF3A391D9E6CF800BEE236 /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A2C1D9E6CF800BEE236 /* TAAnimatedDotView.m */; };
@@ -794,6 +794,8 @@
 		3BBEDCC61DBD9957007075BD /* MineKaoqinTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineKaoqinTableViewCell.m; sourceTree = "<group>"; };
 		3BBEDCC71DBD9957007075BD /* MineKaoqinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineKaoqinView.h; sourceTree = "<group>"; };
 		3BBEDCC81DBD9957007075BD /* MineKaoqinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineKaoqinView.m; sourceTree = "<group>"; };
+		3BC6C5051DC042C8008346BD /* NewFutherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFutherModel.h; sourceTree = "<group>"; };
+		3BC6C5061DC042C8008346BD /* NewFutherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFutherModel.m; sourceTree = "<group>"; };
 		3BCA32351D9CBF5200A0E980 /* YLZGHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLZGHeader.h; sourceTree = "<group>"; };
 		3BCA32361D9CC07600A0E980 /* PCH_HTTP_URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_HTTP_URL.h; sourceTree = "<group>"; };
 		3BCA32371D9CC07600A0E980 /* PCH_Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCH_Profile.h; sourceTree = "<group>"; };
@@ -923,8 +925,6 @@
 		3BCF3A1A1D9E6A4800BEE236 /* NewFutherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFutherViewController.m; sourceTree = "<group>"; };
 		3BCF3A1B1D9E6A4800BEE236 /* SuggestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestController.h; sourceTree = "<group>"; };
 		3BCF3A1C1D9E6A4800BEE236 /* SuggestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestController.m; sourceTree = "<group>"; };
-		3BCF3A1D1D9E6A4800BEE236 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
-		3BCF3A1E1D9E6A4800BEE236 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
 		3BCF3A261D9E6CF800BEE236 /* NSData+SDDataCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SDDataCache.h"; sourceTree = "<group>"; };
 		3BCF3A271D9E6CF800BEE236 /* NSData+SDDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SDDataCache.m"; sourceTree = "<group>"; };
 		3BCF3A291D9E6CF800BEE236 /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
@@ -2724,6 +2724,8 @@
 			children = (
 				3BCF39A61D9E322F00BEE236 /* ImageBrowser.h */,
 				3BCF39A71D9E322F00BEE236 /* ImageBrowser.m */,
+				3BC6C5051DC042C8008346BD /* NewFutherModel.h */,
+				3BC6C5061DC042C8008346BD /* NewFutherModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -2799,8 +2801,6 @@
 				3BCF3A1A1D9E6A4800BEE236 /* NewFutherViewController.m */,
 				3BCF3A1B1D9E6A4800BEE236 /* SuggestController.h */,
 				3BCF3A1C1D9E6A4800BEE236 /* SuggestController.m */,
-				3BCF3A1D1D9E6A4800BEE236 /* WelcomeViewController.h */,
-				3BCF3A1E1D9E6A4800BEE236 /* WelcomeViewController.m */,
 			);
 			path = "其他";
 			sourceTree = "<group>";
@@ -3380,6 +3380,7 @@
 				3BCF39C01D9E3D5500BEE236 /* ContactListViewController.m in Sources */,
 				3B93317B1DAB7AFC00019894 /* Huanzhuangbingtu.m in Sources */,
 				3B9331871DAB8A2700019894 /* TodayOrderCell.m in Sources */,
+				3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */,
 				3BCF39931D9DFA4400BEE236 /* HomeTabbarController.m in Sources */,
 				3B3BBFC91DB48BEB00C9E2FD /* GroupTableViewCell.m in Sources */,
 				3BBEDCE21DBD9957007075BD /* TimeSetViewController.m in Sources */,
@@ -3524,7 +3525,6 @@
 				3B5DC7201DB87265000F7A06 /* FixFopen.c in Sources */,
 				3BCA32401D9CC14100A0E980 /* SuperViewController.m in Sources */,
 				3BBEDCDE1DBD9957007075BD /* ChooseBanciVController.m in Sources */,
-				3BCF3A241D9E6A4800BEE236 /* WelcomeViewController.m in Sources */,
 				3BF93D791DADDC950002EACA /* CalendarDayModel.m in Sources */,
 				3B93315D1DAB2D7700019894 /* SearchDetailViewController.m in Sources */,
 				3B6E39E71DA9FE8A00A9BA63 /* OutTitleColorView.m in Sources */,

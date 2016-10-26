@@ -90,6 +90,7 @@
     
     if (userName.length) {
         // 自动登录成功
+        self.isShowNewPage = YES;
         HomeTabbarController *tabBarVC = [[HomeTabbarController alloc] init];
         HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:tabBarVC];
         [YLZGChatManager sharedManager].tabbarVC = tabBarVC;
@@ -98,6 +99,7 @@
         self.window.rootViewController = nav;
     }else{
         // 自动登录失败<分第一次登录和被动登录>
+        self.isShowNewPage = NO;
         [YLZGChatManager sharedManager].tabbarVC = nil;
         [self goToLoginViewController:note];
     }

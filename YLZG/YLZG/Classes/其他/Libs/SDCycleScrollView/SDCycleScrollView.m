@@ -92,7 +92,11 @@ NSString * const ID = @"cycleCell";
     _flowLayout = flowLayout;
     
     UICollectionView *mainView = [[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:flowLayout];
-    mainView.backgroundColor = [UIColor lightGrayColor];
+    if (SCREEN_WIDTH == 375) {
+        mainView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"langh_bg_ip6"]];
+    }else{
+        mainView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"langh_bg"]];
+    }
     mainView.pagingEnabled = YES;
     mainView.showsHorizontalScrollIndicator = NO;
     mainView.showsVerticalScrollIndicator = NO;

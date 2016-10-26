@@ -10,7 +10,6 @@
 #import "NormalTableCell.h"
 #import "AboutZhichengController.h"
 #import <LCActionSheet.h>
-#import "WelcomeViewController.h"
 #import "NewFutherViewController.h"
 #import <Masonry.h>
 
@@ -102,7 +101,7 @@ const CGFloat TopViewH = 300;
     switch (indexPath.row) {
         case 0:
         {
-            WelcomeViewController *welcome = [WelcomeViewController new];
+            NewFutherViewController *welcome = [NewFutherViewController new];
             CATransition *animation = [CATransition animation];
             animation.duration = 0.5;
             animation.timingFunction = UIViewAnimationCurveEaseInOut;
