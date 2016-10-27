@@ -103,6 +103,7 @@
         [YLZGChatManager sharedManager].tabbarVC = nil;
         [self goToLoginViewController:note];
     }
+    
 }
 
 - (void)goToLoginViewController:(NSNotification *)note
