@@ -1,5 +1,5 @@
 //
-//  BlackListViewController.h
+//  PushNotificationViewController.h
 //  YLZG
 //
 //  Created by Chan_Sir on 16/9/30.
@@ -8,6 +8,6 @@
 
 #import "SuperViewController.h"
 
-@interface BlackListViewController : SuperViewController
+@interface PushNotificationViewController : SuperViewController
 
 @end
