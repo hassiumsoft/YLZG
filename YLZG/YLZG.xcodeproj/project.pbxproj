@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		187075371DC195FA002448C6 /* ClearCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075301DC195FA002448C6 /* ClearCacheTool.m */; };
+		187075381DC195FA002448C6 /* PushNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075321DC195FA002448C6 /* PushNotificationViewController.m */; };
+		187075391DC195FA002448C6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075341DC195FA002448C6 /* SettingViewController.m */; };
+		1870753A1DC195FA002448C6 /* YLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075361DC195FA002448C6 /* YLAlertView.m */; };
 		21C872D3C9D7B0C50893CAF5 /* libPods-YLZGUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86ED1CFA9A80F470DA0E1435 /* libPods-YLZGUITests.a */; };
 		3B07D8C81D956B0D00B657F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8C71D956B0D00B657F6 /* main.m */; };
 		3B07D8CB1D956B0D00B657F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8CA1D956B0D00B657F6 /* AppDelegate.m */; };
@@ -234,7 +238,6 @@
 		3BCA32621D9CC25100A0E980 /* DismissingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA325F1D9CC25100A0E980 /* DismissingAnimator.m */; };
 		3BCA32631D9CC25100A0E980 /* PresentingAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32611D9CC25100A0E980 /* PresentingAnimator.m */; };
 		3BCA326C1D9CC2F100A0E980 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA326B1D9CC2F100A0E980 /* LoginViewController.m */; };
-		3BCA326F1D9CC32200A0E980 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA326E1D9CC32200A0E980 /* SettingViewController.m */; };
 		3BCF39701D9DF42100BEE236 /* GroupListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39651D9DF42100BEE236 /* GroupListManager.m */; };
 		3BCF39711D9DF42100BEE236 /* HTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39671D9DF42100BEE236 /* HTTPManager.m */; };
 		3BCF39721D9DF42100BEE236 /* HuanxinContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39691D9DF42100BEE236 /* HuanxinContactManager.m */; };
@@ -248,12 +251,9 @@
 		3BCF39901D9DF94100BEE236 /* UIViewController+Actions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF398F1D9DF94100BEE236 /* UIViewController+Actions.m */; };
 		3BCF39931D9DFA4400BEE236 /* HomeTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39921D9DFA4400BEE236 /* HomeTabbarController.m */; };
 		3BCF39991D9E12A200BEE236 /* AboutZhichengController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39981D9E12A200BEE236 /* AboutZhichengController.m */; };
-		3BCF399C1D9E2B6B00BEE236 /* ClearCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF399B1D9E2B6B00BEE236 /* ClearCacheTool.m */; };
 		3BCF39A21D9E31E300BEE236 /* WoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF399F1D9E31E300BEE236 /* WoViewController.m */; };
 		3BCF39A51D9E320C00BEE236 /* NormalTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39A41D9E320C00BEE236 /* NormalTableCell.m */; };
 		3BCF39A81D9E322F00BEE236 /* ImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39A71D9E322F00BEE236 /* ImageBrowser.m */; };
-		3BCF39AB1D9E3C8200BEE236 /* BlackListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39AA1D9E3C8200BEE236 /* BlackListViewController.m */; };
-		3BCF39B11D9E3CE900BEE236 /* PushNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39B01D9E3CE900BEE236 /* PushNotificationViewController.m */; };
 		3BCF39BF1D9E3D5500BEE236 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39B41D9E3D5500BEE236 /* ApplyViewController.m */; };
 		3BCF39C01D9E3D5500BEE236 /* ContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39B61D9E3D5500BEE236 /* ContactListViewController.m */; };
 		3BCF39C11D9E3D5500BEE236 /* ApplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39B91D9E3D5500BEE236 /* ApplyModel.m */; };
@@ -366,6 +366,14 @@
 /* Begin PBXFileReference section */
 		10D181EFDFDFBC5340FDE7D5 /* libPods-YLZGTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YLZGTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		126AC952B5AEDB1B7888B39B /* Pods-YLZGTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLZGTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YLZGTests/Pods-YLZGTests.release.xcconfig"; sourceTree = "<group>"; };
+		1870752F1DC195FA002448C6 /* ClearCacheTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearCacheTool.h; sourceTree = "<group>"; };
+		187075301DC195FA002448C6 /* ClearCacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearCacheTool.m; sourceTree = "<group>"; };
+		187075311DC195FA002448C6 /* PushNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationViewController.h; sourceTree = "<group>"; };
+		187075321DC195FA002448C6 /* PushNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationViewController.m; sourceTree = "<group>"; };
+		187075331DC195FA002448C6 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		187075341DC195FA002448C6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		187075351DC195FA002448C6 /* YLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLAlertView.h; sourceTree = "<group>"; };
+		187075361DC195FA002448C6 /* YLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLAlertView.m; sourceTree = "<group>"; };
 		3B07D8C31D956B0D00B657F6 /* YLZG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YLZG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B07D8C71D956B0D00B657F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B07D8C91D956B0D00B657F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -827,8 +835,6 @@
 		3BCA32611D9CC25100A0E980 /* PresentingAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentingAnimator.m; sourceTree = "<group>"; };
 		3BCA326A1D9CC2F100A0E980 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		3BCA326B1D9CC2F100A0E980 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		3BCA326D1D9CC32200A0E980 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
-		3BCA326E1D9CC32200A0E980 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		3BCF39641D9DF42100BEE236 /* GroupListManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupListManager.h; sourceTree = "<group>"; };
 		3BCF39651D9DF42100BEE236 /* GroupListManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupListManager.m; sourceTree = "<group>"; };
 		3BCF39661D9DF42100BEE236 /* HTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPManager.h; sourceTree = "<group>"; };
@@ -855,18 +861,12 @@
 		3BCF39921D9DFA4400BEE236 /* HomeTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTabbarController.m; sourceTree = "<group>"; };
 		3BCF39971D9E12A200BEE236 /* AboutZhichengController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutZhichengController.h; sourceTree = "<group>"; };
 		3BCF39981D9E12A200BEE236 /* AboutZhichengController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutZhichengController.m; sourceTree = "<group>"; };
-		3BCF399A1D9E2B6B00BEE236 /* ClearCacheTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClearCacheTool.h; sourceTree = "<group>"; };
-		3BCF399B1D9E2B6B00BEE236 /* ClearCacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClearCacheTool.m; sourceTree = "<group>"; };
 		3BCF399E1D9E31E300BEE236 /* WoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WoViewController.h; sourceTree = "<group>"; };
 		3BCF399F1D9E31E300BEE236 /* WoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WoViewController.m; sourceTree = "<group>"; };
 		3BCF39A31D9E320C00BEE236 /* NormalTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalTableCell.h; sourceTree = "<group>"; };
 		3BCF39A41D9E320C00BEE236 /* NormalTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalTableCell.m; sourceTree = "<group>"; };
 		3BCF39A61D9E322F00BEE236 /* ImageBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBrowser.h; sourceTree = "<group>"; };
 		3BCF39A71D9E322F00BEE236 /* ImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBrowser.m; sourceTree = "<group>"; };
-		3BCF39A91D9E3C8200BEE236 /* BlackListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlackListViewController.h; sourceTree = "<group>"; };
-		3BCF39AA1D9E3C8200BEE236 /* BlackListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlackListViewController.m; sourceTree = "<group>"; };
-		3BCF39AF1D9E3CE900BEE236 /* PushNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationViewController.h; sourceTree = "<group>"; };
-		3BCF39B01D9E3CE900BEE236 /* PushNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationViewController.m; sourceTree = "<group>"; };
 		3BCF39B31D9E3D5500BEE236 /* ApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
 		3BCF39B41D9E3D5500BEE236 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
 		3BCF39B51D9E3D5500BEE236 /* ContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListViewController.h; sourceTree = "<group>"; };
@@ -1084,6 +1084,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1870752E1DC195FA002448C6 /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				1870752F1DC195FA002448C6 /* ClearCacheTool.h */,
+				187075301DC195FA002448C6 /* ClearCacheTool.m */,
+				187075311DC195FA002448C6 /* PushNotificationViewController.h */,
+				187075321DC195FA002448C6 /* PushNotificationViewController.m */,
+				187075331DC195FA002448C6 /* SettingViewController.h */,
+				187075341DC195FA002448C6 /* SettingViewController.m */,
+				187075351DC195FA002448C6 /* YLAlertView.h */,
+				187075361DC195FA002448C6 /* YLAlertView.m */,
+			);
+			name = "设置";
+			path = "登录注册/设置";
+			sourceTree = "<group>";
+		};
 		3B07D8BA1D956B0D00B657F6 = {
 			isa = PBXGroup;
 			children = (
@@ -1994,10 +2010,10 @@
 		3B8BE25C1D9CBCB700472AE2 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				1870752E1DC195FA002448C6 /* 设置 */,
 				3BCA32651D9CC2BC00A0E980 /* 个人信息 */,
 				3BCF39D11D9E43A500BEE236 /* 其他 */,
 				3BCA32641D9CC2BC00A0E980 /* 登录注册 */,
-				3BCA32661D9CC2BC00A0E980 /* 设置 */,
 			);
 			path = "个人中心";
 			sourceTree = "<group>";
@@ -2602,21 +2618,6 @@
 				3BCF39F11D9E65C800BEE236 /* 所在地 */,
 			);
 			path = "个人信息";
-			sourceTree = "<group>";
-		};
-		3BCA32661D9CC2BC00A0E980 /* 设置 */ = {
-			isa = PBXGroup;
-			children = (
-				3BCA326D1D9CC32200A0E980 /* SettingViewController.h */,
-				3BCA326E1D9CC32200A0E980 /* SettingViewController.m */,
-				3BCF39AF1D9E3CE900BEE236 /* PushNotificationViewController.h */,
-				3BCF39B01D9E3CE900BEE236 /* PushNotificationViewController.m */,
-				3BCF39A91D9E3C8200BEE236 /* BlackListViewController.h */,
-				3BCF39AA1D9E3C8200BEE236 /* BlackListViewController.m */,
-				3BCF399A1D9E2B6B00BEE236 /* ClearCacheTool.h */,
-				3BCF399B1D9E2B6B00BEE236 /* ClearCacheTool.m */,
-			);
-			path = "设置";
 			sourceTree = "<group>";
 		};
 		3BCA32701D9CC38800A0E980 /* 查询 */ = {
@@ -3401,9 +3402,11 @@
 				3B5052DB1DAF880900479DC1 /* QingjiaViewController.m in Sources */,
 				3BBEDCF91DBD9957007075BD /* WaichuTableCell.m in Sources */,
 				3B6E39EA1DA9FE8A00A9BA63 /* TitleLabel.m in Sources */,
+				187075381DC195FA002448C6 /* PushNotificationViewController.m in Sources */,
 				3BBEDD011DBD9957007075BD /* TeamKaoqinTableViewCell.m in Sources */,
 				3B93317E1DAB823C00019894 /* FinanceModel.m in Sources */,
 				3B5052D31DAF873C00479DC1 /* EWorkViewController.m in Sources */,
+				1870753A1DC195FA002448C6 /* YLAlertView.m in Sources */,
 				3BBEDCEF1DBD9957007075BD /* QIaodaoBeizhuView.m in Sources */,
 				3BBEDCDA1DBD9957007075BD /* EditMemsViewController.m in Sources */,
 				3BF8A3CE1DB07AFF00B062AA /* CommonApplyController.m in Sources */,
@@ -3411,7 +3414,6 @@
 				3BBEDCFB1DBD9957007075BD /* TeamPaihangbangViewController.m in Sources */,
 				3BCA323A1D9CC07600A0E980 /* YLConstKey.m in Sources */,
 				3B93316F1DAB7A8500019894 /* QiaodaoCountButton.m in Sources */,
-				3BCF399C1D9E2B6B00BEE236 /* ClearCacheTool.m in Sources */,
 				3B3DC4701DACD7A9008875C7 /* PaizhaoPreViewController.m in Sources */,
 				3B3BBF9F1DB4780F00C9E2FD /* GroupListViewController.m in Sources */,
 				3B5052BD1DAF71D500479DC1 /* PublicNoticeController.m in Sources */,
@@ -3433,7 +3435,6 @@
 				3BCF39731D9DF42100BEE236 /* StudioContactManager.m in Sources */,
 				3BCA32431D9CC1A600A0E980 /* HomeNavigationController.m in Sources */,
 				3B7ABCAB1DB5B33400F3D12B /* IviteGroupersCollectionCell.m in Sources */,
-				3BCA326F1D9CC32200A0E980 /* SettingViewController.m in Sources */,
 				3BDD43E71DBE137300AB87EA /* MessageListTableCell.m in Sources */,
 				3B9331621DAB3FE300019894 /* PreOrderVController.m in Sources */,
 				3BBEDCEB1DBD9957007075BD /* DakaMapView.m in Sources */,
@@ -3454,6 +3455,7 @@
 				3B9331661DAB3FF600019894 /* SearchOrderModel.m in Sources */,
 				3B9331791DAB7AFC00019894 /* FinacialAnalysesCell.m in Sources */,
 				3BDD44221DBE13B300AB87EA /* EaseBubbleView+Image.m in Sources */,
+				187075371DC195FA002448C6 /* ClearCacheTool.m in Sources */,
 				3BBEDCCD1DBD9957007075BD /* AllQiandaoViewController.m in Sources */,
 				3BBEDCE71DBD9957007075BD /* LocationsModel.m in Sources */,
 				3B6E39E91DA9FE8A00A9BA63 /* TitleColorView.m in Sources */,
@@ -3470,7 +3472,6 @@
 				3B9331991DAB979F00019894 /* StaffYejiModel.m in Sources */,
 				3BDD44271DBE13B300AB87EA /* EaseBubbleView.m in Sources */,
 				3B3BBFD81DB4BF9A00C9E2FD /* DetailFootView.m in Sources */,
-				3BCF39AB1D9E3C8200BEE236 /* BlackListViewController.m in Sources */,
 				3B7ABCA11DB5B31D00F3D12B /* IviteMemberViewController.m in Sources */,
 				3BBEDD061DBD9957007075BD /* MineKaoqinTableViewCell.m in Sources */,
 				3BCF3A0B1D9E65E800BEE236 /* FRegionModel.m in Sources */,
@@ -3640,6 +3641,7 @@
 				3B9331691DAB402000019894 /* ChooseTimeView.m in Sources */,
 				3BF8A3EF1DB0826B00B062AA /* ApproveDetialModel.m in Sources */,
 				3B4A98641DA89A9500FBE24F /* HomeCollectionCell.m in Sources */,
+				187075391DC195FA002448C6 /* SettingViewController.m in Sources */,
 				3BCF39D41D9E43FF00BEE236 /* WifiNetManager.m in Sources */,
 				3BCF3A0C1D9E65E800BEE236 /* FSort.m in Sources */,
 				3BDD442D1DBEF47B00AB87EA /* ChatViewController.m in Sources */,
@@ -3670,7 +3672,6 @@
 				3BCF3A3C1D9E6CF800BEE236 /* SDCollectionViewCell.m in Sources */,
 				3BCF3A3E1D9E6CF800BEE236 /* UIView+SDExtension.m in Sources */,
 				3BBEDCFD1DBD9957007075BD /* DeptTeamKaoqinModel.m in Sources */,
-				3BCF39B11D9E3CE900BEE236 /* PushNotificationViewController.m in Sources */,
 				3BCF39C31D9E3D5500BEE236 /* ContactersModel.m in Sources */,
 				3BF93D7A1DADDC950002EACA /* CalendarHomeViewController.m in Sources */,
 				3BCA32581D9CC1F900A0E980 /* NSDate+Extension.m in Sources */,
