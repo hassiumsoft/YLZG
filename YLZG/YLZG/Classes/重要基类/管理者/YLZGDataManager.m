@@ -132,20 +132,28 @@ static YLZGDataManager *controller = nil;
 
 - (NSArray *)getAllFriendInfo
 {
-    // 暂时只拿本影楼的数据
-    // NSArray *huanxinArr = [HuanxinContactManager getAllHuanxinContactsInfo];
     
+//    NSArray *huanxinArr = [HuanxinContactManager getAllHuanxinContactsInfo];
+    
+    // 暂时只收录同事数组
     NSArray *studioArr = [StudioContactManager getAllStudiosContactsInfo];
     
     NSMutableArray *sumArr = [NSMutableArray array];
     for (int i = 0; i < studioArr.count; i++) {
         ColleaguesModel *colleagus = studioArr[i];
         for (int j = 0; j < colleagus.member.count; j++) {
-            ContactersModel *model = colleagus.member[j];
-            [sumArr addObject:model];
+            ContactersModel *colleModel = colleagus.member[j];
+            [sumArr addObject:colleModel];
         }
     }
     
+    ZCAccount *account = [ZCAccountTool account];
+    for (int i = 0; i < sumArr.count; i++) {
+        ContactersModel *model = sumArr[i];
+        if ([account.username isEqualToString:model.name]) {
+            [sumArr removeObjectAtIndex:i];
+        }
+    }
     
     
     return sumArr;

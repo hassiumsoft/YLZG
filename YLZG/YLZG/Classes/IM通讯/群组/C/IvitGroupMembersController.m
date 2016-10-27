@@ -7,8 +7,7 @@
 //
 
 #import "IvitGroupMembersController.h"
-#import "HuanxinContactManager.h"
-#import "StudioContactManager.h"
+#import "YLZGDataManager.h"
 #import "IvitMembersTableCell.h"
 
 
@@ -34,16 +33,9 @@
 }
 - (void)setupSubViews
 {
-//    NSArray *huanxinArr = [HuanxinContactManager getAllHuanxinContactsInfo];
-    NSArray *studioArr = [StudioContactManager getAllStudiosContactsInfo];
-    for (int i = 0; i < studioArr.count; i++) {
-        ColleaguesModel *collegus = studioArr[i];
-        for (int j = 0; j < collegus.member.count; j++) {
-            ContactersModel *model = collegus.member[j];
-            [self.array addObject:model];
-        }
-    }
-    
+
+    NSArray *allArr = [[YLZGDataManager sharedManager] getAllFriendInfo];
+    self.array = [NSMutableArray arrayWithArray:allArr];
     [self.view addSubview:self.tableView];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -97,13 +89,7 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (NSMutableArray *)array
-{
-    if (!_array) {
-        _array = [NSMutableArray array];
-    }
-    return _array;
-}
+
 - (NSMutableArray *)selectArray
 {
     if (!_selectArray) {
