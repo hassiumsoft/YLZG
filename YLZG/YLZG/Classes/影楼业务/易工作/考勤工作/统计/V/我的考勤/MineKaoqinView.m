@@ -224,7 +224,7 @@
     requestManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/json",nil];
     
     
-    [SVProgressHUD showInfoWithStatus:@"努力加载中..."];
+    [SVProgressHUD showWithStatus:@"努力加载中..."];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     ZCAccount * account = [ZCAccountTool account];
     NSString * url = [NSString stringWithFormat:Count_MyKaoqin_Url, account.userID, monthStr];
