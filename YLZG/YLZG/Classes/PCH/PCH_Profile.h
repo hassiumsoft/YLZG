@@ -51,6 +51,8 @@
 #define ToolBarColor RGBACOLOR(230, 235, 237, 1)
 // 导航控制器颜色
 #define NavColor RGBACOLOR(17, 49, 73, 1)
+// keep背景色
+#define KeepColor RGBACOLOR(235, 240, 242, 1)
 // 类似微信的颜色
 #define WeChatColor RGBACOLOR(50, 165, 50, 1)
 

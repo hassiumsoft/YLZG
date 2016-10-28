@@ -11,12 +11,15 @@
 #import "AboutZhichengController.h"
 #import <LCActionSheet.h>
 #import "NewFutherViewController.h"
+#import "SuggestController.h"
 #import <Masonry.h>
 
 
 const CGFloat TopViewH = 300;
 
 @interface AboutUSController ()<UIScrollViewDelegate,LCActionSheetDelegate>
+
+@property (copy,nonatomic) NSArray *array;
 @property (strong,nonatomic) UIImageView *topView;
 @end
 
@@ -28,6 +31,7 @@ const CGFloat TopViewH = 300;
     self.title = @"关于我们";
     self.view.backgroundColor = NorMalBackGroudColor;
     self.tableView.backgroundColor = self.view.backgroundColor;
+    self.array = @[@"欢迎页",@"意见反馈",@"客服电话",@"关于智诚"];
     [self setupSubViews];
     
 }
@@ -67,6 +71,7 @@ const CGFloat TopViewH = 300;
         make.height.equalTo(@18);
     }];
     
+    [self.tableView reloadData];
     
 }
 - (void)viewWillDisappear:(BOOL)animated
@@ -80,14 +85,14 @@ const CGFloat TopViewH = 300;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.array.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *array = @[@"欢迎页",@"客服电话",@"关于智诚"];
+    
     NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
-    cell.label.text = array[indexPath.row];
+    cell.label.text = self.array[indexPath.row];
     cell.label.textColor = RGBACOLOR(52, 52, 52, 1);
     [cell.label mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(cell.mas_left).offset(15);
@@ -116,10 +121,16 @@ const CGFloat TopViewH = 300;
         }
         case 1:
         {
-            [self callPhone];
+            SuggestController *sug = [SuggestController new];
+            [self.navigationController pushViewController:sug animated:YES];
             break;
         }
         case 2:
+        {
+            [self callPhone];
+            break;
+        }
+        case 3:
         {
             AboutZhichengController *zhichengVC = [[AboutZhichengController alloc]init];
             zhichengVC.isLogin = YES;

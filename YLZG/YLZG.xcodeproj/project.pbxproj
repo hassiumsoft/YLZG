@@ -121,6 +121,9 @@
 		3B6E3A721DAA30E800A9BA63 /* OffLineOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E3A701DAA30E800A9BA63 /* OffLineOrder.m */; };
 		3B6E8EAD1DB9B48B00243E80 /* SendLocaltionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E8EAC1DB9B48B00243E80 /* SendLocaltionController.m */; };
 		3B6E8EB01DB9B9D400243E80 /* SendLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E8EAF1DB9B9D400243E80 /* SendLocationModel.m */; };
+		3B75EFC81DC2E3EF00D54807 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B75EFC41DC2E3EF00D54807 /* libWeChatSDK.a */; };
+		3B75EFCB1DC2EE0800D54807 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75EFCA1DC2EE0800D54807 /* WXApiManager.m */; };
+		3B75EFCE1DC2F02C00D54807 /* WXShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75EFCD1DC2F02C00D54807 /* WXShareView.m */; };
 		3B7ABCA01DB5B31D00F3D12B /* AllMembersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7ABC9B1DB5B31D00F3D12B /* AllMembersController.m */; };
 		3B7ABCA11DB5B31D00F3D12B /* IviteMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7ABC9D1DB5B31D00F3D12B /* IviteMemberViewController.m */; };
 		3B7ABCA21DB5B31D00F3D12B /* YLChatGroupDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7ABC9F1DB5B31D00F3D12B /* YLChatGroupDetailController.m */; };
@@ -593,6 +596,14 @@
 		3B6E8EAC1DB9B48B00243E80 /* SendLocaltionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendLocaltionController.m; sourceTree = "<group>"; };
 		3B6E8EAE1DB9B9D400243E80 /* SendLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendLocationModel.h; sourceTree = "<group>"; };
 		3B6E8EAF1DB9B9D400243E80 /* SendLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendLocationModel.m; sourceTree = "<group>"; };
+		3B75EFC41DC2E3EF00D54807 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		3B75EFC51DC2E3EF00D54807 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		3B75EFC61DC2E3EF00D54807 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		3B75EFC71DC2E3EF00D54807 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		3B75EFC91DC2EE0800D54807 /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		3B75EFCA1DC2EE0800D54807 /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		3B75EFCC1DC2F02C00D54807 /* WXShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXShareView.h; sourceTree = "<group>"; };
+		3B75EFCD1DC2F02C00D54807 /* WXShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXShareView.m; sourceTree = "<group>"; };
 		3B7ABC9A1DB5B31D00F3D12B /* AllMembersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllMembersController.h; sourceTree = "<group>"; };
 		3B7ABC9B1DB5B31D00F3D12B /* AllMembersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllMembersController.m; sourceTree = "<group>"; };
 		3B7ABC9C1DB5B31D00F3D12B /* IviteMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IviteMemberViewController.h; sourceTree = "<group>"; };
@@ -1061,6 +1072,7 @@
 			files = (
 				F861F19A60C03DD5F0C35469 /* libPods-YLZG.a in Frameworks */,
 				3B7ABCF91DB6176600F3D12B /* libopencore-amrwb.a in Frameworks */,
+				3B75EFC81DC2E3EF00D54807 /* libWeChatSDK.a in Frameworks */,
 				3B7ABCF81DB6176600F3D12B /* libopencore-amrnb.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1922,6 +1934,17 @@
 			path = T;
 			sourceTree = "<group>";
 		};
+		3B75EFC31DC2E3EF00D54807 /* WeChatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				3B75EFC41DC2E3EF00D54807 /* libWeChatSDK.a */,
+				3B75EFC51DC2E3EF00D54807 /* WechatAuthSDK.h */,
+				3B75EFC61DC2E3EF00D54807 /* WXApi.h */,
+				3B75EFC71DC2E3EF00D54807 /* WXApiObject.h */,
+			);
+			path = WeChatSDK;
+			sourceTree = "<group>";
+		};
 		3B7ABCB21DB616EE00F3D12B /* EMAudioPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2010,8 +2033,8 @@
 		3B8BE25C1D9CBCB700472AE2 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
-				1870752E1DC195FA002448C6 /* 设置 */,
 				3BCA32651D9CC2BC00A0E980 /* 个人信息 */,
+				1870752E1DC195FA002448C6 /* 设置 */,
 				3BCF39D11D9E43A500BEE236 /* 其他 */,
 				3BCA32641D9CC2BC00A0E980 /* 登录注册 */,
 			);
@@ -2502,6 +2525,8 @@
 		3BCA323B1D9CC14100A0E980 /* 管理者 */ = {
 			isa = PBXGroup;
 			children = (
+				3B75EFC91DC2EE0800D54807 /* WXApiManager.h */,
+				3B75EFCA1DC2EE0800D54807 /* WXApiManager.m */,
 				3BCF39D21D9E43FF00BEE236 /* WifiNetManager.h */,
 				3BCF39D31D9E43FF00BEE236 /* WifiNetManager.m */,
 				3BCF39641D9DF42100BEE236 /* GroupListManager.h */,
@@ -2579,6 +2604,7 @@
 		3BCA32541D9CC1F900A0E980 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				3B75EFC31DC2E3EF00D54807 /* WeChatSDK */,
 				3B370DAB1DB75DAC00243F7D /* 表情相关 */,
 				3B7ABCB21DB616EE00F3D12B /* EMAudioPlayer */,
 				3BF93D651DADDC950002EACA /* ZFCalendar */,
@@ -2735,6 +2761,8 @@
 				3BCF39E31D9E50D300BEE236 /* NoDequTableCell.m */,
 				3BCF39A31D9E320C00BEE236 /* NormalTableCell.h */,
 				3BCF39A41D9E320C00BEE236 /* NormalTableCell.m */,
+				3B75EFCC1DC2F02C00D54807 /* WXShareView.h */,
+				3B75EFCD1DC2F02C00D54807 /* WXShareView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3167,7 +3195,7 @@
 					3B07D8C21D956B0D00B657F6 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = HEG7GWP2LQ;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -3409,7 +3437,9 @@
 				1870753A1DC195FA002448C6 /* YLAlertView.m in Sources */,
 				3BBEDCEF1DBD9957007075BD /* QIaodaoBeizhuView.m in Sources */,
 				3BBEDCDA1DBD9957007075BD /* EditMemsViewController.m in Sources */,
+				3B75EFCB1DC2EE0800D54807 /* WXApiManager.m in Sources */,
 				3BF8A3CE1DB07AFF00B062AA /* CommonApplyController.m in Sources */,
+				3B75EFCE1DC2F02C00D54807 /* WXShareView.m in Sources */,
 				3BDD441C1DBE13B300AB87EA /* EaseBaseMessageCell.m in Sources */,
 				3BBEDCFB1DBD9957007075BD /* TeamPaihangbangViewController.m in Sources */,
 				3BCA323A1D9CC07600A0E980 /* YLConstKey.m in Sources */,
@@ -3830,8 +3860,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YLZG/YLZG.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = HEG7GWP2LQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = $SRCROOT/YLZG/Classes/PCH/YLZGHeader.h;
 				INFOPLIST_FILE = YLZG/Info.plist;
@@ -3841,11 +3871,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/YLZG/Classes/其他/Libs/EMAudioPlayer/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/YLZG/Classes/其他/Libs/EMAudioPlayer/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/YLZG/Classes/其他/Libs/WeChatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiomanager.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8d9176df-030f-4869-93a5-82d8dbee8024";
-				PROVISIONING_PROFILE_SPECIFIER = YLZG_STORE_Profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -3855,8 +3886,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YLZG/YLZG.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = HEG7GWP2LQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = $SRCROOT/YLZG/Classes/PCH/YLZGHeader.h;
 				INFOPLIST_FILE = YLZG/Info.plist;
@@ -3866,11 +3897,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/YLZG/Classes/其他/Libs/EMAudioPlayer/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/YLZG/Classes/其他/Libs/EMAudioPlayer/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/YLZG/Classes/其他/Libs/WeChatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiomanager.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8d9176df-030f-4869-93a5-82d8dbee8024";
-				PROVISIONING_PROFILE_SPECIFIER = YLZG_STORE_Profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

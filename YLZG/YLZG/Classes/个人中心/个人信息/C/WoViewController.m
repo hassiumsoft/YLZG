@@ -19,7 +19,9 @@
 #import "MyStudioVController.h"
 #import "ForgetSecretController.h"
 #import "AboutUSController.h"
-#import "SuggestController.h"
+#import "WXApiManager.h"
+#import <LCActionSheet.h>
+#import "YLZGDataManager.h"
 
 
 @interface WoViewController ()<UITableViewDelegate,UITableViewDataSource,UIViewControllerTransitioningDelegate>
@@ -45,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我";
-    self.array = @[@[@"我的信息"],@[@"我的影楼",@"区域经理",@"修改密码",@"意见反馈",@"关于我们"],@[@"设置"]];
+    self.array = @[@[@"我的信息"],@[@"我的影楼",@"区域经理",@"修改密码",@"分享影楼掌柜",@"关于我们"],@[@"设置"]];
     [self.view addSubview:self.tableView];
     
 }
@@ -90,7 +92,7 @@
         NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
         [cell.xian removeFromSuperview];
         [tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-        NSArray *iconArr = @[@"ic_myshop",@"my_manager",@"change_pass",@"ic_suggest",@"ic_aboutus"];
+        NSArray *iconArr = @[@"ic_myshop",@"my_manager",@"change_pass",@"ic_share",@"ic_aboutus"];
         cell.imageV.image = [UIImage imageNamed:iconArr[indexPath.row]];
         cell.label.text = self.array[indexPath.section][indexPath.row];
         return cell;
@@ -130,9 +132,19 @@
             ForgetSecretController *secret = [ForgetSecretController new];
             [self.navigationController pushViewController:secret animated:YES];
         }else if(indexPath.row == 3){
-            // 意见反馈
-            SuggestController *suggest = [SuggestController new];
-            [self.navigationController pushViewController:suggest animated:YES];
+            //  分享
+            LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+                [[YLZGDataManager sharedManager] getShareUrlCompletion:^(NSString *url) {
+                    if (buttonIndex == 1) {
+                        [self sharetoWechat:url Type:0];
+                    }else if(buttonIndex == 2){
+                        [self sharetoWechat:url Type:1];
+                    }
+                }];
+                
+            } otherButtonTitles:@"微信好友",@"朋友圈", nil];
+            [sheet show];
+            
         }else{
             // 关于我们
             AboutUSController *about = [AboutUSController new];
@@ -144,6 +156,26 @@
         [self.navigationController pushViewController:settingVC animated:YES];
     }
 }
+
+- (void)sharetoWechat:(NSString *)url Type:(int)shareType
+{
+    WXMediaMessage *message = [WXMediaMessage message];
+    message.title = @"影楼掌柜-专业的儿童影楼APP";
+    message.description = @"随时随地掌握您的影楼工作。";
+    [message setThumbImage:[UIImage imageNamed:@"app_logo"]];
+    
+    WXWebpageObject *webObject = [WXWebpageObject object];
+    webObject.webpageUrl = url;
+    message.mediaObject = webObject;
+    
+    SendMessageToWXReq *req = [[SendMessageToWXReq alloc]init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = shareType;
+    [WXApi sendReq:req];
+    
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {

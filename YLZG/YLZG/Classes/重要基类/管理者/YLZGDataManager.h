@@ -17,6 +17,8 @@ typedef void (^NoParamBlock)();
 
 typedef void (^StuduoModelBlock)(ContactersModel *model);
 
+typedef void(^ShareUrlBlock)(NSString *url);
+
 /******** 收录一些重要的数据管理 *******/
 @interface YLZGDataManager : NSObject
 
@@ -32,6 +34,8 @@ typedef void (^StuduoModelBlock)(ContactersModel *model);
 - (NSArray *)getAllFriendInfo;
 /** 通过一个影楼ID获取一个用户的信息 */
 - (void)getOneStudioByUserName:(NSString *)userName Block:(StuduoModelBlock)modelBlock;
+/** 获取分享链接 */
+- (void)getShareUrlCompletion:(ShareUrlBlock)shareURL;
 
 
 @end

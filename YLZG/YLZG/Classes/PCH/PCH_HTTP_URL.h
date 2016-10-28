@@ -150,6 +150,8 @@
 #define MyStido_Url @"http://zsylou.wxwkf.com/index.php/home/MyYLou/query?uid=%@"
 // 联系区域经理
 #define ContactManager_Url @"http://zsylou.wxwkf.com/index.php/home/MarketManager/query?uid=%@"
+// 分享链接
+#define Share_URL @"http://zsylou.wxwkf.com/index.php/home/ShareUrl/geturl?uid=%@"
 // 27.版本更新
 #define VersionUpdate_Url @"http://zsylou.wxwkf.com/index.php/home/version/query?os=2"
 

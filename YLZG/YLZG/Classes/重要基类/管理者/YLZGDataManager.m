@@ -160,5 +160,25 @@ static YLZGDataManager *controller = nil;
     
 }
 
+- (void)getShareUrlCompletion:(ShareUrlBlock)shareURL
+{
+    ZCAccount *account = [ZCAccountTool account];
+    NSString *url = [NSString stringWithFormat:Share_URL,account.userID];
+    __block NSString *tempUrl = @"http://ylou.bjletu.com";
+    
+    [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        if (code == 1) {
+            tempUrl = [responseObject objectForKey:@"url"];
+            shareURL(tempUrl);
+        }else{
+            shareURL(tempUrl);
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        ShareUrlBlock(tempUrl);
+        NSLog(@"tempUrl = %@",tempUrl);
+    }];
+}
+
 
 @end
