@@ -8,18 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger,ClickType) {
-    OpenOrderClick = 1,
-    SearchClick = 2,
-    PreOrderClick = 3
-};
-
-typedef void(^ButtonClickBlock)(ClickType clickType);
 
 @interface HomeHeadView : UIView
 
-@property (copy,nonatomic) void (^ButtonClickBlock)(ClickType);
 
-+ (instancetype)sharedHomeHeadView;
 
 @end

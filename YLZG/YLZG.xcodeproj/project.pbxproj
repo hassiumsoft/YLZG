@@ -18,6 +18,7 @@
 		3B07D8D61D956B0D00B657F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B07D8D41D956B0D00B657F6 /* LaunchScreen.storyboard */; };
 		3B07D8E11D956B0D00B657F6 /* YLZGTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8E01D956B0D00B657F6 /* YLZGTests.m */; };
 		3B07D8EC1D956B0D00B657F6 /* YLZGUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8EB1D956B0D00B657F6 /* YLZGUITests.m */; };
+		3B3652311DC3479100E76D04 /* HomeReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3652301DC3479100E76D04 /* HomeReusableView.m */; };
 		3B370DAA1DB7595800243F7D /* IMChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B370DA91DB7595800243F7D /* IMChatManager.m */; };
 		3B3BBF931DB475EF00C9E2FD /* ContactHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBF921DB475EF00C9E2FD /* ContactHeadView.m */; };
 		3B3BBF961DB475FA00C9E2FD /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBF951DB475FA00C9E2FD /* ContactTableViewCell.m */; };
@@ -391,6 +392,8 @@
 		3B07D8EB1D956B0D00B657F6 /* YLZGUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLZGUITests.m; sourceTree = "<group>"; };
 		3B07D8ED1D956B0D00B657F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B07D8FC1D9578CE00B657F6 /* YLZG.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YLZG.entitlements; sourceTree = "<group>"; };
+		3B36522F1DC3479100E76D04 /* HomeReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeReusableView.h; sourceTree = "<group>"; };
+		3B3652301DC3479100E76D04 /* HomeReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeReusableView.m; sourceTree = "<group>"; };
 		3B370DA81DB7595800243F7D /* IMChatManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMChatManager.h; sourceTree = "<group>"; };
 		3B370DA91DB7595800243F7D /* IMChatManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMChatManager.m; sourceTree = "<group>"; };
 		3B3BBF911DB475EF00C9E2FD /* ContactHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactHeadView.h; sourceTree = "<group>"; };
@@ -1333,6 +1336,8 @@
 				3B6E398B1DA9E6E100A9BA63 /* NormalconButton.m */,
 				3B4A986E1DA8F39400FBE24F /* NormalIconView.h */,
 				3B4A986F1DA8F39400FBE24F /* NormalIconView.m */,
+				3B36522F1DC3479100E76D04 /* HomeReusableView.h */,
+				3B3652301DC3479100E76D04 /* HomeReusableView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3599,6 +3604,7 @@
 				3B6E3A3D1DAA2D4E00A9BA63 /* AddProductController.m in Sources */,
 				3BDD44201DBE13B300AB87EA /* EaseBubbleView+File.m in Sources */,
 				3BBEDCFF1DBD9957007075BD /* TeamPaihangbangModel.m in Sources */,
+				3B3652311DC3479100E76D04 /* HomeReusableView.m in Sources */,
 				3B6E3A551DAA2F7800A9BA63 /* AllTaoxiProductModel.m in Sources */,
 				3BBEDCED1DBD9957007075BD /* KaoqinTableCell.m in Sources */,
 				3B93319C1DAB98A200019894 /* YejiDetialViewController.m in Sources */,

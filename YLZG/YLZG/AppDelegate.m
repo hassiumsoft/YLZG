@@ -12,11 +12,11 @@
 #import <UMMobClick/MobClick.h>
 #import <JPUSHService.h>
 #import "HomeNavigationController.h"
+#import "HomeTabbarController.h"
 #import "LoginViewController.h"
 #import "ZCAccountTool.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "HTTPManager.h"
-#import "HomeTabbarController.h"
 #import "YLZGChatManager.h"
 #import "UserInfoManager.h"
 #import <MJExtension.h>
@@ -94,11 +94,11 @@
         // 自动登录成功
         self.isShowNewPage = YES;
         HomeTabbarController *tabBarVC = [[HomeTabbarController alloc] init];
-        HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:tabBarVC];
+//        HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:tabBarVC];
         [YLZGChatManager sharedManager].tabbarVC = tabBarVC;
         [[YLZGChatManager sharedManager] asyncPushOptions];
         [[YLZGChatManager sharedManager] asyncConversationFromDB];
-        self.window.rootViewController = nav;
+        self.window.rootViewController = tabBarVC;
     }else{
         // 自动登录失败<分第一次登录和被动登录>
         self.isShowNewPage = NO;
@@ -112,8 +112,8 @@
 {
     
     LoginViewController *loginVC = [[LoginViewController alloc] init];
-    HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:loginVC];
-    self.window.rootViewController = nav;
+//    HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:loginVC];
+    self.window.rootViewController = loginVC;
 }
 
 #pragma mark - 初始化各个第三方库
