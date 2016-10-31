@@ -451,8 +451,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"order_lixian"] style:UIBarButtonItemStylePlain target:self action:@selector(lixianOrder)];
-//    [self.navigationItem.rightBarButtonItem setTintColor:RGBACOLOR(26, 171, 168, 1)];
     
     [self setupRightBar];
     

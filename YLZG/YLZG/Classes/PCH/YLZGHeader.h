@@ -40,6 +40,10 @@
 #define UMengKey @"57ad9908e0f55a52ac000812"
 /** 是否支持红包功能 */
 #define IsRedPorket @NO
+/** 微信SDK */
+#define WeChatAppID @"wx4381bf40e0d29723"
+#define WeChatAppKey @"50b773248086c6b1fd62d56aa4f7ba6a"
+
 
 
 #endif

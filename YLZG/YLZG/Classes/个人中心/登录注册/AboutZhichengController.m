@@ -61,7 +61,11 @@
 #pragma mark -- 创建UIScrollView
 -(void)createScrollView
 {
-    self.pictureScrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+    if (!self.isLogin) {
+        self.pictureScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+    }else{
+        self.pictureScrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
+    }
     self.pictureScrollView.contentSize = CGSizeMake(SCREEN_WIDTH * 3, 0);
     self.pictureScrollView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
     self.pictureScrollView.showsHorizontalScrollIndicator = NO;
@@ -260,11 +264,30 @@
     [self.navigationController.navigationBar setBackgroundColor:NavColor];
     
     if (self.isLogin) {
+        // push进来的
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_nav"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
         [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
         
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"📱" style:UIBarButtonItemStylePlain target:self action:@selector(callPhone)];
         [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
+    }else{
+        // 没有nav
+        UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
+        topView.userInteractionEnabled = YES;
+        topView.backgroundColor = NavColor;
+        [self.view addSubview:topView];
+        
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        [backButton setFrame:CGRectMake(12, 21, 30, 30)];
+        [backButton setImage:[UIImage imageNamed:@"back_nav"] forState:UIControlStateNormal];
+        [topView addSubview:backButton];
+        
+        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [rightButton addTarget:self action:@selector(callPhone) forControlEvents:UIControlEventTouchUpInside];
+        [rightButton setTitle:@"📱" forState:UIControlStateNormal];
+        [rightButton setFrame:CGRectMake(SCREEN_WIDTH - 30 - 15, 21, 30, 30)];
+        [topView addSubview:rightButton];
     }
     
 }
@@ -309,7 +332,13 @@
 }
 - (void)back
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (!self.isLogin) {
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 

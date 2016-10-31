@@ -12,14 +12,15 @@
 #import <UMMobClick/MobClick.h>
 #import <JPUSHService.h>
 #import "HomeNavigationController.h"
+#import "HomeTabbarController.h"
 #import "LoginViewController.h"
 #import "ZCAccountTool.h"
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import "HTTPManager.h"
-#import "HomeTabbarController.h"
 #import "YLZGChatManager.h"
 #import "UserInfoManager.h"
 #import <MJExtension.h>
+#import "WXApiManager.h"
 
 
 
@@ -32,6 +33,7 @@
 @implementation AppDelegate
 
 
+#pragma mark - 程序开始啦
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
@@ -92,11 +94,11 @@
         // 自动登录成功
         self.isShowNewPage = YES;
         HomeTabbarController *tabBarVC = [[HomeTabbarController alloc] init];
-        HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:tabBarVC];
+//        HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:tabBarVC];
         [YLZGChatManager sharedManager].tabbarVC = tabBarVC;
         [[YLZGChatManager sharedManager] asyncPushOptions];
         [[YLZGChatManager sharedManager] asyncConversationFromDB];
-        self.window.rootViewController = nav;
+        self.window.rootViewController = tabBarVC;
     }else{
         // 自动登录失败<分第一次登录和被动登录>
         self.isShowNewPage = NO;
@@ -110,8 +112,8 @@
 {
     
     LoginViewController *loginVC = [[LoginViewController alloc] init];
-    HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:loginVC];
-    self.window.rootViewController = nav;
+//    HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:loginVC];
+    self.window.rootViewController = loginVC;
 }
 
 #pragma mark - 初始化各个第三方库
@@ -126,6 +128,19 @@
     if (account) {
         [MobClick profileSignInWithPUID:account.username];
     }
+    
+    // 微信
+    //向微信注册
+    [WXApi registerApp:WeChatAppID withDescription:WeChatAppKey];
+    //向微信注册支持的文件类型
+    UInt64 typeFlag = MMAPP_SUPPORT_TEXT | MMAPP_SUPPORT_PICTURE | MMAPP_SUPPORT_LOCATION | MMAPP_SUPPORT_VIDEO |MMAPP_SUPPORT_AUDIO | MMAPP_SUPPORT_WEBPAGE | MMAPP_SUPPORT_DOC | MMAPP_SUPPORT_DOCX | MMAPP_SUPPORT_PPT | MMAPP_SUPPORT_PPTX | MMAPP_SUPPORT_XLS | MMAPP_SUPPORT_XLSX | MMAPP_SUPPORT_PDF;
+    
+    [WXApi registerAppSupportContentFlag:typeFlag];
+    
+    // 百度地图
+    BMKMapManager *mapManager = [[BMKMapManager alloc]init];
+    [mapManager start:BaiduMapSecret generalDelegate:self];
+    
     // 极光推送
     NSString *apnsCertName = nil;
     BOOL push_isProdution = YES;
@@ -146,18 +161,17 @@
         }
     }
     
-    // 百度地图
-    BMKMapManager *mapManager = [[BMKMapManager alloc]init];
-    [mapManager start:BaiduMapSecret generalDelegate:self];
-    
     // 环信
     _connectionState = EMConnectionConnected;
     EMOptions *options = [EMOptions optionsWithAppkey:HXAppKey];
     options.apnsCertName = apnsCertName;
-    options.enableConsoleLog = YES;
+#if DEBUG
+    options.enableConsoleLog = YES; // 开发环境，打印
+#else
+    options.enableConsoleLog = NO; // 生产环境，不打印
+#endif
     options.isAutoLogin = YES;
     [[EMClient sharedClient] initializeSDKWithOptions:options];
-    
     
     // 环信红包SDK？
     
@@ -169,7 +183,7 @@
         [_homeTabbar didReceiveLocalNotification:notification];
     }
 }
-#pragma mark -app在运行的时候触发的方法
+#pragma mark - 推送相关--APP在运行的时候触发的方法
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
     [self goToMssageViewControllerWith:userInfo];
@@ -178,8 +192,6 @@
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
-
-// 点击通知跳转页面
 - (void)goToMssageViewControllerWith:(NSDictionary*)dic{
     NSDictionary * dict = nil;
     if ([dic[@"action"] intValue] == 1) {
@@ -220,19 +232,23 @@
 {
     NSLog(@"注册推送失败");
 }
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-    
+#pragma mark - 微信
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
 }
 
-// APP进入后台
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+}
+
+
+#pragma mark - APP进入后台/从后台返回
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
     [[EMClient sharedClient] applicationDidEnterBackground:application];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
-// APP将要从后台返回
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     [[EMClient sharedClient] applicationWillEnterForeground:application];
@@ -240,14 +256,6 @@
 }
 
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    
-}
-
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-    
-}
 
 
 @end

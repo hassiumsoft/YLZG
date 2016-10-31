@@ -82,8 +82,8 @@
                         [self saveUserInfoAction:result Complete:^{
                             
                             HomeTabbarController *homeTab = [HomeTabbarController new];
-                            HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:homeTab];
-                            [self presentViewController:nav animated:NO completion:^{
+//                            HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:homeTab];
+                            [self presentViewController:homeTab animated:NO completion:^{
                                 
                             }];
                         }];
@@ -251,6 +251,9 @@
         [xian removeFromSuperview];
     }
     
+    self.nameField.text = @"aermei_dapeng";
+    self.passField.text = @"888888";
+    
 }
 
 #pragma mark - 了解智诚
@@ -258,7 +261,9 @@
 {
     AboutZhichengController *about = [AboutZhichengController new];
     about.isLogin = NO;
-    [self.navigationController pushViewController:about animated:YES];
+    [self presentViewController:about animated:YES completion:^{
+        
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated

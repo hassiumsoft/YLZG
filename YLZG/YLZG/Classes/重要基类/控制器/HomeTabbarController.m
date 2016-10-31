@@ -22,6 +22,7 @@
 #import "ChatViewController.h"
 #import "GroupListManager.h"
 #import "EMCDDeviceManager.h"
+#import "HomeNavigationController.h"
 #import "EaseConvertToCommonEmoticonsHelper.h"
 
 
@@ -95,23 +96,28 @@ static NSString *kGroupName = @"GroupName";
     _woVC.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
     
+    
 }
 #pragma mark - UITabBarDelegate
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
     if (item.tag == 1) {
         self.title = @"掌上影楼";
+//        [self.navigationController.navigationBar setHidden:YES];
         self.navigationItem.rightBarButtonItem = nil;
     }else if (item.tag == 2){
         self.title = @"消息";
+//        [self.navigationController.navigationBar setHidden:NO];
         self.navigationItem.rightBarButtonItem = nil;
     }else if (item.tag == 3){
         self.title = @"通讯录";
+//        [self.navigationController.navigationBar setHidden:NO];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"contacts_add_friend"] style:UIBarButtonItemStylePlain target:self action:@selector(addFriendAction)];
         [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
         
     }else{
         self.title = @"我";
+//        [self.navigationController.navigationBar setHidden:NO];
         self.navigationItem.rightBarButtonItem = nil;
     }
 }
@@ -136,8 +142,8 @@ static NSString *kGroupName = @"GroupName";
     
     [childVC.tabBarItem setTitleTextAttributes:textAttres forState:UIControlStateNormal];
     [childVC.tabBarItem setTitleTextAttributes:selectTextAttres forState:UIControlStateSelected];
-    //    HomeNavigationController *normalNav = [[HomeNavigationController alloc]initWithRootViewController:childVC];
-    [self addChildViewController:childVC];
+    HomeNavigationController *normalNav = [[HomeNavigationController alloc]initWithRootViewController:childVC];
+    [self addChildViewController:normalNav];
     
 }
 - (void)addFriendAction

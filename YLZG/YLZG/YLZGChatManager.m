@@ -523,7 +523,7 @@ static YLZGChatManager *chatManager = nil;
     BOOL isRefreshCons = YES;
     for (EMMessage *message in aMessages) {
         BOOL needShowNoti = (message.chatType != EMChatTypeChat) ? [self isNeedShowNotification:message.conversationId] : YES;
-#warning 屏蔽红包被抢消息的提示
+// #warning 屏蔽红包被抢消息的提示
         if (IsRedPorket) {
             NSDictionary *dict = message.ext;
             needShowNoti = (dict && [dict valueForKey:RedpacketKeyRedpacketTakenMessageSign]) ? NO : needShowNoti;
