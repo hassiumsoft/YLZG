@@ -313,17 +313,7 @@
     }];
     
 }
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"高级设置" style:UIBarButtonItemStylePlain target:self action:@selector(superSetting)];
-//    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleBody],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-//    
-//}
-//- (void)superSetting
-//{
-//    [MBProgressHUD showSuccess:@"高级社会"];
-//}
+
 - (NSMutableArray *)array
 {
     if (!_array) {

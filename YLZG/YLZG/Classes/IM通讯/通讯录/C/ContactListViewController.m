@@ -20,6 +20,7 @@
 #import "ContactersModel.h"
 #import "ContactHeadView.h"
 #import <Masonry.h>
+#import "AddFriendViewController.h"
 #import "HuanxinContactManager.h"
 #import "StudioContactManager.h"
 #import "UserInfoViewController.h"
@@ -196,6 +197,8 @@
 - (void)setupSubViews
 {
     self.title = @"通讯录";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"contacts_add_friend"] style:UIBarButtonItemStylePlain target:self action:@selector(addNewFriendAction)];
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
     
     [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.headV;
@@ -209,6 +212,12 @@
     footer.textColor = [UIColor grayColor];
     footer.font = [UIFont fontWithName:@"Iowan Old Style" size:12];
     self.tableView.tableFooterView = footer;
+}
+
+- (void)addNewFriendAction
+{
+    AddFriendViewController *addFriend = [AddFriendViewController new];
+    [self.navigationController pushViewController:addFriend animated:YES];
 }
 
 #pragma mark - 表格相关

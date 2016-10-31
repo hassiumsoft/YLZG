@@ -28,7 +28,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor purpleColor];
+        self.backgroundColor = MainColor;
         [self setupSubViews];
     }
     return self;
@@ -36,8 +36,9 @@
 - (void)setupSubViews
 {
     
-    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 120, 30)];
+    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 0, 120, 30)];
     self.titleLabel.text = @"财务统计";
+    self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     [self addSubview:self.titleLabel];
 }

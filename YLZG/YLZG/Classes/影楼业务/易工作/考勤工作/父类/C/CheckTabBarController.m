@@ -75,7 +75,7 @@
         //        if ([account.type intValue] == 1) {
         self.title = @"设置";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"高级设置" style:UIBarButtonItemStylePlain target:self action:@selector(superSetting)];
-        [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleBody],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+        [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
         //        }else{
         //            self.title = @"考勤组";
         //            self.navigationItem.rightBarButtonItem = nil;

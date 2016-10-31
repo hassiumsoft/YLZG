@@ -75,51 +75,27 @@ static NSString *kGroupName = @"GroupName";
 - (void)setupSubViews
 {
     self.selectedIndex = 0;
-    self.title = @"掌上影楼";
+    self.title = @"我的影楼";
     // 首页
     _homeVC = [HomeViewController new];
-    [self addChildVC:_homeVC Title:@"掌上影楼" image:@"ic_tabbar_manage_normal" selectedImage:@"ic_tabbar_manage_select" Tag:1];
+    [self addChildVC:_homeVC Title:@"我的影楼" image:@"btn_yingyong" selectedImage:@"btn_yingyong_dj" Tag:1];
     
     // 消息
     _chatListVC = [[ChatListViewController alloc] init];
-    [self addChildVC:_chatListVC Title:@"消息" image:@"ic_tabbar_message_normal" selectedImage:@"ic_tabbar_message_select" Tag:2];
+    [self addChildVC:_chatListVC Title:@"消息" image:@"btn_xiaoxi" selectedImage:@"btn_xiaoxi_dj" Tag:2];
     [_chatListVC networkChanged:_connectionState];
     
     // 通讯录
     _contactVC = [[ContactListViewController alloc] init];
     
-    [self addChildVC:_contactVC Title:@"通讯录" image:@"ic_tabbar_addressbook_normal" selectedImage:@"ic_tabbar_addressbook_select" Tag:3];
+    [self addChildVC:_contactVC Title:@"通讯录" image:@"btn_tongxunlu" selectedImage:@"btn_tongxunlu_dj" Tag:3];
     
     // 我
     _woVC = [WoViewController new];
-    [self addChildVC:_woVC Title:@"我" image:@"ic_tabbar_mine_normal" selectedImage:@"ic_tabbar_mine_select" Tag:4];
+    [self addChildVC:_woVC Title:@"我" image:@"btn_-wode" selectedImage:@"btn_-wode_dj" Tag:4];
     _woVC.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
     
-    
-}
-#pragma mark - UITabBarDelegate
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    if (item.tag == 1) {
-        self.title = @"掌上影楼";
-//        [self.navigationController.navigationBar setHidden:YES];
-        self.navigationItem.rightBarButtonItem = nil;
-    }else if (item.tag == 2){
-        self.title = @"消息";
-//        [self.navigationController.navigationBar setHidden:NO];
-        self.navigationItem.rightBarButtonItem = nil;
-    }else if (item.tag == 3){
-        self.title = @"通讯录";
-//        [self.navigationController.navigationBar setHidden:NO];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"contacts_add_friend"] style:UIBarButtonItemStylePlain target:self action:@selector(addFriendAction)];
-        [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
-        
-    }else{
-        self.title = @"我";
-//        [self.navigationController.navigationBar setHidden:NO];
-        self.navigationItem.rightBarButtonItem = nil;
-    }
 }
 
 #pragma mark - 添加子控制器
@@ -146,11 +122,7 @@ static NSString *kGroupName = @"GroupName";
     [self addChildViewController:normalNav];
     
 }
-- (void)addFriendAction
-{
-    AddFriendViewController *addFriend = [AddFriendViewController new];
-    [self.navigationController pushViewController:addFriend animated:YES];
-}
+
 - (void)didReceiveLocalNotification:(UILocalNotification *)notification
 {
     NSDictionary *userInfo = notification.userInfo;
@@ -338,13 +310,13 @@ static NSString *kGroupName = @"GroupName";
         ContactersModel *model = [ContactersModel mj_objectWithKeyValues:noti.userInfo];
         ChatViewController *chatVC = [[ChatViewController alloc]initWithConversationChatter:model.name conversationType:EMConversationTypeChat];
         chatVC.contactModel = model;
-        [self.navigationController pushViewController:chatVC animated:NO];
+        [_chatListVC.navigationController pushViewController:chatVC animated:NO];
     }else{
         // 群聊
         YLGroup *model = [YLGroup mj_objectWithKeyValues:noti.userInfo];
         ChatViewController *chatVC = [[ChatViewController alloc]initWithConversationChatter:model.gid conversationType:EMConversationTypeGroupChat];
         chatVC.groupModel = model;
-        [self.navigationController pushViewController:chatVC animated:NO];
+        [_chatListVC.navigationController pushViewController:chatVC animated:NO];
     }
     
 }
