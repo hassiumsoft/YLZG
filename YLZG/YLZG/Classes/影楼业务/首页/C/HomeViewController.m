@@ -29,14 +29,13 @@
 
 
 
-<<<<<<< HEAD
 
 
 
-static CGFloat topViewH = 100;
-=======
+
+
 #define topViewH 180
->>>>>>> CoderChan/master
+
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 /** collectionView */
@@ -55,7 +54,7 @@ static CGFloat topViewH = 100;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"掌上影楼";
+    self.title = @"我的影楼";
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupSubViews];
 }

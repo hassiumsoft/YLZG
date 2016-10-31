@@ -216,7 +216,7 @@
 
 - (void)setupNav
 {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Card_AddIcon"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemClicked:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"btn_fabubianji"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemClicked:)];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 - (void)rightBarButtonItemClicked:(UIBarButtonItem *)sender {
