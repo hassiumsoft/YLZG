@@ -51,7 +51,6 @@
 		3B4A98611DA8990A00FBE24F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4A985E1DA8990A00FBE24F /* HomeViewController.m */; };
 		3B4A98641DA89A9500FBE24F /* HomeCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4A98631DA89A9500FBE24F /* HomeCollectionCell.m */; };
 		3B4A98671DA8D7F700FBE24F /* ButtonIconModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4A98661DA8D7F700FBE24F /* ButtonIconModel.m */; };
-		3B4A986A1DA8E66400FBE24F /* HomeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4A98691DA8E66400FBE24F /* HomeHeadView.m */; };
 		3B4A98701DA8F39400FBE24F /* NormalIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4A986F1DA8F39400FBE24F /* NormalIconView.m */; };
 		3B5052A61DAF5D3500479DC1 /* MyJobsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5052A51DAF5D3500479DC1 /* MyJobsViewController.m */; };
 		3B5052A91DAF66F700479DC1 /* MyJobsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5052A81DAF66F700479DC1 /* MyJobsTableCell.m */; };
@@ -68,6 +67,7 @@
 		3B5052DF1DAF885700479DC1 /* StaffInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5052DE1DAF885700479DC1 /* StaffInfoModel.m */; };
 		3B5052E21DAF88B200479DC1 /* WorkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5052E11DAF88B200479DC1 /* WorkTableViewCell.m */; };
 		3B5052E51DAF89BA00479DC1 /* StaffTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5052E41DAF89BA00479DC1 /* StaffTableViewCell.m */; };
+		3B524F381DC72741006984E5 /* NavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B524F371DC72741006984E5 /* NavigationView.m */; };
 		3B5DC7101DB870DD000F7A06 /* EaseChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC70B1DB870DD000F7A06 /* EaseChineseToPinyin.m */; };
 		3B5DC7111DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC70D1DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.m */; };
 		3B5DC7121DB870DD000F7A06 /* EaseMessageReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC70F1DB870DD000F7A06 /* EaseMessageReadManager.m */; };
@@ -460,8 +460,6 @@
 		3B4A98631DA89A9500FBE24F /* HomeCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionCell.m; sourceTree = "<group>"; };
 		3B4A98651DA8D7F700FBE24F /* ButtonIconModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonIconModel.h; sourceTree = "<group>"; };
 		3B4A98661DA8D7F700FBE24F /* ButtonIconModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonIconModel.m; sourceTree = "<group>"; };
-		3B4A98681DA8E66400FBE24F /* HomeHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHeadView.h; sourceTree = "<group>"; };
-		3B4A98691DA8E66400FBE24F /* HomeHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHeadView.m; sourceTree = "<group>"; };
 		3B4A986E1DA8F39400FBE24F /* NormalIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalIconView.h; sourceTree = "<group>"; };
 		3B4A986F1DA8F39400FBE24F /* NormalIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalIconView.m; sourceTree = "<group>"; };
 		3B5052A41DAF5D3500479DC1 /* MyJobsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyJobsViewController.h; sourceTree = "<group>"; };
@@ -494,6 +492,8 @@
 		3B5052E11DAF88B200479DC1 /* WorkTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkTableViewCell.m; sourceTree = "<group>"; };
 		3B5052E31DAF89BA00479DC1 /* StaffTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffTableViewCell.h; sourceTree = "<group>"; };
 		3B5052E41DAF89BA00479DC1 /* StaffTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffTableViewCell.m; sourceTree = "<group>"; };
+		3B524F361DC72741006984E5 /* NavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationView.h; sourceTree = "<group>"; };
+		3B524F371DC72741006984E5 /* NavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationView.m; sourceTree = "<group>"; };
 		3B5DC70A1DB870DD000F7A06 /* EaseChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChineseToPinyin.h; sourceTree = "<group>"; };
 		3B5DC70B1DB870DD000F7A06 /* EaseChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseChineseToPinyin.m; sourceTree = "<group>"; };
 		3B5DC70C1DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConvertToCommonEmoticonsHelper.h; sourceTree = "<group>"; };
@@ -1336,14 +1336,14 @@
 			children = (
 				3B4A98621DA89A9500FBE24F /* HomeCollectionCell.h */,
 				3B4A98631DA89A9500FBE24F /* HomeCollectionCell.m */,
-				3B4A98681DA8E66400FBE24F /* HomeHeadView.h */,
-				3B4A98691DA8E66400FBE24F /* HomeHeadView.m */,
 				3B6E398A1DA9E6E100A9BA63 /* NormalconButton.h */,
 				3B6E398B1DA9E6E100A9BA63 /* NormalconButton.m */,
 				3B4A986E1DA8F39400FBE24F /* NormalIconView.h */,
 				3B4A986F1DA8F39400FBE24F /* NormalIconView.m */,
 				3B36522F1DC3479100E76D04 /* HomeReusableView.h */,
 				3B3652301DC3479100E76D04 /* HomeReusableView.m */,
+				3B524F361DC72741006984E5 /* NavigationView.h */,
+				3B524F371DC72741006984E5 /* NavigationView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3430,7 +3430,6 @@
 				3B9331901DAB8DC200019894 /* MyjobModel.m in Sources */,
 				3B3BBFC01DB4852700C9E2FD /* CreateGroupsController.m in Sources */,
 				3BCF3A201D9E6A4800BEE236 /* ForgetSecretController.m in Sources */,
-				3B4A986A1DA8E66400FBE24F /* HomeHeadView.m in Sources */,
 				3B7ABCF11DB6176600F3D12B /* EMCDDeviceManager+Microphone.m in Sources */,
 				3B3BBFA81DB47E4400C9E2FD /* ApplyTableViewCell.m in Sources */,
 				3BDD43FC1DBE137F00AB87EA /* EaseFacialView.m in Sources */,
@@ -3474,6 +3473,7 @@
 				3B6E3A541DAA2F7800A9BA63 /* AllProductModel.m in Sources */,
 				3BCF39F01D9E630300BEE236 /* NSDate+Category.m in Sources */,
 				3BBEDCE91DBD9957007075BD /* BanciButton.m in Sources */,
+				3B524F381DC72741006984E5 /* NavigationView.m in Sources */,
 				189152F21DC6D55B005E34AA /* SearchDBManager.m in Sources */,
 				189152EF1DC6D4FF005E34AA /* SearchModel.m in Sources */,
 				3BBEDCF51DBD9957007075BD /* CheckSettingVController.m in Sources */,

@@ -123,7 +123,7 @@
     isSetTanxing = NO;
     
     self.button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.button setBackgroundColor:WeChatColor];
+    [self.button setBackgroundColor:MainColor];
     self.button.layer.cornerRadius = 5;
     self.button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
     [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

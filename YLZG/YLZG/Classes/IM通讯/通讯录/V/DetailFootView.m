@@ -18,7 +18,7 @@
         _messageBtn = [[UIButton alloc] init];
         _messageBtn.layer.cornerRadius = 5;
         _messageBtn.layer.masksToBounds = YES;
-        _messageBtn.backgroundColor = WeChatColor;
+        _messageBtn.backgroundColor = MainColor;
         [_messageBtn setTitle:@"发送消息" forState:UIControlStateNormal];
         [_messageBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _messageBtn.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -37,9 +37,9 @@
         [_phoneBtn setTitle:@"拨打电话" forState:UIControlStateNormal];
         _phoneBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         _phoneBtn.layer.masksToBounds = YES;
-        _phoneBtn.layer.borderColor = WeChatColor.CGColor;
+        _phoneBtn.layer.borderColor = MainColor.CGColor;
         _phoneBtn.layer.borderWidth = 1.f;
-        [_phoneBtn setTitleColor:WeChatColor forState:UIControlStateNormal];
+        [_phoneBtn setTitleColor:MainColor forState:UIControlStateNormal];
         _phoneBtn.backgroundColor = [UIColor whiteColor];
         [self addSubview:_phoneBtn];
         [_phoneBtn mas_makeConstraints:^(MASConstraintMaker *make) {

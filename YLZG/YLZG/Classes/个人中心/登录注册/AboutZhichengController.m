@@ -259,9 +259,9 @@
     [self.navigationController.navigationBar setHidden:NO];
     //修改状态栏的颜色
     UIView *overlay = [[UIView alloc] initWithFrame:CGRectMake(0, -20, [UIScreen mainScreen].bounds.size.width,20)];
-    overlay.backgroundColor = NavColor;
+    overlay.backgroundColor = MainColor;
     [self.navigationController.navigationBar insertSubview:overlay atIndex:0];
-    [self.navigationController.navigationBar setBackgroundColor:NavColor];
+    [self.navigationController.navigationBar setBackgroundColor:MainColor];
     
     if (self.isLogin) {
         // push进来的
@@ -274,7 +274,7 @@
         // 没有nav
         UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
         topView.userInteractionEnabled = YES;
-        topView.backgroundColor = NavColor;
+        topView.backgroundColor = MainColor;
         [self.view addSubview:topView];
         
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];

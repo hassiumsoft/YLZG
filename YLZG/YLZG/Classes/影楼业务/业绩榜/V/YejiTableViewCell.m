@@ -49,7 +49,7 @@
         _recordLabel.textColor = RGBACOLOR(254, 196, 43, 1);
     }else{
         // 后三名
-        _recordLabel.textColor = WeChatColor;
+        _recordLabel.textColor = MainColor;
     }
     [_headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"place_head"]];
 }

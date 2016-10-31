@@ -91,7 +91,7 @@
     if (!_button) {
         _button = [UIButton buttonWithType:UIButtonTypeCustom];
         [_button setFrame:CGRectMake(17, CGRectGetMaxY(self.xinPass2.frame) + 20, SCREEN_WIDTH - 34, 38)];
-        _button.backgroundColor = WeChatColor;
+        _button.backgroundColor = MainColor;
         [_button setTitle:@"确定修改" forState:UIControlStateNormal];
         [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];

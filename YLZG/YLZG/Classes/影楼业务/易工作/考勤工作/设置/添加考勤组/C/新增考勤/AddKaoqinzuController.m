@@ -64,7 +64,7 @@
     [self.view addSubview:self.tableView];
     
     self.nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.nextBtn.backgroundColor = WeChatColor;
+    self.nextBtn.backgroundColor = MainColor;
     [self.nextBtn addTarget:self action:@selector(nextClick) forControlEvents:UIControlEventTouchUpInside];
     [self.nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
     [self.nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

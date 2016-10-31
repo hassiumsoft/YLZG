@@ -229,7 +229,7 @@
             imagepicker.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
             imagepicker.allowsEditing = YES;
             imagepicker.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-            [imagepicker.navigationBar setBarTintColor:NavColor];
+            [imagepicker.navigationBar setBarTintColor:MainColor];
             [self presentViewController:imagepicker animated:YES completion:nil];
             break;
         }

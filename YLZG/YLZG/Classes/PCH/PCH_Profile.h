@@ -45,21 +45,17 @@
 // iOS系统版本
 #define iOS_Version [[[UIDevice currentDevice] systemVersion] doubleValue]
 
-// 当前控制器默认背景颜色
-#define NorMalBackGroudColor RGBACOLOR(235, 235, 241, 1)
-// toolbar的颜色
-#define ToolBarColor RGBACOLOR(230, 235, 237, 1)
-// 导航控制器颜色
-#define NavColor RGBACOLOR(17, 49, 73, 1)
-// keep背景色
-#define KeepColor RGBACOLOR(235, 240, 242, 1)
-// 类似微信的颜色
-#define WeChatColor RGBACOLOR(50, 165, 50, 1)
-
+// 主要颜色
+#define MainColor RGBACOLOR(31, 139, 229, 1)
 // 微信里删除的红色
 #define WechatRedColor RGBACOLOR(227, 69, 69, 1)
-// 亮绿色
-#define MainColor RGBACOLOR(31, 139, 229, 1)
+// 当前控制器默认背景颜色
+#define NorMalBackGroudColor RGBACOLOR(235, 240, 242, 1)
+// 聊天界面toolbar的颜色
+#define ToolBarColor RGBACOLOR(230, 235, 237, 1)
+// 导航控制器颜色
+#define NavColor RGBACOLOR(58, 58, 58, 1)
+
 // 获取设备的bounds
 #define SCREEN_BOUNDS   [UIScreen mainScreen].bounds
 

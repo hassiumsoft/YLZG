@@ -199,7 +199,7 @@
         
         //        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         //        [button setTitle:@"一键添加" forState:UIControlStateNormal];
-        //        button.backgroundColor = WeChatColor;
+        //        button.backgroundColor = MainColor;
         //        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         //        [button addTarget:self action:@selector(addFriend) forControlEvents:UIControlEventTouchUpInside];
         //        button.layer.masksToBounds =YES;

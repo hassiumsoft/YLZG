@@ -10,7 +10,7 @@
 #import "HomeReusableView.h"
 #import "HomeCollectionCell.h"
 #import "UserInfoManager.h"
-#import "HomeHeadView.h"
+#import "NavigationView.h"
 #import <MJExtension.h>
 
 #import "OpenOrderViewController.h"
@@ -34,9 +34,14 @@
 
 
 
-#define topViewH 180
+#define topViewH 190*CKproportion
 
-@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate>
+
+{
+    // 悬浮导航条
+    NavigationView * _suspendNav;
+}
 
 /** collectionView */
 @property (strong,nonatomic) UICollectionView *collectionView;
@@ -44,7 +49,9 @@
 @property (copy,nonatomic) NSArray *titleArray;
 @property (copy,nonatomic) NSArray *iconArray;
 /** 顶部的视图 */
-@property (strong,nonatomic) HomeHeadView *topView;
+@property (strong,nonatomic) UIImageView *topView;
+/** 通知按钮 */
+@property (strong,nonatomic) UIButton *tipsButton;
 /** 用户模型 */
 @property (strong,nonatomic) UserInfoModel *userModel;
 
@@ -74,8 +81,22 @@
         self.iconArray = @[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang"],@[@"btn_ico_shenpi",@"btn_ico_jinrigongzuo",@"btn_ico_kaoqin"],@[@"btn_ico_pintuan",@"btn_ico_kanjia",@"btn_ico_zhuli",@"btn_ico_jizan",@"btn_ico_zhongchou",@"btn_ico_gongyi",@"btn_ico_toupiao"]];
     }
     
+    
     [self.view addSubview:self.collectionView];
     [self.collectionView insertSubview:self.topView atIndex:0];
+    // 悬浮栏
+    _suspendNav = [[NavigationView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
+    _suspendNav.titleLabel.textColor = RGBACOLOR(255, 255, 255, 0);
+    _suspendNav.backgroundColor = RGBACOLOR(31, 139, 229, 0);
+    [self.view addSubview:_suspendNav];
+    // 通知按钮
+    self.tipsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.tipsButton setFrame:CGRectMake(12, 25, 36, 36)];
+    [self.tipsButton setImage:[UIImage imageNamed:@"btn_gonggao"] forState:UIControlStateNormal];
+    [self.tipsButton addTarget:self action:@selector(GonggaoClick) forControlEvents:UIControlEventTouchUpInside];
+    self.tipsButton.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.tipsButton];
+    
 }
 
 #pragma mark - 表格相关
@@ -323,6 +344,27 @@
     [self.navigationController.navigationBar setHidden:NO];
 }
 
+#pragma mark - 其他方法
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // 改变导航栏alpha
+    CGPoint point = _collectionView.contentOffset;
+    CGFloat alpha = (point.y + topViewH) < topViewH ? ((point.y + topViewH) / topViewH) : 1;
+    _suspendNav.backgroundColor = RGBACOLOR(31, 139, 229, alpha);
+    _suspendNav.titleLabel.textColor = RGBACOLOR(255, 255, 255, alpha);
+    CGFloat y = scrollView.contentOffset.y;//根据实际选择加不加上NavigationBarHight（44、64 或者没有导航条）
+    if (y < -topViewH) {
+        CGRect frame = _topView.frame;
+        frame.origin.y = y;
+        frame.size.height =  -y;//contentMode = UIViewContentModeScaleAspectFill时，高度改变宽度也跟着改变
+        _topView.frame = frame;
+    }
+}
+- (void)GonggaoClick
+{
+    PublicNoticeController *gonggao = [PublicNoticeController new];
+    [self.navigationController pushViewController:gonggao animated:YES];
+}
 #pragma mark - 懒加载
 - (UICollectionView *)collectionView
 {
@@ -330,6 +372,8 @@
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     if (!_collectionView) {
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, -21, SCREEN_WIDTH, SCREEN_HEIGHT - 25) collectionViewLayout:flowLayout];
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = self.view.backgroundColor;
@@ -340,15 +384,14 @@
     }
     return _collectionView;
 }
-- (HomeHeadView *)topView
+- (UIImageView *)topView
 {
     if (!_topView) {
-        _topView = [[HomeHeadView alloc]initWithFrame:CGRectMake(0, -topViewH, SCREEN_WIDTH, topViewH)];
-        __weak __block typeof(self) weakSelf = self;
-        _topView.ClickBlock = ^(){
-            PublicNoticeController *tips = [PublicNoticeController new];
-            [weakSelf.navigationController pushViewController:tips animated:YES];
-        };
+        _topView = [[UIImageView alloc]initWithFrame:CGRectMake(0, -topViewH, SCREEN_WIDTH, topViewH)];
+        _topView.userInteractionEnabled = YES;
+        _topView.image = [UIImage imageNamed:@"sy_bg"];
+        _topView.backgroundColor = MainColor;
+        _topView.autoresizingMask = YES;
     }
     return _topView;
 }

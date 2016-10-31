@@ -57,7 +57,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的区域经理";
-    self.view.backgroundColor = NavColor;
+    self.view.backgroundColor = MainColor;
     self.view.layer.borderColor = [UIColor redColor].CGColor;
     self.view.layer.borderWidth= 1.f;
     self.view.layer.cornerRadius = 12;

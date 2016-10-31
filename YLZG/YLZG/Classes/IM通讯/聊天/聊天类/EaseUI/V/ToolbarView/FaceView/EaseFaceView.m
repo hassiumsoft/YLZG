@@ -70,7 +70,7 @@
     
     UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
     sendButton.frame = CGRectMake((kButtomNum-1)*CGRectGetWidth(_facialView.frame)/kButtomNum, CGRectGetMaxY(_facialView.frame), CGRectGetWidth(_facialView.frame)/kButtomNum, CGRectGetHeight(_bottomScrollView.frame));
-    [sendButton setBackgroundColor:WeChatColor];
+    [sendButton setBackgroundColor:MainColor];
     [sendButton setTitle:@"发送" forState:UIControlStateNormal];
     sendButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     sendButton.layer.masksToBounds = YES;

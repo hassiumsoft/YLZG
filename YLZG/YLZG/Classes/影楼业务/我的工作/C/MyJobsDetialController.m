@@ -397,7 +397,7 @@
         UILabel *isOKLabel = [[UILabel alloc]init];
         if (self.model.isok) {
             isOKLabel.text = @"制作完成";
-            isOKLabel.backgroundColor = WeChatColor;
+            isOKLabel.backgroundColor = MainColor;
         }else{
             isOKLabel.text = @"暂未完成";
             isOKLabel.backgroundColor = RGBACOLOR(226, 67, 67, 1);

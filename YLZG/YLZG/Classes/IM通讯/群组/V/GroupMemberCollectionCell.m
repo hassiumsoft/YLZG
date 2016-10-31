@@ -43,7 +43,8 @@
 - (void)setupSubViews
 {
     CGFloat cellWH = (SCREEN_WIDTH - 3 * 2)/4; // cell的宽
-    self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"meng_bg"]];
+    self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
+    self.headImageV.contentMode = UIViewContentModeScaleAspectFill;
     self.headImageV.layer.masksToBounds = YES;
     self.headImageV.layer.cornerRadius = 5;
     [self addSubview:self.headImageV];

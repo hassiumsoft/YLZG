@@ -37,7 +37,7 @@
     [self addSubview:button];
     
     UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 70, SCREEN_WIDTH, 70)];
-    backView.backgroundColor = KeepColor;
+    backView.backgroundColor = NorMalBackGroudColor;
     backView.userInteractionEnabled = YES;
     [self addSubview:backView];
     

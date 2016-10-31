@@ -117,7 +117,7 @@
     [sendButton addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];
     sendButton.layer.masksToBounds = YES;
     sendButton.layer.cornerRadius = 4;
-    sendButton.backgroundColor = WeChatColor;
+    sendButton.backgroundColor = MainColor;
     [self.rightBottomV addSubview:sendButton];
     [sendButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.rightBottomV.mas_centerY);

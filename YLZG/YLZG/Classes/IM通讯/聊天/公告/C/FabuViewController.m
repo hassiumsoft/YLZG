@@ -75,7 +75,7 @@
     
     self.button = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.button setTitle:@"确认发布" forState:UIControlStateNormal];
-    self.button.backgroundColor = WeChatColor;
+    self.button.backgroundColor = MainColor;
     [self.button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.button addTarget:self action:@selector(send:) forControlEvents:UIControlEventTouchUpInside];
     self.button.layer.cornerRadius = 4;
@@ -109,6 +109,11 @@
 {
     [super viewWillAppear:animated];
     
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.view endEditing:YES];
 }
 #pragma mark - 发布公告
 - (void)send:(UIButton *)sender

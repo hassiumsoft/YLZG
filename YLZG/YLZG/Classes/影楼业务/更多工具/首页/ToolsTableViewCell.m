@@ -87,12 +87,12 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.layer.masksToBounds = YES;
     button.layer.cornerRadius = 5;
-    button.layer.borderColor = WeChatColor.CGColor;
+    button.layer.borderColor = MainColor.CGColor;
     button.layer.borderWidth = 1.f;
     [button setTitle:@"详 情" forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:13];
     [button addTarget:self action:@selector(openApp) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitleColor:WeChatColor forState:UIControlStateNormal];
+    [button setTitleColor:MainColor forState:UIControlStateNormal];
     button.backgroundColor = [UIColor whiteColor];
     [self addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {

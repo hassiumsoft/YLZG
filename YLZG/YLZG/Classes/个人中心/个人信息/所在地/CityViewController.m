@@ -88,13 +88,13 @@
     self.searchBar.placeholder = @"关键字或字母";
     self.searchBar.delegate = self;
     
-    self.searchBar.tintColor = NavColor;
+    self.searchBar.tintColor = MainColor;
     [self.view addSubview:self.searchBar];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 42, SCREEN_WIDTH, SCREEN_HEIGHT - 106)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.sectionIndexColor = WeChatColor;
+    self.tableView.sectionIndexColor = MainColor;
     self.tableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
 }
@@ -112,7 +112,7 @@
     for(UIView *view in  [[[searchBar subviews] objectAtIndex:0] subviews]) {
         if([view isKindOfClass:[NSClassFromString(@"UINavigationButton") class]]) {
             UIButton * cancel =(UIButton *)view;
-            [cancel setTitleColor:WeChatColor forState:UIControlStateNormal];
+            [cancel setTitleColor:MainColor forState:UIControlStateNormal];
         }
     }
     
@@ -144,7 +144,7 @@
     for(UIView *view in  [[[searchBar subviews] objectAtIndex:0] subviews]) {
         if([view isKindOfClass:[NSClassFromString(@"UINavigationButton") class]]) {
             UIButton * cancel =(UIButton *)view;
-            [cancel setTitleColor:WeChatColor forState:UIControlStateNormal];
+            [cancel setTitleColor:MainColor forState:UIControlStateNormal];
         }
     }
     

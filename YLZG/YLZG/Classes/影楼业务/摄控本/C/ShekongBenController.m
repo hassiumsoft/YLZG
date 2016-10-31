@@ -152,7 +152,7 @@
 - (void)setupTitleScrollView
 {
     UIScrollView * titleScrollView = [[UIScrollView alloc] init];
-    titleScrollView.backgroundColor = RGBACOLOR(235, 232, 238, 1);
+    titleScrollView.backgroundColor = ToolBarColor;
     titleScrollView.showsHorizontalScrollIndicator = NO;
     titleScrollView.showsVerticalScrollIndicator = NO;
     titleScrollView.y = 0;

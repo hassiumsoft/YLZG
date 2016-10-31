@@ -281,7 +281,7 @@ static NSString *TextPlace = @"一句话描述您的群聊";
 {
     if (!_button) {
         _button = [UIButton buttonWithType:UIButtonTypeCustom];
-        _button.backgroundColor = WeChatColor;
+        _button.backgroundColor = MainColor;
         [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_button addTarget:self action:@selector(createGroup) forControlEvents:UIControlEventTouchUpInside];
         _button.layer.masksToBounds = YES;

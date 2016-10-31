@@ -67,7 +67,7 @@
         // 刷新数据
         _greenImageV1.image = [UIImage imageNamed:@"approve_hint"];
         self.descLabel2.text = @"审批完成";
-        self.descLabel2.textColor = WeChatColor;
+        self.descLabel2.textColor = MainColor;
         [self.disagreeBtn removeFromSuperview];
         [self.agreeBtn removeFromSuperview];
     }else{
@@ -490,7 +490,7 @@
         }];
         
         if (self.detialModel.status == 1) {
-            approver.textColor = WeChatColor;
+            approver.textColor = MainColor;
             
         }else{
             approver.textColor = [UIColor redColor];

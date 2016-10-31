@@ -67,7 +67,7 @@
 {
 //    RGBACOLOR(2, 42, 39, 1),RGBACOLOR(167, 67, 79, 1),RGBACOLOR(110, 3, 25, 1),RGBACOLOR(92, 25, 166, 1),RGBACOLOR(25, 159, 187, 1)
     
-    NSArray *colorArr = @[RGBACOLOR(2, 42, 39, 1),RGBACOLOR(167, 67, 79, 1),RGBACOLOR(110, 3, 25, 1),RGBACOLOR(92, 25, 166, 1),RGBACOLOR(25, 159, 187, 1),RGBACOLOR(12, 12, 12, 1),NavColor];
+    NSArray *colorArr = @[RGBACOLOR(2, 42, 39, 1),RGBACOLOR(167, 67, 79, 1),RGBACOLOR(110, 3, 25, 1),RGBACOLOR(92, 25, 166, 1),RGBACOLOR(25, 159, 187, 1),RGBACOLOR(12, 12, 12, 1),RGBACOLOR(50, 165, 50, 1)];
     int i = arc4random() % colorArr.count;
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(18, 0, SCREEN_WIDTH - 36, 80)];
@@ -79,6 +79,7 @@
     
     // 群主
     self.owerHeadV = [[UIImageView alloc]init];
+    self.owerHeadV.contentMode = UIViewContentModeScaleAspectFill;
     self.owerHeadV.backgroundColor = [UIColor whiteColor];
     self.owerHeadV.userInteractionEnabled = YES;
     self.owerHeadV.layer.masksToBounds = YES;

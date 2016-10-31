@@ -170,7 +170,7 @@
     
     LXMPieView *pieView = [[LXMPieView alloc] initWithFrame:CGRectMake(X, spaceY, SCREEN_WIDTH - X * 2, SCREEN_WIDTH - X * 2) values:modelArray];
     pieView.delegate = self;
-    pieView.backgroundColor = NavColor;
+    pieView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:pieView];
     
     self.pieView = pieView;
