@@ -30,16 +30,12 @@
 
 
 
-<<<<<<< HEAD
-#define topViewH 180
-=======
-
 
 
 
 #define topViewH 180
 
->>>>>>> CoderChan/master
+
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 /** collectionView */
