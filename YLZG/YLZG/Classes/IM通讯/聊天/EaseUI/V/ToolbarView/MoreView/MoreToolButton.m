@@ -35,7 +35,7 @@
             make.centerY.equalTo(self.mas_centerY).offset(-5);
             make.left.equalTo(self.mas_left);
             make.width.equalTo(@55);
-            make.height.equalTo(@50);
+            make.height.equalTo(@54);
         }];
         
         // icon

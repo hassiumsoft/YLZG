@@ -14,7 +14,6 @@
 #import "ChatViewController.h"
 #import "YLZGDataManager.h"
 #import "ClearCacheTool.h"
-#import "ChatListHeadView.h"
 #import "GroupListManager.h"
 #import "EaseConversationModel.h"
 
@@ -30,8 +29,7 @@
 @property (nonatomic, strong) UIView *networkStateView;
 /** 搜索框 */
 @property (strong,nonatomic) UISearchBar *searchBar;
-/** 影楼公告 */
-@property (strong,nonatomic) ChatListHeadView *studioNoticeView;
+
 
 @end
 
@@ -91,8 +89,6 @@
     
     
     [self.headView addSubview:self.searchBar];
-    [self.headView addSubview:self.studioNoticeView];
-    [self.studioNoticeView reloadData];
     self.tableView.tableHeaderView = self.headView;
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -109,7 +105,6 @@
     
     [self.tableView.mj_header endRefreshing];
     
-    [_studioNoticeView reloadData];
     
     [self.tableView reloadData];
 }
@@ -230,28 +225,10 @@
     }
     return _tableView;
 }
-- (ChatListHeadView *)studioNoticeView
-{
-    if (!_studioNoticeView) {
-        _studioNoticeView = [ChatListHeadView sharedChatListHeadView];
-        _studioNoticeView.frame = CGRectMake(0, 44, SCREEN_WIDTH, 60);
-        _studioNoticeView.isUnRead = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-            PublicNoticeController *notice = [PublicNoticeController new];
-            notice.ReloadBlock = ^(){
-                // 刷新页面
-                [_studioNoticeView reloadData];
-            };
-            [self.navigationController pushViewController:notice animated:YES];
-        }];
-        [_studioNoticeView addGestureRecognizer:tap];
-    }
-    return _studioNoticeView;
-}
 - (UIView *)headView
 {
     if (!_headView) {
-        _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 104)];
+        _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
         _headView.userInteractionEnabled = YES;
         _headView.backgroundColor = [UIColor whiteColor];
         

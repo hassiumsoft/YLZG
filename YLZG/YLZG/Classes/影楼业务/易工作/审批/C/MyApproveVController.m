@@ -8,21 +8,18 @@
 
 #import "MyApproveVController.h"
 #import "ZCAccountTool.h"
-#import "YLZGTitleLabel.h"
-#import "ApproveListViewController.h"
+#import "NoDequTableCell.h"
+#import "AppearHeadView.h"
+#import "QingjiaViewController.h"
+#import "WaichuViewController.h"
+#import "WuPingViewController.h"
+#import "CommonApplyController.h"
 
 
-#define ScrollHeight 35
+@interface MyApproveVController ()<UITableViewDelegate,UITableViewDataSource>
 
-@interface MyApproveVController ()<UIScrollViewDelegate>
-
-
-/** 顶部标签滚动栏 */
-@property (strong, nonatomic) UIScrollView * titleScrollView;
-/** 内容滚动栏 */
-@property (strong, nonatomic) UIScrollView * contentScrollView;
-/** 标签数组 */
-@property (strong, nonatomic) NSArray * titleArray;
+@property (copy,nonatomic) NSArray *array;
+@property (strong,nonatomic) UITableView *tableView;
 
 @end
 
@@ -30,179 +27,62 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的审批";
-    self.titleArray = @[@"待我审批",@"我已审批",@"我发起的"];
-    /** 初始化顶部标签滚动栏 */
-    [self setupTitleScrollView];
-    
-    /** 初始化内容滚动栏 */
-    [self setupContentScrollView];
-    
-    /** 添加子控制器 */
-    [self addController];
-    
-    /** 添加标签 */
-    [self addLabel];
-    
-    /** 添加默认控制器 */
-    [self addDefaultController];
+    self.title = @"审批";
+    [self setupSubViews];
 }
-
-/** 添加默认控制器 */
-- (void)addDefaultController
+#pragma mark - 表格
+- (void)setupSubViews
 {
-    ApproveListViewController *vc = [self.childViewControllers firstObject];
-    vc.view.frame = self.contentScrollView.bounds;
-    [self.contentScrollView addSubview:vc.view];
-    YLZGTitleLabel *lable = [self.titleScrollView.subviews firstObject];
-    lable.scale = 1.0;
+    self.array = @[@"请假",@"外出",@"物品领用",@"通用"];
+    [self.view addSubview:self.tableView];
+    
+    AppearHeadView *headView = [[AppearHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
+    self.tableView.tableHeaderView = headView;
 }
-
-
-/** 添加子控制器 */
-- (void)addController
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    for (int i = 0 ; i < self.titleArray.count ;i++){
-        ApproveListViewController * vc = [[ApproveListViewController alloc] init];
-        vc.index = i;
-        [self addChildViewController:vc];
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.array.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+    cell.textLabel.text = self.array[indexPath.row];
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0) {
+        QingjiaViewController *qingjia = [QingjiaViewController new];
+        [self.navigationController pushViewController:qingjia animated:YES];
+    } else if(indexPath.row == 1){
+        WaichuViewController *waichu = [WaichuViewController new];
+        [self.navigationController pushViewController:waichu animated:YES];
+    }else if (indexPath.row == 2){
+        WuPingViewController *wuping = [WuPingViewController new];
+        [self.navigationController pushViewController:wuping animated:YES];
+    }else{
+        CommonApplyController *comm = [CommonApplyController new];
+        [self.navigationController pushViewController:comm animated:YES];
     }
 }
-
-/** 添加标签 */
-- (void)addLabel
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    CGFloat labelW = SCREEN_WIDTH / self.titleArray.count;
-    CGFloat labelH = ScrollHeight;
-    CGFloat labelY = 0;
-    for (int i = 0; i < self.titleArray.count; i++) {
-        CGFloat labelX = i * labelW;
-        YLZGTitleLabel * label = [[YLZGTitleLabel alloc] init];
-        label.text = self.titleArray[i];
-        label.frame = CGRectMake(labelX, labelY, labelW, labelH);
-        label.font = [UIFont systemFontOfSize:15];
-        label.tag = i;
-        label.userInteractionEnabled = YES;
-        [self.titleScrollView addSubview:label];
-        [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(orderTitleClick:)]];
+    return 0.1f;
+}
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.backgroundColor = self.view.backgroundColor;
+        _tableView.rowHeight = 50;
     }
-    self.titleScrollView.contentSize = CGSizeMake(labelW * self.titleArray.count, 0);
+    return _tableView;
 }
-
-/** 标签点击方法 */
-- (void)orderTitleClick:(UITapGestureRecognizer *)recognizer
-{
-    YLZGTitleLabel *titlelable = (YLZGTitleLabel *)recognizer.view;
-    
-    CGFloat offsetX = titlelable.tag * self.contentScrollView.frame.size.width;
-    
-    CGFloat offsetY = self.contentScrollView.contentOffset.y;
-    CGPoint offset = CGPointMake(offsetX, offsetY);
-    
-    [self.contentScrollView setContentOffset:offset animated:YES];
-    
-}
-
-
-/** 初始化顶部标签滚动栏 */
-- (void)setupTitleScrollView
-{
-    UIScrollView * titleScrollView = [[UIScrollView alloc] init];
-    titleScrollView.backgroundColor = self.view.backgroundColor;
-    titleScrollView.showsHorizontalScrollIndicator = NO;
-    titleScrollView.showsVerticalScrollIndicator = NO;
-    titleScrollView.y = 0;
-    titleScrollView.width = self.view.width;
-    titleScrollView.height = ScrollHeight;
-    self.titleScrollView = titleScrollView;
-    [self.view addSubview:self.titleScrollView];
-}
-
-/** 初始化内容滚动栏 */
-- (void)setupContentScrollView
-{
-    UIScrollView * contentScrollView = [[UIScrollView alloc] init];
-    contentScrollView.showsHorizontalScrollIndicator = NO;
-    contentScrollView.showsVerticalScrollIndicator = NO;
-    contentScrollView.delegate = self;
-    contentScrollView.y = CGRectGetMaxY(self.titleScrollView.frame);
-    contentScrollView.width = self.view.width;
-    
-    CGFloat scrollViewH;
-    scrollViewH = self.view.height - 64 - self.titleScrollView.height;
-    contentScrollView.height = scrollViewH;
-    
-    contentScrollView.contentSize = CGSizeMake(self.view.width * self.titleArray.count, 0);
-    contentScrollView.pagingEnabled = YES;
-    self.contentScrollView = contentScrollView;
-    [self.view insertSubview:self.contentScrollView belowSubview:self.titleScrollView];
-}
-
-
-
-#pragma mark - scrollView代理方法
-/** 滚动结束后调用（代码导致） */
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    // 获得索引
-    NSUInteger index = scrollView.contentOffset.x / self.contentScrollView.frame.size.width;
-    
-    // 滚动标题栏
-    YLZGTitleLabel *titleLable = (YLZGTitleLabel *)self.titleScrollView.subviews[index];
-    
-    CGFloat offsetx = titleLable.center.x - self.titleScrollView.frame.size.width * 0.5;
-    
-    CGFloat offsetMax = self.titleScrollView.contentSize.width - self.titleScrollView.frame.size.width;
-    if (offsetx < 0) {
-        offsetx = 0;
-    }else if (offsetx > offsetMax){
-        offsetx = offsetMax;
-    }
-    
-    CGPoint offset = CGPointMake(offsetx, self.titleScrollView.contentOffset.y);
-    [self.titleScrollView setContentOffset:offset animated:YES];
-    // 添加控制器
-    ApproveListViewController *newsVc = self.childViewControllers[index];
-    newsVc.index = index;
-    
-    [self.titleScrollView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if (idx != index) {
-            YLZGTitleLabel *temlabel = self.titleScrollView.subviews[idx];
-            temlabel.scale = 0.0;
-        }
-    }];
-    
-    if (newsVc.view.superview) return;
-    
-    newsVc.view.frame = scrollView.bounds;
-    [self.contentScrollView addSubview:newsVc.view];
-}
-
-/** 滚动结束（手势导致） */
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    [self scrollViewDidEndScrollingAnimation:scrollView];
-}
-
-/** 正在滚动 */
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    // 取出绝对值 避免最左边往右拉时形变超过1
-    CGFloat value = ABS(scrollView.contentOffset.x / scrollView.frame.size.width);
-    NSUInteger leftIndex = (int)value;
-    NSUInteger rightIndex = leftIndex + 1;
-    CGFloat scaleRight = value - leftIndex;
-    CGFloat scaleLeft = 1 - scaleRight;
-    YLZGTitleLabel *labelLeft = self.titleScrollView.subviews[leftIndex];
-    labelLeft.scale = scaleLeft;
-    // 考虑到最后一个板块，如果右边已经没有板块了 就不在下面赋值scale了
-    if (rightIndex < self.titleScrollView.subviews.count) {
-        YLZGTitleLabel *labelRight = self.titleScrollView.subviews[rightIndex];
-        labelRight.scale = scaleRight;
-    }
-    
-}
-
-
-
 @end

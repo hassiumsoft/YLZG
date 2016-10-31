@@ -30,4 +30,10 @@
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.view endEditing:YES];
+}
+
 @end

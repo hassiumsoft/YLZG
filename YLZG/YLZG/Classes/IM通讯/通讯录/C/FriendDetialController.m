@@ -43,14 +43,19 @@
     
 }
 
-
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
 
 -(void)setupSubViews{
     
     [self.view addSubview:self.tableView];
     
     self.headV = [[DetailHeadView alloc] init];
-    self.headV.frame = CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT *0.17);
+    [self.headV becomeFirstResponder];
+    self.headV.frame = CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT * 0.14);
+    self.headV.backgroundColor = [UIColor whiteColor];
     self.tableView.tableHeaderView = self.headV;
     
 

@@ -88,7 +88,6 @@
 - (void)setupSubViews
 {
     self.title = @"添加好友";
-    
     self.searchBar.frame = CGRectMake(0, 0, SCREEN_WIDTH, 45);
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.tableView];

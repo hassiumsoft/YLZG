@@ -128,6 +128,7 @@
 {
     // 头像
     self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"group_back"]];
+    self.headImageV.contentMode = UIViewContentModeScaleAspectFill;
     self.headImageV.layer.masksToBounds = YES;
     self.headImageV.layer.cornerRadius = 4;
     [self addSubview:self.headImageV];
