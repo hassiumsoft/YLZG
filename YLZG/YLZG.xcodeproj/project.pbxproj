@@ -11,6 +11,8 @@
 		187075381DC195FA002448C6 /* PushNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075321DC195FA002448C6 /* PushNotificationViewController.m */; };
 		187075391DC195FA002448C6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075341DC195FA002448C6 /* SettingViewController.m */; };
 		1870753A1DC195FA002448C6 /* YLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075361DC195FA002448C6 /* YLAlertView.m */; };
+		189152EF1DC6D4FF005E34AA /* SearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 189152EE1DC6D4FF005E34AA /* SearchModel.m */; };
+		189152F21DC6D55B005E34AA /* SearchDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 189152F11DC6D55B005E34AA /* SearchDBManager.m */; };
 		21C872D3C9D7B0C50893CAF5 /* libPods-YLZGUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86ED1CFA9A80F470DA0E1435 /* libPods-YLZGUITests.a */; };
 		3B07D8C81D956B0D00B657F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8C71D956B0D00B657F6 /* main.m */; };
 		3B07D8CB1D956B0D00B657F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8CA1D956B0D00B657F6 /* AppDelegate.m */; };
@@ -378,6 +380,10 @@
 		187075341DC195FA002448C6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		187075351DC195FA002448C6 /* YLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLAlertView.h; sourceTree = "<group>"; };
 		187075361DC195FA002448C6 /* YLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLAlertView.m; sourceTree = "<group>"; };
+		189152ED1DC6D4FF005E34AA /* SearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchModel.h; sourceTree = "<group>"; };
+		189152EE1DC6D4FF005E34AA /* SearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchModel.m; sourceTree = "<group>"; };
+		189152F01DC6D55B005E34AA /* SearchDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDBManager.h; sourceTree = "<group>"; };
+		189152F11DC6D55B005E34AA /* SearchDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDBManager.m; sourceTree = "<group>"; };
 		3B07D8C31D956B0D00B657F6 /* YLZG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YLZG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B07D8C71D956B0D00B657F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B07D8C91D956B0D00B657F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1492,6 +1498,10 @@
 			children = (
 				3B6E3A051DAA0F3500A9BA63 /* SearchViewModel.h */,
 				3B6E3A061DAA0F3500A9BA63 /* SearchViewModel.m */,
+				189152ED1DC6D4FF005E34AA /* SearchModel.h */,
+				189152EE1DC6D4FF005E34AA /* SearchModel.m */,
+				189152F01DC6D55B005E34AA /* SearchDBManager.h */,
+				189152F11DC6D55B005E34AA /* SearchDBManager.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -3464,6 +3474,8 @@
 				3B6E3A541DAA2F7800A9BA63 /* AllProductModel.m in Sources */,
 				3BCF39F01D9E630300BEE236 /* NSDate+Category.m in Sources */,
 				3BBEDCE91DBD9957007075BD /* BanciButton.m in Sources */,
+				189152F21DC6D55B005E34AA /* SearchDBManager.m in Sources */,
+				189152EF1DC6D4FF005E34AA /* SearchModel.m in Sources */,
 				3BBEDCF51DBD9957007075BD /* CheckSettingVController.m in Sources */,
 				3BCF39991D9E12A200BEE236 /* AboutZhichengController.m in Sources */,
 				3BBEDCDF1DBD9957007075BD /* GudingBanciVController.m in Sources */,
