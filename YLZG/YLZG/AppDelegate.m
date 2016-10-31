@@ -165,7 +165,11 @@
     _connectionState = EMConnectionConnected;
     EMOptions *options = [EMOptions optionsWithAppkey:HXAppKey];
     options.apnsCertName = apnsCertName;
-    options.enableConsoleLog = YES;
+#if DEBUG
+    options.enableConsoleLog = YES; // 开发环境，打印
+#else
+    options.enableConsoleLog = NO; // 生产环境，不打印
+#endif
     options.isAutoLogin = YES;
     [[EMClient sharedClient] initializeSDKWithOptions:options];
     

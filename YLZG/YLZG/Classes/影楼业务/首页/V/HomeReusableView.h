@@ -10,6 +10,6 @@
 
 @interface HomeReusableView : UICollectionReusableView
 
-
+@property (copy,nonatomic) NSString *title;
 
 @end

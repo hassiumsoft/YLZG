@@ -18,11 +18,17 @@
 @implementation HomeReusableView
 
 
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    _titleLabel.text = title;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = HWRandomColor;
+        self.backgroundColor = [UIColor purpleColor];
         [self setupSubViews];
     }
     return self;
@@ -30,11 +36,9 @@
 - (void)setupSubViews
 {
     
-    
-    self.backgroundColor = HWRandomColor;
-    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 120, 30)];
+    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 120, 30)];
     self.titleLabel.text = @"财务统计";
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     [self addSubview:self.titleLabel];
 }
 

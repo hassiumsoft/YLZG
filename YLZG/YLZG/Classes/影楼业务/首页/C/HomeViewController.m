@@ -21,7 +21,8 @@
 /** collectionView */
 @property (strong,nonatomic) UICollectionView *collectionView;
 /** 数据源 */
-@property (strong,nonatomic) NSMutableArray *array;
+@property (copy,nonatomic) NSArray *titleArray;
+@property (copy,nonatomic) NSArray *iconArray;
 /** 顶部的视图 */
 @property (strong,nonatomic) HomeHeadView *topView;
 /** 用户模型 */
@@ -34,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"掌上影楼";
-    self.view.backgroundColor = KeepColor;
+    self.view.backgroundColor = [UIColor whiteColor];
     [self setupSubViews];
 }
 
@@ -45,17 +46,12 @@
     self.userModel = [UserInfoManager getUserInfo];
     
     if ([self.userModel.type intValue] == 1) {
-        NSArray *titleArr = @[@"今日财务",@"财务统计",@"今日订单",@"我的工作",@"易工作",@"摄控本",@"订单收款",@"业绩榜",@"更多工具",@"",@"",@""];
-        NSMutableArray *tempArr = [NSMutableArray array];
-        for (int i = 0; i < titleArr.count; i++) {
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            dict[@"icon"] = [NSString stringWithFormat:@"home_amin_%d",i];
-            dict[@"title"] = titleArr[i];
-            [tempArr addObject:dict];
-        }
-        self.array = [ButtonIconModel mj_objectArrayWithKeyValuesArray:tempArr];
-    }else{
+        self.titleArray = @[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜"],@[@"今日财务",@"财务统计"],@[@"审批",@"今日工作",@"考勤打卡"],@[@"拼团",@"砍价",@"助力",@"集赞",@"众筹",@"全民公益",@"投票报名"]];
+        self.iconArray = @[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang"],@[@"home_amin_0",@"home_amin_1"],@[@"btn_ico_shenpi",@"btn_ico_jinrigongzuo",@"btn_ico_kaoqin"],@[@"btn_ico_pintuan",@"btn_ico_kanjia",@"btn_ico_zhuli",@"btn_ico_jizan",@"btn_ico_zhongchou",@"btn_ico_gongyi",@"btn_ico_toupiao"]];
         
+    }else{
+        self.titleArray = @[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜"],@[@"审批",@"今日工作",@"考勤打卡"],@[@"拼团",@"砍价",@"助力",@"集赞",@"众筹",@"全民公益",@"投票报名"]];
+        self.iconArray = @[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang"],@[@"btn_ico_shenpi",@"btn_ico_jinrigongzuo",@"btn_ico_kaoqin"],@[@"btn_ico_pintuan",@"btn_ico_kanjia",@"btn_ico_zhuli",@"btn_ico_jizan",@"btn_ico_zhongchou",@"btn_ico_gongyi",@"btn_ico_toupiao"]];
     }
     
     [self.view addSubview:self.collectionView];
@@ -73,15 +69,18 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.array.count;
+    return [self.titleArray[section] count];
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HomeCollectionCell *cell = [HomeCollectionCell sharedCell:collectionView Path:indexPath];
-    ButtonIconModel *model = self.array[indexPath.row];
+    ButtonIconModel *model = [ButtonIconModel new];
+    model.title = self.titleArray[indexPath.section][indexPath.row];
+    model.icon = self.iconArray[indexPath.section][indexPath.row];
     cell.model = model;
     return cell;
 }
+
 // UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -122,19 +121,18 @@
     UICollectionReusableView * reusableview = nil;
     if(kind == UICollectionElementKindSectionHeader){
         
-        if (indexPath.section == 0) {
+        if ([self.userModel.type intValue] == 1) {
+            NSArray *titleArr = @[@"ERP应用",@"财务应用",@"工作办公",@"聚分享"];
             HomeReusableView * headerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeReusableView" forIndexPath:indexPath];
-            reusableview = headerview;
-        } else if(indexPath.section == 1){
-            HomeReusableView * headerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeReusableView" forIndexPath:indexPath];
-            reusableview = headerview;
-        }else if (indexPath.section == 2){
-            HomeReusableView * headerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeReusableView" forIndexPath:indexPath];
+            headerview.title = titleArr[indexPath.section];
             reusableview = headerview;
         }else{
+            NSArray *titleArr = @[@"ERP应用",@"工作办公",@"聚分享"];
             HomeReusableView * headerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeReusableView" forIndexPath:indexPath];
+            headerview.title = titleArr[indexPath.section];
             reusableview = headerview;
         }
+        
     }
     return reusableview;
 }
@@ -178,12 +176,6 @@
     }
     return _topView;
 }
-- (NSMutableArray *)array
-{
-    if (!_array) {
-        _array = [NSMutableArray array];
-    }
-    return _array;
-}
+
 
 @end

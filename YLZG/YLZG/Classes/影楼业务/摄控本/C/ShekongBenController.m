@@ -222,7 +222,7 @@
         PaizhaoPreViewController *newsVc = self.childViewControllers[self.currentIndex];
         newsVc.index = self.currentIndex;
         
-#warning 小BUG：每次进来都需要刷新一遍
+// #warning 小BUG：每次进来都需要刷新一遍
         
         if (self.isRefresh) {
             [newsVc loadDataWithDate:self.dateStr];
