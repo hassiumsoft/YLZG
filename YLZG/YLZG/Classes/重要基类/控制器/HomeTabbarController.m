@@ -96,30 +96,6 @@ static NSString *kGroupName = @"GroupName";
     _woVC.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     
     
-    
-}
-#pragma mark - UITabBarDelegate
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    if (item.tag == 1) {
-        self.title = @"掌上影楼";
-//        [self.navigationController.navigationBar setHidden:YES];
-        self.navigationItem.rightBarButtonItem = nil;
-    }else if (item.tag == 2){
-        self.title = @"消息";
-//        [self.navigationController.navigationBar setHidden:NO];
-        self.navigationItem.rightBarButtonItem = nil;
-    }else if (item.tag == 3){
-        self.title = @"通讯录";
-//        [self.navigationController.navigationBar setHidden:NO];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"contacts_add_friend"] style:UIBarButtonItemStylePlain target:self action:@selector(addFriendAction)];
-        [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
-        
-    }else{
-        self.title = @"我";
-//        [self.navigationController.navigationBar setHidden:NO];
-        self.navigationItem.rightBarButtonItem = nil;
-    }
 }
 
 #pragma mark - 添加子控制器
@@ -146,11 +122,7 @@ static NSString *kGroupName = @"GroupName";
     [self addChildViewController:normalNav];
     
 }
-- (void)addFriendAction
-{
-    AddFriendViewController *addFriend = [AddFriendViewController new];
-    [self.navigationController pushViewController:addFriend animated:YES];
-}
+
 - (void)didReceiveLocalNotification:(UILocalNotification *)notification
 {
     NSDictionary *userInfo = notification.userInfo;
@@ -338,13 +310,13 @@ static NSString *kGroupName = @"GroupName";
         ContactersModel *model = [ContactersModel mj_objectWithKeyValues:noti.userInfo];
         ChatViewController *chatVC = [[ChatViewController alloc]initWithConversationChatter:model.name conversationType:EMConversationTypeChat];
         chatVC.contactModel = model;
-        [self.navigationController pushViewController:chatVC animated:NO];
+        [_chatListVC.navigationController pushViewController:chatVC animated:NO];
     }else{
         // 群聊
         YLGroup *model = [YLGroup mj_objectWithKeyValues:noti.userInfo];
         ChatViewController *chatVC = [[ChatViewController alloc]initWithConversationChatter:model.gid conversationType:EMConversationTypeGroupChat];
         chatVC.groupModel = model;
-        [self.navigationController pushViewController:chatVC animated:NO];
+        [_chatListVC.navigationController pushViewController:chatVC animated:NO];
     }
     
 }

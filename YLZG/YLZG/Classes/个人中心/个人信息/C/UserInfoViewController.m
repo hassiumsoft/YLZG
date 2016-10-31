@@ -66,6 +66,7 @@
             cell.textLabel.text = self.dateSource[indexPath.section][indexPath.row];
             [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             UIImageView *imageV = [[UIImageView alloc]init];
+            imageV.contentMode = UIViewContentModeScaleAspectFill;
             imageV.layer.masksToBounds = YES;
             imageV.userInteractionEnabled = YES;
             imageV.layer.cornerRadius = 4.f;

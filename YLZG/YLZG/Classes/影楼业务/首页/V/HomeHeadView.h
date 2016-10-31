@@ -11,6 +11,6 @@
 
 @interface HomeHeadView : UIView
 
-
+@property (copy,nonatomic) void (^ClickBlock)();
 
 @end

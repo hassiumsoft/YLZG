@@ -13,6 +13,20 @@
 #import "HomeHeadView.h"
 #import <MJExtension.h>
 
+#import "OpenOrderViewController.h"
+#import "SearchOrderViewController.h"
+#import "PreOrderVController.h"
+#import "ShekongBenController.h"
+#import "OrderCheckViewController.h"
+#import "YejiViewController.h"
+#import "MyApproveVController.h"
+#import "TodayFinanceController.h"
+#import "MonthFinanceVController.h"
+#import "MyJobsViewController.h"
+#import "CheckTabBarController.h"
+#import "PublicNoticeController.h"
+
+
 
 
 #define topViewH 180
@@ -84,7 +98,158 @@
 // UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if ([self.userModel.type intValue] == 1) {
+        // 老板、店长
+        if (indexPath.section == 0) {
+            // ERP应用
+            if (indexPath.row == 0) {
+                // 开单
+                OpenOrderViewController *open = [OpenOrderViewController new];
+                [self.navigationController pushViewController:open animated:YES];
+            } else if(indexPath.row == 1){
+                // 查询
+                SearchOrderViewController *search = [SearchOrderViewController new];
+                [self.navigationController pushViewController:search animated:YES];
+                
+            }else if (indexPath.row == 2){
+                // 预约
+                PreOrderVController *preOrder = [PreOrderVController new];
+                [self.navigationController pushViewController:preOrder animated:YES];
+            }else if(indexPath.row == 3){
+                // 摄控本
+                ShekongBenController *shekongben = [ShekongBenController new];
+                [self.navigationController pushViewController:shekongben animated:YES];
+            }else if (indexPath.row == 4){
+                // 订单收款
+                OrderCheckViewController *orderCheck = [OrderCheckViewController new];
+                [self.navigationController pushViewController:orderCheck animated:YES];
+            }else{
+                // 业绩榜
+                YejiViewController *yeji = [YejiViewController new];
+                [self.navigationController pushViewController:yeji animated:YES];
+            }
+        } else if(indexPath.section == 1){
+            // 财务应用
+            if (indexPath.row == 0) {
+                // 今日财务
+                TodayFinanceController *today = [TodayFinanceController new];
+                [self.navigationController pushViewController:today animated:YES];
+            } else {
+                // 财务统计
+                MonthFinanceVController *month = [MonthFinanceVController new];
+                [self.navigationController pushViewController:month animated:YES];
+            }
+        }else if (indexPath.section == 2){
+            // 工作办公
+            if (indexPath.row == 0) {
+                // 审批
+                MyApproveVController *appear = [MyApproveVController new];
+                [self.navigationController pushViewController:appear animated:YES];
+            } else if(indexPath.row == 1){
+                // 今日工作
+                MyJobsViewController *job = [MyJobsViewController new];
+                [self.navigationController pushViewController:job animated:YES];
+            }else{
+                // 考勤打卡
+                CheckTabBarController *kaoqin = [CheckTabBarController new];
+                [self.navigationController pushViewController:kaoqin animated:YES];
+            }
+        }else{
+            // 聚分享
+            if (indexPath.row == 0) {
+                // 拼团
+                
+            } else if(indexPath.row == 1){
+                // 砍价
+                
+            }else if (indexPath.row == 2){
+                // 助力
+                
+            }else if (indexPath.row == 3){
+                // 集赞
+                
+            }else if (indexPath.row == 4){
+                // 众筹
+                
+            }else if (indexPath.row == 5){
+                // 全民公益
+                
+            }else{
+                // 投票报名
+                
+            }
+        }
+    } else {
+        // 员工
+        if (indexPath.section == 0) {
+            // ERP应用
+            if (indexPath.row == 0) {
+                // 开单
+                OpenOrderViewController *open = [OpenOrderViewController new];
+                [self.navigationController pushViewController:open animated:YES];
+            } else if(indexPath.row == 1){
+                // 查询
+                SearchOrderViewController *search = [SearchOrderViewController new];
+                [self.navigationController pushViewController:search animated:YES];
+                
+            }else if (indexPath.row == 2){
+                // 预约
+                PreOrderVController *preOrder = [PreOrderVController new];
+                [self.navigationController pushViewController:preOrder animated:YES];
+            }else if(indexPath.row == 3){
+                // 摄控本
+                ShekongBenController *shekongben = [ShekongBenController new];
+                [self.navigationController pushViewController:shekongben animated:YES];
+            }else if (indexPath.row == 4){
+                // 订单收款
+                OrderCheckViewController *orderCheck = [OrderCheckViewController new];
+                [self.navigationController pushViewController:orderCheck animated:YES];
+            }else{
+                // 业绩榜
+                YejiViewController *yeji = [YejiViewController new];
+                [self.navigationController pushViewController:yeji animated:YES];
+            }
+        } else if(indexPath.section == 1){
+            // 工作办公
+            if (indexPath.row == 0) {
+                // 审批
+                MyApproveVController *appear = [MyApproveVController new];
+                [self.navigationController pushViewController:appear animated:YES];
+            } else if(indexPath.row == 1){
+                // 今日工作
+                MyJobsViewController *job = [MyJobsViewController new];
+                [self.navigationController pushViewController:job animated:YES];
+            }else{
+                // 考勤打卡
+                CheckTabBarController *kaoqin = [CheckTabBarController new];
+                [self.navigationController pushViewController:kaoqin animated:YES];
+            }
+        }else{
+            // 聚分享
+            if (indexPath.row == 0) {
+                // 拼团
+                
+            } else if(indexPath.row == 1){
+                // 砍价
+                
+            }else if (indexPath.row == 2){
+                // 助力
+                
+            }else if (indexPath.row == 3){
+                // 集赞
+                
+            }else if (indexPath.row == 4){
+                // 众筹
+                
+            }else if (indexPath.row == 5){
+                // 全民公益
+                
+            }else{
+                // 投票报名
+                
+            }
+        }
+    }
 }
 
 // 返回这个UICollectionView是否可以被选择
@@ -173,6 +338,11 @@
 {
     if (!_topView) {
         _topView = [[HomeHeadView alloc]initWithFrame:CGRectMake(0, -topViewH, SCREEN_WIDTH, topViewH)];
+        __weak __block typeof(self) weakSelf = self;
+        _topView.ClickBlock = ^(){
+            PublicNoticeController *tips = [PublicNoticeController new];
+            [weakSelf.navigationController pushViewController:tips animated:YES];
+        };
     }
     return _topView;
 }

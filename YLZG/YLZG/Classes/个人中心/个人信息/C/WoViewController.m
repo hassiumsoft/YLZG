@@ -219,6 +219,7 @@
 {
     if (!_headImageV) {
         _headImageV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 60, 60)];
+        _headImageV.contentMode = UIViewContentModeScaleAspectFill;
         _headImageV.layer.cornerRadius = 4;
         _headImageV.layer.masksToBounds = YES;
     }

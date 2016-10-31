@@ -15,6 +15,7 @@
 #import "GroupMemberView.h"
 #import "FriendDetialController.h"
 #import "AllMembersController.h"
+#import "UserInfoViewController.h"
 #import "GroupNameViewController.h"
 #import "NoDequTableCell.h"
 #import <LCActionSheet.h>
@@ -408,9 +409,16 @@
         _headView.DidSelectBlock = ^(NSIndexPath *indexPath){
             if (indexPath.item <= self.memberArr.count - 1) {
                 ContactersModel *model = copy_self.memberArr[indexPath.item];
-                FriendDetialController *friend = [FriendDetialController new];
-                friend.userName = model.name;
-                [copy_self.navigationController pushViewController:friend animated:YES];
+                ZCAccount *account = [ZCAccountTool account];
+                if ([model.name isEqualToString:account.username]) {
+                    UserInfoViewController *userInfo = [UserInfoViewController new];
+                    [copy_self.navigationController pushViewController:userInfo animated:YES];
+                }else{
+                    FriendDetialController *friend = [FriendDetialController new];
+                    friend.userName = model.name;
+                    friend.isRootPush = YES;
+                    [copy_self.navigationController pushViewController:friend animated:YES];
+                }
             }else if(indexPath.item <= self.memberArr.count){
                 // 邀请成员
                 if (![copy_self.groupModel.allowinvites boolValue]) {
