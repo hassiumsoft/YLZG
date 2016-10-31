@@ -14,15 +14,7 @@
 #import <MJExtension.h>
 
 
-
-<<<<<<< HEAD
-
-
-
-static CGFloat topViewH = 100;
-=======
 #define topViewH 180
->>>>>>> CoderChan/master
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 /** collectionView */
