@@ -28,18 +28,6 @@
 
 
 
-
-
-
-<<<<<<< HEAD
-#define topViewH 180
-
-
-@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
-=======
-
-
-
 #define topViewH 190*CKproportion
 
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate>
@@ -48,7 +36,7 @@
     // 悬浮导航条
     NavigationView * _suspendNav;
 }
->>>>>>> CoderChan/master
+
 
 /** collectionView */
 @property (strong,nonatomic) UICollectionView *collectionView;
