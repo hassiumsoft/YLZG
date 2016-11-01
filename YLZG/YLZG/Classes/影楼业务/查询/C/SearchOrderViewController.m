@@ -321,17 +321,33 @@
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"📱" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        // 删除该产品
-        SearchViewModel * searchModel = self.dataSource[indexPath.section];
-        NSURL *phoheURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",searchModel.phone]];
-        UIWebView *phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-        [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoheURL]];
-        [self.view addSubview:phoneWebView];
-    }];
-    deleteAction.backgroundColor = [UIColor lightGrayColor];
-    
-    return @[deleteAction];
+    if (tableView.tag == 12) {
+        UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"📱" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+            // 删除该产品
+            SearchViewModel * searchModel = self.dataSource[indexPath.section];
+            NSURL *phoheURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",searchModel.phone]];
+            UIWebView *phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+            [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoheURL]];
+            [self.view addSubview:phoneWebView];
+        }];
+        deleteAction.backgroundColor = [UIColor lightGrayColor];
+        
+        return @[deleteAction];
+        
+    }else {
+        
+        UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            SearchModel *model = (SearchModel *)[self exchangeArray:self.dataArray][indexPath.row];
+            [[SearchDBManager shareSearchDBManager] deleteSearchModelByKeyword:model.keyWord];
+            //删除数据模型
+            _dataArray = [[SearchDBManager shareSearchDBManager] selectAllSearchModel];
+            [self.recordTableView reloadData];
+
+        }];
+        delete.backgroundColor = [UIColor redColor];
+        
+        return @[delete];
+    }
 }
 
 
