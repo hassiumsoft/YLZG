@@ -105,7 +105,7 @@
 #pragma mark - UI视图
 - (void)setupSubViews
 {
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.view.height - 64 - 30)];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.view.height - 64)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = self.view.backgroundColor;

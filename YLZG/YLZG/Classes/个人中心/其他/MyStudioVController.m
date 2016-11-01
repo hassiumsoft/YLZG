@@ -10,7 +10,7 @@
 #import "UserInfoManager.h"
 #import "HTTPManager.h"
 #import "ZCAccountTool.h"
-//#import "DetialButton.h"
+#import <MJExtension.h>
 #import <Masonry.h>
 
 
@@ -32,7 +32,7 @@
 - (void)getData
 {
     UserInfoModel *model = [UserInfoManager getUserInfo];
-    self.title = model.store_simple_name;
+    self.title = [model.store_simple_name mj_firstCharUpper];
     
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:MyStido_Url,account.userID];

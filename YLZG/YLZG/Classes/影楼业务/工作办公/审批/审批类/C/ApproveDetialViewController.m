@@ -248,7 +248,7 @@
     
     UIImageView *headV1 = [[UIImageView alloc]initWithFrame:CGRectMake(8, 9, 40, 40)];
     NSString *head = [NSString stringWithFormat:@"%@",self.model.sply_head];
-    [headV1 sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+    [headV1 sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"ico_morendl_touxiang"]];
     headV1.backgroundColor = [UIColor clearColor];
     headV1.layer.masksToBounds = YES;
     headV1.layer.cornerRadius = 20;
@@ -286,7 +286,7 @@
     }];
     
     UIImageView *headV2 = [[UIImageView alloc]initWithFrame:CGRectMake(8, 9, 40, 40)];
-    [headV2 sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+    [headV2 sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"ico_morendl_touxiang"]];
     headV2.backgroundColor = [UIColor clearColor];
     headV2.layer.masksToBounds = YES;
     headV2.layer.cornerRadius = 20;
@@ -360,7 +360,7 @@
             break;
     }
     
-    [imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.detialModel.sply_head]] placeholderImage:[UIImage imageNamed:@"user_place"]];
+    [imageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.detialModel.sply_head]] placeholderImage:[UIImage imageNamed:@"ico_morendl_touxiang"]];
     
     if (self.detialModel.status == 1) {
         // 已审核通过的
@@ -457,7 +457,7 @@
         }];
         
         UIImageView *shenpiImageV = [[UIImageView alloc]init];
-        [shenpiImageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.detialModel.appro_head]] placeholderImage:[UIImage imageNamed:@"user_place"]];
+        [shenpiImageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.detialModel.appro_head]] placeholderImage:[UIImage imageNamed:@"ico_morendl_touxiang"]];
         [shenherView addSubview:shenpiImageV];
         [shenpiImageV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(shenherView.mas_right).offset(-5);

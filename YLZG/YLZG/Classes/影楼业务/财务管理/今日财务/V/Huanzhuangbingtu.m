@@ -46,7 +46,7 @@
         [self loadEmptyView:@"当天暂无数据"];
     }else{
         UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-50, 110, 100, 20)];
-        label.text = @"财务分析";
+        label.text = @"财务结构";
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = [UIColor colorWithWhite:0.604 alpha:1.000];
         label.textAlignment = NSTextAlignmentCenter;

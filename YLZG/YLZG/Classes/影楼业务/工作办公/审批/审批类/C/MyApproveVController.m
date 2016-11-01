@@ -14,6 +14,7 @@
 #import "WaichuViewController.h"
 #import "WuPingViewController.h"
 #import "CommonApplyController.h"
+#import "ApproveListViewController.h"
 
 
 @interface MyApproveVController ()<UITableViewDelegate,UITableViewDataSource>
@@ -37,6 +38,37 @@
     [self.view addSubview:self.tableView];
     
     AppearHeadView *headView = [[AppearHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
+    headView.ClickBlock = ^(AppearType type){
+        switch (type) {
+            case WaitAppearType:
+            {
+                ApproveListViewController *app = [ApproveListViewController new];
+                app.index = 0;
+                app.title = @"待我审批";
+                [self.navigationController pushViewController:app animated:YES];
+                break;
+            }
+            case AppearedType:
+            {
+                ApproveListViewController *app = [ApproveListViewController new];
+                app.title = @"我已审批";
+                app.index = 1;
+                [self.navigationController pushViewController:app animated:YES];
+                break;
+            }
+            case MyApplyType:
+            {
+                ApproveListViewController *app = [ApproveListViewController new];
+                app.index = 2;
+                app.title = @"我发起的";
+                [self.navigationController pushViewController:app animated:YES];
+                break;
+            }
+                
+            default:
+                break;
+        }
+    };
     self.tableView.tableHeaderView = headView;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -73,6 +105,16 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.1f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *head = [[UIView alloc]initWithFrame:CGRectNull];
+    head.backgroundColor = self.view.backgroundColor;
+    return head;
 }
 - (UITableView *)tableView
 {

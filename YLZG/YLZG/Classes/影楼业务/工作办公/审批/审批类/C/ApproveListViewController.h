@@ -7,12 +7,12 @@
 //
 
 #import "SuperViewController.h"
-#import "ApproveModel.h"
+//#import "ApproveModel.h"
 
 @interface ApproveListViewController : SuperViewController
 
 @property (assign,nonatomic) NSInteger index;
 
-@property (strong,nonatomic) ApproveModel *model;
+//@property (strong,nonatomic) ApproveModel *model;
 
 @end

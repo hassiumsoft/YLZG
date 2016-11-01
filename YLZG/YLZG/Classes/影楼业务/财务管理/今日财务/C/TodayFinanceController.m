@@ -231,7 +231,7 @@
     _btnBackView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_middleView.frame)+10, SCREEN_WIDTH, SCREEN_HEIGHT-_middleView.height-20)];
     _btnBackView.backgroundColor = [UIColor whiteColor];
     /************ 财务分析 ************/
-    NSArray * titleArr = @[@"财务分析", @"财务明细"];
+    NSArray * titleArr = @[@"财务结构", @"财务明细"];
     for (int i = 0; i < titleArr.count; i++) {
         _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _headButton.frame = CGRectMake(SCREEN_WIDTH/2 * i, 0, SCREEN_WIDTH/2, 41);

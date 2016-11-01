@@ -41,7 +41,7 @@
     
     [self.view addSubview:self.searchBar];
     
-    [self loadEmptyView:@"空空如也"];
+    [self loadEmptyView:@""];
 }
 - (UITableView *)searchTableView
 {

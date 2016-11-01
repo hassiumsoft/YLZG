@@ -8,6 +8,8 @@
 
 #import "NavigationView.h"
 #import <Masonry.h>
+#import <MJExtension.h>
+#import "UserInfoManager.h"
 
 @interface NavigationView ()
 
@@ -29,9 +31,9 @@
 
 - (void)setupSubViews
 {
-    
+    UserInfoModel *userModel = [UserInfoManager getUserInfo];
     self.titleLabel = [[UILabel alloc]init];
-    self.titleLabel.text = @"我的影楼";
+    self.titleLabel.text = [userModel.store_simple_name mj_firstCharUpper];
     self.titleLabel.textColor = RGBACOLOR(255, 255, 255, 0);
     self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;

@@ -73,7 +73,7 @@
             break;
     }
     
-    [_headImageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.sply_head]] placeholderImage:[self imageWithBgColor:HWRandomColor]];
+    [_headImageV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.sply_head]] placeholderImage:[UIImage imageNamed:@"ico_morendl_touxiang"]];
     NSString * time = [self TimeIntToDateStr:model.sply_time];
     _timeLabel.text = time;
     
@@ -127,6 +127,7 @@
     self.headImageV = [[UIImageView alloc]init];
     self.headImageV.layer.masksToBounds = YES;
     self.headImageV.layer.cornerRadius = 6;
+    self.headImageV.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:self.headImageV];
     [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
@@ -169,26 +170,6 @@
     
 }
 
-
-- (UIImage *)imageWithBgColor:(UIColor *)color
-{
-    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-    
-    UIGraphicsBeginImageContext(rect.size);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    
-    CGContextFillRect(context, rect);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return image;
-}
 
 
 @end

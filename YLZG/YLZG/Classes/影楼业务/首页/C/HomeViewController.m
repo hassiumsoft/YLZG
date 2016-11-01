@@ -63,7 +63,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的影楼";
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupSubViews];
 }
@@ -73,13 +72,14 @@
 {
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.userModel = [UserInfoManager getUserInfo];
+    self.title = [self.userModel.store_simple_name mj_firstCharUpper];
     
     if ([self.userModel.type intValue] == 1) {
         self.titleArray = @[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜"],@[@"今日财务",@"财务统计"],@[@"审批",@"我的工作",@"今日订单",@"考勤打卡"],@[@"拼团",@"砍价",@"助力",@"集赞",@"众筹",@"全民公益",@"投票报名"]];
-        self.iconArray = @[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang"],@[@"btn_icon_tofinace",@"btn_icon_monthfinace"],@[@"btn_ico_shenpi",@"btn_ico_jinrigongzuo",@"btn_ico_jinrigongzuo",@"btn_ico_kaoqin"],@[@"btn_ico_pintuan",@"btn_ico_kanjia",@"btn_ico_zhuli",@"btn_ico_jizan",@"btn_ico_zhongchou",@"btn_ico_gongyi",@"btn_ico_toupiao"]];
+        self.iconArray = @[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang"],@[@"btn_icon_tofinace",@"btn_icon_monthfinace"],@[@"btn_ico_shenpi",@"btn_ico_jinrigongzuo",@"btn_jinridingdan",@"btn_ico_kaoqin"],@[@"btn_ico_pintuan",@"btn_ico_kanjia",@"btn_ico_zhuli",@"btn_ico_jizan",@"btn_ico_zhongchou",@"btn_ico_gongyi",@"btn_ico_toupiao"]];
     }else{
         self.titleArray = @[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜"],@[@"审批",@"我的工作",@"今日订单",@"考勤打卡"],@[@"拼团",@"砍价",@"助力",@"集赞",@"众筹",@"全民公益",@"投票报名"]];
-        self.iconArray = @[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang"],@[@"btn_ico_shenpi",@"btn_ico_jinrigongzuo",@"btn_ico_jinrigongzuo",@"btn_ico_kaoqin"],@[@"btn_ico_pintuan",@"btn_ico_kanjia",@"btn_ico_zhuli",@"btn_ico_jizan",@"btn_ico_zhongchou",@"btn_ico_gongyi",@"btn_ico_toupiao"]];
+        self.iconArray = @[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang"],@[@"btn_ico_shenpi",@"btn_ico_jinrigongzuo",@"btn_jinridingdan",@"btn_ico_kaoqin"],@[@"btn_ico_pintuan",@"btn_ico_kanjia",@"btn_ico_zhuli",@"btn_ico_jizan",@"btn_ico_zhongchou",@"btn_ico_gongyi",@"btn_ico_toupiao"]];
     }
     
     
