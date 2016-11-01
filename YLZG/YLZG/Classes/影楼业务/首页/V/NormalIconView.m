@@ -23,7 +23,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = NavColor;
+        self.backgroundColor = MainColor;
         [self setupSubViews];
         
     }

@@ -105,7 +105,7 @@
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setTitle:titleArr[indexPath.row] forState:UIControlStateNormal];
-        button.backgroundColor = WeChatColor;
+        button.backgroundColor = MainColor;
         button.layer.cornerRadius = 6;
         button.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         [button addTarget:self action:@selector(checkClick) forControlEvents:UIControlEventTouchUpInside];

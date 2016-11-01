@@ -227,7 +227,7 @@
     // 接听
     _answerButton = [[UIButton alloc] init];
     [_answerButton setImage:[UIImage imageNamed:@"call_answer"] forState:UIControlStateNormal];
-    [_answerButton setBackgroundColor:WeChatColor];
+    [_answerButton setBackgroundColor:MainColor];
     _answerButton.layer.masksToBounds = YES;
     _answerButton.layer.cornerRadius = ButtonWH/2;
     [_answerButton addTarget:self action:@selector(answerAction) forControlEvents:UIControlEventTouchUpInside];

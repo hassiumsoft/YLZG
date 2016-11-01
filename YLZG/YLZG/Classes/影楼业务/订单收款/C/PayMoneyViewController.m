@@ -127,7 +127,7 @@
     
     UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [sendButton setTitle:@"客户支付完成" forState:UIControlStateNormal];
-    sendButton.backgroundColor = WeChatColor;
+    sendButton.backgroundColor = MainColor;
     sendButton.layer.cornerRadius = 6;
     sendButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     [sendButton addTarget:self action:@selector(finished) forControlEvents:UIControlEventTouchUpInside];
@@ -216,12 +216,12 @@
         }
         case CashType:
         {
-            [self.imageV setImage:[UIImage imageNamed:@"cash_pay"]];
+            [self.imageV setImage:[UIImage imageNamed:@"ico_xianjian"]];
             break;
         }
         case BankCarPayType:
         {
-            [self.imageV setImage:[UIImage imageNamed:@"bankcard_pay"]];
+            [self.imageV setImage:[UIImage imageNamed:@"ic_swipe_in"]];
             break;
         }
         default:

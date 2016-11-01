@@ -285,7 +285,7 @@
     }
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:kkk style:UIBarButtonItemStylePlain target:self action:@selector(rightBarClick)];
-    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleBody],NSForegroundColorAttributeName:WeChatColor} forState:UIControlStateNormal];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleBody],NSForegroundColorAttributeName:MainColor} forState:UIControlStateNormal];
 }
 
 #pragma mark - 确定

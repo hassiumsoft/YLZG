@@ -82,7 +82,7 @@
     self.storeLabel.font = [UIFont systemFontOfSize:15];
     self.storeLabel.numberOfLines = 2;
     self.storeLabel.textAlignment = NSTextAlignmentRight;
-    self.storeLabel.textColor = WeChatColor;
+    self.storeLabel.textColor = MainColor;
     [_whiteView addSubview:self.storeLabel];
     [self.storeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.whiteView.mas_right).offset(-15);

@@ -66,7 +66,7 @@
     
     
     commitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    commitBtn.backgroundColor = RGBACOLOR(43, 173, 63, 1);
+    commitBtn.backgroundColor = MainColor;
     [commitBtn setTitle:@"确  定" forState:UIControlStateNormal];
     [commitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     commitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:17];

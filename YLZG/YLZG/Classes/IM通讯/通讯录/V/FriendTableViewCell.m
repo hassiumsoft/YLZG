@@ -98,10 +98,10 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"添加" forState:UIControlStateNormal];
-    [button setTitleColor:WeChatColor forState:UIControlStateNormal];
+    [button setTitleColor:MainColor forState:UIControlStateNormal];
     [button addTarget:self action:@selector(addFriendBtn) forControlEvents:UIControlEventTouchUpInside];
     button.layer.masksToBounds =YES;
-    button.layer.borderColor = WeChatColor.CGColor;
+    button.layer.borderColor = MainColor.CGColor;
     button.layer.borderWidth = 1.f;
     button.layer.cornerRadius = 6.f;
     button.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];

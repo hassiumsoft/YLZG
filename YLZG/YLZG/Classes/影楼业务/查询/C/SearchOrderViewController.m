@@ -289,7 +289,8 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UILabel *label = [[UILabel alloc] init];
     label.text = @"  历史搜索记录";
-    label.textColor = [UIColor redColor];
+    label.textColor = MainColor;
+    label.backgroundColor = ToolBarColor;
     label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     label.font = [UIFont systemFontOfSize:15];
     return  label;

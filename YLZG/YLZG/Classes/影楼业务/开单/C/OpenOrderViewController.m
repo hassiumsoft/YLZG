@@ -207,7 +207,7 @@
         cell.backgroundColor = self.view.backgroundColor;
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_sendBtn setBackgroundColor:WeChatColor];
+        [_sendBtn setBackgroundColor:MainColor];
         _sendBtn.layer.cornerRadius = 5;
         [_sendBtn setTitle:self.array[indexPath.section][indexPath.row] forState:UIControlStateNormal];
         [_sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

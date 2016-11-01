@@ -51,7 +51,7 @@
     
     // 2个按钮
     UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_coverBtn.frame), SCREEN_WIDTH, 45)];
-    topView.backgroundColor = WeChatColor;
+    topView.backgroundColor = MainColor;
     topView.userInteractionEnabled = YES;
     [self addSubview:topView];
     
@@ -89,7 +89,7 @@
 {
     if (!_datePicker) {
         _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_coverBtn.frame) + 45, SCREEN_WIDTH, self.height - _coverBtn.height - 45)];
-        _datePicker.layer.borderColor = WeChatColor.CGColor;
+        _datePicker.layer.borderColor = MainColor.CGColor;
         _datePicker.layer.borderWidth = 1.f;
         _datePicker.datePickerMode = UIDatePickerModeTime;
         _datePicker.backgroundColor = [UIColor whiteColor];

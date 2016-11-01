@@ -53,7 +53,7 @@
 {
     // 导航键相关
     UIView *navView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 22)];
-    navView.backgroundColor = NavColor;
+    navView.backgroundColor = MainColor;
     [self.view addSubview:navView];
     
     

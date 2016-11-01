@@ -101,7 +101,7 @@
     }];
     UIButton *agreeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [agreeBtn setTitle:@"同意" forState:UIControlStateNormal];
-    agreeBtn.backgroundColor = WeChatColor;
+    agreeBtn.backgroundColor = MainColor;
     agreeBtn.tag = AGREE_BUTTON;
     [agreeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [agreeBtn addTarget:self action:@selector(agreeBtnClick:) forControlEvents:UIControlEventTouchUpInside];

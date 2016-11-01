@@ -244,7 +244,7 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setFrame:CGRectMake(20, SCREEN_HEIGHT - 44*8 - 8 * 2 - 12 - 64 - 55, SCREEN_WIDTH - 40, 38)];
         button.layer.cornerRadius = 4;
-        button.backgroundColor = WeChatColor;
+        button.backgroundColor = MainColor;
         [button addTarget:self action:@selector(saveAction) forControlEvents:UIControlEventTouchUpInside];
         [button setTitle:@"保 存" forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];

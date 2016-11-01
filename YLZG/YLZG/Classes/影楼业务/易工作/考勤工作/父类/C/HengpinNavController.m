@@ -22,7 +22,7 @@
     self.navigationBar.translucent = NO; // 清除默认的半透明颜色
     [self.navigationBar setTitleTextAttributes:
      @{NSForegroundColorAttributeName:RGBACOLOR(245, 245, 245, 1)}];
-    self.navigationBar.barTintColor = NavColor;
+    self.navigationBar.barTintColor = MainColor;
 
     
 }

@@ -39,7 +39,7 @@
         _imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user_place"]];
         _imageV.layer.masksToBounds = YES;
         _imageV.layer.cornerRadius = 4;
-        _imageV.contentMode = UIViewContentModeScaleToFill;
+        _imageV.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:_imageV];
         
         _nameLabel = [[UILabel alloc] init];
@@ -55,12 +55,33 @@
        _lognumLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
        _lognumLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:_lognumLabel];
-        self.backgroundColor  = [UIColor whiteColor];
+        _lognumLabel.userInteractionEnabled = YES;
+        
+        UILongPressGestureRecognizer *tap = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longTapGues)];
+        tap.numberOfTapsRequired = 1;
+        [_lognumLabel addGestureRecognizer:tap];
         
     }
     return self;
 }
 
+#pragma mark - 长按复制ID
+- (void)longTapGues
+{
+    
+    UIMenuController *menu = [UIMenuController sharedMenuController];
+    menu.menuVisible = YES;
+    UIMenuItem *menuItem = [[UIMenuItem alloc]initWithTitle:@"复制" action:@selector(pasted)];
+    menu.menuItems = @[menuItem];
+    menu.arrowDirection = UIMenuControllerArrowDown;
+    [menu setTargetRect:SCREEN_BOUNDS inView:self];
+    
+    
+}
+- (void)pasted
+{
+    
+}
 -(void)layoutSubviews {
     [super layoutSubviews];
     _imageV.frame = CGRectMake(20, 18, 70, 70);
@@ -69,7 +90,10 @@
     
 }
 
-
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+    return YES;
+}
 + (instancetype)detailHeadView{
     
     return [[self alloc] init];

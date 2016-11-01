@@ -132,7 +132,7 @@
             [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
             cell.backgroundColor = self.view.backgroundColor;
             bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            bottomBtn.backgroundColor = WeChatColor;
+            bottomBtn.backgroundColor = MainColor;
             bottomBtn.layer.cornerRadius = 5;
             [bottomBtn setTitle:@"确定预约" forState:UIControlStateNormal];
             [bottomBtn addTarget:self action:@selector(yuyueAction:) forControlEvents:UIControlEventTouchUpInside];

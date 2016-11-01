@@ -501,14 +501,14 @@
             NormalconButton *button = [NormalconButton sharedHomeIconView];
             button.label.text = titleArr[i];
             button.tag = i+31;
-            button.label.textColor = RGBACOLOR(17, 205, 110, 1);
+            button.label.textColor = MainColor;
             [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
             button.iconView.image = [UIImage imageNamed:imageArr[i]];
             button.backgroundColor = [UIColor whiteColor];
             CGFloat space = 1;
             CGFloat W = (SCREEN_WIDTH - space * 3)/2;
             CGFloat X = (i%3) * (W + space) + space;
-            CGFloat Y = space + 44;
+            CGFloat Y = space + 40;
             [button setFrame:CGRectMake(X, Y, W, 78 - space * 2)];
             [_headV addSubview:button];
             if (i == 0) {
