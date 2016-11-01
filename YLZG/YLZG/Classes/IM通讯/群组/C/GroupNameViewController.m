@@ -107,6 +107,12 @@
 #pragma mark - 修改群消息
 - (void)changeGroupName:(UIButton *)sender
 {
+    
+    if (self.textField.text.length < 1) {
+        [self showErrorTips:@"请输入内容"];
+        return;
+    }
+    
     [self.view endEditing:YES];
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&name=%@",account.userID,self.groupModel.id,self.groupModel.gid,self.textField.text];
@@ -155,6 +161,10 @@
 #pragma mark - 修改简介
 - (void)changeGroupDsp
 {
+    if (self.textField.text.length < 1) {
+        [self showErrorTips:@"请输入内容"];
+        return;
+    }
     [self.view endEditing:YES];
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&dsp=%@",account.userID,self.groupModel.id,self.groupModel.gid,self.textField.text];

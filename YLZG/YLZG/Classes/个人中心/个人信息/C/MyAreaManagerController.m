@@ -57,11 +57,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的区域经理";
-    self.view.backgroundColor = MainColor;
+    self.view.backgroundColor = RGBACOLOR(35, 49, 45, 1);
     self.view.layer.borderColor = [UIColor redColor].CGColor;
     self.view.layer.borderWidth= 1.f;
     self.view.layer.cornerRadius = 12;
-    [self setupSubViews];
+    
 }
 
 - (void)setupSubViews
@@ -69,7 +69,7 @@
     
     // 名字
     self.nameLabel = [[UILabel alloc]init];
-    _nameLabel.text = @"无名氏";
+    _nameLabel.text = self.model.name;
     _nameLabel.textAlignment = NSTextAlignmentCenter;
     _nameLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     _nameLabel.textColor = [UIColor whiteColor];
@@ -117,11 +117,8 @@
         make.height.equalTo(@24);
     }];
     
+    self.phoneLabel.text = self.model.phone;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-        
-        if (![self.model.phone isPhoneNum]) {
-            [self showErrorTips:@"手机号码无效"];
-        }
         
         NSURL *phoheURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.model.phone]];
         UIWebView *phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
@@ -160,53 +157,29 @@
 - (void)getInfo
 {
     ZCAccount *account = [ZCAccountTool account];
-    //    ContactManager_Url
     NSString *url = [NSString stringWithFormat:ContactManager_Url,account.userID];
-//    NSCharacterSet * set = [NSCharacterSet URLQueryAllowedCharacterSet];
-//    NSString * url = [str stringByAddingPercentEncodingWithAllowedCharacters:set];
-    [self showHudMessage:@"Calling···"];
     [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self hideHud:0];
-        KGLog(@"responseObject = %@",responseObject);
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            NSDictionary *dict = [responseObject objectForKey:@"result"];
+            AreaManagerModel *model = [AreaManagerModel mj_objectWithKeyValues:dict];
+            self.model = model;
+            [self setupSubViews];
+        }else{
+            [self showErrorTips:message];
+        }
+        
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
         [self showErrorTips:error.localizedDescription];
     }];
     
-//    [AFHTTPSessionManager getCache:url parameter:nil success:^(id responseObject) {
-//        NSError *error;
-//        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:&error];
-//        
-//        if (!error) {
-//            int code = [[[json objectForKey:@"code"]description] intValue];
-//            NSString *message = [[json objectForKey:@"message"] description];
-//            if (code == 1) {
-//                KGLog(@"json = %@",json);
-//                [self hideHud:0];
-//                NSDictionary *dict = [json objectForKey:@"result"];
-//                self.model = [AreaManagerModel mj_objectWithKeyValues:dict];
-//                [self reloadData];
-//            }else{
-////                [self reloadData];
-//                [self showErrorTips:message];
-//                [self hideHud:2];
-//                
-//            }
-//        }else{
-//            [self showErrorTips:@"解析失败"];
-//        }
-//        
-//    } failure:^(NSError *error) {
-//        [self hideHud:1];
-//        [self showErrorTips:error.localizedDescription];
-//    }];
     
 }
 - (UILabel *)phoneLabel
 {
     if (!_phoneLabel) {
         _phoneLabel = [[UILabel alloc]init];
-        _phoneLabel.text = @"135****5114";
         _phoneLabel.textColor = [UIColor whiteColor];
         _phoneLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         _phoneLabel.textAlignment = NSTextAlignmentCenter;
