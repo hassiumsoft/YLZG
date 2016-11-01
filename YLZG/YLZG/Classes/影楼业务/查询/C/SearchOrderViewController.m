@@ -172,17 +172,17 @@
         
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 104)];
         UIButton *clearButton = [[UIButton alloc] init];
-        //clearButton.frame = CGRectMake(60, 60, self.view.frame.size.width - 120, 44);
-        [clearButton setTitle:@"清空历史搜索" forState:UIControlStateNormal];
+       [clearButton setImage:[UIImage imageNamed:@"delete_icon"] forState:UIControlStateNormal];
+        [clearButton setTitle:@"  清空历史搜索" forState:UIControlStateNormal];
         [clearButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         //[clearButton setTitleColor:[UIColor colorWithRed:242/256 green:242/256 blue:242/256 alpha:1] forState:UIControlStateNormal];
         clearButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
         clearButton.titleLabel.font = [UIFont systemFontOfSize:15];
         [clearButton addTarget:self action:@selector(clearButtonClick) forControlEvents:UIControlEventTouchDown];
-        clearButton.backgroundColor = RGBACOLOR(119.0, 108.0, 255.0, 1.0);
-        clearButton.layer.cornerRadius = 10;
+        clearButton.backgroundColor = [UIColor whiteColor];
+        clearButton.layer.cornerRadius = 5;
         clearButton.layer.borderWidth = 0.5;
-        clearButton.layer.borderColor = [UIColor whiteColor].CGColor;
+        clearButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
         //    clearButton.layer.borderColor = [UIColor colorWithRed:242/256 green:242/256 blue:242/256 alpha:1].CGColor;
         
         [footView addSubview:clearButton];
@@ -272,7 +272,7 @@
         }
         
         SearchModel *model = (SearchModel *)[self exchangeArray:self.dataArray][indexPath.row];
-        cell.imageView.image = [UIImage imageNamed:@"history"];
+        cell.imageView.image = [UIImage imageNamed:@"btn_ico_chaxun"];
         cell.textLabel.text = model.keyWord;
         //cell.detailTextLabel.textColor = [UIColor greenColor];
         cell.detailTextLabel.text = model.currentTime;
@@ -322,17 +322,33 @@
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"📱" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-        // 删除该产品
-        SearchViewModel * searchModel = self.dataSource[indexPath.section];
-        NSURL *phoheURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",searchModel.phone]];
-        UIWebView *phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-        [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoheURL]];
-        [self.view addSubview:phoneWebView];
-    }];
-    deleteAction.backgroundColor = [UIColor lightGrayColor];
-    
-    return @[deleteAction];
+    if (tableView.tag == 12) {
+        UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"📱" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+            // 删除该产品
+            SearchViewModel * searchModel = self.dataSource[indexPath.section];
+            NSURL *phoheURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",searchModel.phone]];
+            UIWebView *phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+            [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoheURL]];
+            [self.view addSubview:phoneWebView];
+        }];
+        deleteAction.backgroundColor = [UIColor lightGrayColor];
+        
+        return @[deleteAction];
+        
+    }else {
+        
+        UITableViewRowAction *delete = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            SearchModel *model = (SearchModel *)[self exchangeArray:self.dataArray][indexPath.row];
+            [[SearchDBManager shareSearchDBManager] deleteSearchModelByKeyword:model.keyWord];
+            //删除数据模型
+            _dataArray = [[SearchDBManager shareSearchDBManager] selectAllSearchModel];
+            [self.recordTableView reloadData];
+
+        }];
+        delete.backgroundColor = [UIColor redColor];
+        
+        return @[delete];
+    }
 }
 
 
@@ -344,6 +360,10 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
+    
+    [self.dataSource removeAllObjects];
+    [self.searchTableView reloadData ];
     
     [self.recordTableView removeFromSuperview];
     [self insterDBData:searchBar.text]; // 插入数据库

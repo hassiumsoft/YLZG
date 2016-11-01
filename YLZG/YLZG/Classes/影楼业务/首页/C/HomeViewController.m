@@ -31,6 +31,12 @@
 
 
 
+<<<<<<< HEAD
+#define topViewH 180
+
+
+@interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+=======
 
 
 
@@ -42,6 +48,7 @@
     // 悬浮导航条
     NavigationView * _suspendNav;
 }
+>>>>>>> CoderChan/master
 
 /** collectionView */
 @property (strong,nonatomic) UICollectionView *collectionView;
