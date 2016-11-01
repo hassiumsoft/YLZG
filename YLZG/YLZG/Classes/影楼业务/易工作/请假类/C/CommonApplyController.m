@@ -191,7 +191,7 @@
         UIView *foot = [[UIView alloc]init];
         foot.backgroundColor = self.view.backgroundColor;
         _commitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _commitBtn.backgroundColor = RGBACOLOR(43, 170, 63, 1);
+        _commitBtn.backgroundColor = MainColor;
         [_commitBtn addTarget:self action:@selector(commitction:) forControlEvents:UIControlEventTouchUpInside];
         _commitBtn.layer.cornerRadius = 6;
         [_commitBtn setTitle:@"提交" forState:UIControlStateNormal];

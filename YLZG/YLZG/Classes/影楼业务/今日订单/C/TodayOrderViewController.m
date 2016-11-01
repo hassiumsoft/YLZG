@@ -11,6 +11,7 @@
 #import "TodayOrderModel.h"
 #import <MJExtension/MJExtension.h>
 #import <Masonry.h>
+#import <MJRefresh.h>
 #import "TodayOrderCell.h"
 #import "ZCAccountTool.h"
 #import "HTTPManager.h"
@@ -36,7 +37,12 @@
     
     self.title = @"今日订单";
     self.date = [self todayDate];
-    [self loadData];
+    [self setupSubViews];
+    [self loadEmptyView];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
     
 }
 
@@ -46,28 +52,35 @@
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:TodayOrder_Url,self.date,account.userID];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self.tableView.mj_header endRefreshing];
         int status = [[[responseObject objectForKey:@"code"] description ] intValue];
         if (status == 1) {
             NSArray *tempArr = [responseObject objectForKey:@"result"];
             if (tempArr.count < 1) {
                 // 没有订单
                 self.array = [TodayOrderModel mj_objectArrayWithKeyValuesArray:tempArr];
-                [self loadEmptyView];
                 [self.tableView reloadData];
+                self.emptyImageV.hidden = NO;
                 
             }else{
                 // 有订单
+                
                 self.array = [TodayOrderModel mj_objectArrayWithKeyValuesArray:tempArr];
-                [self.emptyImageV removeFromSuperview];
-                
-                [self setupSubViews];
-                
-                
+                [self.tableView reloadData];
+                self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                    
+                }];
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                self.emptyImageV.hidden = YES;
             }
         }else{
-            [self loadEmptyView];
+            self.array = @[];
+            [self.tableView reloadData];
+            [self.tableView.mj_footer removeFromSuperview];
+            self.emptyImageV.hidden = NO;
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.tableView.mj_header endRefreshing];
         [self showErrorTips:error.localizedDescription];
     }];
     
@@ -77,8 +90,7 @@
 
 - (void)loadEmptyView
 {
-    [self.tableView removeFromSuperview];
-    
+    self.emptyImageV.hidden = YES;
     [self.view addSubview:self.emptyImageV];
     [self.emptyImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view.mas_centerX);
@@ -92,6 +104,7 @@
 {
     if (!_emptyImageV) {
         _emptyImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"empty_icon"]];
+        
     }
     return _emptyImageV;
 }
@@ -102,7 +115,7 @@
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.contentInset = UIEdgeInsetsMake(12, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(2, 0, 0, 0);
     self.tableView.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:self.tableView];
     
@@ -125,12 +138,16 @@
     cell.model = model;
     return cell;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.1;
+}
 #pragma mark - TodayOrderCellDelegate
 - (void)openPhoneWebView:(TodayOrderModel *)model
 {
     UserInfoModel *userModel = [UserInfoManager getUserInfo];
     if ([userModel.vcip intValue] == 1) {
-        NSString *phone = [model.phone substringWithRange:NSMakeRange(0, 11)];
+        NSString *phone = model.phone;
         NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phone]];
         UIWebView *phoneWeb = [[UIWebView alloc]initWithFrame:CGRectZero];
         [phoneWeb loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
@@ -167,7 +184,7 @@
 - (void)rightBarButtonItemClicked
 {
     PDTSimpleCalendarViewController *calender = [[PDTSimpleCalendarViewController alloc]init];
-    calender.title = @"点击选择日期";
+    calender.title = @"查看往日订单";
     calender.delegate = self;
     calender.overlayTextColor = MainColor;
     calender.weekdayHeaderEnabled = YES;
@@ -191,6 +208,8 @@
     [self loadData];
     [self.tableView reloadData];
 }
+
+
 
 
 @end

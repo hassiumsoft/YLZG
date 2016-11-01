@@ -255,7 +255,7 @@
         UIView *foot = [[UIView alloc]init];
         foot.backgroundColor = self.view.backgroundColor;
         commitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        commitBtn.backgroundColor = RGBACOLOR(43, 170, 63, 1);
+        commitBtn.backgroundColor = MainColor;
         [commitBtn addTarget:self action:@selector(commitQingjia:) forControlEvents:UIControlEventTouchUpInside];
         commitBtn.layer.cornerRadius = 6;
         [commitBtn setTitle:@"提  交" forState:UIControlStateNormal];
