@@ -125,7 +125,6 @@
         label.frame = CGRectMake(labelX, labelY, labelW, labelH);
         label.font = [UIFont systemFontOfSize:15];
         label.tag = i;
-        label.userInteractionEnabled = YES;
         [self.titleScrollView addSubview:label];
         [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(orderTitleClick:)]];
     }

@@ -275,14 +275,14 @@
         
         if (avatarURLPath.length > 1 || nickname.length > 1) {
             // 有扩展
-            [self.avatarView sd_setImageWithURL:[NSURL URLWithString:avatarURLPath] placeholderImage:[UIImage imageNamed:@"user_place"]];
+            [self.avatarView sd_setImageWithURL:[NSURL URLWithString:avatarURLPath] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
             _nameLabel.text = nickname;
         }else{
             // 没有扩展
             NSArray *friendArr = [[YLZGDataManager sharedManager] getAllFriendInfo];
             for (ContactersModel *model in friendArr) {
                 if ([userName isEqualToString:model.name]) {
-                    [self.avatarView sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+                    [self.avatarView sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
                     _nameLabel.text = model.realname;
                 }
             }

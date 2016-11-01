@@ -26,6 +26,7 @@
 #import "MyJobsViewController.h"
 #import "CheckTabBarController.h"
 #import "PublicNoticeController.h"
+#import "PintuanViewController.h"
 
 
 
@@ -72,7 +73,7 @@
 {
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.userModel = [UserInfoManager getUserInfo];
-    self.title = [self.userModel.store_simple_name mj_firstCharUpper];
+    self.title = @"我的影楼";
     
     if ([self.userModel.type intValue] == 1) {
         self.titleArray = @[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜"],@[@"今日财务",@"财务统计"],@[@"审批",@"我的工作",@"今日订单",@"考勤打卡"],@[@"拼团",@"砍价",@"助力",@"集赞",@"众筹",@"全民公益",@"投票报名"]];
@@ -190,7 +191,8 @@
             // 聚分享
             if (indexPath.row == 0) {
                 // 拼团
-                
+                PintuanViewController *pintuan = [PintuanViewController new];
+                [self.navigationController pushViewController:pintuan animated:YES];
             } else if(indexPath.row == 1){
                 // 砍价
                 
@@ -264,7 +266,8 @@
             // 聚分享
             if (indexPath.row == 0) {
                 // 拼团
-                
+                PintuanViewController *pintuan = [PintuanViewController new];
+                [self.navigationController pushViewController:pintuan animated:YES];
             } else if(indexPath.row == 1){
                 // 砍价
                 

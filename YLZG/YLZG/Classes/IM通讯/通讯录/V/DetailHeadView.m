@@ -24,9 +24,9 @@
 {
     _model = model;
     if ([model.gender intValue] == 1) {
-     [_imageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+     [_imageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     }else{
-        [_imageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"male_place"]];
+        [_imageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     }
     _nameLabel.text = model.realname.length >= 1 ? model.realname : model.nickname;;
     _lognumLabel.text = [NSString stringWithFormat:@"影楼ID：%@",model.name];
@@ -36,7 +36,7 @@
    self =  [super initWithFrame:frame];
     if(self){
         
-        _imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user_place"]];
+        _imageV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
         _imageV.layer.masksToBounds = YES;
         _imageV.layer.cornerRadius = 4;
         _imageV.contentMode = UIViewContentModeScaleAspectFill;

@@ -51,7 +51,7 @@
         // 后三名
         _recordLabel.textColor = MainColor;
     }
-    [_headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"place_head"]];
+    [_headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -65,7 +65,7 @@
 }
 - (void)setupSubViews
 {
-    self.headV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"place_head"]];
+    self.headV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     self.headV.userInteractionEnabled = YES;
     [self addSubview:self.headV];
     [self.headV mas_makeConstraints:^(MASConstraintMaker *make) {

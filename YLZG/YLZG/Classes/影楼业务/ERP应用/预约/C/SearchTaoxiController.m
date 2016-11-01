@@ -61,6 +61,7 @@
     if (!_searchBar) {
         _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 48)];
         _searchBar.delegate = self;
+        _searchBar.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         [_searchBar becomeFirstResponder];
         _searchBar.backgroundColor = self.view.backgroundColor;
         _searchBar.placeholder = @"手机号或客户姓名，支持模糊查询";

@@ -175,7 +175,7 @@
 {
     id<IMessageModel> model = nil;
     model = [[EaseMessageModel alloc] initWithMessage:message];
-    model.avatarImage = [UIImage imageNamed:@"user_place"];
+    model.avatarImage = [UIImage imageNamed:@"ico_gg_mrtouxiang"];
     model.failImageName = @"imageDownloadFail";
     model.nickname = viewController.contactModel.realname;
     model.avatarURLPath = viewController.contactModel.head;

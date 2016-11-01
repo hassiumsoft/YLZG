@@ -8,7 +8,7 @@
 
 #import "ChooseMemVController.h"
 #import "MutliChoceStaffCell.h"
-#import "SVProgressHUD.h"
+#import <MJRefresh.h>
 #import "ZCAccountTool.h"
 #import "StaffInfoModel.h"
 #import <MJExtension.h>
@@ -30,24 +30,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"选择人员";
-    [self getData];
+    self.title = @"选择考勤组员";
+    
     [self setupTableView];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 #pragma mark - 加载模拟数据
 - (void)getData
 {
     self.array = [NSMutableArray array];
     
-    // http://zsylou.wxwkf.com/index.php/home/contacts/query?uid=2
-    [self showHudMessage:@"加载中···"];
     ZCAccount * account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:YLHome_Url, account.userID];
     
     [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 
             int status = [[[responseObject objectForKey:@"code"] description] intValue];
-            [SVProgressHUD dismiss];
+            [self.tableView.mj_header endRefreshing];
             switch (status) {
                 case 0:
                 {
@@ -61,13 +63,17 @@
                     NSArray *array = [responseObject objectForKey:@"result"];
                     self.array = [StaffInfoModel mj_objectArrayWithKeyValuesArray:array];
                     [self.tableView reloadData];
+                    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                        
+                    }];
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
                     break;
                 }
                 default:
                     break;
             }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
+        [self.tableView.mj_header endRefreshing];
         [self sendErrorWarning:error.localizedDescription];
     }];
     
@@ -80,7 +86,7 @@
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 55;
     self.tableView.backgroundColor = self.view.backgroundColor;
-    self.tableView.contentInset = UIEdgeInsetsMake(12, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(2, 0, 0, 0);
     [self.view addSubview:self.tableView];
 }
 
@@ -155,7 +161,7 @@
     }
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(doneAction)];
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleBody]} forState:UIControlStateNormal];
-    [self.navigationItem.rightBarButtonItem setTintColor:MainColor];
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 - (void)doneAction
 {

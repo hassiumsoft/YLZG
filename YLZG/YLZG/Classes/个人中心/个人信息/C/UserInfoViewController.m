@@ -71,9 +71,9 @@
             imageV.userInteractionEnabled = YES;
             imageV.layer.cornerRadius = 4.f;
             if ([self.userModel.gender intValue] == 1) {
-                [imageV sd_setImageWithURL:[NSURL URLWithString:self.userModel.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+                [imageV sd_setImageWithURL:[NSURL URLWithString:self.userModel.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
             } else {
-                [imageV sd_setImageWithURL:[NSURL URLWithString:self.userModel.head] placeholderImage:[UIImage imageNamed:@"male_place"]];
+                [imageV sd_setImageWithURL:[NSURL URLWithString:self.userModel.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
             }
             [cell addSubview:imageV];
             [imageV mas_makeConstraints:^(MASConstraintMaker *make) {

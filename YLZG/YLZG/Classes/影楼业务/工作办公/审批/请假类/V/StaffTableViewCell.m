@@ -35,9 +35,9 @@
     }
     NSString *head = [NSString stringWithFormat:@"%@",model.head];
     if ([model.gender intValue] == 1) {
-        [_imageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+        [_imageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     }else{
-        [_imageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"male_place"]];
+        [_imageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     }
     
     if ([[model.type description]integerValue] == 1) {

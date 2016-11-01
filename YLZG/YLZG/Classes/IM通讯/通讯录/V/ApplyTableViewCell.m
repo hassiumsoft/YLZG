@@ -39,11 +39,11 @@
     NSString *head = aModel.fead;
 //    NSString *placeImage;
 //    if ([contactModel.gender intValue] == 1) {
-//        placeImage = @"user_place";
+//        placeImage = @"ico_gg_mrtouxiang";
 //    }else{
-//        placeImage = @"male_place";
+//        placeImage = @"ico_gg_mrtouxiang";
 //    }
-    [_headImageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+    [_headImageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     if (aModel.anick.length < 1) {
         if (aModel.aname.length < 1) {
             _nickNameLabel.text = aModel.anick;
@@ -62,7 +62,7 @@
 - (void)setupSubViews
 {
     // 头像
-    self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"user_place"]];
+    self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     [self addSubview:self.headImageV];
     [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15);

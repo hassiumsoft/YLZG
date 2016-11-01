@@ -37,7 +37,7 @@
 
 - (void)setModel:(TeamZhengchangdakaModel *)model {
     _model = model;
-    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"place_head"]];
+    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     _nameLabel.text = [NSString stringWithFormat:@"%@(%@)", model.realname, model.dept];
 }
 
