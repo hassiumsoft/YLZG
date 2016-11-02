@@ -126,6 +126,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
     _avatarView.translatesAutoresizingMaskIntoConstraints = NO;
     _avatarView.backgroundColor = [UIColor clearColor];
     _avatarView.clipsToBounds = YES;
+    _avatarView.contentMode = UIViewContentModeScaleAspectFill;
     _avatarView.userInteractionEnabled = YES;
     [self.contentView addSubview:_avatarView];
     
@@ -133,7 +134,7 @@ NSString *const EaseMessageCellIdentifierSendFile = @"EaseMessageCellSendFile";
     _hasRead.translatesAutoresizingMaskIntoConstraints = NO;
     _hasRead.text = @"已读";
     _hasRead.textAlignment = NSTextAlignmentCenter;
-    _hasRead.font = [UIFont systemFontOfSize:12];
+    _hasRead.font = [UIFont systemFontOfSize:10];
     _hasRead.hidden = YES;
     [_hasRead sizeToFit];
     [self.contentView addSubview:_hasRead];

@@ -239,6 +239,6 @@
 - (void)sortMethodChanged:(UISwitch *)addfriSwitch
 {
     // isAutoAcceptFriendInvitation
-    [[EMClient sharedClient].options setIsAutoAcceptFriendInvitation:addfriSwitch.on];
+    [[EMClient sharedClient].options setIsAutoAcceptFriendInvitation:addfriSwitch.isOn];
 }
 @end

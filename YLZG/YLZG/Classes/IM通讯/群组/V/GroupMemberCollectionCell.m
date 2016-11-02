@@ -50,9 +50,8 @@
     [self addSubview:self.headImageV];
     [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.left.equalTo(self.mas_left).offset(10);
-        make.top.equalTo(self.mas_top);
-        make.height.equalTo(@(cellWH * 0.77));
+        make.top.equalTo(self.mas_top).offset(5);
+        make.width.and.height.equalTo(@(cellWH * 0.68));
     }];
     
     self.nameLabel = [[UILabel alloc]init];

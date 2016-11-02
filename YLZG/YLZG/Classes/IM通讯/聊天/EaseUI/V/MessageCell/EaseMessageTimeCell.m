@@ -42,13 +42,13 @@
         self.timeLabel.font = [UIFont systemFontOfSize:11];
         self.timeLabel.textColor = [UIColor whiteColor];
         self.timeLabel.layer.masksToBounds = YES;
-        self.timeLabel.layer.cornerRadius = 4.f;
+        self.timeLabel.layer.cornerRadius = 2.f;
         self.timeLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:self.timeLabel];
         [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.mas_centerX);
             make.centerY.equalTo(self.mas_centerY);
-            make.height.equalTo(@20);
+            make.height.equalTo(@21);
         }];
 
     }

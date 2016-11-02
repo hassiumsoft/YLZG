@@ -7,6 +7,7 @@
 //
 
 #import "PushNotificationViewController.h"
+#import <LCActionSheet.h>
 #import "NoDequTableCell.h"
 
 @interface PushNotificationViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -121,10 +122,17 @@
         [self.tableView reloadData];
     }else {
         // 推送关闭 == 全天免打扰
-        [[EMClient sharedClient].pushOptions setNoDisturbStatus:EMPushNoDisturbStatusDay];
-        [EMClient sharedClient].pushOptions.noDisturbingStartH = -1;
-        [EMClient sharedClient].pushOptions.noDisturbingEndH = -1;
-        [self.tableView reloadData];
+        LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"选择此项后，您将会错过影楼内部的重要信息。\r请您三思！" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
+                [[EMClient sharedClient].pushOptions setNoDisturbStatus:EMPushNoDisturbStatusDay];
+                [EMClient sharedClient].pushOptions.noDisturbingStartH = -1;
+                [EMClient sharedClient].pushOptions.noDisturbingEndH = -1;
+                [self.tableView reloadData];
+            }
+        } otherButtonTitles:@"全天关闭！", nil];
+        sheet.destructiveButtonIndexSet = [NSSet setWithObject:@1];
+        [sheet show];
+        
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
