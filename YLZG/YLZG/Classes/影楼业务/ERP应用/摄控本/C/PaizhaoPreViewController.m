@@ -156,7 +156,7 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.view.height)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, -52, SCREEN_WIDTH, self.view.height)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.rowHeight = 80;

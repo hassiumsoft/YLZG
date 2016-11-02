@@ -52,14 +52,14 @@
  *  @return YES:打开成功  NO:打开失败
  */
 - (BOOL)openDataBase{
-    NSLog(@"FilePath = %@",[self getFilePath:FILE_NAME]);
+    KGLog(@"FilePath = %@",[self getFilePath:FILE_NAME]);
     int result = sqlite3_open([self getFilePath:FILE_NAME].UTF8String, &dataBase);
     if (result == SQLITE_OK) {
-        NSLog(@"数据库打开成功");
+        KGLog(@"数据库打开成功");
         return YES;
     }
     else{
-        NSLog(@"数据库打开失败");
+        KGLog(@"数据库打开失败");
         return NO;
     }
 }
@@ -82,10 +82,10 @@
     int result = sqlite3_exec(dataBase, creatSQL.UTF8String, NULL, NULL, &errorMsg);
     if (result == SQLITE_OK) {
         [self closeDataBase];
-        NSLog(@"表单：%@创建成功",TABLE_NAME);
+        KGLog(@"表单：%@创建成功",TABLE_NAME);
     }
     else{
-        NSLog(@"表单：%@创建失败：%s",TABLE_NAME,errorMsg);
+        KGLog(@"表单：%@创建失败：%s",TABLE_NAME,errorMsg);
     }
 }
 /**
@@ -105,9 +105,9 @@
         sqlite3_bind_text(stmt, 2, searchModel.currentTime.UTF8String, -1, nil);
     }
     if (sqlite3_step(stmt) != SQLITE_DONE) {
-        NSLog(@"数据插入失败：%s",errorMsg);
+        KGLog(@"数据插入失败：%s",errorMsg);
     }
-    else NSLog(@"数据插入成功");
+    else KGLog(@"数据插入成功");
     sqlite3_finalize(stmt);
     [self closeDataBase];
 }
@@ -123,11 +123,11 @@
     NSString *deleteSQL = [NSString stringWithFormat:@"DELETE FROM %@ WHERE keyWord = '%@'",TABLE_NAME,keyWord];
     char *errorMsg;
     if (sqlite3_exec(dataBase, deleteSQL.UTF8String, NULL, NULL, &errorMsg) == SQLITE_OK) {
-        NSLog(@"数据删除成功");
+        KGLog(@"数据删除成功");
         [self closeDataBase];
     }
     else{
-        NSLog(@"数据删除失败：%s",errorMsg);
+        KGLog(@"数据删除失败：%s",errorMsg);
     }
 }
 /**
@@ -140,11 +140,11 @@
     NSString *deleteSQL = [NSString stringWithFormat:@"DELETE FROM %@ WHERE 1>0",TABLE_NAME];
     char *errorMsg;
     if (sqlite3_exec(dataBase, deleteSQL.UTF8String, NULL, NULL, &errorMsg) == SQLITE_OK) {
-        NSLog(@"数据删除成功");
+        KGLog(@"数据删除成功");
         [self closeDataBase];
     }
     else{
-        NSLog(@"数据删除失败：%s",errorMsg);
+        KGLog(@"数据删除失败：%s",errorMsg);
     }
 }
 /**
@@ -160,7 +160,7 @@
     NSString *selecteSQL = [NSString stringWithFormat:@"SELECT * FROM %@",TABLE_NAME];
     sqlite3_stmt *stmt;
     if (sqlite3_prepare_v2(dataBase, selecteSQL.UTF8String, -1, &stmt, nil) == SQLITE_OK) {
-        NSLog(@"筛选成功");
+        KGLog(@"筛选成功");
         while (sqlite3_step(stmt) == SQLITE_ROW) {
             NSMutableString *keyWord=[NSMutableString stringWithCString:(char*)sqlite3_column_text(stmt, 1) encoding:NSUTF8StringEncoding];
             NSMutableString *currentTime=[NSMutableString stringWithCString:(char*)sqlite3_column_text(stmt, 2) encoding:NSUTF8StringEncoding];
@@ -172,7 +172,7 @@
         return dataArray;
     }
     else{
-        NSLog(@"筛选失败");
+        KGLog(@"筛选失败");
         return nil;
     }
 }
