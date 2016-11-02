@@ -53,8 +53,8 @@
 #define NorMalBackGroudColor RGBACOLOR(235, 240, 242, 1)
 // 聊天界面toolbar的颜色
 #define ToolBarColor RGBACOLOR(230, 235, 237, 1)
-// 导航控制器颜色
-#define NavColor RGBACOLOR(58, 58, 58, 1)
+// 导航控制器颜色 RGBACOLOR(58, 58, 58, 1)
+#define NavColor MainColor
 
 // 获取设备的bounds
 #define SCREEN_BOUNDS   [UIScreen mainScreen].bounds

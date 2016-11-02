@@ -20,7 +20,7 @@
     if (self) {
         _buddy = buddy;
         _nickname = @"";
-        _avatarImage = [UIImage imageNamed:@"user_place"];
+        _avatarImage = [UIImage imageNamed:@"ico_gg_mrtouxiang"];
     }
     
     return self;

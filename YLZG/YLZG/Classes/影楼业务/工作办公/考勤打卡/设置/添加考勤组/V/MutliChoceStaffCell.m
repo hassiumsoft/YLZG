@@ -36,7 +36,7 @@
 {
     _model = model;
     _nameLabel.text = model.nickname;
-    [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"place_head"]];
+    [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     if (model.isSelected) {
         [_selectedBtn setImage:[UIImage imageNamed:@"EditControlSelected"] forState:UIControlStateNormal];
     }else{
@@ -46,21 +46,15 @@
 
 - (void)setupSubViews
 {
-    self.selectedBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.selectedBtn setImage:[UIImage imageNamed:@"EditControl"] forState:UIControlStateNormal];
-    [self addSubview:self.selectedBtn];
-    [self.selectedBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.mas_centerY);
-        make.left.equalTo(self.mas_left).offset(12);
-        make.width.and.height.equalTo(@30);
-    }];
     
     self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"1"]];
+    self.headImageV.layer.masksToBounds = YES;
+    self.headImageV.layer.cornerRadius = 5;
     [self addSubview:self.headImageV];
     [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
-        make.left.equalTo(self.selectedBtn.mas_right).offset(4);
-        make.width.equalTo(@45);
+        make.left.equalTo(self.mas_left).offset(15);
+        make.width.equalTo(@40);
         make.height.equalTo(@40);
     }];
     
@@ -72,6 +66,17 @@
         make.left.equalTo(self.headImageV.mas_right).offset(10);
         make.height.equalTo(@24);
     }];
+    
+    
+    self.selectedBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.selectedBtn setImage:[UIImage imageNamed:@"EditControl"] forState:UIControlStateNormal];
+    [self addSubview:self.selectedBtn];
+    [self.selectedBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mas_centerY);
+        make.right.equalTo(self.mas_right).offset(-12);
+        make.width.and.height.equalTo(@30);
+    }];
+    
 }
 - (UIImage *)imageWithBgColor:(UIColor *)color
 {

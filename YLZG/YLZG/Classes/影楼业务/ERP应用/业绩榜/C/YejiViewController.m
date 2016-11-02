@@ -129,16 +129,19 @@
 - (void)addLabel
 {
     CGFloat labelW = SCREEN_WIDTH/5;
-    CGFloat labelH = 30;
+    CGFloat labelH = 45;
     CGFloat labelY = 0;
     for (int i = 0; i < self.titleArray.count; i++) {
         CGFloat labelX = i * labelW;
         YLZGTitleLabel * label = [[YLZGTitleLabel alloc] init];
         label.text = self.titleArray[i];
         label.frame = CGRectMake(labelX, labelY, labelW, labelH);
-        label.font = [UIFont systemFontOfSize:15];
+        if (iOS_Version >= 8.2) {
+            label.font = [UIFont systemFontOfSize:15 weight:0.01];
+        }else{
+            label.font = [UIFont systemFontOfSize:15];
+        }
         label.tag = i;
-        label.userInteractionEnabled = YES;
         [self.titleScrollView addSubview:label];
         [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(orderTitleClick:)]];
     }
@@ -170,7 +173,7 @@
     titleScrollView.showsVerticalScrollIndicator = NO;
     titleScrollView.y = 0;
     titleScrollView.width = self.view.width;
-    titleScrollView.height = 30;
+    titleScrollView.height = 45;
     self.titleScrollView = titleScrollView;
     [self.view addSubview:self.titleScrollView];
 }
@@ -188,7 +191,7 @@
     
     // 判断是否是点击tabbar中间加号进来的，如果是则不减去tabbar的高度
     CGFloat scrollViewH;
-    scrollViewH = self.view.height - 64 - self.titleScrollView.height - self.tabBarController.tabBar.height;
+    scrollViewH = SCREEN_HEIGHT - 64 - self.titleScrollView.height;
     contentScrollView.height = scrollViewH;
     
     contentScrollView.contentSize = CGSizeMake(self.view.width * self.titleArray.count, 0);

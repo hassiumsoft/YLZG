@@ -45,7 +45,7 @@
 
 - (void)setModel:(AllQiaodaoDetailModel *)model {
     _model = model;
-    [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"place_head"]];
+    [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     _realnameLabel.text = [NSString stringWithFormat:@"%@   %@", model.realname, [self scx_toDateWithTimeStamp:model.intime]];
 
     // 反地理编码

@@ -7,9 +7,8 @@
 //
 
 #import "SuperSettingController.h"
-#import <SVProgressHUD.h>
+#import <MJRefresh.h>
 #import "WaichuTableCell.h"
-#import <AFNetworking.h>
 #import <MJExtension.h>
 #import "WholeSetModel.h"
 #import "ZCAccountTool.h"
@@ -37,8 +36,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"高级设置";
-    [self getData];
     [self setupSubViews];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
     
     [YLNotificationCenter addObserver:self selector:@selector(timeObser:) name:KaoqinSettingNoti object:nil];
 }
@@ -70,35 +72,25 @@
 - (void)getData
 {
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.securityPolicy.allowInvalidCertificates = YES;
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"application/x-json",@"text/html", nil];
     
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:SuperSet_Url,account.userID];
-    KGLog(@"新增考勤组url = %@",url);
-    UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
-    [pasteBoard setString:url];
 
-    [SVProgressHUD showWithStatus:@"加载中"];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-
-        [SVProgressHUD dismiss];
-
-            int code = [[[responseObject objectForKey:@"code"] description] intValue];
-            NSString *message = [[responseObject objectForKey:@"message"] description];
-            if (code == 1) {
-                NSDictionary *dict = [responseObject objectForKey:@"whole"];
-                self.model = [WholeSetModel mj_objectWithKeyValues:dict];
-                [self.tableView reloadData];
-            }else{
-                [self showErrorTips:message];
-            }
+        
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        [self.tableView.mj_header endRefreshing];
+        if (code == 1) {
+            NSDictionary *dict = [responseObject objectForKey:@"whole"];
+            self.model = [WholeSetModel mj_objectWithKeyValues:dict];
+            [self.tableView reloadData];
+        }else{
+            [self showErrorTips:message];
+        }
 
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
+        [self.tableView.mj_header endRefreshing];
         [self showErrorTips:error.localizedDescription];
     }];
     
@@ -112,7 +104,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 48;
-    self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 50, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(2, 0, 50, 0);
     self.tableView.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:self.tableView];
     
@@ -170,6 +162,7 @@
             [cell setAccessoryType:UITableViewCellAccessoryNone];
             [cell.infoLabel removeFromSuperview];
             cell.label.text = self.titleArray[indexPath.section][indexPath.row];
+            
             [cell addSubview:self.outTipSwitchV];
             _outTipSwitchV.on = self.model.outtip;
             return cell;

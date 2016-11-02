@@ -142,7 +142,7 @@
     _headerImageView = [[UIImageView alloc] init];
     _headerImageView.layer.masksToBounds = YES;
     _headerImageView.layer.cornerRadius = 55;
-    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:self.userModel.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:self.userModel.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     [_topView addSubview:_headerImageView];
     [_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(_topView.mas_centerX);

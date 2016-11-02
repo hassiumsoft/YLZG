@@ -23,7 +23,7 @@
         _conversation = conversation;
         _title = _conversation.conversationId;
         if (conversation.type == EMConversationTypeChat) {
-            _avatarImage = [UIImage imageNamed:@"user_place"];
+            _avatarImage = [UIImage imageNamed:@"ico_gg_mrtouxiang"];
         }
         else{
             _avatarImage = [UIImage imageNamed:@"group"];

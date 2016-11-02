@@ -27,7 +27,6 @@
 {
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:QiandaoDakaAll_Url,account.userID];
-     KGLog(@"url == %@",url);
     
     [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             int code = [[[responseObject objectForKey:@"code"] description] intValue];

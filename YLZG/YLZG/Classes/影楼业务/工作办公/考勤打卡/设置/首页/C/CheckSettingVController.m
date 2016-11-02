@@ -16,7 +16,6 @@
 #import "AddKaoqinzuController.h"
 #import "HomeNavigationController.h"
 #import "ZCAccountTool.h"
-#import "SVProgressHUD.h"
 #import <MJExtension.h>
 #import <MJRefresh.h>
 #import "KaoqinModel.h"
@@ -40,45 +39,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"考勤设置";
-    [self getData];
+    [self.view addSubview:self.tableView];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)getData
 {
-//    SearchKaoqunGroup_Url
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/json",nil];
     
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:SearchKaoqunGroup_Url,account.userID];
- 
-    KGLog(@"url == %@",url);
-    [self showHudMessage:@"加载中···"];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-
-        [SVProgressHUD dismiss];
-            int code = [[[responseObject objectForKey:@"code"]description] intValue];
-            NSString *message = [[responseObject objectForKey:@"message"] description];
-            if (code == 1) {
-                KGLog(@"message = %@",message);
-                NSArray *array = [responseObject objectForKey:@"result"];
-                // 有已经设置好的考勤组
-                // 解析
-                // NSArray *kkkk = [KaoqinModel mj_objectArrayWithKeyValuesArray:array];
-                self.array = [KaoqinModel mj_objectArrayWithKeyValuesArray:array];
-                [self.tableView reloadData];
-                
-            }else if(code == 0){
-                [self.tableView reloadData];
-            }else{
-                [self sendErrorWarning:message];
-            }
+        
+        [self.tableView.mj_header endRefreshing];
+        int code = [[[responseObject objectForKey:@"code"]description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            NSArray *array = [responseObject objectForKey:@"result"];
+            // 有已经设置好的考勤组
+            // 解析
+            // NSArray *kkkk = [KaoqinModel mj_objectArrayWithKeyValuesArray:array];
+            self.array = [KaoqinModel mj_objectArrayWithKeyValuesArray:array];
+            [self.tableView reloadData];
+            
+        }else if(code == 0){
+            [self.tableView reloadData];
+        }else{
+            [self sendErrorWarning:message];
+        }
 
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
+        [self.tableView.mj_header endRefreshing];
         [self sendErrorWarning:error.localizedDescription];
     }];
     
@@ -90,9 +84,8 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 44)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.contentInset = UIEdgeInsetsMake(12, 0, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(2, 0, 0, 0);
         _tableView.backgroundColor = self.view.backgroundColor;
-        [self.view addSubview:_tableView];
     }
     return _tableView;
 }
@@ -198,39 +191,34 @@
             
         }];
         UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            KaoqinModel *model = self.array[indexPath.section - 1];
+            // 删除当前考勤组 DeleteKaoqinzu_Url
             
+            ZCAccount *account = [ZCAccountTool account];
+            NSString *url = [NSString stringWithFormat:DeleteKaoqinzu_Url,account.userID,model.id];
+            
+            
+            [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                
+                [SVProgressHUD dismiss];
+                
+                int code = [[[responseObject objectForKey:@"code"] description] intValue];
+                if (code == 1) {
+                    [self.array removeObjectAtIndex:indexPath.section - 1];
+                    [self.tableView reloadData];
+                }else{
+                    [SVProgressHUD dismiss];
+                }
+            } fail:^(NSURLSessionDataTask *task, NSError *error) {
+                [SVProgressHUD dismiss];
+                [self sendErrorWarning:error.localizedDescription];
+            }];
         }];
         
         [alertC addAction:action1];
         [alertC addAction:action2];
         [self presentViewController:alertC animated:YES completion:^{
-            KaoqinModel *model = self.array[indexPath.section - 1];
-            // 删除当前考勤组 DeleteKaoqinzu_Url
-            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-            manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/json",nil];
             
-            ZCAccount *account = [ZCAccountTool account];
-            NSString *url = [NSString stringWithFormat:DeleteKaoqinzu_Url,account.userID,model.id];
-            
-            [self showHudMessage:@""];
-          
-            
-            [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-
-                [SVProgressHUD dismiss];
-
-                    int code = [[[responseObject objectForKey:@"code"] description] intValue];
-                    if (code == 1) {
-                        [self.array removeObjectAtIndex:indexPath.section - 1];
-                        [self.tableView reloadData];
-                    }else{
-                        [SVProgressHUD dismiss];
-                    }
-            } fail:^(NSURLSessionDataTask *task, NSError *error) {
-                [SVProgressHUD dismiss];
-                [self sendErrorWarning:error.localizedDescription];
-            }];
         }];
     }];
             

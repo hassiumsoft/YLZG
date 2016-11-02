@@ -8,7 +8,7 @@
 
 #import "AddNewBanciController.h"
 #import <Masonry.h>
-#import "NormalTableCell.h"
+#import "NoDequTableCell.h"
 #import "TimePickerView.h"
 #import "ZCAccountTool.h"
 #import "SVProgressHUD.h"
@@ -95,40 +95,33 @@
 - (void)clickButton
 {
     // 新增班次
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/json",nil];
     
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:AddNewBanci_Url,account.userID,self.startTime,self.endTime];
-    KGLog(@"新增加班次url = %@",url);
 
     [self showHudMessage:@"设置中···"];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        
-            [SVProgressHUD dismiss];
-            KGLog(@"json = %@",responseObject);
-            NSString *message = [[responseObject objectForKey:@"message"]description];
-            int code = [[[responseObject objectForKey:@"code"] description] intValue];
-            if (code == 1) {
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    // 告诉上个界面刷新界面
-                    [YLNotificationCenter postNotificationName:YLRequestData object:nil];
-                    [self dismiss];
-                }];
+        [SVProgressHUD dismiss];
+        KGLog(@"json = %@",responseObject);
+        NSString *message = [[responseObject objectForKey:@"message"]description];
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        if (code == 1) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                // 告诉上个界面刷新界面
+                [YLNotificationCenter postNotificationName:YLRequestData object:nil];
+                [self dismiss];
+            }];
+            
+            [alertC addAction:action1];
+            [self presentViewController:alertC animated:YES completion:^{
                 
-                [alertC addAction:action1];
-                [self presentViewController:alertC animated:YES completion:^{
-                    
-                }];
-            } else {
-                [self sendErrorWarning:message];
-            }
-     }
-        fail:^(NSURLSessionDataTask *task, NSError *error) {
+            }];
+        } else {
+            [self sendErrorWarning:message];
+        }
+     }fail:^(NSURLSessionDataTask *task, NSError *error) {
         [SVProgressHUD dismiss];
         [self sendErrorWarning:error.localizedDescription];
 
@@ -147,32 +140,16 @@
 {
     if (indexPath.row == 0) {
         NSArray *array = @[@"上班",@"下班"];
-        NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+        NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
         cell.textLabel.text = array[indexPath.row];
-        
-        UILabel *startLabel = [[UILabel alloc]init];
-        startLabel.text = self.startTime;
-        startLabel.font = [UIFont systemFontOfSize:15.f];
-        [cell addSubview:startLabel];
-        [startLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(cell.mas_centerY);
-            make.right.equalTo(cell.mas_right).offset(-30);
-            make.height.equalTo(@21);
-        }];
+        cell.contentLabel.text = self.startTime;
         
         return cell;
     }else{
         NSArray *array = @[@"上班",@"下班"];
-        NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+        NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
         cell.textLabel.text = array[indexPath.row];
-        UILabel *endLabel = [[UILabel alloc]init];
-        endLabel.text = self.endTime;
-        [cell addSubview:endLabel];
-        [endLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(cell.mas_centerY);
-            make.right.equalTo(cell.mas_right).offset(-30);
-            make.height.equalTo(@21);
-        }];
+        cell.contentLabel.text = self.endTime;
         return cell;
     }
 }
@@ -196,7 +173,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.f;
+    return 0.1f;
 }
 - (void)viewWillAppear:(BOOL)animated
 {

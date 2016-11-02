@@ -53,7 +53,7 @@
     //    ZCAccount *account = [ZCAcountTool account];
     //    if ([account.type intValue] == 1) {
     _settingVC = [[CheckSettingVController alloc]init];
-    [self addChildVC:_settingVC Title:@"设置" image:@"tabbar_setting_selected" selectedImage:@"tabbar_setting_selected" Tag:3];
+    [self addChildVC:_settingVC Title:@"考勤设置" image:@"tabbar_setting_selected" selectedImage:@"tabbar_setting_selected" Tag:3];
     //    }else{
     //        InGroupViewController *inGroup = [InGroupViewController new];
     //        [self addChildVC:inGroup Title:@"考勤组" image:@"tabbar_kaoqin_normal" selectedImage:@"tabbar_kaoqin_selected" Tag:3];

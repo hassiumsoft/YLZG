@@ -676,7 +676,6 @@
         _areaField = [[UITextField alloc]initWithFrame:CGRectMake(20, 7, SCREEN_WIDTH - 40, 36)];
         _areaField.placeholder = @"400米";
         UILabel *leftV = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 125, 36)];
-        //        leftV.backgroundColor = HWRandomColor;
         leftV.text = @"设置有效范围：";
         
         _areaField.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];

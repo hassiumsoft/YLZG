@@ -35,9 +35,9 @@
     _model = model;
     _nameLabel.text = model.realname.length > 0 ? model.realname : model.name;
     if ([model.gender intValue] == 1) {
-        [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+        [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     }else{
-        [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"male_place"]];
+        [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     }
 }
 - (void)setupSubViews
