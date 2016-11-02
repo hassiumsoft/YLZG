@@ -83,7 +83,7 @@
         make.top.equalTo(xian.mas_bottom).offset(40);
         make.left.equalTo(self.view.mas_left).offset(25);
         make.right.equalTo(self.view.mas_right).offset(-25);
-        make.height.equalTo(@38);
+        make.height.equalTo(@40);
     }];
     
 }

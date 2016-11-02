@@ -138,7 +138,7 @@
     [self.button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(backView.mas_centerY);
         make.centerX.equalTo(backView.mas_centerX);
-        make.height.equalTo(@38);
+        make.height.equalTo(@40);
         make.left.equalTo(backView.mas_left).offset(25);
     }];
 }

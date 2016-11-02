@@ -74,7 +74,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.bottom.equalTo(self.view.mas_bottom).offset(-20);
         make.left.equalTo(@20);
-        make.height.equalTo(@38);
+        make.height.equalTo(@40);
     }];
 }
 #pragma mark - 下一步

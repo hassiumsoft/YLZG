@@ -175,7 +175,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.centerY.equalTo(self.view.mas_centerY);
         make.left.equalTo(self.view.mas_left).offset(28);
-        make.height.equalTo(@380);
+        make.height.equalTo(@400);
     }];
     self.noticeDetialV = noticeDetialV;
     

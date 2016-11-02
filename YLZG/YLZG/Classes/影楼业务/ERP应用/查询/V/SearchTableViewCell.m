@@ -79,7 +79,7 @@
     [imageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(xian1.mas_bottom).offset(4);
         make.left.equalTo(self.mas_left).offset(15);
-        make.width.and.height.equalTo(@38);
+        make.width.and.height.equalTo(@40);
     }];
     // 客人名字
     self.guestnameLabel = [[UILabel alloc]init];

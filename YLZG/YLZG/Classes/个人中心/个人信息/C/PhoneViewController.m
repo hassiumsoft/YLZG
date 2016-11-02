@@ -102,7 +102,7 @@
         make.top.equalTo(self.xian.mas_bottom).offset(40);
         make.left.equalTo(self.view.mas_left).offset(25);
         make.right.equalTo(self.view.mas_right).offset(-25);
-        make.height.equalTo(@38);
+        make.height.equalTo(@40);
     }];
 }
 
@@ -250,7 +250,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.left.equalTo(self.view.mas_left).offset(25);
         make.top.equalTo(self.descLabel.mas_bottom).offset(16);
-        make.height.equalTo(@38);
+        make.height.equalTo(@40);
     }];
 }
 

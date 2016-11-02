@@ -120,7 +120,7 @@
             [cell addSubview:self.orderIDLabel];
             [self.orderIDLabel mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(cell.mas_right).offset(-30);
-                make.height.equalTo(@38);
+                make.height.equalTo(@40);
                 make.centerY.equalTo(cell.mas_centerY);
             }];
             return cell;
@@ -141,7 +141,7 @@
                 make.centerX.equalTo(cell.mas_centerX);
                 make.bottom.equalTo(cell.mas_bottom).offset(-25);
                 make.left.equalTo(@25);
-                make.height.equalTo(@38);
+                make.height.equalTo(@40);
             }];
             return cell;
         }

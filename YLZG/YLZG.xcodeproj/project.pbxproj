@@ -32,8 +32,6 @@
 		3B3BBFC61DB4862700C9E2FD /* IvitGroupMembersController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFC51DB4862700C9E2FD /* IvitGroupMembersController.m */; };
 		3B3BBFC91DB48BEB00C9E2FD /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFC81DB48BEB00C9E2FD /* GroupTableViewCell.m */; };
 		3B3BBFD51DB4BF3C00C9E2FD /* FriendDetialController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFD41DB4BF3C00C9E2FD /* FriendDetialController.m */; };
-		3B3BBFD81DB4BF9A00C9E2FD /* DetailFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFD71DB4BF9A00C9E2FD /* DetailFootView.m */; };
-		3B3BBFDB1DB4BFF200C9E2FD /* DetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFDA1DB4BFF200C9E2FD /* DetailHeadView.m */; };
 		3B3BBFE21DB4D2F800C9E2FD /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFE11DB4D2F800C9E2FD /* CallViewController.m */; };
 		3B447B191DC98C0B00316E3C /* ForgetSecretController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B447B181DC98C0B00316E3C /* ForgetSecretController.m */; };
 		3B4C102C1DC85DDC00827D4F /* TodayFinanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E741DC85DDB00827D4F /* TodayFinanceController.m */; };
@@ -426,10 +424,6 @@
 		3B3BBFC81DB48BEB00C9E2FD /* GroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewCell.m; sourceTree = "<group>"; };
 		3B3BBFD31DB4BF3C00C9E2FD /* FriendDetialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendDetialController.h; sourceTree = "<group>"; };
 		3B3BBFD41DB4BF3C00C9E2FD /* FriendDetialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetialController.m; sourceTree = "<group>"; };
-		3B3BBFD61DB4BF9A00C9E2FD /* DetailFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailFootView.h; sourceTree = "<group>"; };
-		3B3BBFD71DB4BF9A00C9E2FD /* DetailFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailFootView.m; sourceTree = "<group>"; };
-		3B3BBFD91DB4BFF200C9E2FD /* DetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailHeadView.h; sourceTree = "<group>"; };
-		3B3BBFDA1DB4BFF200C9E2FD /* DetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailHeadView.m; sourceTree = "<group>"; };
 		3B3BBFE01DB4D2F800C9E2FD /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
 		3B3BBFE11DB4D2F800C9E2FD /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
 		3B447B171DC98C0B00316E3C /* ForgetSecretController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetSecretController.h; sourceTree = "<group>"; };
@@ -3256,10 +3250,6 @@
 		3BCF39BE1D9E3D5500BEE236 /* V */ = {
 			isa = PBXGroup;
 			children = (
-				3B3BBFD91DB4BFF200C9E2FD /* DetailHeadView.h */,
-				3B3BBFDA1DB4BFF200C9E2FD /* DetailHeadView.m */,
-				3B3BBFD61DB4BF9A00C9E2FD /* DetailFootView.h */,
-				3B3BBFD71DB4BF9A00C9E2FD /* DetailFootView.m */,
 				3B3BBFA61DB47E4400C9E2FD /* ApplyTableViewCell.h */,
 				3B3BBFA71DB47E4400C9E2FD /* ApplyTableViewCell.m */,
 				3B3BBFA31DB47C0400C9E2FD /* FriendTableViewCell.h */,
@@ -3746,7 +3736,6 @@
 				3B3BBFBC1DB484EA00C9E2FD /* YLSearchBar.m in Sources */,
 				3B4C10B81DC85DDC00827D4F /* AllProductModel.m in Sources */,
 				3B07D8CB1D956B0D00B657F6 /* AppDelegate.m in Sources */,
-				3B3BBFDB1DB4BFF200C9E2FD /* DetailHeadView.m in Sources */,
 				3BCF3A221D9E6A4800BEE236 /* NewFutherViewController.m in Sources */,
 				3B4C10BD1DC85DDC00827D4F /* TaoxiProductModel.m in Sources */,
 				3B4C13291DC85F4700827D4F /* AllQiandaoViewController.m in Sources */,
@@ -3772,7 +3761,6 @@
 				3B4C10D41DC85DDC00827D4F /* PayMoneyViewController.m in Sources */,
 				3B4C102E1DC85DDC00827D4F /* FinanceModel.m in Sources */,
 				3B56D7721DC739CE003A57FD /* EaseBubbleView+File.m in Sources */,
-				3B3BBFD81DB4BF9A00C9E2FD /* DetailFootView.m in Sources */,
 				3B4C135A1DC85F4700827D4F /* SubTitleView.m in Sources */,
 				3B4C133F1DC85F4700827D4F /* MineKaoqinView.m in Sources */,
 				3B4C13661DC85F4700827D4F /* MyApproveVController.m in Sources */,
