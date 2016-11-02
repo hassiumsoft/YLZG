@@ -86,7 +86,7 @@ static CGFloat const margin = 2;
     [self.collectionView reloadData];
 }
 
--(UICollectionView *)collectionView{
+- (UICollectionView *)collectionView{
     CGFloat cellW = (SCREEN_WIDTH - 3 * margin)/cols;
     CGFloat cellH = cellW;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];

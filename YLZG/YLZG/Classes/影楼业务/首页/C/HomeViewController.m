@@ -12,6 +12,8 @@
 #import "UserInfoManager.h"
 #import "NavigationView.h"
 #import <MJExtension.h>
+#import "AppDelegate.h"
+#import "NewFutherViewController.h"
 
 #import "OpenOrderViewController.h"
 #import "SearchOrderViewController.h"
@@ -60,6 +62,26 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupSubViews];
+    [self showNewPages];
+}
+
+#pragma mark - 展示新特性
+- (void)showNewPages
+{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.isShowNewPage) {
+        CATransition *animation = [CATransition animation];
+        animation.duration = 0.5;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.type = kCATransitionFade;
+        animation.subtype = kCATransitionFromTop;
+        [self.view.window.layer addAnimation:animation forKey:nil];
+        
+        NewFutherViewController *newFuther = [NewFutherViewController new];
+        [self presentViewController:newFuther animated:NO completion:^{
+            
+        }];
+    }
 }
 
 #pragma mark - 创建视图UI

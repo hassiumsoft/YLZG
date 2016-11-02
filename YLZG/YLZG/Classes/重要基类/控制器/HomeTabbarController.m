@@ -274,30 +274,12 @@ static NSString *kGroupName = @"GroupName";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self showNewPages];
+    
 }
 - (void)networkChanged:(EMConnectionState)connectionState;
 {
     _connectionState = connectionState;
     [_chatListVC networkChanged:connectionState];
-}
-#pragma mark - 展示新特性
-- (void)showNewPages
-{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.isShowNewPage) {
-        CATransition *animation = [CATransition animation];
-        animation.duration = 0.5;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
-        animation.type = kCATransitionFade;
-        animation.subtype = kCATransitionFromTop;
-        [self.view.window.layer addAnimation:animation forKey:nil];
-        
-        NewFutherViewController *newFuther = [NewFutherViewController new];
-        [self presentViewController:newFuther animated:NO completion:^{
-            
-        }];
-    }
 }
 
 - (void)PushToChatVC:(NSNotification *)noti

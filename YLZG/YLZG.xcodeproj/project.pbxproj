@@ -10,7 +10,6 @@
 		187075371DC195FA002448C6 /* ClearCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075301DC195FA002448C6 /* ClearCacheTool.m */; };
 		187075381DC195FA002448C6 /* PushNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075321DC195FA002448C6 /* PushNotificationViewController.m */; };
 		187075391DC195FA002448C6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075341DC195FA002448C6 /* SettingViewController.m */; };
-		1870753A1DC195FA002448C6 /* YLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075361DC195FA002448C6 /* YLAlertView.m */; };
 		21C872D3C9D7B0C50893CAF5 /* libPods-YLZGUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86ED1CFA9A80F470DA0E1435 /* libPods-YLZGUITests.a */; };
 		3B07D8C81D956B0D00B657F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8C71D956B0D00B657F6 /* main.m */; };
 		3B07D8CB1D956B0D00B657F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8CA1D956B0D00B657F6 /* AppDelegate.m */; };
@@ -36,6 +35,7 @@
 		3B3BBFD81DB4BF9A00C9E2FD /* DetailFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFD71DB4BF9A00C9E2FD /* DetailFootView.m */; };
 		3B3BBFDB1DB4BFF200C9E2FD /* DetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFDA1DB4BFF200C9E2FD /* DetailHeadView.m */; };
 		3B3BBFE21DB4D2F800C9E2FD /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFE11DB4D2F800C9E2FD /* CallViewController.m */; };
+		3B447B191DC98C0B00316E3C /* ForgetSecretController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B447B181DC98C0B00316E3C /* ForgetSecretController.m */; };
 		3B4C102C1DC85DDC00827D4F /* TodayFinanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E741DC85DDB00827D4F /* TodayFinanceController.m */; };
 		3B4C102D1DC85DDC00827D4F /* FinacialDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E771DC85DDB00827D4F /* FinacialDetailModel.m */; };
 		3B4C102E1DC85DDC00827D4F /* FinanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E791DC85DDB00827D4F /* FinanceModel.m */; };
@@ -331,7 +331,6 @@
 		3BCF3A111D9E661700BEE236 /* cityGroups.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BCF3A0F1D9E661700BEE236 /* cityGroups.plist */; };
 		3BCF3A121D9E661700BEE236 /* FoBaike.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3BCF3A101D9E661700BEE236 /* FoBaike.plist */; };
 		3BCF3A1F1D9E6A4800BEE236 /* AboutUSController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A141D9E6A4800BEE236 /* AboutUSController.m */; };
-		3BCF3A201D9E6A4800BEE236 /* ForgetSecretController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A161D9E6A4800BEE236 /* ForgetSecretController.m */; };
 		3BCF3A211D9E6A4800BEE236 /* MyStudioVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A181D9E6A4800BEE236 /* MyStudioVController.m */; };
 		3BCF3A221D9E6A4800BEE236 /* NewFutherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A1A1D9E6A4800BEE236 /* NewFutherViewController.m */; };
 		3BCF3A231D9E6A4800BEE236 /* SuggestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A1C1D9E6A4800BEE236 /* SuggestController.m */; };
@@ -383,8 +382,6 @@
 		187075321DC195FA002448C6 /* PushNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationViewController.m; sourceTree = "<group>"; };
 		187075331DC195FA002448C6 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		187075341DC195FA002448C6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		187075351DC195FA002448C6 /* YLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLAlertView.h; sourceTree = "<group>"; };
-		187075361DC195FA002448C6 /* YLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLAlertView.m; sourceTree = "<group>"; };
 		3B07D8C31D956B0D00B657F6 /* YLZG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YLZG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B07D8C71D956B0D00B657F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B07D8C91D956B0D00B657F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -435,6 +432,8 @@
 		3B3BBFDA1DB4BFF200C9E2FD /* DetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailHeadView.m; sourceTree = "<group>"; };
 		3B3BBFE01DB4D2F800C9E2FD /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
 		3B3BBFE11DB4D2F800C9E2FD /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
+		3B447B171DC98C0B00316E3C /* ForgetSecretController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetSecretController.h; sourceTree = "<group>"; };
+		3B447B181DC98C0B00316E3C /* ForgetSecretController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetSecretController.m; sourceTree = "<group>"; };
 		3B4C0E731DC85DDB00827D4F /* TodayFinanceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayFinanceController.h; sourceTree = "<group>"; };
 		3B4C0E741DC85DDB00827D4F /* TodayFinanceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayFinanceController.m; sourceTree = "<group>"; };
 		3B4C0E761DC85DDB00827D4F /* FinacialDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinacialDetailModel.h; sourceTree = "<group>"; };
@@ -1036,8 +1035,6 @@
 		3BCF3A101D9E661700BEE236 /* FoBaike.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FoBaike.plist; sourceTree = "<group>"; };
 		3BCF3A131D9E6A4800BEE236 /* AboutUSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUSController.h; sourceTree = "<group>"; };
 		3BCF3A141D9E6A4800BEE236 /* AboutUSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUSController.m; sourceTree = "<group>"; };
-		3BCF3A151D9E6A4800BEE236 /* ForgetSecretController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetSecretController.h; sourceTree = "<group>"; };
-		3BCF3A161D9E6A4800BEE236 /* ForgetSecretController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetSecretController.m; sourceTree = "<group>"; };
 		3BCF3A171D9E6A4800BEE236 /* MyStudioVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyStudioVController.h; sourceTree = "<group>"; };
 		3BCF3A181D9E6A4800BEE236 /* MyStudioVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyStudioVController.m; sourceTree = "<group>"; };
 		3BCF3A191D9E6A4800BEE236 /* NewFutherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFutherViewController.h; sourceTree = "<group>"; };
@@ -1123,14 +1120,14 @@
 		1870752E1DC195FA002448C6 /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
-				1870752F1DC195FA002448C6 /* ClearCacheTool.h */,
-				187075301DC195FA002448C6 /* ClearCacheTool.m */,
-				187075311DC195FA002448C6 /* PushNotificationViewController.h */,
-				187075321DC195FA002448C6 /* PushNotificationViewController.m */,
 				187075331DC195FA002448C6 /* SettingViewController.h */,
 				187075341DC195FA002448C6 /* SettingViewController.m */,
-				187075351DC195FA002448C6 /* YLAlertView.h */,
-				187075361DC195FA002448C6 /* YLAlertView.m */,
+				187075311DC195FA002448C6 /* PushNotificationViewController.h */,
+				187075321DC195FA002448C6 /* PushNotificationViewController.m */,
+				3B447B171DC98C0B00316E3C /* ForgetSecretController.h */,
+				3B447B181DC98C0B00316E3C /* ForgetSecretController.m */,
+				1870752F1DC195FA002448C6 /* ClearCacheTool.h */,
+				187075301DC195FA002448C6 /* ClearCacheTool.m */,
 			);
 			name = "设置";
 			path = "登录注册/设置";
@@ -2431,10 +2428,10 @@
 		3B4C13111DC85F4700827D4F /* C */ = {
 			isa = PBXGroup;
 			children = (
-				3B4C13121DC85F4700827D4F /* MyJobsDetialController.h */,
-				3B4C13131DC85F4700827D4F /* MyJobsDetialController.m */,
 				3B4C13141DC85F4700827D4F /* MyJobsViewController.h */,
 				3B4C13151DC85F4700827D4F /* MyJobsViewController.m */,
+				3B4C13121DC85F4700827D4F /* MyJobsDetialController.h */,
+				3B4C13131DC85F4700827D4F /* MyJobsDetialController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -3011,10 +3008,10 @@
 		3B8BE2621D9CBCB700472AE2 /* IM通讯 */ = {
 			isa = PBXGroup;
 			children = (
-				3B3BBFDC1DB4D26300C9E2FD /* 网络电话 */,
 				3BCA32781D9CC41D00A0E980 /* 聊天 */,
 				3BCA32791D9CC41D00A0E980 /* 群组 */,
 				3BCA327A1D9CC41D00A0E980 /* 通讯录 */,
+				3B3BBFDC1DB4D26300C9E2FD /* 网络电话 */,
 			);
 			path = "IM通讯";
 			sourceTree = "<group>";
@@ -3280,8 +3277,6 @@
 			children = (
 				3BCF3A131D9E6A4800BEE236 /* AboutUSController.h */,
 				3BCF3A141D9E6A4800BEE236 /* AboutUSController.m */,
-				3BCF3A151D9E6A4800BEE236 /* ForgetSecretController.h */,
-				3BCF3A161D9E6A4800BEE236 /* ForgetSecretController.m */,
 				3BCF3A171D9E6A4800BEE236 /* MyStudioVController.h */,
 				3BCF3A181D9E6A4800BEE236 /* MyStudioVController.m */,
 				3BCF3A191D9E6A4800BEE236 /* NewFutherViewController.h */,
@@ -3702,7 +3697,6 @@
 				3B7ABCF41DB6176600F3D12B /* EMCDDeviceManagerBase.m in Sources */,
 				3B56D7791DC739CE003A57FD /* EaseBubbleView.m in Sources */,
 				3B3BBFC01DB4852700C9E2FD /* CreateGroupsController.m in Sources */,
-				3BCF3A201D9E6A4800BEE236 /* ForgetSecretController.m in Sources */,
 				3B4C134A1DC85F4700827D4F /* PlaceViewController.m in Sources */,
 				3B4C13731DC85F4700827D4F /* StaffInfoModel.m in Sources */,
 				3B7ABCF11DB6176600F3D12B /* EMCDDeviceManager+Microphone.m in Sources */,
@@ -3721,7 +3715,6 @@
 				3B56D7841DC739CE003A57FD /* ChatListHeadView.m in Sources */,
 				3BCF3A391D9E6CF800BEE236 /* TAAnimatedDotView.m in Sources */,
 				187075381DC195FA002448C6 /* PushNotificationViewController.m in Sources */,
-				1870753A1DC195FA002448C6 /* YLAlertView.m in Sources */,
 				3B56D76B1DC739CE003A57FD /* EaseConversationModel.m in Sources */,
 				3B4C13261DC85F4700827D4F /* HengpinNavController.m in Sources */,
 				3B4C13601DC85F4700827D4F /* InGroupViewController.m in Sources */,
@@ -3855,6 +3848,7 @@
 				3B4C10411DC85DDC00827D4F /* MoreToolsViewController.m in Sources */,
 				3B4C10C71DC85DDC00827D4F /* QujianPreViewController.m in Sources */,
 				3BCF39901D9DF94100BEE236 /* UIViewController+Actions.m in Sources */,
+				3B447B191DC98C0B00316E3C /* ForgetSecretController.m in Sources */,
 				3B4C13201DC85F4700827D4F /* NoticeDetialView.m in Sources */,
 				3BCF398D1D9DF8BD00BEE236 /* YLZGChatManager.m in Sources */,
 				3B3BBFB81DB484EA00C9E2FD /* GroupTextView.m in Sources */,

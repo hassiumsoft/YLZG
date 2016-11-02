@@ -170,9 +170,16 @@
         __weak __block YLChatGroupDetailController *copy_self = self;
         memebers.DidSelectBlock = ^(NSIndexPath *indexPath){
             ContactersModel *model = copy_self.memberArr[indexPath.item];
-            FriendDetialController *friend = [FriendDetialController new];
-            friend.userName = model.name;
-            [copy_self.navigationController pushViewController:friend animated:YES];
+            ZCAccount *account = [ZCAccountTool account];
+            if ([model.name isEqualToString:account.username]) {
+                UserInfoViewController *userInfo = [UserInfoViewController new];
+                [copy_self.navigationController pushViewController:userInfo animated:YES];
+            }else{
+                FriendDetialController *friend = [FriendDetialController new];
+                friend.userName = model.name;
+                friend.isRootPush = YES;
+                [copy_self.navigationController pushViewController:friend animated:YES];
+            }
         };
         [self.navigationController pushViewController:memebers animated:YES];
     }else if (indexPath.section == 1){
@@ -444,6 +451,7 @@
 {
     if (!_switchV) {
         _switchV = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 10, 55, 40)];
+        _switchV.onTintColor = MainColor;
         EMError *error;
         EMGroup *group = [[EMClient sharedClient].groupManager fetchGroupInfo:self.groupModel.gid includeMembersList:NO error:&error];
         BOOL isPush = group.isPushNotificationEnabled;

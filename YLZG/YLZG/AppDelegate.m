@@ -101,7 +101,7 @@
         self.window.rootViewController = tabBarVC;
     }else{
         // 自动登录失败<分第一次登录和被动登录>
-        self.isShowNewPage = NO;
+        self.isShowNewPage = YES;
         [YLZGChatManager sharedManager].tabbarVC = nil;
         [self goToLoginViewController:note];
     }

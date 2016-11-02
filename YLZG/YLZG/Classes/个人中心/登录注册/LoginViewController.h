@@ -9,6 +9,7 @@
 #import "SuperViewController.h"
 
 typedef void(^LoginCompleteBlock)();
+typedef void(^DeleteCompleteBlock)();
 
 @interface LoginViewController : SuperViewController
 

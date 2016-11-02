@@ -9,7 +9,8 @@
 #import "SuperViewController.h"
 
 
-typedef void(^DeleteCompleteBlock)();
+
+
 @interface SettingViewController : SuperViewController
 
 @end

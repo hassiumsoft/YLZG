@@ -232,6 +232,7 @@
 {
     if (!_switchV) {
         _switchV = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 15, 44, 35)];
+        _switchV.onTintColor = MainColor;
         [_switchV addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
         [_switchV setOn:YES animated:YES];
     }

@@ -334,12 +334,6 @@
 #pragma mark - 保存设置
 - (void)saveAction
 {
-    WholeSetModel *model = self.model;
-    KGLog(@"model = %@",model);
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.securityPolicy.allowInvalidCertificates = YES;
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"application/x-json",@"text/html", nil];
     
     ZCAccount *account = [ZCAccountTool account];
 //    @"http://zsylou.wxwkf.com/index.php/home/attence/update_whole?uid=%@&privilege_time=%@&latetime=%@&absent=%@&ontip=%@&offtip=%@&earlytime=%@&outtip=%d&sply=%d"
@@ -375,7 +369,7 @@
 {
     if (!_outTipSwitchV) {
         _outTipSwitchV = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 5, 44, 35)];
-        
+        _outTipSwitchV.onTintColor = MainColor;
         [_outTipSwitchV addTarget:self action:@selector(splySwitchClick:) forControlEvents:UIControlEventTouchUpInside];
         [_outTipSwitchV setOn:YES animated:YES];
     }
@@ -385,6 +379,7 @@
 {
     if (!_isBangSwitchV) {
         _isBangSwitchV = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 5, 44, 35)];
+        _isBangSwitchV.onTintColor = MainColor;
         [_isBangSwitchV addTarget:self action:@selector(bangSwitchClick:) forControlEvents:UIControlEventTouchUpInside];
         [_isBangSwitchV setOn:YES animated:YES];
     }
