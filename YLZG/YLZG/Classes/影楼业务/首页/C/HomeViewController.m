@@ -29,15 +29,6 @@
 
 
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
->>>>>>> CoderChan/master
 #define topViewH 190*CKproportion
 
 @interface HomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate>
