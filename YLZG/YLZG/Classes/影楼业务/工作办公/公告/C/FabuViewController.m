@@ -68,7 +68,7 @@
     [isTopView addSubview:waringLabel];
     
     self.swtich = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 8, 60, 34)];
-    
+    self.swtich.onTintColor = MainColor;
     [_swtich setOn:NO animated:YES];
     [isTopView addSubview:_swtich];
     

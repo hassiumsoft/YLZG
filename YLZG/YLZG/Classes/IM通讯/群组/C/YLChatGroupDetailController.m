@@ -60,9 +60,9 @@
         self.isMyGroup = NO;
     }
     
-    
-    [self setupSubViews];
     [self getMembersData:account];
+    [self setupSubViews];
+    
     
 }
 - (void)setupSubViews
@@ -75,7 +75,17 @@
     
     [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = self.headView;
+    
+    EMError *error;
+    EMGroup *group = [[EMClient sharedClient].groupManager fetchGroupInfo:self.groupModel.gid includeMembersList:NO error:&error];
+    [self.switchV setOn:!group.isPushNotificationEnabled];
+    [self.tableView reloadData];
 }
+- (void)settingMessage:(UISwitch *)switchV
+{
+    [[EMClient sharedClient].groupManager ignoreGroupPush:self.groupModel.gid ignore:switchV.on];
+}
+
 #pragma mark - 获取群组成员数据
 - (void)getMembersData:(ZCAccount *)account
 {
@@ -170,9 +180,16 @@
         __weak __block YLChatGroupDetailController *copy_self = self;
         memebers.DidSelectBlock = ^(NSIndexPath *indexPath){
             ContactersModel *model = copy_self.memberArr[indexPath.item];
-            FriendDetialController *friend = [FriendDetialController new];
-            friend.userName = model.name;
-            [copy_self.navigationController pushViewController:friend animated:YES];
+            ZCAccount *account = [ZCAccountTool account];
+            if ([model.name isEqualToString:account.username]) {
+                UserInfoViewController *userInfo = [UserInfoViewController new];
+                [copy_self.navigationController pushViewController:userInfo animated:YES];
+            }else{
+                FriendDetialController *friend = [FriendDetialController new];
+                friend.userName = model.name;
+                friend.isRootPush = YES;
+                [copy_self.navigationController pushViewController:friend animated:YES];
+            }
         };
         [self.navigationController pushViewController:memebers animated:YES];
     }else if (indexPath.section == 1){
@@ -287,6 +304,7 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
+// 退出群聊
 - (void)ReturnGroupAction
 {
     
@@ -439,15 +457,11 @@
     }
     return _headView;
 }
-
 - (UISwitch *)switchV
 {
     if (!_switchV) {
         _switchV = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 10, 55, 40)];
-        EMError *error;
-        EMGroup *group = [[EMClient sharedClient].groupManager fetchGroupInfo:self.groupModel.gid includeMembersList:NO error:&error];
-        BOOL isPush = group.isPushNotificationEnabled;
-        [_switchV setOn:isPush];
+        _switchV.onTintColor = MainColor;
         [_switchV addTarget:self action:@selector(settingMessage:) forControlEvents:UIControlEventValueChanged];
     }
     return _switchV;
@@ -481,9 +495,6 @@
     }
     return _returnGroupBtn;
 }
-- (void)settingMessage:(UISwitch *)switchV
-{
-    [[EMClient sharedClient].groupManager ignoreGroupPush:self.groupModel.gid ignore:switchV.on];
-}
+
 
 @end

@@ -147,7 +147,7 @@
         [_indicatorV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.commitBtn.mas_centerX);
             make.centerY.equalTo(self.commitBtn.mas_centerY);
-            make.width.and.height.equalTo(@38);
+            make.width.and.height.equalTo(@40);
         }];
     }
     return _indicatorV;

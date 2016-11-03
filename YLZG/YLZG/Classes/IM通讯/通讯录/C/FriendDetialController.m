@@ -13,19 +13,21 @@
 #import "NSString+StrCategory.h"
 #import <SVProgressHUD.h>
 #import "YLZGDataManager.h"
-#import "DetailHeadView.h"
-#import "DetailFootView.h"
 #import <MJExtension.h>
+#import "ImageBrowser.h"
 #import "NoDequTableCell.h"
+#import <UIImageView+WebCache.h>
 #import <Masonry.h>
 
 @interface FriendDetialController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (strong,nonatomic) UITableView *tableView;
 
-@property (nonatomic, strong)NSArray * nameArray;
+@property (nonatomic, strong) NSArray * nameArray;
 
-@property (strong,nonatomic) DetailHeadView *headV;
+@property (strong,nonatomic) UIView *headView;
+
+@property (strong,nonatomic) UIView *footView;
 
 @property (strong,nonatomic) ContactersModel *model;
 
@@ -35,11 +37,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _nameArray = @[@"昵称 :",@"电话 :",@"QQ :",@"生日 :",@"部门 :",@"地址 :"];
+    _nameArray = @[@"昵称 :",@"QQ :",@"生日 :",@"部门 :",@"地址 :"];
     self.title = self.userName;
     
-    [self setupSubViews];
+    [self.view addSubview:self.tableView];
     [self getFriendInfo];
+    self.tableView.tableHeaderView = self.headView;
+    self.tableView.tableFooterView  = self.footView;
     
 }
 
@@ -48,25 +52,7 @@
     return YES;
 }
 
--(void)setupSubViews{
-    
-    [self.view addSubview:self.tableView];
-    
-    self.headV = [[DetailHeadView alloc] init];
-    [self.headV becomeFirstResponder];
-    self.headV.frame = CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT * 0.14);
-    self.headV.backgroundColor = [UIColor whiteColor];
-    self.tableView.tableHeaderView = self.headV;
-    
 
-    DetailFootView *footV =[[DetailFootView alloc] init];
-    footV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT*0.2);
-    [footV.messageBtn addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
-    [footV.phoneBtn addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchUpInside];
-    self.tableView.tableFooterView  = footV ;
-    
-    
-}
 #pragma mark - 获取好友详情
 - (void)getFriendInfo
 {
@@ -84,8 +70,7 @@
     for (ContactersModel *model in sumArr) {
         if ([self.userName isEqualToString:model.name]) {
             self.model = model;
-            self.headV.model = model;
-            self.title = self.model.realname.length >= 1 ? self.model.realname : self.model.nickname;
+            self.title = self.model.nickname.length >= 1 ? self.model.nickname : self.model.realname;
             [self.tableView reloadData];
         }
     }
@@ -94,7 +79,6 @@
         // 本地没有，请求网络
         [[YLZGDataManager sharedManager] getOneStudioByUserName:self.userName Block:^(ContactersModel *model) {
             self.model = model;
-            self.headV.model = model;
             self.title = self.model.realname.length >= 1 ? self.self.model.realname : self.model.nickname;
             [self.tableView reloadData];
         }];
@@ -141,26 +125,16 @@
         if(indexPath.row ==0){
             cell.textLabel.text = _nameArray[indexPath.row];
             cell.contentLabel.text = self.model.realname.length >= 1 ? self.self.model.realname : self.model.nickname ;
-        }
-        else if(indexPath.row ==1){
-            cell.textLabel.text = _nameArray[indexPath.row];
-            cell.contentLabel.text = self.model.mobile;
-        }
-
-        else if(indexPath.row ==2){
+        }else if(indexPath.row ==1){
             cell.textLabel.text = _nameArray[indexPath.row];
             cell.contentLabel.text = self.model.qq;
-        }
-        else if(indexPath.row ==3){
+        }else if(indexPath.row ==2){
             cell.textLabel.text = _nameArray[indexPath.row];
-//            NSTimeInterval interval = [NSTimeInterval alloc];
             cell.contentLabel.text = self.model.birth;
-         }
-        else if(indexPath.row ==4){
+         }else if(indexPath.row ==3){
             cell.textLabel.text = _nameArray[indexPath.row];
             cell.contentLabel.text = self.model.dept;
-        }
-        else if(indexPath.row ==5){
+        }else if(indexPath.row ==4){
             cell.textLabel.text = _nameArray[indexPath.row];
             cell.contentLabel.text = self.model.location;
         
@@ -207,13 +181,85 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = self.view.backgroundColor;
-        _tableView.contentInset = UIEdgeInsetsMake(12, 0, 0, 0);
         _tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;
 }
-
-
-
+- (UIView *)headView
+{
+    if (!_headView) {
+        _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 90)];
+        _headView.backgroundColor = [UIColor whiteColor];
+        _headView.userInteractionEnabled = YES;
+        UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 60, 60)];
+        [imageV sd_setImageWithURL:[NSURL URLWithString:self.model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+        imageV.layer.masksToBounds = YES;
+        imageV.userInteractionEnabled = YES;
+        imageV.layer.cornerRadius = 4;
+        imageV.contentMode = UIViewContentModeScaleAspectFill;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+            [ImageBrowser showImage:imageV];
+        }];
+        [imageV addGestureRecognizer:tap];
+        [_headView addSubview:imageV];
+        
+        UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imageV.frame) + 15, 24, SCREEN_WIDTH - 80, 21)];
+        nameLabel.text = self.model.nickname.length >= 1 ? self.model.nickname : self.model.realname;
+        nameLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+        [_headView addSubview:nameLabel];
+        
+        UILabel *IDLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imageV.frame)+15, CGRectGetMaxY(nameLabel.frame), SCREEN_WIDTH - 80, 21)];
+        IDLabel.text = [NSString stringWithFormat:@"影楼ID：%@",self.model.name];
+        IDLabel.userInteractionEnabled = YES;
+        IDLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+        IDLabel.textColor = RGBACOLOR(87, 87, 87, 1);
+        [_headView addSubview:IDLabel];
+        
+        UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+            UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
+            [pasteBoard setString:self.model.name];
+            [self showSuccessTips:@"已复制此ID"];
+        }];
+        [IDLabel addGestureRecognizer:longTap];
+        
+        
+    }
+    return _headView;
+}
+- (UIView *)footView
+{
+    if (!_footView) {
+        _footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180*CKproportion)];
+        _footView.userInteractionEnabled = YES;
+        _footView.backgroundColor = self.view.backgroundColor;
+        
+        UIButton *messageBtn = [[UIButton alloc] initWithFrame:CGRectMake(17, 20, SCREEN_WIDTH - 34, 40)];
+        messageBtn.layer.cornerRadius = 5;
+        messageBtn.layer.masksToBounds = YES;
+        messageBtn.backgroundColor = MainColor;
+        [messageBtn setTitle:@"发送消息" forState:UIControlStateNormal];
+        [messageBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [messageBtn addTarget:self action:@selector(sendMessage) forControlEvents:UIControlEventTouchUpInside];
+        messageBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        messageBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [_footView addSubview:messageBtn];
+        
+        
+        UIButton *phoneBtn = [[UIButton alloc ] initWithFrame:CGRectMake(17, CGRectGetMaxY(messageBtn.frame) + 12, SCREEN_WIDTH - 34, 40)];
+        phoneBtn.layer.cornerRadius = 5;
+        phoneBtn.layer.masksToBounds = YES;
+        [phoneBtn setTitle:@"拨打电话" forState:UIControlStateNormal];
+        phoneBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        phoneBtn.layer.masksToBounds = YES;
+        [phoneBtn addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchUpInside];
+        phoneBtn.layer.borderColor = MainColor.CGColor;
+        phoneBtn.layer.borderWidth = 1.f;
+        [phoneBtn setTitleColor:MainColor forState:UIControlStateNormal];
+        phoneBtn.backgroundColor = [UIColor whiteColor];
+        [_footView addSubview:phoneBtn];
+        
+    }
+    return _footView;
+}
 
 @end

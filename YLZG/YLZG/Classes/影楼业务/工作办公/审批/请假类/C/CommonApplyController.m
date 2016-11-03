@@ -124,7 +124,7 @@
             make.centerY.equalTo(cell.mas_centerY);
             make.left.equalTo(cell.label.mas_right).offset(-20);
             make.right.equalTo(cell.mas_right).offset(-8);
-            make.height.equalTo(@38);
+            make.height.equalTo(@40);
         }];
         
         return cell;

@@ -69,6 +69,10 @@
                 [self.emptyBtn removeFromSuperview];
                self.array = [MyjobModel mj_objectArrayWithKeyValuesArray:resultArr];
                 [self.tableView reloadData];
+                self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                    
+                }];
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }else{
                 [self loadEmptyView:@"当日暂无工作"];
             }

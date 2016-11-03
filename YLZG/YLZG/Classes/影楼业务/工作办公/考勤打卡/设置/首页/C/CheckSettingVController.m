@@ -297,7 +297,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.left.equalTo(self.view.mas_left).offset(35);
         make.top.equalTo(label.mas_bottom).offset(16);
-        make.height.equalTo(@38);
+        make.height.equalTo(@40);
     }];
     
 }

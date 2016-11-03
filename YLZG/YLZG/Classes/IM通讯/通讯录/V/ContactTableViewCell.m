@@ -61,6 +61,9 @@
 {
     // 头像
     self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+    self.headImageV.layer.masksToBounds = YES;
+    self.headImageV.layer.cornerRadius = 2;
+    self.headImageV.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:self.headImageV];
     [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15);

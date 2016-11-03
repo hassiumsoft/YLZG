@@ -74,7 +74,7 @@
         make.centerX.equalTo(self.view.mas_centerX);
         make.bottom.equalTo(self.view.mas_bottom).offset(-20);
         make.left.equalTo(@20);
-        make.height.equalTo(@38);
+        make.height.equalTo(@40);
     }];
 }
 #pragma mark - 下一步
@@ -232,6 +232,7 @@
 {
     if (!_switchV) {
         _switchV = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 15, 44, 35)];
+        _switchV.onTintColor = MainColor;
         [_switchV addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
         [_switchV setOn:YES animated:YES];
     }

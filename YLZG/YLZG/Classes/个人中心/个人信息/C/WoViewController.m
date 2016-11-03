@@ -17,7 +17,6 @@
 #import "PresentingAnimator.h"
 #import "DismissingAnimator.h"
 #import "MyStudioVController.h"
-#import "ForgetSecretController.h"
 #import "AboutUSController.h"
 #import "WXApiManager.h"
 #import <LCActionSheet.h>
@@ -47,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我";
-    self.array = @[@[@"我的信息"],@[@"我的影楼",@"区域经理",@"修改密码",@"分享影楼掌柜",@"关于我们"],@[@"设置"]];
+    self.array = @[@[@"我的信息"],@[@"我的影楼",@"区域经理",@"分享影楼掌柜",@"关于我们"],@[@"设置"]];
     [self.view addSubview:self.tableView];
     
 }
@@ -92,7 +91,7 @@
         NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
         [cell.xian removeFromSuperview];
         [tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-        NSArray *iconArr = @[@"ic_myshop",@"my_manager",@"change_pass",@"ic_share",@"ic_aboutus"];
+        NSArray *iconArr = @[@"ic_myshop",@"my_manager",@"ic_share",@"ic_aboutus"];
         cell.imageV.image = [UIImage imageNamed:iconArr[indexPath.row]];
         cell.label.text = self.array[indexPath.section][indexPath.row];
         return cell;
@@ -128,10 +127,6 @@
                 
             }];
         }else if(indexPath.row == 2){
-            // 修改密码
-            ForgetSecretController *secret = [ForgetSecretController new];
-            [self.navigationController pushViewController:secret animated:YES];
-        }else if(indexPath.row == 3){
             //  分享
             LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
                 [[YLZGDataManager sharedManager] getShareUrlCompletion:^(NSString *url) {

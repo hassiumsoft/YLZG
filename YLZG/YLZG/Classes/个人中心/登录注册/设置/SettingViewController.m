@@ -7,26 +7,23 @@
 //
 
 #import "SettingViewController.h"
-#import "NormalTableCell.h"
-#import "ZCAccountTool.h"
+#import "ForgetSecretController.h"
+#import "PushNotificationViewController.h"
 #import <LCActionSheet.h>
 #import <Masonry.h>
-#import "ApplyViewController.h"
-#import "PushNotificationViewController.h"
-#import "ClearCacheTool.h"
+#import "NoDequTableCell.h"
 
 @interface SettingViewController ()<UIAlertViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
 @property (strong,nonatomic) UITableView *tableView;
 @property (copy,nonatomic) NSArray *array;
-/** 自动登录开关 */
+
+/** 退出登录 */
+@property (strong,nonatomic) UIView *returnView;
+/** 自动登录按钮 */
 @property (strong,nonatomic) UISwitch *loginSwitch;
-/** 信息排序 */
-@property (strong,nonatomic) UISwitch *sortMethodSwitch;
-/** 退群时删除会话 */
-@property (strong,nonatomic) UISwitch *tuiQunSwitch;
-///** 显示视频通话时间 */
-//@property (strong,nonatomic) UISwitch *callTimeSwitch;
+/** 自动同意好友申请 */
+@property (strong,nonatomic) UISwitch *addfriSwitch;
 
 
 @end
@@ -38,29 +35,23 @@
     self.title = @"设置";
     [self setupSubViews];
 }
-
+#pragma mark - 绘制UI
 - (void)setupSubViews
 {
-    self.array = [NSArray arrayWithObjects:@[@"自动登录",@"推送设置"],@[@"退群时删除会话",@"设置视频通话码率",@"消息根据服务器时间排序"],@[@"退出登录"], nil];
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
-    self.tableView.backgroundColor = self.view.backgroundColor;
+    self.array = [NSArray arrayWithObjects:@[@"自动登录",@"修改密码"],@[@"推送设置",@"评分支持影楼掌柜",@"自动同意好友申请"], nil];
+    
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.returnView];
     
     [self refreshConfig];
 }
-
 - (void)refreshConfig
 {
     [self.loginSwitch setOn:[[EMClient sharedClient].options isAutoLogin] animated:YES];
-    [self.sortMethodSwitch setOn:[[EMClient sharedClient].options sortMessageByServerTime] animated:YES];
+    [self.addfriSwitch setOn:[[EMClient sharedClient].options isAutoAcceptFriendInvitation] animated:YES];
     
     [self.tableView reloadData];
 }
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.array.count;
@@ -74,66 +65,47 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             // 自动登录
-            NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            [cell.contentLabel removeFromSuperview];
+            cell.accessoryType = UITableViewCellAccessoryNone;
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
-            [cell setAccessoryType:UITableViewCellAccessoryNone];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             [cell addSubview:self.loginSwitch];
+            
             return cell;
         } else {
-            // 推送设置
-            NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
-            
+            // 修改密码
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            [cell.contentLabel removeFromSuperview];
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+            
             return cell;
         }
-    } else if(indexPath.section == 1){
+    } else{
         if (indexPath.row == 0) {
-            // 退群时删除会话
-            NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
-            [cell setAccessoryType:UITableViewCellAccessoryNone];
+            // 推送设置
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            [cell.contentLabel removeFromSuperview];
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
-            [cell addSubview:self.tuiQunSwitch];
+            
             return cell;
         } else if(indexPath.row == 1){
-            
-            // 设置视频通话码率
-            NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+            // 评分支持影楼掌柜
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            [cell.contentLabel removeFromSuperview];
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+            
             return cell;
-
         }else{
             // 消息根据服务器时间排序
-            NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            [cell.contentLabel removeFromSuperview];
+            cell.accessoryType = UITableViewCellAccessoryNone;
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
-            [cell setAccessoryType:UITableViewCellAccessoryNone];
-            [cell addSubview:self.sortMethodSwitch];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [cell addSubview:self.addfriSwitch];
             return cell;
-
         }
-    }
-    else{
-        // 退出账号
-        NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
-        cell.backgroundColor = self.view.backgroundColor;
-        UIButton *returnBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        returnBtn.backgroundColor = WechatRedColor;
-        [returnBtn addTarget:self action:@selector(logoutAction) forControlEvents:UIControlEventTouchUpInside];
-        ZCAccount *account = [ZCAccountTool account];
-        NSString *message = [NSString stringWithFormat:@"退出账号(%@)",account.username];
-        [returnBtn setTitle:message forState:UIControlStateNormal];
-        returnBtn.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-        returnBtn.layer.cornerRadius = 3;
-        [cell addSubview:returnBtn];
-        [returnBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-           
-            make.centerX.equalTo(cell.mas_centerX);
-            make.centerY.equalTo(cell.mas_centerY);
-            make.left.equalTo(@23);
-            make.height.equalTo(@37);
-        }];
-        return cell;
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -141,27 +113,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         if (indexPath.row == 1) {
-            // 推送设置
-            PushNotificationViewController *pushController = [[PushNotificationViewController alloc] init];
-            [self.navigationController pushViewController:pushController animated:YES];
+            // 修改密码
+            ForgetSecretController *pass = [ForgetSecretController new];
+            [self.navigationController pushViewController:pass animated:YES];
         }
-    } else if(indexPath.section == 1){
+    } else {
         if (indexPath.row == 0) {
-           // 退群时删除会话
-        } else if(indexPath.row == 1){
-            // 设置视频通话码率
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"设置视频通话码率" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-            [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-            
-           // UITextField *textField = [alert textFieldAtIndex:0];
-//            EMCallOptions *options = [[EMClient sharedClient].callManager getCallOptions];
-//            textField.text = [NSString stringWithFormat:@"%ld", options.videoKbps];
-
-            [alert show];
-            
-        }else{
-            // 消息根据服务器时间排序
-            
+            // 推送设置
+            PushNotificationViewController *push = [PushNotificationViewController new];
+            [self.navigationController pushViewController:push animated:YES];
+        } else {
+            // 去评分
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/ying-lou-zhang-gui/id1135389493?mt=8"]];
         }
     }
 }
@@ -169,7 +132,7 @@
 #pragma mark - 退出登录
 - (void)logoutAction
 {
-    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"确定退出，换号登录？" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"前后账号若一致，则不会删除您之前的聊天记录\r并且更新其他缓存数据。" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
             __weak SettingViewController *weakSelf = self;
             [self showHudMessage:@"退出登录"];
@@ -181,45 +144,29 @@
                         
                         [weakSelf showErrorTips:error.errorDescription];
                     }else{
-                        [self clearSomeDataComplete:^{
-                            [self.navigationController popViewControllerAnimated:YES];
-                            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
-                        }];
+                        
+                        CATransition *animation = [CATransition animation];
+                        animation.duration = 0.8;
+                        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+                        animation.type = kCATransitionFade;
+                        animation.subtype = kCATransitionFromBottom;
+                        [self.view.window.layer addAnimation:animation forKey:nil];
+                        
+                        [self.navigationController popViewControllerAnimated:YES];
+                        [YLNotificationCenter postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
                         
                     }
                 });
             });
         }
-    } otherButtonTitles:@"确定", nil];
+    } otherButtonTitles:@"确定退出", nil];
     sheet.destructiveButtonIndexSet = [NSSet setWithObject:@1];
     [sheet show];
-    
 }
-#pragma mark - 清除一些垃圾数据、缓存
-- (void)clearSomeDataComplete:(DeleteCompleteBlock)deleteBlock
-{
-    // 清除沙盒里的数据
-    // ⚠️ 开发阶段并没有删除ZCAccount里的数据
-    NSString *dicPath = [ClearCacheTool docPath];
-    [ClearCacheTool clearSDWebImageCache:dicPath];
-    
-    NSUserDefaults *userDefault = USER_DEFAULT;
-    [userDefault removeObjectForKey:@"userPhone"]; // 缓存手机号码的键
-    [userDefault removeObjectForKey:@"city"]; // 地区缓存
-    [userDefault removeObjectForKey:@"birthDay"]; // 生日
-    
-    deleteBlock();
-}
-
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 2) {
-        return 28;
-    } else {
-        return 8;
-    }
+    return 8;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
@@ -227,88 +174,71 @@
     foot.backgroundColor = self.view.backgroundColor;
     return foot;
 }
+
+#pragma mark - 懒加载
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 50)];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.rowHeight = 50;
+        _tableView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
+        _tableView.backgroundColor = self.view.backgroundColor;
+    }
+    return _tableView;
+}
+- (UIView *)returnView
+{
+    if (!_returnView) {
+        _returnView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_tableView.frame), SCREEN_WIDTH, 50)];
+        _returnView.backgroundColor = [UIColor whiteColor];
+        _returnView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+            [self logoutAction];
+        }];
+        [_returnView addGestureRecognizer:tap];
+        
+        UIImageView *returnImgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"set_return"]];
+        returnImgV.frame = CGRectMake(SCREEN_WIDTH/2 - 32, 12, 25, 25);
+        [_returnView addSubview:returnImgV];
+        
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(returnImgV.frame) + 3, 12, 80, 25)];
+        label.text = @"退出登录";
+        label.textColor = RGBACOLOR(213, 33, 25, 1);
+        label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCallout];
+        [_returnView addSubview:label];
+    }
+    return _returnView;
+}
+
 - (UISwitch *)loginSwitch
 {
     if (!_loginSwitch) {
-        _loginSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 65, 5, 40, 33)];
+        _loginSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 65, 8, 40, 36)];
+        _loginSwitch.onTintColor = MainColor;
         [_loginSwitch addTarget:self action:@selector(autoLoginChanged:) forControlEvents:UIControlEventValueChanged];
         [_loginSwitch setOn:YES animated:YES];
-        
     }
     return _loginSwitch;
 }
-- (void)autoLoginChanged:(UISwitch *)autoSwitch
+- (UISwitch *)addfriSwitch
+{
+    if (!_addfriSwitch) {
+        _addfriSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 65, 8, 40, 36)];
+        _addfriSwitch.onTintColor = MainColor;
+        [_addfriSwitch addTarget:self action:@selector(sortMethodChanged:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _addfriSwitch;
+}
+- (void)autoLoginChanged:(UISwitch *)loginSwitch
 {
     
-    [[EMClient sharedClient].options setIsAutoLogin:autoSwitch.isOn];
+    [[EMClient sharedClient].options setIsAutoLogin:loginSwitch.isOn];
 }
-
-- (UISwitch *)sortMethodSwitch
+- (void)sortMethodChanged:(UISwitch *)addfriSwitch
 {
-    if (!_sortMethodSwitch) {
-        _sortMethodSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 65, 5, 40, 33)];
-        //[_sortMethodSwitch setOn:YES animated:YES];
-//        _sortMethodSwitch.on = [[[NSUserDefaults standardUserDefaults] objectForKey:HXShowCallInfo] boolValue];
-        [_sortMethodSwitch addTarget:self action:@selector(sortMethodChanged:) forControlEvents:UIControlEventValueChanged];
-    }
-    return _sortMethodSwitch;
+    // isAutoAcceptFriendInvitation
+    [[EMClient sharedClient].options setIsAutoAcceptFriendInvitation:addfriSwitch.isOn];
 }
-- (UISwitch *)tuiQunSwitch
-{
-    if (!_tuiQunSwitch)
-    {
-        _tuiQunSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 65, 5, 40, 33)];
-        _tuiQunSwitch.on = [[EMClient sharedClient].options isDeleteMessagesWhenExitGroup];
-        [_tuiQunSwitch addTarget:self action:@selector(delConversationChanged:) forControlEvents:UIControlEventValueChanged];
-    }
-    return _tuiQunSwitch;
-}
-
-
-
-
-- (void)sortMethodChanged:(UISwitch *)control
-{
-    [[EMClient sharedClient].options setSortMessageByServerTime:control.on];
-}
-
-
-
-- (void)delConversationChanged:(UISwitch *)control
-{
-    [[EMClient sharedClient].options setIsDeleteMessagesWhenExitGroup:control.on];
-}
-
-
-
-
-#pragma mark UIAlertView Delegate
-//
-////弹出提示的代理方法
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//#if DEMO_CALL == 1
-//    if ([alertView cancelButtonIndex] != buttonIndex) {
-//        //获取文本输入框
-//        UITextField *nameTextField = [alertView textFieldAtIndex:0];
-//        BOOL flag = YES;
-//        if(nameTextField.text.length > 0) {
-//            NSScanner* scan = [NSScanner scannerWithString:nameTextField.text];
-//            int val;
-//            if ([scan scanInt:&val] && [scan isAtEnd]) {
-//                if ([nameTextField.text intValue] >= 150 && [nameTextField.text intValue] <= 1000) {
-//                    EMCallOptions *options = [[EMClient sharedClient].callManager getCallOptions];
-//                    options.videoKbps = [nameTextField.text intValue];
-//                    [ChatDemoHelper updateCallOptions];
-//                    flag = NO;
-//                }
-//            }
-//        }
-//        if (flag) {
-//            [self showHint:NSLocalizedString(@"setting.setBitrateTips", @"Set Bitrate should be 150-1000")];
-//        }
-//    }
-//#endif
-//}
-
-
 @end

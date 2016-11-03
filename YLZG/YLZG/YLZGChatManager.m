@@ -534,14 +534,29 @@ static YLZGChatManager *chatManager = nil;
             UIApplicationState state = [[UIApplication sharedApplication] applicationState];
             switch (state) {
                 case UIApplicationStateActive:
-                    [self.tabbarVC playSoundAndVibration];
+                {
+                    // app在前台
+                    
+                    if ([self isPushAvailed]) {
+                        [self.tabbarVC playSoundAndVibration];
+                    }
+                    
                     break;
+                }
                 case UIApplicationStateInactive:
-                    [self.tabbarVC playSoundAndVibration];
+                {
+                    // 待激活状态
+                    if ([self isPushAvailed]) {
+                        [self.tabbarVC playSoundAndVibration];
+                    }
                     break;
+                }
                 case UIApplicationStateBackground:
+                {
+                    // app在后台
                     [self.tabbarVC showNotificationWithMessage:message];
                     break;
+                }
                 default:
                     break;
             }
@@ -585,7 +600,47 @@ static YLZGChatManager *chatManager = nil;
     
 }
 
-
+// 判断是否可以推送
+- (BOOL)isPushAvailed
+{
+    EMPushOptions *pushOption = [EMClient sharedClient].pushOptions;
+    if (pushOption.noDisturbStatus == EMPushNoDisturbStatusClose) {
+        // 关闭免打扰==可以推送
+        return YES;
+    }else if(pushOption.noDisturbStatus == EMPushNoDisturbStatusDay){
+        // 全天免打扰，不准推送。
+        return NO;
+    }else if(pushOption.noDisturbStatus == EMPushNoDisturbStatusCustom){
+        // 根据时间段来判断是否可以推送:8：00 -- 22：00可以推送
+        NSInteger nowHours = [[self getCurrentHours] intValue];
+        NSInteger pushStart = pushOption.noDisturbingStartH;
+        NSInteger pushEnd = pushOption.noDisturbingEndH;
+        if (nowHours <= pushEnd && nowHours >= pushStart) {
+            return YES;
+        }else{
+            return NO;
+        }
+        
+    }else{
+        return YES;
+    }
+}
+// 获取当前的小时数
+- (NSString *)getCurrentHours
+{
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    
+    NSTimeZone *timeZone = [NSTimeZone systemTimeZone]; // 上海时区
+    NSDate *date = [NSDate date];
+    NSInteger seconds = [timeZone secondsFromGMTForDate:date];
+    NSDate *newDate = [date dateByAddingTimeInterval:seconds];
+    NSString *str = [NSString stringWithFormat:@"%@",newDate];
+    
+    // 东八区的时间
+    NSString *realTime = [str substringWithRange:NSMakeRange(5, 2)];
+    return realTime;
+}
 
 - (ChatViewController *)getCurrentChatView
 {

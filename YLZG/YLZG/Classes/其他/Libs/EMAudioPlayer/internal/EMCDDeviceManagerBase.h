@@ -27,7 +27,7 @@
 
 @property (nonatomic, assign) id <EMCDDeviceManagerDelegate> delegate;
 
-+(EMCDDeviceManager *)sharedInstance;
++ (EMCDDeviceManager *)sharedInstance;
 
 
 @end

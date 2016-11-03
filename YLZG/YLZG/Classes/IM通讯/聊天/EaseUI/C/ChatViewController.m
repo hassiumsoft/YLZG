@@ -258,7 +258,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    
+    [YLNotificationCenter postNotificationName:HXSetupUnreadMessageCount object:nil];
 }
 
 
@@ -467,6 +467,7 @@
     [[EMClient sharedClient] removeDelegate:self];
     [self backAction];
 }
+
 
 
 @end

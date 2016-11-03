@@ -10,6 +10,7 @@
 #import "GroupMemberCollectionCell.h"
 #import "IviteGroupersCollectionCell.h"
 #import "IviteMemberViewController.h"
+#import "UserInfoViewController.h"
 
 
 static NSInteger const cols = 4;

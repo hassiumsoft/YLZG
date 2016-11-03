@@ -185,7 +185,6 @@ static NSString *kGroupName = @"GroupName";
     
     //保存最后一次响铃时间
     self.lastPlaySoundDate = [NSDate date];
-    
     // 收到消息时，播放音频
     [[EMCDDeviceManager sharedInstance] playNewMessageSound];
     // 收到消息时，震动
@@ -239,7 +238,7 @@ static NSString *kGroupName = @"GroupName";
         
         [[YLZGDataManager sharedManager] getOneStudioByUserName:message.from Block:^(ContactersModel *model) {
             NSString *name = model.nickname.length>=1 ? model.nickname : model.realname;
-            title = [NSString stringWithFormat:@"(群)%@：%@",name,messageStr];
+            title = [NSString stringWithFormat:@"群聊->%@：%@",name,messageStr];
         }];
         
     }
@@ -271,33 +270,59 @@ static NSString *kGroupName = @"GroupName";
     //发送通知
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
+
+// 判断是否可以推送
+- (BOOL)isPushAvailed
+{
+    EMPushOptions *pushOption = [EMClient sharedClient].pushOptions;
+    if (pushOption.noDisturbStatus == EMPushNoDisturbStatusClose) {
+        // 关闭免打扰==可以推送
+        return YES;
+    }else if(pushOption.noDisturbStatus == EMPushNoDisturbStatusDay){
+        // 全天免打扰，不准推送。
+        return NO;
+    }else if(pushOption.noDisturbStatus == EMPushNoDisturbStatusCustom){
+        // 根据时间段来判断是否可以推送:8：00 -- 22：00可以推送
+        NSInteger nowHours = [[self getCurrentHours] intValue];
+        NSInteger pushStart = pushOption.noDisturbingStartH;
+        NSInteger pushEnd = pushOption.noDisturbingEndH;
+        if (nowHours <= pushEnd && nowHours >= pushStart) {
+            return YES;
+        }else{
+            return NO;
+        }
+        
+    }else{
+        return YES;
+    }
+}
+// 获取当前的小时数
+- (NSString *)getCurrentHours
+{
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    
+    NSTimeZone *timeZone = [NSTimeZone systemTimeZone]; // 上海时区
+    NSDate *date = [NSDate date];
+    NSInteger seconds = [timeZone secondsFromGMTForDate:date];
+    NSDate *newDate = [date dateByAddingTimeInterval:seconds];
+    NSString *str = [NSString stringWithFormat:@"%@",newDate];
+    
+    // 东八区的时间
+    NSString *realTime = [str substringWithRange:NSMakeRange(5, 2)];
+    return realTime;
+}
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self showNewPages];
+    
 }
 - (void)networkChanged:(EMConnectionState)connectionState;
 {
     _connectionState = connectionState;
     [_chatListVC networkChanged:connectionState];
-}
-#pragma mark - 展示新特性
-- (void)showNewPages
-{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.isShowNewPage) {
-        CATransition *animation = [CATransition animation];
-        animation.duration = 0.5;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
-        animation.type = kCATransitionFade;
-        animation.subtype = kCATransitionFromTop;
-        [self.view.window.layer addAnimation:animation forKey:nil];
-        
-        NewFutherViewController *newFuther = [NewFutherViewController new];
-        [self presentViewController:newFuther animated:NO completion:^{
-            
-        }];
-    }
 }
 
 - (void)PushToChatVC:(NSNotification *)noti

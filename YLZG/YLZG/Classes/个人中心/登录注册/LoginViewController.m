@@ -82,7 +82,12 @@
                         [self saveUserInfoAction:result Complete:^{
                             
                             HomeTabbarController *homeTab = [HomeTabbarController new];
-//                            HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:homeTab];
+                            CATransition *animation = [CATransition animation];
+                            animation.duration = 0.8;
+                            animation.timingFunction = UIViewAnimationCurveEaseInOut;
+                            animation.type = kCATransitionFade;
+                            animation.subtype = kCATransitionFromBottom;
+                            [self.view.window.layer addAnimation:animation forKey:nil];
                             [self presentViewController:homeTab animated:NO completion:^{
                                 
                             }];
@@ -112,39 +117,89 @@
 #pragma mark - 用户信息缓存的操作
 - (void)saveUserInfoAction:(NSDictionary *)json Complete:(LoginCompleteBlock)block
 {
+    
     // 友盟
     [MobClick profileSignInWithPUID:self.nameField.text];
     
     // 到这步就可以把账户信息归档
     NSMutableDictionary *newDic = [NSMutableDictionary dictionary];
     
-    /** ⚠️ 使用FMDB存储数据 */
-    UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:json];
-    model.password = self.passField.text;
-    model.username = self.nameField.text;
-    [UserInfoManager saveInfoToSandBox:model];
+    // 比较和之前的账号是否一致
+    UserInfoModel *loginedModel = [UserInfoManager getUserInfo];
+    if ([self.nameField.text isEqualToString:loginedModel.username]) {
+        // 和刚刚已退出的账号一致，不删除.但是需要替换更新的用户数据
+        /** ⚠️ 使用FMDB存储更新的数据 */
+        UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:json];
+        model.password = self.passField.text;
+        model.username = self.nameField.text;
+        [UserInfoManager saveInfoToSandBox:model];
+        
+        newDic[@"username"] = model.username;
+        newDic[@"password"] = model.password;
+        newDic[@"userID"] = model.uid;
+        
+        ZCAccount *account = [ZCAccount accountWithDict:newDic];
+        [ZCAccountTool saveAccount:account];
+        
+        
+        // 设置自动登录
+        [EMClient sharedClient].options.isAutoLogin = YES;
+        [EMClient sharedClient].pushOptions.displayName = model.realname.length>0 ? model.realname : model.nickname;
+        [EMClient sharedClient].pushOptions.displayStyle = EMPushDisplayStyleMessageSummary;
+        
+        
+        // 极光推送
+        [JPUSHService setTags:[NSSet setWithObject:model.sid] aliasInbackground:model.uid];
+        [[EMClient sharedClient] setApnsNickname:model.realname];
+        
+        block();
+    }else{
+        // 另外一个账号，删除之前的记录
+        [self clearSomeDataComplete:^{
+            /** ⚠️ 使用FMDB存储数据 */
+            UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:json];
+            model.password = self.passField.text;
+            model.username = self.nameField.text;
+            [UserInfoManager saveInfoToSandBox:model];
+            
+            newDic[@"username"] = model.username;
+            newDic[@"password"] = model.password;
+            newDic[@"userID"] = model.uid;
+            
+            ZCAccount *account = [ZCAccount accountWithDict:newDic];
+            [ZCAccountTool saveAccount:account];
+            
+            
+            // 设置自动登录
+            [EMClient sharedClient].options.isAutoLogin = YES;
+            [EMClient sharedClient].pushOptions.displayName = model.realname.length>0 ? model.realname : model.nickname;
+            [EMClient sharedClient].pushOptions.displayStyle = EMPushDisplayStyleMessageSummary;
+            
+            
+            // 极光推送
+            [JPUSHService setTags:[NSSet setWithObject:model.sid] aliasInbackground:model.uid];
+            [[EMClient sharedClient] setApnsNickname:model.realname];
+            
+            block();
+        }];
+    }
     
-    newDic[@"username"] = model.username;
-    newDic[@"password"] = model.password;
-    newDic[@"userID"] = model.uid;
-    
-    ZCAccount *account = [ZCAccount accountWithDict:newDic];
-    [ZCAccountTool saveAccount:account];
-    
-    
-    // 设置自动登录
-    [EMClient sharedClient].options.isAutoLogin = YES;
-    [EMClient sharedClient].pushOptions.displayName = model.realname.length>0 ? model.realname : model.nickname;
-    [EMClient sharedClient].pushOptions.displayStyle = EMPushDisplayStyleMessageSummary;
-    
-    
-    // 极光推送
-    [JPUSHService setTags:[NSSet setWithObject:model.sid] aliasInbackground:model.uid];
-    [[EMClient sharedClient] setApnsNickname:model.realname];
-    
-    block();
 }
-
+#pragma mark - 如果和之前的登录账号一致，则不需删除沙盒数据
+- (void)clearSomeDataComplete:(DeleteCompleteBlock)deleteBlock
+{
+    // 清除沙盒里的数据
+    // ⚠️ 开发阶段并没有删除ZCAccount里的数据
+    NSString *dicPath = [ClearCacheTool docPath];
+    [ClearCacheTool clearSDWebImageCache:dicPath];
+    
+    NSUserDefaults *userDefault = USER_DEFAULT;
+    [userDefault removeObjectForKey:@"userPhone"]; // 缓存手机号码的键
+    [userDefault removeObjectForKey:@"city"]; // 地区缓存
+    [userDefault removeObjectForKey:@"birthDay"]; // 生日
+    
+    deleteBlock();
+}
 #pragma mark - 绘制UI
 - (void)setupSubViews
 {

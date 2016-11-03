@@ -273,6 +273,7 @@ static NSString *TextPlace = @"一句话描述您的群聊";
 {
     if (!_switchV) {
         _switchV = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 10, 55, 40)];
+        _switchV.onTintColor = MainColor;
         [_switchV setOn:YES animated:YES];
     }
     return _switchV;

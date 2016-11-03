@@ -7,22 +7,21 @@
 //
 
 #import "PushNotificationViewController.h"
-#import "NormalTableCell.h"
-#import "YLAlertView.h"
+#import <LCActionSheet.h>
+#import "NoDequTableCell.h"
 
-@interface PushNotificationViewController ()<UITableViewDelegate,UITableViewDataSource>{
-    
-    EMPushDisplayStyle _pushDisplayStyle;
-    EMPushNoDisturbStatus _noDisturbingStatus;
-    NSInteger _noDisturbingStart;
-    NSInteger _noDisturbingEnd;
-    NSString *_nickName;
-    
-}
+@interface PushNotificationViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (strong,nonatomic) UITableView *tableView;
+
+@property (copy,nonatomic) NSArray *array;
 
 
-@property (strong, nonatomic) UISwitch *pushDisplaySwitch;
-@property (nonatomic,strong) UITableView *tableView;
+@property (strong,nonatomic) UIImageView *imageV1;
+
+@property (strong,nonatomic) UIImageView *imageV2;
+
+@property (strong,nonatomic) UIImageView *imageV3;
 
 @end
 
@@ -31,281 +30,170 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"推送设置";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(savePushOptions)];
-    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleBody],NSFontAttributeName:[UIFont systemFontOfSize:13]    ,NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     [self setupSubViews];
-    
-    self.tableView.tableFooterView = [[UIView alloc] init];
-    
-    [self loadPushOptions];
-    self.tableView.backgroundColor = NorMalBackGroudColor;
-    [self.tableView reloadData];
-
-    
 }
 
 -(void)setupSubViews{
     
-        self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds];
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-//        self.tableView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
-        self.tableView.backgroundColor = self.view.backgroundColor;
-        [self.view addSubview:self.tableView];
+    self.title = @"推送设置";
     
-}
-
-
-#pragma mark - getter
-
-- (UISwitch *)pushDisplaySwitch
-{
-    if (_pushDisplaySwitch == nil) {
-        _pushDisplaySwitch = [[UISwitch alloc] init];
-        [_pushDisplaySwitch addTarget:self action:@selector(pushDisplayChanged:) forControlEvents:UIControlEventValueChanged];
-    }
     
-    return _pushDisplaySwitch;
+    [[EMClient sharedClient].pushOptions setDisplayStyle:EMPushDisplayStyleMessageSummary];
+    self.array = @[@"开启",@"夜间勿扰模式",@"全天关闭"];
+    [self.view addSubview:self.tableView];
 }
 
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-  
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-   
-    if (section == 0) {
-        return 1;
-    }
-    else if (section == 1)
-    {
-        return 3;
-    }
-    
-    return 0;
+    return self.array.count;
 }
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 1) {
-        return YES;
-    }
-    
-    return NO;
-}
-
-
-
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if (section == 1) {
-        return @"更多设置";
-    }else{
-        return @"显示设置";
-    }
-}
-
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    EMPushOptions *pushOption = [EMClient sharedClient].pushOptions;
     
-    NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
-    cell.backgroundColor = [UIColor whiteColor];
-    
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"通知显示消息详情";
-            self.pushDisplaySwitch.frame = CGRectMake(SCREEN_WIDTH - 65, 5, 40, 33);
-            [cell.contentView addSubview:self.pushDisplaySwitch];
-            cell.accessoryType = UITableViewCellAccessoryNone;
+    if (indexPath.row == 0) {
+        // 开启。EMPushNoDisturbStatus = EMPushNoDisturbStatusClose
+        NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.textLabel.text = self.array[indexPath.row];
+        [cell.contentLabel removeFromSuperview];
+        [cell addSubview:self.imageV1];
+        if (pushOption.noDisturbStatus == EMPushNoDisturbStatusClose) {
+            // 显示图
+            self.imageV1.hidden = NO;
+        }else{
+            self.imageV1.hidden = YES;
         }
+        return cell;
+    }else if (indexPath.row == 1){
+        // 夜间免打扰。EMPushNoDisturbStatus = EMPushNoDisturbStatusCustom
+        NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.textLabel.text = self.array[indexPath.row];
+        [cell.contentLabel removeFromSuperview];
+        
+        [cell addSubview:self.imageV2];
+        if (pushOption.noDisturbStatus == EMPushNoDisturbStatusCustom) {
+            // 显示图
+            self.imageV2.hidden = NO;
+        }else{
+            self.imageV2.hidden = YES;
+        }
+        return cell;
+    }else {
+        // 全天关闭。EMPushNoDisturbStatus = EMPushNoDisturbStatusDay
+        NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.textLabel.text = self.array[indexPath.row];
+        [cell.contentLabel removeFromSuperview];
+        [cell addSubview:self.imageV3];
+        if (pushOption.noDisturbStatus == EMPushNoDisturbStatusDay) {
+            // 显示图
+            self.imageV3.hidden = NO;
+        }else{
+            self.imageV3.hidden = YES;
+        }
+        return cell;
     }
-    else if (indexPath.section == 1)
-    {
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"关闭推送";
-            cell.accessoryType = _noDisturbingStatus == EMPushNoDisturbStatusDay ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-        }
-        else if (indexPath.row == 1)
-        {
-            cell.textLabel.text = @"只在夜间开启 (22:00 - 7:00)";
-            cell.accessoryType = _noDisturbingStatus == EMPushNoDisturbStatusCustom ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-        }
-        else if (indexPath.row == 2)
-        {
-            cell.textLabel.text = @"开启推送";
-            cell.accessoryType = _noDisturbingStatus == EMPushNoDisturbStatusClose ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-        }
-    }
     
-    return cell;
-}
-
-#pragma mark - Table view delegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 40;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 30;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    BOOL needReload = YES;
-    
-    if (indexPath.section == 1) {
-        switch (indexPath.row) {
-            case 0:
-            {
-                needReload = NO;
-                
-                [YLAlertView showAlertWithTitle:@"温馨提示"
-                                        message:@"这个设置会导致全天开启免打扰模式,将不再接收推送消息。是否继续?"
-                                completionBlock:^(NSUInteger buttonIndex, YLAlertView *alertView) {
-                                    switch (buttonIndex) {
-                                        case 0: {
-                                        } break;
-                                        default: {
-                                            self->_noDisturbingStart = 0;
-                                            self->_noDisturbingEnd = 24;
-                                            self->_noDisturbingStatus = EMPushNoDisturbStatusDay;
-                                            [tableView reloadData];
-                                        } break;
-                                    }
-                                    
-                                } cancelButtonTitle:@"取消"
-                              otherButtonTitles:@"确定", nil];
-                
-            } break;
-            case 1:
-            {
-                _noDisturbingStart = 22;
-                _noDisturbingEnd = 7;
-                _noDisturbingStatus = EMPushNoDisturbStatusCustom;
+    if (indexPath.row == 0) {
+        // 推送开启 == 关闭免打扰
+        [[EMClient sharedClient].pushOptions setNoDisturbStatus:EMPushNoDisturbStatusClose];
+        [EMClient sharedClient].pushOptions.noDisturbingStartH = -1;
+        [EMClient sharedClient].pushOptions.noDisturbingEndH = -1;
+        [self.tableView reloadData];
+    }else if (indexPath.row == 1){
+        // 夜间勿扰
+        [[EMClient sharedClient].pushOptions setNoDisturbStatus:EMPushNoDisturbStatusCustom];
+        [EMClient sharedClient].pushOptions.noDisturbingStartH = 22;
+        [EMClient sharedClient].pushOptions.noDisturbingEndH = 8;
+        [self.tableView reloadData];
+    }else {
+        // 推送关闭 == 全天免打扰
+        LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"选择此项后，您将会错过影楼内部的重要信息。\r请您三思！" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+            if (buttonIndex == 1) {
+                [[EMClient sharedClient].pushOptions setNoDisturbStatus:EMPushNoDisturbStatusDay];
+                [EMClient sharedClient].pushOptions.noDisturbingStartH = -1;
+                [EMClient sharedClient].pushOptions.noDisturbingEndH = -1;
+                [self.tableView reloadData];
             }
-                break;
-            case 2:
-            {
-                _noDisturbingStart = -1;
-                _noDisturbingEnd = -1;
-                _noDisturbingStatus = EMPushNoDisturbStatusClose;
-            }
-                break;
-                
-            default:
-                break;
-        }
+        } otherButtonTitles:@"全天关闭！", nil];
+        sheet.destructiveButtonIndexSet = [NSSet setWithObject:@1];
+        [sheet show];
         
-        if (needReload) {
-            [tableView reloadData];
-        }
     }
-
 }
-
-#pragma mark - action
-
-- (void)savePushOptions
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    BOOL isUpdate = NO;
-    EMPushOptions *options = [[EMClient sharedClient] pushOptions];
-    if (_pushDisplayStyle != options.displayStyle) {
-        options.displayStyle = _pushDisplayStyle;
-        isUpdate = YES;
-    }
-    
-    if (_nickName && _nickName.length > 0 && ![_nickName isEqualToString:options.displayName])
-    {
-        options.displayName = _nickName;
-        isUpdate = YES;
-    }
-    if (options.noDisturbingStartH != _noDisturbingStart || options.noDisturbingEndH != _noDisturbingEnd){
-        isUpdate = YES;
-        options.noDisturbStatus = _noDisturbingStatus;
-        options.noDisturbingStartH = _noDisturbingStart;
-        options.noDisturbingEndH = _noDisturbingEnd;
-    }
-    
-    __weak typeof(self) weakself = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        EMError *error = nil;
-        if (isUpdate) {
-            error = [[EMClient sharedClient] updatePushOptionsToServer];
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (!error) {
-                [weakself.navigationController popViewControllerAnimated:YES];
-            } else {
-                [weakself showHint:[NSString stringWithFormat:@"保存失败-error:%@",error.errorDescription]];
-            }
-        });
-    });
+    return 90;
 }
-
-- (void)pushDisplayChanged:(UISwitch *)pushDisplaySwitch
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (pushDisplaySwitch.isOn) {
-        //  #warning 此处设置详情显示时的昵称，比如_nickName = @"环信";
-        _pushDisplayStyle = EMPushDisplayStyleMessageSummary;
-        _nickName = @"影楼掌柜";
+    UIView *footV = [UIView new];
+    UILabel *descLabel = [[UILabel alloc]initWithFrame:CGRectMake(12, 8, SCREEN_WIDTH - 24, 60 - 8)];
+    descLabel.text = @"开启后，您随时能收到影楼的推送消息。如果设置为夜间勿扰模式，则只会在8:00到22:00开启消息推送。关闭则不推送消息，您需要主动打开APP查看未读消息。";
+    if (iOS_Version >= 8.2) {
+        descLabel.font = [UIFont systemFontOfSize:14 weight:0.01];
     }else{
-        _pushDisplayStyle = EMPushDisplayStyleSimpleBanner;
+        descLabel.font = [UIFont systemFontOfSize:14];
     }
+    descLabel.textColor = RGBACOLOR(87, 87, 87, 1);
+    descLabel.textAlignment = NSTextAlignmentCenter;
+    descLabel.numberOfLines = 0;
+    [footV addSubview:descLabel];
+    return footV;
 }
-
-- (void)loadPushOptions
+- (UITableView *)tableView
 {
-    __weak typeof(self) weakself = self;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        EMError *error = nil;
-        //EMError *error = [[EMClient sharedClient] updatePushOptionsToServer];
-        [[EMClient sharedClient] getPushOptionsFromServerWithError:&error];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (error == nil) {
-                [weakself refreshPushOptions];
-            } else {
-                
-            }
-        });
-    });
-}
-
-- (void)refreshPushOptions
-{
-    EMPushOptions *options = [[EMClient sharedClient] pushOptions];
-    _nickName = options.displayName;
-    _pushDisplayStyle = options.displayStyle;
-    _noDisturbingStatus = options.noDisturbStatus;
-    if (_noDisturbingStatus != EMPushNoDisturbStatusClose) {
-        _noDisturbingStart = options.noDisturbingStartH;
-        _noDisturbingEnd = options.noDisturbingEndH;
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.rowHeight = 50;
+        _tableView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
+        _tableView.backgroundColor = self.view.backgroundColor;
     }
-    
-    BOOL isDisplayOn = _pushDisplayStyle == EMPushDisplayStyleSimpleBanner ? NO : YES;
-    [self.pushDisplaySwitch setOn:isDisplayOn animated:YES];
-    [self.tableView reloadData];
+    return _tableView;
 }
 
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
- 
+- (UIImageView *)imageV1
+{
+    if (!_imageV1) {
+        _imageV1 = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 40, 12, 25, 25)];
+        _imageV1.image = [UIImage imageNamed:@"selected_yes"];
+    }
+    return _imageV1;
 }
+
+- (UIImageView *)imageV2
+{
+    if (!_imageV2) {
+        _imageV2 = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 40, 12, 25, 25)];
+        _imageV2.image = [UIImage imageNamed:@"selected_yes"];
+    }
+    return _imageV2;
+}
+
+- (UIImageView *)imageV3
+{
+    if (!_imageV3) {
+        _imageV3 = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 40, 12, 25, 25)];
+        _imageV3.image = [UIImage imageNamed:@"selected_yes"];
+    }
+    return _imageV3;
+}
+
 
 @end

@@ -40,7 +40,7 @@
     // UIAppearance Proxy Defaults
     EaseBaseMessageCell *cell = [self appearance];
     cell.avatarSize = 30;
-    cell.avatarCornerRadius = 0;
+//    cell.avatarCornerRadius = 0;
     
     cell.messageNameColor = [UIColor grayColor];
     cell.messageNameFont = [UIFont systemFontOfSize:10];
@@ -325,9 +325,9 @@
 
 - (void)setAvatarCornerRadius:(CGFloat)avatarCornerRadius
 {
-    _avatarCornerRadius = avatarCornerRadius;
+    _avatarCornerRadius = 0;
     if (self.avatarView){
-        self.avatarView.layer.cornerRadius = avatarCornerRadius;
+        self.avatarView.layer.cornerRadius = 0;
     }
 }
 
