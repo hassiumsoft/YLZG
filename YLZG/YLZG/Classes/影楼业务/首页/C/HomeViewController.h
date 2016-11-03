@@ -10,4 +10,6 @@
 
 @interface HomeViewController : SuperViewController
 
+- (void)networkChanged:(EMConnectionState)connectionState;
+
 @end

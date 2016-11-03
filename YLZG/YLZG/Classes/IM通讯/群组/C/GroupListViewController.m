@@ -39,6 +39,7 @@
     self.title = @"影楼社区";
     
     [self setupSubViews];
+    [YLNotificationCenter addObserver:self selector:@selector(UpdataGroupInfo) name:HXUpdataGroupInfo object:nil];
     
     NSArray *dataArray = [GroupListManager getAllGroupInfo];
     if (dataArray.count >= 1) {
@@ -73,7 +74,10 @@
     
     self.tableView.tableHeaderView = self.headView;
 }
-
+- (void)UpdataGroupInfo
+{
+    [self getData:NO];
+}
 
 - (void)getData:(BOOL)isFirst
 {

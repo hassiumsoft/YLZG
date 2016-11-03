@@ -49,6 +49,7 @@ NSString *const HXRemoveAllMessages= @"HXRemoveAllMessages";
 NSString *const HXExitGroup = @"HXExitGroup";
 NSString *const HXRePushToChat = @"HXRePushToChat";
 NSString *const HXCallOutPhoneChatter = @"HXCallOutPhoneChatter";
+NSString *const HXUpdataGroupInfo = @"HXUpdataGroupInfo";
 
 
 

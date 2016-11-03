@@ -13,6 +13,10 @@
 #import "NavigationView.h"
 #import <MJExtension.h>
 #import "AppDelegate.h"
+#import <MJRefresh.h>
+#import "HTTPManager.h"
+#import "ZCAccountTool.h"
+#import "EmptyViewController.h"
 #import "NewFutherViewController.h"
 
 #import "OpenOrderViewController.h"
@@ -28,7 +32,7 @@
 #import "MyJobsViewController.h"
 #import "CheckTabBarController.h"
 #import "PublicNoticeController.h"
-#import "PintuanViewController.h"
+#import "SaleToolViewController.h"
 
 
 
@@ -45,14 +49,18 @@
 /** collectionView */
 @property (strong,nonatomic) UICollectionView *collectionView;
 /** 数据源 */
-@property (copy,nonatomic) NSArray *titleArray;
-@property (copy,nonatomic) NSArray *iconArray;
+@property (strong,nonatomic) NSMutableArray *titleArray;
+@property (strong,nonatomic) NSMutableArray *iconArray;
+@property (strong,nonatomic) NSMutableArray *idArray;
 /** 顶部的视图 */
 @property (strong,nonatomic) UIImageView *topView;
-/** 通知按钮 */
-@property (strong,nonatomic) UIButton *tipsButton;
+/** 菊花 */
+@property (strong,nonatomic) UIActivityIndicatorView *indicatorV;
+@property (strong,nonatomic) UIButton *refreshButton;
 /** 用户模型 */
 @property (strong,nonatomic) UserInfoModel *userModel;
+/** 营销工具里是否有数据 */
+@property (assign,nonatomic) BOOL isJuFenxiang;
 
 @end
 
@@ -61,27 +69,62 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
     [self setupSubViews];
+    [self getJufenxiangInfo];
     [self showNewPages];
 }
 
-#pragma mark - 展示新特性
-- (void)showNewPages
+#pragma mark - 获取营销工具信息
+- (void)getJufenxiangInfo
 {
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.isShowNewPage) {
-        CATransition *animation = [CATransition animation];
-        animation.duration = 0.5;
-        animation.timingFunction = UIViewAnimationCurveEaseInOut;
-        animation.type = kCATransitionFade;
-        animation.subtype = kCATransitionFromTop;
-        [self.view.window.layer addAnimation:animation forKey:nil];
-        
-        NewFutherViewController *newFuther = [NewFutherViewController new];
-        [self presentViewController:newFuther animated:NO completion:^{
+    self.indicatorV.hidden = NO;
+    self.refreshButton.hidden = YES;
+    [self.indicatorV startAnimating];
+    
+    NSString *url = [NSString stringWithFormat:YingxiaoToolList_URL,[ZCAccountTool account].userID];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        self.indicatorV.hidden = YES;
+        self.refreshButton.hidden = NO;
+        [self.indicatorV stopAnimating];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
             
-        }];
-    }
+            NSArray *dictArr = [responseObject objectForKey:@"result"];
+            if (dictArr.count >= 1) {
+                
+                self.isJuFenxiang = YES;
+                NSArray *tempArr = [ButtonIconModel mj_objectArrayWithKeyValuesArray:dictArr];
+                [self.titleArray removeLastObject];
+                [self.iconArray removeLastObject];
+                [self.idArray removeLastObject];
+                NSMutableArray *titleArr = [NSMutableArray array];
+                NSMutableArray *iconArr = [NSMutableArray array];
+                NSMutableArray *idArr = [NSMutableArray array];
+                for (ButtonIconModel *model in tempArr) {
+                    [titleArr addObject:model.name];
+                    [iconArr addObject:model.ico];
+                    [idArr addObject:model.id];
+                }
+                [self.titleArray addObject:titleArr];
+                [self.iconArray addObject:iconArr];
+                [self.idArray addObject:idArr];
+                
+                [self.collectionView reloadData];
+            }else{
+                self.isJuFenxiang = NO;
+            }
+            
+        }else{
+            [self showErrorTips:message];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        self.indicatorV.hidden = YES;
+        [self.indicatorV stopAnimating];
+        self.refreshButton.hidden = NO;
+        
+    }];
 }
 
 #pragma mark - 创建视图UI
@@ -89,16 +132,21 @@
 {
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.userModel = [UserInfoManager getUserInfo];
+    
     self.title = @"我的影楼";
     
     if ([self.userModel.type intValue] == 1) {
-        self.titleArray = @[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜"],@[@"今日财务",@"财务统计"],@[@"审批",@"我的工作",@"今日订单",@"考勤打卡"],@[@"拼团",@"砍价",@"助力",@"集赞",@"众筹",@"全民公益",@"投票报名"]];
-        self.iconArray = @[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang"],@[@"btn_icon_tofinace",@"btn_icon_monthfinace"],@[@"btn_ico_shenpi",@"btn_ico_jinrigongzuo",@"btn_jinridingdan",@"btn_ico_kaoqin"],@[@"btn_ico_pintuan",@"btn_ico_kanjia",@"btn_ico_zhuli",@"btn_ico_jizan",@"btn_ico_zhongchou",@"btn_ico_gongyi",@"btn_ico_toupiao"]];
+        // 老板
+        self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"今日财务",@"财务统计"],@[@"审批",@"考勤打卡"],@[@"营销工具"]]];
+        self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_icon_tofinace",@"btn_icon_monthfinace"],@[@"btn_ico_shenpi",@"btn_ico_kaoqin"],@[@"btn_ico_kaoqin"]]];
+        self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1"],@[@"-1",@"-1"],@[@"-1"]]];
+        
     }else{
-        self.titleArray = @[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜"],@[@"审批",@"我的工作",@"今日订单",@"考勤打卡"],@[@"拼团",@"砍价",@"助力",@"集赞",@"众筹",@"全民公益",@"投票报名"]];
-        self.iconArray = @[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang"],@[@"btn_ico_shenpi",@"btn_ico_jinrigongzuo",@"btn_jinridingdan",@"btn_ico_kaoqin"],@[@"btn_ico_pintuan",@"btn_ico_kanjia",@"btn_ico_zhuli",@"btn_ico_jizan",@"btn_ico_zhongchou",@"btn_ico_gongyi",@"btn_ico_toupiao"]];
+        // 员工
+        self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"审批",@"考勤打卡"],@[@"营销工具"]]];
+        self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_ico_shenpi",@"btn_ico_kaoqin"],@[@"btn_ico_kaoqin"]]];
+        self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1"],@[@"-1"]]];
     }
-    
     
     [self.view addSubview:self.collectionView];
     [self.collectionView insertSubview:self.topView atIndex:0];
@@ -108,23 +156,25 @@
     _suspendNav.backgroundColor = RGBACOLOR(31, 139, 229, 0);
     [self.view addSubview:_suspendNav];
     // 通知按钮
-    self.tipsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.tipsButton setFrame:CGRectMake(12, 25, 36, 36)];
-    [self.tipsButton setImage:[UIImage imageNamed:@"btn_gonggao"] forState:UIControlStateNormal];
-    [self.tipsButton addTarget:self action:@selector(GonggaoClick) forControlEvents:UIControlEventTouchUpInside];
-    self.tipsButton.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:self.tipsButton];
+    UIButton *tipsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [tipsButton setFrame:CGRectMake(12, 25, 36, 36)];
+    [tipsButton setImage:[UIImage imageNamed:@"btn_gonggao"] forState:UIControlStateNormal];
+    [tipsButton addTarget:self action:@selector(GonggaoClick) forControlEvents:UIControlEventTouchUpInside];
+    tipsButton.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:tipsButton];
+    // 刷新按钮
+    
+    [self.view addSubview:self.refreshButton];
+    
+    [self.view addSubview:self.indicatorV];
+    
     
 }
 
 #pragma mark - 表格相关
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    if ([self.userModel.type intValue] == 1) {
-        return 4;
-    }else{
-        return 3;
-    }
+    return self.titleArray.count;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -132,12 +182,28 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    HomeCollectionCell *cell = [HomeCollectionCell sharedCell:collectionView Path:indexPath];
-    ButtonIconModel *model = [ButtonIconModel new];
-    model.title = self.titleArray[indexPath.section][indexPath.row];
-    model.icon = self.iconArray[indexPath.section][indexPath.row];
-    cell.model = model;
-    return cell;
+    
+    if (indexPath.section < self.titleArray.count - 1) {
+        // 固定数据
+        HomeCollectionCell *cell = [HomeCollectionCell sharedCell:collectionView Path:indexPath];
+        ButtonIconModel *model = [ButtonIconModel new];
+        model.name = self.titleArray[indexPath.section][indexPath.row];
+        model.ico = self.iconArray[indexPath.section][indexPath.row];
+        model.id = self.idArray[indexPath.section][indexPath.row];
+        model.fromType = FromLocal;
+        cell.model = model;
+        return cell;
+    }else{
+        // 营销工具部分<数据来源自网络>
+        HomeCollectionCell *cell = [HomeCollectionCell sharedCell:collectionView Path:indexPath];
+        ButtonIconModel *model = [ButtonIconModel new];
+        model.name = self.titleArray[indexPath.section][indexPath.row];
+        model.ico = self.iconArray[indexPath.section][indexPath.row];
+        model.id = self.idArray[indexPath.section][indexPath.row];
+        model.fromType = FromWebSite;
+        cell.model = model;
+        return cell;
+    }
 }
 
 // UICollectionView被选中时调用的方法
@@ -168,13 +234,21 @@
                 // 订单收款
                 OrderCheckViewController *orderCheck = [OrderCheckViewController new];
                 [self.navigationController pushViewController:orderCheck animated:YES];
-            }else{
+            }else if(indexPath.row == 5){
                 // 业绩榜
                 YejiViewController *yeji = [YejiViewController new];
                 [self.navigationController pushViewController:yeji animated:YES];
+            }else if(indexPath.row == 6){
+                // 我的工作
+                MyJobsViewController *job = [MyJobsViewController new];
+                [self.navigationController pushViewController:job animated:YES];
+            }else if(indexPath.row == 7){
+                // 今日订单
+                TodayOrderViewController *today = [TodayOrderViewController new];
+                [self.navigationController pushViewController:today animated:YES];
             }
         } else if(indexPath.section == 1){
-            // 财务应用
+            // 财务管理
             if (indexPath.row == 0) {
                 // 今日财务
                 TodayFinanceController *today = [TodayFinanceController new];
@@ -190,43 +264,27 @@
                 // 审批
                 MyApproveVController *appear = [MyApproveVController new];
                 [self.navigationController pushViewController:appear animated:YES];
-            } else if(indexPath.row == 1){
-                // 我的工作
-                MyJobsViewController *job = [MyJobsViewController new];
-                [self.navigationController pushViewController:job animated:YES];
-            }else if(indexPath.row == 2){
-                // 今日订单
-                TodayOrderViewController *today = [TodayOrderViewController new];
-                [self.navigationController pushViewController:today animated:YES];
             }else{
                 // 考勤打卡
                 CheckTabBarController *kaoqin = [CheckTabBarController new];
                 [self.navigationController pushViewController:kaoqin animated:YES];
             }
         }else{
-            // 聚分享
-            if (indexPath.row == 0) {
-                // 拼团
-                PintuanViewController *pintuan = [PintuanViewController new];
-                [self.navigationController pushViewController:pintuan animated:YES];
-            } else if(indexPath.row == 1){
-                // 砍价
-                
-            }else if (indexPath.row == 2){
-                // 助力
-                
-            }else if (indexPath.row == 3){
-                // 集赞
-                
-            }else if (indexPath.row == 4){
-                // 众筹
-                
-            }else if (indexPath.row == 5){
-                // 全民公益
-                
+            // 营销工具
+            if (self.isJuFenxiang) {
+                // 有营销工具数据
+                SaleToolViewController *sale = [SaleToolViewController new];
+                ButtonIconModel *model = [ButtonIconModel new];
+                model.name = self.titleArray[indexPath.section][indexPath.row];
+                model.ico = self.iconArray[indexPath.section][indexPath.row];
+                model.id = self.idArray[indexPath.section][indexPath.row];
+                model.fromType = FromWebSite;
+                sale.saleModel = model;
+                [self.navigationController pushViewController:sale animated:YES];
             }else{
-                // 投票报名
-                
+                // 没有营销工具数据
+                EmptyViewController *empty = [EmptyViewController new];
+                [self.navigationController pushViewController:empty animated:YES];
             }
         }
     } else {
@@ -254,10 +312,18 @@
                 // 订单收款
                 OrderCheckViewController *orderCheck = [OrderCheckViewController new];
                 [self.navigationController pushViewController:orderCheck animated:YES];
-            }else{
+            }else if(indexPath.row == 5){
                 // 业绩榜
                 YejiViewController *yeji = [YejiViewController new];
                 [self.navigationController pushViewController:yeji animated:YES];
+            }else if(indexPath.row == 6){
+                // 我的工作
+                MyJobsViewController *job = [MyJobsViewController new];
+                [self.navigationController pushViewController:job animated:YES];
+            }else if(indexPath.row == 7){
+                // 今日订单
+                TodayOrderViewController *today = [TodayOrderViewController new];
+                [self.navigationController pushViewController:today animated:YES];
             }
         } else if(indexPath.section == 1){
             // 工作办公
@@ -265,43 +331,27 @@
                 // 审批
                 MyApproveVController *appear = [MyApproveVController new];
                 [self.navigationController pushViewController:appear animated:YES];
-            } else if(indexPath.row == 1){
-                // 我的工作
-                MyJobsViewController *job = [MyJobsViewController new];
-                [self.navigationController pushViewController:job animated:YES];
-            }else if(indexPath.row == 2){
-                // 今日订单
-                TodayOrderViewController *today = [TodayOrderViewController new];
-                [self.navigationController pushViewController:today animated:YES];
             }else{
                 // 考勤打卡
                 CheckTabBarController *kaoqin = [CheckTabBarController new];
                 [self.navigationController pushViewController:kaoqin animated:YES];
             }
         }else{
-            // 聚分享
-            if (indexPath.row == 0) {
-                // 拼团
-                PintuanViewController *pintuan = [PintuanViewController new];
-                [self.navigationController pushViewController:pintuan animated:YES];
-            } else if(indexPath.row == 1){
-                // 砍价
-                
-            }else if (indexPath.row == 2){
-                // 助力
-                
-            }else if (indexPath.row == 3){
-                // 集赞
-                
-            }else if (indexPath.row == 4){
-                // 众筹
-                
-            }else if (indexPath.row == 5){
-                // 全民公益
-                
+            // 营销工具
+            if (self.isJuFenxiang) {
+                // 有营销工具数据
+                SaleToolViewController *sale = [SaleToolViewController new];
+                ButtonIconModel *model = [ButtonIconModel new];
+                model.name = self.titleArray[indexPath.section][indexPath.row];
+                model.ico = self.iconArray[indexPath.section][indexPath.row];
+                model.id = self.idArray[indexPath.section][indexPath.row];
+                model.fromType = FromWebSite;
+                sale.saleModel = model;
+                [self.navigationController pushViewController:sale animated:YES];
             }else{
-                // 投票报名
-                
+                // 没有营销工具数据
+                EmptyViewController *empty = [EmptyViewController new];
+                [self.navigationController pushViewController:empty animated:YES];
             }
         }
     }
@@ -341,12 +391,12 @@
     if(kind == UICollectionElementKindSectionHeader){
         
         if ([self.userModel.type intValue] == 1) {
-            NSArray *titleArr = @[@"ERP应用",@"财务应用",@"工作办公",@"聚分享"];
+            NSArray *titleArr = @[@"ERP应用",@"财务管理",@"工作办公",@"营销工具"];
             HomeReusableView * headerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeReusableView" forIndexPath:indexPath];
             headerview.title = titleArr[indexPath.section];
             reusableview = headerview;
         }else{
-            NSArray *titleArr = @[@"ERP应用",@"工作办公",@"聚分享"];
+            NSArray *titleArr = @[@"ERP应用",@"工作办公",@"营销工具"];
             HomeReusableView * headerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HomeReusableView" forIndexPath:indexPath];
             headerview.title = titleArr[indexPath.section];
             reusableview = headerview;
@@ -392,6 +442,42 @@
     PublicNoticeController *gonggao = [PublicNoticeController new];
     [self.navigationController pushViewController:gonggao animated:YES];
 }
+#pragma mark - 展示新特性
+- (void)showNewPages
+{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (app.isShowNewPage) {
+        CATransition *animation = [CATransition animation];
+        animation.duration = 0.5;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.type = kCATransitionFade;
+        animation.subtype = kCATransitionFromTop;
+        [self.view.window.layer addAnimation:animation forKey:nil];
+        
+        NewFutherViewController *newFuther = [NewFutherViewController new];
+        [self presentViewController:newFuther animated:NO completion:^{
+            
+        }];
+    }
+}
+#pragma mark - 网络状况发送了变化
+- (void)networkChanged:(EMConnectionState)connectionState;
+{
+    if (connectionState == EMConnectionDisconnected) {
+        // 网络失去连接fo_bg_06
+        self.topView.image = [UIImage imageNamed:@"lose_wlan"];
+    }else{
+        // 获得连接
+        self.topView.image = [UIImage imageNamed:@"sy_bg"];
+        if (!self.isJuFenxiang) {
+            
+            [self getJufenxiangInfo];
+        }
+    }
+    
+}
+
+
 #pragma mark - 懒加载
 - (UICollectionView *)collectionView
 {
@@ -422,6 +508,24 @@
     }
     return _topView;
 }
-
+- (UIButton *)refreshButton
+{
+    if (!_refreshButton) {
+        _refreshButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_refreshButton setFrame:CGRectMake(SCREEN_WIDTH - 33 - 12, 25, 40, 40)];
+        [_refreshButton setImage:[UIImage imageNamed:@"btn_refresh"] forState:UIControlStateNormal];
+        [_refreshButton addTarget:self action:@selector(getJufenxiangInfo) forControlEvents:UIControlEventTouchUpInside];
+        _refreshButton.backgroundColor = [UIColor clearColor];
+    }
+    return _refreshButton;
+}
+- (UIActivityIndicatorView *)indicatorV
+{
+    if (!_indicatorV) {
+        _indicatorV = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 12 - 33, 25, 40, 40)];
+        _indicatorV.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhite;
+    }
+    return _indicatorV;
+}
 
 @end

@@ -15,7 +15,6 @@
 #import <Masonry.h>
 #import <MJExtension/MJExtension.h>
 #import "ZCAccountTool.h"
-//
 #import "SearchDBManager.h"
 
 
@@ -151,35 +150,31 @@
 - (void)createSearchBar {
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
     _searchBar.delegate = self;
-    _searchBar.placeholder = @"请输入姓名或电话号码";
+    _searchBar.placeholder = @"客户名字或号码，支持模糊查询";
     [self.view addSubview:_searchBar];
 }
 
 
 
--(UITableView *)recordTableView{
+- (UITableView *)recordTableView{
     if (!_recordTableView) {
         _recordTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
         _recordTableView.showsVerticalScrollIndicator = NO;
         _recordTableView.backgroundColor = self.view.backgroundColor;
         _recordTableView.tag = 11;
-        _recordTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-        [self.view   addSubview:_recordTableView];
+        _recordTableView.rowHeight = 55;
+        [self.view  addSubview:_recordTableView];
         
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 104)];
         UIButton *clearButton = [[UIButton alloc] init];
        [clearButton setImage:[UIImage imageNamed:@"delete_icon"] forState:UIControlStateNormal];
-        [clearButton setTitle:@"  清空历史搜索" forState:UIControlStateNormal];
+        [clearButton setTitle:@"  清空历史记录" forState:UIControlStateNormal];
         [clearButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        //[clearButton setTitleColor:[UIColor colorWithRed:242/256 green:242/256 blue:242/256 alpha:1] forState:UIControlStateNormal];
         clearButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
         clearButton.titleLabel.font = [UIFont systemFontOfSize:15];
         [clearButton addTarget:self action:@selector(clearButtonClick) forControlEvents:UIControlEventTouchDown];
         clearButton.backgroundColor = [UIColor whiteColor];
         clearButton.layer.cornerRadius = 5;
-        clearButton.layer.borderWidth = 0.5;
-        clearButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        //    clearButton.layer.borderColor = [UIColor colorWithRed:242/256 green:242/256 blue:242/256 alpha:1].CGColor;
         
         [footView addSubview:clearButton];
         
@@ -260,11 +255,6 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identify];
-            //cell 下面的横线
-            UILabel *lineLabel = [[UILabel alloc] init];
-            lineLabel.frame = CGRectMake(0, cell.frame.size.height - 0.1, cell.frame.size.width, 0.1);
-            lineLabel.backgroundColor = [UIColor colorWithRed:242/256 green:242/256 blue:242/256 alpha:1];
-            [cell addSubview:lineLabel];
         }
         
         SearchModel *model = (SearchModel *)[self exchangeArray:self.dataArray][indexPath.row];
@@ -282,17 +272,20 @@
     
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"  历史搜索记录";
-    label.textColor = MainColor;
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *footV = [[UIView alloc]initWithFrame:CGRectZero];
+    footV.backgroundColor = ToolBarColor;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.view.width - 30, 33)];
+    label.text = @"历史搜索记录";
     label.backgroundColor = ToolBarColor;
-    label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     label.font = [UIFont systemFontOfSize:15];
-    return  label;
-    
+    [footV addSubview:label];
+    return footV;
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 33;
+}
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     
     if (tableView.tag == 11) {
@@ -320,7 +313,7 @@
     
     if (tableView.tag == 12) {
         UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"📱" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-            // 删除该产品
+            // 打电话
             SearchViewModel * searchModel = self.dataSource[indexPath.section];
             NSURL *phoheURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",searchModel.phone]];
             UIWebView *phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
@@ -385,6 +378,7 @@
 
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    
     self.recordTableView.hidden = NO ;
     self.recordTableView.delegate =self;
     self.recordTableView.dataSource= self;
@@ -521,13 +515,6 @@
         return YES;
     }
 }
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 
 
 

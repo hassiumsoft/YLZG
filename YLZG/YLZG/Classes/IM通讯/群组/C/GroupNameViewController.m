@@ -135,7 +135,7 @@
                     if (_YLGroupModelBlock) {
                         _YLGroupModelBlock(self.groupModel);
                     }
-                    
+                    [YLNotificationCenter postNotificationName:HXUpdataGroupInfo object:nil];
                     [self.navigationController popViewControllerAnimated:YES];
                     
                     

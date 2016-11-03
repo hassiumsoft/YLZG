@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "HomeTabbarController.h"
+#import "HomeViewController.h"
 #import "ChatListViewController.h"
 #import "ContactListViewController.h"
 #import "CallViewController.h"
@@ -18,8 +19,6 @@
 
 /** 从服务器获取推送属性 */
 - (void)asyncPushOptions;
-/** 群组相关 */
-//- (void)asyncGroupFromServer;
 /** 从数据库获取回话列表 */
 - (void)asyncConversationFromDB;
 /** 呼出电话 */
@@ -33,6 +32,8 @@
 
 /** tabbar */
 @property (weak,nonatomic) HomeTabbarController *tabbarVC;
+/** 首页 */
+@property (weak,nonatomic) HomeViewController *homeVC;
 /** 消息列表 */
 @property (weak,nonatomic) ChatListViewController *chatListVC;
 /** 聊天界面 */

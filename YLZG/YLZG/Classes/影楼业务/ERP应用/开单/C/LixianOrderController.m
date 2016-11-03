@@ -11,7 +11,6 @@
 #import "OffLineOrder.h"
 #import "OfflineOrderTableCell.h"
 #import <LCActionSheet.h>
-#import <SVProgressHUD.h>
 #import <Masonry.h>
 #import "HTTPManager.h"
 #import "NormalIconView.h"
@@ -122,7 +121,7 @@
     [sendButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.rightBottomV.mas_centerY);
         make.centerX.equalTo(self.rightBottomV.mas_centerX);
-        make.height.equalTo(@35);
+        make.height.equalTo(@40);
         make.left.equalTo(self.rightBottomV.mas_left).offset(20);
     }];
     

@@ -178,7 +178,7 @@
             make.centerX.equalTo(foot.mas_centerX);
             make.bottom.equalTo(foot.mas_bottom).offset(-1);
             make.width.equalTo(@(SCREEN_WIDTH - 40*CKproportion));
-            make.height.equalTo(@36);
+            make.height.equalTo(@40);
         }];
         return foot;
     }

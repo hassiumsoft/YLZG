@@ -7,7 +7,7 @@
 //
 
 #import "YLZGTitleLabel.h"
-
+#import <Masonry.h>
 
 @interface YLZGTitleLabel ()
 
@@ -19,21 +19,31 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        
+        self.backgroundColor = MainColor;
         self.textAlignment = NSTextAlignmentCenter;
         self.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
         self.userInteractionEnabled = YES;
         self.scale = 0.0;
         
+        [self kkk];
     }
     return self;
+}
+
+- (void)kkk
+{
+    UIImageView *xian = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xuxian"]];
+    xian.frame = CGRectMake(0, 0, self.width, 1);
+    [self addSubview:xian];
 }
 
 /** 通过scale的改变改变多种参数 */
 - (void)setScale:(CGFloat)scale
 {
     _scale = scale;
-    self.textColor = [UIColor colorWithRed:0 green:0 blue:scale alpha:1.0]; // scale = 0.···;
-    CGFloat minScale = 0.75;// RGBACOLOR(31, 139, 229, 1)
+    self.textColor = [UIColor whiteColor];
+    CGFloat minScale = 0.8;
     CGFloat trueScale = minScale + (1 - minScale) * scale;
     self.transform = CGAffineTransformMakeScale(trueScale, trueScale);
     

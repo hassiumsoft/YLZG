@@ -44,7 +44,7 @@
 }
 - (void)setupSubViews
 {
-    self.dateSource = @[@[@"头像",@"姓名",@"手机号码"],@[@"生日",@"地区"]];
+    self.dateSource = @[@[@"头像",@"昵称",@"手机号码"],@[@"生日",@"地区"]];
     [self.view addSubview:self.tableView];
     
 }

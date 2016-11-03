@@ -206,9 +206,6 @@
 		3B4C13771DC85F4700827D4F /* MyJobsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C13151DC85F4700827D4F /* MyJobsViewController.m */; };
 		3B4C13781DC85F4700827D4F /* MyjobModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C13181DC85F4700827D4F /* MyjobModel.m */; };
 		3B4C13791DC85F4700827D4F /* MyJobsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C131B1DC85F4700827D4F /* MyJobsTableCell.m */; };
-		3B4C13981DC861F800827D4F /* PintuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C13971DC861F800827D4F /* PintuanViewController.m */; };
-		3B4C139B1DC8683C00827D4F /* PintuanActionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C139A1DC8683C00827D4F /* PintuanActionsController.m */; };
-		3B4C139E1DC8685900827D4F /* PintuanDataSourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C139D1DC8685900827D4F /* PintuanDataSourceController.m */; };
 		3B56D7651DC739CE003A57FD /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56D7111DC739CE003A57FD /* ChatListViewController.m */; };
 		3B56D7661DC739CE003A57FD /* SendLocaltionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56D7131DC739CE003A57FD /* SendLocaltionController.m */; };
 		3B56D7671DC739CE003A57FD /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56D7171DC739CE003A57FD /* ChatViewController.m */; };
@@ -250,6 +247,12 @@
 		3B5DC71D1DB87107000F7A06 /* EaseEmotionEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC7181DB87107000F7A06 /* EaseEmotionEscape.m */; };
 		3B5DC71E1DB87107000F7A06 /* EaseEmotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC71A1DB87107000F7A06 /* EaseEmotionManager.m */; };
 		3B5DC7201DB87265000F7A06 /* FixFopen.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC71F1DB87265000F7A06 /* FixFopen.c */; };
+		3B6E0ACA1DCAF2C600309037 /* SaleToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0AC91DCAF2C600309037 /* SaleToolViewController.m */; };
+		3B6E0ACD1DCAF32400309037 /* SaleIntrolduceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0ACC1DCAF32400309037 /* SaleIntrolduceController.m */; };
+		3B6E0AD01DCAF33C00309037 /* SaleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0ACF1DCAF33C00309037 /* SaleWebViewController.m */; };
+		3B6E0AD31DCAF35400309037 /* SaleDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0AD21DCAF35400309037 /* SaleDataViewController.m */; };
+		3B6E0AD61DCB0C3100309037 /* SaleToolModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0AD51DCB0C3100309037 /* SaleToolModel.m */; };
+		3B6E0AD91DCB111200309037 /* EmptyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0AD81DCB111200309037 /* EmptyViewController.m */; };
 		3B75EFC81DC2E3EF00D54807 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B75EFC41DC2E3EF00D54807 /* libWeChatSDK.a */; };
 		3B75EFCB1DC2EE0800D54807 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75EFCA1DC2EE0800D54807 /* WXApiManager.m */; };
 		3B75EFCE1DC2F02C00D54807 /* WXShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75EFCD1DC2F02C00D54807 /* WXShareView.m */; };
@@ -340,7 +343,6 @@
 		3BCF3A3C1D9E6CF800BEE236 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A321D9E6CF800BEE236 /* SDCollectionViewCell.m */; };
 		3BCF3A3D1D9E6CF800BEE236 /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A341D9E6CF800BEE236 /* SDCycleScrollView.m */; };
 		3BCF3A3E1D9E6CF800BEE236 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF3A361D9E6CF800BEE236 /* UIView+SDExtension.m */; };
-		3BD7E5E71DC88B380077584A /* IntroducePintuanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD7E5E61DC88B380077584A /* IntroducePintuanController.m */; };
 		3BF93D781DADDC950002EACA /* CalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF93D671DADDC950002EACA /* CalendarDayCell.m */; };
 		3BF93D791DADDC950002EACA /* CalendarDayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF93D691DADDC950002EACA /* CalendarDayModel.m */; };
 		3BF93D7A1DADDC950002EACA /* CalendarHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF93D6B1DADDC950002EACA /* CalendarHomeViewController.m */; };
@@ -772,12 +774,6 @@
 		3B4C13181DC85F4700827D4F /* MyjobModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyjobModel.m; sourceTree = "<group>"; };
 		3B4C131A1DC85F4700827D4F /* MyJobsTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyJobsTableCell.h; sourceTree = "<group>"; };
 		3B4C131B1DC85F4700827D4F /* MyJobsTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyJobsTableCell.m; sourceTree = "<group>"; };
-		3B4C13961DC861F800827D4F /* PintuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PintuanViewController.h; sourceTree = "<group>"; };
-		3B4C13971DC861F800827D4F /* PintuanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PintuanViewController.m; sourceTree = "<group>"; };
-		3B4C13991DC8683C00827D4F /* PintuanActionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PintuanActionsController.h; sourceTree = "<group>"; };
-		3B4C139A1DC8683C00827D4F /* PintuanActionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PintuanActionsController.m; sourceTree = "<group>"; };
-		3B4C139C1DC8685900827D4F /* PintuanDataSourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PintuanDataSourceController.h; sourceTree = "<group>"; };
-		3B4C139D1DC8685900827D4F /* PintuanDataSourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PintuanDataSourceController.m; sourceTree = "<group>"; };
 		3B56D7101DC739CE003A57FD /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
 		3B56D7111DC739CE003A57FD /* ChatListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListViewController.m; sourceTree = "<group>"; };
 		3B56D7121DC739CE003A57FD /* SendLocaltionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendLocaltionController.h; sourceTree = "<group>"; };
@@ -864,6 +860,18 @@
 		3B5DC7191DB87107000F7A06 /* EaseEmotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmotionManager.h; sourceTree = "<group>"; };
 		3B5DC71A1DB87107000F7A06 /* EaseEmotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmotionManager.m; sourceTree = "<group>"; };
 		3B5DC71F1DB87265000F7A06 /* FixFopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FixFopen.c; sourceTree = "<group>"; };
+		3B6E0AC81DCAF2C600309037 /* SaleToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleToolViewController.h; sourceTree = "<group>"; };
+		3B6E0AC91DCAF2C600309037 /* SaleToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleToolViewController.m; sourceTree = "<group>"; };
+		3B6E0ACB1DCAF32400309037 /* SaleIntrolduceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleIntrolduceController.h; sourceTree = "<group>"; };
+		3B6E0ACC1DCAF32400309037 /* SaleIntrolduceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleIntrolduceController.m; sourceTree = "<group>"; };
+		3B6E0ACE1DCAF33C00309037 /* SaleWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleWebViewController.h; sourceTree = "<group>"; };
+		3B6E0ACF1DCAF33C00309037 /* SaleWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleWebViewController.m; sourceTree = "<group>"; };
+		3B6E0AD11DCAF35400309037 /* SaleDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleDataViewController.h; sourceTree = "<group>"; };
+		3B6E0AD21DCAF35400309037 /* SaleDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleDataViewController.m; sourceTree = "<group>"; };
+		3B6E0AD41DCB0C3100309037 /* SaleToolModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleToolModel.h; sourceTree = "<group>"; };
+		3B6E0AD51DCB0C3100309037 /* SaleToolModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleToolModel.m; sourceTree = "<group>"; };
+		3B6E0AD71DCB111200309037 /* EmptyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyViewController.h; sourceTree = "<group>"; };
+		3B6E0AD81DCB111200309037 /* EmptyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyViewController.m; sourceTree = "<group>"; };
 		3B75EFC41DC2E3EF00D54807 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		3B75EFC51DC2E3EF00D54807 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		3B75EFC61DC2E3EF00D54807 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -1051,8 +1059,6 @@
 		3BCF3A341D9E6CF800BEE236 /* SDCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCycleScrollView.m; sourceTree = "<group>"; };
 		3BCF3A351D9E6CF800BEE236 /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
 		3BCF3A361D9E6CF800BEE236 /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
-		3BD7E5E51DC88B380077584A /* IntroducePintuanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroducePintuanController.h; sourceTree = "<group>"; };
-		3BD7E5E61DC88B380077584A /* IntroducePintuanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroducePintuanController.m; sourceTree = "<group>"; };
 		3BF93D661DADDC950002EACA /* CalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDayCell.h; sourceTree = "<group>"; };
 		3BF93D671DADDC950002EACA /* CalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDayCell.m; sourceTree = "<group>"; };
 		3BF93D681DADDC950002EACA /* CalendarDayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDayModel.h; sourceTree = "<group>"; };
@@ -1476,13 +1482,9 @@
 		3B4C0F9F1DC85DDC00827D4F /* 聚分享 */ = {
 			isa = PBXGroup;
 			children = (
-				3B4C137A1DC860FE00827D4F /* 集赞 */,
-				3B4C137E1DC860FE00827D4F /* 砍价 */,
-				3B4C13821DC860FE00827D4F /* 拼团 */,
-				3B4C13861DC860FE00827D4F /* 全民公益 */,
-				3B4C138A1DC860FE00827D4F /* 投票报名 */,
-				3B4C138E1DC860FE00827D4F /* 众筹 */,
-				3B4C13921DC860FE00827D4F /* 助力 */,
+				3B6E0AC51DCAF28500309037 /* C */,
+				3B6E0AC61DCAF28500309037 /* M */,
+				3B6E0AC71DCAF28500309037 /* V */,
 			);
 			path = "聚分享";
 			sourceTree = "<group>";
@@ -2448,231 +2450,6 @@
 			path = V;
 			sourceTree = "<group>";
 		};
-		3B4C137A1DC860FE00827D4F /* 集赞 */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C137B1DC860FE00827D4F /* C */,
-				3B4C137C1DC860FE00827D4F /* M */,
-				3B4C137D1DC860FE00827D4F /* V */,
-			);
-			path = "集赞";
-			sourceTree = "<group>";
-		};
-		3B4C137B1DC860FE00827D4F /* C */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		3B4C137C1DC860FE00827D4F /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
-		3B4C137D1DC860FE00827D4F /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
-			sourceTree = "<group>";
-		};
-		3B4C137E1DC860FE00827D4F /* 砍价 */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C137F1DC860FE00827D4F /* C */,
-				3B4C13801DC860FE00827D4F /* M */,
-				3B4C13811DC860FE00827D4F /* V */,
-			);
-			path = "砍价";
-			sourceTree = "<group>";
-		};
-		3B4C137F1DC860FE00827D4F /* C */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		3B4C13801DC860FE00827D4F /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
-		3B4C13811DC860FE00827D4F /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
-			sourceTree = "<group>";
-		};
-		3B4C13821DC860FE00827D4F /* 拼团 */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C13831DC860FE00827D4F /* C */,
-				3B4C13841DC860FE00827D4F /* M */,
-				3B4C13851DC860FE00827D4F /* V */,
-			);
-			path = "拼团";
-			sourceTree = "<group>";
-		};
-		3B4C13831DC860FE00827D4F /* C */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C13961DC861F800827D4F /* PintuanViewController.h */,
-				3B4C13971DC861F800827D4F /* PintuanViewController.m */,
-				3B4C13991DC8683C00827D4F /* PintuanActionsController.h */,
-				3B4C139A1DC8683C00827D4F /* PintuanActionsController.m */,
-				3B4C139C1DC8685900827D4F /* PintuanDataSourceController.h */,
-				3B4C139D1DC8685900827D4F /* PintuanDataSourceController.m */,
-				3BD7E5E51DC88B380077584A /* IntroducePintuanController.h */,
-				3BD7E5E61DC88B380077584A /* IntroducePintuanController.m */,
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		3B4C13841DC860FE00827D4F /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
-		3B4C13851DC860FE00827D4F /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
-			sourceTree = "<group>";
-		};
-		3B4C13861DC860FE00827D4F /* 全民公益 */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C13871DC860FE00827D4F /* C */,
-				3B4C13881DC860FE00827D4F /* M */,
-				3B4C13891DC860FE00827D4F /* V */,
-			);
-			path = "全民公益";
-			sourceTree = "<group>";
-		};
-		3B4C13871DC860FE00827D4F /* C */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		3B4C13881DC860FE00827D4F /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
-		3B4C13891DC860FE00827D4F /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
-			sourceTree = "<group>";
-		};
-		3B4C138A1DC860FE00827D4F /* 投票报名 */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C138B1DC860FE00827D4F /* C */,
-				3B4C138C1DC860FE00827D4F /* M */,
-				3B4C138D1DC860FE00827D4F /* V */,
-			);
-			path = "投票报名";
-			sourceTree = "<group>";
-		};
-		3B4C138B1DC860FE00827D4F /* C */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		3B4C138C1DC860FE00827D4F /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
-		3B4C138D1DC860FE00827D4F /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
-			sourceTree = "<group>";
-		};
-		3B4C138E1DC860FE00827D4F /* 众筹 */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C138F1DC860FE00827D4F /* C */,
-				3B4C13901DC860FE00827D4F /* M */,
-				3B4C13911DC860FE00827D4F /* V */,
-			);
-			path = "众筹";
-			sourceTree = "<group>";
-		};
-		3B4C138F1DC860FE00827D4F /* C */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		3B4C13901DC860FE00827D4F /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
-		3B4C13911DC860FE00827D4F /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
-			sourceTree = "<group>";
-		};
-		3B4C13921DC860FE00827D4F /* 助力 */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C13931DC860FE00827D4F /* C */,
-				3B4C13941DC860FE00827D4F /* M */,
-				3B4C13951DC860FE00827D4F /* V */,
-			);
-			path = "助力";
-			sourceTree = "<group>";
-		};
-		3B4C13931DC860FE00827D4F /* C */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		3B4C13941DC860FE00827D4F /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
-		3B4C13951DC860FE00827D4F /* V */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = V;
-			sourceTree = "<group>";
-		};
 		3B56D70F1DC739CE003A57FD /* C */ = {
 			isa = PBXGroup;
 			children = (
@@ -2855,6 +2632,39 @@
 				3B56D7621DC739CE003A57FD /* ChatListHeadView.m */,
 				3B56D7631DC739CE003A57FD /* MessageListTableCell.h */,
 				3B56D7641DC739CE003A57FD /* MessageListTableCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		3B6E0AC51DCAF28500309037 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				3B6E0AC81DCAF2C600309037 /* SaleToolViewController.h */,
+				3B6E0AC91DCAF2C600309037 /* SaleToolViewController.m */,
+				3B6E0ACE1DCAF33C00309037 /* SaleWebViewController.h */,
+				3B6E0ACF1DCAF33C00309037 /* SaleWebViewController.m */,
+				3B6E0AD11DCAF35400309037 /* SaleDataViewController.h */,
+				3B6E0AD21DCAF35400309037 /* SaleDataViewController.m */,
+				3B6E0ACB1DCAF32400309037 /* SaleIntrolduceController.h */,
+				3B6E0ACC1DCAF32400309037 /* SaleIntrolduceController.m */,
+				3B6E0AD71DCB111200309037 /* EmptyViewController.h */,
+				3B6E0AD81DCB111200309037 /* EmptyViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		3B6E0AC61DCAF28500309037 /* M */ = {
+			isa = PBXGroup;
+			children = (
+				3B6E0AD41DCB0C3100309037 /* SaleToolModel.h */,
+				3B6E0AD51DCB0C3100309037 /* SaleToolModel.m */,
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		3B6E0AC71DCAF28500309037 /* V */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3681,6 +3491,7 @@
 				3B4C10D61DC85DDC00827D4F /* SearchTaoxiController.m in Sources */,
 				3B56D7801DC739CE003A57FD /* EaseChatToolbarItem.m in Sources */,
 				3B4C10C41DC85DDC00827D4F /* RightBadgeView.m in Sources */,
+				3B6E0ACD1DCAF32400309037 /* SaleIntrolduceController.m in Sources */,
 				3B3BBFC91DB48BEB00C9E2FD /* GroupTableViewCell.m in Sources */,
 				3B4C13791DC85F4700827D4F /* MyJobsTableCell.m in Sources */,
 				3BCF39EC1D9E5AD200BEE236 /* NameViewController.m in Sources */,
@@ -3730,7 +3541,6 @@
 				3BCF39731D9DF42100BEE236 /* StudioContactManager.m in Sources */,
 				3BCA32431D9CC1A600A0E980 /* HomeNavigationController.m in Sources */,
 				3B4C10B61DC85DDC00827D4F /* SpotViewController.m in Sources */,
-				3B4C139B1DC8683C00827D4F /* PintuanActionsController.m in Sources */,
 				3B7ABCAB1DB5B33400F3D12B /* IviteGroupersCollectionCell.m in Sources */,
 				3BCA325A1D9CC1F900A0E980 /* NSString+StrCategory.m in Sources */,
 				3B3BBFBC1DB484EA00C9E2FD /* YLSearchBar.m in Sources */,
@@ -3753,7 +3563,6 @@
 				3B4C10AD1DC85DDC00827D4F /* YLZGTitleLabel.m in Sources */,
 				3B4C10A71DC85DDC00827D4F /* NormalconButton.m in Sources */,
 				3B4C132B1DC85F4700827D4F /* QiandaoViewController.m in Sources */,
-				3BD7E5E71DC88B380077584A /* IntroducePintuanController.m in Sources */,
 				3B3BBFB91DB484EA00C9E2FD /* IvitMembersTableCell.m in Sources */,
 				3B4C13471DC85F4700827D4F /* ChengyuanChangeController.m in Sources */,
 				3B4C132F1DC85F4700827D4F /* AllQiaodaoCollectionViewCell.m in Sources */,
@@ -3808,7 +3617,6 @@
 				3B4C13311DC85F4700827D4F /* qiaodaocountBtn.m in Sources */,
 				3B4C13341DC85F4700827D4F /* TeamZhengchangDakaController.m in Sources */,
 				3BCA32631D9CC25100A0E980 /* PresentingAnimator.m in Sources */,
-				3B4C13981DC861F800827D4F /* PintuanViewController.m in Sources */,
 				3B4C13421DC85F4700827D4F /* ChooseMemVController.m in Sources */,
 				3B5DC7201DB87265000F7A06 /* FixFopen.c in Sources */,
 				3B4C135E1DC85F4700827D4F /* ChangeRulesController.m in Sources */,
@@ -3858,8 +3666,8 @@
 				3B4C10D71DC85DDC00827D4F /* SearchOrderModel.m in Sources */,
 				3B4C10D11DC85DDC00827D4F /* SearchViewModel.m in Sources */,
 				3B4C10BF1DC85DDC00827D4F /* OffLineOrder.m in Sources */,
-				3B4C139E1DC8685900827D4F /* PintuanDataSourceController.m in Sources */,
 				3BCF39701D9DF42100BEE236 /* GroupListManager.m in Sources */,
+				3B6E0ACA1DCAF2C600309037 /* SaleToolViewController.m in Sources */,
 				3B4C131F1DC85F4700827D4F /* NoticeModel.m in Sources */,
 				3B7ABCEE1DB6176600F3D12B /* EMAudioPlayerUtil.m in Sources */,
 				3BF93D801DADDC950002EACA /* NSDate+WQCalendarLogic.m in Sources */,
@@ -3899,6 +3707,7 @@
 				3BCF39E41D9E50D300BEE236 /* NoDequTableCell.m in Sources */,
 				3B7ABCEF1DB6176600F3D12B /* EMAudioRecorderUtil.m in Sources */,
 				3BCF3A211D9E6A4800BEE236 /* MyStudioVController.m in Sources */,
+				3B6E0AD61DCB0C3100309037 /* SaleToolModel.m in Sources */,
 				3B7ABCA91DB5B33400F3D12B /* GroupMemberCollectionCell.m in Sources */,
 				3B5DC71E1DB87107000F7A06 /* EaseEmotionManager.m in Sources */,
 				3B4C13581DC85F4700827D4F /* MutliChoceStaffCell.m in Sources */,
@@ -3927,6 +3736,7 @@
 				3B4C13401DC85F4700827D4F /* AddKaoqinzuController.m in Sources */,
 				3BCF3A0A1D9E65E800BEE236 /* FMetaTool.m in Sources */,
 				3B56D76E1DC739CE003A57FD /* EaseBaseMessageCell.m in Sources */,
+				3B6E0AD01DCAF33C00309037 /* SaleWebViewController.m in Sources */,
 				3B56D76F1DC739CE003A57FD /* EaseCustomMessageCell.m in Sources */,
 				3B4C132E1DC85F4700827D4F /* AllQiaodaoDetailModel.m in Sources */,
 				3B5DC71C1DB87107000F7A06 /* EaseEmojiEmoticons.m in Sources */,
@@ -3953,6 +3763,7 @@
 				3BF93D781DADDC950002EACA /* CalendarDayCell.m in Sources */,
 				3BCF3A1F1D9E6A4800BEE236 /* AboutUSController.m in Sources */,
 				3B4C10B71DC85DDC00827D4F /* AllProductList.m in Sources */,
+				3B6E0AD31DCAF35400309037 /* SaleDataViewController.m in Sources */,
 				3B4C134C1DC85F4700827D4F /* TimeSetViewController.m in Sources */,
 				3B56D7821DC739CE003A57FD /* SendLocationModel.m in Sources */,
 				3BCF3A061D9E65E800BEE236 /* CitySearchResultController.m in Sources */,
@@ -3980,6 +3791,7 @@
 				3B4C103F1DC85DDC00827D4F /* TitleColorView.m in Sources */,
 				3BCA32581D9CC1F900A0E980 /* NSDate+Extension.m in Sources */,
 				3BF93D7B1DADDC950002EACA /* CalendarLogic.m in Sources */,
+				3B6E0AD91DCB111200309037 /* EmptyViewController.m in Sources */,
 				3B4C13761DC85F4700827D4F /* MyJobsDetialController.m in Sources */,
 				3B4C10B31DC85DDC00827D4F /* OpenOrderViewController.m in Sources */,
 				3B4C103C1DC85DDC00827D4F /* OutNoColorTableCell.m in Sources */,
