@@ -3280,13 +3280,13 @@
 		3BCF39F11D9E65C800BEE236 /* 所在地 */ = {
 			isa = PBXGroup;
 			children = (
+				3BCF39F51D9E65E800BEE236 /* CityViewController.h */,
+				3BCF39F61D9E65E800BEE236 /* CityViewController.m */,
+				3BCF39F31D9E65E800BEE236 /* CitySearchResultController.h */,
+				3BCF39F41D9E65E800BEE236 /* CitySearchResultController.m */,
 				3BCF3A0F1D9E661700BEE236 /* cityGroups.plist */,
 				3BCF3A101D9E661700BEE236 /* FoBaike.plist */,
 				3BCF39F21D9E65E800BEE236 /* cities.plist */,
-				3BCF39F31D9E65E800BEE236 /* CitySearchResultController.h */,
-				3BCF39F41D9E65E800BEE236 /* CitySearchResultController.m */,
-				3BCF39F51D9E65E800BEE236 /* CityViewController.h */,
-				3BCF39F61D9E65E800BEE236 /* CityViewController.m */,
 				3BCF39F71D9E65E800BEE236 /* FCityGroup.h */,
 				3BCF39F81D9E65E800BEE236 /* FCityGroup.m */,
 				3BCF39F91D9E65E800BEE236 /* FCityModel.h */,

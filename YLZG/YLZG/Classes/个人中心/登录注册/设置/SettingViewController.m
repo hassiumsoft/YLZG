@@ -122,7 +122,7 @@
             // 推送设置
             PushNotificationViewController *push = [PushNotificationViewController new];
             [self.navigationController pushViewController:push animated:YES];
-        } else {
+        } else if(indexPath.row == 1){
             // 去评分
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/ying-lou-zhang-gui/id1135389493?mt=8"]];
         }

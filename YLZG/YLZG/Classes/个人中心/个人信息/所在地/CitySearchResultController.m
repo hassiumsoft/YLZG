@@ -9,6 +9,7 @@
 #import "CitySearchResultController.h"
 #import "FCityGroup.h"
 #import "FCityModel.h"
+#import "UserInfoManager.h"
 #import "FMetaTool.h"
 #import <Masonry.h>
 
@@ -63,9 +64,12 @@
 {
     FCityModel *city = self.resultCities[indexPath.row];
     [YLNotificationCenter postNotificationName:YLCityDidChangeNotification object:nil userInfo:@{YLSelectCityName:city.name}];
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    BOOL isSave = [UserInfoManager updataUserInfoWithKey:@"location" Value:city.name];
+    if (isSave) {
+        if (_DidSelectCity) {
+            _DidSelectCity();
+        }
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

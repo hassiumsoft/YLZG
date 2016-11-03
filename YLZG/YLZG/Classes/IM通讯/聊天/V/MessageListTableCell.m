@@ -119,8 +119,8 @@
         }
         // 通过model.conversationId来获取他信息
         [GroupListManager getGroupInfoByGroupID:model.conversationId Block:^(YLGroup *groupModel) {
-            _headImageV.image = [UIImage imageNamed:@"meng_bg"];
-            _nameLabel.text = [NSString stringWithFormat:@"%@[群聊]",groupModel.gname];
+            _headImageV.image = [UIImage imageNamed:@"group_add_icon"];
+            _nameLabel.text = [NSString stringWithFormat:@"%@·群聊",groupModel.gname];
         }];
     }
 }

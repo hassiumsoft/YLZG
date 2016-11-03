@@ -48,6 +48,9 @@
         CitySearchResultController *citySearchResult = [[CitySearchResultController alloc] init];
         [self addChildViewController:citySearchResult];
         self.citySearchResult = citySearchResult;
+        citySearchResult.DidSelectCity = ^(){
+            [self.navigationController popViewControllerAnimated:YES];
+        };
         [self.view addSubview:self.citySearchResult.view];
         
         [self.citySearchResult.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero excludingEdge:ALEdgeTop];
@@ -249,13 +252,10 @@
     // 修改城市
     NSString *selectCity;
     if (indexPath.section > 0) {
-//        [YLNotificationCenter postNotificationName:YLCityDidChangeNotification object:nil userInfo:@{YLSelectCityName:group.cities[indexPath.row]}];
         selectCity = group.cities[indexPath.row];
     }else{
-//        [YLNotificationCenter postNotificationName:YLCityDidChangeNotification object:nil userInfo:@{YLSelectCityName:self.city}];
         selectCity = self.city;
     }
-    
     BOOL isSave = [UserInfoManager updataUserInfoWithKey:@"location" Value:selectCity];
     if (isSave) {
         if (_CityBlock) {

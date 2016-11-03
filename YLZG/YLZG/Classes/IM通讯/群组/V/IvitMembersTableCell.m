@@ -40,9 +40,9 @@
     }
     _nameLabel.text = model.realname.length > 0 ? model.realname:model.name;
     if (!model.isSelected) {
-        [self.selectBtn setImage:[UIImage imageNamed:@"selected_no"] forState:UIControlStateNormal];
+        [self.selectBtn setImage:[UIImage imageNamed:@"EditControl"] forState:UIControlStateNormal];
     }else{
-        [self.selectBtn setImage:[UIImage imageNamed:@"selected_yes"] forState:UIControlStateNormal];
+        [self.selectBtn setImage:[UIImage imageNamed:@"EditControlSelected"] forState:UIControlStateNormal];
     }
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -69,7 +69,7 @@
     [self addSubview:self.nameLabel];
     
     self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.selectBtn setImage:[UIImage imageNamed:@"selected_no"] forState:UIControlStateNormal];
+    [self.selectBtn setImage:[UIImage imageNamed:@"EditControl"] forState:UIControlStateNormal];
     [self addSubview:self.selectBtn];
     [self.selectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
