@@ -12,9 +12,11 @@
 #import <MJExtension.h>
 #import "NormalTableCell.h"
 #import "SVProgressHUD.h"
-#import <FMDB.h>
+//#import <FMDB.h>
 #import "HTTPManager.h"
 
+
+#define SaveViewHeight 78
 @interface ChangeTaoxiController ()<UITableViewDelegate,UITableViewDataSource>
 /** 母表格 */
 @property (strong,nonatomic) UITableView *momTableV;
@@ -27,6 +29,9 @@
 
 /** 依次离线缓存 */
 @property (strong,nonatomic) NSMutableArray *lixianArray;
+
+/** 底部保存按钮 */
+@property (strong,nonatomic) UIView *saveView;
 
 @end
 
@@ -82,13 +87,16 @@
 #pragma mark - 绘制母表格
 - (void)setupMomTableView
 {
-    self.momTableV = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH * 0.34, self.view.height)];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.momTableV = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH * 0.34, self.view.height - SaveViewHeight)];
     self.momTableV.backgroundColor = [UIColor whiteColor];
     self.momTableV.delegate = self;
     self.momTableV.dataSource = self;
     self.momTableV.contentInset = UIEdgeInsetsMake(12, 0, 0, 0);
     self.momTableV.rowHeight = 50.f;
     [self.view addSubview:self.momTableV];
+    
+    [self.view addSubview:self.saveView];
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -145,8 +153,8 @@
 - (UITableView *)sonTableV
 {
     if (!_sonTableV) {
-        _sonTableV = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH * 0.34, 0, SCREEN_WIDTH * 0.66, self.view.height)];
-        _sonTableV.backgroundColor = self.view.backgroundColor;
+        _sonTableV = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH * 0.34, 0, SCREEN_WIDTH * 0.66, self.view.height - SaveViewHeight)];
+        _sonTableV.backgroundColor = [UIColor whiteColor];
         _sonTableV.delegate = self;
         _sonTableV.dataSource = self;
         UIView *kk = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH * 0.66, 12)];
@@ -157,6 +165,25 @@
         
     }
     return _sonTableV;
+}
+- (UIView *)saveView
+{
+    if (!_saveView) {
+        _saveView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 64 - SaveViewHeight, SCREEN_WIDTH, SaveViewHeight)];
+        _saveView.backgroundColor = NorMalBackGroudColor;
+        
+        UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [saveButton setTitle:@"离线开单缓存" forState:UIControlStateNormal];
+        [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        saveButton.backgroundColor = MainColor;
+        saveButton.layer.masksToBounds = YES;
+        saveButton.layer.cornerRadius = 4;
+        [saveButton addTarget:self action:@selector(lixianAction) forControlEvents:UIControlEventTouchUpInside];
+        [saveButton setFrame:CGRectMake(20, (SaveViewHeight - 40)/2, SCREEN_WIDTH - 40, 40)];
+        [_saveView addSubview:saveButton];
+        
+    }
+    return _saveView;
 }
 - (NSMutableArray *)lixianArray
 {
@@ -173,8 +200,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"一键缓存" style:UIBarButtonItemStylePlain target:self action:@selector(lixianAction)];
-    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
 }
 #pragma mark - 先获取全部套系下产品，为离线做准备
 - (void)lixianAction
@@ -192,13 +217,18 @@
     }
     
     ZCAccount *account = [ZCAccountTool account];
-    for (NSString *taoxiName in taoxiNameArr) {
-        //    self.taoName = @"";  // ⚠️⚠️后面需要注释⚠️⚠️
+    for (int i = 0; i < taoxiNameArr.count; i++) {
+        
+        NSString *taoxiName = taoxiNameArr[i];
         NSString *str = [NSString stringWithFormat:TaoxiProduct_Url,taoxiName,account.userID];
         
         dispatch_async(ZCGlobalQueue, ^{
             [HTTPManager GETCache:str params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 int status = [[[responseObject objectForKey:@"code"] description] intValue];
+                if (i == taoxiNameArr.count - 1) {
+                    [self hideHud:0];
+                    [self sendErrorWarning:@"产品列表缓存成功，在外出无网络状况下您也可实现开单，缓存时间48小时。"];
+                }
                 if (status == 1) {
                     KGLog(@"json成功 = %@",responseObject);
                 }else{
@@ -208,12 +238,7 @@
                 [self showErrorTips:error.localizedDescription];
             }];
         });
-        
-  }
-    
-    [self hideHud:0];
-    
-    [self sendErrorWarning:@"产品列表缓存成功，在无网络状况时您也可实现开单。"];
+    }
     
 }
 

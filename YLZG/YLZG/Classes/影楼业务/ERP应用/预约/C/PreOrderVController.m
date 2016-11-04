@@ -133,7 +133,7 @@
             cell.backgroundColor = self.view.backgroundColor;
             bottomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             bottomBtn.backgroundColor = MainColor;
-            bottomBtn.layer.cornerRadius = 5;
+            bottomBtn.layer.cornerRadius = 4;
             [bottomBtn setTitle:@"确定预约" forState:UIControlStateNormal];
             [bottomBtn addTarget:self action:@selector(yuyueAction:) forControlEvents:UIControlEventTouchUpInside];
             [cell addSubview:bottomBtn];

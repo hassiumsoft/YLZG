@@ -84,7 +84,7 @@
 - (void)changePrice
 {
     [self.textField endEditing:YES];
-    if ([self.textField.text isEqualToString:self.price] || self.textField.text.length < 1) {
+    if (self.textField.text.length < 1) {
         [self showErrorTips:@"错误输入"];
         return;
     }

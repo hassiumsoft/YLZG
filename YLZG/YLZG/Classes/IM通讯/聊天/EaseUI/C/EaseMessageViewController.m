@@ -691,7 +691,7 @@
         return;
     }
     
-    [self showHint:@"下载中"];
+    [self showHudMessage:@"下载中"];
     [[EMClient sharedClient].chatManager downloadMessageAttachment:model.message progress:^(int progress) {
     
     } completion:^(EMMessage *message, EMError *error) {
@@ -699,12 +699,13 @@
         if (!error) {
             block();
         }else{
-            [weakSelf showHint:@"视频加载失败"];
+            [weakSelf showErrorTips:@"视频加载失败"];
         }
     }];
     
 }
 
+#pragma mark - 点击查看大照
 - (void)_imageMessageCellSelected:(id<IMessageModel>)model
 {
     __weak EaseMessageViewController *weakSelf = self;
@@ -729,10 +730,10 @@
                     return;
                 }
             }
-            [weakSelf showHint:@"下载图片···"];
+            [weakSelf showHudMessage:@"下载图片中···"];
             
             [[EMClient sharedClient].chatManager downloadMessageAttachment:model.message progress:^(int progress) {
-                
+                NSLog(@"progress = %d",progress);
             } completion:^(EMMessage *message, EMError *error) {
                 [weakSelf hideHud:0];
                 if (!error) {

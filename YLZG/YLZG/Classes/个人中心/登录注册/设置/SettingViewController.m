@@ -11,6 +11,13 @@
 #import "PushNotificationViewController.h"
 #import <LCActionSheet.h>
 #import <Masonry.h>
+#import "ClearCacheTool.h"
+#import "UserInfoManager.h"
+#import "GroupListManager.h"
+#import "StudioContactManager.h"
+#import "HuanxinContactManager.h"
+#import <SDImageCache.h>
+#import "YLZGDataManager.h"
 #import "NoDequTableCell.h"
 
 @interface SettingViewController ()<UIAlertViewDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -38,7 +45,7 @@
 #pragma mark - 绘制UI
 - (void)setupSubViews
 {
-    self.array = [NSArray arrayWithObjects:@[@"自动登录",@"修改密码"],@[@"推送设置",@"评分支持影楼掌柜",@"自动同意好友申请"], nil];
+    self.array = [NSArray arrayWithObjects:@[@"自动登录",@"修改密码"],@[@"推送设置",@"一键更新缓存",@"评分支持影楼掌柜",@"自动同意好友申请"], nil];
     
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.returnView];
@@ -77,6 +84,8 @@
             // 修改密码
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             [cell.contentLabel removeFromSuperview];
+            [cell setAccessoryType:UITableViewCellAccessoryDetailButton];
+
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             
             return cell;
@@ -86,18 +95,28 @@
             // 推送设置
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             [cell.contentLabel removeFromSuperview];
+            [cell setAccessoryType:UITableViewCellAccessoryDetailButton];
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             
             return cell;
-        } else if(indexPath.row == 1){
+        }else if(indexPath.row == 1){
+            // 清理缓存
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            [cell.contentLabel removeFromSuperview];
+            [cell setAccessoryType:UITableViewCellAccessoryDetailButton];
+            cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+            
+            return cell;
+        }else if(indexPath.row == 2){
             // 评分支持影楼掌柜
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             [cell.contentLabel removeFromSuperview];
+            [cell setAccessoryType:UITableViewCellAccessoryDetailButton];
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             
             return cell;
         }else{
-            // 消息根据服务器时间排序
+            // 自动同意好友请求
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             [cell.contentLabel removeFromSuperview];
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -123,12 +142,49 @@
             PushNotificationViewController *push = [PushNotificationViewController new];
             [self.navigationController pushViewController:push animated:YES];
         } else if(indexPath.row == 1){
+            // 清理缓存
+            NSString *dicPath = [ClearCacheTool docPath];
+            [self clearSDWebImageCache:dicPath DeleteBlock:^{
+                [self showSuccessTips:@"更新成功"];
+            }];
+        }else if (indexPath.row == 2){
             // 去评分
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/ying-lou-zhang-gui/id1135389493?mt=8"]];
         }
     }
 }
-
+- (void)clearSDWebImageCache:(NSString *)path DeleteBlock:(DeleteCompleteBlock)deleBlock
+{
+    
+    [self showHudMessage:@"~~~"];
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:path]) {
+        NSArray *childerFiles=[fileManager subpathsAtPath:path];
+        for (NSString *fileName in childerFiles) {
+            //如有需要，加入条件，过滤掉不想删除的文件
+            if ([fileName isEqualToString:@"studio_contacts.sqlite"]
+                || [fileName isEqualToString:@"huanxin_contacts.sqlite"]
+                || [fileName isEqualToString:@"t_groups.sqlite"]) {
+                
+                [HuanxinContactManager deleteAllInfo];
+                [StudioContactManager deleteAllInfo];
+                [GroupListManager deleteAllGroupInfo];
+            }
+        }
+    }
+    [[SDImageCache sharedImageCache] cleanDisk];
+    [YLNotificationCenter postNotificationName:HXUpdataContacts object:nil];
+    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+        [self hideHud:0];
+        deleBlock();
+    }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self hideHud:0];
+    });
+    
+}
 #pragma mark - 退出登录
 - (void)logoutAction
 {
