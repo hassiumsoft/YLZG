@@ -25,6 +25,7 @@
 #import "ShekongBenController.h"
 #import "OrderCheckViewController.h"
 #import "YejiViewController.h"
+#import "MoreToolsViewController.h"
 #import "MyApproveVController.h"
 #import "TodayFinanceController.h"
 #import "TodayOrderViewController.h"
@@ -137,6 +138,7 @@
     
     if ([self.userModel.type intValue] == 1) {
         // 老板
+<<<<<<< HEAD
         self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"今日财务",@"财务统计"],@[@"审批",@"考勤打卡"],@[@"营销工具"]]];
         self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_icon_tofinace",@"btn_icon_monthfinace"],@[@"btn_ico_shenpi",@"btn_ico_kaoqin"],@[@"btn_ico_kaoqin"]]];
         self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1"],@[@"-1",@"-1"],@[@"-1"]]];
@@ -146,6 +148,17 @@
         self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"审批",@"考勤打卡"],@[@"营销工具"]]];
         self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_ico_shenpi",@"btn_ico_kaoqin"],@[@"btn_ico_kaoqin"]]];
         self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1"],@[@"-1"]]];
+=======
+        self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"今日财务",@"财务统计"],@[@"审批",@"考勤打卡",@"实用工具"],@[@"营销工具"]]];
+        self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_icon_tofinace",@"btn_icon_monthfinace"],@[@"btn_ico_shenpi",@"btn_ico_kaoqin",@"btn_more"],@[@"btn_ico_kaoqin"]]];
+        self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1",@"-1"],@[@"-1",@"-1"],@[@"-1"]]];
+        
+    }else{
+        // 员工
+        self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"审批",@"考勤打卡",@"实用工具"],@[@"营销工具"]]];
+        self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_ico_shenpi",@"btn_ico_kaoqin",@"btn_more"],@[@"btn_ico_kaoqin"]]];
+        self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1",@"-1"],@[@"-1"]]];
+>>>>>>> CoderChan/master
     }
     
     [self.view addSubview:self.collectionView];
@@ -264,10 +277,18 @@
                 // 审批
                 MyApproveVController *appear = [MyApproveVController new];
                 [self.navigationController pushViewController:appear animated:YES];
+<<<<<<< HEAD
             }else{
+=======
+            }else if(indexPath.row == 1){
+>>>>>>> CoderChan/master
                 // 考勤打卡
                 CheckTabBarController *kaoqin = [CheckTabBarController new];
                 [self.navigationController pushViewController:kaoqin animated:YES];
+            }else{
+                // 更多工具
+                MoreToolsViewController *moreTool = [MoreToolsViewController new];
+                [self.navigationController pushViewController:moreTool animated:YES];
             }
         }else{
             // 营销工具
@@ -331,10 +352,18 @@
                 // 审批
                 MyApproveVController *appear = [MyApproveVController new];
                 [self.navigationController pushViewController:appear animated:YES];
+<<<<<<< HEAD
             }else{
+=======
+            }else if(indexPath.row == 1){
+>>>>>>> CoderChan/master
                 // 考勤打卡
                 CheckTabBarController *kaoqin = [CheckTabBarController new];
                 [self.navigationController pushViewController:kaoqin animated:YES];
+            }else{
+                // 更多工具
+                MoreToolsViewController *moreTool = [MoreToolsViewController new];
+                [self.navigationController pushViewController:moreTool animated:YES];
             }
         }else{
             // 营销工具
