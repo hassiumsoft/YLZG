@@ -159,7 +159,7 @@
 
 -(UITableView *)recordTableView{
     if (!_recordTableView) {
-        _recordTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+        _recordTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_HEIGHT -300) style:UITableViewStylePlain];
         _recordTableView.showsVerticalScrollIndicator = NO;
         _recordTableView.backgroundColor = self.view.backgroundColor;
         _recordTableView.tag = 11;
