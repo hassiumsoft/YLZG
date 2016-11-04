@@ -152,46 +152,7 @@
             [self showErrorTips:error.localizedDescription];
         }];
         
-//        NSCharacterSet * set = [NSCharacterSet URLQueryAllowedCharacterSet];
-//        NSString * url = [str stringByAddingPercentEncodingWithAllowedCharacters:set];
-//        [AFHTTPSessionManager GETOder:url parameter:nil success:^(id responseObject) {
-//            NSError * error;
-//            NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
-//            if (error) {
-//                [self sendErrorWarning:[NSString stringWithFormat:@"%@", error.localizedDescription]];
-//            }else {
-//                [self.indicator1 stopAnimating];
-//                [sender setTitle:@"提  交" forState:UIControlStateNormal];
-//                int status = [[dict[@"code"]description] intValue];
-//                if (status == 1) {
-//                    
-//                    NSUserDefaults *userDefault = USER_DEFAULT;
-//                    [userDefault setObject:self.textField.text forKey:@"userPhone"];
-//                    [userDefault synchronize];
-//                    
-//                    [self.indicator1 stopAnimating];
-//                    [sender setTitle:@"确  定" forState:UIControlStateNormal];
-//                    
-//                    [self.label removeFromSuperview];
-//                    [self.textField removeFromSuperview];
-//                    [self.xian removeFromSuperview];
-//                    [self->commitBtn removeFromSuperview];
-//                    
-////                    [YLNotificationCenter postNotificationName:HXUpdataContacts object:nil];
-//                    [UserInfoManager updataUserInfoWithKey:@"mobile" Value:self.textField.text];
-//                    
-//                    [self setupPhoneVies];
-//                    
-//                }else {
-//                    NSString * message = [[dict objectForKey:@"message"] description];
-//                    [self sendErrorWarning:message];
-//                }
-//            }
-//        } failure:^(NSError *error) {
-//            [self.indicator1 stopAnimating];
-//            [sender setTitle:@"提  交" forState:UIControlStateNormal];
-//            [self sendErrorWarning:[NSString stringWithFormat:@"%@", error.localizedDescription]];
-//        }];
+
     }
 }
 #pragma mark - 已绑定的界面

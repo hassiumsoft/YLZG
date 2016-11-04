@@ -257,7 +257,7 @@
         commitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         commitBtn.backgroundColor = MainColor;
         [commitBtn addTarget:self action:@selector(commitQingjia:) forControlEvents:UIControlEventTouchUpInside];
-        commitBtn.layer.cornerRadius = 6;
+        commitBtn.layer.cornerRadius = 4;
         [commitBtn setTitle:@"提  交" forState:UIControlStateNormal];
         [commitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [foot addSubview:commitBtn];

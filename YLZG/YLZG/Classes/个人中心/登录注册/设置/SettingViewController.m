@@ -142,14 +142,20 @@
             PushNotificationViewController *push = [PushNotificationViewController new];
             [self.navigationController pushViewController:push animated:YES];
         } else if(indexPath.row == 1){
+<<<<<<< HEAD
 
+=======
+>>>>>>> CoderChan/master
             // 清理缓存
             NSString *dicPath = [ClearCacheTool docPath];
             [self clearSDWebImageCache:dicPath DeleteBlock:^{
                 [self showSuccessTips:@"更新成功"];
             }];
         }else if (indexPath.row == 2){
+<<<<<<< HEAD
 
+=======
+>>>>>>> CoderChan/master
             // 去评分
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/cn/app/ying-lou-zhang-gui/id1135389493?mt=8"]];
         }

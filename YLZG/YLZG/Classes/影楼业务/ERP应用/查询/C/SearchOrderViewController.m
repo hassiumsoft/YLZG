@@ -162,16 +162,23 @@
         _recordTableView.showsVerticalScrollIndicator = NO;
         _recordTableView.backgroundColor = self.view.backgroundColor;
         _recordTableView.tag = 11;
+<<<<<<< HEAD
 
         _recordTableView.rowHeight = 55;
 
+=======
+        _recordTableView.rowHeight = 55;
+>>>>>>> CoderChan/master
         [self.view  addSubview:_recordTableView];
         
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 104)];
         UIButton *clearButton = [[UIButton alloc] init];
 
        [clearButton setImage:[UIImage imageNamed:@"delete_icon"] forState:UIControlStateNormal];
+<<<<<<< HEAD
 
+=======
+>>>>>>> CoderChan/master
         [clearButton setTitle:@"  清空历史记录" forState:UIControlStateNormal];
         [clearButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         clearButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
@@ -179,7 +186,11 @@
         [clearButton addTarget:self action:@selector(clearButtonClick) forControlEvents:UIControlEventTouchDown];
         clearButton.backgroundColor = [UIColor whiteColor];
         clearButton.layer.cornerRadius = 5;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> CoderChan/master
         [footView addSubview:clearButton];
         
         [clearButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -276,6 +287,7 @@
     
 }
 
+<<<<<<< HEAD
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -289,6 +301,22 @@
 }
 
 
+=======
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *footV = [[UIView alloc]initWithFrame:CGRectZero];
+    footV.backgroundColor = ToolBarColor;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.view.width - 30, 33)];
+    label.text = @"历史搜索记录";
+    label.backgroundColor = ToolBarColor;
+    label.font = [UIFont systemFontOfSize:15];
+    [footV addSubview:label];
+    return footV;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 33;
+}
+>>>>>>> CoderChan/master
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     
     if (tableView.tag == 11) {
