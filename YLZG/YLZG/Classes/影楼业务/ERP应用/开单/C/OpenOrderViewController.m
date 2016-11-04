@@ -81,13 +81,13 @@
 #pragma mark - 建表
 - (void)setupSubViews
 {
-    self.array = @[@[@"客人姓名：",@"客人电话："],@[@"选择风景：",@"套系名称：",@"套系金额："],@[@"订单说明："],@[@"提交订单"]];
+    self.array = @[@[@"客人姓名：",@"客人电话："],@[@"选择风景：",@"套系名称：",@"套系金额："],@[],@[@"订单说明："],@[@"提交订单"]];
     
     self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds];
     self.tableView.backgroundColor = self.view.backgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.contentInset = UIEdgeInsetsMake(9 * CKproportion, 0, 0, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(7, 0, 0, 0);
     [self.view addSubview:self.tableView];
     
 }
@@ -188,7 +188,7 @@
         self.orderDesc.userInteractionEnabled = YES;
         self.orderDesc.delegate = self;
         self.orderDesc.text = OrderDescPlace;
-        self.orderDesc.textColor = RGBACOLOR(67, 67, 67, 1);
+        self.orderDesc.textColor = [UIColor lightGrayColor];
         [cell addSubview:self.orderDesc];
         [self.orderDesc mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(titleL.mas_right);
@@ -439,7 +439,7 @@
     }else if(section == 3){
         return 0.1;
     }else{
-        return 9 * CKproportion;
+        return 7;
     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section

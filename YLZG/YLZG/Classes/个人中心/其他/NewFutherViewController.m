@@ -77,7 +77,7 @@
     
     
     // 立即体验
-    UIImageView *imageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"before"]];
+    UIImageView *imageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"new_futher_btn"]];
     imageV.userInteractionEnabled = YES;
     [self.view addSubview:imageV];
     if (array.count == 1 || array.count == 0) {
