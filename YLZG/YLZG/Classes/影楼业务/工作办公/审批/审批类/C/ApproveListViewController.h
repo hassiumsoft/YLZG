@@ -7,12 +7,18 @@
 //
 
 #import "SuperViewController.h"
-//#import "ApproveModel.h"
+
+
+typedef void(^RefreshData)(NSArray *newArray);
 
 @interface ApproveListViewController : SuperViewController
 
 @property (assign,nonatomic) NSInteger index;
 
-//@property (strong,nonatomic) ApproveModel *model;
+/** 数据源 */
+@property (strong,nonatomic) NSMutableArray *array;
+
+@property (copy,nonatomic) void (^RefreshData)(NSArray *newArray);
+
 
 @end

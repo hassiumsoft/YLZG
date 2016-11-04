@@ -306,9 +306,6 @@
         [xian removeFromSuperview];
     }
     
-    self.nameField.text = @"aermei_dapeng";
-    self.passField.text = @"888888";
-    
 }
 
 #pragma mark - 了解智诚

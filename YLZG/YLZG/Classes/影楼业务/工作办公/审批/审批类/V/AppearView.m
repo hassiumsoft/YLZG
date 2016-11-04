@@ -12,9 +12,7 @@
 
 @interface AppearView ()
 
-@property (strong,nonatomic) UILabel *numLabel;
 
-@property (strong,nonatomic) UILabel *titleLabel;
 
 @end
 
@@ -34,7 +32,7 @@
 {
     self.backgroundColor = [UIColor whiteColor];
     UILabel *numLabel = [[UILabel alloc]init];
-    numLabel.text = @"3";
+    numLabel.text = @"0";
     numLabel.font = [UIFont boldSystemFontOfSize:20];
     numLabel.textAlignment = NSTextAlignmentCenter;
     numLabel.layer.masksToBounds = YES;

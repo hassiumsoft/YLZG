@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"更多工具";
+    self.title = @"实用工具";
     [self setupSubViews];
     
 }

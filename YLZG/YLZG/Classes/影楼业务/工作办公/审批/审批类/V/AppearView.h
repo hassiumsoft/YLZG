@@ -10,6 +10,8 @@
 
 @interface AppearView : UIView
 
+@property (strong,nonatomic) UILabel *numLabel;
 
+@property (strong,nonatomic) UILabel *titleLabel;
 
 @end

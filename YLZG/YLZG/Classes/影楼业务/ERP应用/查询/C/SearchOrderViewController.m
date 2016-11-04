@@ -164,7 +164,7 @@
         _recordTableView.tag = 11;
 
         _recordTableView.rowHeight = 55;
-        
+
         [self.view  addSubview:_recordTableView];
         
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 104)];
@@ -180,7 +180,6 @@
         clearButton.backgroundColor = [UIColor whiteColor];
         clearButton.layer.cornerRadius = 5;
 
-        
         [footView addSubview:clearButton];
         
         [clearButton mas_makeConstraints:^(MASConstraintMaker *make) {

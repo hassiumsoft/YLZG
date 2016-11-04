@@ -55,9 +55,6 @@
 		3B4C103E1DC85DDC00827D4F /* TitleColorDescView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E9E1DC85DDB00827D4F /* TitleColorDescView.m */; };
 		3B4C103F1DC85DDC00827D4F /* TitleColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0EA01DC85DDB00827D4F /* TitleColorView.m */; };
 		3B4C10401DC85DDC00827D4F /* TitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0EA21DC85DDB00827D4F /* TitleLabel.m */; };
-		3B4C10411DC85DDC00827D4F /* MoreToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0EA71DC85DDB00827D4F /* MoreToolsViewController.m */; };
-		3B4C10421DC85DDC00827D4F /* ToolsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0EA91DC85DDB00827D4F /* ToolsModel.m */; };
-		3B4C10431DC85DDC00827D4F /* ToolsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0EAB1DC85DDB00827D4F /* ToolsTableViewCell.m */; };
 		3B4C10A21DC85DDC00827D4F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0FA31DC85DDC00827D4F /* HomeViewController.m */; };
 		3B4C10A31DC85DDC00827D4F /* ButtonIconModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0FA61DC85DDC00827D4F /* ButtonIconModel.m */; };
 		3B4C10A41DC85DDC00827D4F /* HomeCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0FA91DC85DDC00827D4F /* HomeCollectionCell.m */; };
@@ -274,6 +271,9 @@
 		3B7ABCF71DB6176600F3D12B /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B7ABCE51DB6176600F3D12B /* EMVoiceConverter.mm */; };
 		3B7ABCF81DB6176600F3D12B /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7ABCE91DB6176600F3D12B /* libopencore-amrnb.a */; };
 		3B7ABCF91DB6176600F3D12B /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7ABCED1DB6176600F3D12B /* libopencore-amrwb.a */; };
+		3BA06F241DCC512C000886A8 /* MoreToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F1F1DCC512C000886A8 /* MoreToolsViewController.m */; };
+		3BA06F251DCC512C000886A8 /* ToolsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F211DCC512C000886A8 /* ToolsModel.m */; };
+		3BA06F261DCC512C000886A8 /* ToolsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F231DCC512C000886A8 /* ToolsTableViewCell.m */; };
 		3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6C5061DC042C8008346BD /* NewFutherModel.m */; };
 		3BCA323A1D9CC07600A0E980 /* YLConstKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32391D9CC07600A0E980 /* YLConstKey.m */; };
 		3BCA32401D9CC14100A0E980 /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA323E1D9CC14100A0E980 /* SuperViewController.m */; };
@@ -472,12 +472,6 @@
 		3B4C0EA01DC85DDB00827D4F /* TitleColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleColorView.m; sourceTree = "<group>"; };
 		3B4C0EA11DC85DDB00827D4F /* TitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleLabel.h; sourceTree = "<group>"; };
 		3B4C0EA21DC85DDB00827D4F /* TitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleLabel.m; sourceTree = "<group>"; };
-		3B4C0EA61DC85DDB00827D4F /* MoreToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreToolsViewController.h; sourceTree = "<group>"; };
-		3B4C0EA71DC85DDB00827D4F /* MoreToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreToolsViewController.m; sourceTree = "<group>"; };
-		3B4C0EA81DC85DDB00827D4F /* ToolsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsModel.h; sourceTree = "<group>"; };
-		3B4C0EA91DC85DDB00827D4F /* ToolsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsModel.m; sourceTree = "<group>"; };
-		3B4C0EAA1DC85DDB00827D4F /* ToolsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsTableViewCell.h; sourceTree = "<group>"; };
-		3B4C0EAB1DC85DDB00827D4F /* ToolsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsTableViewCell.m; sourceTree = "<group>"; };
 		3B4C0FA21DC85DDC00827D4F /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		3B4C0FA31DC85DDC00827D4F /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		3B4C0FA51DC85DDC00827D4F /* ButtonIconModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonIconModel.h; sourceTree = "<group>"; };
@@ -922,6 +916,12 @@
 		3B7ABCEB1DB6176600F3D12B /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
 		3B7ABCEC1DB6176600F3D12B /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
 		3B7ABCED1DB6176600F3D12B /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		3BA06F1E1DCC512C000886A8 /* MoreToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreToolsViewController.h; sourceTree = "<group>"; };
+		3BA06F1F1DCC512C000886A8 /* MoreToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreToolsViewController.m; sourceTree = "<group>"; };
+		3BA06F201DCC512C000886A8 /* ToolsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsModel.h; sourceTree = "<group>"; };
+		3BA06F211DCC512C000886A8 /* ToolsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsModel.m; sourceTree = "<group>"; };
+		3BA06F221DCC512C000886A8 /* ToolsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsTableViewCell.h; sourceTree = "<group>"; };
+		3BA06F231DCC512C000886A8 /* ToolsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsTableViewCell.m; sourceTree = "<group>"; };
 		3BC6C5051DC042C8008346BD /* NewFutherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFutherModel.h; sourceTree = "<group>"; };
 		3BC6C5061DC042C8008346BD /* NewFutherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFutherModel.m; sourceTree = "<group>"; };
 		3BCA32351D9CBF5200A0E980 /* YLZGHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLZGHeader.h; sourceTree = "<group>"; };
@@ -1438,38 +1438,10 @@
 			path = V;
 			sourceTree = "<group>";
 		};
-		3B4C0EA31DC85DDB00827D4F /* 更多工具 */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C0EA41DC85DDB00827D4F /* 设备追踪器 */,
-				3B4C0EA51DC85DDB00827D4F /* 首页 */,
-			);
-			path = "更多工具";
-			sourceTree = "<group>";
-		};
-		3B4C0EA41DC85DDB00827D4F /* 设备追踪器 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "设备追踪器";
-			sourceTree = "<group>";
-		};
-		3B4C0EA51DC85DDB00827D4F /* 首页 */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C0EA61DC85DDB00827D4F /* MoreToolsViewController.h */,
-				3B4C0EA71DC85DDB00827D4F /* MoreToolsViewController.m */,
-				3B4C0EA81DC85DDB00827D4F /* ToolsModel.h */,
-				3B4C0EA91DC85DDB00827D4F /* ToolsModel.m */,
-				3B4C0EAA1DC85DDB00827D4F /* ToolsTableViewCell.h */,
-				3B4C0EAB1DC85DDB00827D4F /* ToolsTableViewCell.m */,
-			);
-			path = "首页";
-			sourceTree = "<group>";
-		};
 		3B4C0EAC1DC85DDB00827D4F /* 工作办公 */ = {
 			isa = PBXGroup;
 			children = (
+				3BA06F1B1DCC512C000886A8 /* 实用工具 */,
 				3B4C12E21DC85F4700827D4F /* 审批 */,
 				3B4C12291DC85F4600827D4F /* 公告 */,
 				3B4C12391DC85F4700827D4F /* 今日订单 */,
@@ -1560,10 +1532,10 @@
 		3B4C0FB41DC85DDC00827D4F /* C */ = {
 			isa = PBXGroup;
 			children = (
-				3B4C0FB51DC85DDC00827D4F /* YejiDetialViewController.h */,
-				3B4C0FB61DC85DDC00827D4F /* YejiDetialViewController.m */,
 				3B4C0FB71DC85DDC00827D4F /* YejiViewController.h */,
 				3B4C0FB81DC85DDC00827D4F /* YejiViewController.m */,
+				3B4C0FB51DC85DDC00827D4F /* YejiDetialViewController.h */,
+				3B4C0FB61DC85DDC00827D4F /* YejiDetialViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -1602,18 +1574,18 @@
 		3B4C0FC21DC85DDC00827D4F /* C */ = {
 			isa = PBXGroup;
 			children = (
+				3B4C0FCD1DC85DDC00827D4F /* OpenOrderViewController.h */,
+				3B4C0FCE1DC85DDC00827D4F /* OpenOrderViewController.m */,
+				3B4C0FC71DC85DDC00827D4F /* ChangeTaoxiController.h */,
+				3B4C0FC81DC85DDC00827D4F /* ChangeTaoxiController.m */,
 				3B4C0FC31DC85DDC00827D4F /* AddProductController.h */,
 				3B4C0FC41DC85DDC00827D4F /* AddProductController.m */,
 				3B4C0FC51DC85DDC00827D4F /* ChangeOrderPriceController.h */,
 				3B4C0FC61DC85DDC00827D4F /* ChangeOrderPriceController.m */,
-				3B4C0FC71DC85DDC00827D4F /* ChangeTaoxiController.h */,
-				3B4C0FC81DC85DDC00827D4F /* ChangeTaoxiController.m */,
 				3B4C0FC91DC85DDC00827D4F /* EditProductController.h */,
 				3B4C0FCA1DC85DDC00827D4F /* EditProductController.m */,
 				3B4C0FCB1DC85DDC00827D4F /* LixianOrderController.h */,
 				3B4C0FCC1DC85DDC00827D4F /* LixianOrderController.m */,
-				3B4C0FCD1DC85DDC00827D4F /* OpenOrderViewController.h */,
-				3B4C0FCE1DC85DDC00827D4F /* OpenOrderViewController.m */,
 				3B4C0FCF1DC85DDC00827D4F /* OrderNameController.h */,
 				3B4C0FD01DC85DDC00827D4F /* OrderNameController.m */,
 				3B4C0FD11DC85DDC00827D4F /* OrderPhoneController.h */,
@@ -1686,16 +1658,16 @@
 		3B4C0FF51DC85DDC00827D4F /* C */ = {
 			isa = PBXGroup;
 			children = (
+				3B4C0FFC1DC85DDC00827D4F /* ShekongBenController.h */,
+				3B4C0FFD1DC85DDC00827D4F /* ShekongBenController.m */,
+				3B4C0FFE1DC85DDC00827D4F /* ShekongDetialVController.h */,
+				3B4C0FFF1DC85DDC00827D4F /* ShekongDetialVController.m */,
 				3B4C0FF61DC85DDC00827D4F /* KanyangPreViewController.h */,
 				3B4C0FF71DC85DDC00827D4F /* KanyangPreViewController.m */,
 				3B4C0FF81DC85DDC00827D4F /* PaizhaoPreViewController.h */,
 				3B4C0FF91DC85DDC00827D4F /* PaizhaoPreViewController.m */,
 				3B4C0FFA1DC85DDC00827D4F /* QujianPreViewController.h */,
 				3B4C0FFB1DC85DDC00827D4F /* QujianPreViewController.m */,
-				3B4C0FFC1DC85DDC00827D4F /* ShekongBenController.h */,
-				3B4C0FFD1DC85DDC00827D4F /* ShekongBenController.m */,
-				3B4C0FFE1DC85DDC00827D4F /* ShekongDetialVController.h */,
-				3B4C0FFF1DC85DDC00827D4F /* ShekongDetialVController.m */,
 				3B4C10001DC85DDC00827D4F /* XuanpianPreViewController.h */,
 				3B4C10011DC85DDC00827D4F /* XuanpianPreViewController.m */,
 			);
@@ -2330,10 +2302,10 @@
 			children = (
 				3B4C12E91DC85F4700827D4F /* MyApproveVController.h */,
 				3B4C12EA1DC85F4700827D4F /* MyApproveVController.m */,
-				3B4C12E51DC85F4700827D4F /* ApproveDetialViewController.h */,
-				3B4C12E61DC85F4700827D4F /* ApproveDetialViewController.m */,
 				3B4C12E71DC85F4700827D4F /* ApproveListViewController.h */,
 				3B4C12E81DC85F4700827D4F /* ApproveListViewController.m */,
+				3B4C12E51DC85F4700827D4F /* ApproveDetialViewController.h */,
+				3B4C12E61DC85F4700827D4F /* ApproveDetialViewController.m */,
 				3B4C12EB1DC85F4700827D4F /* ShenpiSuggestController.h */,
 				3B4C12EC1DC85F4700827D4F /* ShenpiSuggestController.m */,
 			);
@@ -2792,7 +2764,6 @@
 				3B4C0FA01DC85DDC00827D4F /* 首页 */,
 				3B4C0FB21DC85DDC00827D4F /* ERP应用 */,
 				3B4C0E701DC85DDB00827D4F /* 财务管理 */,
-				3B4C0EA31DC85DDB00827D4F /* 更多工具 */,
 				3B4C0EAC1DC85DDB00827D4F /* 工作办公 */,
 				3B4C0F9F1DC85DDC00827D4F /* 聚分享 */,
 			);
@@ -2830,6 +2801,35 @@
 				3BCA32391D9CC07600A0E980 /* YLConstKey.m */,
 			);
 			path = PCH;
+			sourceTree = "<group>";
+		};
+		3BA06F1B1DCC512C000886A8 /* 实用工具 */ = {
+			isa = PBXGroup;
+			children = (
+				3BA06F1C1DCC512C000886A8 /* 设备追踪器 */,
+				3BA06F1D1DCC512C000886A8 /* 首页 */,
+			);
+			path = "实用工具";
+			sourceTree = "<group>";
+		};
+		3BA06F1C1DCC512C000886A8 /* 设备追踪器 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "设备追踪器";
+			sourceTree = "<group>";
+		};
+		3BA06F1D1DCC512C000886A8 /* 首页 */ = {
+			isa = PBXGroup;
+			children = (
+				3BA06F1E1DCC512C000886A8 /* MoreToolsViewController.h */,
+				3BA06F1F1DCC512C000886A8 /* MoreToolsViewController.m */,
+				3BA06F201DCC512C000886A8 /* ToolsModel.h */,
+				3BA06F211DCC512C000886A8 /* ToolsModel.m */,
+				3BA06F221DCC512C000886A8 /* ToolsTableViewCell.h */,
+				3BA06F231DCC512C000886A8 /* ToolsTableViewCell.m */,
+			);
+			path = "首页";
 			sourceTree = "<group>";
 		};
 		3BCA323B1D9CC14100A0E980 /* 管理者 */ = {
@@ -3554,6 +3554,7 @@
 				3B7ABCF71DB6176600F3D12B /* EMVoiceConverter.mm in Sources */,
 				3B4C13561DC85F4700827D4F /* EditPaibanTableCell.m in Sources */,
 				3B4C13631DC85F4700827D4F /* WaichuTableCell.m in Sources */,
+				3BA06F251DCC512C000886A8 /* ToolsModel.m in Sources */,
 				3B4C135D1DC85F4700827D4F /* YuanCurrentTimeView.m in Sources */,
 				3B4C13641DC85F4700827D4F /* ApproveDetialViewController.m in Sources */,
 				3B4C13681DC85F4700827D4F /* ApproveDetialModel.m in Sources */,
@@ -3582,7 +3583,6 @@
 				3B4C10A51DC85DDC00827D4F /* HomeReusableView.m in Sources */,
 				3B7ABCA11DB5B31D00F3D12B /* IviteMemberViewController.m in Sources */,
 				3BCF3A0B1D9E65E800BEE236 /* FRegionModel.m in Sources */,
-				3B4C10421DC85DDC00827D4F /* ToolsModel.m in Sources */,
 				3B4C136C1DC85F4700827D4F /* WaitApperTableCell.m in Sources */,
 				3BCA326C1D9CC2F100A0E980 /* LoginViewController.m in Sources */,
 				3BCA32621D9CC25100A0E980 /* DismissingAnimator.m in Sources */,
@@ -3641,7 +3641,6 @@
 				3B07D8C81D956B0D00B657F6 /* main.m in Sources */,
 				3BCF39EB1D9E5AD200BEE236 /* MyAreaManagerController.m in Sources */,
 				3B4C13491DC85F4700827D4F /* GudingBanciVController.m in Sources */,
-				3B4C10411DC85DDC00827D4F /* MoreToolsViewController.m in Sources */,
 				3B4C10C71DC85DDC00827D4F /* QujianPreViewController.m in Sources */,
 				3BCF39901D9DF94100BEE236 /* UIViewController+Actions.m in Sources */,
 				3B447B191DC98C0B00316E3C /* ForgetSecretController.m in Sources */,
@@ -3702,7 +3701,6 @@
 				3BCA32571D9CC1F900A0E980 /* MBProgressHUD+Add.m in Sources */,
 				3B4C136A1DC85F4700827D4F /* AppearHeadView.m in Sources */,
 				3B4C10A21DC85DDC00827D4F /* HomeViewController.m in Sources */,
-				3B4C10431DC85DDC00827D4F /* ToolsTableViewCell.m in Sources */,
 				3BCF3A0E1D9E65E800BEE236 /* UIView+AutoLayout.m in Sources */,
 				3BCF39E41D9E50D300BEE236 /* NoDequTableCell.m in Sources */,
 				3B7ABCEF1DB6176600F3D12B /* EMAudioRecorderUtil.m in Sources */,
@@ -3733,6 +3731,7 @@
 				3B7ABCF21DB6176600F3D12B /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				3B4C131D1DC85F4700827D4F /* PublicNoticeController.m in Sources */,
 				3B4C13391DC85F4700827D4F /* TeamKaoqinTableViewCell.m in Sources */,
+				3BA06F241DCC512C000886A8 /* MoreToolsViewController.m in Sources */,
 				3B4C13401DC85F4700827D4F /* AddKaoqinzuController.m in Sources */,
 				3BCF3A0A1D9E65E800BEE236 /* FMetaTool.m in Sources */,
 				3B56D76E1DC739CE003A57FD /* EaseBaseMessageCell.m in Sources */,
@@ -3773,6 +3772,7 @@
 				3B3BBFE21DB4D2F800C9E2FD /* CallViewController.m in Sources */,
 				3B4C13271DC85F4700827D4F /* SCXDateTimePicker.m in Sources */,
 				3BCF39721D9DF42100BEE236 /* HuanxinContactManager.m in Sources */,
+				3BA06F261DCC512C000886A8 /* ToolsTableViewCell.m in Sources */,
 				3B3BBFC31DB4861400C9E2FD /* GroupNameViewController.m in Sources */,
 				3B4C10351DC85DDC00827D4F /* MonthOutComeController.m in Sources */,
 				3BCF39A21D9E31E300BEE236 /* WoViewController.m in Sources */,

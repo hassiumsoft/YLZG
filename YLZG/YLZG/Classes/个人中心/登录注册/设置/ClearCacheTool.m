@@ -44,6 +44,7 @@
 }
 
 +(void)clearSDWebImageCache:(NSString *)path{
+    
     NSFileManager *fileManager=[NSFileManager defaultManager];
     
     if ([fileManager fileExistsAtPath:path]) {

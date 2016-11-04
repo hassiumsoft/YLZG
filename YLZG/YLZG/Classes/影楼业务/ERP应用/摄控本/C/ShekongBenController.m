@@ -116,7 +116,7 @@
 - (void)addLabel
 {
     CGFloat labelW = SCREEN_WIDTH/4;
-    CGFloat labelH = 30;
+    CGFloat labelH = 45;
     CGFloat labelY = 0;
     for (int i = 0; i < self.titleArray.count; i++) {
         CGFloat labelX = i * labelW;
@@ -151,12 +151,12 @@
 - (void)setupTitleScrollView
 {
     UIScrollView * titleScrollView = [[UIScrollView alloc] init];
-    titleScrollView.backgroundColor = ToolBarColor;
+    titleScrollView.backgroundColor = [UIColor whiteColor];
     titleScrollView.showsHorizontalScrollIndicator = NO;
     titleScrollView.showsVerticalScrollIndicator = NO;
     titleScrollView.y = 0;
     titleScrollView.width = self.view.width;
-    titleScrollView.height = 30;
+    titleScrollView.height = 45;
     self.titleScrollView = titleScrollView;
     [self.view addSubview:self.titleScrollView];
 }

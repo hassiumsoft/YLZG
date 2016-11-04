@@ -10,6 +10,9 @@
 #import "ZCAccountTool.h"
 #import "NoDequTableCell.h"
 #import "AppearHeadView.h"
+#import "HTTPManager.h"
+#import "ApproveModel.h"
+#import <MJExtension.h>
 #import "QingjiaViewController.h"
 #import "WaichuViewController.h"
 #import "WuPingViewController.h"
@@ -22,6 +25,15 @@
 @property (copy,nonatomic) NSArray *array;
 @property (strong,nonatomic) UITableView *tableView;
 
+@property (strong,nonatomic) AppearHeadView *headView;
+
+/** 待我审批数组 */
+@property (strong,nonatomic) NSMutableArray *waitArray;
+/** 我已审批 */
+@property (strong,nonatomic) NSMutableArray *appredArr;
+/** 我发起的 */
+@property (strong,nonatomic) NSMutableArray *myApplyArr;
+
 @end
 
 @implementation MyApproveVController
@@ -30,22 +42,113 @@
     [super viewDidLoad];
     self.title = @"审批";
     [self setupSubViews];
+    [self getData];
 }
+- (void)getData
+{
+    ZCAccount *account = [ZCAccountTool account];
+    NSString *url1 = [NSString stringWithFormat:ShenpiWait_URL,account.userID];
+    NSString *url2 = [NSString stringWithFormat:ShenpiAlready_URL,account.userID];
+    NSString *url3 = [NSString stringWithFormat:ShenpiStart_URL,account.userID];
+
+    dispatch_async(ZCGlobalQueue, ^{
+        [HTTPManager GET:url1 params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            int code = [[[responseObject objectForKey:@"code"] description] intValue];
+            
+            if (code == 1) {
+                NSArray *tempArray = [responseObject objectForKey:@"result"];
+                if (tempArray.count >= 1) {
+                    self.waitArray = [ApproveModel mj_objectArrayWithKeyValuesArray:tempArray];
+                    self.headView.waitArray = self.waitArray;
+                }else{
+                    // 0.0.0
+                    
+                }
+            }else{
+                // 0.0.0
+                
+            }
+        } fail:^(NSURLSessionDataTask *task, NSError *error) {
+            // 0.0.0
+            
+        }];
+    });
+    
+    dispatch_async(ZCGlobalQueue, ^{
+        [HTTPManager GET:url2 params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            int code = [[[responseObject objectForKey:@"code"] description] intValue];
+            
+            if (code == 1) {
+                NSArray *tempArray = [responseObject objectForKey:@"result"];
+                if (tempArray.count >= 1) {
+                    self.appredArr = [ApproveModel mj_objectArrayWithKeyValuesArray:tempArray];
+                    self.headView.appredArr = self.appredArr;
+                }else{
+                    // 0.0.0
+                    
+                }
+            }else{
+                // 0.0.0
+                
+            }
+        } fail:^(NSURLSessionDataTask *task, NSError *error) {
+            // 0.0.0
+            
+        }];
+    });
+    
+    dispatch_async(ZCGlobalQueue, ^{
+        [HTTPManager GET:url3 params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            int code = [[[responseObject objectForKey:@"code"] description] intValue];
+            
+            if (code == 1) {
+                NSArray *tempArray = [responseObject objectForKey:@"result"];
+                if (tempArray.count >= 1) {
+                    self.myApplyArr = [ApproveModel mj_objectArrayWithKeyValuesArray:tempArray];
+                    self.headView.myApplyArr = self.myApplyArr;
+                }else{
+                    // 0.0.0
+                    
+                }
+            }else{
+                // 0.0.0
+                
+            }
+        } fail:^(NSURLSessionDataTask *task, NSError *error) {
+            // 0.0.0
+            
+        }];
+    });
+    
+}
+
+
+
 #pragma mark - 表格
 - (void)setupSubViews
 {
     self.array = @[@"请假",@"外出",@"物品领用",@"通用"];
     [self.view addSubview:self.tableView];
     
-    AppearHeadView *headView = [[AppearHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
-    headView.ClickBlock = ^(AppearType type){
+    self.headView = [[AppearHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 250)];
+    __block typeof(self) weakSelf = self;
+    self.headView.ClickBlock = ^(AppearType type){
         switch (type) {
             case WaitAppearType:
             {
                 ApproveListViewController *app = [ApproveListViewController new];
                 app.index = 0;
                 app.title = @"待我审批";
-                [self.navigationController pushViewController:app animated:YES];
+                app.array = weakSelf.waitArray;
+                app.RefreshData = ^(NSArray *newArray){
+                    [weakSelf.waitArray removeAllObjects];
+                    weakSelf.waitArray = (NSMutableArray *)newArray;
+                    weakSelf.headView.waitArray = weakSelf.waitArray;
+                };
+                [weakSelf.navigationController pushViewController:app animated:YES];
                 break;
             }
             case AppearedType:
@@ -53,7 +156,13 @@
                 ApproveListViewController *app = [ApproveListViewController new];
                 app.title = @"我已审批";
                 app.index = 1;
-                [self.navigationController pushViewController:app animated:YES];
+                app.array = weakSelf.appredArr;
+                app.RefreshData = ^(NSArray *newArray){
+                    [weakSelf.appredArr removeAllObjects];
+                    weakSelf.appredArr = (NSMutableArray *)newArray;
+                    weakSelf.headView.appredArr = weakSelf.appredArr;
+                };
+                [weakSelf.navigationController pushViewController:app animated:YES];
                 break;
             }
             case MyApplyType:
@@ -61,7 +170,13 @@
                 ApproveListViewController *app = [ApproveListViewController new];
                 app.index = 2;
                 app.title = @"我发起的";
-                [self.navigationController pushViewController:app animated:YES];
+                app.array = weakSelf.myApplyArr;
+                app.RefreshData = ^(NSArray *newArray){
+                    [weakSelf.myApplyArr removeAllObjects];
+                    weakSelf.myApplyArr = (NSMutableArray *)newArray;
+                    weakSelf.headView.myApplyArr = weakSelf.myApplyArr;
+                };
+                [weakSelf.navigationController pushViewController:app animated:YES];
                 break;
             }
                 
@@ -69,8 +184,9 @@
                 break;
         }
     };
-    self.tableView.tableHeaderView = headView;
+    self.tableView.tableHeaderView = self.headView;
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -127,4 +243,27 @@
     }
     return _tableView;
 }
+
+- (NSMutableArray *)waitArray
+{
+    if (!_waitArray) {
+        _waitArray = [[NSMutableArray alloc]init];
+    }
+    return _waitArray;
+}
+- (NSMutableArray *)appredArr
+{
+    if (!_appredArr) {
+        _appredArr = [[NSMutableArray alloc]init];
+    }
+    return _appredArr;
+}
+- (NSMutableArray *)myApplyArr
+{
+    if (!_myApplyArr) {
+        _myApplyArr = [[NSMutableArray alloc]init];
+    }
+    return _myApplyArr;
+}
+
 @end

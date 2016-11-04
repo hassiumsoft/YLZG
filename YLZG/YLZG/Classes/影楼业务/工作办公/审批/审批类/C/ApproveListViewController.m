@@ -22,8 +22,6 @@
 
 /** UITableView */
 @property (strong,nonatomic) UITableView *tableView;
-/** 数据源 */
-@property (strong,nonatomic) NSArray *array;
 /** 空图 */
 @property (strong,nonatomic) NormalIconView *emptyBtn;
 
@@ -33,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [YLNotificationCenter addObserver:self selector:@selector(refreshData) name:YLReloadShenpiData object:nil];
     [self setupSubViews];
 }
 
@@ -54,11 +53,13 @@
         if (code == 1) {
             NSArray *tempArray = [responseObject objectForKey:@"result"];
             if (tempArray.count >= 1) {
+                
+                [self.array removeAllObjects];
                 self.array = [ApproveModel mj_objectArrayWithKeyValuesArray:tempArray];
-                self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-                    
-                }];
-                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                if (_RefreshData) {
+                    _RefreshData(self.array);
+                }
+                
                 [self.tableView reloadData];
             }else{
                 [self loadEmptyView:@"暂无审批"];
@@ -115,7 +116,12 @@
         [self refreshData];
     }];
     
-    [self.tableView.mj_header beginRefreshing];
+    if (self.array.count >= 1) {
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            
+        }];
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }
     
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

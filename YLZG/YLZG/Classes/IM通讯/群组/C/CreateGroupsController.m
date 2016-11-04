@@ -286,8 +286,8 @@ static NSString *TextPlace = @"一句话描述您的群聊";
         [_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_button addTarget:self action:@selector(createGroup) forControlEvents:UIControlEventTouchUpInside];
         _button.layer.masksToBounds = YES;
-        _button.layer.cornerRadius = 6;
-        [_button setFrame:CGRectMake(20, 50, SCREEN_WIDTH - 40, 38)];
+        _button.layer.cornerRadius = 4;
+        [_button setFrame:CGRectMake(20, 50, SCREEN_WIDTH - 40, 40)];
     }
     return _button;
 }

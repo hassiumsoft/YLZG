@@ -208,7 +208,7 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_sendBtn setBackgroundColor:MainColor];
-        _sendBtn.layer.cornerRadius = 5;
+        _sendBtn.layer.cornerRadius = 4;
         [_sendBtn setTitle:self.array[indexPath.section][indexPath.row] forState:UIControlStateNormal];
         [_sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
@@ -218,8 +218,8 @@
         [cell addSubview:_sendBtn];
         [_sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(cell.mas_centerX);
-            make.left.equalTo(@12);
-            make.bottom.equalTo(cell.mas_bottom).offset(-15);
+            make.left.equalTo(@20);
+            make.bottom.equalTo(cell.mas_bottom).offset(-32);
             make.height.equalTo(@40);
         }];
         

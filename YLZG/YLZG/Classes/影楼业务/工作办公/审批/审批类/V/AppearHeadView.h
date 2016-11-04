@@ -16,6 +16,14 @@ typedef NS_ENUM(NSInteger,AppearType) {
 
 @interface AppearHeadView : UIView
 
+
+/** 待我审批数组 */
+@property (strong,nonatomic) NSArray *waitArray;
+/** 我已审批 */
+@property (strong,nonatomic) NSMutableArray *appredArr;
+/** 我发起的 */
+@property (strong,nonatomic) NSMutableArray *myApplyArr;
+/** 点击回调 */
 @property (copy,nonatomic) void (^ClickBlock)(AppearType);
 
 @end
