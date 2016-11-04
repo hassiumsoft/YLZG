@@ -143,7 +143,10 @@
             [self.navigationController pushViewController:push animated:YES];
         } else if(indexPath.row == 1){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> CoderChan/master
 =======
 >>>>>>> CoderChan/master
             // 清理缓存
@@ -153,7 +156,10 @@
             }];
         }else if (indexPath.row == 2){
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> CoderChan/master
 =======
 >>>>>>> CoderChan/master
             // 去评分
