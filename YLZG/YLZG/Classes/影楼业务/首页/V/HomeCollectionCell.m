@@ -7,6 +7,7 @@
 //
 
 #import "HomeCollectionCell.h"
+#import <UIImageView+WebCache.h>
 #import <Masonry.h>
 
 
@@ -34,8 +35,13 @@
 - (void)setModel:(ButtonIconModel *)model
 {
     _model = model;
-    _imageView.image = [UIImage imageNamed:model.icon];
-    _titleLabel.text = model.title;
+    if (model.fromType == FromLocal) {
+        _imageView.image = [UIImage imageNamed:model.ico];
+        _titleLabel.text = model.name;
+    }else if(model.fromType == FromWebSite){
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:model.ico] placeholderImage:[UIImage imageNamed:@"btn_ico_jizan"]];
+        _titleLabel.text = model.name;
+    }
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {

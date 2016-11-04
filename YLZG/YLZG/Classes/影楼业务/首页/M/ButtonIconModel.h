@@ -8,10 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger,IconComeFrom) {
+    FromLocal = 0,
+    FromWebSite = 1
+};
+
 @interface ButtonIconModel : NSObject
 
-@property (copy,nonatomic) NSString *icon;
+/** 区分是本地图标名称还是网络图片地址 */
+@property (assign,nonatomic) IconComeFrom fromType;
 
-@property (copy,nonatomic) NSString *title;
+/** id */
+@property (copy,nonatomic) NSString *id;
+/** 图标地址 */
+@property (copy,nonatomic) NSString *ico;
+/** 图标名字 */
+@property (copy,nonatomic) NSString *name;
 
 @end

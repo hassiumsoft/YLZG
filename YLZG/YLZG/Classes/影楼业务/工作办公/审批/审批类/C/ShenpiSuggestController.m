@@ -43,7 +43,7 @@
     [self.view addSubview:self.textView];
     
     self.commitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.commitBtn.backgroundColor = RGBACOLOR(43, 171, 63, 1);
+    self.commitBtn.backgroundColor = MainColor;
     [self.commitBtn setFrame:CGRectMake(12, CGRectGetMaxY(self.textView.frame) + 15, SCREEN_WIDTH - 24, 40)];
     self.commitBtn.layer.cornerRadius = 4;
     [self.commitBtn setTitle:@"确  定" forState:UIControlStateNormal];

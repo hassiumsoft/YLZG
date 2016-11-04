@@ -88,6 +88,8 @@ UIKIT_EXTERN NSString *const HXExitGroup;
 UIKIT_EXTERN NSString *const HXRePushToChat;
 /** 呼出网络电话 */
 UIKIT_EXTERN NSString *const HXCallOutPhoneChatter;
+/** 更新群组信息 */
+UIKIT_EXTERN NSString *const HXUpdataGroupInfo;
 
 
 

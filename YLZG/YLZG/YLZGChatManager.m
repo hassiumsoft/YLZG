@@ -465,7 +465,6 @@ static YLZGChatManager *chatManager = nil;
 {
     // 网络状态发生了变化
     [self.tabbarVC networkChanged:aConnectionState];
-    
 }
 - (void)didAutoLoginWithError:(EMError *)error
 {

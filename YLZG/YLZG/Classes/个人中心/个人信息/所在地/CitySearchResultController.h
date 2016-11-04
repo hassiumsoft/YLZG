@@ -15,4 +15,6 @@
 /** 搜索关键字 */
 @property (copy,nonatomic) NSString *searchText;
 
+@property (copy,nonatomic) void (^DidSelectCity)();
+
 @end

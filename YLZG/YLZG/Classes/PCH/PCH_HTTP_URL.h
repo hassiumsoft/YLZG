@@ -208,5 +208,12 @@
 // 45、查询某成员是否已在某成员组
 #define IsInSomeGroup_Url @"http://zsylou.wxwkf.com/index.php/home/attence/check_is_in_group?uid=%@"
 
+// 营销工具列表
+#define YingxiaoToolList_URL @"http://zsylou.wxwkf.com/index.php/home/tool/lists?uid=%@"
+// 工具详细说明
+#define YingxiaoToolDetial_URL @"http://zsylou.wxwkf.com/index.php/home/tool/content?uid=%@&id=%@"
+// 工具-H5页面
+#define YingxiaoToolHTM5_URL @"http://zsylou.wxwkf.com/index.php/home/tool/show?uid=%@&id=%@"
+
 
 #endif /* PCH_HTTP_URL_h */

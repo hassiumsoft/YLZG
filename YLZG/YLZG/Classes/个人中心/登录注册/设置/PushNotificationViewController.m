@@ -172,7 +172,7 @@
 {
     if (!_imageV1) {
         _imageV1 = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 40, 12, 25, 25)];
-        _imageV1.image = [UIImage imageNamed:@"selected_yes"];
+        _imageV1.image = [UIImage imageNamed:@"EditControlSelected"];
     }
     return _imageV1;
 }
@@ -181,7 +181,7 @@
 {
     if (!_imageV2) {
         _imageV2 = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 40, 12, 25, 25)];
-        _imageV2.image = [UIImage imageNamed:@"selected_yes"];
+        _imageV2.image = [UIImage imageNamed:@"EditControlSelected"];
     }
     return _imageV2;
 }
@@ -190,7 +190,7 @@
 {
     if (!_imageV3) {
         _imageV3 = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 40, 12, 25, 25)];
-        _imageV3.image = [UIImage imageNamed:@"selected_yes"];
+        _imageV3.image = [UIImage imageNamed:@"EditControlSelected"];
     }
     return _imageV3;
 }

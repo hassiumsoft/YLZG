@@ -322,6 +322,7 @@ static NSString *kGroupName = @"GroupName";
 - (void)networkChanged:(EMConnectionState)connectionState;
 {
     _connectionState = connectionState;
+    [_homeVC networkChanged:connectionState];
     [_chatListVC networkChanged:connectionState];
 }
 

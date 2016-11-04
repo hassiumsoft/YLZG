@@ -1,17 +1,18 @@
 //
-//  ButtonIconModel.m
+//  SaleToolModel.m
 //  YLZG
 //
-//  Created by Chan_Sir on 2016/10/8.
+//  Created by Chan_Sir on 2016/11/3.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "ButtonIconModel.h"
+#import "SaleToolModel.h"
 
-@implementation ButtonIconModel
+@implementation SaleToolModel
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
+    
     
 }
 

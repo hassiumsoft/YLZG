@@ -1,22 +1,25 @@
 //
-//  PintuanViewController.m
+//  SaleToolViewController.m
 //  YLZG
 //
-//  Created by Chan_Sir on 2016/11/1.
+//  Created by Chan_Sir on 2016/11/3.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "PintuanViewController.h"
-#import "PintuanActionsController.h"
-#import "PintuanDataSourceController.h"
-#import "YLZGTitleLabel.h"
-#import "IntroducePintuanController.h"
+#import "SaleToolViewController.h"
+#import "SaleWebViewController.h"
+#import "SaleDataViewController.h"
+#import "SaleIntrolduceController.h"
+#import "HTTPManager.h"
 #import "PresentingAnimator.h"
 #import "DismissingAnimator.h"
+#import "YLZGTitleLabel.h"
+#import "SaleToolModel.h"
+#import "EmptyViewController.h"
 
 
 #define ScrollHeight 45
-@interface PintuanViewController ()<UIScrollViewDelegate,UIViewControllerTransitioningDelegate>
+@interface SaleToolViewController ()<UIScrollViewDelegate,UIViewControllerTransitioningDelegate>
 
 /** 顶部标签滚动栏 */
 @property (strong, nonatomic) UIScrollView * titleScrollView;
@@ -26,24 +29,25 @@
 @property (strong, nonatomic) NSArray * titleArray;
 
 /** 子控制器 */
-@property (strong,nonatomic) PintuanActionsController *actionVC;
+@property (strong,nonatomic) SaleWebViewController *actionVC;
 /** 子控制器 */
-@property (strong,nonatomic) PintuanDataSourceController *datasourceVC;
+@property (strong,nonatomic) SaleDataViewController *datasourceVC;
 
 
 @end
 
-@implementation PintuanViewController
+@implementation SaleToolViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"拼团";
+    self.title = self.saleModel.name;
     [self setupSubViews];
 }
+
 #pragma mark - UI
 - (void)setupSubViews
 {
-    self.titleArray = @[@"功能介绍",@"拼团数据"];
+    self.titleArray = @[@"功能介绍",@"数据统计"];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"rightbar_about"] style:UIBarButtonItemStylePlain target:self action:@selector(ButtonClick)];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
@@ -67,7 +71,7 @@
 /** 添加默认控制器 */
 - (void)addDefaultController
 {
-    PintuanActionsController *vc = [self.childViewControllers firstObject];
+    SaleWebViewController *vc = [self.childViewControllers firstObject];
     vc.view.frame = self.contentScrollView.bounds;
     [self.contentScrollView addSubview:vc.view];
     YLZGTitleLabel *lable = [self.titleScrollView.subviews firstObject];
@@ -78,10 +82,12 @@
 /** 添加子控制器 */
 - (void)addController
 {
-    PintuanActionsController * vc1 = [[PintuanActionsController alloc] init];
+    SaleWebViewController * vc1 = [[SaleWebViewController alloc] init];
+    vc1.saleModel = self.saleModel;
     [self addChildViewController:vc1];
     
-    PintuanDataSourceController * vc2 = [[PintuanDataSourceController alloc] init];
+    SaleDataViewController * vc2 = [[SaleDataViewController alloc] init];
+    vc2.saleModel = self.saleModel;
     [self addChildViewController:vc2];
 }
 
@@ -184,7 +190,7 @@
     [self.titleScrollView setContentOffset:offset animated:YES];
     // 添加控制器
     if (index == 0) {
-        PintuanActionsController *newsVc = self.childViewControllers[index];
+        SaleWebViewController *newsVc = self.childViewControllers[index];
         
         [self.titleScrollView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             if (idx != index) {
@@ -198,7 +204,7 @@
         newsVc.view.frame = scrollView.bounds;
         [self.contentScrollView addSubview:newsVc.view];
     } else {
-        PintuanDataSourceController *newsVc = self.childViewControllers[index];
+        SaleDataViewController *newsVc = self.childViewControllers[index];
         
         [self.titleScrollView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             if (idx != index) {
@@ -241,8 +247,9 @@
 
 - (void)ButtonClick
 {
-    IntroducePintuanController *area = [IntroducePintuanController new];
+    SaleIntrolduceController *area = [SaleIntrolduceController new];
     area.transitioningDelegate = self;
+    area.saleModel = self.saleModel;
     area.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:area animated:YES completion:^{
         
@@ -257,6 +264,5 @@
 {
     return [DismissingAnimator new];
 }
-
 
 @end

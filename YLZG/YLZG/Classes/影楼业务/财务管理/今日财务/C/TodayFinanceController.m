@@ -17,7 +17,6 @@
 #import "FinanceModel.h"
 
 
-#define backColor [UIColor colorWithRed:0.027 green:0.557 blue:0.000 alpha:1.000]
 
 @interface TodayFinanceController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,PDTSimpleCalendarViewDelegate>
 {
@@ -239,12 +238,12 @@
         [_headButton setTitle:titleArr[i] forState:UIControlStateNormal];
         _headButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_headButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_headButton setTitleColor:backColor forState:UIControlStateSelected];
+        [_headButton setTitleColor:MainColor forState:UIControlStateSelected];
         [_headButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self.btnBackView addSubview:_headButton];
         // 添加下划线
         xianView  = [[UIView alloc] initWithFrame:CGRectMake(10 + SCREEN_WIDTH/2 *i, CGRectGetMaxY(_headButton.frame), SCREEN_WIDTH/2-20, 2)];
-        xianView.backgroundColor = backColor;
+        xianView.backgroundColor = MainColor;
         xianView.tag = 20 + i;
         [self.btnBackView addSubview:xianView];
         
