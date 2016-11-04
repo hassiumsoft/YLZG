@@ -163,9 +163,13 @@
         _recordTableView.backgroundColor = self.view.backgroundColor;
         _recordTableView.tag = 11;
 <<<<<<< HEAD
+<<<<<<< HEAD
         
         _recordTableView.rowHeight = 55;
 
+=======
+        _recordTableView.rowHeight = 55;
+>>>>>>> CoderChan/master
 =======
         _recordTableView.rowHeight = 55;
 >>>>>>> CoderChan/master
@@ -177,6 +181,9 @@
         [clearButton setImage:[UIImage imageNamed:@"delete_icon"] forState:UIControlStateNormal];
 =======
        [clearButton setImage:[UIImage imageNamed:@"delete_icon"] forState:UIControlStateNormal];
+<<<<<<< HEAD
+>>>>>>> CoderChan/master
+=======
 >>>>>>> CoderChan/master
         [clearButton setTitle:@"  清空历史记录" forState:UIControlStateNormal];
         [clearButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -186,7 +193,10 @@
         clearButton.backgroundColor = [UIColor whiteColor];
         clearButton.layer.cornerRadius = 5;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> CoderChan/master
 =======
 >>>>>>> CoderChan/master
         
@@ -287,6 +297,7 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
@@ -300,6 +311,22 @@
 
 
 
+=======
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *footV = [[UIView alloc]initWithFrame:CGRectZero];
+    footV.backgroundColor = ToolBarColor;
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.view.width - 30, 33)];
+    label.text = @"历史搜索记录";
+    label.backgroundColor = ToolBarColor;
+    label.font = [UIFont systemFontOfSize:15];
+    [footV addSubview:label];
+    return footV;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 33;
+}
+>>>>>>> CoderChan/master
 =======
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *footV = [[UIView alloc]initWithFrame:CGRectZero];
