@@ -130,7 +130,7 @@ static YLZGDataManager *controller = nil;
     }];
 }
 
-- (NSArray *)getAllFriendInfo
+- (NSMutableArray *)getAllFriendInfo
 {
     
 //    NSArray *huanxinArr = [HuanxinContactManager getAllHuanxinContactsInfo];

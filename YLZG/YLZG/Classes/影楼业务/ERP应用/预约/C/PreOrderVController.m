@@ -281,13 +281,15 @@
         [self sendErrorWarning:@"请选择预约项目"];
         return;
     }
-    if ([self.timeLabel.text isEqualToString:@"预约到店时间"]) {
+    if ([self.timeLabel.text isEqualToString:@"预计到店时间"]) {
         [self sendErrorWarning:@"请选择预计到店时间"];
         return;
     }
     if ([self.orderIDLabel.text isEqualToString:@"根据号码查询"]) {
         [self sendErrorWarning:@"请输入号码查询订单编号"];
+        return;
     }
+    
     
     [sender setTitle:@"" forState:UIControlStateNormal];
     [self.indicatorV startAnimating];

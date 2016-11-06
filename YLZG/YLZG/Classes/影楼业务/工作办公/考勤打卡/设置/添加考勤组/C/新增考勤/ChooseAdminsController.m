@@ -151,9 +151,6 @@
 }
 - (void)setupNav:(NSMutableArray *)array
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_nav"] style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
-    
     NSString *title;
     if (self.chooseArray.count > 0) {
         title = [NSString stringWithFormat:@"确定(%lu)",(unsigned long)self.chooseArray.count];
@@ -173,9 +170,7 @@
 }
 - (void)dismiss
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (NSMutableArray *)chooseArray
 {

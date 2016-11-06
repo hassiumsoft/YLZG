@@ -43,8 +43,14 @@
         [self.tableView.mj_header endRefreshing];
         if (status == 1) {
             NSArray *array = [responseObject objectForKey:@"result"];
-            self.array = [StaffInfoModel mj_objectArrayWithKeyValuesArray:array];
-            [self.tableView reloadData];
+            if (array.count >= 1) {
+                self.array = [StaffInfoModel mj_objectArrayWithKeyValuesArray:array];
+                self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                    
+                }];
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                [self.tableView reloadData];
+            }
         }else{
             [self sendErrorWarning:message];
         }
@@ -111,6 +117,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 1;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *foot = [UIView new];
+    foot.backgroundColor = [UIColor clearColor];
+    return foot;
 }
 
 @end

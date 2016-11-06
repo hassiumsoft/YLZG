@@ -17,6 +17,8 @@
 
 @property (strong,nonatomic) UILabel *nameLabel;
 
+@property (strong,nonatomic) UILabel *deptLabel;
+
 @property (strong,nonatomic) StaffInfoModel *model;
 
 + (instancetype)sharedMutliChoceStaffCell:(UITableView *)tableView;

@@ -19,13 +19,7 @@
 - (void)setModel:(StaffInfoModel *)model
 {
     _model = model;
-    if ([model.mobile isPhoneNum]) {
-        NSString *ph7 = [model.mobile substringWithRange:NSMakeRange(0, 7)];
-        NSString *mobie = [ph7 stringByAppendingString:@"****"];
-        _phoneLabel.text = mobie;
-    }else{
-        _phoneLabel.text = model.mobile;
-    }
+    _phoneLabel.text = model.dept;
     
     ZCAccount *account = [ZCAccountTool account];
     
@@ -83,13 +77,13 @@
 
 - (void)setupSubViews
 {
-    self.imageV = [[UIImageView alloc]initWithImage:[self imageWithBgColor:HWRandomColor]];
-    
+    self.imageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     self.imageV.layer.masksToBounds = YES;
-    self.imageV.layer.cornerRadius = 22;
+    self.imageV.layer.cornerRadius = 4;
+    self.imageV.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:self.imageV];
     [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(12);
+        make.left.equalTo(self.mas_left).offset(15);
         make.centerY.equalTo(self.mas_centerY);
         make.width.and.height.equalTo(@44);
     }];

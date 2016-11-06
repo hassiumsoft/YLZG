@@ -334,27 +334,16 @@
     
     return headView;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    
-    UIView *footV = [[UIView alloc]init];
-    footV.backgroundColor = self.view.backgroundColor;
-    return footV;
-    
-    //    UIImageView *xian = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
-    //    xian.backgroundColor = self.view.backgroundColor;
-    //    return xian;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    //    KGLog(@"section = %ld",(long)section);
-    //    if (section == self.array.count - 1) {
-    //        return 0;
-    //    }else{
-    //        return 8;
-    //    }
-    return 1;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+//{
+//    UIView *footV = [UIView new];
+//    footV.backgroundColor = [UIColor clearColor];
+//    return footV;
+//}
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return 0;
+//}
 #pragma mark - 一些方法
 - (void)buttonClick:(NormalconButton *)sender
 {
