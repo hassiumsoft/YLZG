@@ -63,6 +63,11 @@
     self.tableView.rowHeight = 75;
     [self.view addSubview:self.tableView];
     
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(confirm)];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    
+    
     // tableHeaderView
     UIView *headV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 75)];
     headV.userInteractionEnabled = YES;
@@ -86,6 +91,10 @@
     footLabel.textAlignment = NSTextAlignmentCenter;
     footLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
     self.tableView.tableFooterView = footLabel;
+}
+- (void)confirm
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -170,8 +179,7 @@
         __weak EditProductController * weakSelf = self;
         calender.calendarblock = ^(CalendarDayModel *model){
             
-            NSString *kkk = [NSString stringWithFormat:@"%lu-%lu-%lu",(unsigned long)model.year,(unsigned long)(unsigned long)model.month,(unsigned long)model.day];
-            NSString *jiajiTime = [kkk substringWithRange:NSMakeRange(0, 10)];
+            NSString *jiajiTime = [NSString stringWithFormat:@"%lu-%lu-%lu",(unsigned long)model.year,(unsigned long)(unsigned long)model.month,(unsigned long)model.day];
             
             TaoxiProductModel *taoxiModel = weakSelf.array[indexPath.section];
             taoxiModel.isJiaji = YES;
