@@ -117,7 +117,6 @@
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             cell.textLabel.text = self.dateSource[indexPath.section][indexPath.row];
             cell.contentLabel.text = self.userModel.location;
-            
             return cell;
         }
     }

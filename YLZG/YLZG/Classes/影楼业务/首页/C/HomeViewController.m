@@ -138,9 +138,9 @@
     
     if ([self.userModel.type intValue] == 1) {
         // 老板
-
-
-
+        
+        
+        
         self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"今日财务",@"财务统计"],@[@"审批",@"考勤打卡",@"实用工具"],@[@"营销工具"]]];
         self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_icon_tofinace",@"btn_icon_monthfinace"],@[@"btn_ico_shenpi",@"btn_ico_kaoqin",@"btn_more"],@[@"btn_ico_kaoqin"]]];
         self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1"],@[@"-1",@"-1",@"-1"],@[@"-1"]]];

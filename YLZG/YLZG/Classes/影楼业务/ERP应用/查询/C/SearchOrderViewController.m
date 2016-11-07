@@ -111,6 +111,7 @@
         [self hideHud:0];
         [self sendErrorWarning:error.localizedDescription];
     }];
+    self.searchBar.userInteractionEnabled = YES;
     
     
 }
@@ -361,7 +362,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
-    
+    self.searchBar.userInteractionEnabled = NO;
     [self.dataSource removeAllObjects];
     [self.searchTableView reloadData];
     
@@ -378,18 +379,20 @@
     [self loadSearchViewControllerData];
     
     
+    
 }
 
 
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+ 
     [_dataSource removeAllObjects];
     [_searchTableView reloadData];
 }
 
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    
+
     self.recordTableView.hidden = NO ;
     self.recordTableView.delegate =self;
     self.recordTableView.dataSource= self;
