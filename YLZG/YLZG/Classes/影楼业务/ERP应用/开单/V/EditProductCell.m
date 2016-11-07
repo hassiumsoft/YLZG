@@ -88,14 +88,14 @@
     [backView addSubview:self.jiajiLabel];
     [self.jiajiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(backView.mas_bottom).offset(-2);
-        make.right.equalTo(backView.mas_right).offset(-10);
+        make.right.equalTo(backView.mas_right).offset(-20);
         make.height.equalTo(@20);
     }];
     
     self.jiajiImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"jiaji"]];
     [backView addSubview:self.jiajiImageV];
     [self.jiajiImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(backView.mas_right).offset(-2);
+        make.right.equalTo(backView.mas_right).offset(-12);
         make.width.and.height.equalTo(@36);
         make.bottom.equalTo(self.jiajiLabel.mas_top);
     }];

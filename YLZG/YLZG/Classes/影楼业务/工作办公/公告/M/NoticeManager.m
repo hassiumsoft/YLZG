@@ -39,25 +39,21 @@ static FMDatabase *_db;
 {
     // 保存前先删除之前的记录,保持信息最新
     if (![_db open]) {
-        return nil;
-    }
-//    BOOL isDelete = [self deleteAllInfo];
-//    KGLog(@"删除公告数据%d",isDelete);
-    
-    // noticejson
-    
-    NSDictionary *dict = [model mj_keyValues];
-    NSString *memberJson = [self toJsonStr:dict];
-    
-    NSString *sql = [NSString stringWithFormat:@"insert into t_notice (noticejson) values ('%@')",memberJson];
-    
-    BOOL result = [_db executeUpdate:sql];
-    if (result) {
-        KGLog(@"保存成功");
+        return NO;
     }else{
-        KGLog(@"保存失败");
+        NSDictionary *dict = [model mj_keyValues];
+        NSString *memberJson = [self toJsonStr:dict];
+        
+        NSString *sql = [NSString stringWithFormat:@"insert into t_notice (noticejson) values ('%@')",memberJson];
+        
+        BOOL result = [_db executeUpdate:sql];
+        if (result) {
+            KGLog(@"保存成功");
+        }else{
+            KGLog(@"保存失败");
+        }
+        return result;
     }
-    return result;
 }
 
 + (NSMutableArray *)getAllNoticeInfo

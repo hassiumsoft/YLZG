@@ -81,9 +81,10 @@
 #pragma mark - 建表
 - (void)setupSubViews
 {
-    self.array = @[@[@"客人姓名：",@"客人电话："],@[@"选择风景：",@"套系名称：",@"套系金额："],@[],@[@"订单说明："],@[@"提交订单"]];
     
-    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds];
+    self.array = @[@[@"客人姓名：",@"客人电话："],@[@"选择风景：",@"套系名称：",@"套系金额："],@[@"客户来源",@"套系类别",@"入底",@"入册",@"会员卡号"],@[@"订单说明："],@[@"提交订单"]];
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
     self.tableView.backgroundColor = self.view.backgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -170,6 +171,49 @@
         }
         
     }else if (indexPath.section == 2){
+        if (indexPath.row == 0) {
+            // 客户来源
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            cell.contentLabel.text = @"xxxx";
+            cell.contentLabel.textColor = RGBACOLOR(232, 19, 28, 1);
+            cell.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+            cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+            return cell;
+        } else if(indexPath.row == 1){
+            // 套系类别
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            cell.contentLabel.text = @"xxxx";
+            cell.contentLabel.textColor = RGBACOLOR(232, 19, 28, 1);
+            cell.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+            cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+            return cell;
+        }else if (indexPath.row == 2){
+            // 入底
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            cell.contentLabel.text = @"xxxx";
+            cell.contentLabel.textColor = RGBACOLOR(232, 19, 28, 1);
+            cell.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+            cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+            return cell;
+        }else if (indexPath.row == 3){
+            // 入册
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            cell.contentLabel.text = @"xxxx";
+            cell.contentLabel.textColor = RGBACOLOR(232, 19, 28, 1);
+            cell.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+            cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+            return cell;
+        }else{
+            // 会员卡号
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            cell.contentLabel.text = @"xxxx";
+            cell.contentLabel.textColor = RGBACOLOR(232, 19, 28, 1);
+            cell.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+            cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+            return cell;
+        }
+        
+    }else if (indexPath.section == 3){
         // 订单说明
         NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -286,6 +330,9 @@
             }
             
         }
+    }else if(indexPath.section == 2){
+        //入底入册那些
+        [self showSuccessTips:@"入底入册"];
     }
 }
 
@@ -319,7 +366,7 @@
     self.taoPrice = namePrice.set_price;
     
     /******* ⚠️先增加一行⚠️ ********/
-    self.array = @[@[@"客人姓名：",@"客人电话："],@[@"选择风景：",@"套系名称：",@"套系产品",@"套系金额："],@[@"订单说明："],@[@"提交订单"]];
+    self.array = @[@[@"客人姓名：",@"客人电话："],@[@"选择风景：",@"套系名称：",@"套系产品",@"套系金额："],@[@"客户来源",@"套系类别",@"入底",@"入册",@"会员卡号"],@[@"订单说明："],@[@"提交订单"]];
     
     [self.tableView reloadData];
     
@@ -399,19 +446,23 @@
     } else if(indexPath.section == 1){
         return 48;
     }else if (indexPath.section == 2){
-        return 66;
+        return 48;
+    }else if (indexPath.section == 3){
+        return 65;
     }else{
-        CGFloat tabHeight;
-        NSArray *tempArr = self.array[1];
-        if (tempArr.count == 3) {
-            // 初始状态
-            tabHeight = 48*6 + 66 + 36*CKproportion;
-            
-        }else{
-            tabHeight = 48*(6 + 1) + 66 + 36*CKproportion;
-            
-        }
-        return self.view.height - tabHeight + 64;
+//        CGFloat tabHeight;
+//        NSArray *tempArr = self.array[1];
+//        if (tempArr.count == 3) {
+//            // 初始状态
+//            tabHeight = 48*6 + 66 + 36*CKproportion;
+//            
+//        }else{
+//            tabHeight = 48*(6 + 1) + 66 + 36*CKproportion;
+//            
+//        }
+//        return self.view.height - tabHeight + 64;
+        
+        return 108;
     }
 }
 #pragma mark - UITextViewDelegate
@@ -434,13 +485,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 2) {
-        return 1;
-    }else if(section == 3){
-        return 0.1;
-    }else{
-        return 7;
-    }
+    return 6;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
@@ -471,52 +516,7 @@
     
 }
 
-/**
- 
- http://zsylou.wxwkf.com/index.php/home/newtrade/new?uid=2&
- price=3999&
- set=999婚纱照&
- guest=姓名&
- msg=备注&
- mobile=18753607722&
- productlist=
- [
- {
- "category":"1",
- "isUrgent":0,
- "number":1,
- "pro_name":"999婚纱套系",
- "pro_price":"100",
- "urgentTime":""
- },
- {
- "category":"2",
- "isUrgent":0,
- "number":1,
- "pro_name":"5288儿童满月套系",
- "pro_price":"200",
- "urgentTime":""
- },
- 
- {
- "category":"3",
- "isUrgent":0,
- "number":1,
- "pro_name":"7288水晶套系",
- "pro_price":"300",
- "urgentTime":""
- },
- {
- "category":"1",
- "isUrgent":0,
- "number":1,
- "pro_name":"105全家福套系",
- "pro_price":"400",
- "urgentTime":""
- }
- ]
- 
- */
+
 #pragma mark - 产品信息的回调
 - (void)editProductArray:(NSArray *)productlist
 {
@@ -557,15 +557,15 @@
             case AFNetworkReachabilityStatusReachableViaWiFi:
             {
                 // wifi网络
-                [self sendOrder];
-//                [self saveData];
+//                [self sendOrder];
+                [self saveData];
                 break;
             }
             case AFNetworkReachabilityStatusReachableViaWWAN:
             {
                 // 无线网络
-                [self sendOrder];
-//                [self saveData];
+//                [self sendOrder];
+                [self saveData];
                 break;
             }
             default:
@@ -810,7 +810,7 @@
             self.jsonArray = @"";
             self.spotStr = nil;
             self.spotJson = nil;
-            self.array = @[@[@"客人姓名：",@"客人电话："],@[@"选择风景",@"套系名称：",@"套系金额："],@[@"订单说明："],@[@"提交订单"]];
+            self.array = @[@[@"客人姓名：",@"客人电话："],@[@"选择风景",@"套系名称：",@"套系金额："],@[@"客户来源",@"套系类别",@"入底",@"入册",@"会员卡号"],@[@"订单说明："],@[@"提交订单"]];
             [self.tableView reloadData];
             
         }];
