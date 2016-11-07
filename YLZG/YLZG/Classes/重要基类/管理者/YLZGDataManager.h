@@ -31,7 +31,7 @@ typedef void(^ShareUrlBlock)(NSString *url);
 /** 把群组信息存进数据库 */
 - (void)saveGroupInfoWithBlock:(NoParamBlock)reloadTable;
 /** 获取本地通讯录全部好友信息 */
-- (NSArray *)getAllFriendInfo;
+- (NSMutableArray *)getAllFriendInfo;
 /** 通过一个影楼ID获取一个用户的信息 */
 - (void)getOneStudioByUserName:(NSString *)userName Block:(StuduoModelBlock)modelBlock;
 /** 获取分享链接 */

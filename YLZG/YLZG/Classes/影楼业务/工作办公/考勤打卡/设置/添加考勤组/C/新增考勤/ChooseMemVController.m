@@ -150,8 +150,6 @@
 }
 - (void)setupNav:(NSMutableArray *)array
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_nav"] style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
-    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
     
     NSString *title;
     if (self.chooseArray.count > 0) {
@@ -160,7 +158,7 @@
         title = @"确定";
     }
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(doneAction)];
-    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleBody]} forState:UIControlStateNormal];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1]} forState:UIControlStateNormal];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 - (void)doneAction
@@ -172,9 +170,7 @@
 }
 - (void)dismiss
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (NSMutableArray *)chooseArray
 {

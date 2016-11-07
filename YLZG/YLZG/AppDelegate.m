@@ -218,7 +218,6 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        [[EMClient sharedClient] bindDeviceToken:deviceToken];
         [[EMClient sharedClient] registerForRemoteNotificationsWithDeviceToken:deviceToken completion:^(EMError *aError) {
             if (aError) {
                 KGLog(@"推送aError = %@",aError.errorDescription);
@@ -254,8 +253,6 @@
     [[EMClient sharedClient] applicationWillEnterForeground:application];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
-
-
 
 
 @end

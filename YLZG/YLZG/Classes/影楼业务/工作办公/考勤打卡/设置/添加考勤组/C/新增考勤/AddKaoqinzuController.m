@@ -164,20 +164,13 @@
         if (indexPath.row == 0) {
             // 选中考勤人员
             ChooseMemVController *mem = [ChooseMemVController new];
-            HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:mem];
             mem.delegate = self;
-            [self presentViewController:nav animated:YES completion:^{
-                
-            }];
+            [self.navigationController pushViewController:mem animated:YES];
         }else{
             // 选中负责人
             ChooseAdminsController *shenpier = [ChooseAdminsController new];
-            HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:shenpier];
             shenpier.delegate = self;
-            shenpier.delegate = self;
-            [self presentViewController:nav animated:YES completion:^{
-                
-            }];
+            [self.navigationController pushViewController:shenpier animated:YES];
         }
     }
 }
@@ -233,7 +226,7 @@
     if (!_switchV) {
         _switchV = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 60, 15, 44, 35)];
         _switchV.onTintColor = MainColor;
-        [_switchV addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_switchV addTarget:self action:@selector(switchClick:) forControlEvents:UIControlEventValueChanged];
         [_switchV setOn:YES animated:YES];
     }
     return _switchV;

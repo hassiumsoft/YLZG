@@ -26,6 +26,8 @@ static YLZGChatManager *chatManager = nil;
 @implementation YLZGChatManager
 
 
+
+
 #pragma mark - 单例初始化
 + (instancetype)sharedManager
 {
@@ -113,10 +115,6 @@ static YLZGChatManager *chatManager = nil;
 #pragma mark - 群组回调相关 - EMGroupManagerDelegate
 - (void)didLeaveGroup:(EMGroup *)aGroup reason:(EMGroupLeaveReason)aReason
 {
-    // 更新数组缓存
-    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
-        
-    }];
     
     NSString *groupName = aGroup.subject;
     if (aReason == EMGroupLeaveReasonBeRemoved) {
@@ -150,20 +148,27 @@ static YLZGChatManager *chatManager = nil;
         }
     }
     
+    // 更新数组缓存
+    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+        
+    }];
+    
 }
 
 - (void)didJoinGroup:(EMGroup *)aGroup inviter:(NSString *)aInviter message:(NSString *)aMessage
 {
     // SDK自动同意了用户A的加B入群邀请后，用户B接收到该回调，需要设置EMOptions的isAutoAcceptGroupInvitation为YES
-    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
-        
-    }];
     
     [[YLZGDataManager sharedManager] getOneStudioByUserName:aInviter Block:^(ContactersModel *model) {
         
         NSString *message = [NSString stringWithFormat:@"%@邀请您加入群聊:%@",model.realname,aGroup.subject];
         [self showAlertMessage:message];
     }];
+    
+    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+        
+    }];
+    
     
 }
 - (void)groupInvitationDidReceive:(NSString *)aGroupId inviter:(NSString *)aInviter message:(NSString *)aMessage
@@ -712,6 +717,381 @@ static YLZGChatManager *chatManager = nil;
 {
     UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     [alertV show];
+}
+
+
+
+#pragma mark - 为了消息警告⚠️
+- (void)declineJoinGroupRequest:(NSString *)aGroupId sender:(NSString *)aUsername reason:(NSString *)aReason completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    
+}
+- (void)asyncDeclineInvitationFromGroup:(NSString *)aGroupId inviter:(NSString *)aUsername reason:(NSString *)aReason success:(void (^)())aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+- (void)getPublicGroupsFromServerWithCursor:(NSString *)aCursor pageSize:(NSInteger)aPageSize completion:(void (^)(EMCursorResult *, EMError *))aCompletionBlock
+{
+    
+}
+- (EMGroup *)unblockGroup:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+{
+    return 0;
+}
+- (void)blockMembers:(NSArray *)aMembers fromGroup:(NSString *)aGroupId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    
+}
+- (void)asyncDeclineJoinApplication:(NSString *)aGroupId applicant:(NSString *)aUsername reason:(NSString *)aReason success:(void (^)())aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+//- (EMCursorResult *)getPublicGroupsFromServerWithCursor:(NSString *)aCursor pageSize:(NSInteger)aPageSize error:(EMError *__autoreleasing *)pError
+//{
+//    return 0;
+//}
+- (EMGroup *)searchPublicGroupWithId:(NSString *)aGroundId error:(EMError *__autoreleasing *)pError
+{
+    return 0;
+}
+- (void)asyncAcceptInvitationFromGroup:(NSString *)aGroupId inviter:(NSString *)aUsername success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+- (void)asyncLeaveGroup:(NSString *)aGroupId success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+- (void)didReceiveDeclinedJoinGroup:(NSString *)aGroupId reason:(NSString *)aReason
+{
+    
+}
+- (void)createGroupWithSubject:(NSString *)aSubject description:(NSString *)aDescription invitees:(NSArray *)aInvitees message:(NSString *)aMessage setting:(EMGroupOptions *)aSetting completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    
+}
+- (void)asyncJoinPublicGroup:(NSString *)aGroupId success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+- (void)asyncBlockGroup:(NSString *)aGroupId success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+- (void)joinPublicGroup:(NSString *)aGroupId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    
+}
+//- (EMCursorResult *)getPublicGroupsFromServerWithCursor:(NSString *)aCursor pageSize:(NSInteger)aPageSize error:(EMError *__autoreleasing *)pError
+//{
+//    return 0;
+//}
+- (void)asyncChangeGroupSubject:(NSString *)aSubject forGroup:(NSString *)aGroupId success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+//- (EMError *)declineJoinApplication:(NSString *)aGroupId applicant:(NSString *)aUsername reason:(NSString *)aReason
+//{
+//    return 0;
+//}
+- (void)asyncSearchPublicGroupWithId:(NSString *)aGroundId success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+- (void)asyncApplyJoinPublicGroup:(NSString *)aGroupId message:(NSString *)aMessage success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+//- (EMGroup *)createGroupWithSubject:(NSString *)aSubject description:(NSString *)aDescription invitees:(NSArray *)aInvitees message:(NSString *)aMessage setting:(EMGroupOptions *)aSetting error:(EMError *__autoreleasing *)pError
+//{
+//    return 0;
+//}
+- (void)asyncCreateGroupWithSubject:(NSString *)aSubject description:(NSString *)aDescription invitees:(NSArray *)aInvitees message:(NSString *)aMessage setting:(EMGroupOptions *)aSetting success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+-(void)updateGroupSubject:(NSString *)aSubject forGroup:(NSString *)aGroupId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    
+}
+//- (EMGroup *)joinPublicGroup:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+//{
+//    return 0;
+//}
+- (void)asyncAddOccupants:(NSArray *)aOccupants toGroup:(NSString *)aGroupId welcomeMessage:(NSString *)aWelcomeMessage success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+- (void)updatePushServiceForGroup:(NSString *)aGroupID isPushEnabled:(BOOL)aIsEnable completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    
+}
+- (NSArray *)getMyGroupsFromServerWithError:(EMError *__autoreleasing *)pError
+{
+    return 0;
+}
+- (void)asyncUnblockOccupants:(NSArray *)aOccupants forGroup:(NSString *)aGroupId success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+- (void)blockGroup:(NSString *)aGroupId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    
+}
+- (void)asyncFetchGroupInfo:(NSString *)aGroupId includeMembersList:(BOOL)aIncludeMembersList success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+- (void)addDelegate:(id<EMGroupManagerDelegate>)aDelegate
+{
+    
+}
+- (NSArray *)getAllGroups
+{
+    return 0;
+}
+- (EMError *)declineJoinApplication:(NSString *)aGroupId applicant:(NSString *)aUsername reason:(NSString *)aReason
+{
+    return 0;
+}
+- (NSArray *)getAllIgnoredGroupIds
+{
+    return 0;
+}
+- (EMGroup *)removeOccupants:(NSArray *)aOccupants fromGroup:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+{
+    return 0;
+}
+- (EMError *)acceptJoinApplication:(NSString *)aGroupId applicant:(NSString *)aUsername
+{
+    return 0;
+}
+- (void)asyncUnblockGroup:(NSString *)aGroupId success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    
+}
+-(void)asyncAcceptJoinApplication:(NSString *)aGroupId applicant:(NSString *)aUsername success:(void (^)())aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    // 批准入群申请, 需要Owner权限
+}
+- (NSArray *)loadAllMyGroupsFromDB
+{
+    return 0;
+}
+- (EMGroup *)addOccupants:(NSArray *)aOccupants toGroup:(NSString *)aGroupId welcomeMessage:(NSString *)aWelcomeMessage error:(EMError *__autoreleasing *)pError
+{
+    // 邀请用户加入群组
+    return 0;
+}
+- (NSArray *)fetchGroupBansList:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+{
+    // 获取群组黑名单列表, 需要owner权限
+    return 0;
+}
+- (void)asyncChangeDescription:(NSString *)aDescription forGroup:(NSString *)aGroupId success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    // 更改群组说明信息, 需要owner权限
+}
+- (void)removeDelegate:(id)aDelegate
+{
+    
+}
+//- (void)searchPublicGroupWithId:(NSString *)aGroundId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+//{
+//    // 搜搜公共群
+//}
+- (void)asyncGetMyGroupsFromServer:(void (^)(NSArray *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    // 从服务器获取用户所有的群组，成功后更新DB和内存中的群组列表
+}
+- (void)asyncFetchGroupBansList:(NSString *)aGroupId success:(void (^)(NSArray *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    // 获取群组黑名单列表, 需要owner权限
+}
+- (void)asyncBlockOccupants:(NSArray *)aOccupants fromGroup:(NSString *)aGroupId success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    // 加人到群组黑名单, 需要owner权限
+}
+- (void)asyncIgnoreGroupPush:(NSString *)aGroupId ignore:(BOOL)aIsIgnore success:(void (^)())aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    // 屏蔽群组推送
+}
+- (EMGroup *)unblockOccupants:(NSArray *)aOccupants forGroup:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+{
+    // 从群组黑名单中减人, 需要owner权限
+    return 0;
+}
+- (void)asyncDestroyGroup:(NSString *)aGroupId success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    // 摧毁群组
+}
+-(void)addDelegate:(id<EMGroupManagerDelegate>)aDelegate delegateQueue:(dispatch_queue_t)aQueue
+{
+    
+}
+- (void)asyncRemoveOccupants:(NSArray *)aOccupants fromGroup:(NSString *)aGroupId success:(void (^)(EMGroup *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    // 将群成员移出群组, 需要owner权限
+}
+- (void)asyncGetPublicGroupsFromServerWithCursor:(NSString *)aCursor pageSize:(NSInteger)aPageSize success:(void (^)(EMCursorResult *))aSuccessBlock failure:(void (^)(EMError *))aFailureBlock
+{
+    // 获取公共群组列表
+}
+
+- (void)destroyGroup:(NSString *)aGroupId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 销毁群组
+}
+- (EMGroup *)blockGroup:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+{
+    // 屏蔽群消息，服务器不再发送此群的消息给用户，owner不能屏蔽群消息
+    return 0;
+}
+- (void)addMembers:(NSArray *)aUsers toGroup:(NSString *)aGroupId message:(NSString *)aMessage completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 邀请A进群
+}
+- (void)updateDescription:(NSString *)aDescription forGroup:(NSString *)aGroupId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 更改群组说明信息, 需要owner权限
+}
+- (void)removeMembers:(NSArray *)aUsers fromGroup:(NSString *)aGroupId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 除以群成员
+}
+
+- (EMGroup *)applyJoinPublicGroup:(NSString *)aGroupId message:(NSString *)aMessage error:(EMError *__autoreleasing *)pError
+{
+    // 申请加入一个需批准的公开群组，群类型应该是EMGroupStylePublicJoinNeedApproval
+    return 0;
+}
+- (void)approveJoinGroupRequest:(NSString *)aGroupId sender:(NSString *)aUsername completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 批准入群申请, 需要Owner权限
+}
+
+- (EMGroup *)createGroupWithSubject:(NSString *)aSubject description:(NSString *)aDescription invitees:(NSArray *)aInvitees message:(NSString *)aMessage setting:(EMGroupOptions *)aSetting error:(EMError *__autoreleasing *)pError
+{
+    // 建群
+    return 0;
+}
+- (EMGroup *)leaveGroup:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+{
+    // 退出群组，owner不能退出群，只能销毁群
+    return 0;
+}
+- (EMGroup *)blockOccupants:(NSArray *)aOccupants fromGroup:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+{
+    // 加人到群组黑名单, 需要owner权限
+    return 0;
+}
+- (void)declineGroupInvitation:(NSString *)aGroupId inviter:(NSString *)aInviter reason:(NSString *)aReason completion:(void (^)(EMError *))aCompletionBlock
+{
+    // 拒绝入群邀请
+}
+- (NSArray *)getGroupsWithoutPushNotification:(EMError *__autoreleasing *)pError
+{
+    // 从内存中获取屏蔽了推送的群组ID列表
+    return 0;
+}
+- (EMGroup *)destroyGroup:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+{
+    // 解散群组, 需要owner权限
+    return 0;
+}
+- (EMGroup *)changeDescription:(NSString *)aDescription forGroup:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+{
+    // 更改群组说明信息, 需要owner权限
+    return 0;
+}
+- (void)getGroupSpecificationFromServerByID:(NSString *)aGroupID includeMembersList:(BOOL)aIncludeMembersList completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 获取群组详情
+}
+- (EMGroup *)changeGroupSubject:(NSString *)aSubject forGroup:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+{
+    // 解散群组, 需要owner权限
+    return 0;
+}
+- (void)leaveGroup:(NSString *)aGroupId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 离开群组回调
+}
+- (void)getJoinedGroupsFromServerWithCompletion:(void (^)(NSArray *, EMError *))aCompletionBlock
+{
+    // 从服务器获取用户所有的群组，成功后更新DB和内存中的群组列表
+}
+- (EMGroup *)fetchGroupInfo:(NSString *)aGroupId includeMembersList:(BOOL)aIncludeMembersList error:(EMError *__autoreleasing *)pError
+{
+    // 获取群组详情
+    return 0;
+}
+- (void)acceptInvitationFromGroup:(NSString *)aGroupId inviter:(NSString *)aUsername completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 接受入群邀请
+}
+- (EMGroup *)acceptInvitationFromGroup:(NSString *)aGroupId inviter:(NSString *)aUsername error:(EMError *__autoreleasing *)pError
+{
+    // 接受入群邀请
+    return 0;
+}
+- (void)requestToJoinPublicGroup:(NSString *)aGroupId message:(NSString *)aMessage completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 申请加入一个需批准的公开群组，群类型应该是EMGroupStylePublicJoinNeedApproval
+}
+- (void)unblockGroup:(NSString *)aGroupId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 取消屏蔽群消息
+}
+- (EMError *)declineInvitationFromGroup:(NSString *)aGroupId inviter:(NSString *)aUsername reason:(NSString *)aReason
+{
+    // 拒绝入群邀请
+    return 0;
+}
+- (void)searchPublicGroupWithId:(NSString *)aGroundId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 根据群ID搜索公开群
+}
+- (EMGroup *)joinPublicGroup:(NSString *)aGroupId error:(EMError *__autoreleasing *)pError
+{
+    // 加入一个公开群组，群类型应该是EMGroupStylePublicOpenJoin
+    return 0;
+}
+- (EMError *)ignoreGroupPush:(NSString *)aGroupId ignore:(BOOL)aIsIgnore
+{
+    // 屏蔽/取消屏蔽群组消息的推送
+    return 0;
+}
+- (void)unblockMembers:(NSArray *)aMembers fromGroup:(NSString *)aGroupId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
+{
+    // 从群组黑名单中减人, 需要owner权限
+}
+- (void)autoLoginDidCompleteWithError:(EMError *)aError
+{
+    // 自动登录失败
+}
+
+- (void)cmdMessagesDidReceive:(NSArray *)aCmdMessages
+{
+    // 收到CMD消息
+}
+- (NSArray *)getJoinedGroups
+{
+    // 获取用户所有群组
+    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+        
+    }];
+    return 0;
+}
+- (void)getGroupBlackListFromServerByID:(NSString *)aGroupId completion:(void (^)(NSArray *, EMError *))aCompletionBlock
+{
+    // 获取群组黑名单列表
+    
+}
+- (EMCursorResult *)getPublicGroupsFromServerWithCursor:(NSString *)aCursor pageSize:(NSInteger)aPageSize error:(EMError *__autoreleasing *)pError
+{
+    // 从服务器获取指定范围内的公开群
+    return 0;
 }
 
 

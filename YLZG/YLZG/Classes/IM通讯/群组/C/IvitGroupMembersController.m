@@ -8,6 +8,7 @@
 
 #import "IvitGroupMembersController.h"
 #import "YLZGDataManager.h"
+#import <MJRefresh.h>
 #import "IvitMembersTableCell.h"
 
 
@@ -33,10 +34,15 @@
 }
 - (void)setupSubViews
 {
-
-    NSArray *allArr = [[YLZGDataManager sharedManager] getAllFriendInfo];
-    self.array = [NSMutableArray arrayWithArray:allArr];
+    
+    self.array = [[YLZGDataManager sharedManager] getAllFriendInfo];
     [self.view addSubview:self.tableView];
+    
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
+    }];
+    [self.tableView.mj_footer endRefreshingWithNoMoreData];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -89,7 +95,13 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+- (NSMutableArray *)array
+{
+    if (!_array) {
+        _array = [NSMutableArray array];
+    }
+    return _array;
+}
 - (NSMutableArray *)selectArray
 {
     if (!_selectArray) {

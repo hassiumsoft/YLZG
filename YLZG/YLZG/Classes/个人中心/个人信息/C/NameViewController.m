@@ -109,8 +109,11 @@
         [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             int code = [[[responseObject objectForKey:@"code"] description] intValue];
             NSString *message = [[responseObject objectForKey:@"message"] description];
-            [self hideHud:0];
+            [self.indicator stopAnimating];
+            [button setTitle:@"保  存" forState:UIControlStateNormal];
+            
             if (code == 1) {
+                
                 [UserInfoManager updataUserInfoWithKey:@"nickname" Value:self.textField.text];
                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -132,64 +135,7 @@
     
 }
 
-///************ 上传到自己的服务器 ************/
-//- (void)uploadMyNickName:(NSString *)myNickName {
-//    
-//    if (self.textField.text.length > 0) {
-//        
-//        ZCAccount * account = [ZCAccountTool account];
-//        NSString * str = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/contacts/update?nickname=%@&uid=%@",myNickName,account.userID];
-//        NSCharacterSet * set = [NSCharacterSet URLQueryAllowedCharacterSet];
-//        NSString * url = [str stringByAddingPercentEncodingWithAllowedCharacters:set];
-//        [AFHTTPSessionManager GETOder:url parameter:nil success:^(id responseObject) {
-//            [self.indicator stopAnimating];
-//            NSError * error;
-//            NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
-//            if (error) {
-//                [self sendErrorWarning:[NSString stringWithFormat:@"%@", error.localizedDescription]];
-//            }else {
-//                int status = [[dict[@"code"] description] intValue];
-//                if (status == 1) {
-//                    KGLog(@"修改昵称成功");
-//                    UserProfileEntity * entity = [[UserProfileManager sharedInstance] getCurUserProfile];
-//                    entity.nickname = self.textField.text;
-//                    [YLNotificationCenter postNotificationName:YLNickNameChanged object:self.textField.text];
-//                    [self.indicator stopAnimating];
-//                    
-//                    BOOL result = [UserInfoManager updataUserInfoWithKey:@"nickname" Value:self.textField.text];
-//                    
-//                    if (result) {
-//                        [self sendSuccessMessage:@"信息修改成功"];
-//                    }
-//                    
-//                    
-//                }else {
-//                    NSString *message = [[dict objectForKey:@"message"] description];
-//                    [self sendErrorWarning:message];
-//                }
-//            }
-//        } failure:^(NSError *error) {
-//            [self sendErrorWarning:[NSString stringWithFormat:@"%@", error.localizedDescription]];
-//        }];
-//    }
-//    
-//}
 
-//- (void)sendSuccessMessage:(NSString *)message
-//{
-//    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//        
-//        [YLNotificationCenter postNotificationName:HXUpdataContacts object:nil];
-//        
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }];
-//    
-//    [alertC addAction:action1];
-//    [self presentViewController:alertC animated:YES completion:^{
-//        
-//    }];
-//}
 
 - (UIActivityIndicatorView *)indicator
 {

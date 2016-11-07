@@ -72,7 +72,7 @@
                 UILabel *footLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
                 footLabel.text = @"💡您可以通过日历选择日期查看\r影楼未来30天内的预约数量";
                 footLabel.numberOfLines = 2;
-                footLabel.backgroundColor = self.view.backgroundColor;
+                footLabel.backgroundColor = NorMalBackGroudColor;
                 footLabel.textAlignment = NSTextAlignmentCenter;
                 footLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
                 footLabel.textColor = RGBACOLOR(67, 67, 67, 1);

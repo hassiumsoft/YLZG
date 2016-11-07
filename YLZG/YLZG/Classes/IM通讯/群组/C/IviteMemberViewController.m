@@ -169,7 +169,12 @@
 {
     return 0.1f;
 }
-
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footV = [UIView new];
+    footV.backgroundColor = [UIColor clearColor];
+    return footV;
+}
 - (UITableView *)tableView
 {
     if (!_tableView) {
