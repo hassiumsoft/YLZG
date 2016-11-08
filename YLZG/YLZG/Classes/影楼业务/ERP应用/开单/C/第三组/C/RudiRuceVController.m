@@ -1,16 +1,15 @@
 //
-//  OrderPhoneController.m
-//  ChatDemo-UI3.0
+//  RudiRuceVController.m
+//  YLZG
 //
-//  Created by Chan_Sir on 16/5/16.
-//  Copyright © 2016年 Chan_Sir. All rights reserved.
+//  Created by Chan_Sir on 2016/11/8.
+//  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "OrderPhoneController.h"
-#import "NSString+StrCategory.h"
+#import "RudiRuceVController.h"
 #import <Masonry.h>
 
-@interface OrderPhoneController ()
+@interface RudiRuceVController ()
 
 {
     UIButton *commitBtn;
@@ -20,22 +19,23 @@
 
 @end
 
-@implementation OrderPhoneController
+@implementation RudiRuceVController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"客户电话";
-    
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     [self createUI];
-
 }
 
 - (void)createUI {
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-    label.text = @"请填写手机号码";
+    if (self.rudiruceType) {
+        label.text = @"编辑入底";
+    }else{
+        label.text = @"编辑入册";
+    }
     label.font = [UIFont systemFontOfSize:24];
     label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label];
@@ -52,7 +52,7 @@
     self.textField.leftViewMode = UITextFieldViewModeAlways;
     self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textField.backgroundColor = [UIColor whiteColor];
-    self.textField.placeholder = @"如：13855665566";
+    self.textField.placeholder = @"如：30";
     [self.view addSubview:self.textField];
     
     UIImageView *xian = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
@@ -86,14 +86,12 @@
 - (void)changeName
 {
     [self.view endEditing:YES];
-    if (![self.textField.text isPhoneNum]) {
-        [self showErrorTips:@"号码有误"];
-        return;
-    }
-    if ([self.delegate respondsToSelector:@selector(orderCusPhone:)]) {
-        [self.delegate orderCusPhone:self.textField.text];
+    
+    if (self.RudiRuceBlock) {
+        _RudiRuceBlock(self.textField.text);
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
+
 
 @end

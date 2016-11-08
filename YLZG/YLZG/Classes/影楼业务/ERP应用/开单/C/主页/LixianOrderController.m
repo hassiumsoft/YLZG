@@ -144,7 +144,7 @@
     dispatch_sync(ZCGlobalQueue, ^{
         for (int i = 0; i < sendArray.count; i++) {
             OffLineOrder *model = sendArray[i];
-            
+            KGLog(@"model.allUrl ==== %@",model.allUrl);
             [HTTPManager GET:model.allUrl params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 NSString *message = [[responseObject objectForKey:@"message"] description];
                 int status = [[[responseObject objectForKey:@"code"] description] intValue];
@@ -250,7 +250,7 @@
                 
             }
         } otherButtonTitles:@"删除", nil];
-        
+        sheet.destructiveButtonIndexSet = [NSSet setWithObject:@1];
         [sheet show];
     }];
     deleteAction.backgroundColor = [UIColor redColor];

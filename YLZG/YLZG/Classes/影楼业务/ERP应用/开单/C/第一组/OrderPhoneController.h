@@ -16,6 +16,8 @@
 
 @interface OrderPhoneController : SuperViewController
 
+@property (copy,nonatomic) void (^PhoneBlock)(NSString *phone2);
+
 @property (weak,nonatomic) id<OrderPhoneDelegate> delegate;
 
 @end
