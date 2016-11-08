@@ -16,6 +16,8 @@
 
 @interface OrderNameController : SuperViewController
 
+@property (copy,nonatomic) void (^NameBlock)(NSString *name2);
+
 @property (weak,nonatomic) id<OrderNameDelegate> delegate;
 
 @end

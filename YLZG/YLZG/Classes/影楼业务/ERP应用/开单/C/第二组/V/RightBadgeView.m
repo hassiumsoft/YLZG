@@ -27,14 +27,14 @@
         badgeLabel.textColor = [UIColor whiteColor];
         badgeLabel.backgroundColor = [UIColor redColor];
         badgeLabel.layer.masksToBounds = YES;
-        badgeLabel.layer.cornerRadius = 12;
+        badgeLabel.layer.cornerRadius = 10;
         badgeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         badgeLabel.textAlignment = NSTextAlignmentCenter;
         [rightBar addSubview:badgeLabel];
         [badgeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(rightBar.mas_left);
             make.top.equalTo(rightBar.mas_top);
-            make.width.and.height.equalTo(@24);
+            make.width.and.height.equalTo(@20);
         }];
         
     }

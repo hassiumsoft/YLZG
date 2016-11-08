@@ -27,9 +27,13 @@
 #import "HTTPManager.h"
 #import <Masonry.h>
 #import "RightBadgeView.h"
+#import "TaoxiTypeViewController.h"
+#import "CusTypeViewController.h"
+#import "CardNumViewController.h"
+#import "RudiRuceVController.h"
 
 
-#define OrderDescPlace @"您可写上开单人的名字或者其他可备注情况(非必填)"
+#define OrderDescPlace @"您可写上开单人的名字或者其他可备注情况(带*选项为必填)"
 
 @interface OpenOrderViewController ()<UITableViewDelegate,UITableViewDataSource,OrderNameDelegate,OrderPhoneDelegate,changeTaoxiDelegate,UITextViewDelegate,EditProductDelegate,ChangeOrderPriceDelegate,SpotSelectDelegate>
 {
@@ -62,9 +66,25 @@
 @property (assign,nonatomic) BOOL isAllProduct;
 /** 菊花 */
 @property (strong,nonatomic) UIActivityIndicatorView *indicatorV;
-
 /** 装着产品的数组 */
 @property (strong,nonatomic) NSMutableArray *productArray;
+
+/** 套系类别 */
+@property (copy,nonatomic) NSString *categoryStr;
+/** 会员卡号 */
+@property (copy,nonatomic) NSString *CardNumber;
+/** 入底 */
+@property (copy,nonatomic) NSString *negativeNum;
+/** 入册 */
+@property (copy,nonatomic) NSString *albumNum;
+/** 客户来源 */
+@property (copy,nonatomic) NSString *sourceStr;
+/** 客户姓名2 */
+@property (copy,nonatomic) NSString *cusName2;
+/** 客户电话2 */
+@property (copy,nonatomic) NSString *cusPhone2;
+
+
 
 @end
 
@@ -82,7 +102,7 @@
 - (void)setupSubViews
 {
     
-    self.array = @[@[@"客人姓名：",@"客人电话："],@[@"选择风景：",@"套系名称：",@"套系金额："],@[@"客户来源",@"套系类别",@"入底",@"入册",@"会员卡号"],@[@"订单说明："],@[@"提交订单"]];
+    self.array = @[@[@"客人姓名*",@"客人电话*",@"客户姓名2",@"客户电话2"],@[@"选择风景*",@"套系名称*",@"套系金额*"],@[@"客户来源*",@"套系类别*",@"入     底*",@"入     册*",@"会员卡号"],@[@"订单说明"],@[@"提交订单"]];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
     self.tableView.backgroundColor = self.view.backgroundColor;
@@ -109,11 +129,23 @@
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             cell.contentLabel.text = self.cusName;
             return cell;
-        } else {
+        } else if(indexPath.row == 1){
             // 客户电话
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             cell.contentLabel.text = self.cusPhone;
+            return cell;
+        }else if (indexPath.row == 2){
+            // 客户名字2
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+            cell.contentLabel.text = self.cusName2;
+            return cell;
+        }else{
+            // 客户电话2
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+            cell.contentLabel.text = self.cusPhone2;
             return cell;
         }
     } else if(indexPath.section == 1){
@@ -174,41 +206,31 @@
         if (indexPath.row == 0) {
             // 客户来源
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-            cell.contentLabel.text = @"xxxx";
-            cell.contentLabel.textColor = RGBACOLOR(232, 19, 28, 1);
-            cell.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+            cell.contentLabel.text = self.sourceStr;
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             return cell;
         } else if(indexPath.row == 1){
             // 套系类别
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-            cell.contentLabel.text = @"xxxx";
-            cell.contentLabel.textColor = RGBACOLOR(232, 19, 28, 1);
-            cell.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+            cell.contentLabel.text = self.categoryStr;
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             return cell;
         }else if (indexPath.row == 2){
             // 入底
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-            cell.contentLabel.text = @"xxxx";
-            cell.contentLabel.textColor = RGBACOLOR(232, 19, 28, 1);
-            cell.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+            cell.contentLabel.text = self.negativeNum;
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             return cell;
         }else if (indexPath.row == 3){
             // 入册
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-            cell.contentLabel.text = @"xxxx";
-            cell.contentLabel.textColor = RGBACOLOR(232, 19, 28, 1);
-            cell.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+            cell.contentLabel.text = self.albumNum;
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             return cell;
         }else{
             // 会员卡号
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-            cell.contentLabel.text = @"xxxx";
-            cell.contentLabel.textColor = RGBACOLOR(232, 19, 28, 1);
-            cell.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+            cell.contentLabel.text = self.CardNumber;
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             return cell;
         }
@@ -281,10 +303,26 @@
             OrderNameController *orderName = [[OrderNameController alloc]init];
             orderName.delegate = self;
             [self.navigationController pushViewController:orderName animated:YES];
-        }else{
+        }else if(indexPath.row == 1){
             // 客户电话
             OrderPhoneController *phone = [[OrderPhoneController alloc]init];
             phone.delegate = self;
+            [self.navigationController pushViewController:phone animated:YES];
+        }else if (indexPath.row == 2){
+            // 客户姓名2
+            OrderNameController *orderName = [[OrderNameController alloc]init];
+            orderName.NameBlock = ^(NSString *name2){
+                self.cusName2 = name2;
+                [self.tableView reloadData];
+            };
+            [self.navigationController pushViewController:orderName animated:YES];
+        }else{
+            // 客户电话2
+            OrderPhoneController *phone = [[OrderPhoneController alloc]init];
+            phone.PhoneBlock = ^(NSString *phone2){
+                self.cusPhone2 = phone2;
+                [self.tableView reloadData];
+            };
             [self.navigationController pushViewController:phone animated:YES];
         }
     }else if (indexPath.section == 1){
@@ -332,9 +370,55 @@
         }
     }else if(indexPath.section == 2){
         //入底入册那些
-        [self showSuccessTips:@"入底入册"];
+        
+        if (indexPath.row == 0) {
+            // 客户来源
+            CusTypeViewController *cus = [CusTypeViewController new];
+            cus.SelectBlock = ^(NSString *CusType){
+                self.sourceStr = CusType;
+                [self.tableView reloadData];
+            };
+            [self.navigationController pushViewController:cus animated:YES];
+        } else if(indexPath.row == 1){
+            // 套系类别
+            TaoxiTypeViewController *taoxiTypeVC = [TaoxiTypeViewController new];
+            taoxiTypeVC.SelectBlock = ^(NSString *TaoxiType){
+                self.categoryStr = TaoxiType;
+                [self.tableView reloadData];
+            };
+            [self.navigationController pushViewController:taoxiTypeVC animated:YES];
+        }else if (indexPath.row == 2){
+            // 入底
+            RudiRuceVController *rudi = [RudiRuceVController new];
+            rudi.title = @"入底";
+            rudi.RudiRuceBlock = ^(NSString *numberStr){
+                self.negativeNum = numberStr;
+                [self.tableView reloadData];
+            };
+            [self.navigationController pushViewController:rudi animated:YES];
+        }else if (indexPath.row == 3){
+            // 入册
+            RudiRuceVController *rudi = [RudiRuceVController new];
+            rudi.title = @"入册";
+            rudi.RudiRuceBlock = ^(NSString *numberStr){
+                self.albumNum = numberStr;
+                [self.tableView reloadData];
+            };
+            [self.navigationController pushViewController:rudi animated:YES];
+        }else{
+            // 会员卡号
+            CardNumViewController *card = [CardNumViewController new];
+            card.SelectCardNum = ^(NSString *cardNum){
+                self.CardNumber = cardNum;
+                [self.tableView reloadData];
+            };
+            [self.navigationController pushViewController:card animated:YES];
+    }
+        
     }
 }
+
+
 
 #pragma mark - 代理
 - (void)orderCusName:(NSString *)cusName
@@ -366,7 +450,7 @@
     self.taoPrice = namePrice.set_price;
     
     /******* ⚠️先增加一行⚠️ ********/
-    self.array = @[@[@"客人姓名：",@"客人电话："],@[@"选择风景：",@"套系名称：",@"套系产品",@"套系金额："],@[@"客户来源",@"套系类别",@"入底",@"入册",@"会员卡号"],@[@"订单说明："],@[@"提交订单"]];
+    self.array = @[@[@"客人姓名*",@"客人电话*",@"客户姓名2",@"客户电话2"],@[@"选择风景*",@"套系名称*",@"套系产品*",@"套系金额*"],@[@"客户来源*",@"套系类别*",@"入       底*",@"入       册*",@"会员卡号"],@[@"订单说明"],@[@"提交订单"]];
     
     [self.tableView reloadData];
     
@@ -450,17 +534,6 @@
     }else if (indexPath.section == 3){
         return 65;
     }else{
-//        CGFloat tabHeight;
-//        NSArray *tempArr = self.array[1];
-//        if (tempArr.count == 3) {
-//            // 初始状态
-//            tabHeight = 48*6 + 66 + 36*CKproportion;
-//            
-//        }else{
-//            tabHeight = 48*(6 + 1) + 66 + 36*CKproportion;
-//            
-//        }
-//        return self.view.height - tabHeight + 64;
         
         return 108;
     }
@@ -580,7 +653,6 @@
 {
     // 网络正常，发送
     
-    //        @"http://zsylou.wxwkf.com/index.php/home/newtrade/new?uid=%@&price=%@&set=%@&guest=%@&msg=%@&mobile=%@&productlist=%@"
     
     if (self.cusName.length < 1) {
         [self showErrorTips:@"请完善姓名"];
@@ -602,6 +674,24 @@
         [self showErrorTips:@"请选择景点"];
         return;
     }
+    if (self.sourceStr.length < 1) {
+        [self showErrorTips:@"请选择客户来源"];
+        return;
+    }
+    if (self.categoryStr.length < 1) {
+        [self showErrorTips:@"请选择套系类别"];
+        return;
+    }
+    if (self.negativeNum.length < 1) {
+        [self showErrorTips:@"请编辑入底"];
+        return;
+    }
+    if (self.albumNum.length < 1) {
+        [self showErrorTips:@"请编辑入册"];
+        return;
+    }
+    
+    
     
     NSString *beizhu;
     if ([self.orderDesc.text isEqualToString:OrderDescPlace]) {
@@ -625,58 +715,62 @@
     
     [self.sendBtn setTitle:@"" forState:UIControlStateNormal];
     [self.indicatorV startAnimating];
-    
+    /**
+     http://192.168.0.199/index.php/home/newtrade/new?uid=2
+     http://192.168.0.199/index.php/home/newtrade/new?uid=159
+     &price=3999
+     &set=999婚纱照
+     &guest=姓名
+     &msg=备注
+     &mobile=18753607722
+     &productlist=%@
+     &spot=["棚景","公园景"]
+     
+     &negative=20
+     &album=25
+     &category=宝宝照
+     &source=老客户介绍
+     &number=600710
+     &guest2=姓名2
+     &mobile2=13100492345
+     */
+    //@"http://zsylou.wxwkf.com/index.php/home/newtrade/new?uid=%@&price=%@&set=%@&guest=%@&msg=%@&mobile=%@&productlist=%@&spot=%@&negative=%@&album=%@&category=%@&source=%@&number=%@&guest2=%@&mobile2=%@"
     ZCAccount *account = [ZCAccountTool account];
-    NSString *str = [NSString stringWithFormat:OpenOrder_Url,account.userID,self.taoPrice,self.taoName,self.cusName,beizhu,self.cusPhone,self.jsonArray,self.spotJson];
+    NSString *url = [NSString stringWithFormat:OpenOrder_Url_New,account.userID,self.taoPrice,self.taoName,self.cusName,beizhu,self.cusPhone,self.jsonArray,self.spotJson,self.negativeNum,self.albumNum,self.categoryStr,self.sourceStr,self.CardNumber,self.cusName2,self.cusPhone2];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/json",nil];
-    NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
-    NSString *url = [str stringByAddingPercentEncodingWithAllowedCharacters:set];
-    
-    [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSError *error = nil;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:&error];
-        NSString *message = [[json objectForKey:@"message"] description];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.sendBtn setTitle:@"提交订单" forState:UIControlStateNormal];
         [self.indicatorV stopAnimating];
-        if (error) {
-            [self sendErrorWarning:@"解析失败"];
-        }else{
-            int status = [[[json objectForKey:@"code"] description] intValue];
-            NSString *orderID = [[json objectForKey:@"trade_id"] description];
-            if (status == 1) {
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"开单成功" message:@"立即前往支付？取消则可在订单收款里查询订单再支付" preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [self.navigationController popViewControllerAnimated:YES];
-                }];
-                UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"立即支付" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    // 立即前往支付
-                    PayMoneyViewController *payMoney = [PayMoneyViewController new];
-                    payMoney.orderID = orderID;
-                    payMoney.price = self.taoPrice;
-                    [self.navigationController pushViewController:payMoney animated:YES];
-                }];
-                
-                [alertC addAction:action1];
-                [alertC addAction:action2];
-                [self presentViewController:alertC animated:YES completion:^{
-                    
-                }];
-            }else{
-                [self sendErrorWarning:message];
-            }
+        int status = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        NSString *orderID = [[responseObject objectForKey:@"trade_id"] description];
+        if (status == 1) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"开单成功" message:@"立即前往支付？取消则可在订单收款里查询订单再支付" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"立即支付" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                // 立即前往支付
+                PayMoneyViewController *payMoney = [PayMoneyViewController new];
+                payMoney.orderID = orderID;
+                payMoney.price = self.taoPrice;
+                [self.navigationController pushViewController:payMoney animated:YES];
+            }];
             
+            [alertC addAction:action1];
+            [alertC addAction:action2];
+            [self presentViewController:alertC animated:YES completion:^{
+                
+            }];
+        }else{
+            [self sendErrorWarning:message];
         }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
         [self.sendBtn setTitle:@"提交订单" forState:UIControlStateNormal];
         [self.indicatorV stopAnimating];
         [self sendErrorWarning:error.localizedDescription];
     }];
+    
 }
 #pragma mark - 网络不好，保存到本地
 - (void)saveData
@@ -703,13 +797,29 @@
         [self showErrorTips:@"请选择景点"];
         return;
     }
+    if (self.sourceStr.length < 1) {
+        [self showErrorTips:@"请选择客户来源"];
+        return;
+    }
+    if (self.categoryStr.length < 1) {
+        [self showErrorTips:@"请选择套系类别"];
+        return;
+    }
+    if (self.negativeNum.length < 1) {
+        [self showErrorTips:@"请编辑入底"];
+        return;
+    }
+    if (self.albumNum.length < 1) {
+        [self showErrorTips:@"请编辑入册"];
+        return;
+    }
+    
     NSString *beizhu;
     if ([self.orderDesc.text isEqualToString:OrderDescPlace]) {
         beizhu = @"无备注";
     }else{
         beizhu = self.orderDesc.text;
     }
-    
     
     
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"当前无网络，建议离线保存订单" preferredStyle:UIAlertControllerStyleAlert];
@@ -736,7 +846,8 @@
             
         }
         ZCAccount *account = [ZCAccountTool account];
-        NSString *allUrl = [NSString stringWithFormat:OpenOrder_Url,account.userID,self.taoPrice,self.taoName,self.cusName,beizhu,self.cusPhone,self.jsonArray,self.spotJson];
+        NSString *allUrl = [NSString stringWithFormat:OpenOrder_Url_New,account.userID,self.taoPrice,self.taoName,self.cusName,beizhu,self.cusPhone,self.jsonArray,self.spotJson,self.negativeNum,self.albumNum,self.categoryStr,self.sourceStr,self.CardNumber,self.cusName2,self.cusPhone2];
+        
         
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[@"allUrl"] = allUrl; // ⚠️长度限制，暂用未UTF8的字符串
@@ -810,7 +921,14 @@
             self.jsonArray = @"";
             self.spotStr = nil;
             self.spotJson = nil;
-            self.array = @[@[@"客人姓名：",@"客人电话："],@[@"选择风景",@"套系名称：",@"套系金额："],@[@"客户来源",@"套系类别",@"入底",@"入册",@"会员卡号"],@[@"订单说明："],@[@"提交订单"]];
+            self.sourceStr = @"";
+            self.categoryStr = @"";
+            self.negativeNum = @"";
+            self.albumNum = @"";
+            self.cusPhone2 = @"";
+            self.cusName2 = @"";
+            self.CardNumber = @"";
+            self.array = @[@[@"客人姓名*",@"客人电话*",@"客户姓名2",@"客户电话2"],@[@"选择风景*",@"套系名称*",@"套系金额*"],@[@"客户来源*",@"套系类别*",@"入     底*",@"入     册*",@"会员卡号"],@[@"订单说明"],@[@"提交订单"]];
             [self.tableView reloadData];
             
         }];

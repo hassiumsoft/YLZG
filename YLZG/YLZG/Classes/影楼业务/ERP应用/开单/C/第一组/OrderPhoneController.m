@@ -1,16 +1,16 @@
 //
-//  OrderNameController.m
+//  OrderPhoneController.m
 //  ChatDemo-UI3.0
 //
 //  Created by Chan_Sir on 16/5/16.
 //  Copyright © 2016年 Chan_Sir. All rights reserved.
 //
 
-#import "OrderNameController.h"
+#import "OrderPhoneController.h"
+#import "NSString+StrCategory.h"
 #import <Masonry.h>
 
-
-@interface OrderNameController ()
+@interface OrderPhoneController ()
 
 {
     UIButton *commitBtn;
@@ -18,25 +18,24 @@
 
 @property (strong,nonatomic) UITextField *textField;
 
-
 @end
 
-@implementation OrderNameController
+@implementation OrderPhoneController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"客人姓名";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"客户电话";
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     [self createUI];
+
 }
 
 - (void)createUI {
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
-    label.text = @"建议使用真名";
+    label.text = @"请填写手机号码";
     label.font = [UIFont systemFontOfSize:24];
     label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label];
@@ -49,10 +48,11 @@
     self.textField = [[UITextField alloc]initWithFrame:CGRectMake(40, 200*CKproportion, SCREEN_WIDTH - 80, 45)];
     self.textField.leftView = [[UIView alloc]initWithFrame:CGRectMake(12, 0, 0, 0)];
     [self.textField becomeFirstResponder];
+    self.textField.keyboardType = UIKeyboardTypeNumberPad;
     self.textField.leftViewMode = UITextFieldViewModeAlways;
     self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textField.backgroundColor = [UIColor whiteColor];
-    self.textField.placeholder = @"如：张学友";
+    self.textField.placeholder = @"如：13855665566";
     [self.view addSubview:self.textField];
     
     UIImageView *xian = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
@@ -86,16 +86,19 @@
 - (void)changeName
 {
     [self.view endEditing:YES];
-    if (self.textField.text.length < 1) {
-        [self showErrorTips:@"请完善名字"];
+    if (![self.textField.text isPhoneNum]) {
+        [self showErrorTips:@"号码有误"];
         return;
     }
-    if ([self.delegate respondsToSelector:@selector(orderCusName:)]) {
-        [self.delegate orderCusName:self.textField.text];
+    if ([self.delegate respondsToSelector:@selector(orderCusPhone:)]) {
+        [self.delegate orderCusPhone:self.textField.text];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    if (self.PhoneBlock) {
+        _PhoneBlock(self.textField.text);
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-
-
 
 @end
