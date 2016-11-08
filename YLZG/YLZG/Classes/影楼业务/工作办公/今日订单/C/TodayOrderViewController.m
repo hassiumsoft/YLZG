@@ -147,7 +147,12 @@
 {
     UserInfoModel *userModel = [UserInfoManager getUserInfo];
     if ([userModel.vcip intValue] == 1) {
-        NSString *phone = model.phone;
+        NSString *phone;
+        if (model.phone.length > 11) {
+            phone = [model.phone substringWithRange:NSMakeRange(model.phone.length - 11, 11)];
+        }else{
+            phone = model.phone;
+        }
         NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phone]];
         UIWebView *phoneWeb = [[UIWebView alloc]initWithFrame:CGRectZero];
         [phoneWeb loadRequest:[NSURLRequest requestWithURL:phoneUrl]];

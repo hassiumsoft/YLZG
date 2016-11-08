@@ -128,7 +128,7 @@
     UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [sendButton setTitle:@"客户支付完成" forState:UIControlStateNormal];
     sendButton.backgroundColor = MainColor;
-    sendButton.layer.cornerRadius = 6;
+    sendButton.layer.cornerRadius = 4;
     sendButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     [sendButton addTarget:self action:@selector(finished) forControlEvents:UIControlEventTouchUpInside];
     [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
