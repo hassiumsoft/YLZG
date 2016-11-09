@@ -46,9 +46,11 @@
 @property (strong,nonatomic) UITableView *tableView;
 /** 数据源 */
 @property (strong,nonatomic) NSArray *array;
-/** 客人姓名 */
+/** titleArray */
+@property (copy,nonatomic) NSArray *headArray;
+/** 客户姓名 */
 @property (copy,nonatomic) NSString *cusName;
-/** 客人电话 */
+/** 客户电话 */
 @property (copy,nonatomic) NSString *cusPhone;
 /** 套系名称 */
 @property (copy,nonatomic) NSString *taoName;
@@ -68,6 +70,7 @@
 @property (strong,nonatomic) UIActivityIndicatorView *indicatorV;
 /** 装着产品的数组 */
 @property (strong,nonatomic) NSMutableArray *productArray;
+
 
 /** 套系类别 */
 @property (copy,nonatomic) NSString *categoryStr;
@@ -101,14 +104,13 @@
 #pragma mark - 建表
 - (void)setupSubViews
 {
-    
-    self.array = @[@[@"客人姓名*",@"客人电话*",@"客户姓名2",@"客户电话2"],@[@"选择风景*",@"套系名称*",@"套系金额*"],@[@"客户来源*",@"套系类别*",@"入     底*",@"入     册*",@"会员卡号"],@[@"订单说明"],@[@"提交订单"]];
+    self.headArray = @[@"客户信息",@"套系信息",@"其他信息",@"订单备注"];
+    self.array = @[@[@"客户姓名*",@"客户电话*",@"客户来源*",@"客户姓名2",@"客户电话2"],@[@"套系类别*",@"套系名称*",@"套系金额*"],@[@"选择风景*",@"入     底*",@"入     册*",@"会员卡号"],@[@"订单说明",@"提交订单"]];
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
     self.tableView.backgroundColor = self.view.backgroundColor;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.contentInset = UIEdgeInsetsMake(7, 0, 0, 0);
     [self.view addSubview:self.tableView];
     
 }
@@ -122,6 +124,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             // 客户名字
@@ -135,7 +138,15 @@
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             cell.contentLabel.text = self.cusPhone;
             return cell;
+            
         }else if (indexPath.row == 2){
+            // 客户来源
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            cell.contentLabel.text = self.sourceStr;
+            cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+            return cell;
+            
+        }else if (indexPath.row == 3){
             // 客户名字2
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
@@ -153,12 +164,14 @@
         NSArray *tempArr = self.array[1];
         if (tempArr.count == 3) {
             // 初始阶段
+            
             if (indexPath.row == 0) {
-                // 选择风景
+                // 套系类别
                 NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-                cell.contentLabel.text = self.spotStr;
+                cell.contentLabel.text = self.categoryStr;
                 cell.textLabel.text = self.array[indexPath.section][indexPath.row];
                 return cell;
+                
             }else if (indexPath.row == 1) {
                 // 套系名称
                 NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
@@ -166,6 +179,7 @@
                 cell.textLabel.text = self.array[indexPath.section][indexPath.row];
                 return cell;
             }else{
+                // 套系价格
                 NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
                 cell.contentLabel.text = self.taoPrice;
                 cell.textLabel.text = self.array[indexPath.section][indexPath.row];
@@ -174,9 +188,9 @@
         }else{
             // 添加一行之后
             if (indexPath.row == 0) {
-                // 选择风景
+                // 套系类别
                 NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-                cell.contentLabel.text = self.spotStr;
+                cell.contentLabel.text = self.categoryStr;
                 cell.textLabel.text = self.array[indexPath.section][indexPath.row];
                 return cell;
             }else if(indexPath.row == 1) {
@@ -186,12 +200,6 @@
                 cell.textLabel.text = self.array[indexPath.section][indexPath.row];
                 return cell;
             } else if(indexPath.row == 2){
-                // ⚠️套系产品
-                NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-                cell.contentLabel.text = self.someProduct;
-                cell.textLabel.text = self.array[indexPath.section][indexPath.row];
-                return cell;
-            }else{
                 // 套系价格
                 NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
                 cell.contentLabel.text = self.taoPrice;
@@ -199,29 +207,32 @@
                 cell.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
                 cell.textLabel.text = self.array[indexPath.section][indexPath.row];
                 return cell;
+                
+            }else{
+                // ⚠️套系产品
+                NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+                cell.contentLabel.text = self.someProduct;
+                cell.textLabel.text = self.array[indexPath.section][indexPath.row];
+                return cell;
             }
         }
         
     }else if (indexPath.section == 2){
         if (indexPath.row == 0) {
-            // 客户来源
+            // 选择风景
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-            cell.contentLabel.text = self.sourceStr;
+            cell.contentLabel.text = self.spotStr;
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             return cell;
+            
         } else if(indexPath.row == 1){
-            // 套系类别
-            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-            cell.contentLabel.text = self.categoryStr;
-            cell.textLabel.text = self.array[indexPath.section][indexPath.row];
-            return cell;
-        }else if (indexPath.row == 2){
+            
             // 入底
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             cell.contentLabel.text = self.negativeNum;
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             return cell;
-        }else if (indexPath.row == 3){
+        }else if (indexPath.row == 2){
             // 入册
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             cell.contentLabel.text = self.albumNum;
@@ -235,66 +246,71 @@
             return cell;
         }
         
-    }else if (indexPath.section == 3){
-        // 订单说明
-        NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        [cell.contentLabel removeFromSuperview];
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
-        
-        UILabel *titleL = [[UILabel alloc]initWithFrame:CGRectMake(15, 8, 90, 21)];
-        titleL.text = self.array[indexPath.section][indexPath.row];
-        titleL.font = [UIFont systemFontOfSize:15];
-        titleL.textColor = RGBACOLOR(20, 20, 20, 1);
-        titleL.userInteractionEnabled = YES;
-        [cell addSubview:titleL];
-        
-        self.orderDesc = [[UITextView alloc]init];
-        self.orderDesc.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-        self.orderDesc.userInteractionEnabled = YES;
-        self.orderDesc.delegate = self;
-        self.orderDesc.text = OrderDescPlace;
-        self.orderDesc.textColor = [UIColor lightGrayColor];
-        [cell addSubview:self.orderDesc];
-        [self.orderDesc mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(titleL.mas_right);
-            make.right.equalTo(cell.mas_right).offset(-17);
-            make.top.equalTo(cell.mas_top).offset(1);
-            make.height.equalTo(@63);
-        }];
-        
-        return cell;
     }else{
-        // 提交订单
-        NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
-        [cell.textLabel removeFromSuperview];
-        [cell.contentLabel removeFromSuperview];
-        cell.backgroundColor = self.view.backgroundColor;
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_sendBtn setBackgroundColor:MainColor];
-        _sendBtn.layer.cornerRadius = 4;
-        [_sendBtn setTitle:self.array[indexPath.section][indexPath.row] forState:UIControlStateNormal];
-        [_sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
-        [_sendBtn addTarget:self action:@selector(openOrder:) forControlEvents:UIControlEventTouchUpInside];
+        if (indexPath.row == 0) {
+            // 订单说明
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [cell.contentLabel removeFromSuperview];
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+            
+            UILabel *titleL = [[UILabel alloc]initWithFrame:CGRectMake(15, 8, 90, 21)];
+            titleL.text = self.array[indexPath.section][indexPath.row];
+            titleL.font = [UIFont systemFontOfSize:15];
+            titleL.textColor = RGBACOLOR(20, 20, 20, 1);
+            titleL.userInteractionEnabled = YES;
+            [cell addSubview:titleL];
+            
+            self.orderDesc = [[UITextView alloc]init];
+            self.orderDesc.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+            self.orderDesc.userInteractionEnabled = YES;
+            self.orderDesc.delegate = self;
+            self.orderDesc.text = OrderDescPlace;
+            self.orderDesc.textColor = [UIColor lightGrayColor];
+            [cell addSubview:self.orderDesc];
+            [self.orderDesc mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(titleL.mas_right);
+                make.right.equalTo(cell.mas_right).offset(-17);
+                make.top.equalTo(cell.mas_top).offset(2);
+                make.height.equalTo(@63);
+            }];
+            
+            return cell;
+        } else {
+            // 提交订单
+            NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+            [cell.textLabel removeFromSuperview];
+            [cell.contentLabel removeFromSuperview];
+            cell.backgroundColor = self.view.backgroundColor;
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            _sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [_sendBtn setBackgroundColor:MainColor];
+            _sendBtn.layer.cornerRadius = 4;
+            [_sendBtn setTitle:self.array[indexPath.section][indexPath.row] forState:UIControlStateNormal];
+            [_sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            
+            [_sendBtn addTarget:self action:@selector(openOrder:) forControlEvents:UIControlEventTouchUpInside];
+            
+            _sendBtn.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+            [cell addSubview:_sendBtn];
+            [_sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(cell.mas_centerX);
+                make.left.equalTo(@20);
+                make.bottom.equalTo(cell.mas_bottom).offset(-32);
+                make.height.equalTo(@40);
+            }];
+            
+            return cell;
+        }
         
-        _sendBtn.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-        [cell addSubview:_sendBtn];
-        [_sendBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(cell.mas_centerX);
-            make.left.equalTo(@20);
-            make.bottom.equalTo(cell.mas_bottom).offset(-32);
-            make.height.equalTo(@40);
-        }];
-        
-        return cell;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.tableView endEditing:YES];
     if (indexPath.section == 0) {
@@ -309,6 +325,14 @@
             phone.delegate = self;
             [self.navigationController pushViewController:phone animated:YES];
         }else if (indexPath.row == 2){
+            // 客户来源
+            CusTypeViewController *cus = [CusTypeViewController new];
+            cus.SelectBlock = ^(NSString *CusType){
+                self.sourceStr = CusType;
+                [self.tableView reloadData];
+            };
+            [self.navigationController pushViewController:cus animated:YES];
+        }else if (indexPath.row == 3){
             // 客户姓名2
             OrderNameController *orderName = [[OrderNameController alloc]init];
             orderName.NameBlock = ^(NSString *name2){
@@ -328,12 +352,25 @@
     }else if (indexPath.section == 1){
         NSArray *tempArr = self.array[1];
         if (tempArr.count == 3) {
+            
             if (indexPath.row == 0) {
-                SpotViewController *spotVC = [SpotViewController new];
-                spotVC.delegate = self;
-                [self.navigationController pushViewController:spotVC animated:YES];
+                // 套系类别
+                TaoxiTypeViewController *taoxiTypeVC = [TaoxiTypeViewController new];
+                taoxiTypeVC.SelectBlock = ^(NSString *TaoxiType){
+                    self.categoryStr = TaoxiType;
+                    [self.tableView reloadData];
+                };
+                [self.navigationController pushViewController:taoxiTypeVC animated:YES];
+                
+            }else if(indexPath.row == 1){
+                // 套系名称
+                // 改变套系self.taoPrice
+                ChangeTaoxiController *changeTaoxi = [[ChangeTaoxiController alloc]init];
+                changeTaoxi.delegate = self;
+                [self.navigationController pushViewController:changeTaoxi animated:YES];
+                
             }else{
-                // 初始状态
+                // 套系价格
                 ChangeTaoxiController *changeTaoxi = [[ChangeTaoxiController alloc]init];
                 changeTaoxi.delegate = self;
                 [self.navigationController pushViewController:changeTaoxi animated:YES];
@@ -341,16 +378,25 @@
         }else{
             // 添加一行之后
             if (indexPath.row == 0) {
-                // 选择风景
-                SpotViewController *spotVC = [SpotViewController new];
-                spotVC.delegate = self;
-                [self.navigationController pushViewController:spotVC animated:YES];
+                // 套系类别
+                TaoxiTypeViewController *taoxiTypeVC = [TaoxiTypeViewController new];
+                taoxiTypeVC.SelectBlock = ^(NSString *TaoxiType){
+                    self.categoryStr = TaoxiType;
+                    [self.tableView reloadData];
+                };
+                [self.navigationController pushViewController:taoxiTypeVC animated:YES];
             }else if (indexPath.row == 1) {
                 // 改变套系self.taoPrice
                 ChangeTaoxiController *changeTaoxi = [[ChangeTaoxiController alloc]init];
                 changeTaoxi.delegate = self;
                 [self.navigationController pushViewController:changeTaoxi animated:YES];
             } else if(indexPath.row == 2){
+                // 改变价格
+                ChangeOrderPriceController *changePrice = [ChangeOrderPriceController new];
+                changePrice.price = self.taoPrice;
+                changePrice.delegate = self;
+                [self.navigationController pushViewController:changePrice animated:YES];
+            }else{
                 // 编辑套系产品
                 
                 EditProductController *product = [[EditProductController alloc]init];
@@ -359,12 +405,7 @@
                 product.delegate = self;
                 product.array = self.productArray;
                 [self.navigationController pushViewController:product animated:YES];
-            }else{
-                // 改变价格
-                ChangeOrderPriceController *changePrice = [ChangeOrderPriceController new];
-                changePrice.price = self.taoPrice;
-                changePrice.delegate = self;
-                [self.navigationController pushViewController:changePrice animated:YES];
+                
             }
             
         }
@@ -372,34 +413,27 @@
         //入底入册那些
         
         if (indexPath.row == 0) {
-            // 客户来源
-            CusTypeViewController *cus = [CusTypeViewController new];
-            cus.SelectBlock = ^(NSString *CusType){
-                self.sourceStr = CusType;
-                [self.tableView reloadData];
-            };
-            [self.navigationController pushViewController:cus animated:YES];
+            
+            // 选择景区
+            SpotViewController *spotVC = [SpotViewController new];
+            spotVC.delegate = self;
+            [self.navigationController pushViewController:spotVC animated:YES];
+            
         } else if(indexPath.row == 1){
-            // 套系类别
-            TaoxiTypeViewController *taoxiTypeVC = [TaoxiTypeViewController new];
-            taoxiTypeVC.SelectBlock = ^(NSString *TaoxiType){
-                self.categoryStr = TaoxiType;
-                [self.tableView reloadData];
-            };
-            [self.navigationController pushViewController:taoxiTypeVC animated:YES];
-        }else if (indexPath.row == 2){
             // 入底
             RudiRuceVController *rudi = [RudiRuceVController new];
+            rudi.rudiruceType = YES;
             rudi.title = @"入底";
             rudi.RudiRuceBlock = ^(NSString *numberStr){
                 self.negativeNum = numberStr;
                 [self.tableView reloadData];
             };
             [self.navigationController pushViewController:rudi animated:YES];
-        }else if (indexPath.row == 3){
+        }else if (indexPath.row == 2){
             // 入册
             RudiRuceVController *rudi = [RudiRuceVController new];
             rudi.title = @"入册";
+            rudi.rudiruceType = NO;
             rudi.RudiRuceBlock = ^(NSString *numberStr){
                 self.albumNum = numberStr;
                 [self.tableView reloadData];
@@ -450,7 +484,8 @@
     self.taoPrice = namePrice.set_price;
     
     /******* ⚠️先增加一行⚠️ ********/
-    self.array = @[@[@"客人姓名*",@"客人电话*",@"客户姓名2",@"客户电话2"],@[@"选择风景*",@"套系名称*",@"套系产品*",@"套系金额*"],@[@"客户来源*",@"套系类别*",@"入       底*",@"入       册*",@"会员卡号"],@[@"订单说明"],@[@"提交订单"]];
+
+    self.array = @[@[@"客户姓名*",@"客户电话*",@"客户来源*",@"客户姓名2",@"客户电话2"],@[@"套系类别*",@"套系名称*",@"套系金额*",@"套系产品*"],@[@"选择风景*",@"入     底*",@"入     册*",@"会员卡号"],@[@"订单说明",@"提交订单"]];
     
     [self.tableView reloadData];
     
@@ -500,7 +535,6 @@
                 self.someProduct = [NSString stringWithFormat:@"%@等等",mmmodel.pro_name];
                 [self.tableView reloadData];
                 
-                
             }
             
         }else{
@@ -531,11 +565,12 @@
         return 48;
     }else if (indexPath.section == 2){
         return 48;
-    }else if (indexPath.section == 3){
-        return 65;
     }else{
-        
-        return 108;
+        if (indexPath.row == 0) {
+            return 65;
+        }else{
+            return 118;
+        }
     }
 }
 #pragma mark - UITextViewDelegate
@@ -555,15 +590,34 @@
         textView.textColor = [UIColor lightGrayColor];
     }
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 32;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headV = [UIView new];
+    
+    UIImageView *xian = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
+    xian.frame = CGRectMake(0, 0, SCREEN_WIDTH, 2);
+    [headV addSubview:xian];
+    
+    headV.backgroundColor = MainColor;
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(15, 2, SCREEN_WIDTH - 15, 30)];
+    label.text = self.headArray[section];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    [headV addSubview:label];
+    return headV;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 6;
+    return 1;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *foot = [[UIView alloc]initWithFrame:CGRectZero];
-    foot.backgroundColor = self.view.backgroundColor;
+    foot.backgroundColor = [UIColor clearColor];
     return foot;
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -630,15 +684,15 @@
             case AFNetworkReachabilityStatusReachableViaWiFi:
             {
                 // wifi网络
-//                [self sendOrder];
-                [self saveData];
+                [self sendOrder];
+//                [self saveData];
                 break;
             }
             case AFNetworkReachabilityStatusReachableViaWWAN:
             {
                 // 无线网络
-//                [self sendOrder];
-                [self saveData];
+                [self sendOrder];
+//                [self saveData];
                 break;
             }
             default:
@@ -715,25 +769,7 @@
     
     [self.sendBtn setTitle:@"" forState:UIControlStateNormal];
     [self.indicatorV startAnimating];
-    /**
-     http://192.168.0.199/index.php/home/newtrade/new?uid=2
-     http://192.168.0.199/index.php/home/newtrade/new?uid=159
-     &price=3999
-     &set=999婚纱照
-     &guest=姓名
-     &msg=备注
-     &mobile=18753607722
-     &productlist=%@
-     &spot=["棚景","公园景"]
-     
-     &negative=20
-     &album=25
-     &category=宝宝照
-     &source=老客户介绍
-     &number=600710
-     &guest2=姓名2
-     &mobile2=13100492345
-     */
+    
     //@"http://zsylou.wxwkf.com/index.php/home/newtrade/new?uid=%@&price=%@&set=%@&guest=%@&msg=%@&mobile=%@&productlist=%@&spot=%@&negative=%@&album=%@&category=%@&source=%@&number=%@&guest2=%@&mobile2=%@"
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:OpenOrder_Url_New,account.userID,self.taoPrice,self.taoName,self.cusName,beizhu,self.cusPhone,self.jsonArray,self.spotJson,self.negativeNum,self.albumNum,self.categoryStr,self.sourceStr,self.CardNumber,self.cusName2,self.cusPhone2];
@@ -747,14 +783,18 @@
         if (status == 1) {
             UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"开单成功" message:@"立即前往支付？取消则可在订单收款里查询订单再支付" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self.navigationController popViewControllerAnimated:YES];
+                 [self clearData];
+
             }];
             UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"立即支付" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self clearData];
                 // 立即前往支付
                 PayMoneyViewController *payMoney = [PayMoneyViewController new];
                 payMoney.orderID = orderID;
                 payMoney.price = self.taoPrice;
                 [self.navigationController pushViewController:payMoney animated:YES];
+               
+                
             }];
             
             [alertC addAction:action1];
@@ -913,23 +953,7 @@
         UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"保存成功，您可在右上角查看，网络连接后提交订单。" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             // 把数据清空
-            self.taoName = @"";
-            [self.productArray removeAllObjects];
-            self.cusName = @"";
-            self.cusPhone = @"";
-            self.taoPrice = @"";
-            self.jsonArray = @"";
-            self.spotStr = nil;
-            self.spotJson = nil;
-            self.sourceStr = @"";
-            self.categoryStr = @"";
-            self.negativeNum = @"";
-            self.albumNum = @"";
-            self.cusPhone2 = @"";
-            self.cusName2 = @"";
-            self.CardNumber = @"";
-            self.array = @[@[@"客人姓名*",@"客人电话*",@"客户姓名2",@"客户电话2"],@[@"选择风景*",@"套系名称*",@"套系金额*"],@[@"客户来源*",@"套系类别*",@"入     底*",@"入     册*",@"会员卡号"],@[@"订单说明"],@[@"提交订单"]];
-            [self.tableView reloadData];
+            [self clearData];
             
         }];
         
@@ -953,6 +977,27 @@
     
 }
 
-
+- (void)clearData
+{
+    // 把数据清空
+    self.taoName = @"";
+    [self.productArray removeAllObjects];
+    self.cusName = @"";
+    self.cusPhone = @"";
+    self.taoPrice = @"";
+    self.jsonArray = @"";
+    self.spotStr = nil;
+    self.spotJson = nil;
+    self.sourceStr = @"";
+    self.categoryStr = @"";
+    self.negativeNum = @"";
+    self.albumNum = @"";
+    self.cusPhone2 = @"";
+    self.cusName2 = @"";
+    self.CardNumber = @"";
+    
+    self.array = @[@[@"客户姓名*",@"客户电话*",@"客户来源*",@"客户姓名2",@"客户电话2"],@[@"套系类别*",@"套系名称*",@"套系金额*"],@[@"选择风景*",@"入     底*",@"入     册*",@"会员卡号"],@[@"订单说明",@"提交订单"]];
+    [self.tableView reloadData];
+}
 
 @end
