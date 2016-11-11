@@ -174,7 +174,7 @@
     self.creditLabel = [UILabel new];
     self.creditLabel.textAlignment = NSTextAlignmentRight;
     self.creditLabel.font = [UIFont systemFontOfSize:15];
-    self.creditLabel.textColor = MainColor;
+    self.creditLabel.textColor = WechatRedColor;
     [self addSubview:self.creditLabel];
     [self.creditLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).offset(-10);

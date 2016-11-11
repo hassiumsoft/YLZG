@@ -63,13 +63,6 @@
 		3B3BBFD51DB4BF3C00C9E2FD /* FriendDetialController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFD41DB4BF3C00C9E2FD /* FriendDetialController.m */; };
 		3B3BBFE21DB4D2F800C9E2FD /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFE11DB4D2F800C9E2FD /* CallViewController.m */; };
 		3B447B191DC98C0B00316E3C /* ForgetSecretController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B447B181DC98C0B00316E3C /* ForgetSecretController.m */; };
-		3B4C102C1DC85DDC00827D4F /* TodayFinanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E741DC85DDB00827D4F /* TodayFinanceController.m */; };
-		3B4C102D1DC85DDC00827D4F /* FinacialDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E771DC85DDB00827D4F /* FinacialDetailModel.m */; };
-		3B4C102E1DC85DDC00827D4F /* FinanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E791DC85DDB00827D4F /* FinanceModel.m */; };
-		3B4C102F1DC85DDC00827D4F /* FinacialAnalysesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E7C1DC85DDB00827D4F /* FinacialAnalysesCell.m */; };
-		3B4C10301DC85DDC00827D4F /* FinancialDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E7E1DC85DDB00827D4F /* FinancialDetailCell.m */; };
-		3B4C10311DC85DDC00827D4F /* Huanzhuangbingtu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E801DC85DDB00827D4F /* Huanzhuangbingtu.m */; };
-		3B4C10321DC85DDC00827D4F /* QiaodaoCountButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E821DC85DDB00827D4F /* QiaodaoCountButton.m */; };
 		3B4C10331DC85DDC00827D4F /* MonthFinanceVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E861DC85DDB00827D4F /* MonthFinanceVController.m */; };
 		3B4C10341DC85DDC00827D4F /* MonthInComeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E881DC85DDB00827D4F /* MonthInComeController.m */; };
 		3B4C10351DC85DDC00827D4F /* MonthOutComeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E8A1DC85DDB00827D4F /* MonthOutComeController.m */; };
@@ -277,6 +270,16 @@
 		3B7ABCF71DB6176600F3D12B /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B7ABCE51DB6176600F3D12B /* EMVoiceConverter.mm */; };
 		3B7ABCF81DB6176600F3D12B /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7ABCE91DB6176600F3D12B /* libopencore-amrnb.a */; };
 		3B7ABCF91DB6176600F3D12B /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7ABCED1DB6176600F3D12B /* libopencore-amrwb.a */; };
+		3B9E16F11DD2BD540028C72F /* TodayFinanceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E16F01DD2BD540028C72F /* TodayFinanceController.m */; };
+		3B9E16F41DD2C11E0028C72F /* TodayFinaceDetialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E16F31DD2C11E0028C72F /* TodayFinaceDetialModel.m */; };
+		3B9E16F71DD2C13D0028C72F /* TodayFinaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E16F61DD2C13D0028C72F /* TodayFinaceModel.m */; };
+		3B9E16FD1DD2D0600028C72F /* CaiwuDetialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E16FC1DD2D0600028C72F /* CaiwuDetialModel.m */; };
+		3B9E17001DD2ED3F0028C72F /* TodayFinaceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E16FF1DD2ED3F0028C72F /* TodayFinaceCell.m */; };
+		3B9E17031DD2F32C0028C72F /* CaiwuDetialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E17021DD2F32C0028C72F /* CaiwuDetialCell.m */; };
+		3B9E17061DD2F8350028C72F /* CaiwuDetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E17051DD2F8350028C72F /* CaiwuDetialViewController.m */; };
+		3B9E17091DD2FC5F0028C72F /* HuangzhuangBingTu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E17081DD2FC5F0028C72F /* HuangzhuangBingTu.m */; };
+		3B9E170F1DD2FFD10028C72F /* SumFinaceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E170E1DD2FFD10028C72F /* SumFinaceTableCell.m */; };
+		3B9E17121DD3139C0028C72F /* FinaceIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E17111DD3139C0028C72F /* FinaceIconView.m */; };
 		3BA06F241DCC512C000886A8 /* MoreToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F1F1DCC512C000886A8 /* MoreToolsViewController.m */; };
 		3BA06F251DCC512C000886A8 /* ToolsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F211DCC512C000886A8 /* ToolsModel.m */; };
 		3BA06F261DCC512C000886A8 /* ToolsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F231DCC512C000886A8 /* ToolsTableViewCell.m */; };
@@ -494,20 +497,6 @@
 		3B3BBFE11DB4D2F800C9E2FD /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
 		3B447B171DC98C0B00316E3C /* ForgetSecretController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetSecretController.h; sourceTree = "<group>"; };
 		3B447B181DC98C0B00316E3C /* ForgetSecretController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetSecretController.m; sourceTree = "<group>"; };
-		3B4C0E731DC85DDB00827D4F /* TodayFinanceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayFinanceController.h; sourceTree = "<group>"; };
-		3B4C0E741DC85DDB00827D4F /* TodayFinanceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayFinanceController.m; sourceTree = "<group>"; };
-		3B4C0E761DC85DDB00827D4F /* FinacialDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinacialDetailModel.h; sourceTree = "<group>"; };
-		3B4C0E771DC85DDB00827D4F /* FinacialDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinacialDetailModel.m; sourceTree = "<group>"; };
-		3B4C0E781DC85DDB00827D4F /* FinanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinanceModel.h; sourceTree = "<group>"; };
-		3B4C0E791DC85DDB00827D4F /* FinanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinanceModel.m; sourceTree = "<group>"; };
-		3B4C0E7B1DC85DDB00827D4F /* FinacialAnalysesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinacialAnalysesCell.h; sourceTree = "<group>"; };
-		3B4C0E7C1DC85DDB00827D4F /* FinacialAnalysesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinacialAnalysesCell.m; sourceTree = "<group>"; };
-		3B4C0E7D1DC85DDB00827D4F /* FinancialDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinancialDetailCell.h; sourceTree = "<group>"; };
-		3B4C0E7E1DC85DDB00827D4F /* FinancialDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinancialDetailCell.m; sourceTree = "<group>"; };
-		3B4C0E7F1DC85DDB00827D4F /* Huanzhuangbingtu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Huanzhuangbingtu.h; sourceTree = "<group>"; };
-		3B4C0E801DC85DDB00827D4F /* Huanzhuangbingtu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Huanzhuangbingtu.m; sourceTree = "<group>"; };
-		3B4C0E811DC85DDB00827D4F /* QiaodaoCountButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiaodaoCountButton.h; sourceTree = "<group>"; };
-		3B4C0E821DC85DDB00827D4F /* QiaodaoCountButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiaodaoCountButton.m; sourceTree = "<group>"; };
 		3B4C0E851DC85DDB00827D4F /* MonthFinanceVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFinanceVController.h; sourceTree = "<group>"; };
 		3B4C0E861DC85DDB00827D4F /* MonthFinanceVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthFinanceVController.m; sourceTree = "<group>"; };
 		3B4C0E871DC85DDB00827D4F /* MonthInComeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthInComeController.h; sourceTree = "<group>"; };
@@ -934,6 +923,26 @@
 		3B7ABCEB1DB6176600F3D12B /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
 		3B7ABCEC1DB6176600F3D12B /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
 		3B7ABCED1DB6176600F3D12B /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		3B9E16EF1DD2BD540028C72F /* TodayFinanceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayFinanceController.h; sourceTree = "<group>"; };
+		3B9E16F01DD2BD540028C72F /* TodayFinanceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayFinanceController.m; sourceTree = "<group>"; };
+		3B9E16F21DD2C11E0028C72F /* TodayFinaceDetialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayFinaceDetialModel.h; sourceTree = "<group>"; };
+		3B9E16F31DD2C11E0028C72F /* TodayFinaceDetialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayFinaceDetialModel.m; sourceTree = "<group>"; };
+		3B9E16F51DD2C13D0028C72F /* TodayFinaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayFinaceModel.h; sourceTree = "<group>"; };
+		3B9E16F61DD2C13D0028C72F /* TodayFinaceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayFinaceModel.m; sourceTree = "<group>"; };
+		3B9E16FB1DD2D0600028C72F /* CaiwuDetialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaiwuDetialModel.h; sourceTree = "<group>"; };
+		3B9E16FC1DD2D0600028C72F /* CaiwuDetialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaiwuDetialModel.m; sourceTree = "<group>"; };
+		3B9E16FE1DD2ED3F0028C72F /* TodayFinaceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayFinaceCell.h; sourceTree = "<group>"; };
+		3B9E16FF1DD2ED3F0028C72F /* TodayFinaceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayFinaceCell.m; sourceTree = "<group>"; };
+		3B9E17011DD2F32C0028C72F /* CaiwuDetialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaiwuDetialCell.h; sourceTree = "<group>"; };
+		3B9E17021DD2F32C0028C72F /* CaiwuDetialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaiwuDetialCell.m; sourceTree = "<group>"; };
+		3B9E17041DD2F8350028C72F /* CaiwuDetialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaiwuDetialViewController.h; sourceTree = "<group>"; };
+		3B9E17051DD2F8350028C72F /* CaiwuDetialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaiwuDetialViewController.m; sourceTree = "<group>"; };
+		3B9E17071DD2FC5F0028C72F /* HuangzhuangBingTu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuangzhuangBingTu.h; sourceTree = "<group>"; };
+		3B9E17081DD2FC5F0028C72F /* HuangzhuangBingTu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuangzhuangBingTu.m; sourceTree = "<group>"; };
+		3B9E170D1DD2FFD10028C72F /* SumFinaceTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SumFinaceTableCell.h; sourceTree = "<group>"; };
+		3B9E170E1DD2FFD10028C72F /* SumFinaceTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SumFinaceTableCell.m; sourceTree = "<group>"; };
+		3B9E17101DD3139C0028C72F /* FinaceIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinaceIconView.h; sourceTree = "<group>"; };
+		3B9E17111DD3139C0028C72F /* FinaceIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinaceIconView.m; sourceTree = "<group>"; };
 		3BA06F1E1DCC512C000886A8 /* MoreToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreToolsViewController.h; sourceTree = "<group>"; };
 		3BA06F1F1DCC512C000886A8 /* MoreToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreToolsViewController.m; sourceTree = "<group>"; };
 		3BA06F201DCC512C000886A8 /* ToolsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsModel.h; sourceTree = "<group>"; };
@@ -1501,46 +1510,11 @@
 		3B4C0E711DC85DDB00827D4F /* 今日财务 */ = {
 			isa = PBXGroup;
 			children = (
-				3B4C0E721DC85DDB00827D4F /* C */,
-				3B4C0E751DC85DDB00827D4F /* M */,
-				3B4C0E7A1DC85DDB00827D4F /* V */,
+				3B9E16EC1DD2BD470028C72F /* C */,
+				3B9E16ED1DD2BD470028C72F /* M */,
+				3B9E16EE1DD2BD470028C72F /* V */,
 			);
 			path = "今日财务";
-			sourceTree = "<group>";
-		};
-		3B4C0E721DC85DDB00827D4F /* C */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C0E731DC85DDB00827D4F /* TodayFinanceController.h */,
-				3B4C0E741DC85DDB00827D4F /* TodayFinanceController.m */,
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		3B4C0E751DC85DDB00827D4F /* M */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C0E761DC85DDB00827D4F /* FinacialDetailModel.h */,
-				3B4C0E771DC85DDB00827D4F /* FinacialDetailModel.m */,
-				3B4C0E781DC85DDB00827D4F /* FinanceModel.h */,
-				3B4C0E791DC85DDB00827D4F /* FinanceModel.m */,
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
-		3B4C0E7A1DC85DDB00827D4F /* V */ = {
-			isa = PBXGroup;
-			children = (
-				3B4C0E7B1DC85DDB00827D4F /* FinacialAnalysesCell.h */,
-				3B4C0E7C1DC85DDB00827D4F /* FinacialAnalysesCell.m */,
-				3B4C0E7D1DC85DDB00827D4F /* FinancialDetailCell.h */,
-				3B4C0E7E1DC85DDB00827D4F /* FinancialDetailCell.m */,
-				3B4C0E7F1DC85DDB00827D4F /* Huanzhuangbingtu.h */,
-				3B4C0E801DC85DDB00827D4F /* Huanzhuangbingtu.m */,
-				3B4C0E811DC85DDB00827D4F /* QiaodaoCountButton.h */,
-				3B4C0E821DC85DDB00827D4F /* QiaodaoCountButton.m */,
-			);
-			path = V;
 			sourceTree = "<group>";
 		};
 		3B4C0E831DC85DDB00827D4F /* 财务统计 */ = {
@@ -1796,10 +1770,10 @@
 		3B4C10091DC85DDC00827D4F /* C */ = {
 			isa = PBXGroup;
 			children = (
-				3B4C100A1DC85DDC00827D4F /* SearchDetailViewController.h */,
-				3B4C100B1DC85DDC00827D4F /* SearchDetailViewController.m */,
 				3B4C100C1DC85DDC00827D4F /* SearchOrderViewController.h */,
 				3B4C100D1DC85DDC00827D4F /* SearchOrderViewController.m */,
+				3B4C100A1DC85DDC00827D4F /* SearchDetailViewController.h */,
+				3B4C100B1DC85DDC00827D4F /* SearchDetailViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -2894,6 +2868,47 @@
 			path = PCH;
 			sourceTree = "<group>";
 		};
+		3B9E16EC1DD2BD470028C72F /* C */ = {
+			isa = PBXGroup;
+			children = (
+				3B9E16EF1DD2BD540028C72F /* TodayFinanceController.h */,
+				3B9E16F01DD2BD540028C72F /* TodayFinanceController.m */,
+				3B9E17041DD2F8350028C72F /* CaiwuDetialViewController.h */,
+				3B9E17051DD2F8350028C72F /* CaiwuDetialViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		3B9E16ED1DD2BD470028C72F /* M */ = {
+			isa = PBXGroup;
+			children = (
+				3B9E16F51DD2C13D0028C72F /* TodayFinaceModel.h */,
+				3B9E16F61DD2C13D0028C72F /* TodayFinaceModel.m */,
+				3B9E16F21DD2C11E0028C72F /* TodayFinaceDetialModel.h */,
+				3B9E16F31DD2C11E0028C72F /* TodayFinaceDetialModel.m */,
+				3B9E16FB1DD2D0600028C72F /* CaiwuDetialModel.h */,
+				3B9E16FC1DD2D0600028C72F /* CaiwuDetialModel.m */,
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		3B9E16EE1DD2BD470028C72F /* V */ = {
+			isa = PBXGroup;
+			children = (
+				3B9E170D1DD2FFD10028C72F /* SumFinaceTableCell.h */,
+				3B9E170E1DD2FFD10028C72F /* SumFinaceTableCell.m */,
+				3B9E16FE1DD2ED3F0028C72F /* TodayFinaceCell.h */,
+				3B9E16FF1DD2ED3F0028C72F /* TodayFinaceCell.m */,
+				3B9E17011DD2F32C0028C72F /* CaiwuDetialCell.h */,
+				3B9E17021DD2F32C0028C72F /* CaiwuDetialCell.m */,
+				3B9E17071DD2FC5F0028C72F /* HuangzhuangBingTu.h */,
+				3B9E17081DD2FC5F0028C72F /* HuangzhuangBingTu.m */,
+				3B9E17101DD3139C0028C72F /* FinaceIconView.h */,
+				3B9E17111DD3139C0028C72F /* FinaceIconView.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
 		3BA06F1B1DCC512C000886A8 /* 实用工具 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3563,11 +3578,11 @@
 				3BCF3A371D9E6CF800BEE236 /* NSData+SDDataCache.m in Sources */,
 				3B7ABCF31DB6176600F3D12B /* EMCDDeviceManager+Remind.m in Sources */,
 				3BCF3A231D9E6A4800BEE236 /* SuggestController.m in Sources */,
-				3B4C10321DC85DDC00827D4F /* QiaodaoCountButton.m in Sources */,
 				3B7ABCA21DB5B31D00F3D12B /* YLChatGroupDetailController.m in Sources */,
 				3B4C133D1DC85F4700827D4F /* DateMineKaoqinPicker.m in Sources */,
 				3BCA325B1D9CC1F900A0E980 /* UIBarButtonItem+Extension.m in Sources */,
 				3B7ABCAA1DB5B33400F3D12B /* GroupMemberView.m in Sources */,
+				3B9E16F71DD2C13D0028C72F /* TodayFinaceModel.m in Sources */,
 				3B1CFCBC1DD1780400C4B538 /* OffLineOrder.m in Sources */,
 				3BCF39C01D9E3D5500BEE236 /* ContactListViewController.m in Sources */,
 				3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */,
@@ -3576,20 +3591,19 @@
 				3BCF39931D9DFA4400BEE236 /* HomeTabbarController.m in Sources */,
 				3B56D77B1DC739CE003A57FD /* EaseFacialView.m in Sources */,
 				3B4C10A81DC85DDC00827D4F /* NormalIconView.m in Sources */,
-				3B4C102D1DC85DDC00827D4F /* FinacialDetailModel.m in Sources */,
 				3B4C10D61DC85DDC00827D4F /* SearchTaoxiController.m in Sources */,
 				3B56D7801DC739CE003A57FD /* EaseChatToolbarItem.m in Sources */,
 				3B6E0ACD1DCAF32400309037 /* SaleIntrolduceController.m in Sources */,
 				3B3BBFC91DB48BEB00C9E2FD /* GroupTableViewCell.m in Sources */,
 				3B4C13791DC85F4700827D4F /* MyJobsTableCell.m in Sources */,
 				3BCF39EC1D9E5AD200BEE236 /* NameViewController.m in Sources */,
+				3B9E17001DD2ED3F0028C72F /* TodayFinaceCell.m in Sources */,
 				3B7ABCF41DB6176600F3D12B /* EMCDDeviceManagerBase.m in Sources */,
 				3B56D7791DC739CE003A57FD /* EaseBubbleView.m in Sources */,
 				3B3BBFC01DB4852700C9E2FD /* CreateGroupsController.m in Sources */,
 				3B4C134A1DC85F4700827D4F /* PlaceViewController.m in Sources */,
 				3B4C13731DC85F4700827D4F /* StaffInfoModel.m in Sources */,
 				3B7ABCF11DB6176600F3D12B /* EMCDDeviceManager+Microphone.m in Sources */,
-				3B4C102C1DC85DDC00827D4F /* TodayFinanceController.m in Sources */,
 				3B1CFCAC1DD1780400C4B538 /* TaoxiModel.m in Sources */,
 				3B4C13551DC85F4700827D4F /* DakaMapView.m in Sources */,
 				3B4C13781DC85F4700827D4F /* MyjobModel.m in Sources */,
@@ -3650,7 +3664,6 @@
 				3B4C132F1DC85F4700827D4F /* AllQiaodaoCollectionViewCell.m in Sources */,
 				3B56D7701DC739CE003A57FD /* EaseMessageCell.m in Sources */,
 				3B4C10D41DC85DDC00827D4F /* PayMoneyViewController.m in Sources */,
-				3B4C102E1DC85DDC00827D4F /* FinanceModel.m in Sources */,
 				3B56D7721DC739CE003A57FD /* EaseBubbleView+File.m in Sources */,
 				3B4C135A1DC85F4700827D4F /* SubTitleView.m in Sources */,
 				3B4C133F1DC85F4700827D4F /* MineKaoqinView.m in Sources */,
@@ -3704,10 +3717,12 @@
 				3B4C13421DC85F4700827D4F /* ChooseMemVController.m in Sources */,
 				3B5DC7201DB87265000F7A06 /* FixFopen.c in Sources */,
 				3B1CFCC21DD17D0700C4B538 /* CardNumTableCell.m in Sources */,
+				3B9E17031DD2F32C0028C72F /* CaiwuDetialCell.m in Sources */,
 				3B4C135E1DC85F4700827D4F /* ChangeRulesController.m in Sources */,
 				3B4C10381DC85DDC00827D4F /* FinalTableViewCell.m in Sources */,
 				3B4C135B1DC85F4700827D4F /* TimePickerView.m in Sources */,
 				3B4C10D81DC85DDC00827D4F /* ChooseTimeView.m in Sources */,
+				3B9E17061DD2F8350028C72F /* CaiwuDetialViewController.m in Sources */,
 				3B4C132C1DC85F4700827D4F /* QiaodaoMapViewController.m in Sources */,
 				3B4C10D21DC85DDC00827D4F /* SearchTableViewCell.m in Sources */,
 				3B4C13521DC85F4700827D4F /* WholeSetModel.m in Sources */,
@@ -3718,6 +3733,7 @@
 				3B56D7761DC739CE003A57FD /* EaseBubbleView+Text.m in Sources */,
 				3B4C10A61DC85DDC00827D4F /* NavigationView.m in Sources */,
 				3BCF39741D9DF42100BEE236 /* UserInfoManager.m in Sources */,
+				3B9E16F11DD2BD540028C72F /* TodayFinanceController.m in Sources */,
 				3B56D7741DC739CE003A57FD /* EaseBubbleView+Image.m in Sources */,
 				3BF93D7C1DADDC950002EACA /* CalendarMonthCollectionViewLayout.m in Sources */,
 				3B4C133B1DC85F4700827D4F /* TeamPaihangbangTableViewCell.m in Sources */,
@@ -3738,15 +3754,14 @@
 				3B7ABCF51DB6176600F3D12B /* amrFileCodec.mm in Sources */,
 				3B1CFCB31DD1780400C4B538 /* RightBadgeView.m in Sources */,
 				3BCA32551D9CC1F900A0E980 /* Foundation+Log.m in Sources */,
-				3B4C10301DC85DDC00827D4F /* FinancialDetailCell.m in Sources */,
 				3BCF3A071D9E65E800BEE236 /* CityViewController.m in Sources */,
 				3B4C131E1DC85F4700827D4F /* NoticeManager.m in Sources */,
 				3B1CFCBA1DD1780400C4B538 /* OpenOrderViewController.m in Sources */,
 				3BF93D7D1DADDC950002EACA /* CalendarMonthHeaderView.m in Sources */,
 				3B5DC7111DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
-				3B4C102F1DC85DDC00827D4F /* FinacialAnalysesCell.m in Sources */,
 				3B4C13331DC85F4700827D4F /* TeamPaihangbangViewController.m in Sources */,
 				3B4C13531DC85F4700827D4F /* BanciButton.m in Sources */,
+				3B9E16F41DD2C11E0028C72F /* TodayFinaceDetialModel.m in Sources */,
 				3B1CFCB41DD1780400C4B538 /* CardNumViewController.m in Sources */,
 				3B56D7731DC739CE003A57FD /* EaseBubbleView+Gif.m in Sources */,
 				3B56D7681DC739CE003A57FD /* EaseMessageViewController.m in Sources */,
@@ -3821,7 +3836,6 @@
 				3B4C13371DC85F4700827D4F /* TeamPaihangbangModel.m in Sources */,
 				3B1CFCB21DD1780400C4B538 /* OfflineOrderTableCell.m in Sources */,
 				3B4C10341DC85DDC00827D4F /* MonthInComeController.m in Sources */,
-				3B4C10311DC85DDC00827D4F /* Huanzhuangbingtu.m in Sources */,
 				3B4C132D1DC85F4700827D4F /* AllQiandaoModel.m in Sources */,
 				3B7ABCF21DB6176600F3D12B /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				3B4C131D1DC85F4700827D4F /* PublicNoticeController.m in Sources */,
@@ -3836,6 +3850,7 @@
 				3B4C132E1DC85F4700827D4F /* AllQiaodaoDetailModel.m in Sources */,
 				3B5DC71C1DB87107000F7A06 /* EaseEmojiEmoticons.m in Sources */,
 				3B4C13501DC85F4700827D4F /* KaoqinModel.m in Sources */,
+				3B9E170F1DD2FFD10028C72F /* SumFinaceTableCell.m in Sources */,
 				3B56D7661DC739CE003A57FD /* SendLocaltionController.m in Sources */,
 				3B4C132A1DC85F4700827D4F /* CheckWorkViewController.m in Sources */,
 				3BCF39A81D9E322F00BEE236 /* ImageBrowser.m in Sources */,
@@ -3856,6 +3871,7 @@
 				3B4C134F1DC85F4700827D4F /* GudingPaibanModel.m in Sources */,
 				3B1CFCA31DD1780400C4B538 /* AddProductController.m in Sources */,
 				3B56D7771DC739CE003A57FD /* EaseBubbleView+Video.m in Sources */,
+				3B9E17091DD2FC5F0028C72F /* HuangzhuangBingTu.m in Sources */,
 				3BF93D781DADDC950002EACA /* CalendarDayCell.m in Sources */,
 				3BCF3A1F1D9E6A4800BEE236 /* AboutUSController.m in Sources */,
 				3B6E0AD31DCAF35400309037 /* SaleDataViewController.m in Sources */,
@@ -3878,6 +3894,7 @@
 				3B3BBFC61DB4862700C9E2FD /* IvitGroupMembersController.m in Sources */,
 				3BCF3A3C1D9E6CF800BEE236 /* SDCollectionViewCell.m in Sources */,
 				3BCF3A3E1D9E6CF800BEE236 /* UIView+SDExtension.m in Sources */,
+				3B9E16FD1DD2D0600028C72F /* CaiwuDetialModel.m in Sources */,
 				3B4C10AB1DC85DDC00827D4F /* StaffYejiModel.m in Sources */,
 				3B56D76C1DC739CE003A57FD /* EaseMessageModel.m in Sources */,
 				3B4C13591DC85F4700827D4F /* QIaodaoBeizhuView.m in Sources */,
@@ -3893,6 +3910,7 @@
 				3B4C103C1DC85DDC00827D4F /* OutNoColorTableCell.m in Sources */,
 				3B4C10C91DC85DDC00827D4F /* ShekongDetialVController.m in Sources */,
 				3B56D77A1DC739CE003A57FD /* EaseFaceView.m in Sources */,
+				3B9E17121DD3139C0028C72F /* FinaceIconView.m in Sources */,
 				3BCF397E1D9DF44500BEE236 /* ZCAccountTool.m in Sources */,
 				3B4C13451DC85F4700827D4F /* TanxingPreViewController.m in Sources */,
 				3B7ABCF61DB6176600F3D12B /* wav.mm in Sources */,

@@ -2,56 +2,49 @@
 //  TodayFinanceController.m
 //  YLZG
 //
-//  Created by Chan_Sir on 2016/10/9.
+//  Created by Chan_Sir on 2016/11/9.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
 #import "TodayFinanceController.h"
-#import <PDTSimpleCalendarViewController.h>
-#import "HTTPManager.h"
 #import "ZCAccountTool.h"
-#import "QiaodaoCountButton.h"
-#import "FinacialAnalysesCell.h"
+#import "HTTPManager.h"
 #import <MJExtension.h>
-#import "FinancialDetailCell.h"
-#import "FinanceModel.h"
+#import <MJRefresh.h>
+#import "TodayFinaceModel.h"
+#import "TodayFinaceDetialModel.h"
+#import "NormalTableCell.h"
+#import "TodayFinaceCell.h"
+#import "SumFinaceTableCell.h"
+#import "HuangzhuangBingTu.h"
+#import "FinaceIconView.h"
+#import "CaiwuDetialViewController.h"
+#import <PDTSimpleCalendarViewController.h>
 
+@interface TodayFinanceController ()<PDTSimpleCalendarViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
+/** 表格 */
+@property (strong,nonatomic) UITableView *tableView;
+/** 头部数组 */
+@property (copy,nonatomic) NSArray *headArray;
+/** 饼状图 */
+@property (strong,nonatomic) HuangzhuangBingTu *bingtuV;
 
-@interface TodayFinanceController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate,PDTSimpleCalendarViewDelegate>
-{
-    UIView * xianView;
-}
+/** 定金 */
+@property (strong,nonatomic) FinaceIconView *dingjinIconV;
+/** 补款 */
+@property (strong,nonatomic) FinaceIconView *bukuanIconV;
+/** 二销 */
+@property (strong,nonatomic) FinaceIconView *erxiaoIconV;
+/** 其他 */
+@property (strong,nonatomic) FinaceIconView *otherIconV;
 
-@property (nonatomic, strong) UITableView * tableView;
-/************ 第一行 ************/
-/** 头视图底部的view */
-@property (nonatomic, strong) UIView * headView;
+/** 财务详细数据源 */
+@property (copy,nonatomic) NSArray *detialArray;
+/** 今日财务模型 */
+@property (strong,nonatomic) TodayFinaceModel *finaceModel;
 
-@property (nonatomic, strong) QiaodaoCountButton * dateButton;
-
-/** 中间的View */
-@property (nonatomic, strong) UIView * middleView;
-
-/** 收入渐增时间器 */
-@property (strong,nonatomic) NSTimer *pointTimer;
-
-/************ 头视图按钮切换 ************/
-@property (nonatomic, strong) UIView * btnBackView;
-/** 切换按钮 */
-@property (nonatomic, strong) UIButton * headButton;
-/** 按钮底部的灰色线 */
-@property (nonatomic, strong) UIView * lineView;
-
-/** 数组 */
-@property (nonatomic, strong) NSMutableArray * dataSource1;
-@property (nonatomic, strong) NSMutableArray * dataSource2;
-// 标记视图切换的index
-@property (nonatomic, assign) NSInteger selectButtonIndex;
-// 字典
-@property (nonatomic, strong) FinanceModel *financeModel;
-
-@property (nonatomic, strong) NSString *changeStr;
+@property (strong,nonatomic) UIView *bingBottomV;
 
 @end
 
@@ -60,271 +53,275 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"今日财务";
-    // 初始化
-    [self selfInitSCXFinancialViewControllerVC];
-    // 请求数据
-    [self loadSCXFinancialViewControllerData];
-}
-
-#pragma mark - 初始化
-- (void)selfInitSCXFinancialViewControllerVC{
-    self.dataSource1 = [[NSMutableArray alloc] init];
-    self.dataSource2 = [[NSMutableArray alloc] init];
-    
-    
-    // 日期
-    _dateButton = [QiaodaoCountButton shareqiaodaocountBtn];
-    _dateButton.label.text = [self getCurrentTime];
-}
-
-
-#pragma mark - 请求数据
-- (void)loadSCXFinancialViewControllerData{
-    
-    ZCAccount * accout = [ZCAccountTool account];
-    NSString * url = [NSString stringWithFormat:Financial_Url, _dateButton.label.text, accout.userID];
-    [self showHudMessage:@"加载中···"];
-    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        KGLog(@"responseObject = %@",responseObject);
-        int status = [[[responseObject objectForKey:@"code"] description] intValue];
-        [self hideHud:0];
-        if (status == 1) {
-            // 第一组数据
-            self.financeModel = [FinanceModel mj_objectWithKeyValues:responseObject[@"finance"]];
-            // 第二组数据
-            NSArray * detailArray = responseObject[@"details"];
-            self.dataSource2 = [FinacialDetailModel mj_objectArrayWithKeyValuesArray:detailArray];
-            //                NSLog(@"$$$$$$$$$$$$$$$%@",self.dataSource2);
-            // 搭建UI
-            [self.tableView removeFromSuperview];
-            
-            [self creatSCXFinancialViewControllerUI];
-            [self.tableView reloadData];
-            
-        }else{
-            [self sendErrorWarning:@"获取失败"];
-        }
-    } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
-        [self sendErrorWarning:error.localizedDescription];
-    }];
+    [self setupSubViews];
+    NSString *date = [self getCurrentTime];
+    [self getData:date];
     
 }
-
-#pragma mark - 搭建UI
-- (void)creatSCXFinancialViewControllerUI{
-    // 搭建UI
-    [self createUI];
-    // 搭建tableview
-    [self createTableview];
+#pragma mark - UI
+- (void)setupSubViews
+{
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"change_calender"] style:UIBarButtonItemStylePlain target:self action:@selector(changeDate)];
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
+    
+    self.headArray = @[@"今日财务",@"财务详情"];
+    [self.view addSubview:self.tableView];
+    
 }
-
-#pragma mark -搭建UI相关
-- (void)createUI {
-    
-    /** 第一行 */
-    _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 152)];
-    _headView.backgroundColor = self.view.backgroundColor;
-    [self.view addSubview:_headView];
-    // 日期
-    
-    _dateButton.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44);
-    
-    [_dateButton addTarget:self action:@selector(dateButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.headView addSubview:_dateButton];
-    
-    
-    /** 第二行 */
-    _middleView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_dateButton.frame)+10, SCREEN_WIDTH, 88)];
-    _middleView.backgroundColor = [UIColor whiteColor];
-    [self.headView addSubview:_middleView];
-    
-    NSArray * titleArr = @[@"总收入", @"总支出", @"净收入", self.financeModel.income, self.financeModel.expend, self.financeModel.netin];
-    for (int i = 0; i < titleArr.count; i++) {
-        UILabel * label = [self getLabelFrame:CGRectMake(30+ SCREEN_WIDTH/3*(i%3), _middleView.height/2 * (i/3) , SCREEN_WIDTH/3 -20, _middleView.height/2) andText:titleArr[i]];
-        [_middleView addSubview:label];
-        if (i < 2) {
-            UIImageView * imageV = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame)-10, 10, 1, 66)];
-            imageV.image = [UIImage imageNamed:@"xushuxian"];
-            [_middleView addSubview:imageV];
-        }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.headArray.count;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 2;
+    }else{
+        return self.detialArray.count;
     }
 }
-
-#pragma mark -搭建tableview相关
-- (void)createTableview {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    _tableView.tableHeaderView = _headView;
-    [self.view addSubview:_tableView];
-}
-
-/**
- 时间相关
- */
-#pragma mark -选择时间
-- (void)dateButtonClicked:(UIBarButtonItem *)item {
-    
-    PDTSimpleCalendarViewController *calender = [[PDTSimpleCalendarViewController alloc]init];
-    calender.title = @"选择日期";
-    calender.delegate = self;
-    calender.overlayTextColor = MainColor;
-    calender.weekdayHeaderEnabled = YES;
-    calender.firstDate = [NSDate dateWithHoursBeforeNow:8*30*24];
-    calender.lastDate = [NSDate date];
-    [self.navigationController pushViewController:calender animated:YES];
-    
-}
-
-
-/**
- *   label封装
- */
-- (UILabel *)getLabelFrame:(CGRect)frame andText:(NSString *)text {
-    UILabel * label = [[UILabel alloc] initWithFrame:frame];
-    label.font = [UIFont systemFontOfSize:16];
-    label.text = text;
-    return label;
-}
-
-#pragma mark -表格相关
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_selectButtonIndex == 0) {
-        return 1;
-    }else if (_selectButtonIndex == 1) {
-        return _dataSource2.count;
-    }
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (_selectButtonIndex == 0) {
-        FinacialAnalysesCell * acell = [FinacialAnalysesCell sharedFinacialAnalysesCell:tableView];
-        acell.bingtuView.model = self.financeModel;
-        
-        //问题未解决:会出现复用问题
-        //        NSArray * arr = @[[NSString stringWithFormat:@"   定金  %@", self.finDic[@"deposit"]], [NSString stringWithFormat:@"   补款  %@", self.finDic[@"extra"]], [NSString stringWithFormat:@"   二销  %@", self.finDic[@"tsell"]], [NSString stringWithFormat:@"   其他  %@", self.finDic[@"other"]]];
-        //        [acell createCell:arr];
-        acell.depositLabel.text = [NSString stringWithFormat:@"   定金  %@", self.financeModel.deposit];
-        acell.extraLabel.text = [NSString stringWithFormat:@"   补款  %@", self.financeModel.extra];
-        acell.tsellLabel.text = [NSString stringWithFormat:@"   二销  %@", self.financeModel.tsell];
-        acell.otherLabel.text = [NSString stringWithFormat:@"   其他  %@", self.financeModel.other];
-        
-        tableView.rowHeight = 400;
-        return acell;
-        
-    }else  {
-        
-        FinancialDetailCell * cell = [FinancialDetailCell sharedFinancialDetailCell:tableView];
-        tableView.rowHeight = 80;
-        FinacialDetailModel * model = _dataSource2[indexPath.row];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        // 今日财务概况
+        if (indexPath.row == 0) {
+            SumFinaceTableCell *cell = [SumFinaceTableCell sharedSumFinaceTableCell:tableView];
+            cell.model = self.finaceModel;
+            return cell;
+        } else {
+            // 饼图
+            NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [cell.xian removeFromSuperview];
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+            self.bingtuV = [[HuangzhuangBingTu alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 210)];
+            self.bingtuV.model = self.finaceModel;
+            [cell.contentView addSubview:self.bingtuV];
+            // 颜色
+            
+            [cell.contentView addSubview:self.bingBottomV];
+            
+            NSArray *titleArr = @[@"定金",@"补款",@"二销",@"其他"];
+            
+            NSArray *numArr = [self getNumArray];
+            
+            CGFloat spaceH = 1; // 横向间距
+            CGFloat spaceZ = 6; // 纵向间距
+            for (int i = 0; i < titleArr.count; i++) {
+                CGRect frame;
+                frame.size.width = self.view.width/2;
+                frame.size.height = 25;
+                frame.origin.x = (i%2) * (frame.size.width + spaceH) + spaceH;
+                frame.origin.y = floor(i/2) * (frame.size.height + spaceZ) + 6;
+                
+                
+                if (i == 0) {
+                    [self.dingjinIconV setFrame:frame];
+                    self.dingjinIconV.num = numArr[i];
+                    [_bingBottomV addSubview:self.dingjinIconV];
+                }else if (i == 1){
+                    [self.bukuanIconV setFrame:frame];
+                    self.bukuanIconV.num = numArr[i];
+                    [_bingBottomV addSubview:self.bukuanIconV];
+                }else if (i == 2){
+                    [self.erxiaoIconV setFrame:frame];
+                    self.erxiaoIconV.num = numArr[i];
+                    [_bingBottomV addSubview:self.erxiaoIconV];
+                }else{
+                    [self.otherIconV setFrame:frame];
+                    self.otherIconV.num = numArr[i];
+                    [_bingBottomV addSubview:self.otherIconV];
+                }
+                
+                
+                
+            }
+            
+            return cell;
+            
+        }
+    } else {
+        // 财务明细
+        TodayFinaceCell *cell = [TodayFinaceCell sharedTodayFinaceCell:tableView];
+        TodayFinaceDetialModel *model = self.detialArray[indexPath.row];
         cell.model = model;
         return cell;
     }
 }
+- (FinaceIconView *)dingjinIconV
+{
+    if (!_dingjinIconV) {
+        _dingjinIconV = [[FinaceIconView alloc]init];
+        _dingjinIconV.color = RGBACOLOR(231, 74, 47, 1);
+        _dingjinIconV.title = @"定金";
+    }
+    return _dingjinIconV;
+}
+- (FinaceIconView *)bukuanIconV
+{
+    if (!_bukuanIconV) {
+        _bukuanIconV = [[FinaceIconView alloc]init];
+        _bukuanIconV.color = RGBACOLOR(123, 223, 253, 1);
+        _bukuanIconV.title = @"补款";
+    }
+    return _bukuanIconV;
+}
+- (FinaceIconView *)erxiaoIconV
+{
+    if (!_erxiaoIconV) {
+        _erxiaoIconV = [[FinaceIconView alloc]init];
+        _erxiaoIconV.color = RGBACOLOR(253, 151, 39, 1);
+        _erxiaoIconV.title = @"二销";
+    }
+    return _erxiaoIconV;
+}
+- (FinaceIconView *)otherIconV
+{
+    if (!_otherIconV) {
+        _otherIconV = [[FinaceIconView alloc]init];
+        _otherIconV.color = RGBACOLOR(214, 143, 228, 1);
+        _otherIconV.title = @"其他";
+    }
+    return _otherIconV;
+}
 
 
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    _btnBackView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_middleView.frame)+10, SCREEN_WIDTH, SCREEN_HEIGHT-_middleView.height-20)];
-    _btnBackView.backgroundColor = [UIColor whiteColor];
-    /************ 财务分析 ************/
-    NSArray * titleArr = @[@"财务结构", @"财务明细"];
-    for (int i = 0; i < titleArr.count; i++) {
-        _headButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _headButton.frame = CGRectMake(SCREEN_WIDTH/2 * i, 0, SCREEN_WIDTH/2, 41);
-        _headButton.tag = i + 10;
-        [_headButton setTitle:titleArr[i] forState:UIControlStateNormal];
-        _headButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_headButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_headButton setTitleColor:MainColor forState:UIControlStateSelected];
-        [_headButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [self.btnBackView addSubview:_headButton];
-        // 添加下划线
-        xianView  = [[UIView alloc] initWithFrame:CGRectMake(10 + SCREEN_WIDTH/2 *i, CGRectGetMaxY(_headButton.frame), SCREEN_WIDTH/2-20, 2)];
-        xianView.backgroundColor = MainColor;
-        xianView.tag = 20 + i;
-        [self.btnBackView addSubview:xianView];
+- (NSArray *)getNumArray
+{
+    NSMutableArray *numArr = [NSMutableArray array];
+    
+    if (!([self.finaceModel.income intValue] > 0)) {
+        for (int i = 0; i < 5; i++) {
+            [numArr addObject:@"0"];
+        }
+        return numArr;
+    }else{
         
-        if (i == _selectButtonIndex) {
-            _headButton.selected = YES;
-        }else {
-            [xianView setHidden:YES];
-        }
+        [numArr addObject:self.finaceModel.deposit];
+        [numArr addObject:self.finaceModel.extra];
+        [numArr addObject:self.finaceModel.tsell];
+        [numArr addObject:self.finaceModel.other];
+        [numArr addObject:self.finaceModel.trade];
+        
+        return numArr;
     }
-    UILabel * grayLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 43, SCREEN_WIDTH, 1)];
-    grayLine.backgroundColor = [UIColor colorWithRed:0.918 green:0.910 blue:0.918 alpha:1.000];
-    [self.btnBackView addSubview:grayLine];
     
-    
-    return _btnBackView;
+}
+- (UIView *)bingBottomV
+{
+    if (!_bingBottomV) {
+        _bingBottomV = [[UIView alloc]initWithFrame:CGRectMake(0, 210, SCREEN_WIDTH, 70)];
+        _bingBottomV.backgroundColor = [UIColor whiteColor];
+        _bingBottomV.userInteractionEnabled = YES;
+        
+        
+    }
+    return _bingBottomV;
 }
 
-- (void)buttonClicked:(UIButton *)sender {
-    _selectButtonIndex = sender.tag-10;
-    
-    // 按钮点击切换
-    for (int i = 0; i < 2; i++) {
-        UIButton * btn = (UIButton *)[self.view viewWithTag:10+i];
-        btn.selected = NO;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        
+    } else {
+        CaiwuDetialViewController *caiwu = [CaiwuDetialViewController new];
+        TodayFinaceDetialModel *model = self.detialArray[indexPath.row];
+        caiwu.model = model;
+        [self.navigationController pushViewController:caiwu animated:YES];
     }
-    sender.selected = YES;
-    
-    // 线条的切换
-    UIView * view1 = (UIView *)[self.view viewWithTag:20];
-    UIView * view2 = (UIView *)[self.view viewWithTag:21];
-    
-    switch (sender.tag) {
-        case 10:
-        {
-            [view1 setHidden:NO];
-            [view2 setHidden:YES];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            return 108;
+        } else {
+            return 280;
         }
-            break;
-        case 11:
-        {
-            [view1 setHidden:YES];
-            [view2 setHidden:NO];
-        }
-            break;
+    } else {
+        return 60;
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 1;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footV = [UIView new];
+    footV.backgroundColor = [UIColor clearColor];
+    return footV;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 32;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *headV = [UIView new];
+    
+    UIImageView *xian = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
+    xian.frame = CGRectMake(0, 0, SCREEN_WIDTH, 2);
+    [headV addSubview:xian];
+    
+    headV.backgroundColor = MainColor;
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(15, 2, SCREEN_WIDTH - 15, 30)];
+    label.text = self.headArray[section];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    [headV addSubview:label];
+    return headV;
+}
+#pragma mark - 拿到数据源
+- (void)getData:(NSString *)date
+{
+    
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/todayfinance/query?date=%@&uid=%@",date,[ZCAccountTool account].userID];
+    
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            NSDictionary *dict = [responseObject objectForKey:@"finance"];
+            NSArray *dictArray = [responseObject objectForKey:@"details"];
             
-        default:
-            break;
-    }
-    [_tableView reloadData];
+            self.finaceModel = [TodayFinaceModel mj_objectWithKeyValues:dict];
+            self.detialArray = [TodayFinaceDetialModel mj_objectArrayWithKeyValuesArray:dictArray];
+            
+            [self.tableView reloadData];
+            
+        }else{
+            [self showErrorTips:message];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self showErrorTips:error.localizedDescription];
+    }];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 44;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+- (void)changeDate
+{
+    PDTSimpleCalendarViewController *calender = [[PDTSimpleCalendarViewController alloc]init];
+    calender.title = @"点击切换日期";
+    calender.delegate = self;
+    calender.overlayTextColor = MainColor;
+    calender.weekdayHeaderEnabled = YES;
+    calender.firstDate = [NSDate dateWithHoursBeforeNow:6*30*24];
+    calender.lastDate = [NSDate date];
+    [self.navigationController pushViewController:calender animated:YES];
 }
 
 - (void)simpleCalendarViewController:(PDTSimpleCalendarViewController *)controller didSelectDate:(NSDate *)date
 {
-    KGLog(@"date = %@",date);
-    [self.tableView endEditing:YES];
-    NSDate *currentDate = [NSDate date];
-    int result = [self compareOneDay:date withAnotherDay:currentDate];
-    if (result == -1) {
-        [self showErrorTips:@"不能先于当前日期"];
-        return;
-    }
     NSDate *nextDay = [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];//后一天
     NSString *time = [NSString stringWithFormat:@"%@",nextDay];
-    NSString *timeC = [time substringWithRange:NSMakeRange(0, 10)];
-    self.changeStr = [NSString stringWithFormat:@"%@",timeC];  // 选中的年月日
-    self.dateButton.label.text = [NSString stringWithFormat:@"%@",timeC];  // 选中的年月日
+    NSString *chooseDate = [time substringWithRange:NSMakeRange(0, 10)];
+    
     [controller.navigationController popViewControllerAnimated:YES];
-    [self loadSCXFinancialViewControllerData];
-    [self.tableView reloadData];
+    self.title = chooseDate;
+    self.headArray = @[chooseDate,@"财务详情"];
+    [self getData:chooseDate];
 }
 #pragma mark - 比较2各日期的先后顺序
 - (int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay
@@ -336,18 +333,30 @@
     NSDate *dateA = [dateFormatter dateFromString:oneDayStr];
     NSDate *dateB = [dateFormatter dateFromString:anotherDayStr];
     NSComparisonResult result = [dateA compare:dateB];
-    //    NSLog(@"date1 : %@, date2 : %@", oneDay, anotherDay);
-    if (result == NSOrderedAscending) {
+    NSLog(@"date1 : %@, date2 : %@", oneDay, anotherDay);
+    if (result == NSOrderedDescending) {
         //NSLog(@"Date1  is in the future");
         return 1;
     }
-    else if (result == NSOrderedDescending){
+    else if (result == NSOrderedAscending){
         //NSLog(@"Date1 is in the past");
         return -1;
     }
     //NSLog(@"Both dates are the same");
     return 0;
     
+}
+#pragma mark - 懒加载
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.backgroundColor = self.view.backgroundColor;
+        
+    }
+    return _tableView;
 }
 
 

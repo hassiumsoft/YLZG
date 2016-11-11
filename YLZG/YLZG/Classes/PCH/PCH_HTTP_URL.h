@@ -89,8 +89,9 @@
 
 #define ConnectPerson_Url @"http://zsylou.wxwkf.com/index.php/home/contacts/update?mobile=%@&head=%@&nickname=%@&birth=%@&uid=%@"
 
-// 14.今日财务 http://zsylou.wxwkf.com/index.php/home/todayfinance/query?date=2016-04-25&uid=159
-#define Financial_Url @"http://zsylou.wxwkf.com/index.php/home/todayfinance/query?date=%@&uid=%@"
+// 14.今日财务 旧http://zsylou.wxwkf.com/index.php/home/todayfinance/query?date=2016-04-25&uid=159
+
+#define Financial_Url @"http://192.168.0.18/index.php/home/todayfinance/query?date=%@&uid=%@"
 
 // 16.查询套系名称及价格
 #define SearchTaoxi_URL @"http://zsylou.wxwkf.com/index.php/home/set/query_set?uid=%@"
