@@ -294,7 +294,7 @@
     NSDate *nextDay = [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];//后一天
     NSString *time = [NSString stringWithFormat:@"%@",nextDay];
     NSString *changeMonth = [time substringWithRange:NSMakeRange(0, 7)];
-    self.title = [NSString stringWithFormat:@"业绩榜：(%@)",changeMonth];
+    self.title = [NSString stringWithFormat:@"业绩榜(%@)",changeMonth];
     
     [self loadDataWithMonth:changeMonth];
     

@@ -1,28 +1,22 @@
 //
-//  Huanzhuangbingtu.m
-//  SmallYellowPerson
+//  HuangzhuangBingTu.m
+//  YLZG
 //
-//  Created by apple on 16/4/19.
-//  Copyright © 2016年 apple. All rights reserved.
+//  Created by Chan_Sir on 2016/11/9.
+//  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "Huanzhuangbingtu.h"
+#import "HuangzhuangBingTu.h"
 #import "NormalIconView.h"
 #import <Masonry.h>
 
-
 #define space 0
+@implementation HuangzhuangBingTu
 
-@interface Huanzhuangbingtu ()
-
-@property (strong,nonatomic) NormalIconView *emptyBtn;
-
-@end
-
-@implementation Huanzhuangbingtu
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
         self.backgroundColor = [UIColor whiteColor];
     }
     return self;
@@ -45,14 +39,14 @@
     if ([self.model.income floatValue] < 1) {
         [self loadEmptyView:@"当天暂无数据"];
     }else{
-        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-50, 110, 100, 20)];
-        label.text = @"财务结构";
+        UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake((self.frame.size.width-180)/2, 82, 180, 20)];
+        label.text = @"收入结构";
         label.font = [UIFont systemFontOfSize:14];
-        label.textColor = [UIColor colorWithWhite:0.604 alpha:1.000];
+        label.textColor = RGBACOLOR(37, 37, 37, 1);
         label.textAlignment = NSTextAlignmentCenter;
         [self addSubview:label];
         
-        UILabel * label1 = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(label.frame), CGRectGetMaxY(label.frame)+5, 100, 20)];
+        UILabel * label1 = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(label.frame), CGRectGetMaxY(label.frame)+5, 180, 20)];
         label1.text = [NSString stringWithFormat:@"%@", self.model.income];
         label1.font = [UIFont systemFontOfSize:15];
         label1.textColor = [UIColor blackColor];
@@ -65,9 +59,9 @@
 
 
 - (CAShapeLayer *)drawPathUseRed:(CGFloat)r green:(CGFloat)g blue:(CGFloat)b andStartAngle:(CGFloat)start endAngle:(CGFloat)end {
-//    UIBezierPath * path;
-    CGPoint center = CGPointMake(self.frame.size.width/2, 130);
-    CGFloat lineWidth = 28.0;
+    //    UIBezierPath * path;
+    CGPoint center = CGPointMake(self.frame.size.width/2, 100);
+    CGFloat lineWidth = 30.f;
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path addArcWithCenter:center radius:80 startAngle:start endAngle:end clockwise:YES];
@@ -80,7 +74,7 @@
     
     CABasicAnimation *bas = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
     bas.duration = 0.5;
-//    bas.delegate = self;
+    //    bas.delegate = self;
     bas.fromValue = [NSNumber numberWithInteger:0];
     bas.toValue = [NSNumber numberWithInteger:1];
     [layer addAnimation:bas forKey:@"key"];
@@ -90,31 +84,34 @@
     return layer;
 }
 
+
+
 #pragma mark - 没有数据时
 - (void)loadEmptyView:(NSString *)message
 {
-    
-    CATransition *animation = [CATransition animation];
-    animation.duration = 2.f;
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-    animation.type = @"rippleEffect";
-    animation.subtype = kCATransitionFromTop;
-    [self.window.layer addAnimation:animation forKey:nil];
+//    self.backgroundColor = [UIColor whiteColor];
+//    
+//    CATransition *animation = [CATransition animation];
+//    animation.duration = 1.5f;
+//    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+//    animation.type = @"rippleEffect";
+//    animation.subtype = kCATransitionFromTop;
+//    [self.window.layer addAnimation:animation forKey:nil];
     
     // 全部为空值
-    self.emptyBtn = [NormalIconView sharedHomeIconView];
-    self.emptyBtn.iconView.image = [UIImage imageNamed:@"sadness"];
-    self.emptyBtn.label.text = message;
-    self.emptyBtn.label.numberOfLines = 0;
-    self.emptyBtn.label.textColor = RGBACOLOR(219, 99, 155, 1);
-    self.emptyBtn.backgroundColor = [UIColor clearColor];
-    [self addSubview:self.emptyBtn];
+    NormalIconView *emptyView = [NormalIconView sharedHomeIconView];
+    emptyView.iconView.image = [UIImage imageNamed:@"happyness"];
+    emptyView.label.text = message;
+    emptyView.label.numberOfLines = 0;
+    emptyView.label.textColor = RGBACOLOR(209, 40, 123, 1);
+    emptyView.backgroundColor = [UIColor clearColor];
+    [self addSubview:emptyView];
     
-    
-    [self.emptyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.centerY.equalTo(self.mas_centerY);
+        make.centerY.equalTo(self.mas_centerY).offset(-64);
         make.width.and.height.equalTo(@140);
+        make.height.equalTo(@45);
     }];
 }
 

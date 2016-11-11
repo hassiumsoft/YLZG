@@ -265,7 +265,7 @@ static CGFloat const EYWTitleHeight = 44;
 - (void)changeMonths
 {
     PDTSimpleCalendarViewController *calender = [[PDTSimpleCalendarViewController alloc]init];
-    calender.title = @"选择时间";
+    calender.title = @"点击选择月份";
     calender.delegate = self;
     calender.overlayTextColor = MainColor;
     calender.weekdayHeaderEnabled = YES;

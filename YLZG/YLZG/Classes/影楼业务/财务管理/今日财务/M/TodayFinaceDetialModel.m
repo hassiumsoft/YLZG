@@ -1,36 +1,40 @@
 //
-//  ColleaguesModel.m
+//  TodayFinaceDetialModel.m
 //  YLZG
 //
-//  Created by Chan_Sir on 16/9/7.
-//  Copyright © 2016年 郑振东. All rights reserved.
+//  Created by Chan_Sir on 2016/11/9.
+//  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "ColleaguesModel.h"
-#import "ContactersModel.h"
+#import "TodayFinaceDetialModel.h"
 #import <MJExtension.h>
+#import "CaiwuDetialModel.h"
 
-@implementation ColleaguesModel
+
+@implementation TodayFinaceDetialModel
 
 
 + (NSMutableArray *)mj_objectArrayWithKeyValuesArray:(id)keyValuesArray
 {
     if (![keyValuesArray isKindOfClass:[NSArray class]]) return nil;
+    
     NSMutableArray *modelArray = [super mj_objectArrayWithKeyValuesArray:keyValuesArray];
-    for (ColleaguesModel *model in modelArray) {
+    for (TodayFinaceDetialModel *model in modelArray) {
         NSMutableArray *array1 = [NSMutableArray array];
         
-        NSArray *result1 = [model.member copy];
+        NSArray *result1 = [model.list copy];
         for (NSDictionary *dic in result1) {
-            ContactersModel *contacts = [ContactersModel mj_objectWithKeyValues:dic];
+            CaiwuDetialModel *contacts = [CaiwuDetialModel mj_objectWithKeyValues:dic];
             
             [array1 addObject:contacts];
         }
-        model.member = array1;
+        model.list = array1;
     }
     
     return modelArray;
     
+    
 }
+
 
 @end

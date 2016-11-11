@@ -194,7 +194,7 @@
         _commitBtn.backgroundColor = MainColor;
         [_commitBtn addTarget:self action:@selector(commitction:) forControlEvents:UIControlEventTouchUpInside];
         _commitBtn.layer.cornerRadius = 4;
-        [_commitBtn setTitle:@"提交" forState:UIControlStateNormal];
+        [_commitBtn setTitle:@"提  交" forState:UIControlStateNormal];
         [_commitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [foot addSubview:_commitBtn];
         [_commitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
