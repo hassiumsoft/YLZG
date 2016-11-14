@@ -141,6 +141,10 @@
         ZCAccount *account = [ZCAccount accountWithDict:newDic];
         [ZCAccountTool saveAccount:account];
         
+        // 删除data缓存
+        [HTTPManager ClearCacheDataCompletion:^{
+            
+        }];
         
         // 设置自动登录
         [EMClient sharedClient].options.isAutoLogin = YES;
@@ -197,6 +201,7 @@
     [userDefault removeObjectForKey:@"userPhone"]; // 缓存手机号码的键
     [userDefault removeObjectForKey:@"city"]; // 地区缓存
     [userDefault removeObjectForKey:@"birthDay"]; // 生日
+    
     
     deleteBlock();
 }

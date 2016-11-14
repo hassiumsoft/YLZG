@@ -124,14 +124,14 @@
 #pragma mark - 没有数据时
 - (void)loadEmptyView:(NSString *)message
 {
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    CATransition *animation = [CATransition animation];
-    animation.duration = 2.f;
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-    animation.type = @"rippleEffect";
-    animation.subtype = kCATransitionFromTop;
-    [self.view.window.layer addAnimation:animation forKey:nil];
+//    self.view.backgroundColor = [UIColor whiteColor];
+//    
+//    CATransition *animation = [CATransition animation];
+//    animation.duration = 2.f;
+//    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+//    animation.type = @"rippleEffect";
+//    animation.subtype = kCATransitionFromTop;
+//    [self.view.window.layer addAnimation:animation forKey:nil];
     
     // 全部为空值
     self.emptyBtn = [NormalIconView sharedHomeIconView];

@@ -33,6 +33,11 @@ typedef void (^YLZGResponseFail)(NSURLSessionDataTask * task, NSError * error);
 
 typedef void (^YLZGProgress)(NSProgress *progress);
 
+/**
+ 完成某件事件后的回调
+ */
+typedef void(^YLZGComplition)();
+
 @interface HTTPManager : NSObject
 
 
@@ -72,6 +77,12 @@ typedef void (^YLZGProgress)(NSProgress *progress);
  */
 
 + (void)GETCache:(NSString *)url params:(NSDictionary *)params success:(YLZGResponseSuccess)success fail:(YLZGResponseFail)fail;
+
+
+/**
+ 清除Data缓存
+ */
++ (void)ClearCacheDataCompletion:(YLZGComplition)complition;
 
 /**
  *  普通路径上传文件（图片、小视频、文件等）

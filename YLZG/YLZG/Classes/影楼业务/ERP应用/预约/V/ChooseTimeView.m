@@ -50,12 +50,12 @@
     [self addSubview:self.datePicker];
     
     // 2个按钮
-    UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_coverBtn.frame), SCREEN_WIDTH, 45)];
+    UIView *topView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_coverBtn.frame), SCREEN_WIDTH, 40)];
     topView.backgroundColor = MainColor;
     topView.userInteractionEnabled = YES;
     [self addSubview:topView];
     
-    UIButton *cancleBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 90, 45)];
+    UIButton *cancleBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 90, 40)];
     cancleBtn.backgroundColor = [UIColor clearColor];
     [cancleBtn addTarget:self action:@selector(removeAction) forControlEvents:UIControlEventTouchUpInside];
     [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
@@ -63,7 +63,7 @@
     cancleBtn.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     [topView addSubview:cancleBtn];
     
-    UIButton *confirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 90, 0, 90, 45)];
+    UIButton *confirmBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 90, 0, 90, 40)];
     confirmBtn.backgroundColor = [UIColor clearColor];
     [confirmBtn addTarget:self action:@selector(confirmAction) forControlEvents:UIControlEventTouchUpInside];
     [confirmBtn setTitle:@"确定" forState:UIControlStateNormal];
@@ -88,7 +88,7 @@
 - (UIDatePicker *)datePicker
 {
     if (!_datePicker) {
-        _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_coverBtn.frame) + 45, SCREEN_WIDTH, self.height - _coverBtn.height - 45)];
+        _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_coverBtn.frame) + 40, SCREEN_WIDTH, self.height - _coverBtn.height - 40)];
         _datePicker.layer.borderColor = MainColor.CGColor;
         _datePicker.layer.borderWidth = 1.f;
         _datePicker.datePickerMode = UIDatePickerModeTime;

@@ -900,7 +900,7 @@
         dict[@"msg"] = beizhu;
         
         [OfflineDataManager saveToSandBox:dict];
-        [OfflineDataManager registerLocalNotification:[OfflineDataManager getAllOffLineOrderFromSandBox].count];
+        
         
     }];
     
