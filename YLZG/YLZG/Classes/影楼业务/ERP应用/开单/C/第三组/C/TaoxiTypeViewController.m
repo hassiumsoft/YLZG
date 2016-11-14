@@ -76,7 +76,7 @@
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:TaoxiType_URL,account.userID];
     [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"responseObject = %@",responseObject);
+        KGLog(@"responseObject = %@",responseObject);
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         [self.tableView.mj_header endRefreshing];

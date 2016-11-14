@@ -93,6 +93,20 @@
         }];
     }
 }
++ (void)ClearCacheDataCompletion:(YLZGComplition)complition
+{
+    NSString * path = [NSString stringWithFormat:@"%@/Documents/Cache",NSHomeDirectory()];
+    NSLog(@"path = %@",path);
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:path]) {
+        NSError *error;
+        [fileManager removeItemAtPath:path error:&error];
+        if (!error) {
+            complition();
+        }
+    }
+    
+}
 + (void)uploadWithURL:(NSString *)url params:(NSDictionary *)params fileData:(NSData *)filedata name:(NSString *)name fileName:(NSString *)filename mimeType:(NSString *)mimeType progress:(YLZGProgress)progress success:(YLZGResponseSuccess)success fail:(YLZGResponseFail)fail
 {
     AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO];

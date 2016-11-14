@@ -16,6 +16,7 @@
 #import "GroupListManager.h"
 #import "StudioContactManager.h"
 #import "HuanxinContactManager.h"
+#import "HTTPManager.h"
 #import <SDImageCache.h>
 #import "YLZGDataManager.h"
 #import "NoDequTableCell.h"
@@ -144,6 +145,9 @@
         } else if(indexPath.row == 1){
             // 清理缓存
             NSString *dicPath = [ClearCacheTool docPath];
+            [HTTPManager ClearCacheDataCompletion:^{
+                
+            }];
             [self clearSDWebImageCache:dicPath DeleteBlock:^{
                 [self showSuccessTips:@"更新成功"];
             }];

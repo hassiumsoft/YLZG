@@ -146,7 +146,7 @@
 - (void)openPhoneWebView:(TodayOrderModel *)model
 {
     UserInfoModel *userModel = [UserInfoManager getUserInfo];
-    if ([userModel.vcip intValue] == 1) {
+    if ([userModel.type intValue] == 1) {
         NSString *phone;
         if (model.phone.length > 11) {
             phone = [model.phone substringWithRange:NSMakeRange(model.phone.length - 11, 11)];

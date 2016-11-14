@@ -13,9 +13,11 @@
 #import "NSString+StrCategory.h"
 #import "SearchTaoxiController.h"
 #import "ZCAccountTool.h"
+#import "ShekongBenController.h"
 #import "HomeNavigationController.h"
 #import <PDTSimpleCalendarViewController.h>
 #import "HTTPManager.h"
+#import "CalendarHomeViewController.h"
 #import "ChooseTimeView.h"
 
 
@@ -174,7 +176,7 @@
         }else{
             // 选择时间
             PDTSimpleCalendarViewController *calendar = [PDTSimpleCalendarViewController new];
-            calendar.title = @"预约日期";
+            calendar.title = @"预计到店时间";
             calendar.delegate = self;
             calendar.overlayTextColor = MainColor;
             calendar.weekdayHeaderEnabled = YES;
@@ -194,6 +196,65 @@
         }
     }
 }
+
+//- (void)ChangeDate
+//{
+//    ZCAccount * account = [ZCAccountTool account];
+//    NSString * url = [NSString stringWithFormat:ShekongRili_Url, account.userID, [self getCurrentTime], [self delayThirty],(int)(self.typeID + 1)];
+//    KGLog(@"url = %@",url);
+//    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        
+//        CalendarHomeViewController *calender = [[CalendarHomeViewController alloc]init];
+//        if (self.typeID == 1) {
+//            calender.calendartitle = @"查看拍照预约数";
+//        } else if(self.typeID == 2){
+//            calender.calendartitle = @"查看选片预约数";
+//        }else if (self.typeID == 3){
+//            calender.calendartitle = @"查看化妆预约数";
+//        }else{
+//            calender.calendartitle = @"查看取件预约数";
+//        }
+//        [calender.planArray removeAllObjects];
+//        calender.planArray = [[NSMutableArray alloc]initWithArray:[responseObject objectForKey:@"result"]];
+//        [calender setAirPlaneToDay:365 ToDateforString:nil];
+//        __weak PreOrderVController * weakSelf = self;
+//        calender.calendarblock = ^(CalendarDayModel *model){
+//            NSString *chooseDate = [NSString stringWithFormat:@"%@",[model toString]];
+//            if (model.holiday) {
+//                self.title = [NSString stringWithFormat:@"摄控本(%@)",model.holiday];
+//            }else{
+//                self.title = [NSString stringWithFormat:@"摄控本(%@)",chooseDate];
+//            }
+//            
+//            NSString *currentDate = weakSelf.timeLabel.text;
+//            if ([currentDate isEqualToString:chooseDate]) {
+//                return ;
+//            }
+//            weakSelf.timeLabel.text = chooseDate;
+//            
+//            // 通知控制器刷新数据
+//            
+//            
+//        };
+//        
+//        [self.navigationController pushViewController:calender animated:YES];
+//        
+//    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+//        [self showErrorTips:error.localizedDescription];
+//    }];
+//}
+//- (NSString *)delayThirty {
+//    int addDays = 29;
+//    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    NSString * str = [self getCurrentTime];
+//    NSDate * myDate = [dateFormatter dateFromString:str];
+//    NSDate *newDate = [myDate dateByAddingTimeInterval:60 * 60 * 24 * addDays];
+//    
+//    NSString * returnStr = [dateFormatter stringFromDate:newDate];
+//    return returnStr;
+//}
+
 - (void)simpleCalendarViewController:(PDTSimpleCalendarViewController *)controller didSelectDate:(NSDate *)date
 {
     NSDate *nextDay = [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];//后一天

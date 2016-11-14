@@ -152,7 +152,7 @@
     
     
     UserInfoModel *userModel = [UserInfoManager getUserInfo];
-    if ([userModel.vcip intValue] == 1) {
+    if ([userModel.type intValue] == 1) {
         phoneLabel.text = [NSString stringWithFormat:@"%@(点击拨打)",self.model.paphone];
         phoneLabel.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {

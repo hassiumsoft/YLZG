@@ -66,7 +66,8 @@
 - (void)setupSubViews
 {
     self.headV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
-    self.headV.userInteractionEnabled = YES;
+    self.headV.layer.masksToBounds = YES;
+    self.headV.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:self.headV];
     [self.headV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.textLabel.mas_right).offset(10);
