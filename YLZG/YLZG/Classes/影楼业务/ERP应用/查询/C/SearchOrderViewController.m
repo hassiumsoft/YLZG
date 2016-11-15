@@ -21,14 +21,14 @@
 
 
 // 最大存储的搜索历史 条数
-#define MAX_COUNT 8
+#define MAX_COUNT 5
 
 @interface SearchOrderViewController ()<UITableViewDataSource,UITableViewDelegate, UISearchBarDelegate>
 
 
 @property (nonatomic, strong) UITableView * searchTableView;
 @property (nonatomic, strong) NSMutableArray * dataSource;
-@property (nonatomic, strong)UISearchBar * searchBar;
+@property (nonatomic, strong) UISearchBar * searchBar;
 
 @property (strong,nonatomic) NormalIconView *emptyView;
 
@@ -37,9 +37,8 @@
 @property (nonatomic, strong)UITableView * recordTableView;
 
 
-
-
 @end
+
 
 @implementation SearchOrderViewController
 
@@ -50,6 +49,7 @@
     [self selfInitSearchViewControllerVC];
     // 搭建UI
     [self createSearchBar];
+    [self searchBarTextDidBeginEditing:self.searchBar ];
     
 }
 
@@ -158,16 +158,19 @@
 
 - (UITableView *)recordTableView{
     if (!_recordTableView) {
-        _recordTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_HEIGHT -300) style:UITableViewStylePlain];
+        _recordTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 50, SCREEN_WIDTH, SCREEN_HEIGHT ) style:UITableViewStylePlain];
         _recordTableView.showsVerticalScrollIndicator = NO;
         _recordTableView.backgroundColor = self.view.backgroundColor;
         _recordTableView.tag = 11;
         _recordTableView.rowHeight = 55;
+
         [self.view  addSubview:_recordTableView];
         
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 104)];
         UIButton *clearButton = [[UIButton alloc] init];
+
        [clearButton setImage:[UIImage imageNamed:@"delete_icon"] forState:UIControlStateNormal];
+
         [clearButton setTitle:@"  清空历史记录" forState:UIControlStateNormal];
         [clearButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         clearButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
@@ -175,7 +178,8 @@
         [clearButton addTarget:self action:@selector(clearButtonClick) forControlEvents:UIControlEventTouchDown];
         clearButton.backgroundColor = [UIColor whiteColor];
         clearButton.layer.cornerRadius = 5;
-        
+
+
         [footView addSubview:clearButton];
         
         [clearButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -272,25 +276,21 @@
     
 }
 
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *footV = [[UIView alloc]initWithFrame:CGRectZero];
-    footV.backgroundColor = ToolBarColor;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.view.width - 30, 33)];
-    label.text = @"历史搜索记录";
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"  历史搜索记录";
     label.backgroundColor = ToolBarColor;
     label.font = [UIFont systemFontOfSize:15];
-    [footV addSubview:label];
-    return footV;
+    return label;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 33;
-}
+
+
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     
     if (tableView.tag == 11) {
         if (_dataArray.count > 0) {
-            return @"历史搜索记录";
+            return @"  历史搜索记录";
         }
         return @"";
     }
@@ -332,7 +332,7 @@
             //删除数据模型
             _dataArray = [[SearchDBManager shareSearchDBManager] selectAllSearchModel];
             [self.recordTableView reloadData];
-
+            
         }];
         delete.backgroundColor = [UIColor redColor];
         
@@ -341,23 +341,28 @@
 }
 
 
+
+//将键盘退下
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    
+    [self.view endEditing:YES];
+}
+
+
 #pragma mark - UISearchBarDelegate相关
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    self.recordTableView.hidden = NO;
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     
-    
+    self.searchBar.userInteractionEnabled = NO;
     [self.dataSource removeAllObjects];
-    [self.searchTableView reloadData ];
+    [self.searchTableView reloadData];
     
     [self.recordTableView removeFromSuperview];
     [self insterDBData:searchBar.text]; // 插入数据库
     [searchBar resignFirstResponder];
-
+    
     self.searchTableView.hidden = NO;
     self.searchTableView.delegate =self;
     self.searchTableView.dataSource= self;
@@ -366,19 +371,21 @@
     //[_recordView removeFromSuperview];
     [self loadSearchViewControllerData];
     
+    self.searchBar.userInteractionEnabled = YES;
     
 }
 
 
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+ 
     [_dataSource removeAllObjects];
     [_searchTableView reloadData];
 }
 
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
-    
+
     self.recordTableView.hidden = NO ;
     self.recordTableView.delegate =self;
     self.recordTableView.dataSource= self;

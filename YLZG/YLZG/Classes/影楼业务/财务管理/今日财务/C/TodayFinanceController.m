@@ -64,7 +64,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"change_calender"] style:UIBarButtonItemStylePlain target:self action:@selector(changeDate)];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
-    
     self.headArray = @[@"今日财务",@"财务详情"];
     [self.view addSubview:self.tableView];
     
@@ -354,7 +353,6 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = self.view.backgroundColor;
-        
     }
     return _tableView;
 }
