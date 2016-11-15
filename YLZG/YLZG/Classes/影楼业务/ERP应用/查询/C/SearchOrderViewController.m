@@ -28,7 +28,7 @@
 
 @property (nonatomic, strong) UITableView * searchTableView;
 @property (nonatomic, strong) NSMutableArray * dataSource;
-@property (nonatomic, strong)UISearchBar * searchBar;
+@property (nonatomic, strong) UISearchBar * searchBar;
 
 @property (strong,nonatomic) NormalIconView *emptyView;
 
@@ -111,7 +111,6 @@
         [self hideHud:0];
         [self sendErrorWarning:error.localizedDescription];
     }];
-    self.searchBar.userInteractionEnabled = YES;
     
     
 }
@@ -279,19 +278,13 @@
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *footV = [[UIView alloc]initWithFrame:CGRectZero];
-    footV.backgroundColor = ToolBarColor;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.view.width - 30, 33)];
-    label.text = @"历史搜索记录";
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"  历史搜索记录";
     label.backgroundColor = ToolBarColor;
     label.font = [UIFont systemFontOfSize:15];
-    [footV addSubview:label];
-    return footV;
+    return label;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 33;
-}
+
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     
@@ -378,7 +371,7 @@
     //[_recordView removeFromSuperview];
     [self loadSearchViewControllerData];
     
-    
+    self.searchBar.userInteractionEnabled = YES;
     
 }
 
