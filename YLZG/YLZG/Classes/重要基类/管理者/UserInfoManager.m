@@ -40,7 +40,6 @@ static FMDatabase *_db;
 + (void)saveInfoToSandBox:(UserInfoModel *)model
 {
     
-    
     NSString *sql = [NSString stringWithFormat:@"insert into t_user (uid,createtime,username,password,store_simple_name,nickname,realname,mobile,birth,type,sid,suid,loginip,logintime,qq,dept,gender,is_register_easemob,location,head,vcip,attence_admin_group,attence_group) values ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",model.uid,model.createtime,model.username,model.password,model.store_simple_name,model.nickname,model.realname,model.mobile,model.birth,model.type,model.sid,model.suid,model.loginip,model.logintime,model.qq,model.dept,model.gender,model.is_register_easemob,model.location,model.head,model.vcip,model.attence_admin_group,model.attence_group];
     
     BOOL result = [_db executeUpdate:sql];

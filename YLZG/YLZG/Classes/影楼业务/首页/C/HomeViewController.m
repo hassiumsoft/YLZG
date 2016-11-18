@@ -499,7 +499,10 @@
         if (!self.isJuFenxiang) {
             
             [self getJufenxiangInfo];
-            [OfflineDataManager registerLocalNotification:[OfflineDataManager getAllOffLineOrderFromSandBox].count];
+            NSArray *offOrderArr = [OfflineDataManager getAllOffLineOrderFromSandBox];
+            if (offOrderArr.count >= 1) {
+                [OfflineDataManager registerLocalNotification:offOrderArr.count Count:(int)offOrderArr.count];
+            }
         }
     }
     

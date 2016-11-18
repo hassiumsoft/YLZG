@@ -23,13 +23,13 @@
 {
     _model = model;
     _titleLabel.text = model.pro_name;
-    _priceLabel.text = [NSString stringWithFormat:@"￥%@ x %@",model.pro_price,model.pro_num];
+    _priceLabel.text = [NSString stringWithFormat:@"￥%@ x %d",model.pro_price,model.number];
     
-    if (model.isJiaji) {
+    if ([model.isUrgent intValue] == 1) {
         // 加急
         [self.jiajiImageV setHidden:NO];
         [self.jiajiLabel setHidden:NO];
-        self.jiajiLabel.text = model.jiajiTime;
+        self.jiajiLabel.text = model.urgentTime;
     }else{
         // 不加急
         [self.jiajiLabel setHidden:YES];

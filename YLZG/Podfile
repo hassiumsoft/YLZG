@@ -9,6 +9,7 @@ target 'YLZG' do
     pod 'MJExtension', '~> 3.0.10'
     pod 'MJRefresh'
     pod 'FMDB'
+    pod 'JFImagePicker'
     pod 'IQKeyboardManager'
     pod 'SVProgressHUD'
     pod 'BaiduMapKit'

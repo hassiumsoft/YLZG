@@ -123,8 +123,7 @@
 #define AllTaoxiProduct_Url @"http://zsylou.wxwkf.com/index.php/home/products/query?type=name=&uid=%@"
 // 23. 查询景点
 #define SearchSpot_Url @"http://zsylou.wxwkf.com/index.php/home/spot/query?uid=%@"
-// 原来的开单接口
-//#define OpenOrder_Url_Old @"http://zsylou.wxwkf.com/index.php/home/newtrade/newtrade?uid=%@&price=%@&set=%@&guest=%@&msg=%@&mobile=%@&productlist=%@&spot=%@"
+
 // 新的开单接口
 
 #define OpenOrder_Url_New @"http://zsylou.wxwkf.com/index.php/home/newtrade/newtrade?uid=%@&price=%@&set=%@&guest=%@&msg=%@&mobile=%@&productlist=%@&spot=%@&negative=%@&album=%@&category=%@&source=%@&number=%@&guest2=%@&mobile2=%@"
@@ -202,6 +201,8 @@
 #define GaojiSetting_Url @"http://zsylou.wxwkf.com/index.php/home/attence/update_whole?uid=%@&privilege_time=%@&latetime=%@&absent=%@&ontip=%@&offtip=%@&earlytime=%@&outtip=%d&sply=%d"
 // 45、查询某成员是否已在某成员组
 #define IsInSomeGroup_Url @"http://zsylou.wxwkf.com/index.php/home/attence/check_is_in_group?uid=%@"
+// 群组成员
+#define GroupMember_URL @"http://zsylou.wxwkf.com/index.php/home/easemob/get_group_users_list?uid=%@&gid=%@"
 
 // 营销工具列表
 #define YingxiaoToolList_URL @"http://zsylou.wxwkf.com/index.php/home/tool/lists?uid=%@"
@@ -209,7 +210,9 @@
 #define YingxiaoToolDetial_URL @"http://zsylou.wxwkf.com/index.php/home/tool/content?uid=%@&id=%@"
 // 工具-H5页面
 #define YingxiaoToolHTM5_URL @"http://zsylou.wxwkf.com/index.php/home/tool/show?uid=%@&id=%@"
-//
+// 任务--项目列表
+#define TaskProductList_URL @"http://192.168.0.18/index.php/home/project/lists?uid=%@"
+
 
 
 #endif /* PCH_HTTP_URL_h */

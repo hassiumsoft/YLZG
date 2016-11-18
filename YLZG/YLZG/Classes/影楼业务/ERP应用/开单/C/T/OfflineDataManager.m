@@ -107,8 +107,10 @@ static FMDatabase *_db;
 }
 
 #pragma mark - 本地通知
-+ (void)registerLocalNotification:(NSInteger)alertTime
++ (void)registerLocalNotification:(NSInteger)alertTime Count:(int)count
 {
+    
+    
     UILocalNotification *notification = [[UILocalNotification alloc]init];
     // 设置触发通知的时间
     NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:alertTime];
@@ -119,13 +121,9 @@ static FMDatabase *_db;
     // 设置重复的间隔
     notification.repeatInterval = NSCalendarUnitSecond;
     // 通知的内容
-    NSArray *array = [self getAllOffLineOrderFromSandBox];
-    if (array.count < 1) {
-        return;
-    }
-    NSString *message = [NSString stringWithFormat:@"您有%ld条离线订单未发送",(long int)array.count];
+    NSString *message = [NSString stringWithFormat:@"您有%d条离线订单未发送",count];
     notification.alertBody = message;
-    notification.applicationIconBadgeNumber = array.count;
+    notification.applicationIconBadgeNumber = count;
     notification.soundName = UILocalNotificationDefaultSoundName;
     // 通知参数
     NSDictionary *dict = [NSDictionary dictionaryWithObject:message forKey:@"key"];
@@ -133,8 +131,7 @@ static FMDatabase *_db;
     // ios8后，需要添加这个注册，才能得到授权
     if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
         UIUserNotificationType type =  UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type
-                                                                                 categories:nil];
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
         // 通知重复提示的单位，可以是天、周、月
         notification.repeatInterval = NSCalendarUnitDay;

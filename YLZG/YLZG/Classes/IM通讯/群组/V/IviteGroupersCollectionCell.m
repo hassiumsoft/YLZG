@@ -29,7 +29,7 @@
         [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.mas_centerX);
             make.centerY.equalTo(self.mas_centerY);
-            make.width.and.height.equalTo(@(self.width * 0.75));
+            make.width.and.height.equalTo(@(self.width * 0.6));
         }];
     }
     return self;

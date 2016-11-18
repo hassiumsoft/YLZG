@@ -111,8 +111,9 @@
     EditProductCell *cell = [EditProductCell sharedEditProductCell:tableView];
     model.section = indexPath.section;
     cell.model = model;
-    if (!model.isJiaji) {
-        model.jiajiTime = @"";
+    if ([model.isUrgent intValue] != 1) {
+        model.isUrgent = @"0";
+        model.urgentTime = @" ";
     }
         
     return cell;
@@ -126,27 +127,20 @@
     TaoxiProductModel *model = [TaoxiProductModel mj_objectWithKeyValues:self.modelDict];
     
     model.pro_price = priceField.text;
-    model.pro_num = numField.text;
+    model.number = [numField.text intValue];
     
     
     [self removeMengBtn];
     
-    KGLog(@"pro_price = %@,pro_num = %@,section = %ld",model.pro_price,model.pro_num,(long)model.section);
+    KGLog(@"pro_price = %@,pro_num = %d,section = %ld",model.pro_price,model.number,(long)model.section);
     
     [self.array replaceObjectAtIndex:model.section withObject:model];
-    
     
     [self.tableView reloadData];
     
 }
 - (void)removeMengBtn
 {
-//    CATransition *animation = [CATransition animation];
-//    animation.duration = 0.4f;
-//    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-//    animation.type = @"suckEffect";
-//    animation.subtype = kCATransitionFromRight;
-//    [self.view.window.layer addAnimation:animation forKey:nil];
     
     [mengBtn removeFromSuperview];
     [editView removeFromSuperview];
@@ -182,8 +176,8 @@
             NSString *jiajiTime = [NSString stringWithFormat:@"%lu-%lu-%lu",(unsigned long)model.year,(unsigned long)(unsigned long)model.month,(unsigned long)model.day];
             
             TaoxiProductModel *taoxiModel = weakSelf.array[indexPath.section];
-            taoxiModel.isJiaji = YES;
-            taoxiModel.jiajiTime = jiajiTime;
+            taoxiModel.isUrgent = @"1";
+            taoxiModel.urgentTime = jiajiTime;
             
             [weakSelf.array replaceObjectAtIndex:indexPath.section withObject:taoxiModel];
             
@@ -258,7 +252,8 @@
     product.pro_price = model.pro_price;
     
     
-    product.pro_num = @"1";
+    product.number = 1;
+    product.isUrgent = @"0";
     [self.array addObject:product];
     [self.tableView reloadData];
     
@@ -271,6 +266,16 @@
 {
     [super viewWillDisappear:animated];
     [self removeMengBtn];
+    
+    
+    for (TaoxiProductModel *model in self.array) {
+        if ([model.isUrgent intValue] != 1) {
+            model.isUrgent = @"0";
+            model.urgentTime = @" ";
+        }
+        model.number = 1;
+    }
+    
     
     if ([self.delegate respondsToSelector:@selector(editProductArray:)]) {
         [self.delegate editProductArray:self.array];

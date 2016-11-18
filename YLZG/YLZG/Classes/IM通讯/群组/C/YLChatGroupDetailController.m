@@ -90,8 +90,7 @@
 - (void)getMembersData:(ZCAccount *)account
 {
     
-//    http://zsylou.wxwkf.com/index.php/home/easemob/get_group_users_list?uid=147&gid=11
-    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/get_group_users_list?uid=%@&gid=%@",account.userID,self.groupModel.id];
+    NSString *url = [NSString stringWithFormat:GroupMember_URL,account.userID,self.groupModel.id];
     KGLog(@"url = %@",url);
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         int code = [[[responseObject objectForKey:@"code"]description] intValue];

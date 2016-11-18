@@ -17,12 +17,13 @@
 /** 产品价格 */
 @property (copy,nonatomic) NSString *pro_price;
 /** 产品数量 */
-@property (copy,nonatomic) NSString *pro_num;
-
+@property (assign,nonatomic) int number;
+/** category */
+@property (copy,nonatomic) NSString *category;
 /** 是否加急 */
-@property (assign,nonatomic) BOOL isJiaji;
+@property (copy,nonatomic) NSString *isUrgent;
 /** 加急时间 */
-@property (copy,nonatomic) NSString *jiajiTime;
+@property (copy,nonatomic) NSString *urgentTime;
 
 
 /********** IndexPath.section **********/

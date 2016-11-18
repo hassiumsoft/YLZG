@@ -400,6 +400,7 @@
                 // 编辑套系产品
                 
                 EditProductController *product = [[EditProductController alloc]init];
+                
                 isPush = YES;
                 product.taoName = self.taoName;
                 product.delegate = self;
@@ -746,7 +747,6 @@
     }
     
     
-    
     NSString *beizhu;
     if ([self.orderDesc.text isEqualToString:OrderDescPlace]) {
         beizhu = @"无备注";
@@ -755,24 +755,40 @@
     }
     
     if (!isPush) {  // 选完套系直接提交
-        //        TaoxiProductModel && self.productArray;
         for (TaoxiProductModel *model in self.productArray) {
-            model.isJiaji = NO;
-            model.jiajiTime = @"";
+            model.isUrgent = @"0";
+            model.urgentTime = @"";
+            if (model.number < 2) {
+                model.number = 1;
+            }
             model.section = (long)NULL;
         }
         NSArray *jsonArray = [TaoxiProductModel mj_keyValuesArrayWithObjectArray:self.productArray];
         
         self.jsonArray = [self toJsonStr:jsonArray];
+    }else{
+        // 进去过产品列表界面。需要设置默认不加急的时间
+        for (TaoxiProductModel *model in self.productArray) {
+            NSLog(@"isUrgent = %@,time = %@",model.isUrgent,model.urgentTime);
+            if ([model.isUrgent intValue] != 1) {
+                // 没有加急的设置默认值
+                model.isUrgent = @"0";
+                model.urgentTime = @" ";
+            }
+            NSArray *jsonArray = [TaoxiProductModel mj_keyValuesArrayWithObjectArray:self.productArray];
+            
+            self.jsonArray = [self toJsonStr:jsonArray];
+        }
         
     }
     
     [self.sendBtn setTitle:@"" forState:UIControlStateNormal];
     [self.indicatorV startAnimating];
     
-    //@"http://zsylou.wxwkf.com/index.php/home/newtrade/new?uid=%@&price=%@&set=%@&guest=%@&msg=%@&mobile=%@&productlist=%@&spot=%@&negative=%@&album=%@&category=%@&source=%@&number=%@&guest2=%@&mobile2=%@"
+    
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:OpenOrder_Url_New,account.userID,self.taoPrice,self.taoName,self.cusName,beizhu,self.cusPhone,self.jsonArray,self.spotJson,self.negativeNum,self.albumNum,self.categoryStr,self.sourceStr,self.CardNumber,self.cusName2,self.cusPhone2];
+    KGLog(@"url = %@",url);
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.sendBtn setTitle:@"提交订单" forState:UIControlStateNormal];
@@ -873,16 +889,31 @@
         }else{
             beizhu = self.orderDesc.text;
         }
-        if (!self->isPush) {  // 选完套系直接提交
-            //        TaoxiProductModel && self.productArray;
+        if (!isPush) {  // 选完套系直接提交
             for (TaoxiProductModel *model in self.productArray) {
-                model.isJiaji = NO;
-                model.jiajiTime = @"";
+                model.isUrgent = @"0";
+                model.urgentTime = @" ";
+                if (model.number < 2) {
+                    model.number = 1;
+                }
                 model.section = (long)NULL;
             }
             NSArray *jsonArray = [TaoxiProductModel mj_keyValuesArrayWithObjectArray:self.productArray];
             
             self.jsonArray = [self toJsonStr:jsonArray];
+        }else{
+            // 进去过产品列表界面。需要设置默认不加急的时间
+            for (TaoxiProductModel *model in self.productArray) {
+                NSLog(@"isUrgent = %@,time = %@",model.isUrgent,model.urgentTime);
+                if ([model.isUrgent intValue] != 1) {
+                    // 没有加急的设置默认值
+                    model.isUrgent = @"0";
+                    model.urgentTime = @" ";
+                }
+                NSArray *jsonArray = [TaoxiProductModel mj_keyValuesArrayWithObjectArray:self.productArray];
+                
+                self.jsonArray = [self toJsonStr:jsonArray];
+            }
             
         }
         ZCAccount *account = [ZCAccountTool account];

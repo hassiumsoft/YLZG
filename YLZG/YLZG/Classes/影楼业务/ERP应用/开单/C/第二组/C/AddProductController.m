@@ -16,6 +16,7 @@
 #import "HTTPManager.h"
 
 
+
 @interface AddProductController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,AddProductCellDelegate>
 
 /** 母表格 */
