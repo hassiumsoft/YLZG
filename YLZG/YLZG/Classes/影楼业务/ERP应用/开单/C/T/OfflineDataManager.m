@@ -111,37 +111,37 @@ static FMDatabase *_db;
 {
     
     
-    UILocalNotification *notification = [[UILocalNotification alloc]init];
-    // 设置触发通知的时间
-    NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:alertTime];
-    
-    notification.fireDate = fireDate;
-    // 时区
-    notification.timeZone = [NSTimeZone systemTimeZone];
-    // 设置重复的间隔
-    notification.repeatInterval = NSCalendarUnitSecond;
-    // 通知的内容
-    NSString *message = [NSString stringWithFormat:@"您有%d条离线订单未发送",count];
-    notification.alertBody = message;
-    notification.applicationIconBadgeNumber = count;
-    notification.soundName = UILocalNotificationDefaultSoundName;
-    // 通知参数
-    NSDictionary *dict = [NSDictionary dictionaryWithObject:message forKey:@"key"];
-    notification.userInfo = dict;
-    // ios8后，需要添加这个注册，才能得到授权
-    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationType type =  UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-        // 通知重复提示的单位，可以是天、周、月
-        notification.repeatInterval = NSCalendarUnitDay;
-    } else {
-        // 通知重复提示的单位，可以是天、周、月
-        notification.repeatInterval = NSCalendarUnitDay;
-    }
-    
-    // 执行通知注册
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+//    UILocalNotification *notification = [[UILocalNotification alloc]init];
+//    // 设置触发通知的时间
+//    NSDate *fireDate = [NSDate dateWithTimeIntervalSinceNow:alertTime];
+//    
+//    notification.fireDate = fireDate;
+//    // 时区
+//    notification.timeZone = [NSTimeZone systemTimeZone];
+//    // 设置重复的间隔
+//    notification.repeatInterval = NSCalendarUnitSecond;
+//    // 通知的内容
+//    NSString *message = [NSString stringWithFormat:@"您有%d条离线订单未发送",count];
+//    notification.alertBody = message;
+//    notification.applicationIconBadgeNumber = count;
+//    notification.soundName = UILocalNotificationDefaultSoundName;
+//    // 通知参数
+//    NSDictionary *dict = [NSDictionary dictionaryWithObject:message forKey:@"key"];
+//    notification.userInfo = dict;
+//    // ios8后，需要添加这个注册，才能得到授权
+//    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+//        UIUserNotificationType type =  UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound;
+//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
+//        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+//        // 通知重复提示的单位，可以是天、周、月
+//        notification.repeatInterval = NSCalendarUnitDay;
+//    } else {
+//        // 通知重复提示的单位，可以是天、周、月
+//        notification.repeatInterval = NSCalendarUnitDay;
+//    }
+//    
+//    // 执行通知注册
+//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
 #pragma mark - 获取本地时区的当前时间

@@ -93,6 +93,9 @@
     if (_MemebersBlock) {
         _MemebersBlock(resultArr);
     }
+    if (_SeletcMemberBlock) {
+        _SeletcMemberBlock(self.selectArray);
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (NSMutableArray *)array

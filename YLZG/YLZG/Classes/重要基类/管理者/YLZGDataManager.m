@@ -98,7 +98,20 @@ static YLZGDataManager *controller = nil;
     }];
     
 }
-
+- (void)getOneStudioByUID:(NSString *)userID Block:(StuduoModelBlock)modelBlock
+{
+    NSArray *allMembers = [self getAllFriendInfo];
+    if (allMembers.count >= 1) {
+        for (int i = 0; i < allMembers.count; i++) {
+            ContactersModel *model = allMembers[i];
+            if ([userID isEqualToString:model.uid]) {
+                modelBlock(model);
+                return;
+            }
+        }
+    }
+    
+}
 - (void)getOneStudioByUserName:(NSString *)userName Block:(StuduoModelBlock)modelBlock
 {
     
@@ -114,7 +127,7 @@ static YLZGDataManager *controller = nil;
     }
     
     ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/get_user_info?uid=%@&name=%@",account.userID,userName];
+    NSString *url = [NSString stringWithFormat:SearchUserInfo_URL,account.userID,userName];
     [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
@@ -147,14 +160,14 @@ static YLZGDataManager *controller = nil;
         }
     }
     
-    ZCAccount *account = [ZCAccountTool account];
-    for (int i = 0; i < sumArr.count; i++) {
-        ContactersModel *model = sumArr[i];
-        if ([account.username isEqualToString:model.name]) {
-            [sumArr removeObjectAtIndex:i];
-        }
-    }
-    
+//    ZCAccount *account = [ZCAccountTool account];
+//    for (int i = 0; i < sumArr.count; i++) {
+//        ContactersModel *model = sumArr[i];
+//        if ([account.username isEqualToString:model.name]) {
+//            [sumArr removeObjectAtIndex:i];
+//        }
+//    }
+//    
     
     return sumArr;
     

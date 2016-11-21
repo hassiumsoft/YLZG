@@ -34,6 +34,8 @@ typedef void(^ShareUrlBlock)(NSString *url);
 - (NSMutableArray *)getAllFriendInfo;
 /** 通过一个影楼ID获取一个用户的信息 */
 - (void)getOneStudioByUserName:(NSString *)userName Block:(StuduoModelBlock)modelBlock;
+/** 通过一个影楼UID获取一个用户的信息 */
+- (void)getOneStudioByUID:(NSString *)userID Block:(StuduoModelBlock)modelBlock;
 /** 获取分享链接 */
 - (void)getShareUrlCompletion:(ShareUrlBlock)shareURL;
 

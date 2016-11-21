@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskProduceListModel.h"
 
 @interface TaskProductTableCell : UITableViewCell
 
+@property (strong,nonatomic) TaskProduceListModel *proModel;
 
 + (instancetype)sharedTaskProductCell:(UITableView *)tableView;
 

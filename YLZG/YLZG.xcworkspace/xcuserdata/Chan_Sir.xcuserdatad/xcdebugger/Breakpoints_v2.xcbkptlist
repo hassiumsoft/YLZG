@@ -19,5 +19,37 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YLZG/Classes/&#x5f71;&#x697c;&#x4e1a;&#x52a1;/&#x5de5;&#x4f5c;&#x529e;&#x516c;/&#x5de5;&#x4f5c;&#x4efb;&#x52a1;/&#x9879;&#x76ee;/V/AddMemberView.m"
+            timestampString = "501134747.330795"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "-reloadData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YLZG/Classes/&#x5f71;&#x697c;&#x4e1a;&#x52a1;/&#x5de5;&#x4f5c;&#x529e;&#x516c;/&#x5de5;&#x4f5c;&#x4efb;&#x52a1;/&#x9879;&#x76ee;/V/AddMemberView.m"
+            timestampString = "501134750.216857"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-setMemberArr:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

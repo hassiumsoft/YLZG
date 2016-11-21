@@ -143,6 +143,8 @@
 
 // 26.影楼之家
 #define YLHome_Url @"http://zsylou.wxwkf.com/index.php/home/contacts/query?uid=%@"
+// 根据某个ID查询用户信息
+#define SearchUserInfo_URL @"http://zsylou.wxwkf.com/index.php/home/easemob/get_user_info?uid=%@&name=%@"
 // 我的影楼H5界面
 #define MyStido_Url @"http://zsylou.wxwkf.com/index.php/home/MyYLou/query?uid=%@"
 // 联系区域经理
@@ -212,6 +214,10 @@
 #define YingxiaoToolHTM5_URL @"http://zsylou.wxwkf.com/index.php/home/tool/show?uid=%@&id=%@"
 // 任务--项目列表
 #define TaskProductList_URL @"http://192.168.0.18/index.php/home/project/lists?uid=%@"
+// 任务--创建项目
+#define CreateProduce_URL @"http://192.168.0.18/index.php/home/project/create?uid=%@&name=%@&member=%@"
+// 项目详情
+#define ProduceDetial_URL @"http://192.168.0.18/index.php/home/project/detail?uid=%@&id=%@"
 
 
 
