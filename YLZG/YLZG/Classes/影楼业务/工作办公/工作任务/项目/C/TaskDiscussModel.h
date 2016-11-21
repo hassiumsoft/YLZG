@@ -1,6 +1,6 @@
 //
 //  TaskDiscussModel.h
-//  YLZG
+//  YLZG栏目
 //
 //  Created by Chan_Sir on 2016/11/21.
 //  Copyright © 2016年 陈振超. All rights reserved.
@@ -26,8 +26,18 @@
 @property (copy,nonatomic) NSString *head;
 /** 评论ID */
 @property (copy,nonatomic) NSString *id;
-/** <#这是什么属性#> */
-
+/** 栏目ID */
+@property (copy,nonatomic) NSString *item;
+/** 评论人昵称 */
+@property (copy,nonatomic) NSString *nickname;
+/** 项目ID */
+@property (copy,nonatomic) NSString *pid;
+/** 默认项目 */
+@property (copy,nonatomic) NSString *project;
+/** 栏目类型——1任务 2文件  */
+@property (assign,nonatomic) int type;
+/** 评论人ID */
+@property (copy,nonatomic) NSString *uid;
 
 
 @end

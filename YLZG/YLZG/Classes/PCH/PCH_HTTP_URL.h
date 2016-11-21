@@ -218,6 +218,10 @@
 #define CreateProduce_URL @"http://192.168.0.18/index.php/home/project/create?uid=%@&name=%@&member=%@"
 // 项目详情
 #define ProduceDetial_URL @"http://192.168.0.18/index.php/home/project/detail?uid=%@&id=%@"
+// 删除任务里的项目
+#define DeleteTaskProduce_Url @"http://192.168.0.18/index.php/home/project/delete?uid=%@&id=%@"
+// 创建新任务
+#define CreateNewTask_Url @"http://192.168.0.18/index.php/home/task/create?uid=%@&pid=%@&name=%@&manager=%@&deadline=%@&check=%@&care=%@&description=%@"
 
 
 

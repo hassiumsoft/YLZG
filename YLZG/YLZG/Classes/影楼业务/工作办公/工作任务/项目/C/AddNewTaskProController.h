@@ -10,4 +10,6 @@
 
 @interface AddNewTaskProController : SuperViewController
 
+@property (copy,nonatomic) void (^ReloadDataBlock)();
+
 @end

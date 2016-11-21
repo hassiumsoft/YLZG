@@ -7,6 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TaskMemberModel.h"
+#import "TaskFileModel.h"
+#import "TaskTaskModel.h"
+#import "TaskDiscussModel.h"
 
 @interface ProduceDetialModel : NSObject
 

@@ -15,13 +15,14 @@
 #import <MJExtension.h>
 #import "ProduceDetialVController.h"
 #import "TaskProductTableCell.h"
+#import <LCActionSheet.h>
 #import "AddNewTaskProController.h"
 
 @interface TaskProductsController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong,nonatomic) UITableView *tableView;
 
-@property (copy,nonatomic) NSArray *array;
+@property (strong,nonatomic) NSMutableArray *array;
 
 @property (strong,nonatomic) UIView *createView;
 
@@ -96,6 +97,40 @@
     detial.listModel = self.array[indexPath.section];
     [self.navigationController pushViewController:detial animated:YES];
 }
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        if (indexPath.row == 0) {
+            LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"确定删除该项目？" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+                if (buttonIndex == 1) {
+                    [self deleteProduce:indexPath];
+                }
+            } otherButtonTitles:@"确定删除!", nil];
+            sheet.destructiveButtonIndexSet = [NSSet setWithObject:@1];
+            [sheet show];
+        }
+    }];
+    action.backgroundColor = WechatRedColor;
+    return @[action];
+}
+- (void)deleteProduce:(NSIndexPath *)indexPath
+{
+    // 删除项目
+    TaskProduceListModel *model = self.array[indexPath.section];
+    NSString *url = [NSString stringWithFormat:DeleteTaskProduce_Url,[ZCAccountTool account].userID,model.id];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            [self.array removeObjectAtIndex:indexPath.section];
+            [self.tableView reloadData];
+        }else{
+            [self sendErrorWarning:message];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self sendErrorWarning:error.localizedDescription];
+    }];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 5;
@@ -119,7 +154,7 @@
         CGFloat imageH = 3*margin;
         CGFloat imageW = 3*margin;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2*margin, (headH - imageH)/2, imageW, imageH)];
-        imageView.image = [UIImage imageNamed:@"group_add_icon"];
+        imageView.image = [UIImage imageNamed:@"btn_xiangmu_lan"];
         [_createView addSubview:imageView];
         
         
@@ -129,10 +164,10 @@
         newLabel.text = @"新建项目";
         newLabel.adjustsFontSizeToFitWidth = YES;
         newLabel.font = [UIFont systemFontOfSize:14];
-        newLabel.textColor = RGBACOLOR(233, 80, 63, 1);
+        newLabel.textColor = MainColor;
         [_createView addSubview:newLabel];
         
-        UIImageView *addImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"group_add"]];
+        UIImageView *addImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_tianjia_lan"]];
         [_createView addSubview:addImageV];
         [addImageV mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(_createView.mas_centerY);
@@ -144,6 +179,9 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionBlock:^(id  _Nonnull sender) {
             
             AddNewTaskProController *add = [AddNewTaskProController new];
+            add.ReloadDataBlock = ^(){
+                [self loadData];
+            };
             [self.navigationController pushViewController:add animated:YES];
         }];
         [_createView addGestureRecognizer:tap];
@@ -156,7 +194,7 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 45)];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = 120;
+        _tableView.rowHeight = 55;
         _tableView.contentInset = UIEdgeInsetsMake(3, 0, 0, 0);
         _tableView.backgroundColor = self.view.backgroundColor;
         

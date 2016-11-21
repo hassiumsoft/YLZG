@@ -29,13 +29,13 @@
     self.delegate = self;
     
     TaskViewController *checkWork = [TaskViewController new];
-    [self addChildVC:checkWork Title:@"工作任务" image:@"tabbar_daka_normal" selectedImage:@"tabbar_daka_selected" Tag:1];
+    [self addChildVC:checkWork Title:@"工作任务" image:@"btn_renwu" selectedImage:@"btn_renwu_lan" Tag:1];
     
     TaskProductsController *zenVC = [[TaskProductsController alloc]init];
-    [self addChildVC:zenVC Title:@"影楼项目" image:@"tabbar_tongji_normal" selectedImage:@"tabbar_tongji_selected" Tag:2];
+    [self addChildVC:zenVC Title:@"影楼项目" image:@"btn_xiangmu" selectedImage:@"btn_xiangmu_lan" Tag:2];
     
     TaskDongtaiController *dongtaiVC = [[TaskDongtaiController alloc]init];
-    [self addChildVC:dongtaiVC Title:@"动态" image:@"tabbar_setting_selected" selectedImage:@"tabbar_setting_selected" Tag:3];
+    [self addChildVC:dongtaiVC Title:@"动态" image:@"btn_dongtai_" selectedImage:@"btn_dongtai_lan" Tag:3];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add_rightbar"] style:UIBarButtonItemStylePlain target:self action:@selector(AddNewTask)];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
@@ -74,6 +74,14 @@
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
     self.title = item.title;
+    if (![item.title isEqualToString:@"工作任务"]) {
+        self.navigationItem.rightBarButtonItem = nil;
+    }else{
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add_rightbar"] style:UIBarButtonItemStylePlain target:self action:@selector(AddNewTask)];
+        [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
+
+    }
+    
 }
 
 

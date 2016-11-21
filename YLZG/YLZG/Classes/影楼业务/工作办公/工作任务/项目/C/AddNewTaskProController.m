@@ -180,6 +180,10 @@
         NSString *message = [[responseObject objectForKey:@"message"] description];
         [self hideHud:0];
         if (code == 1) {
+            
+            if (self.ReloadDataBlock) {
+                _ReloadDataBlock();
+            }
             UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self.navigationController popViewControllerAnimated:YES];

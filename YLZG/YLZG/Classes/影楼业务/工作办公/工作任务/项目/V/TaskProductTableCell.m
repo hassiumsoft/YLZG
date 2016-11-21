@@ -15,10 +15,6 @@
 
 @property (strong,nonatomic) UIImageView *headV;
 
-@property (strong,nonatomic) UILabel *nameLabel;
-
-@property (strong,nonatomic) UILabel *titleLabel;
-
 @property (strong,nonatomic) UILabel *timeLabel;
 
 @end
@@ -38,9 +34,9 @@
 - (void)setProModel:(TaskProduceListModel *)proModel
 {
     _proModel = proModel;
-    _titleLabel.text = proModel.name;
+    self.imageView.image = [UIImage imageNamed:@"ico_renwu_xiangmu"];
+    self.textLabel.text = proModel.name;
     [[YLZGDataManager sharedManager] getOneStudioByUID:proModel.create_user Block:^(ContactersModel *model) {
-//        self.textLabel.text = model.realname;
         [_headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     }];
     
@@ -68,20 +64,16 @@
 
 - (void)setupSubViews
 {
-    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, SCREEN_WIDTH-20, 30)];
-//    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    [self addSubview:self.titleLabel];
     
     self.headV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
     self.headV.layer.masksToBounds = YES;
     self.headV.contentMode = UIViewContentModeScaleAspectFill;
-    self.headV.layer.cornerRadius = 20;
+    self.headV.layer.cornerRadius = 15;
     [self addSubview:self.headV];
     [self.headV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.and.height.equalTo(@40);
+        make.width.and.height.equalTo(@30);
         make.right.equalTo(self.mas_right).offset(-10);
-        make.centerY.equalTo(self.mas_centerY);
+        make.top.equalTo(self.mas_top).offset(5);
     }];
     
     self.timeLabel = [[UILabel alloc]init];
