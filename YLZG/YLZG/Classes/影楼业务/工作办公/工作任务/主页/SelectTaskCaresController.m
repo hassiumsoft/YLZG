@@ -1,12 +1,12 @@
 //
-//  ChooseMemVController.m
-//  ChatDemo-UI3.0
+//  SelectTaskCaresController.m
+//  YLZG
 //
-//  Created by Chan_Sir on 16/6/15.
-//  Copyright © 2016年 Chan_Sir. All rights reserved.
+//  Created by Chan_Sir on 2016/11/22.
+//  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "ChooseMemVController.h"
+#import "SelectTaskCaresController.h"
 #import "MutliChoceStaffCell.h"
 #import <MJRefresh.h>
 #import "ZCAccountTool.h"
@@ -15,7 +15,7 @@
 #import "HTTPManager.h"
 
 
-@interface ChooseMemVController ()<UITableViewDelegate,UITableViewDataSource>
+@interface SelectTaskCaresController ()<UITableViewDelegate,UITableViewDataSource>
 
 /** 已选中的数组 */
 @property (strong,nonatomic) NSMutableArray *chooseArray;
@@ -26,18 +26,17 @@
 
 @end
 
-@implementation ChooseMemVController
+@implementation SelectTaskCaresController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.title = @"选择考勤组员";
-    
     [self setupTableView];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getData];
     }];
     [self.tableView.mj_header beginRefreshing];
 }
+
 #pragma mark - 加载模拟数据
 - (void)getData
 {
@@ -47,31 +46,31 @@
     NSString *url = [NSString stringWithFormat:YLHome_Url, account.userID];
     
     [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-
-            int status = [[[responseObject objectForKey:@"code"] description] intValue];
-            [self.tableView.mj_header endRefreshing];
-            switch (status) {
-                case 0:
-                {
-                    // 获取失败
-                    [self sendErrorWarning:@"获取联系人失败"];
-                    break;
-                }
-                case 1:
-                {
-                    // 获取成功 sid：店铺员工ID。type：1是店长、0是店员
-                    NSArray *array = [responseObject objectForKey:@"result"];
-                    self.array = [StaffInfoModel mj_objectArrayWithKeyValuesArray:array];
-                    [self.tableView reloadData];
-                    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-                        
-                    }];
-                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                    break;
-                }
-                default:
-                    break;
+        
+        int status = [[[responseObject objectForKey:@"code"] description] intValue];
+        [self.tableView.mj_header endRefreshing];
+        switch (status) {
+            case 0:
+            {
+                // 获取失败
+                [self sendErrorWarning:@"获取联系人失败"];
+                break;
             }
+            case 1:
+            {
+                // 获取成功 sid：店铺员工ID。type：1是店长、0是店员
+                NSArray *array = [responseObject objectForKey:@"result"];
+                self.array = [StaffInfoModel mj_objectArrayWithKeyValuesArray:array];
+                [self.tableView reloadData];
+                self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                    
+                }];
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                break;
+            }
+            default:
+                break;
+        }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
         [self.tableView.mj_header endRefreshing];
         [self sendErrorWarning:error.localizedDescription];
@@ -163,9 +162,9 @@
 }
 - (void)doneAction
 {
-    if ([self.delegate respondsToSelector:@selector(chooseMemWithArray:)]) {
-        [self.delegate chooseMemWithArray:self.chooseArray];
-        [self dismiss];
+    if (self.SelectBlock) {
+        _SelectBlock(self.chooseArray);
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 - (void)dismiss
@@ -179,5 +178,6 @@
     }
     return _chooseArray;
 }
+
 
 @end

@@ -207,6 +207,7 @@
                 // 选择审批人
                 ShenpiersViewController *shenpier = [[ShenpiersViewController alloc]init];
                 shenpier.delegate = self;
+                shenpier.title = @"选择审批人";
                 [self.navigationController pushViewController:shenpier animated:YES];
                 break;
             }

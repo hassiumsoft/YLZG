@@ -20,10 +20,10 @@
     
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    TaskProductsController *task = [TaskProductsController new];
-    [self.navigationController pushViewController:task animated:YES];
-}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+//{
+//    TaskProductsController *task = [TaskProductsController new];
+//    [self.navigationController pushViewController:task animated:YES];
+//}
 
 @end

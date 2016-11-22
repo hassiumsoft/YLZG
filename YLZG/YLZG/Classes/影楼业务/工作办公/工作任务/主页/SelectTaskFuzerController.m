@@ -1,12 +1,12 @@
 //
-//  ShenpiersViewController.m
-//  ChatDemo-UI3.0
+//  SelectTaskFuzerController.m
+//  YLZG
 //
-//  Created by Chan_Sir on 16/4/20.
-//  Copyright © 2016年 Chan_Sir. All rights reserved.
+//  Created by Chan_Sir on 2016/11/22.
+//  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "ShenpiersViewController.h"
+#import "SelectTaskFuzerController.h"
 #import "StaffTableViewCell.h"
 #import <MJExtension.h>
 #import <MJRefresh.h>
@@ -14,24 +14,21 @@
 #import "UserInfoViewController.h"
 #import "HTTPManager.h"
 
+@interface SelectTaskFuzerController ()<UITableViewDelegate,UITableViewDataSource>
 
-@interface ShenpiersViewController ()<UITableViewDelegate,UITableViewDataSource>
-/** tableView */
+/** 表格 */
 @property (strong,nonatomic) UITableView *tableView;
 /** 数据源 */
-@property (strong,nonatomic) NSArray *array;
+@property (strong,nonatomic) NSMutableArray *array;
 
 @end
 
-@implementation ShenpiersViewController
+@implementation SelectTaskFuzerController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    self.title = @"选择审批人";
     [self setupSubViews];
 }
-#pragma mark - 加载模拟数据
 - (void)getData
 {
     
@@ -108,8 +105,8 @@
         [self.navigationController pushViewController:userInfo animated:YES];
     }else{
         // 选择审批人
-        if ([self.delegate respondsToSelector:@selector(shenpiDelegate:)]) {
-            [self.delegate shenpiDelegate:model]; 
+        if (self.SelectBlock) {
+            _SelectBlock(model);
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
@@ -124,5 +121,6 @@
     foot.backgroundColor = [UIColor clearColor];
     return foot;
 }
+
 
 @end

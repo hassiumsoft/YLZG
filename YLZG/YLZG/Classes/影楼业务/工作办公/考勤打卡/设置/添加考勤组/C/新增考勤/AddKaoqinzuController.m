@@ -165,6 +165,7 @@
             // 选中考勤人员
             ChooseMemVController *mem = [ChooseMemVController new];
             mem.delegate = self;
+            mem.title = @"选择考勤组员";
             [self.navigationController pushViewController:mem animated:YES];
         }else{
             // 选中负责人

@@ -507,8 +507,6 @@
 //    @"http://zsylou.wxwkf.com/index.php/home/attence/new_attence_group?uid=%@&name=%@&type=%@&admins=%@&routers=%@&locations=%@&privilege_meter=%@&rules=%@&users=%@"
     NSString *url = [NSString stringWithFormat:CreateKaoqunGroup_Url,account.userID,self.name,self.type,self.adminArrJson,self.wifiJson,self.placeJson,self.areaField.text,self.banciTimeJsonStr,self.memArrJson];
     KGLog(@"新增考勤组url = %@",url);
-    UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
-    [pasteBoard setString:url];
 
     [self showHudMessage:@"设置中"];
     
