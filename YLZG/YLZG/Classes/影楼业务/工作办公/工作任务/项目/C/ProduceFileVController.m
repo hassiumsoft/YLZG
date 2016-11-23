@@ -1,29 +1,29 @@
 //
-//  MyCareTaskController.m
+//  ProduceFileVController.m
 //  YLZG
 //
-//  Created by Chan_Sir on 2016/11/22.
+//  Created by Chan_Sir on 2016/11/23.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "MyCareTaskController.h"
-#import "TaskListModel.h"
-#import "TaskDetialViewController.h"
-#import "TaskListTableCell.h"
+#import "ProduceFileVController.h"
+#import "NormalIconView.h"
+#import "ProduceDetialFileCell.h"
+#import <Masonry.h>
 
-@interface MyCareTaskController ()<UITableViewDelegate,UITableViewDataSource>
+
+@interface ProduceFileVController ()<UITableViewDelegate,UITableViewDataSource>
 
 /** 表格 */
 @property (strong,nonatomic) UITableView *tableView;
 
 @end
 
-@implementation MyCareTaskController
+@implementation ProduceFileVController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我关注的";
-//    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"文件";
     [self setupSubViews];
 }
 
@@ -38,22 +38,20 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.array.count;
+    return self.fileArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TaskListModel *model = self.array[indexPath.row];
-    TaskListTableCell *cell = [TaskListTableCell sharedTaskListTableCell:tableView];
-    model.isMyManager = NO;
-    cell.taskListmodel = model;
+    ProduceFileModel *model = self.fileArray[indexPath.row];
+    ProduceDetialFileCell *cell = [ProduceDetialFileCell sharedProduceDetialFileCell:tableView];
+    cell.fileModel = model;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    TaskDetialViewController *detial =[TaskDetialViewController new];
-    detial.listModel = self.array[indexPath.row];
-    [self.navigationController pushViewController:detial animated:YES];
+    
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -73,13 +71,38 @@
         _tableView.dataSource = self;
         _tableView.backgroundColor = self.view.backgroundColor;
         _tableView.rowHeight = 60;
-        _tableView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
     }
     return _tableView;
 }
-- (void)setArray:(NSArray *)array
+
+- (void)createEmptyView:(NSString *)message
 {
-    _array = array;
+    
+    // 全部为空值
+    NormalIconView *emptyBtn = [NormalIconView sharedHomeIconView];
+    emptyBtn.iconView.image = [UIImage imageNamed:@"sadness"];
+    emptyBtn.label.text = message;
+    emptyBtn.label.numberOfLines = 0;
+    emptyBtn.label.textColor = RGBACOLOR(219, 99, 155, 1);
+    emptyBtn.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:emptyBtn];
+    
+    
+    [emptyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.centerY.equalTo(self.view.mas_centerY).offset(-64);
+        make.width.and.height.equalTo(@140);
+    }];
+}
+
+- (void)setFileArray:(NSArray *)fileArray
+{
+    _fileArray = fileArray;
+    if (fileArray.count >= 1) {
+        [self.tableView reloadData];
+    }else{
+        [self createEmptyView:@"暂无上传文件"];
+    }
 }
 
 @end

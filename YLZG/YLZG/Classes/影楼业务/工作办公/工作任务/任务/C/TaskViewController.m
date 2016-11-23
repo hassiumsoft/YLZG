@@ -11,7 +11,6 @@
 #import "HTTPManager.h"
 #import <MJExtension.h>
 #import "TaskListModel.h"
-#import <UIKit/UIKit.h>
 #import "MyCareTaskController.h"
 #import "MyCreateTaskController.h"
 #import "MyManagerTaskController.h"
@@ -89,9 +88,9 @@
 }
 - (void)addDefaultController
 {
-    UIViewController *vc = [self.childViewControllers firstObject];
-    vc.view.frame = self.contentView.bounds;
-    [self.contentView addSubview:vc.view];
+    UIViewController *defaultVC = [self.childViewControllers firstObject];
+    defaultVC.view.frame = self.contentView.bounds;
+    [self.contentView addSubview:defaultVC.view];
 }
 - (UISegmentedControl *)segView
 {
@@ -107,7 +106,6 @@
             CGFloat offsetY = weakSelf.contentView.contentOffset.y;
             CGPoint offset = CGPointMake(offsetX, offsetY);
             [weakSelf.contentView setContentOffset:offset animated:YES];
-            
             
         }];
         _segView.selectedSegmentIndex = 0;

@@ -1,14 +1,14 @@
 //
-//  TaskDiscussModel.h
-//  YLZG栏目
+//  ProduceDiscussModel.h
+//  YLZG
 //
-//  Created by Chan_Sir on 2016/11/21.
+//  Created by Chan_Sir on 2016/11/23.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface TaskDiscussModel : NSObject
+@interface ProduceDiscussModel : NSObject
 
 /** 附件名称(上次文件的原名称) */
 @property (copy,nonatomic) NSString *am_name;
@@ -38,6 +38,5 @@
 @property (assign,nonatomic) int type;
 /** 评论人ID */
 @property (copy,nonatomic) NSString *uid;
-
 
 @end

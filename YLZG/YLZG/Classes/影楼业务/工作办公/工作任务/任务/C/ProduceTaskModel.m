@@ -1,14 +1,14 @@
 //
-//  TaskTaskModel.m
+//  ProduceTaskModel.m
 //  YLZG
 //
-//  Created by Chan_Sir on 2016/11/21.
+//  Created by Chan_Sir on 2016/11/23.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "TaskTaskModel.h"
+#import "ProduceTaskModel.h"
 
-@implementation TaskTaskModel
+@implementation ProduceTaskModel
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {

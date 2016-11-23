@@ -13,7 +13,7 @@
 #import "AddNewTaskProController.h"
 #import <MJRefresh.h>
 #import <MJExtension.h>
-#import "TaskProductTableCell.h"
+#import "ProduceListTableCell.h"
 #import <LCActionSheet.h>
 
 @interface ChooseProduceController ()<UITableViewDelegate,UITableViewDataSource>
@@ -91,7 +91,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TaskProductTableCell *cell = [TaskProductTableCell sharedTaskProductCell:tableView];
+    ProduceListTableCell *cell = [ProduceListTableCell sharedProduceListCell:tableView];
     cell.proModel = self.array[indexPath.section];
     return cell;
 }

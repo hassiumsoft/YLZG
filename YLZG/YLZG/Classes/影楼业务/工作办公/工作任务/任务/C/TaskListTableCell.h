@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "TaskListModel.h"
+#import "ProduceTaskModel.h"
 
 @interface TaskListTableCell : UITableViewCell
 
-@property (strong,nonatomic) TaskListModel *model;
+/** 在任务列表里 */
+@property (strong,nonatomic) TaskListModel *taskListmodel;
+/** 在任务详情列表里 */
+@property (strong,nonatomic) ProduceTaskModel *produceDetialModel;
 
 + (instancetype)sharedTaskListTableCell:(UITableView *)tableView;
 

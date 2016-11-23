@@ -47,13 +47,13 @@
         TaskListModel *model = self.todayArray[indexPath.row];
         TaskListTableCell *cell = [TaskListTableCell sharedTaskListTableCell:tableView];
         model.isMyManager = YES;
-        cell.model = model;
+        cell.taskListmodel = model;
         return cell;
     }else{
         TaskListModel *model = self.laterArray[indexPath.row];
         TaskListTableCell *cell = [TaskListTableCell sharedTaskListTableCell:tableView];
         model.isMyManager = YES;
-        cell.model = model;
+        cell.taskListmodel = model;
         return cell;
     }
 }

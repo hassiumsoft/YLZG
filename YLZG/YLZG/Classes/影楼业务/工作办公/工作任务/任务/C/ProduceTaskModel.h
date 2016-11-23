@@ -1,16 +1,14 @@
 //
-//  TaskTaskModel.h
+//  ProduceTaskModel.h
 //  YLZG
 //
-//  Created by Chan_Sir on 2016/11/21.
+//  Created by Chan_Sir on 2016/11/23.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface TaskTaskModel : NSObject
-
-
+@interface ProduceTaskModel : NSObject
 
 /** 任务ID */
 @property (copy,nonatomic) NSString *id;
@@ -28,7 +26,7 @@
 /** 创建人uid */
 @property (copy,nonatomic) NSString *create_user;
 /** 完成（截止时间） */
-@property (copy,nonatomic) NSString *deadline;
+@property (assign,nonatomic) NSTimeInterval deadline;
 /** 删除时间： 0未删除  、大于0 已删除 */
 @property (assign,nonatomic) int delete_at;
 
@@ -38,6 +36,5 @@
 @property (copy,nonatomic) NSString *nickname;
 /** 负责人uid */
 @property (copy,nonatomic) NSString *uid;
-
 
 @end

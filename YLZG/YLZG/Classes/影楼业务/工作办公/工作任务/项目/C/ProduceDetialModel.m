@@ -20,7 +20,7 @@
     NSMutableArray *array1 = [NSMutableArray new];
     NSArray *memberArr = [model.member copy];
     for (NSDictionary *dic in memberArr) {
-        TaskMemberModel *price = [TaskMemberModel mj_objectWithKeyValues:dic];
+        ProduceMemberModel *price = [ProduceMemberModel mj_objectWithKeyValues:dic];
         
         [array1 addObject:price];
     }
@@ -30,7 +30,7 @@
     NSMutableArray *array2 = [NSMutableArray new];
     NSArray *fileArr = [model.file copy];
     for (NSDictionary *dic in fileArr) {
-        TaskFileModel *price = [TaskFileModel mj_objectWithKeyValues:dic];
+        ProduceFileModel *price = [ProduceFileModel mj_objectWithKeyValues:dic];
         
         [array2 addObject:price];
     }
@@ -39,7 +39,7 @@
     NSMutableArray *array3 = [NSMutableArray new];
     NSArray *taskArr = [model.task copy];
     for (NSDictionary *dic in taskArr) {
-        TaskFileModel *price = [TaskFileModel mj_objectWithKeyValues:dic];
+        ProduceTaskModel *price = [ProduceTaskModel mj_objectWithKeyValues:dic];
         
         [array3 addObject:price];
     }
@@ -49,7 +49,7 @@
     NSMutableArray *array4 = [NSMutableArray new];
     NSArray *discussArr = [model.discuss copy];
     for (NSDictionary *dic in discussArr) {
-        TaskDiscussModel *price = [TaskDiscussModel mj_objectWithKeyValues:dic];
+        ProduceDiscussModel *price = [ProduceDiscussModel mj_objectWithKeyValues:dic];
         
         [array4 addObject:price];
     }

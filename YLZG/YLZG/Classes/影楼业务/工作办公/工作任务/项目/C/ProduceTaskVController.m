@@ -1,57 +1,59 @@
 //
-//  MyCreateTaskController.m
+//  ProduceTaskVController.m
 //  YLZG
 //
-//  Created by Chan_Sir on 2016/11/22.
+//  Created by Chan_Sir on 2016/11/23.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "MyCreateTaskController.h"
-#import "TaskListTableCell.h"
+#import "ProduceTaskVController.h"
 #import "TaskDetialViewController.h"
+#import "ProduceTaskModel.h"
+#import "TaskListTableCell.h"
+#import "NormalIconView.h"
+#import <Masonry.h>
 
-@interface MyCreateTaskController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ProduceTaskVController ()<UITableViewDelegate,UITableViewDataSource>
 
 /** 表格 */
 @property (strong,nonatomic) UITableView *tableView;
 
 @end
 
-@implementation MyCreateTaskController
+@implementation ProduceTaskVController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我创建的";
-//    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"任务";
     [self setupSubViews];
 }
-
 - (void)setupSubViews
 {
     [self.view addSubview:self.tableView];
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.array.count;
+    return self.taskArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TaskListModel *model = self.array[indexPath.row];
+    ProduceTaskModel *model = self.taskArray[indexPath.row];
     TaskListTableCell *cell = [TaskListTableCell sharedTaskListTableCell:tableView];
-    model.isMyManager = NO;
-    cell.taskListmodel = model;
+    cell.produceDetialModel = model;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     TaskDetialViewController *detial =[TaskDetialViewController new];
-    detial.listModel = self.array[indexPath.row];
+//    detial.listModel = self.taskArray[indexPath.row];
     [self.navigationController pushViewController:detial animated:YES];
+
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -71,15 +73,37 @@
         _tableView.dataSource = self;
         _tableView.backgroundColor = self.view.backgroundColor;
         _tableView.rowHeight = 60;
-        _tableView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
     }
     return _tableView;
 }
-
-
-- (void)setArray:(NSArray *)array
+- (void)createEmptyView:(NSString *)message
 {
-    _array = array;
+    
+    // 全部为空值
+    NormalIconView *emptyBtn = [NormalIconView sharedHomeIconView];
+    emptyBtn.iconView.image = [UIImage imageNamed:@"sadness"];
+    emptyBtn.label.text = message;
+    emptyBtn.label.numberOfLines = 0;
+    emptyBtn.label.textColor = RGBACOLOR(219, 99, 155, 1);
+    emptyBtn.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:emptyBtn];
+    
+    
+    [emptyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.centerY.equalTo(self.view.mas_centerY).offset(-64);
+        make.width.and.height.equalTo(@140);
+    }];
+}
+- (void)setTaskArray:(NSArray *)taskArray
+{
+    _taskArray = taskArray;
+    if (taskArray.count >= 1) {
+        [self.tableView reloadData];
+    }else{
+        // 加载空图
+        [self createEmptyView:@"该项目暂未被加入任务"];
+    }
 }
 
 @end

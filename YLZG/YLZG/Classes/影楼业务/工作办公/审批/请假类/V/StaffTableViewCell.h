@@ -17,10 +17,6 @@
 @property (strong,nonatomic) UILabel *nameLabel;
 /** 员工电话 */
 @property (strong,nonatomic) UILabel *phoneLabel;
-/** 距离员工生日 */
-//@property (strong,nonatomic) UILabel *birthLabel;
-/** birthImageV */
-//@property (strong,nonatomic) UIImageView *birthImageV;
 /** 我 */
 @property (strong,nonatomic) UILabel *wo;
 /** 店员模型 */

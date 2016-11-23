@@ -1,17 +1,18 @@
 //
-//  TaskProductTableCell.m
+//  ProduceListTableCell.m
 //  YLZG
 //
-//  Created by Chan_Sir on 2016/11/17.
+//  Created by Chan_Sir on 2016/11/23.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "TaskProductTableCell.h"
+#import "ProduceListTableCell.h"
 #import "YLZGDataManager.h"
 #import <UIImageView+WebCache.h>
 #import <Masonry.h>
 
-@interface TaskProductTableCell ()
+
+@interface ProduceListTableCell ()
 
 @property (strong,nonatomic) UIImageView *headV;
 
@@ -19,14 +20,14 @@
 
 @end
 
-@implementation TaskProductTableCell
+@implementation ProduceListTableCell
 
-+ (instancetype)sharedTaskProductCell:(UITableView *)tableView
++ (instancetype)sharedProduceListCell:(UITableView *)tableView
 {
-    static NSString *ID = @"TaskProductTableCell";
-    TaskProductTableCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    static NSString *ID = @"ProduceListTableCell";
+    ProduceListTableCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
-        cell = [[TaskProductTableCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+        cell = [[ProduceListTableCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     return cell;
 }
@@ -87,5 +88,6 @@
         make.top.equalTo(self.headV.mas_bottom);
     }];
 }
+
 
 @end

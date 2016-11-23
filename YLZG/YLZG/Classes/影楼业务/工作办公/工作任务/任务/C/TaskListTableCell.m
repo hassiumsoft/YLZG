@@ -38,22 +38,32 @@
     }
     return cell;
 }
-- (void)setModel:(TaskListModel *)model
+- (void)setTaskListmodel:(TaskListModel *)taskListmodel
 {
-    _model = model;
-    if (model.isMyManager) {
+    _taskListmodel = taskListmodel;
+    if (taskListmodel.isMyManager) {
         self.headV.hidden = YES;
         [self setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }else{
         self.headV.hidden = NO;
-        [self.headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+        [self.headV sd_setImageWithURL:[NSURL URLWithString:taskListmodel.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
         [self setAccessoryType:UITableViewCellAccessoryNone];
     }
-    _taskNameLabel.text = model.name;
-    _dateLabel.text = [self timeIntervalToDate:model.deadline];
-    _produceNameL.text = model.project;
-    
+    _taskNameLabel.text = taskListmodel.name;
+    _dateLabel.text = [self timeIntervalToDate:taskListmodel.deadline];
+    _produceNameL.text = taskListmodel.project;
 }
+- (void)setProduceDetialModel:(ProduceTaskModel *)produceDetialModel
+{
+    _produceDetialModel = produceDetialModel;
+    self.headV.hidden = NO;
+    [self.headV sd_setImageWithURL:[NSURL URLWithString:produceDetialModel.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+    [self setAccessoryType:UITableViewCellAccessoryNone];
+    _taskNameLabel.text = produceDetialModel.name;
+    _dateLabel.text = [self timeIntervalToDate:produceDetialModel.deadline];
+    _produceNameL.text = produceDetialModel.project;
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -114,6 +124,7 @@
     
     self.headV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"user_place"]];
     self.headV.layer.masksToBounds = YES;
+    self.headV.layer.cornerRadius = 20;
     self.headV.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:self.headV];
     [self.headV mas_makeConstraints:^(MASConstraintMaker *make) {

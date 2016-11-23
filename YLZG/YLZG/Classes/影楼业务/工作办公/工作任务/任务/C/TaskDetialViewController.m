@@ -27,7 +27,7 @@
 - (void)getData
 {
     NSString *url = [NSString stringWithFormat:TaskDetial_Url,[ZCAccountTool account].userID,self.listModel.id];
-    
+    NSLog(@"url = %@",url);
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"任务详情 = %@",responseObject);
         

@@ -48,10 +48,6 @@
 		3B1CFCC51DD1BCB700C4B538 /* RudiRuceVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFCC41DD1BCB700C4B538 /* RudiRuceVController.m */; };
 		3B2A63201DE2A0F3006AB71A /* ProduceDetialVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A631F1DE2A0F3006AB71A /* ProduceDetialVController.m */; };
 		3B2A63231DE2BB13006AB71A /* ProduceDetialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A63221DE2BB13006AB71A /* ProduceDetialModel.m */; };
-		3B2A63261DE2BD5E006AB71A /* TaskFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A63251DE2BD5E006AB71A /* TaskFileModel.m */; };
-		3B2A63291DE2BF81006AB71A /* TaskMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A63281DE2BF81006AB71A /* TaskMemberModel.m */; };
-		3B2A632C1DE2BF9E006AB71A /* TaskTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A632B1DE2BF9E006AB71A /* TaskTaskModel.m */; };
-		3B2A632F1DE2BFBF006AB71A /* TaskDiscussModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A632E1DE2BFBF006AB71A /* TaskDiscussModel.m */; };
 		3B3BBF931DB475EF00C9E2FD /* ContactHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBF921DB475EF00C9E2FD /* ContactHeadView.m */; };
 		3B3BBF961DB475FA00C9E2FD /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBF951DB475FA00C9E2FD /* ContactTableViewCell.m */; };
 		3B3BBF9C1DB477D800C9E2FD /* YLGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBF9B1DB477D800C9E2FD /* YLGroup.m */; };
@@ -244,6 +240,18 @@
 		3B5DC7201DB87265000F7A06 /* FixFopen.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC71F1DB87265000F7A06 /* FixFopen.c */; };
 		3B6330171DE52F0F007033F7 /* TaskListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6330161DE52F0F007033F7 /* TaskListTableCell.m */; };
 		3B63301A1DE562EB007033F7 /* TaskDetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6330191DE562EB007033F7 /* TaskDetialViewController.m */; };
+		3B63301D1DE57101007033F7 /* ProduceFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B63301C1DE57101007033F7 /* ProduceFileModel.m */; };
+		3B6330201DE57139007033F7 /* ProduceMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B63301F1DE57139007033F7 /* ProduceMemberModel.m */; };
+		3B6330231DE57163007033F7 /* ProduceTaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6330221DE57163007033F7 /* ProduceTaskModel.m */; };
+		3B6330261DE5719C007033F7 /* ProduceDiscussModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6330251DE5719C007033F7 /* ProduceDiscussModel.m */; };
+		3B6330291DE573AB007033F7 /* ProduceTaskVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6330281DE573AB007033F7 /* ProduceTaskVController.m */; };
+		3B63302C1DE573DA007033F7 /* ProduceDiscussVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B63302B1DE573DA007033F7 /* ProduceDiscussVController.m */; };
+		3B63302F1DE5742E007033F7 /* ProduceMemVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B63302E1DE5742E007033F7 /* ProduceMemVController.m */; };
+		3B6330321DE57457007033F7 /* ProduceFileVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6330311DE57457007033F7 /* ProduceFileVController.m */; };
+		3B6330351DE57F05007033F7 /* TopTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6330341DE57F05007033F7 /* TopTitleView.m */; };
+		3B6330381DE58977007033F7 /* ProduceListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6330371DE58977007033F7 /* ProduceListTableCell.m */; };
+		3B63303B1DE592C7007033F7 /* ProduceDetialDiscussCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B63303A1DE592C7007033F7 /* ProduceDetialDiscussCell.m */; };
+		3B63303E1DE5986E007033F7 /* ProduceDetialFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B63303D1DE5986E007033F7 /* ProduceDetialFileCell.m */; };
 		3B6E0ACA1DCAF2C600309037 /* SaleToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0AC91DCAF2C600309037 /* SaleToolViewController.m */; };
 		3B6E0ACD1DCAF32400309037 /* SaleIntrolduceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0ACC1DCAF32400309037 /* SaleIntrolduceController.m */; };
 		3B6E0AD01DCAF33C00309037 /* SaleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0ACF1DCAF33C00309037 /* SaleWebViewController.m */; };
@@ -285,7 +293,6 @@
 		3B91DC391DDD41EB00688759 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B91DC381DDD41EB00688759 /* TaskViewController.m */; };
 		3B91DC3C1DDD41FC00688759 /* TaskProductsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B91DC3B1DDD41FC00688759 /* TaskProductsController.m */; };
 		3B91DC3F1DDD43B100688759 /* AddNewTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B91DC3E1DDD43B100688759 /* AddNewTaskController.m */; };
-		3B91DC421DDD54B900688759 /* TaskProductTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B91DC411DDD54B900688759 /* TaskProductTableCell.m */; };
 		3B91DC451DDD582B00688759 /* AddNewTaskProController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B91DC441DDD582B00688759 /* AddNewTaskProController.m */; };
 		3B948B6B1DD993C600D75112 /* TodayOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B948B581DD993C600D75112 /* TodayOrderViewController.m */; };
 		3B948B6C1DD993C600D75112 /* TodayOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B948B5B1DD993C600D75112 /* TodayOrderModel.m */; };
@@ -491,14 +498,6 @@
 		3B2A631F1DE2A0F3006AB71A /* ProduceDetialVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetialVController.m; sourceTree = "<group>"; };
 		3B2A63211DE2BB13006AB71A /* ProduceDetialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProduceDetialModel.h; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/ProduceDetialModel.h"; sourceTree = SOURCE_ROOT; };
 		3B2A63221DE2BB13006AB71A /* ProduceDetialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProduceDetialModel.m; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/ProduceDetialModel.m"; sourceTree = SOURCE_ROOT; };
-		3B2A63241DE2BD5E006AB71A /* TaskFileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskFileModel.h; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/TaskFileModel.h"; sourceTree = SOURCE_ROOT; };
-		3B2A63251DE2BD5E006AB71A /* TaskFileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskFileModel.m; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/TaskFileModel.m"; sourceTree = SOURCE_ROOT; };
-		3B2A63271DE2BF81006AB71A /* TaskMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskMemberModel.h; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/TaskMemberModel.h"; sourceTree = SOURCE_ROOT; };
-		3B2A63281DE2BF81006AB71A /* TaskMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskMemberModel.m; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/TaskMemberModel.m"; sourceTree = SOURCE_ROOT; };
-		3B2A632A1DE2BF9E006AB71A /* TaskTaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskTaskModel.h; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/TaskTaskModel.h"; sourceTree = SOURCE_ROOT; };
-		3B2A632B1DE2BF9E006AB71A /* TaskTaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskTaskModel.m; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/TaskTaskModel.m"; sourceTree = SOURCE_ROOT; };
-		3B2A632D1DE2BFBF006AB71A /* TaskDiscussModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskDiscussModel.h; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/TaskDiscussModel.h"; sourceTree = SOURCE_ROOT; };
-		3B2A632E1DE2BFBF006AB71A /* TaskDiscussModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskDiscussModel.m; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/TaskDiscussModel.m"; sourceTree = SOURCE_ROOT; };
 		3B3BBF911DB475EF00C9E2FD /* ContactHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactHeadView.h; sourceTree = "<group>"; };
 		3B3BBF921DB475EF00C9E2FD /* ContactHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactHeadView.m; sourceTree = "<group>"; };
 		3B3BBF941DB475FA00C9E2FD /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
@@ -887,6 +886,30 @@
 		3B6330161DE52F0F007033F7 /* TaskListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskListTableCell.m; path = "YLZG/Classes/影楼业务/工作办公/工作任务/任务/C/TaskListTableCell.m"; sourceTree = SOURCE_ROOT; };
 		3B6330181DE562EB007033F7 /* TaskDetialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDetialViewController.h; sourceTree = "<group>"; };
 		3B6330191DE562EB007033F7 /* TaskDetialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDetialViewController.m; sourceTree = "<group>"; };
+		3B63301B1DE57101007033F7 /* ProduceFileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProduceFileModel.h; path = "YLZG/Classes/影楼业务/工作办公/工作任务/任务/C/ProduceFileModel.h"; sourceTree = SOURCE_ROOT; };
+		3B63301C1DE57101007033F7 /* ProduceFileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProduceFileModel.m; path = "YLZG/Classes/影楼业务/工作办公/工作任务/任务/C/ProduceFileModel.m"; sourceTree = SOURCE_ROOT; };
+		3B63301E1DE57139007033F7 /* ProduceMemberModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProduceMemberModel.h; path = "YLZG/Classes/影楼业务/工作办公/工作任务/任务/C/ProduceMemberModel.h"; sourceTree = SOURCE_ROOT; };
+		3B63301F1DE57139007033F7 /* ProduceMemberModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProduceMemberModel.m; path = "YLZG/Classes/影楼业务/工作办公/工作任务/任务/C/ProduceMemberModel.m"; sourceTree = SOURCE_ROOT; };
+		3B6330211DE57163007033F7 /* ProduceTaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProduceTaskModel.h; path = "YLZG/Classes/影楼业务/工作办公/工作任务/任务/C/ProduceTaskModel.h"; sourceTree = SOURCE_ROOT; };
+		3B6330221DE57163007033F7 /* ProduceTaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProduceTaskModel.m; path = "YLZG/Classes/影楼业务/工作办公/工作任务/任务/C/ProduceTaskModel.m"; sourceTree = SOURCE_ROOT; };
+		3B6330241DE5719C007033F7 /* ProduceDiscussModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProduceDiscussModel.h; path = "YLZG/Classes/影楼业务/工作办公/工作任务/任务/C/ProduceDiscussModel.h"; sourceTree = SOURCE_ROOT; };
+		3B6330251DE5719C007033F7 /* ProduceDiscussModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProduceDiscussModel.m; path = "YLZG/Classes/影楼业务/工作办公/工作任务/任务/C/ProduceDiscussModel.m"; sourceTree = SOURCE_ROOT; };
+		3B6330271DE573AB007033F7 /* ProduceTaskVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceTaskVController.h; sourceTree = "<group>"; };
+		3B6330281DE573AB007033F7 /* ProduceTaskVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceTaskVController.m; sourceTree = "<group>"; };
+		3B63302A1DE573DA007033F7 /* ProduceDiscussVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDiscussVController.h; sourceTree = "<group>"; };
+		3B63302B1DE573DA007033F7 /* ProduceDiscussVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDiscussVController.m; sourceTree = "<group>"; };
+		3B63302D1DE5742E007033F7 /* ProduceMemVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceMemVController.h; sourceTree = "<group>"; };
+		3B63302E1DE5742E007033F7 /* ProduceMemVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceMemVController.m; sourceTree = "<group>"; };
+		3B6330301DE57457007033F7 /* ProduceFileVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceFileVController.h; sourceTree = "<group>"; };
+		3B6330311DE57457007033F7 /* ProduceFileVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceFileVController.m; sourceTree = "<group>"; };
+		3B6330331DE57F05007033F7 /* TopTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopTitleView.h; sourceTree = "<group>"; };
+		3B6330341DE57F05007033F7 /* TopTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopTitleView.m; sourceTree = "<group>"; };
+		3B6330361DE58977007033F7 /* ProduceListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceListTableCell.h; sourceTree = "<group>"; };
+		3B6330371DE58977007033F7 /* ProduceListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceListTableCell.m; sourceTree = "<group>"; };
+		3B6330391DE592C7007033F7 /* ProduceDetialDiscussCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDetialDiscussCell.h; sourceTree = "<group>"; };
+		3B63303A1DE592C7007033F7 /* ProduceDetialDiscussCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetialDiscussCell.m; sourceTree = "<group>"; };
+		3B63303C1DE5986E007033F7 /* ProduceDetialFileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDetialFileCell.h; sourceTree = "<group>"; };
+		3B63303D1DE5986E007033F7 /* ProduceDetialFileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetialFileCell.m; sourceTree = "<group>"; };
 		3B6E0AC81DCAF2C600309037 /* SaleToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleToolViewController.h; sourceTree = "<group>"; };
 		3B6E0AC91DCAF2C600309037 /* SaleToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleToolViewController.m; sourceTree = "<group>"; };
 		3B6E0ACB1DCAF32400309037 /* SaleIntrolduceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleIntrolduceController.h; sourceTree = "<group>"; };
@@ -977,8 +1000,6 @@
 		3B91DC3B1DDD41FC00688759 /* TaskProductsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskProductsController.m; sourceTree = "<group>"; };
 		3B91DC3D1DDD43B100688759 /* AddNewTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewTaskController.h; sourceTree = "<group>"; };
 		3B91DC3E1DDD43B100688759 /* AddNewTaskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewTaskController.m; sourceTree = "<group>"; };
-		3B91DC401DDD54B900688759 /* TaskProductTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskProductTableCell.h; sourceTree = "<group>"; };
-		3B91DC411DDD54B900688759 /* TaskProductTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskProductTableCell.m; sourceTree = "<group>"; };
 		3B91DC431DDD582B00688759 /* AddNewTaskProController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewTaskProController.h; sourceTree = "<group>"; };
 		3B91DC441DDD582B00688759 /* AddNewTaskProController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewTaskProController.m; sourceTree = "<group>"; };
 		3B948B571DD993C600D75112 /* TodayOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayOrderViewController.h; sourceTree = "<group>"; };
@@ -1718,10 +1739,10 @@
 		3B4C0FB21DC85DDC00827D4F /* ERP应用 */ = {
 			isa = PBXGroup;
 			children = (
+				3B4C0FC11DC85DDC00827D4F /* 开单 */,
 				3B948B551DD993C600D75112 /* 今日订单 */,
 				3B948B5F1DD993C600D75112 /* 我的工作 */,
 				3B4C0FB31DC85DDC00827D4F /* 业绩榜 */,
-				3B4C0FC11DC85DDC00827D4F /* 开单 */,
 				3B4C0FF41DC85DDC00827D4F /* 摄控本 */,
 				3B4C10081DC85DDC00827D4F /* 查询 */,
 				3B4C10181DC85DDC00827D4F /* 订单收款 */,
@@ -2960,6 +2981,14 @@
 				3B91DC3B1DDD41FC00688759 /* TaskProductsController.m */,
 				3B2A631E1DE2A0F3006AB71A /* ProduceDetialVController.h */,
 				3B2A631F1DE2A0F3006AB71A /* ProduceDetialVController.m */,
+				3B6330271DE573AB007033F7 /* ProduceTaskVController.h */,
+				3B6330281DE573AB007033F7 /* ProduceTaskVController.m */,
+				3B63302A1DE573DA007033F7 /* ProduceDiscussVController.h */,
+				3B63302B1DE573DA007033F7 /* ProduceDiscussVController.m */,
+				3B63302D1DE5742E007033F7 /* ProduceMemVController.h */,
+				3B63302E1DE5742E007033F7 /* ProduceMemVController.m */,
+				3B6330301DE57457007033F7 /* ProduceFileVController.h */,
+				3B6330311DE57457007033F7 /* ProduceFileVController.m */,
 				3B91DC431DDD582B00688759 /* AddNewTaskProController.h */,
 				3B91DC441DDD582B00688759 /* AddNewTaskProController.m */,
 			);
@@ -2973,14 +3002,14 @@
 				3B73505C1DDF02FA000D28D5 /* TaskProduceListModel.m */,
 				3B2A63211DE2BB13006AB71A /* ProduceDetialModel.h */,
 				3B2A63221DE2BB13006AB71A /* ProduceDetialModel.m */,
-				3B2A63241DE2BD5E006AB71A /* TaskFileModel.h */,
-				3B2A63251DE2BD5E006AB71A /* TaskFileModel.m */,
-				3B2A63271DE2BF81006AB71A /* TaskMemberModel.h */,
-				3B2A63281DE2BF81006AB71A /* TaskMemberModel.m */,
-				3B2A632A1DE2BF9E006AB71A /* TaskTaskModel.h */,
-				3B2A632B1DE2BF9E006AB71A /* TaskTaskModel.m */,
-				3B2A632D1DE2BFBF006AB71A /* TaskDiscussModel.h */,
-				3B2A632E1DE2BFBF006AB71A /* TaskDiscussModel.m */,
+				3B63301B1DE57101007033F7 /* ProduceFileModel.h */,
+				3B63301C1DE57101007033F7 /* ProduceFileModel.m */,
+				3B63301E1DE57139007033F7 /* ProduceMemberModel.h */,
+				3B63301F1DE57139007033F7 /* ProduceMemberModel.m */,
+				3B6330211DE57163007033F7 /* ProduceTaskModel.h */,
+				3B6330221DE57163007033F7 /* ProduceTaskModel.m */,
+				3B6330241DE5719C007033F7 /* ProduceDiscussModel.h */,
+				3B6330251DE5719C007033F7 /* ProduceDiscussModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -2988,10 +3017,16 @@
 		3B91DC261DDD40C000688759 /* V */ = {
 			isa = PBXGroup;
 			children = (
-				3B91DC401DDD54B900688759 /* TaskProductTableCell.h */,
-				3B91DC411DDD54B900688759 /* TaskProductTableCell.m */,
+				3B6330361DE58977007033F7 /* ProduceListTableCell.h */,
+				3B6330371DE58977007033F7 /* ProduceListTableCell.m */,
+				3B6330391DE592C7007033F7 /* ProduceDetialDiscussCell.h */,
+				3B63303A1DE592C7007033F7 /* ProduceDetialDiscussCell.m */,
+				3B63303C1DE5986E007033F7 /* ProduceDetialFileCell.h */,
+				3B63303D1DE5986E007033F7 /* ProduceDetialFileCell.m */,
 				3B7350581DDEEFA1000D28D5 /* HeadIconView.h */,
 				3B7350591DDEEFA1000D28D5 /* HeadIconView.m */,
+				3B6330331DE57F05007033F7 /* TopTitleView.h */,
+				3B6330341DE57F05007033F7 /* TopTitleView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3818,7 +3853,6 @@
 				3B1CFCBC1DD1780400C4B538 /* OffLineOrder.m in Sources */,
 				3BCF39C01D9E3D5500BEE236 /* ContactListViewController.m in Sources */,
 				3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */,
-				3B2A63291DE2BF81006AB71A /* TaskMemberModel.m in Sources */,
 				3B4C10A91DC85DDC00827D4F /* YejiDetialViewController.m in Sources */,
 				3B56D7671DC739CE003A57FD /* ChatViewController.m in Sources */,
 				3BCF39931D9DFA4400BEE236 /* HomeTabbarController.m in Sources */,
@@ -3890,6 +3924,7 @@
 				3B4C13361DC85F4700827D4F /* TeamZhengchangdakaModel.m in Sources */,
 				187075371DC195FA002448C6 /* ClearCacheTool.m in Sources */,
 				3B56D7781DC739CE003A57FD /* EaseBubbleView+Voice.m in Sources */,
+				3B6330231DE57163007033F7 /* ProduceTaskModel.m in Sources */,
 				3B4C10AD1DC85DDC00827D4F /* YLZGTitleLabel.m in Sources */,
 				3B948B6C1DD993C600D75112 /* TodayOrderModel.m in Sources */,
 				3B4C10A71DC85DDC00827D4F /* NormalconButton.m in Sources */,
@@ -3907,6 +3942,7 @@
 				3B4C13741DC85F4700827D4F /* StaffTableViewCell.m in Sources */,
 				3B4C133C1DC85F4700827D4F /* TeamZhengchangTableCell.m in Sources */,
 				3B56D7651DC739CE003A57FD /* ChatListViewController.m in Sources */,
+				3B6330291DE573AB007033F7 /* ProduceTaskVController.m in Sources */,
 				3B56D76D1DC739CE003A57FD /* EaseUserModel.m in Sources */,
 				3B1CFCA71DD1780400C4B538 /* SpotViewController.m in Sources */,
 				3B4C136F1DC85F4700827D4F /* QingjiaViewController.m in Sources */,
@@ -3941,6 +3977,7 @@
 				3B5DC7121DB870DD000F7A06 /* EaseMessageReadManager.m in Sources */,
 				3B4C135C1DC85F4700827D4F /* TimeSliderView.m in Sources */,
 				3BCF39E11D9E4E1B00BEE236 /* UserInfoViewController.m in Sources */,
+				3B6330321DE57457007033F7 /* ProduceFileVController.m in Sources */,
 				3B4C136E1DC85F4700827D4F /* CommonApplyController.m in Sources */,
 				3BF93D7E1DADDC950002EACA /* CalendarViewController.m in Sources */,
 				3B4C10AA1DC85DDC00827D4F /* YejiViewController.m in Sources */,
@@ -3984,6 +4021,7 @@
 				3BCF39901D9DF94100BEE236 /* UIViewController+Actions.m in Sources */,
 				3B447B191DC98C0B00316E3C /* ForgetSecretController.m in Sources */,
 				3B4C13201DC85F4700827D4F /* NoticeDetialView.m in Sources */,
+				3B6330351DE57F05007033F7 /* TopTitleView.m in Sources */,
 				3BCF398D1D9DF8BD00BEE236 /* YLZGChatManager.m in Sources */,
 				3B1CFCAF1DD1780400C4B538 /* AddProductCell.m in Sources */,
 				3B1CFCBF1DD17A5E00C4B538 /* OpenOrderCardModel.m in Sources */,
@@ -3998,6 +4036,8 @@
 				3B87C1FC1DE42CC200A5EAD1 /* MyManagerTaskController.m in Sources */,
 				3B87C1F31DE429BC00A5EAD1 /* TaskListModel.m in Sources */,
 				3B91DC2A1DDD40C000688759 /* TaskTabbarController.m in Sources */,
+				3B6330261DE5719C007033F7 /* ProduceDiscussModel.m in Sources */,
+				3B63302F1DE5742E007033F7 /* ProduceMemVController.m in Sources */,
 				3BF93D7D1DADDC950002EACA /* CalendarMonthHeaderView.m in Sources */,
 				3B5DC7111DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				3B4C13331DC85F4700827D4F /* TeamPaihangbangViewController.m in Sources */,
@@ -4022,7 +4062,6 @@
 				3B4C133A1DC85F4700827D4F /* TeamKaoqinView.m in Sources */,
 				3B4C13351DC85F4700827D4F /* DeptTeamKaoqinModel.m in Sources */,
 				3B1CFCAB1DD1780400C4B538 /* MutableSelectedModel.m in Sources */,
-				3B91DC421DDD54B900688759 /* TaskProductTableCell.m in Sources */,
 				3B3BBF931DB475EF00C9E2FD /* ContactHeadView.m in Sources */,
 				3B56D77C1DC739CE003A57FD /* EaseChatBarMoreView.m in Sources */,
 				3B2A63201DE2A0F3006AB71A /* ProduceDetialVController.m in Sources */,
@@ -4035,7 +4074,6 @@
 				3B4C10D01DC85DDC00827D4F /* SearchModel.m in Sources */,
 				3B87C1E71DE416A100A5EAD1 /* SelectTaskFuzerController.m in Sources */,
 				3B4C10CF1DC85DDC00827D4F /* SearchDBManager.m in Sources */,
-				3B2A63261DE2BD5E006AB71A /* TaskFileModel.m in Sources */,
 				3BCA32591D9CC1F900A0E980 /* NSDateFormatter+Category.m in Sources */,
 				3B4C13461DC85F4700827D4F /* AddNewBanciController.m in Sources */,
 				3B4C133E1DC85F4700827D4F /* MineKaoqinTableViewCell.m in Sources */,
@@ -4045,13 +4083,11 @@
 				3B1CFCB11DD1780400C4B538 /* MutableSpotTableCell.m in Sources */,
 				3B4C10C81DC85DDC00827D4F /* ShekongBenController.m in Sources */,
 				3B1CFCB81DD1780400C4B538 /* OrderPhoneController.m in Sources */,
-				3B2A632C1DE2BF9E006AB71A /* TaskTaskModel.m in Sources */,
 				3B5DC7101DB870DD000F7A06 /* EaseChineseToPinyin.m in Sources */,
 				3B56D77E1DC739CE003A57FD /* EaseRecordView.m in Sources */,
 				3B7ABCA01DB5B31D00F3D12B /* AllMembersController.m in Sources */,
 				3B56D77F1DC739CE003A57FD /* EaseChatToolbar.m in Sources */,
 				3BCA32571D9CC1F900A0E980 /* MBProgressHUD+Add.m in Sources */,
-				3B2A632F1DE2BFBF006AB71A /* TaskDiscussModel.m in Sources */,
 				3B4C136A1DC85F4700827D4F /* AppearHeadView.m in Sources */,
 				3B87C1EA1DE418A300A5EAD1 /* SelectTaskCaresController.m in Sources */,
 				3B4C10A21DC85DDC00827D4F /* HomeViewController.m in Sources */,
@@ -4074,6 +4110,7 @@
 				3B948B6F1DD993C600D75112 /* MyJobsViewController.m in Sources */,
 				3B4C10401DC85DDC00827D4F /* TitleLabel.m in Sources */,
 				3B91DC361DDD41D800688759 /* TaskDongtaiController.m in Sources */,
+				3B63303B1DE592C7007033F7 /* ProduceDetialDiscussCell.m in Sources */,
 				3BCF3A381D9E6CF800BEE236 /* TAAbstractDotView.m in Sources */,
 				3B91DC3F1DDD43B100688759 /* AddNewTaskController.m in Sources */,
 				3B4C10331DC85DDC00827D4F /* MonthFinanceVController.m in Sources */,
@@ -4108,9 +4145,11 @@
 				3B4C132A1DC85F4700827D4F /* CheckWorkViewController.m in Sources */,
 				3BCF39A81D9E322F00BEE236 /* ImageBrowser.m in Sources */,
 				3B4C10361DC85DDC00827D4F /* InComeModel.m in Sources */,
+				3B63301D1DE57101007033F7 /* ProduceFileModel.m in Sources */,
 				3B7ABCF01DB6176600F3D12B /* EMCDDeviceManager+Media.m in Sources */,
 				3BCF39BF1D9E3D5500BEE236 /* ApplyViewController.m in Sources */,
 				3B4C134D1DC85F4700827D4F /* BanciModel.m in Sources */,
+				3B63302C1DE573DA007033F7 /* ProduceDiscussVController.m in Sources */,
 				3B4C10CA1DC85DDC00827D4F /* XuanpianPreViewController.m in Sources */,
 				3B4C10AC1DC85DDC00827D4F /* YejiTableViewCell.m in Sources */,
 				3B4C10A41DC85DDC00827D4F /* HomeCollectionCell.m in Sources */,
@@ -4150,6 +4189,7 @@
 				3B4C13571DC85F4700827D4F /* KaoqinTableCell.m in Sources */,
 				3B3BBFC61DB4862700C9E2FD /* IvitGroupMembersController.m in Sources */,
 				3BCF3A3C1D9E6CF800BEE236 /* SDCollectionViewCell.m in Sources */,
+				3B63303E1DE5986E007033F7 /* ProduceDetialFileCell.m in Sources */,
 				3BCF3A3E1D9E6CF800BEE236 /* UIView+SDExtension.m in Sources */,
 				3B9E16FD1DD2D0600028C72F /* CaiwuDetialModel.m in Sources */,
 				3B4C10AB1DC85DDC00827D4F /* StaffYejiModel.m in Sources */,
@@ -4159,6 +4199,7 @@
 				3BF93D7A1DADDC950002EACA /* CalendarHomeViewController.m in Sources */,
 				3B4C13441DC85F4700827D4F /* EditMemsViewController.m in Sources */,
 				3B4C13481DC85F4700827D4F /* ChooseBanciVController.m in Sources */,
+				3B6330201DE57139007033F7 /* ProduceMemberModel.m in Sources */,
 				3B4C103F1DC85DDC00827D4F /* TitleColorView.m in Sources */,
 				3BCA32581D9CC1F900A0E980 /* NSDate+Extension.m in Sources */,
 				3BF93D7B1DADDC950002EACA /* CalendarLogic.m in Sources */,
@@ -4173,6 +4214,7 @@
 				3B56D77D1DC739CE003A57FD /* MoreToolButton.m in Sources */,
 				3BCF39711D9DF42100BEE236 /* HTTPManager.m in Sources */,
 				3B1CFCAE1DD1780400C4B538 /* TaoxiProductModel.m in Sources */,
+				3B6330381DE58977007033F7 /* ProduceListTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,14 +1,14 @@
 //
-//  TaskFileModel.h
+//  ProduceFileModel.h
 //  YLZG
 //
-//  Created by Chan_Sir on 2016/11/21.
+//  Created by Chan_Sir on 2016/11/23.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface TaskFileModel : NSObject
+@interface ProduceFileModel : NSObject
 
 /** 上传人头像 */
 @property (copy,nonatomic) NSString *head;
@@ -32,7 +32,6 @@
 @property (copy,nonatomic) NSString *upload_user;
 /** 文件地址 */
 @property (copy,nonatomic) NSString *uri;
-
 
 
 @end
