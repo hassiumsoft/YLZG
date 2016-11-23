@@ -56,9 +56,9 @@
     [[YLZGDataManager sharedManager] getOneStudioByUserName:model.owner Block:^(ContactersModel *model) {
         _owerLabel.text = model.realname;
         if ([model.gender intValue] == 1) {
-            [_owerHeadV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+            [_owerHeadV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
         }else{
-            [_owerHeadV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+            [_owerHeadV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
         }
     }];
 }

@@ -1722,7 +1722,7 @@
             model = [[EaseMessageModel alloc] initWithMessage:message];
             model.nickname = userInfo.nickname;
             model.avatarURLPath = userInfo.head;
-            model.avatarImage = [UIImage imageNamed:@"ico_gg_mrtouxiang"];
+            model.avatarImage = [UIImage imageNamed:@"user_place"];
         }
         
         if (model) {
@@ -1972,7 +1972,7 @@
                     }
                     else{
                         model = [[EaseMessageModel alloc] initWithMessage:message];
-                        model.avatarImage = [UIImage imageNamed:@"ico_gg_mrtouxiang"];
+                        model.avatarImage = [UIImage imageNamed:@"user_place"];
                         model.failImageName = @"imageDownloadFail";
                     }
                     
@@ -1997,7 +1997,7 @@
         }
         else{
             model = [[EaseMessageModel alloc] initWithMessage:aMessage];
-            model.avatarImage = [UIImage imageNamed:@"ico_gg_mrtouxiang"];
+            model.avatarImage = [UIImage imageNamed:@"user_place"];
             model.failImageName = @"imageDownloadFail";
         }
         if (model) {

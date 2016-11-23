@@ -37,7 +37,7 @@
     _model = model;
     _nameLabel.text = model.nickname;
     _deptLabel.text = model.dept;
-    [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+    [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
     if (model.isSelected) {
         [_selectedBtn setImage:[UIImage imageNamed:@"EditControlSelected"] forState:UIControlStateNormal];
     }else{
@@ -48,7 +48,7 @@
 - (void)setupSubViews
 {
     
-    self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+    self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"user_place"]];
     self.headImageV.layer.masksToBounds = YES;
     self.headImageV.layer.cornerRadius = 4;
     self.headImageV.contentMode = UIViewContentModeScaleAspectFill;

@@ -44,7 +44,7 @@
 - (void)loadData
 {
     NSString *url = [NSString stringWithFormat:TaskProductList_URL,[ZCAccountTool account].userID];
-    [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.tableView.mj_header endRefreshing];
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];

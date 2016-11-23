@@ -10,4 +10,10 @@
 
 @interface MyManagerTaskController : SuperViewController
 
+/** 今后的任务 */
+@property (copy,nonatomic) NSArray *laterArray;
+/** 今天的任务 */
+@property (copy,nonatomic) NSArray *todayArray;
+
+
 @end

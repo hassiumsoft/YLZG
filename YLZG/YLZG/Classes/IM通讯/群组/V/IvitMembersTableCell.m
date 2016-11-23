@@ -35,7 +35,7 @@
 - (void)setModel:(ContactersModel *)model
 {
     _model = model;
-    [_headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+    [_headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
     _deptLabel.text = model.dept;
     _nameLabel.text = model.nickname.length > 0 ? model.nickname:model.realname;
     if (!model.isSelected) {
@@ -55,7 +55,7 @@
 }
 - (void)setupSubViews
 {
-    self.headV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+    self.headV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"user_place"]];
     self.headV.layer.masksToBounds = YES;
     self.headV.layer.cornerRadius = 3;
     self.headV.contentMode = UIViewContentModeScaleAspectFill;

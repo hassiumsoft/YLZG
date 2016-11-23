@@ -80,9 +80,9 @@
         self.nameLabel.text = self.userModel.nickname.length >= 1 ? self.userModel.nickname : self.userModel.realname;
         
         if ([self.userModel.gender intValue] == 1) {
-            [_headImageV sd_setImageWithURL:[NSURL URLWithString:self.userModel.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+            [_headImageV sd_setImageWithURL:[NSURL URLWithString:self.userModel.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
         } else {
-            [_headImageV sd_setImageWithURL:[NSURL URLWithString:self.userModel.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+            [_headImageV sd_setImageWithURL:[NSURL URLWithString:self.userModel.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
         }
         
         return cell;

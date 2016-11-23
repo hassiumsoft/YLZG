@@ -34,10 +34,10 @@
     _realnameLabel.text = model.realname;
     
     if ([[model.times description] intValue] == 0) {
-        [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+        [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
         _qiandaoV.image = [UIImage imageNamed:@""];
     }else {
-        [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+        [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
         _qiandaoV.image = [UIImage imageNamed:@"approve_hint"];
     }
 }

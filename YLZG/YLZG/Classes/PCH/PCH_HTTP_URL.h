@@ -224,7 +224,8 @@
 #define CreateNewTask_Url @"http://192.168.0.18/index.php/home/task/create?uid=%@&pid=%@&name=%@&manager=%@&deadline=%@&check=%@&care=%@&description=%@"
 // 任务-任务列表
 #define TaskList_Url @"http://192.168.0.18/index.php/home/task/lists?uid=%@"
-
+// 任务-详细信息
+#define TaskDetial_Url @"http://192.168.0.18/index.php/home/task/detail?uid=%@&id=%@"
 
 
 #endif /* PCH_HTTP_URL_h */

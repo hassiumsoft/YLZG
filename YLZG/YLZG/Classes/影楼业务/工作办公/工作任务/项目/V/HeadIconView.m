@@ -23,7 +23,7 @@
 - (void)setModel:(ContactersModel *)model
 {
     _model = model;
-    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+    [_imageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
     _nameLabel.text = model.realname;
 }
 

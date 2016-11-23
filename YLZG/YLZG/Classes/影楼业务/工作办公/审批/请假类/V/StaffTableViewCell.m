@@ -29,9 +29,9 @@
     }
     NSString *head = [NSString stringWithFormat:@"%@",model.head];
     if ([model.gender intValue] == 1) {
-        [_imageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+        [_imageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"user_place"]];
     }else{
-        [_imageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+        [_imageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:@"user_place"]];
     }
     
     if ([[model.type description]integerValue] == 1) {
@@ -77,7 +77,7 @@
 
 - (void)setupSubViews
 {
-    self.imageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+    self.imageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"user_place"]];
     self.imageV.layer.masksToBounds = YES;
     self.imageV.layer.cornerRadius = 4;
     self.imageV.contentMode = UIViewContentModeScaleAspectFill;

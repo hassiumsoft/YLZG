@@ -13,6 +13,10 @@
 
 @interface TaskListModel : NSObject
 
+
+/** 是否是我负责 */
+@property (assign,nonatomic) BOOL isMyManager;
+
 /** 关注者ID */
 @property (copy,nonatomic) NSString *careuid;
 /** 创建时间 */

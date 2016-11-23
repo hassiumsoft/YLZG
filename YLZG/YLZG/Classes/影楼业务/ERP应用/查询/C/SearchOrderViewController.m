@@ -77,28 +77,33 @@
     [self showHudMessage:@"查询中···"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
         [self hideHud:0];
         if (code == 1) {
             // 如果multi是1,返回列表成功;0表示显示详情页面,3表示失败
             int multi = [[[responseObject objectForKey:@"multi"] description] intValue];
             if (multi == 1) {
+                // 多个订单
                 NSArray * arr = responseObject[@"result"];
                 self.dataSource.array = [SearchViewModel mj_objectArrayWithKeyValuesArray:arr];
                 // 刷新表格
                 [self.view addSubview:self.searchTableView];
                 [self.searchTableView reloadData];
                 
-            }else if (multi == 3) {
-                [self.searchTableView removeFromSuperview];
-                [self loadEmptyView:@"您输入的客人还没有开单"];
-                
-            }else if (multi == 5){
-                [self.searchTableView removeFromSuperview];
-                [self loadEmptyView:@"账号未登录，建议退出账号重试"];
+            }else if (multi == 0) {
+                // 一个订单
+                SearchViewModel *model = [[SearchViewModel alloc]init];
+                model.tradeID = [[responseObject objectForKey:@"tradeid"]description];
+                model.guestname = [[responseObject objectForKey:@"baby"]description];
+                model.phone = [[responseObject objectForKey:@"maphone"]description];
+                model.store = [[responseObject objectForKey:@"store"]description];
+                model.set = [[responseObject objectForKey:@"packages"]description];
+                model.price = [[responseObject objectForKey:@"balance"]description];
+                [self.dataSource addObject:model];
+                [self.searchTableView reloadData];
                 
             }else{
                 [self.searchTableView removeFromSuperview];
-                NSString *message = [[responseObject objectForKey:@"message"] description];
                 [self loadEmptyView:message];
             }
         }else {
@@ -523,6 +528,12 @@
     }
 }
 
-
+- (NSMutableArray *)dataSource
+{
+    if (!_dataSource) {
+        _dataSource = [[NSMutableArray alloc]init];
+    }
+    return _dataSource;
+}
 
 @end

@@ -37,7 +37,7 @@
     self.imageView.image = [UIImage imageNamed:@"ico_renwu_xiangmu"];
     self.textLabel.text = proModel.name;
     [[YLZGDataManager sharedManager] getOneStudioByUID:proModel.create_user Block:^(ContactersModel *model) {
-        [_headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+        [_headV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
     }];
     
     _timeLabel.text = [NSString stringWithFormat:@"创建于%@",[self timeIntervalToDate:proModel.create_at]];
@@ -49,7 +49,7 @@
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     NSString *origanStr = [NSString stringWithFormat:@"%@",date];
-    NSString *time = [origanStr substringWithRange:NSMakeRange(0, 16)];
+    NSString *time = [origanStr substringWithRange:NSMakeRange(5, 11)];
     return time;
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -65,7 +65,7 @@
 - (void)setupSubViews
 {
     
-    self.headV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+    self.headV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"user_place"]];
     self.headV.layer.masksToBounds = YES;
     self.headV.contentMode = UIViewContentModeScaleAspectFill;
     self.headV.layer.cornerRadius = 15;

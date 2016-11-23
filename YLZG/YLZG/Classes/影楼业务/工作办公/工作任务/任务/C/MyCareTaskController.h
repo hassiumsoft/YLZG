@@ -10,4 +10,8 @@
 
 @interface MyCareTaskController : SuperViewController
 
+@property (copy,nonatomic) NSArray *array;
+
+
+
 @end

@@ -192,7 +192,7 @@
         _headView.backgroundColor = [UIColor whiteColor];
         _headView.userInteractionEnabled = YES;
         UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 60, 60)];
-        [imageV sd_setImageWithURL:[NSURL URLWithString:self.model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+        [imageV sd_setImageWithURL:[NSURL URLWithString:self.model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
         imageV.layer.masksToBounds = YES;
         imageV.userInteractionEnabled = YES;
         imageV.layer.cornerRadius = 4;

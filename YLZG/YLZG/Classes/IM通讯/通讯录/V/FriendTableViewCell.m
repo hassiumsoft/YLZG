@@ -39,9 +39,9 @@
     NSString *head = contactModel.head;
     NSString *placeImage;
     if ([contactModel.gender intValue] == 1) {
-        placeImage = @"ico_gg_mrtouxiang";
+        placeImage = @"user_place";
     }else{
-        placeImage = @"ico_gg_mrtouxiang";
+        placeImage = @"user_place";
     }
     [_headImageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:placeImage]];
     if (contactModel.nickname.length < 1) {
@@ -58,7 +58,7 @@
 - (void)setupSubViews
 {
     // 头像
-    self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+    self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"user_place"]];
     [self addSubview:self.headImageV];
     [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15);

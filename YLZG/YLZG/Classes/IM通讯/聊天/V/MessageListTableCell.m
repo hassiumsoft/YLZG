@@ -85,13 +85,13 @@
             // 对方有发消息。只有文本消息有ext
             
             _nameLabel.text = [[lastRecivedMsg.ext objectForKey:@"nickname"] description];
-            [_headImageV sd_setImageWithURL:[NSURL URLWithString:[lastRecivedMsg.ext objectForKey:@"avatarURLPath"]] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+            [_headImageV sd_setImageWithURL:[NSURL URLWithString:[lastRecivedMsg.ext objectForKey:@"avatarURLPath"]] placeholderImage:[UIImage imageNamed:@"user_place"]];
             
         }else{
             // 对方没有发消息
             [[YLZGDataManager sharedManager] getOneStudioByUserName:model.conversationId Block:^(ContactersModel *model) {
                 _nameLabel.text = model.realname.length>0 ? model.realname : model.nickname;
-                [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+                [_headImageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
             }];
         }
         

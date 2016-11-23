@@ -10,4 +10,7 @@
 
 @interface MyCreateTaskController : SuperViewController
 
+@property (copy,nonatomic) NSArray *array;
+
+
 @end

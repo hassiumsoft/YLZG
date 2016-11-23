@@ -147,7 +147,7 @@
     // 第一行  红色
     self.headImageV = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 60, 60)];
     self.headImageV.clipsToBounds = YES;
-    [self.headImageV sd_setImageWithURL:[NSURL URLWithString:userInfo.head] placeholderImage:[UIImage imageNamed:@"ico_gg_mrtouxiang"]];
+    [self.headImageV sd_setImageWithURL:[NSURL URLWithString:userInfo.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
     self.headImageV.layer.cornerRadius = 30.f;
     [self.whiteView addSubview:self.headImageV];
     
