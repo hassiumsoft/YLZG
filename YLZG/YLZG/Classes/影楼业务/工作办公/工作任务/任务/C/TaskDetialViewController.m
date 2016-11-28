@@ -56,20 +56,54 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
-    
-    return cell;
+    if (indexPath.section == 0) {
+        // 项目
+        NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+        
+        return cell;
+    }else if (indexPath.section == 1){
+        // 任务记录
+        NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+        
+        return cell;
+    }else{
+        // 项目评论记录
+        NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+        
+        return cell;
+    }
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 30;
+    if (section == 0) {
+        // 任务详细
+        return 28;
+    }else if (section == 1){
+        // 任务记录
+        if (self.detialModel.dynamic.count >= 1) {
+            return 28;
+        }else{
+            return 0;
+        }
+    }else{
+        // 评论记录
+        if (self.detialModel.discuss.count >= 1) {
+            return 28;
+        }else{
+            return 0;
+        }
+    }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSString *kkk = [NSString stringWithFormat:@"项目：%@",self.detialModel.name ];
-    NSArray *headArr = @[kkk,@"任务记录",@"评论记录"];
-    UIView *headV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 30)];
-    headV.backgroundColor = [UIColor lightGrayColor];
+    NSString *proStr = [NSString stringWithFormat:@"项目：%@",self.detialModel.name ];
+    NSArray *headArr = @[proStr,@"任务记录",@"评论记录"];
+    UIView *headV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 28)];
+    headV.backgroundColor = self.view.backgroundColor;
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 100, 30)];
     label.text = headArr[section];
     label.font = [UIFont systemFontOfSize:14];
@@ -108,9 +142,10 @@
 - (void)getData
 {
     NSString *url = [NSString stringWithFormat:TaskDetial_Url,[ZCAccountTool account].userID,self.listModel.id];
+    [self showHudMessage:@"正在加载···"];
     NSLog(@"任务详情url = %@",url);
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+        [self hideHud:0];
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         if (code == 1) {
@@ -121,7 +156,7 @@
             [self showErrorTips:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        [self hideHud:0];
         [self sendErrorWarning:error.localizedDescription];
     }];
     

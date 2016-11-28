@@ -48,6 +48,7 @@
 		3B1CFCC51DD1BCB700C4B538 /* RudiRuceVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFCC41DD1BCB700C4B538 /* RudiRuceVController.m */; };
 		3B2A63201DE2A0F3006AB71A /* ProduceDetialVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A631F1DE2A0F3006AB71A /* ProduceDetialVController.m */; };
 		3B2A63231DE2BB13006AB71A /* ProduceDetialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A63221DE2BB13006AB71A /* ProduceDetialModel.m */; };
+		3B343ADE1DEBFB3000474549 /* TaskRecoredTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343ADD1DEBFB3000474549 /* TaskRecoredTableViewCell.m */; };
 		3B3BBF931DB475EF00C9E2FD /* ContactHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBF921DB475EF00C9E2FD /* ContactHeadView.m */; };
 		3B3BBF961DB475FA00C9E2FD /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBF951DB475FA00C9E2FD /* ContactTableViewCell.m */; };
 		3B3BBF9C1DB477D800C9E2FD /* YLGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBF9B1DB477D800C9E2FD /* YLGroup.m */; };
@@ -504,6 +505,8 @@
 		3B2A631F1DE2A0F3006AB71A /* ProduceDetialVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetialVController.m; sourceTree = "<group>"; };
 		3B2A63211DE2BB13006AB71A /* ProduceDetialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProduceDetialModel.h; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/ProduceDetialModel.h"; sourceTree = SOURCE_ROOT; };
 		3B2A63221DE2BB13006AB71A /* ProduceDetialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProduceDetialModel.m; path = "YLZG/Classes/影楼业务/工作办公/工作任务/项目/C/ProduceDetialModel.m"; sourceTree = SOURCE_ROOT; };
+		3B343ADC1DEBFB3000474549 /* TaskRecoredTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskRecoredTableViewCell.h; path = "../../../../../../../../../JAJ/JAJ/Classes/Others/延展/TaskRecoredTableViewCell.h"; sourceTree = "<group>"; };
+		3B343ADD1DEBFB3000474549 /* TaskRecoredTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskRecoredTableViewCell.m; path = "../../../../../../../../../JAJ/JAJ/Classes/Others/延展/TaskRecoredTableViewCell.m"; sourceTree = "<group>"; };
 		3B3BBF911DB475EF00C9E2FD /* ContactHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactHeadView.h; sourceTree = "<group>"; };
 		3B3BBF921DB475EF00C9E2FD /* ContactHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactHeadView.m; sourceTree = "<group>"; };
 		3B3BBF941DB475FA00C9E2FD /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
@@ -2990,6 +2993,8 @@
 				3B6330161DE52F0F007033F7 /* TaskListTableCell.m */,
 				3B974E1B1DE69B8D00AA4A23 /* TaskInputView.h */,
 				3B974E1C1DE69B8D00AA4A23 /* TaskInputView.m */,
+				3B343ADC1DEBFB3000474549 /* TaskRecoredTableViewCell.h */,
+				3B343ADD1DEBFB3000474549 /* TaskRecoredTableViewCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -4023,6 +4028,7 @@
 				3B5DC7201DB87265000F7A06 /* FixFopen.c in Sources */,
 				3B1CFCC21DD17D0700C4B538 /* CardNumTableCell.m in Sources */,
 				3B9E17031DD2F32C0028C72F /* CaiwuDetialCell.m in Sources */,
+				3B343ADE1DEBFB3000474549 /* TaskRecoredTableViewCell.m in Sources */,
 				3B4C135E1DC85F4700827D4F /* ChangeRulesController.m in Sources */,
 				3B4C10381DC85DDC00827D4F /* FinalTableViewCell.m in Sources */,
 				3B4C135B1DC85F4700827D4F /* TimePickerView.m in Sources */,
