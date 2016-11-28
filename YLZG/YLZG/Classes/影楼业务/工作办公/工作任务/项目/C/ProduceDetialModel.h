@@ -14,6 +14,8 @@
 
 @interface ProduceDetialModel : NSObject
 
+/** 项目ID */
+@property (copy,nonatomic) NSString *id;
 /** 创建者 */
 @property (copy,nonatomic) NSString *create_user;
 /** 项目名称 */

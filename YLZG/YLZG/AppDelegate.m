@@ -189,6 +189,7 @@
     
     [JPUSHService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
+    
 }
 
 - (void)goToMssageViewControllerWith:(NSDictionary*)dic{

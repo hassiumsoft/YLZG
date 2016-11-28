@@ -165,10 +165,8 @@
             NSArray *care = [result objectForKey:@"care"];
             NSArray *create = [result objectForKey:@"create"];
             NSDictionary *manage = [result objectForKey:@"manage"];
-            NSDictionary *later = [manage objectForKey:@"later"];
-            NSDictionary *today = [manage objectForKey:@"today"];
-            NSArray *laterArr = [later objectForKey:@"lists"];
-            NSArray *todayArr = [today objectForKey:@"lists"];
+            NSArray *laterArr = [manage objectForKey:@"later"];
+            NSArray *todayArr = [manage objectForKey:@"today"];
             
             NSArray *laterModel = [TaskListModel mj_objectArrayWithKeyValuesArray:laterArr];
             NSArray *todayModel = [TaskListModel mj_objectArrayWithKeyValuesArray:todayArr];

@@ -130,10 +130,11 @@
             //  分享
             LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
                 [[YLZGDataManager sharedManager] getShareUrlCompletion:^(NSString *url) {
+                    [self shareImagestoWechat:url Type:1];
                     if (buttonIndex == 1) {
-                        [self sharetoWechat:url Type:0];
+                        [self shareWebPagetoWechat:url Type:0];
                     }else if(buttonIndex == 2){
-                        [self sharetoWechat:url Type:1];
+                        [self shareWebPagetoWechat:url Type:1];
                     }
                 }];
                 
@@ -152,10 +153,31 @@
     }
 }
 
-- (void)sharetoWechat:(NSString *)url Type:(int)shareType
+#pragma mark - 分享多张图片
+- (void)shareImagestoWechat:(NSString *)url Type:(int)shareType
+{
+    UIImage *image1 = [UIImage imageNamed:@"lose_wlan"];
+    UIImage *image2 = [UIImage imageNamed:@"reg-fb-bg"];
+    UIImage *image3 = [UIImage imageNamed:@"cm2_fm_bg-ip6"];
+    UIImage *image4 = [UIImage imageNamed:@"lose_wlan"];
+    UIImage *image5 = [UIImage imageNamed:@"lose_wlan"];
+    UIImage *image6 = [UIImage imageNamed:@"lose_wlan"];
+    UIImage *image7 = [UIImage imageNamed:@"lose_wlan"];
+    UIImage *image8 = [UIImage imageNamed:@"lose_wlan"];
+    UIImage *image9 = [UIImage imageNamed:@"lose_wlan"];
+    
+    
+    NSArray *activityItems = @[image1,image2,image3,image4,image5,image6,image7,image8,image9];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+    
+    [self presentViewController:activityVC animated:TRUE completion:nil];
+}
+#pragma mark - 分享网页链接
+- (void)shareWebPagetoWechat:(NSString *)url Type:(int)shareType
 {
     WXMediaMessage *message = [WXMediaMessage message];
-    message.title = @"影楼掌柜-专业的儿童影楼APP";
+    message.title = @"影楼掌柜-专业的影楼APP";
     message.description = @"随时随地掌握您的影楼工作。";
     [message setThumbImage:[UIImage imageNamed:@"app_logo"]];
     
