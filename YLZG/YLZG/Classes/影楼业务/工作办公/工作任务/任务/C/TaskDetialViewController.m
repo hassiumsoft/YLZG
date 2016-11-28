@@ -13,6 +13,10 @@
 #import "TaskDetialModel.h"
 #import "NormalTableCell.h"
 #import "TaskInputView.h"
+#import "HomeNavigationController.h"
+#import "ShowBigImgVController.h"
+#import "TaskRecordTableCell.h"
+#import "TaskDiscussTableCell.h"
 
 
 @interface TaskDetialViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -63,40 +67,74 @@
         return cell;
     }else if (indexPath.section == 1){
         // 任务记录
-        NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
-        
+        TaskRecordTableCell *cell = [TaskRecordTableCell sharedTaskRecordTableCell:tableView];
+        cell.dynamicModel = self.detialModel.dynamic[indexPath.row];
         return cell;
     }else{
         // 项目评论记录
-        NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
-        
+        TaskDiscussTableCell *cell = [TaskDiscussTableCell sharedTaskDiscussCell:tableView];
+        TaskDetialDiscussModel *disModel = self.detialModel.discuss[indexPath.row];
+        cell.discussModel = disModel;
+        cell.DidBlock = ^(NSInteger am_type){
+            [self.view endEditing:YES];
+            if (am_type == 1) {
+                // 查看大图
+                
+                ShowBigImgVController *show = [ShowBigImgVController new];
+                HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:show];
+                show.iconStr = disModel.am_uri;
+                [self presentViewController:nav animated:NO completion:^{
+                    
+                }];
+                
+            }else{
+                // 查看文件
+                NSArray *itemArr = @[disModel.am_uri];
+                UIActivityViewController *activity = [[UIActivityViewController alloc]initWithActivityItems:itemArr applicationActivities:nil];
+                [self presentViewController:activity animated:TRUE completion:nil];
+            }
+        };
         return cell;
     }
 }
+
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.view endEditing:YES];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return 44;
+    }else if (indexPath.section == 1){
+        return 24;
+    }else {
+        TaskDetialDiscussModel *disModel = self.detialModel.discuss[indexPath.row];
+        if (disModel.am_type == 0) {
+            // 没有附件
+            return 60;
+        }else if (disModel.am_type == 1){
+            // 附件是图片
+            return 150;
+        }else {
+            // 附件是文件
+            return 150;
+        }
+        
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
         // 任务详细
         return 28;
-    }else if (section == 1){
-        // 任务记录
-        if (self.detialModel.dynamic.count >= 1) {
-            return 28;
-        }else{
-            return 0;
-        }
     }else{
-        // 评论记录
-        if (self.detialModel.discuss.count >= 1) {
-            return 28;
-        }else{
-            return 0;
-        }
+        return 0;
     }
+    
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -104,7 +142,7 @@
     NSArray *headArr = @[proStr,@"任务记录",@"评论记录"];
     UIView *headV = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 28)];
     headV.backgroundColor = self.view.backgroundColor;
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, 100, 30)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30, 30)];
     label.text = headArr[section];
     label.font = [UIFont systemFontOfSize:14];
     [headV addSubview:label];

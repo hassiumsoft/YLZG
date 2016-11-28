@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <MJExtension.h>
-#import "TaskDetialCareModel.h"
 #import "TaskDetialCheckModel.h"
 #import "TaskDetialDiscussModel.h"
 #import "TaskDetialDynamicModel.h"
@@ -36,6 +35,14 @@
 @property (assign,nonatomic) int status;
 /** 负责人UID */
 @property (copy,nonatomic) NSString *uid;
+
+/** 项目ID */
+@property (copy,nonatomic) NSString *pid;
+/** 项目名称 */
+@property (copy,nonatomic) NSString *project;
+/** 是否关注 */
+@property (assign,nonatomic) BOOL isCare;
+
 
 /** 检查项 */
 @property (copy,nonatomic) NSArray *check;

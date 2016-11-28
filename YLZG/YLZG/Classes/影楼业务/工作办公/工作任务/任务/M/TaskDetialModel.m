@@ -26,14 +26,7 @@
     }
     model.discuss = array1;
     // 关注者
-    NSMutableArray *array2 = [NSMutableArray new];
-    NSArray *careArr = [model.care copy];
-    for (NSDictionary *dic in careArr) {
-        TaskDetialCareModel *care = [TaskDetialCareModel mj_objectWithKeyValues:dic];
-        
-        [array2 addObject:care];
-    }
-    model.care = array2;
+    model.care = model.care;
     // 创建记录
     NSMutableArray *array3 = [NSMutableArray new];
     NSArray *dynamicArr = [model.dynamic copy];
