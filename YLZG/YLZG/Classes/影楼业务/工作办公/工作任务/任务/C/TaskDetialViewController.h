@@ -9,8 +9,12 @@
 #import "SuperViewController.h"
 #import "TaskListModel.h"
 
+
+typedef void(^CompleteBlock)();
+
 @interface TaskDetialViewController : SuperViewController
 
 @property (strong,nonatomic) TaskListModel *listModel;
+
 
 @end

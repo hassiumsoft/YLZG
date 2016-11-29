@@ -37,6 +37,7 @@ NSString *const StartWorkTime = @"StartWorkTime";
 NSString *const EndWorkTime = @"EndWorkTime";
 NSString *const KQPaibanciChanged = @"KQPaibanciChanged";
 NSString *const KaoqinSettingNoti = @"KaoqinSettingNoti";
+NSString *const TaskReloadData = @"TaskReloadData";
 
 
 

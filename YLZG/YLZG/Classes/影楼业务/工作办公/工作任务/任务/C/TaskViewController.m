@@ -38,6 +38,8 @@
     [self setupSubViews];
     [self getData];
     
+    [YLNotificationCenter addObserver:self selector:@selector(getData) name:TaskReloadData object:nil];
+    
 }
 
 - (void)setupSubViews

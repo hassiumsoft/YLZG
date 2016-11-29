@@ -44,7 +44,7 @@
     ZCAccount * account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:LeadPage_Url,account.userID];
     
-    [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         if (code == 1) {

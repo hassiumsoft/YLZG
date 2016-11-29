@@ -54,7 +54,6 @@
 		3B343B3B1DEBFECC00474549 /* TaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343AF01DEBFECC00474549 /* TaskViewController.m */; };
 		3B343B411DEBFECC00474549 /* TaskListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343AFE1DEBFECC00474549 /* TaskListTableCell.m */; };
 		3B343B421DEBFECC00474549 /* AddNewTaskProController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343B021DEBFECC00474549 /* AddNewTaskProController.m */; };
-		3B343B431DEBFECC00474549 /* ProduceDetialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343B041DEBFECC00474549 /* ProduceDetialModel.m */; };
 		3B343B441DEBFECC00474549 /* ProduceDetialVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343B061DEBFECC00474549 /* ProduceDetialVController.m */; };
 		3B343B451DEBFECC00474549 /* ProduceDiscussVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343B081DEBFECC00474549 /* ProduceDiscussVController.m */; };
 		3B343B461DEBFECC00474549 /* ProduceFileVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343B0A1DEBFECC00474549 /* ProduceFileVController.m */; };
@@ -85,6 +84,7 @@
 		3B343B901DEC017A00474549 /* TaskProduceListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343B8A1DEC017A00474549 /* TaskProduceListModel.m */; };
 		3B343B931DEC077C00474549 /* TaskDiscussTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343B921DEC077C00474549 /* TaskDiscussTableCell.m */; };
 		3B343B961DEC263D00474549 /* ShowBigImgVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343B951DEC263D00474549 /* ShowBigImgVController.m */; };
+		3B343B991DED2B5000474549 /* ProduceDetialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343B981DED2B5000474549 /* ProduceDetialModel.m */; };
 		3B3BBF931DB475EF00C9E2FD /* ContactHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBF921DB475EF00C9E2FD /* ContactHeadView.m */; };
 		3B3BBF961DB475FA00C9E2FD /* ContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBF951DB475FA00C9E2FD /* ContactTableViewCell.m */; };
 		3B3BBF9C1DB477D800C9E2FD /* YLGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBF9B1DB477D800C9E2FD /* YLGroup.m */; };
@@ -518,8 +518,6 @@
 		3B343AFE1DEBFECC00474549 /* TaskListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListTableCell.m; sourceTree = "<group>"; };
 		3B343B011DEBFECC00474549 /* AddNewTaskProController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewTaskProController.h; sourceTree = "<group>"; };
 		3B343B021DEBFECC00474549 /* AddNewTaskProController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewTaskProController.m; sourceTree = "<group>"; };
-		3B343B031DEBFECC00474549 /* ProduceDetialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDetialModel.h; sourceTree = "<group>"; };
-		3B343B041DEBFECC00474549 /* ProduceDetialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetialModel.m; sourceTree = "<group>"; };
 		3B343B051DEBFECC00474549 /* ProduceDetialVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDetialVController.h; sourceTree = "<group>"; };
 		3B343B061DEBFECC00474549 /* ProduceDetialVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetialVController.m; sourceTree = "<group>"; };
 		3B343B071DEBFECC00474549 /* ProduceDiscussVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDiscussVController.h; sourceTree = "<group>"; };
@@ -580,6 +578,8 @@
 		3B343B921DEC077C00474549 /* TaskDiscussTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDiscussTableCell.m; sourceTree = "<group>"; };
 		3B343B941DEC263D00474549 /* ShowBigImgVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowBigImgVController.h; sourceTree = "<group>"; };
 		3B343B951DEC263D00474549 /* ShowBigImgVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowBigImgVController.m; sourceTree = "<group>"; };
+		3B343B971DED2B5000474549 /* ProduceDetialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProduceDetialModel.h; sourceTree = "<group>"; };
+		3B343B981DED2B5000474549 /* ProduceDetialModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProduceDetialModel.m; sourceTree = "<group>"; };
 		3B3BBF911DB475EF00C9E2FD /* ContactHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactHeadView.h; sourceTree = "<group>"; };
 		3B3BBF921DB475EF00C9E2FD /* ContactHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactHeadView.m; sourceTree = "<group>"; };
 		3B3BBF941DB475FA00C9E2FD /* ContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewCell.h; sourceTree = "<group>"; };
@@ -1616,8 +1616,6 @@
 			children = (
 				3B343B011DEBFECC00474549 /* AddNewTaskProController.h */,
 				3B343B021DEBFECC00474549 /* AddNewTaskProController.m */,
-				3B343B031DEBFECC00474549 /* ProduceDetialModel.h */,
-				3B343B041DEBFECC00474549 /* ProduceDetialModel.m */,
 				3B343B051DEBFECC00474549 /* ProduceDetialVController.h */,
 				3B343B061DEBFECC00474549 /* ProduceDetialVController.m */,
 				3B343B071DEBFECC00474549 /* ProduceDiscussVController.h */,
@@ -1637,6 +1635,8 @@
 		3B343B111DEBFECC00474549 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				3B343B971DED2B5000474549 /* ProduceDetialModel.h */,
+				3B343B981DED2B5000474549 /* ProduceDetialModel.m */,
 				3B343B701DEC016F00474549 /* ProduceDiscussModel.h */,
 				3B343B711DEC016F00474549 /* ProduceDiscussModel.m */,
 				3B343B721DEC016F00474549 /* ProduceFileModel.h */,
@@ -3939,7 +3939,6 @@
 				3BCA323A1D9CC07600A0E980 /* YLConstKey.m in Sources */,
 				3B3BBF9F1DB4780F00C9E2FD /* GroupListViewController.m in Sources */,
 				3B948B6B1DD993C600D75112 /* TodayOrderViewController.m in Sources */,
-				3B343B431DEBFECC00474549 /* ProduceDetialModel.m in Sources */,
 				3B4C10A31DC85DDC00827D4F /* ButtonIconModel.m in Sources */,
 				3BCF3A3B1D9E6CF800BEE236 /* TAPageControl.m in Sources */,
 				3B4C10C51DC85DDC00827D4F /* KanyangPreViewController.m in Sources */,
@@ -3947,6 +3946,7 @@
 				3B3BBF9C1DB477D800C9E2FD /* YLGroup.m in Sources */,
 				3BCF39F01D9E630300BEE236 /* NSDate+Category.m in Sources */,
 				3B56D7851DC739CE003A57FD /* MessageListTableCell.m in Sources */,
+				3B343B991DED2B5000474549 /* ProduceDetialModel.m in Sources */,
 				3B4C13431DC85F4700827D4F /* EditAdminsViewController.m in Sources */,
 				3B4C10C61DC85DDC00827D4F /* PaizhaoPreViewController.m in Sources */,
 				3BCF39991D9E12A200BEE236 /* AboutZhichengController.m in Sources */,

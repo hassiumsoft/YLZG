@@ -226,6 +226,10 @@
 #define TaskList_Url @"http://192.168.0.18/index.php/home/task/lists?uid=%@"
 // 任务-详细信息
 #define TaskDetial_Url @"http://192.168.0.18/index.php/home/task/detail?uid=%@&id=%@"
+// 任务--修改任务状态
+#define UpdateTaskStatus_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&status=%d"
+// 任务--修改任务名称
+#define UpdateTaskName_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&name=%@"
 
 
 #endif /* PCH_HTTP_URL_h */

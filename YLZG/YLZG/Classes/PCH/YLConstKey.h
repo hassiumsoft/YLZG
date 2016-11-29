@@ -17,79 +17,81 @@ NS_ASSUME_NONNULL_BEGIN
 #define YLNotificationCenter [NSNotificationCenter defaultCenter]
 
 /** 除移选择器 */
-UIKIT_EXTERN NSString *const YLRemovePickerView;
+extern NSString *const YLRemovePickerView;
 /** 签到时间 */
-UIKIT_EXTERN NSString *const YLQiaodaoTime;
+extern NSString *const YLQiaodaoTime;
 /** 选取日期 */
-UIKIT_EXTERN NSString *const YLDatePicker;
+extern NSString *const YLDatePicker;
 /** removeDatePickerV */
-UIKIT_EXTERN NSString *const YLRemoveDatePickerV;
+extern NSString *const YLRemoveDatePickerV;
 /** 传递预约时间 */
-UIKIT_EXTERN NSString *const YLPickerTime;
+extern NSString *const YLPickerTime;
 /** 发布公告后通知前VC刷新数据 */
-UIKIT_EXTERN NSString *const YLRequestData;
+extern NSString *const YLRequestData;
 /** 摄控本传递Type给父类VC */
-UIKIT_EXTERN NSString *const YLTypeObject;
+extern NSString *const YLTypeObject;
 /** 待审批里的刷新数据 */
-UIKIT_EXTERN NSString *const YLReloadShenpiData;
+extern NSString *const YLReloadShenpiData;
 /** 财务统计监听日期月份 */
-UIKIT_EXTERN NSString *const YLCaiwuChangeDate;
+extern NSString *const YLCaiwuChangeDate;
 /** 改昵称了 */
-UIKIT_EXTERN NSString *const YLNickNameChanged;
+extern NSString *const YLNickNameChanged;
 /** 改头像了 */
-UIKIT_EXTERN NSString *const YLHeadImageChanged;
+extern NSString *const YLHeadImageChanged;
 /** 除移蒙蒙图层 */
-UIKIT_EXTERN NSString *const YLRemoveMengBtn;
+extern NSString *const YLRemoveMengBtn;
 /** 传递请假的类型 */
-UIKIT_EXTERN NSString *const YLQingjiaType;
+extern NSString *const YLQingjiaType;
 /** 没有数据时除移原先业绩榜视图 */
-UIKIT_EXTERN NSString *const YLRemoveYejiTableView;
+extern NSString *const YLRemoveYejiTableView;
 /** 查询名字 */
-UIKIT_EXTERN NSString *const YLChaxunMingzi;
+extern NSString *const YLChaxunMingzi;
 /** 订单保存成功之后的提示 */
-UIKIT_EXTERN NSString *const YLOffLineOrderAlert;
+extern NSString *const YLOffLineOrderAlert;
 /** 传递type */
-UIKIT_EXTERN NSString *const YLaccount_type;
+extern NSString *const YLaccount_type;
 /** 选择城市 */
-UIKIT_EXTERN NSString *const YLCityDidChangeNotification;
+extern NSString *const YLCityDidChangeNotification;
 /** 选中的城市 */
-UIKIT_EXTERN NSString *const YLSelectCityName;
+extern NSString *const YLSelectCityName;
 /** 定位到的城市 */
-UIKIT_EXTERN NSString *const FYLocationCity;
+extern NSString *const FYLocationCity;
 /** 用户"首次登陆"判断 */
-UIKIT_EXTERN NSString *const isFirst;
+extern NSString *const isFirst;
 /** 离线订单的本地通知 */
-UIKIT_EXTERN NSString *const YLLocalNotiOfflineOrder;
+extern NSString *const YLLocalNotiOfflineOrder;
 /** 退出环信登录 */
-UIKIT_EXTERN NSString *const HXReturnAccount;
+extern NSString *const HXReturnAccount;
 /** 上班时间 */
-UIKIT_EXTERN NSString *const StartWorkTime;
+extern NSString *const StartWorkTime;
 /** 下班时间 */
-UIKIT_EXTERN NSString *const EndWorkTime;
+extern NSString *const EndWorkTime;
 /** 排班制切换班次 */
-UIKIT_EXTERN NSString *const KQPaibanciChanged;
+extern NSString *const KQPaibanciChanged;
 /** 考勤高级设置时间通知 */
-UIKIT_EXTERN NSString *const KaoqinSettingNoti;
+extern NSString *const KaoqinSettingNoti;
+/** 任务列表刷新数据 */
+extern NSString *const TaskReloadData;
 
 /************** 环信SDK里的通知键值 **************/
 
 /** 通知通讯录界面刷新数据 */
-UIKIT_EXTERN NSString *const HXUpdataContacts;
+extern NSString *const HXUpdataContacts;
 /** 没有消息了，红点消失吧 */
-UIKIT_EXTERN NSString *const HXSetupUntreatedApplyCount;
-UIKIT_EXTERN NSString *const HXSetupUnreadMessageCount;
+extern NSString *const HXSetupUntreatedApplyCount;
+extern NSString *const HXSetupUnreadMessageCount;
 /** 视频通话信息 */
-UIKIT_EXTERN NSString *const HXShowCallInfo;
+extern NSString *const HXShowCallInfo;
 /** 除移全部消息记录 */
-UIKIT_EXTERN NSString *const HXRemoveAllMessages;
+extern NSString *const HXRemoveAllMessages;
 /** 离开群组通知 */
-UIKIT_EXTERN NSString *const HXExitGroup;
+extern NSString *const HXExitGroup;
 /** 退到主界面，再push到聊天界面 */
-UIKIT_EXTERN NSString *const HXRePushToChat;
+extern NSString *const HXRePushToChat;
 /** 呼出网络电话 */
-UIKIT_EXTERN NSString *const HXCallOutPhoneChatter;
+extern NSString *const HXCallOutPhoneChatter;
 /** 更新群组信息 */
-UIKIT_EXTERN NSString *const HXUpdataGroupInfo;
+extern NSString *const HXUpdataGroupInfo;
 
 
 
@@ -100,12 +102,12 @@ UIKIT_EXTERN NSString *const HXUpdataGroupInfo;
 
 #define USER_DEFAULT [NSUserDefaults standardUserDefaults];
 
-UIKIT_EXTERN NSString *const UDRedComponent; // 存储主题切换时的R色值
-UIKIT_EXTERN NSString *const UDGreenComponent; // 存储主题切换时的G色值
-UIKIT_EXTERN NSString *const UDBlueComponent; // 存储主题切换时的B色值
-UIKIT_EXTERN NSString *const CFBundleVersion; // 第一次进来展示引导页
-UIKIT_EXTERN NSString *const UDUnApplyCount; // 未处理的好友请求
-UIKIT_EXTERN NSString *const UDLoginUserName; // 登录名缓存
+extern NSString *const UDRedComponent; // 存储主题切换时的R色值
+extern NSString *const UDGreenComponent; // 存储主题切换时的G色值
+extern NSString *const UDBlueComponent; // 存储主题切换时的B色值
+extern NSString *const CFBundleVersion; // 第一次进来展示引导页
+extern NSString *const UDUnApplyCount; // 未处理的好友请求
+extern NSString *const UDLoginUserName; // 登录名缓存
 
 /************** 其他键值 *************/
 
