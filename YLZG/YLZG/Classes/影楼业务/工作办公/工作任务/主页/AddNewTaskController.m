@@ -201,10 +201,15 @@
             };
             [self.navigationController pushViewController:choose animated:YES];
         }else if (indexPath.row == 1){
-            // 选择负责人
+            // 选择负责人--必选先选中项目
+            if (self.produceID.length < 1) {
+                [self showErrorTips:@"请先选择项目"];
+                return;
+            }
             SelectTaskFuzerController *select = [SelectTaskFuzerController new];
+            select.produceID = self.produceID;
             select.title = @"任务负责人";
-            select.SelectBlock = ^(StaffInfoModel *model){
+            select.SelectBlock = ^(ProduceMemberModel *model){
                 self.fuzerStr = model.nickname;
                 self.fuzerID = model.uid;
                 [self.tableView reloadData];
@@ -293,6 +298,9 @@
         NSString *message = [[responseObject objectForKey:@"message"] description];
         
         if (status == 1) {
+            
+            [YLNotificationCenter postNotificationName:TaskReloadData object:nil];
+            
             UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [self.navigationController popViewControllerAnimated:YES];

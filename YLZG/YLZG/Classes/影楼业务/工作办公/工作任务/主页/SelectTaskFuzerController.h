@@ -7,10 +7,12 @@
 //
 
 #import "SuperViewController.h"
-#import "StaffInfoModel.h"
+#import "ProduceMemberModel.h"
 
 @interface SelectTaskFuzerController : SuperViewController
 
-@property (copy,nonatomic) void (^SelectBlock)(StaffInfoModel *model);
+@property (copy,nonatomic) NSString *produceID;
+
+@property (copy,nonatomic) void (^SelectBlock)(ProduceMemberModel *model);
 
 @end

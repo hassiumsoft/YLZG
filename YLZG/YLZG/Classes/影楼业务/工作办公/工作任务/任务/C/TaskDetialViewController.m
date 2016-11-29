@@ -367,7 +367,7 @@
         NSString *checkStr = checkModel.content;
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1]};
         CGFloat W = [checkStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size.width;
-        W = W + 5;
+        W = W + 25;
         UILabel *checkLabel = [[UILabel alloc]initWithFrame:CGRectMake(X, 8, W, 25)];
         checkLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
         checkLabel.text = checkStr;

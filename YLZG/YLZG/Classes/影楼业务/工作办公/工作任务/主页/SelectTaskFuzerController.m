@@ -10,6 +10,8 @@
 #import "StaffTableViewCell.h"
 #import <MJExtension.h>
 #import <MJRefresh.h>
+#import <UIImageView+WebCache.h>
+#import "ProduceDetialModel.h"
 #import "ZCAcCountTool.h"
 #import "UserInfoViewController.h"
 #import "HTTPManager.h"
@@ -19,7 +21,7 @@
 /** 表格 */
 @property (strong,nonatomic) UITableView *tableView;
 /** 数据源 */
-@property (strong,nonatomic) NSMutableArray *array;
+@property (copy,nonatomic) NSArray *array;
 
 @end
 
@@ -29,33 +31,28 @@
     [super viewDidLoad];
     [self setupSubViews];
 }
-- (void)getData
+- (void)getDetialData
 {
-    
-    ZCAccount * account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:YLHome_Url, account.userID];
-    [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        int status = [[[responseObject objectForKey:@"code"] description] intValue];
-        NSString *message = [[responseObject objectForKey:@"message"] description];
+    NSString *url = [NSString stringWithFormat:ProduceDetial_URL,[ZCAccountTool account].userID,self.produceID];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
         [self.tableView.mj_header endRefreshing];
-        if (status == 1) {
-            NSArray *array = [responseObject objectForKey:@"result"];
-            if (array.count >= 1) {
-                self.array = [StaffInfoModel mj_objectArrayWithKeyValuesArray:array];
-                self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-                    
-                }];
-                [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                [self.tableView reloadData];
-            }
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            NSDictionary *result = [responseObject objectForKey:@"result"];
+            ProduceDetialModel *model = [ProduceDetialModel mj_objectWithKeyValues:result];
+            self.array = model.member;
+            [self.tableView reloadData];
+            
         }else{
-            [self sendErrorWarning:message];
+            [self showErrorTips:message];
         }
+        
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
         [self.tableView.mj_header endRefreshing];
-        [self sendErrorWarning:error.localizedDescription];
+        [self showErrorTips:error.localizedDescription];
     }];
-    
 }
 
 - (void)setupSubViews
@@ -68,7 +65,7 @@
     
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self getData];
+        [self getDetialData];
     }];
     [self.tableView.mj_header beginRefreshing];
     
@@ -86,8 +83,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StaffTableViewCell *cell = [StaffTableViewCell sharedStaffTableViewCell:tableView];
-    StaffInfoModel *model = self.array[indexPath.row];
-    cell.model = model;
+    ProduceMemberModel *model = self.array[indexPath.row];
+    [cell.imageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+    cell.nameLabel.text = model.nickname;
     
     return cell;
 }
@@ -98,9 +96,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    StaffInfoModel *model = self.array[indexPath.row];
+    ProduceMemberModel *model = self.array[indexPath.row];
     ZCAccount *account = [ZCAccountTool account];
-    if ([model.username isEqualToString:account.username]) {
+    if ([model.uid isEqualToString:account.username]) {
         UserInfoViewController *userInfo = [[UserInfoViewController alloc]init];
         [self.navigationController pushViewController:userInfo animated:YES];
     }else{
