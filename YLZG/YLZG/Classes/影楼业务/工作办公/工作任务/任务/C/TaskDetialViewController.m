@@ -11,9 +11,11 @@
 #import "ZCAccountTool.h"
 #import <MJExtension.h>
 #import <Masonry.h>
+#import "SelectTaskFuzerController.h"
 #import "TaskDetialModel.h"
 #import "NormalTableCell.h"
 #import "TaskInputView.h"
+#import <PDTSimpleCalendarViewController.h>
 #import <LCActionSheet.h>
 #import "NoDequTableCell.h"
 #import "HomeNavigationController.h"
@@ -22,7 +24,7 @@
 #import "TaskDiscussTableCell.h"
 
 
-@interface TaskDetialViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TaskDetialViewController ()<UITableViewDelegate,UITableViewDataSource,PDTSimpleCalendarViewDelegate>
 
 /** 表格 */
 @property (strong,nonatomic) UITableView *tableView;
@@ -203,6 +205,26 @@
     
     
 }
+#pragma mark - 修改截止日期
+- (void)updateEndDate:(NSString *)newDateStr Chuo:(NSTimeInterval)NewDealine
+{
+    NSString *url = [NSString stringWithFormat:UpdateTaskDate_Url,[ZCAccountTool account].userID,self.detialModel.pid,self.detialModel.id,newDateStr];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        KGLog(@"responseObject = %@",responseObject);
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            // 告诉之前的界面刷新数据
+            [YLNotificationCenter postNotificationName:TaskReloadData object:nil];
+            self.detialModel.deadline = NewDealine;
+            [self.tableView reloadData];
+        }else{
+            [self showErrorTips:message];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
 // 修改任务名称
 - (void)editTaskName
 {
@@ -255,6 +277,27 @@
         }
     } otherButtonTitles:@"修改任务昵称", nil];
     [sheet show];
+}
+#pragma mark - 修改负责人
+- (void)updateFuzerMemModel:(ProduceMemberModel *)model
+{
+    NSString *url = [NSString stringWithFormat:UpdateTaskFuzer_Url,[ZCAccountTool account].userID,self.detialModel.pid,self.detialModel.id,model.uid];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        KGLog(@"responseObject = %@",responseObject);
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            // 告诉之前的界面刷新数据
+            [YLNotificationCenter postNotificationName:TaskReloadData object:nil];
+            self.detialModel.nickname = model.nickname;
+            [self.tableView reloadData];
+        }else{
+            [self showErrorTips:message];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self sendErrorWarning:error.localizedDescription];
+    }];
 }
 #pragma mark - 懒加载
 - (UIButton *)switchButton
@@ -386,6 +429,44 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.view endEditing:YES];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            // 修改负责人
+            SelectTaskFuzerController *select = [SelectTaskFuzerController new];
+            select.title = @"修改负责人";
+            select.SelectBlock = ^(ProduceMemberModel *model){
+                // 调用修改接口
+                [self updateFuzerMemModel:model];
+            };
+            select.produceID = self.detialModel.pid;
+            [self.navigationController pushViewController:select animated:YES];
+        }else if (indexPath.row == 2){
+            // 修改截止日期
+            PDTSimpleCalendarViewController *calendar = [PDTSimpleCalendarViewController new];
+            calendar.title = @"修改任务截止日期";
+            calendar.delegate = self;
+            calendar.overlayTextColor = MainColor;
+            calendar.weekdayHeaderEnabled = YES;
+            calendar.firstDate = [NSDate date];
+            calendar.lastDate = [NSDate dateWithHoursFromNow:2*30*24]; // 8个月
+            
+            [self.navigationController pushViewController:calendar animated:YES];
+        }else {
+            
+        }
+    }
+}
+- (void)simpleCalendarViewController:(PDTSimpleCalendarViewController *)controller didSelectDate:(NSDate *)date
+{
+    NSDate *nextDay = [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];//后一天
+    NSString *time = [NSString stringWithFormat:@"%@",nextDay];
+    NSString *chooseDate = [time substringWithRange:NSMakeRange(0, 10)];
+    
+    NSTimeInterval timeInterVal = [nextDay timeIntervalSince1970];
+    
+    // 修改截止日期
+    [self updateEndDate:chooseDate Chuo:timeInterVal];
+    [controller.navigationController popViewControllerAnimated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

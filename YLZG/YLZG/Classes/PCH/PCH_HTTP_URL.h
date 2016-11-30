@@ -230,6 +230,10 @@
 #define UpdateTaskStatus_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&status=%d"
 // 任务--修改任务名称
 #define UpdateTaskName_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&name=%@"
+// 任务--修改任务负责人
+#define UpdateTaskFuzer_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&manager=%@"
+// 任务--修改任务截止日期
+#define UpdateTaskDate_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&deadline=%@"
 
 
 #endif /* PCH_HTTP_URL_h */
