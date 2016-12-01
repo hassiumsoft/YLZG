@@ -16,93 +16,12 @@
 
 #import "EMCallLocalView.h"
 #import "EMCallRemoteView.h"
-
-/*!
- *  \~chinese 
- *  会话状态
- *
- *  \~english
- *  Call session status
- */
-typedef enum{
-    EMCallSessionStatusDisconnected = 0,    /*! \~chinese 通话没开始 \~english Disconnected */
-    EMCallSessionStatusRinging,             /*! \~chinese 通话响铃 \~english Callee is Ringing */
-    EMCallSessionStatusConnecting,          /*! \~chinese 通话已经准备好，等待接听 \~english Waiting for the recipient to pickup */
-    EMCallSessionStatusConnected,           /*! \~chinese 通话已连接 \~english Connection is established */
-    EMCallSessionStatusAccepted,            /*! \~chinese 通话双方同意协商 \~english Accepted */
-}EMCallSessionStatus;
-
-/*!
- *  \~chinese 
- *  通话类型
- *
- *  \~english
- *  Call type
- */
-typedef enum{
-    EMCallTypeVoice = 0,    /*! \~chinese 实时语音 \~english Voice call */
-    EMCallTypeVideo,        /*! \~chinese 实时视频 \~english Video call */
-}EMCallType;
-
-/*!
- *  \~chinese 
- *  通话结束原因
- *
- *  \~english
- *  Call end cause
- */
-typedef enum{
-    EMCallEndReasonHangup   = 0,    /*! \~chinese 对方挂断 \~english The recipient hung up */
-    EMCallEndReasonNoResponse,      /*! \~chinese 对方没有响应 \~english No response from recipient */
-    EMCallEndReasonDecline,         /*! \~chinese 对方拒接 \~english The recipient declined the call */
-    EMCallEndReasonBusy,            /*! \~chinese 对方占线 \~english The recipient was busy */
-    EMCallEndReasonFailed,          /*! \~chinese 失败 \~english Failed to establishing the connection */
-}EMCallEndReason;
-
-/*!
- *  \~chinese 
- *  通话连接方式
- *
- *  \~english
- *  Call connection type
- */
-typedef enum{
-    EMCallConnectTypeNone = 0,  /*! \~chinese 无连接 \~english No connection */
-    EMCallConnectTypeDirect,    /*! \~chinese 直连 \~english  Direct connection */
-    EMCallConnectTypeRelay,     /*! \~chinese 转媒体服务器连接 \~english Relay connection */
-}EMCallConnectType;
-
+#import "EMCallEnum.h"
+#import "EMCommonDefs.h"
 
 /*!
  *  \~chinese
- *  通话数据流状态
- *
- *  \~english
- *  Call status
- */
-typedef enum{
-    EMCallStreamStatusVoicePause = 0,  /*! \~chinese 中断语音 \~english Pause voice streaming */
-    EMCallStreamStatusVoiceResume,     /*! \~chinese 继续语音 \~english Resume voice streaming */
-    EMCallStreamStatusVideoPause,      /*! \~chinese 中断视频 \~english Pause video streaming */
-    EMCallStreamStatusVideoResume,     /*! \~chinese 继续视频 \~english Resume video streaming */
-}EMCallStreamingStatus;
-
-/*!
- *  \~chinese
- *  通话网络状态
- *
- *  \~english
- *  Call Network status
- */
-typedef enum{
-    EMCallNetworkStatusNormal = 0,  /*! \~chinese 正常 \~english Network Available  */
-    EMCallNetworkStatusUnstable,    /*! \~chinese 不稳定 \~english Network Unstable */
-    EMCallNetworkStatusNoData,      /*! \~chinese 没有数据 \~english Network Unavailable */
-}EMCallNetworkStatus;
-
-/*!
- *  \~chinese
- *  会话
+ *  1v1会话
  *
  *  \~english
  *  Call session
@@ -111,13 +30,13 @@ typedef enum{
 @interface EMCallSession : NSObject
 
 /*!
- *  \~chinese 
+ *  \~chinese
  *  会话标识符
  *
  *  \~english
- *  Unique session id
+ *  Unique call id
  */
-@property (nonatomic, strong, readonly) NSString *sessionId;
+@property (nonatomic, strong, readonly) NSString *callId;
 
 /*!
  *  \~chinese 
@@ -126,19 +45,10 @@ typedef enum{
  *  \~english
  *  Local username
  */
-@property (nonatomic, strong, readonly) NSString *username;
+@property (nonatomic, strong, readonly) NSString *localName;
 
 /*!
- *  \~chinese 
- *  对方的username
- *
- *  \~english
- *  The other party's username
- */
-@property (nonatomic, strong, readonly) NSString *remoteUsername;
-
-/*!
- *  \~chinese 
+ *  \~chinese
  *  通话的类型
  *
  *  \~english
@@ -147,13 +57,22 @@ typedef enum{
 @property (nonatomic, readonly) EMCallType type;
 
 /*!
- *  \~chinese 
- *  连接类型
+ *  \~chinese
+ *  主叫还是被叫
  *
  *  \~english
- *  Connection type
+ *  Whether it is the caller
  */
-@property (nonatomic, readonly) EMCallConnectType connectType;
+@property (nonatomic, readonly) BOOL isCaller;
+
+/*!
+ *  \~chinese 
+ *  对方的username
+ *
+ *  \~english
+ *  The other side's username
+ */
+@property (nonatomic, strong, readonly) NSString *remoteName;
 
 /*!
  *  \~chinese 
@@ -178,171 +97,164 @@ typedef enum{
  *  视频通话时对方的图像显示区域
  *
  *  \~english
- *  The other party's display view
+ *  Remote display view
  */
 @property (nonatomic, strong) EMCallRemoteView *remoteVideoView;
 
-/*!
- *  \~chinese
- *  设置视频码率，必须在通话开始前设置
- *
- *  码率范围为150-1000， 默认为600
- *
- *  \~english
- *  Video bit rate, must be set before call session is started.
- *
- *  Value range is 150-1000, the default is 600.
- */
-@property (nonatomic) int videoBitrate;
+#pragma mark - Statistics Property
 
 /*!
  *  \~chinese
- *  获取音频音量，实时变化
- *
- *  @return 音量
+ *  连接类型
  *
  *  \~english
- *  Get voice volume of the call
- *
- *  @return Volume
+ *  Connection type
  */
-- (int)getVoiceVolume;
+@property (nonatomic, readonly) EMCallConnectType connectType;
 
 /*!
  *  \~chinese
- *  获取视频的延迟时间，单位是毫秒，实时变化
- *
- *  @result 视频延迟时间
+ *  视频的延迟时间，单位是毫秒，实时变化
+ *  未获取到返回-1
  *
  *  \~english
- *  Get video latency, in milliseconds, changing in real time
- *
- *  @result The delay time
+ *  Video latency, in milliseconds, changing in real time
+ *  Didn't get to show -1
  */
-- (int)getVideoLatency;
+@property (nonatomic, readonly) int videoLatency;
 
 /*!
  *  \~chinese
- *  获取视频的帧率，实时变化
- *
- *  @result 视频帧率数值
+ *  本地视频的帧率，实时变化
+ *  未获取到返回-1
  *
  *  \~english
- *  Get video frame rate, changing in real time
- *
- *  @result The video frame rate
+ *  Local video frame rate, changing in real time
+ *  Didn't get to show -1
  */
-- (int)getVideoFrameRate;
+@property (nonatomic, readonly) int localVideoFrameRate;
 
 /*!
  *  \~chinese
- *  获取视频丢包率
- *
- *  @result 视频丢包率
+ *  对方视频的帧率，实时变化
+ *  未获取到返回-1
  *
  *  \~english
- *  Get video package lost rate
- *
- *  @result Video package lost rate
+ *  Remote video frame rate, changing in real time
+ *  Didn't get to show -1
  */
-- (int)getVideoLostRateInPercent;
+@property (nonatomic, readonly) int remoteVideoFrameRate;
 
 /*!
  *  \~chinese
- *  获取视频的宽度，固定值，不会实时变化
- *
- *  @result 视频宽度
+ *  本地视频通话对方的比特率kbps，实时变化
+ *  未获取到返回-1
  *
  *  \~english
- *  Get video original width
- *
- *  @result Video original width
+ *  Local the other party's bitrate, changing in real time
+ *  Didn't get to show -1
  */
-- (int)getVideoWidth;
+@property (nonatomic, readonly) int localVideoBitrate;
 
 /*!
  *  \~chinese
- *  获取视频的高度，固定值，不会实时变化
- *
- *  @result 视频高度
+ *  对方视频通话对方的比特率kbps，实时变化
+ *  未获取到返回-1
  *
  *  \~english
- *  Get fixed video original height
- *
- *  @result Video original height
+ *  Remote the other party's bitrate, changing in real time
+ *  Didn't get to show -1
  */
-- (int)getVideoHeight;
+@property (nonatomic, readonly) int remoteVideoBitrate;
 
 /*!
  *  \~chinese
- *  获取视频通话对方的比特率kbps，实时变化
- *
- *  @result 对方比特率
+ *  本地视频丢包率，实时变化
+ *  未获取到返回-1
  *
  *  \~english
- *  Get the other party's bitrate, changing in real time
- *
- *  @result The other party's bitrate
+ *  Local video package lost rate, changing in real time
+ *  Didn't get to show -1
  */
-- (int)getVideoRemoteBitrate;
+@property (nonatomic, readonly) int localVideoLostRateInPercent;
 
 /*!
  *  \~chinese
- *  获取视频的比特率kbps，实时变化
- *
- *  @result 视频比特率
+ *  对方视频丢包率，实时变化
+ *  未获取到返回-1
  *
  *  \~english
- *  Get bitrate of video call, changing in real time
- *
- *  @result Bitrate of video call
+ *  Remote video package lost rate, changing in real time
+ *  Didn't get to show -1
  */
-- (int)getVideoLocalBitrate;
+@property (nonatomic, readonly) int remoteVideoLostRateInPercent;
 
 /*!
  *  \~chinese
- *  获取视频快照，只支持JPEG格式
- *
- *  @param aPath  图片存储路径
+ *  对方视频分辨率
+ *  未获取到返回 (-1,-1)
  *
  *  \~english
- *  Get a snapshot of current video screen as jpeg picture and save to the local file system.
- *
- *  @param aPath  Saved path of picture
+ *  Remote video resolution
+ *  Didn't get to show (-1,-1)
  */
-- (void)screenCaptureToFilePath:(NSString *)aPath error:(EMError**)pError;
+@property (nonatomic, readonly) CGSize remoteVideoResolution;
+
+#pragma mark - Control Stream
 
 /*!
  *  \~chinese
- *  开始录制视频
+ *  暂停语音数据传输
  *
- *  @param aPath            文件保存路径
- *  @param aError           错误
+ *  @result 错误
  *
  *  \~english
- *  Start recording video
+ *  Suspend voice data transmission
  *
- *  @param aPath            File saved path
- *  @param aError           Error
-
- *
+ *  @result Error
  */
-- (void)startVideoRecordingToFilePath:(NSString*)aPath
-                                error:(EMError**)aError;
+- (EMError *)pauseVoice;
 
 /*!
  *  \~chinese
- *  停止录制视频
+ *  恢复语音数据传输
  *
- *  @param aError           错误
+ *  @result 错误
  *
  *  \~english
- *  Stop recording video
+ *  Resume voice data transmission
  *
- *  @param aError           Error
- *
+ *  @result Error
  */
-- (NSString *)stopVideoRecording:(EMError**)aError;
+- (EMError *)resumeVoice;
+
+/*!
+ *  \~chinese
+ *  暂停视频图像数据传输
+ *
+ *  @result 错误
+ *
+ *  \~english
+ * Suspend video data transmission
+ *
+ *  @result Error
+ */
+- (EMError *)pauseVideo;
+
+/*!
+ *  \~chinese
+ *  恢复视频图像数据传输
+ *
+ *  @result 错误
+ *
+ *  \~english
+ *  Resume video data transmission
+ *
+ *  @result Error
+ */
+- (EMError *)resumeVideo;
+
+#pragma mark - Camera
 
 /*!
  *  \~chinese
@@ -357,7 +269,199 @@ typedef enum{
  */
 - (void)switchCameraPosition:(BOOL)aIsFrontCamera;
 
-#pragma mark - Deprecated methods
+#pragma mark - EM_DEPRECATED_IOS 3.2.0
+
+/*!
+ *  \~chinese
+ *  会话标识符
+ *
+ *  \~english
+ *  Unique session id
+ */
+@property (nonatomic, strong, readonly) NSString *sessionId EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use EMCallSession.callId");
+
+/*!
+ *  \~chinese
+ *  通话本地的username
+ *
+ *  \~english
+ *  Local username
+ */
+@property (nonatomic, strong, readonly) NSString *username EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use EMCallSession.localName");
+
+/*!
+ *  \~chinese
+ *  对方的username
+ *
+ *  \~english
+ *  The other side's username
+ */
+@property (nonatomic, strong, readonly) NSString *remoteUsername EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use EMCallSession.remoteName");
+
+/*!
+ *  \~chinese
+ *  设置视频码率，必须在通话开始前设置
+ *
+ *  码率范围为150-1000， 默认为600
+ *
+ *  \~english
+ *  Video bit rate, must be set before call session is started.
+ *
+ *  Value range is 150-1000, the default is 600.
+ */
+@property (nonatomic) int videoBitrate EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use EMCallOptions.videoKbps");
+
+/*!
+ *  \~chinese
+ *  获取音频音量，实时变化
+ *
+ *  @return 音量
+ *
+ *  \~english
+ *  Get voice volume of the call
+ *
+ *  @return Volume
+ */
+- (int)getVoiceVolume EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Delete");
+
+/*!
+ *  \~chinese
+ *  获取视频的延迟时间，单位是毫秒，实时变化
+ *
+ *  @result 视频延迟时间
+ *
+ *  \~english
+ *  Get video latency, in milliseconds, changing in real time
+ *
+ *  @result The delay time
+ */
+- (int)getVideoLatency EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use -EMCallSession.videoLatency");
+
+/*!
+ *  \~chinese
+ *  获取视频的帧率，实时变化
+ *
+ *  @result 视频帧率数值
+ *
+ *  \~english
+ *  Get video frame rate, changing in real time
+ *
+ *  @result The video frame rate
+ */
+- (int)getVideoFrameRate EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use -EMCallSession.remoteVideoFrameRate");
+
+/*!
+ *  \~chinese
+ *  获取视频丢包率
+ *
+ *  @result 视频丢包率
+ *
+ *  \~english
+ *  Get video package lost rate
+ *
+ *  @result Video package lost rate
+ */
+- (int)getVideoLostRateInPercent EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use -EMCallSession.remoteVideoLostRateInPercent");
+
+/*!
+ *  \~chinese
+ *  获取视频的宽度，固定值，不会实时变化
+ *
+ *  @result 视频宽度
+ *
+ *  \~english
+ *  Get video original width
+ *
+ *  @result Video original width
+ */
+- (int)getVideoWidth EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use -EMCallSession.remoteVideoResolution");
+
+/*!
+ *  \~chinese
+ *  获取视频的高度，固定值，不会实时变化
+ *
+ *  @result 视频高度
+ *
+ *  \~english
+ *  Get fixed video original height
+ *
+ *  @result Video original height
+ */
+- (int)getVideoHeight EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use -EMCallSession.remoteVideoResolution");
+
+/*!
+ *  \~chinese
+ *  获取视频通话对方的比特率kbps，实时变化
+ *
+ *  @result 对方比特率
+ *
+ *  \~english
+ *  Get the other party's bitrate, changing in real time
+ *
+ *  @result The other party's bitrate
+ */
+- (int)getVideoRemoteBitrate EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use -EMCallSession.remoteVideoBitrate");
+
+/*!
+ *  \~chinese
+ *  获取视频的比特率kbps，实时变化
+ *
+ *  @result 视频比特率
+ *
+ *  \~english
+ *  Get bitrate of video call, changing in real time
+ *
+ *  @result Bitrate of video call
+ */
+- (int)getVideoLocalBitrate EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use -EMCallSession.localVideoBitrate");
+
+/*!
+ *  \~chinese
+ *  获取视频快照，只支持JPEG格式
+ *
+ *  @param aPath  图片存储路径
+ *
+ *  \~english
+ *  Get a snapshot of current video screen as jpeg picture and save to the local file system.
+ *
+ *  @param aPath  Saved path of picture
+ */
+- (void)screenCaptureToFilePath:(NSString *)aPath
+                          error:(EMError**)pError EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use -[EMPluginVideoRecorder screenCaptureToFilePath:error:]");
+
+/*!
+ *  \~chinese
+ *  开始录制视频
+ *
+ *  @param aPath            文件保存路径
+ *  @param aError           错误
+ *
+ *  \~english
+ *  Start recording video
+ *
+ *  @param aPath            File saved path
+ *  @param aError           Error
+ 
+ *
+ */
+- (void)startVideoRecordingToFilePath:(NSString*)aPath
+                                error:(EMError**)aError EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use -[EMPluginVideoRecorder startVideoRecordingToFilePath:error]");
+
+/*!
+ *  \~chinese
+ *  停止录制视频
+ *
+ *  @param aError           错误
+ *
+ *  \~english
+ *  Stop recording video
+ *
+ *  @param aError           Error
+ *
+ */
+- (NSString *)stopVideoRecording:(EMError**)aError EM_DEPRECATED_IOS(3_1_0, 3_1_5, "Use -[EMPluginVideoRecorder stopVideoRecording:]");
+
+#pragma mark - EM_DEPRECATED_IOS < 3.2.0
 
 /*!
  *  \~chinese
@@ -450,19 +554,5 @@ typedef enum{
  */
 - (void)setCameraBackOrFront:(BOOL)isFont __deprecated_msg("Use -switchCameraPosition:");
 
+
 @end
-
-/*!
- *  \~chinese
- *  通话数据流状态
- *
- *  \~english
- *  Stream control
- */
-typedef enum{
-    EMCallStreamControlTypeVoicePause __deprecated_msg("Use EMCallStreamStatusVoicePause") = 0,  /*! \~chinese 中断语音 \~english Pause Voice */
-    EMCallStreamControlTypeVoiceResume __deprecated_msg("Use EMCallStreamStatusVoiceResume"),     /*! \~chinese 继续语音 \~english Resume Voice */
-    EMCallStreamControlTypeVideoPause __deprecated_msg("Use EMCallStreamStatusVideoPause"),      /*! \~chinese 中断视频 \~english Pause Video */
-    EMCallStreamControlTypeVideoResume __deprecated_msg("Use EMCallStreamStatusVideoResume"),     /*! \~chinese 继续视频 \~english Resume Video */
-}EMCallStreamControlType __deprecated_msg("Use EMCallStreamingStatus");
-

@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JFImagePicker.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>LCActionSheet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -112,6 +117,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>26E285C5AFA5003EF6B95C0C5E00BEA5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>38C743090AFF8D976957EA9FB4022AFA</key>
 		<dict>
 			<key>primary</key>
@@ -122,27 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6276313A15D57F2DBE3025141B7421D0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>681E15A616D185B75405AA26ACA73600</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>7014FBB336626878E503C56CCD27CCA1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>70BC44266C6FFE30D2C57129458E070B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>785DDFB0AF5FA3D1A9562472A0C7754B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -172,12 +167,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BC0EBCF8CDD4D6019DBFE50AA2DF6974</key>
+		<key>BBD40B58D8CA122963DE0C9F6237215D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CD1064E8687119BC0E33A49C817C8D9F</key>
+		<key>BC0EBCF8CDD4D6019DBFE50AA2DF6974</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -198,16 +193,6 @@
 			<true/>
 		</dict>
 		<key>E2FE87384A67337831E53490EEA8BF11</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E84AE14A5710B524C724CA48B16D5C8C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E9CFE3FCF9A42B3FC2D95F6F3814271D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

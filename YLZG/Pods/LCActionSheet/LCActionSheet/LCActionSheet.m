@@ -1,34 +1,19 @@
 //
 //  LCActionSheet.m
-//  LCActionSheetDemo
+//  LCActionSheet
 //
-//  Created by Leo on 16/7/15.
+//  Created by Leo on 2015/4/27.
 //  Copyright © 2016年 Leo（http://LeoDev.me）. All rights reserved.
 //
 
 #import "LCActionSheet.h"
 #import "LCActionSheetCell.h"
 #import "Masonry.h"
+#import "NSSet+LCActionSheet.h"
+#import "UIImage+LCActionSheet.h"
 
 
-#define LC_ACTION_SHEET_BUTTON_HEIGHT       49.0f
-
-#define LC_ACTION_SHEET_SCREEN_SIZE         [UIScreen mainScreen].bounds.size
-
-#define LC_ACTION_SHEET_COLOR(r, g, b)      [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1.0f]
-
-#define LC_ACTION_SHEET_RED_COLOR           LC_ACTION_SHEET_COLOR(255, 10, 10)
-
-#define LC_ACTION_SHEET_TITLE_FONT          [UIFont systemFontOfSize:14.0f]
-
-#define LC_ACTION_SHEET_BUTTON_FONT         [UIFont systemFontOfSize:18.0f]
-
-#define LC_ACTION_SHEET_ANIMATION_DURATION  0.3f
-
-#define LC_ACTION_SHEET_DARK_OPACITY        0.3f
-
-
-@interface LCActionSheet () <UITableViewDataSource, UITableViewDelegate>
+@interface LCActionSheet () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray *otherButtonTitles;
 
@@ -39,9 +24,12 @@
 @property (nonatomic, weak) UIView *darkView;
 @property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, weak) UIView *divisionView;
 @property (nonatomic, weak) UIButton *cancelButton;
 
 @property (nonatomic, weak) UIView *whiteBgView;
+
+@property (nonatomic, weak) UIView *lineView;
 
 @end
 
@@ -101,6 +89,8 @@
 
 - (instancetype)initWithTitle:(NSString *)title delegate:(id<LCActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ... {
     if (self = [super init]) {
+        [self config:[LCActionSheetConfig shared]];
+        
         id eachObject;
         va_list argumentList;
         NSMutableArray *tempOtherButtonTitles = nil;
@@ -125,6 +115,8 @@
 
 - (instancetype)initWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelButtonTitle clicked:(LCActionSheetClickedHandle)clickedHandle otherButtonTitles:(NSString *)otherButtonTitles, ... {
     if (self = [super init]) {
+        [self config:[LCActionSheetConfig shared]];
+        
         id eachObject;
         va_list argumentList;
         NSMutableArray *tempOtherButtonTitles = nil;
@@ -139,7 +131,7 @@
         
         self.title             = title;
         self.cancelButtonTitle = cancelButtonTitle;
-        self.clickedHandle      = clickedHandle;
+        self.clickedHandle     = clickedHandle;
         self.otherButtonTitles = tempOtherButtonTitles;
         
         [self setupView];
@@ -149,6 +141,7 @@
 
 - (instancetype)initWithTitle:(NSString *)title delegate:(id<LCActionSheetDelegate>)delegate cancelButtonTitle:(NSString *)cancelButtonTitle otherButtonTitleArray:(NSArray *)otherButtonTitleArray {
     if (self = [super init]) {
+        [self config:[LCActionSheetConfig shared]];
         
         self.title             = title;
         self.delegate          = delegate;
@@ -162,14 +155,37 @@
 
 - (instancetype)initWithTitle:(NSString *)title cancelButtonTitle:(NSString *)cancelButtonTitle clicked:(LCActionSheetClickedHandle)clickedHandle otherButtonTitleArray:(NSArray *)otherButtonTitleArray {
     if (self = [super init]) {
+        [self config:[LCActionSheetConfig shared]];
         
         self.title             = title;
         self.cancelButtonTitle = cancelButtonTitle;
-        self.clickedHandle      = clickedHandle;
+        self.clickedHandle     = clickedHandle;
         self.otherButtonTitles = otherButtonTitleArray;
         
         [self setupView];
     }
+    return self;
+}
+
+- (instancetype)config:(LCActionSheetConfig *)config {
+    _title                     = config.title;
+    _cancelButtonTitle         = config.cancelButtonTitle;
+    _destructiveButtonIndexSet = config.destructiveButtonIndexSet;
+    _destructiveButtonColor    = config.destructiveButtonColor;
+    _titleColor                = config.titleColor;
+    _buttonColor               = config.buttonColor;
+    _titleFont                 = config.titleFont;
+    _buttonFont                = config.buttonFont;
+    _buttonHeight              = config.buttonHeight;
+    _scrolling                 = config.canScrolling;
+    _visibleButtonCount        = config.visibleButtonCount;
+    _animationDuration         = config.animationDuration;
+    _darkOpacity               = config.darkOpacity;
+    _darkViewNoTaped           = config.darkViewNoTaped;
+    _unBlur                    = config.unBlur;
+    _blurEffectStyle           = config.blurEffectStyle;
+    _titleEdgeInsets           = config.titleEdgeInsets;
+    
     return self;
 }
 
@@ -190,7 +206,10 @@
     [bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self);
         
-        CGFloat height = (self.title.length > 0 ? self.titleTextSize.height + 28.0f : 0) + (self.otherButtonTitles.count > 0 ? (self.canScrolling ? MIN(self.visibleButtonCount, self.otherButtonTitles.count) : self.otherButtonTitles.count) * self.buttonHeight : 0) + (self.cancelButtonTitle.length > 0 ? 5.0f + self.buttonHeight : 0);
+        CGFloat height =
+        (self.title.length > 0 ? self.titleTextSize.height + 2.0f + (self.titleEdgeInsets.top + self.titleEdgeInsets.bottom) : 0) +
+        (self.otherButtonTitles.count > 0 ? (self.canScrolling ? MIN(self.visibleButtonCount, self.otherButtonTitles.count) : self.otherButtonTitles.count) * self.buttonHeight : 0) +
+        (self.cancelButtonTitle.length > 0 ? 5.0f + self.buttonHeight : 0);
         
         make.height.equalTo(@(height));
         make.bottom.equalTo(self).offset(height);
@@ -235,9 +254,9 @@
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [bottomView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(bottomView).offset(self.title.length > 0 ? 14.0f : 0);
-        make.left.equalTo(bottomView).offset(15.0f);
-        make.right.equalTo(bottomView).offset(-15.0f);
+        make.top.equalTo(bottomView).offset(self.title.length > 0 ? self.titleEdgeInsets.top : 0);
+        make.left.equalTo(bottomView).offset(self.titleEdgeInsets.left);
+        make.right.equalTo(bottomView).offset(-self.titleEdgeInsets.right);
         
         CGFloat height = self.title.length > 0 ? self.titleTextSize.height + 2.0f : 0;  // Prevent omit
         make.height.equalTo(@(height));
@@ -251,30 +270,29 @@
     [bottomView addSubview:tableView];
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(bottomView);
-        make.top.equalTo(titleLabel.mas_bottom).offset(self.title.length > 0 ? 14.0f : 0);
+        make.top.equalTo(titleLabel.mas_bottom).offset(self.title.length > 0 ? self.titleEdgeInsets.bottom : 0);
         
         CGFloat height = self.otherButtonTitles.count * self.buttonHeight;
         make.height.equalTo(@(height));
     }];
-    tableView.scrollEnabled = NO;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView = tableView;
     
-    
-    NSString *bundlePath   = [[NSBundle bundleForClass:self.class] pathForResource:@"LCActionSheet" ofType:@"bundle"];
-    NSString *linePath     = [bundlePath stringByAppendingPathComponent:@"cellLine@2x.png"];
-    UIImage *lineImage     = [UIImage imageWithContentsOfFile:linePath];
 
-    UIImageView *lineView  = [[UIImageView alloc] init];
-    lineView.image         = lineImage;
+    UIView *lineView  = [[UIView alloc] init];
+    lineView.backgroundColor = LC_ACTION_SHEET_CELL_LINE_COLOR;
     lineView.contentMode   = UIViewContentModeBottom;
     lineView.clipsToBounds = YES;
     [bottomView addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(bottomView);
         make.bottom.equalTo(tableView.mas_top);
-        make.height.equalTo(@1);
+        make.height.equalTo(@0.5f);
     }];
+    self.lineView = lineView;
+    
+    self.lineView.hidden = !self.title || self.title.length == 0;
+    
     
     UIView *divisionView         = [[UIView alloc] init];
     divisionView.alpha           = 0.1f;
@@ -282,27 +300,29 @@
     [bottomView addSubview:divisionView];
     [divisionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(bottomView);
-        make.top.equalTo(tableView.mas_bottom).offset(-1.0f);
+        make.top.equalTo(tableView.mas_bottom);
         
-        CGFloat height = self.cancelButtonTitle.length > 0 ? 6.0f : 0;
+        CGFloat height = self.cancelButtonTitle.length > 0 ? 5.0f : 0;
         make.height.equalTo(@(height));
     }];
-    
-    NSString *bgImagePath        = [bundlePath stringByAppendingPathComponent:@"bgImage_HL@2x.png"];
-    UIImage *bgImage             = [UIImage imageWithContentsOfFile:bgImagePath];
+    self.divisionView = divisionView;
 
     UIButton *cancelButton       = [UIButton buttonWithType:UIButtonTypeCustom];
     cancelButton.backgroundColor = [UIColor clearColor];
     cancelButton.titleLabel.font = self.buttonFont;
     [cancelButton setTitle:self.cancelButtonTitle forState:UIControlStateNormal];
     [cancelButton setTitleColor:self.buttonColor forState:UIControlStateNormal];
-    [cancelButton setBackgroundImage:bgImage forState:UIControlStateHighlighted];
-    [cancelButton setBackgroundImage:bgImage forState:UIControlStateSelected];
-    [cancelButton addTarget:self action:@selector(cancelButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [cancelButton setBackgroundImage:[UIImage imageWithColor:LC_ACTION_SHEET_CELL_LINE_COLOR]
+                            forState:UIControlStateHighlighted];
+    [cancelButton setBackgroundImage:[UIImage imageWithColor:LC_ACTION_SHEET_CELL_LINE_COLOR]
+                            forState:UIControlStateSelected];
+    [cancelButton addTarget:self
+                     action:@selector(cancelButtonClicked)
+           forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:cancelButton];
     [cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(bottomView);
-        make.top.equalTo(divisionView.mas_bottom);
+        make.bottom.equalTo(bottomView);
         
         CGFloat height = self.cancelButtonTitle.length > 0 ? self.buttonHeight : 0;
         make.height.equalTo(@(height));
@@ -374,20 +394,23 @@
     [self updateTitleLabel];
     
     [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(self.title.length > 0 ? 14.0f : 0);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(self.title.length > 0 ? self.titleEdgeInsets.bottom : 0);
     }];
+    
+    self.lineView.hidden = !self.title || self.title.length == 0;
 }
 
 - (void)setCancelButtonTitle:(NSString *)cancelButtonTitle {
     _cancelButtonTitle = [cancelButtonTitle copy];
     
     [self.cancelButton setTitle:cancelButtonTitle forState:UIControlStateNormal];
+    [self updateCancelButton];
 }
 
 - (void)setDestructiveButtonIndexSet:(NSSet *)destructiveButtonIndexSet {
     _destructiveButtonIndexSet = destructiveButtonIndexSet;
     
-    if ([destructiveButtonIndexSet containsObject:@0]) {
+    if ([destructiveButtonIndexSet lc_contains:0]) {
         [self.cancelButton setTitleColor:self.destructiveButtonColor forState:UIControlStateNormal];
     } else {
         [self.cancelButton setTitleColor:self.buttonColor forState:UIControlStateNormal];
@@ -421,15 +444,8 @@
     [self blurBottomBgView];
 }
 
-@synthesize titleFont;
-@synthesize buttonFont;
-@synthesize titleColor;
-@synthesize buttonColor;
-@synthesize buttonHeight;
-@synthesize destructiveButtonColor;
-
 - (void)setTitleFont:(UIFont *)aTitleFont {
-    titleFont = aTitleFont;
+    _titleFont = aTitleFont;
     
     self.titleLabel.font = aTitleFont;
     [self updateBottomView];
@@ -437,16 +453,16 @@
 }
 
 - (void)setButtonFont:(UIFont *)aButtonFont {
-    buttonFont = aButtonFont;
+    _buttonFont = aButtonFont;
     
     self.cancelButton.titleLabel.font = aButtonFont;
     [self.tableView reloadData];
 }
 
 - (void)setDestructiveButtonColor:(UIColor *)aDestructiveButtonColor {
-    destructiveButtonColor = aDestructiveButtonColor;
+    _destructiveButtonColor = aDestructiveButtonColor;
     
-    if ([self.destructiveButtonIndexSet containsObject:@0]) {
+    if ([self.destructiveButtonIndexSet lc_contains:0]) {
         [self.cancelButton setTitleColor:self.destructiveButtonColor forState:UIControlStateNormal];
     } else {
         [self.cancelButton setTitleColor:self.buttonColor forState:UIControlStateNormal];
@@ -456,20 +472,20 @@
 }
 
 - (void)setTitleColor:(UIColor *)aTitleColor {
-    titleColor = aTitleColor;
+    _titleColor = aTitleColor;
     
     self.titleLabel.textColor = aTitleColor;
 }
 
 - (void)setButtonColor:(UIColor *)aButtonColor {
-    buttonColor = aButtonColor;
+    _buttonColor = aButtonColor;
     
-    self.cancelButton.titleLabel.textColor = aButtonColor;
+    [self.cancelButton setTitleColor:aButtonColor forState:UIControlStateNormal];
     [self.tableView reloadData];
 }
 
 - (void)setButtonHeight:(CGFloat)aButtonHeight {
-    buttonHeight = aButtonHeight;
+    _buttonHeight = aButtonHeight;
     
     [self.tableView reloadData];
     [self updateBottomView];
@@ -478,55 +494,11 @@
 }
 
 - (NSInteger)cancelButtonIndex {
-    return self.cancelButtonTitle.length > 0 ? 0 : -1;
-}
-
-- (UIFont *)titleFont {
-    if (!titleFont) {
-        titleFont = LC_ACTION_SHEET_TITLE_FONT;
-    }
-    return titleFont;
-}
-
-- (UIFont *)buttonFont {
-    if (!buttonFont) {
-        buttonFont = LC_ACTION_SHEET_BUTTON_FONT;
-    }
-    return buttonFont;
-}
-
-- (UIColor *)destructiveButtonColor {
-    if (!destructiveButtonColor) {
-        destructiveButtonColor = LC_ACTION_SHEET_RED_COLOR;
-    }
-    return destructiveButtonColor;
-}
-
-- (UIColor *)titleColor {
-    if (!titleColor) {
-        titleColor = LC_ACTION_SHEET_COLOR(111, 111, 111);
-    }
-    return titleColor;
-}
-
-- (UIColor *)buttonColor {
-    if (!buttonColor) {
-        buttonColor = [UIColor blackColor];
-    }
-    return buttonColor;
-}
-
-- (CGFloat)buttonHeight {
-    if (!buttonHeight) {
-        buttonHeight = LC_ACTION_SHEET_BUTTON_HEIGHT;
-    }
-    return buttonHeight;
+    return 0;
 }
 
 - (void)setScrolling:(BOOL)scrolling {
     _scrolling = scrolling;
-    
-    self.tableView.scrollEnabled = scrolling;
     
     [self updateBottomView];
     [self updateTableView];
@@ -539,45 +511,48 @@
     [self updateTableView];
 }
 
+- (void)setTitleEdgeInsets:(UIEdgeInsets)titleEdgeInsets {
+    _titleEdgeInsets = titleEdgeInsets;
+    
+    [self updateBottomView];
+    [self updateTitleLabel];
+    [self updateTableView];
+}
+
 - (CGSize)titleTextSize {
-    _titleTextSize = [self.title boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 30.0f, MAXFLOAT)
-                                              options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                           attributes:@{NSFontAttributeName : self.titleFont}
-                                              context:nil].size;
+    CGSize size = CGSizeMake([UIScreen mainScreen].bounds.size.width -
+                             (self.titleEdgeInsets.left + self.titleEdgeInsets.right),
+                             MAXFLOAT);
+    
+    NSStringDrawingOptions opts =
+    NSStringDrawingUsesLineFragmentOrigin |
+    NSStringDrawingUsesFontLeading;
+    
+    NSDictionary *attrs = @{NSFontAttributeName : self.titleFont};
+    
+    _titleTextSize =
+    [self.title boundingRectWithSize:size
+                             options:opts
+                          attributes:attrs
+                             context:nil].size;
     
     return _titleTextSize;
-}
-
-- (CGFloat)animationDuration {
-    if (!_animationDuration) {
-        _animationDuration = LC_ACTION_SHEET_ANIMATION_DURATION;
-    }
-    
-    return _animationDuration;
-}
-
-- (CGFloat)darkOpacity {
-    if (!_darkOpacity) {
-        _darkOpacity = LC_ACTION_SHEET_DARK_OPACITY;
-    }
-    
-    return _darkOpacity;
 }
 
 #pragma mark - Update Views
 
 - (void)updateBottomView {
     [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
-        CGFloat height = (self.title.length > 0 ? self.titleTextSize.height + 30.0f : 0) + (self.otherButtonTitles.count > 0 ? (self.canScrolling ? MIN(self.visibleButtonCount, self.otherButtonTitles.count) : self.otherButtonTitles.count) * self.buttonHeight : 0) + (self.cancelButtonTitle.length > 0 ? 5.0f + self.buttonHeight : 0);
+        CGFloat height = (self.title.length > 0 ? self.titleTextSize.height + 2.0f + (self.titleEdgeInsets.top + self.titleEdgeInsets.bottom) : 0) + (self.otherButtonTitles.count > 0 ? (self.canScrolling ? MIN(self.visibleButtonCount, self.otherButtonTitles.count) : self.otherButtonTitles.count) * self.buttonHeight : 0) + (self.cancelButtonTitle.length > 0 ? 5.0f + self.buttonHeight : 0);
         make.height.equalTo(@(height));
     }];
 }
 
 - (void)updateTitleLabel {
     [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.bottomView).offset(self.title.length > 0 ? 14.0f : 0);
-        make.left.equalTo(self.bottomView).offset(15.0f);
-        make.right.equalTo(self.bottomView).offset(-15.0f);
+        make.top.equalTo(self.bottomView).offset(self.title.length > 0 ? self.titleEdgeInsets.top : 0);
+        make.left.equalTo(self.bottomView).offset(self.titleEdgeInsets.left);
+        make.right.equalTo(self.bottomView).offset(-self.titleEdgeInsets.right);
         
         CGFloat height = self.title.length > 0 ? self.titleTextSize.height + 2.0f : 0;  // Prevent omit
         make.height.equalTo(@(height));
@@ -588,15 +563,22 @@
     if (!self.canScrolling) {
         [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(@(self.otherButtonTitles.count * self.buttonHeight));
+            make.top.equalTo(self.titleLabel.mas_bottom).offset(self.title.length > 0 ? self.titleEdgeInsets.bottom : 0);
         }];
     } else {
         [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(@(MIN(self.visibleButtonCount, self.otherButtonTitles.count) * self.buttonHeight));
+            make.top.equalTo(self.titleLabel.mas_bottom).offset(self.title.length > 0 ? self.titleEdgeInsets.bottom : 0);
         }];
     }
 }
 
 - (void)updateCancelButton {
+    [self.divisionView mas_updateConstraints:^(MASConstraintMaker *make) {
+        CGFloat height = self.cancelButtonTitle.length > 0 ? 5.0f : 0;
+        make.height.equalTo(@(height));
+    }];
+    
     [self.cancelButton mas_updateConstraints:^(MASConstraintMaker *make) {
         CGFloat height = self.cancelButtonTitle.length > 0 ? self.buttonHeight : 0;
         make.height.equalTo(@(height));
@@ -656,7 +638,7 @@
         weakSelf.darkView.userInteractionEnabled = NO;
         
         [weakSelf.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
-            CGFloat height = (self.title.length > 0 ? self.titleTextSize.height + 28.0f : 0) + (self.otherButtonTitles.count > 0 ? (self.canScrolling ? MIN(self.visibleButtonCount, self.otherButtonTitles.count) : self.otherButtonTitles.count) * self.buttonHeight : 0) + (self.cancelButtonTitle.length > 0 ? 5.0f + self.buttonHeight : 0);
+            CGFloat height = (self.title.length > 0 ? self.titleTextSize.height + 2.0f + (self.titleEdgeInsets.top + self.titleEdgeInsets.bottom) : 0) + (self.otherButtonTitles.count > 0 ? (self.canScrolling ? MIN(self.visibleButtonCount, self.otherButtonTitles.count) : self.otherButtonTitles.count) * self.buttonHeight : 0) + (self.cancelButtonTitle.length > 0 ? 5.0f + self.buttonHeight : 0);
             make.bottom.equalTo(self).offset(height);
         }];
         
@@ -674,6 +656,12 @@
             weakSelf.didDismissHandle(self, buttonIndex);
         }
     }];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (!self.canScrolling) {
+        scrollView.contentOffset = CGPointMake(0, 0);
+    }
 }
 
 #pragma mark - LCActionSheet & UITableView Delegate
@@ -695,20 +683,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger temp = 0;
-    if (self.cancelButtonTitle.length > 0) {
-        temp = 1;
-    }
     
     if ([self.delegate respondsToSelector:@selector(actionSheet:clickedButtonAtIndex:)]) {
-        [self.delegate actionSheet:self clickedButtonAtIndex:indexPath.row + temp];
+        [self.delegate actionSheet:self clickedButtonAtIndex:indexPath.row + 1];
     }
     
     if (self.clickedHandle) {
-        self.clickedHandle(self, indexPath.row + temp);
+        self.clickedHandle(self, indexPath.row + 1);
     }
     
-    [self hideWithButtonIndex:indexPath.row + temp];
+    [self hideWithButtonIndex:indexPath.row + 1];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -719,7 +703,8 @@
     static NSString *cellID = @"LCActionSheetCell";
     LCActionSheetCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [[LCActionSheetCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[LCActionSheetCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                        reuseIdentifier:cellID];
     }
     
     cell.titleLabel.font      = self.buttonFont;
@@ -727,16 +712,16 @@
     
     cell.titleLabel.text = self.otherButtonTitles[indexPath.row];
     
-    cell.lineView.hidden = indexPath.row == 0;
+//    cell.lineView.hidden = indexPath.row == MAX(self.otherButtonTitles.count - 1, 0);
     
-    cell.tag = indexPath.row + LC_ACTION_SHEET_CELL_TAG_INTERVAL;
+    if (indexPath.row == MAX(self.otherButtonTitles.count - 1, 0)) {
+        cell.tag = LC_ACTION_SHEET_CELL_HIDDE_LINE_TAG;
+    } else {
+        cell.tag = LC_ACTION_SHEET_CELL_NO_HIDDE_LINE_TAG;
+    }
     
     if (self.destructiveButtonIndexSet) {
-        NSInteger temp = 0;
-        if (self.cancelButtonTitle.length > 0) {
-            temp = 1;
-        }
-        if ([self.destructiveButtonIndexSet containsObject:[NSNumber numberWithInteger:indexPath.row + temp]]) {
+        if ([self.destructiveButtonIndexSet lc_contains:(int)indexPath.row + 1]) {
             cell.titleLabel.textColor = self.destructiveButtonColor;
         } else {
             cell.titleLabel.textColor = self.buttonColor;

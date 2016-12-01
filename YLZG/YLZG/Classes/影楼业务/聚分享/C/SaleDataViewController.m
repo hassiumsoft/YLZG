@@ -24,7 +24,7 @@
     [super viewDidLoad];
     self.title = @"数据分析";
     self.view.backgroundColor = [UIColor whiteColor];
-    [self loadEmptyView:@"尽请关注双十一数据统计"];
+    [self loadEmptyView:@"还没有数据统计"];
 }
 
 #pragma mark - 没有数据时

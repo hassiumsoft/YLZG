@@ -87,6 +87,15 @@ typedef enum{
  */
 - (void)userAccountDidRemoveFromServer;
 
+/*!
+ *  \~chinese
+ *  服务被禁用
+ *
+ *  \~english
+ *  User is forbidden
+ */
+- (void)userDidForbidByServer;
+
 #pragma mark - Deprecated methods
 
 /*!

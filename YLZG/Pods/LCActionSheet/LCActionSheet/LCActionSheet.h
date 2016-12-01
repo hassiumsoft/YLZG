@@ -1,16 +1,17 @@
 //
 //  LCActionSheet.h
-//  LCActionSheetDemo
+//  LCActionSheet
 //
-//  Created by Leo on 16/7/15.
+//  Created by Leo on 2015/4/27.
 //  Copyright © 2016年 Leo（http://LeoDev.me）. All rights reserved.
 //
 //  GitHub: http://github.com/iTofu
 //  Mail:   mailto:devtip@163.com
 //
-//  V 2.5.1
+//  V 2.7.0
 
 #import <UIKit/UIKit.h>
+#import "LCActionSheetConfig.h"
 
 
 @class LCActionSheet;
@@ -158,7 +159,7 @@ typedef void(^LCActionSheetDidDismissHandle)(LCActionSheet *actionSheet, NSInteg
 @property (nonatomic, assign) CGFloat darkOpacity;
 
 /**
- *  If you can tap darkView to dissmiss. Defalut is NO.
+ *  If you can tap darkView to dismiss. Defalut is NO, you can tap dardView to dismiss.
  */
 @property (nonatomic, assign) BOOL darkViewNoTaped;
 
@@ -172,11 +173,31 @@ typedef void(^LCActionSheetDidDismissHandle)(LCActionSheet *actionSheet, NSInteg
  */
 @property (nonatomic, assign) UIBlurEffectStyle blurEffectStyle;
 
+/**
+ *  Title's edge insets. Default is `UIEdgeInsetsMake(15.0f, 15.0f, 15.0f, 15.0f)`.
+ */
+@property (nonatomic, assign) UIEdgeInsets titleEdgeInsets;
 
+
+/**
+ *  LCActionSheet clicked handle.
+ */
 @property (nonatomic, copy) LCActionSheetClickedHandle     clickedHandle;
+/**
+ *  LCActionSheet will present handle.
+ */
 @property (nonatomic, copy) LCActionSheetWillPresentHandle willPresentHandle;
+/**
+ *  LCActionSheet did present handle.
+ */
 @property (nonatomic, copy) LCActionSheetDidPresentHandle  didPresentHandle;
+/**
+ *  LCActionSheet will dismiss handle.
+ */
 @property (nonatomic, copy) LCActionSheetWillDismissHandle willDismissHandle;
+/**
+ *  LCActionSheet did dismiss handle.
+ */
 @property (nonatomic, copy) LCActionSheetDidDismissHandle  didDismissHandle;
 
 

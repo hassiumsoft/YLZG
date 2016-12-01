@@ -60,13 +60,16 @@
         _timeLength = 0;
         _status = statusString;
         
-        [[YLZGDataManager sharedManager] getOneStudioByUserName:_callSession.remoteUsername Block:^(ContactersModel *model) {
+        [[YLZGDataManager sharedManager] getOneStudioByUserName:_callSession.remoteName Block:^(ContactersModel *model) {
             _userModel = model;
         }];
         
         NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
         if ([ud valueForKey:kLocalCallBitrate] && _callSession.type == EMCallTypeVideo) {
-            [session setVideoBitrate:[[ud valueForKey:kLocalCallBitrate] intValue]];
+
+            EMCallOptions *open = [[EMClient sharedClient].callManager getCallOptions];
+            [open setVideoKbps:[[ud valueForKey:kLocalCallBitrate] intValue]];
+            
         }
     }
     
@@ -169,7 +172,7 @@
     _nameLabel.backgroundColor = [UIColor clearColor];
     _nameLabel.textColor = [UIColor whiteColor];
     _nameLabel.textAlignment = NSTextAlignmentCenter;
-    _nameLabel.text = _callSession.remoteUsername;
+    _nameLabel.text = _callSession.remoteName;
     [_topView addSubview:_nameLabel];
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_timeLabel.mas_bottom);
@@ -254,38 +257,6 @@
         make.width.and.height.equalTo(@(ButtonWH));
     }];
     
-//    if (_callSession.type == EMCallTypeVideo) {
-//        CGFloat tmpWidth = _actionView.frame.size.width / 3;
-//        // 录制按钮
-//        _recordButton = [[UIButton alloc] initWithFrame:CGRectMake((tmpWidth-40)/2, 20, 40, 40)];
-//        _recordButton.layer.cornerRadius = 20.f;
-//        [_recordButton setTitle:@"录制" forState:UIControlStateNormal];
-//        [_recordButton setTitle:@"停止播放" forState:UIControlStateSelected];
-//        [_recordButton.titleLabel setFont:[UIFont systemFontOfSize:10]];
-//        [_recordButton setBackgroundColor:[UIColor grayColor]];
-//        [_recordButton addTarget:self action:@selector(recordAction) forControlEvents:UIControlEventTouchUpInside];
-//        [_actionView addSubview:_recordButton];
-//        
-//        // 视频开启
-//        _videoButton = [[UIButton alloc] initWithFrame:CGRectMake(tmpWidth + (tmpWidth - 40) / 2, 20, 40, 40)];
-//        _videoButton.layer.cornerRadius = 20.f;
-//        [_videoButton setTitle:@"视频开启" forState:UIControlStateNormal];
-//        [_videoButton setTitle:@"视频中断" forState:UIControlStateSelected];
-//        [_videoButton.titleLabel setFont:[UIFont systemFontOfSize:10]];
-//        [_videoButton setBackgroundColor:[UIColor grayColor]];
-//        [_videoButton addTarget:self action:@selector(videoPauseAction) forControlEvents:UIControlEventTouchUpInside];
-//        [_actionView addSubview:_videoButton];
-//        
-//        // 音频开启
-//        _voiceButton = [[UIButton alloc] initWithFrame:CGRectMake(tmpWidth * 2 + (tmpWidth - 40) / 2, 20, 40, 40)];
-//        _voiceButton.layer.cornerRadius = 20.f;
-//        [_voiceButton setTitle:@"音视开启" forState:UIControlStateNormal];
-//        [_voiceButton setTitle:@"音视中断" forState:UIControlStateSelected];
-//        [_voiceButton.titleLabel setFont:[UIFont systemFontOfSize:10]];
-//        [_voiceButton setBackgroundColor:[UIColor grayColor]];
-//        [_voiceButton addTarget:self action:@selector(voicePauseAction) forControlEvents:UIControlEventTouchUpInside];
-//        [_actionView addSubview:_voiceButton];
-//    }
 }
 
 #pragma mark - 创建视频通话界面
@@ -402,44 +373,15 @@
     _switchCameraButton.selected = !_switchCameraButton.selected;
 }
 
-#pragma mark - 录制通话视频数据
-- (void)recordAction
-{
-    _recordButton.selected = !_recordButton.selected;
-    if (_recordButton.selected) {
-        NSString *recordPath = NSHomeDirectory();
-        recordPath = [NSString stringWithFormat:@"%@/Library/appdata/chatbuffer",recordPath];
-        NSFileManager *fm = [NSFileManager defaultManager];
-        if(![fm fileExistsAtPath:recordPath]){
-            [fm createDirectoryAtPath:recordPath
-          withIntermediateDirectories:YES
-                           attributes:nil
-                                error:nil];
-        }
-        EMError *error;
-        [_callSession startVideoRecordingToFilePath:recordPath error:&error];
-    } else {
-        EMError *error;
-        NSString *tempPath = [_callSession stopVideoRecording:&error];
-        if (tempPath.length > 0) {
-            //            NSURL *videoURL = [NSURL fileURLWithPath:tempPath];
-            //            MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
-            //            [moviePlayerController.moviePlayer prepareToPlay];
-            //            moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-            //            [self presentMoviePlayerViewControllerAnimated:moviePlayerController];
-        }
-    }
-}
-
 #pragma mark - 视频通话中断
 - (void)videoPauseAction
 {
     _videoButton.selected = !_videoButton.selected;
-    EMError *error;
     if (_videoButton.selected) {
-        [[EMClient sharedClient].callManager pauseVideoWithSession:_callSession.sessionId error:&error];
+        [_callSession pauseVideo];
+        
     } else {
-        [[EMClient sharedClient].callManager resumeVideoWithSession:_callSession.sessionId error:&error];
+        [_callSession resumeVideo];
     }
 }
 #pragma mark - 语音通话中断
@@ -448,17 +390,16 @@
     _voiceButton.selected = !_voiceButton.selected;
     
     if (_voiceButton.selected) {
-        [[EMClient sharedClient].callManager pauseVoiceWithSession:_callSession.sessionId error:nil];
+        [_callSession pauseVoice];
     } else {
-        [[EMClient sharedClient].callManager resumeVoiceWithSession:_callSession.sessionId error:nil];
+        [_callSession resumeVoice];
     }
 }
 #pragma mark - 静音
 - (void)silenceAction
 {
     _silenceButton.selected = !_silenceButton.selected;
-    EMError *error;
-    [[EMClient sharedClient].callManager pauseVoiceWithSession:_callSession.sessionId error:&error];
+    [_callSession pauseVoice];
 }
 #pragma mark - 免提电话
 - (void)speakerOutAction

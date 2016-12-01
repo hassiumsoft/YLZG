@@ -231,7 +231,7 @@ static YLZGChatManager *chatManager = nil;
     
     if (aIsVideo) {
         // 视频通话
-        [[EMClient sharedClient].callManager startVideoCall:aUsername completion:^(EMCallSession *aCallSession, EMError *aError) {
+        [[EMClient sharedClient].callManager startCall:EMCallTypeVideo remoteName:aUsername ext:nil completion:^(EMCallSession *aCallSession, EMError *aError) {
             _callSession = aCallSession;
             if(_callSession){
                 [self startCallTimer];
@@ -242,9 +242,11 @@ static YLZGChatManager *chatManager = nil;
                 [self showAlertMessage:@"创建实时通话失败，请稍后重试。"];
             }
         }];
+        
+        
     }else{
         // 语音通话
-        [[EMClient sharedClient].callManager startVoiceCall:aUsername completion:^(EMCallSession *aCallSession, EMError *aError) {
+        [[EMClient sharedClient].callManager startCall:EMCallTypeVoice remoteName:aUsername ext:nil completion:^(EMCallSession *aCallSession, EMError *aError) {
             _callSession = aCallSession;
             if(_callSession){
                 [self startCallTimer];
@@ -278,7 +280,7 @@ static YLZGChatManager *chatManager = nil;
     
     if (_callSession) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            EMError *error = [[EMClient sharedClient].callManager answerIncomingCall:_callSession.sessionId];
+            EMError *error = [[EMClient sharedClient].callManager answerIncomingCall:_callSession.callId];
             if (error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if (error.code == EMErrorNetworkUnavailable) {
@@ -328,7 +330,7 @@ static YLZGChatManager *chatManager = nil;
     }
     
     if (_callSession) {
-        [[EMClient sharedClient].callManager endCall:_callSession.sessionId reason:aReason];
+        [[EMClient sharedClient].callManager endCall:_callSession.callId reason:aReason];
     }
     _callSession = nil;
     [_callController close];
@@ -349,11 +351,11 @@ static YLZGChatManager *chatManager = nil;
 - (void)callDidReceive:(EMCallSession *)aSession
 {
     if(_callSession && _callSession.status != EMCallSessionStatusDisconnected){
-        [[EMClient sharedClient].callManager endCall:aSession.sessionId reason:EMCallEndReasonBusy];
+        [[EMClient sharedClient].callManager endCall:aSession.callId reason:EMCallEndReasonBusy];
     }
     
     if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive) {
-        [[EMClient sharedClient].callManager endCall:aSession.sessionId reason:EMCallEndReasonFailed];
+        [[EMClient sharedClient].callManager endCall:aSession.callId reason:EMCallEndReasonFailed];
     }
     
     _callSession = aSession;
@@ -369,7 +371,7 @@ static YLZGChatManager *chatManager = nil;
 // 通话已连接
 - (void)callDidConnect:(EMCallSession *)aSession
 {
-    if ([aSession.sessionId isEqualToString:_callSession.sessionId]) {
+    if ([aSession.callId isEqualToString:_callSession.callId]) {
         _callController.statusLabel.text = @"连接成功";
         AVAudioSession *audioSession = [AVAudioSession sharedInstance];
         [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
@@ -381,10 +383,10 @@ static YLZGChatManager *chatManager = nil;
 {
     // 客户端不在前台展示
     if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive) {
-        [[EMClient sharedClient].callManager endCall:aSession.sessionId reason:EMCallEndReasonFailed];
+        [[EMClient sharedClient].callManager endCall:aSession.callId reason:EMCallEndReasonFailed];
     }
     
-    if ([aSession.sessionId isEqualToString:_callSession.sessionId]) {
+    if ([aSession.callId isEqualToString:_callSession.callId]) {
         [self stopCallTimer];
         _callController.statusLabel.text = @"";
         _callController.timeLabel.hidden = NO;
@@ -398,7 +400,7 @@ static YLZGChatManager *chatManager = nil;
 // A或B结束通话后，对方会收到该回调 --- 通话出现错误，双方都会接收到此回调
 - (void)callDidEnd:(EMCallSession *)aSession reason:(EMCallEndReason)aReason error:(EMError *)aError
 {
-    if ([aSession.sessionId isEqualToString:_callSession.sessionId]) {
+    if ([aSession.callId isEqualToString:_callSession.callId]) {
         [self stopCallTimer];
         _callSession = nil;
         [_callController close];
@@ -444,7 +446,7 @@ static YLZGChatManager *chatManager = nil;
 }
 - (void)callNetworkStatusDidChange:(EMCallSession *)aSession status:(EMCallNetworkStatus)aStatus
 {
-    if ([aSession.sessionId isEqualToString:_callSession.sessionId]) {
+    if ([aSession.callId isEqualToString:_callSession.callId]) {
         [_callController setNetwork:aStatus];
     }
 }
@@ -471,14 +473,15 @@ static YLZGChatManager *chatManager = nil;
     // 网络状态发生了变化
     [self.tabbarVC networkChanged:aConnectionState];
 }
-- (void)didAutoLoginWithError:(EMError *)error
+- (void)autoLoginDidCompleteWithError:(EMError *)aError
 {
-    if (error) {
+    if (aError) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"自动登录失败，请重新登录" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         alertView.tag = 100;
         [alertView show];
     }
 }
+
 
 #pragma mark - IM消息相关-EMChatManagerDelegate
 - (void)asyncConversationFromDB
@@ -1065,10 +1068,6 @@ static YLZGChatManager *chatManager = nil;
 - (void)unblockMembers:(NSArray *)aMembers fromGroup:(NSString *)aGroupId completion:(void (^)(EMGroup *, EMError *))aCompletionBlock
 {
     // 从群组黑名单中减人, 需要owner权限
-}
-- (void)autoLoginDidCompleteWithError:(EMError *)aError
-{
-    // 自动登录失败
 }
 
 - (void)cmdMessagesDidReceive:(NSArray *)aCmdMessages

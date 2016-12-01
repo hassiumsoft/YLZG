@@ -264,7 +264,7 @@ typedef enum{
 
 /*!
  *  \~chinese
- *  从数据库获取指定类型的消息，取到的消息按时间排序，如果参考的时间戳为负数，则从最新消息取，如果aCount是负数，则获取所有符合条件的消息
+ *  从数据库获取指定类型的消息，取到的消息按时间排序，如果参考的时间戳为负数，则从最新消息取，如果aCount小于等于0当作1处理
  *
  *  @param aType            消息类型
  *  @param aTimestamp       参考时间戳
@@ -274,7 +274,7 @@ typedef enum{
  *  @param aCompletionBlock 完成的回调
  *
  *  \~english
- *  Load messages with specified type, returning messages are sorted by receiving timestamp. If reference timestamp is negative, load from the latest messages; if message count is negative, load all messages that meet the condition.
+ *  Load messages with specified type, returning messages are sorted by receiving timestamp. If reference timestamp is negative, load from the latest messages; if message count is negative, count deal with 1 and load one message that meet the condition.
  *
  *  @param aType            Message type to load
  *  @param aTimestamp       Reference timestamp
@@ -293,7 +293,7 @@ typedef enum{
 
 /*!
  *  \~chinese
- *  从数据库获取包含指定内容的消息，取到的消息按时间排序，如果参考的时间戳为负数，则从最新消息向前取，如果aCount是负数，则获取所有符合条件的消息
+ *  从数据库获取包含指定内容的消息，取到的消息按时间排序，如果参考的时间戳为负数，则从最新消息向前取，如果aCount小于等于0当作1处理
  *
  *  @param aKeywords        搜索关键字，如果为空则忽略
  *  @param aTimestamp       参考时间戳
@@ -303,7 +303,7 @@ typedef enum{
  *  @param aCompletionBlock 完成的回调
  *
  *  \~english
- *  Load messages with specified keyword, returning messages are sorted by receiving timestamp. If reference timestamp is negative, load from the latest messages; if message count is negative, load all messages that meet the condition.
+ *  Load messages with specified keyword, returning messages are sorted by receiving timestamp. If reference timestamp is negative, load from the latest messages; if message count is negative, count deal with 1 and load one message that meet the condition.
  *
  *  @param aKeywords        Search content, will ignore it if it's empty
  *  @param aTimestamp       Reference timestamp

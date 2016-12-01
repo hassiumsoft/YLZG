@@ -539,6 +539,21 @@
  */
 - (void)applicationWillEnterForeground:(id)aApplication;
 
+/*!
+ *  \~chinese
+ *  iOS专用，程序在前台收到APNs时，需要调用此方法
+ *
+ *  @param application  UIApplication
+ *  @param userInfo     推送内容
+ *
+ *  \~english
+ *  Need to call this method when APP receive APNs in foreground
+ *
+ *  @param application  UIApplication
+ *  @param userInfo     Push content
+ */
+- (void)application:(id)application didReceiveRemoteNotification:(NSDictionary *)userInfo;
+
 #pragma mark - Deprecated methods
 
 /*!

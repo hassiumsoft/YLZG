@@ -50,9 +50,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    TaskDetialViewController *detial =[TaskDetialViewController new];
+//    TaskDetialViewController *detial =[TaskDetialViewController new];
 //    detial.listModel = self.taskArray[indexPath.row];
-    [self.navigationController pushViewController:detial animated:YES];
+//    [self.navigationController pushViewController:detial animated:YES];
 
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

@@ -8,7 +8,9 @@
 
 ☀️ 一款简约而不失强大的 ActionSheet，微信和微博都采取了极其类似的样式。
 
-![LCActionSheet](https://raw.githubusercontent.com/iTofu/LCActionSheet/master/LCActionSheetDemo.gif)
+![LCActionSheet](https://raw.githubusercontent.com/iTofu/LCActionSheet/master/LCActionSheetDemoGif02.gif)
+
+如果上图没打开，直接前往 [Demo 图地址](https://raw.githubusercontent.com/iTofu/LCActionSheet/master/LCActionSheetDemoGif02.gif)。
 
 ```
 In me the tiger sniffs the rose.
@@ -16,7 +18,8 @@ In me the tiger sniffs the rose.
 心有猛虎，细嗅蔷薇。
 ```
 
-欢迎访问 **[我的博客](http://LeoDev.me)**：http://LeoDev.me
+欢迎访问我的博客：http://LeoDev.me
+
 
 
 ## 介绍 Introduction
@@ -27,31 +30,33 @@ In me the tiger sniffs the rose.
 
 * 格调高雅，风格百搭，怎么看怎么舒服。
 
-* 高度自定义，可能需要自定义的基本都考虑到了。详见 [LCActionSheet.h](https://github.com/iTofu/LCActionSheet/blob/master/LCActionSheet/LCActionSheet.h) Properties 部分。
+* 高度自定义，可能需要自定义的基本都考虑到了。详见 [LCActionSheet.h](https://github.com/iTofu/LCActionSheet/blob/master/LCActionSheet/LCActionSheet.h) [Properties](https://github.com/iTofu/LCActionSheet/blob/master/LCActionSheet/LCActionSheet.h#L82) 部分。
 
 * 有代理，有 Block，可类方法，可实例方法，想怎样，就怎样。
 
-* 代理、Block 非常完善，从 will 到 did 都有，详见 [LCActionSheet.h](https://github.com/iTofu/LCActionSheet/blob/master/LCActionSheet/LCActionSheet.h) Delegate & Block 部分。
+* 代理、Block 非常完善，从 will 到 did 都有，详见 [LCActionSheet.h](https://github.com/iTofu/LCActionSheet/blob/master/LCActionSheet/LCActionSheet.h) [Delegate](https://github.com/iTofu/LCActionSheet/blob/master/LCActionSheet/LCActionSheet.h#L45) & [Block](https://github.com/iTofu/LCActionSheet/blob/master/LCActionSheet/LCActionSheet.h#L19) 部分。
 
-* 重要注释完整，代码风格良好，满满的善意，便于阅读源码，照顾强迫症，拓展更多功能请前往 [PR](https://github.com/iTofu/LCActionSheet/pulls)。三个诸葛亮，顶个好工匠。
+* 支持统一配置 Config，作用于全局样式，告别冗余代码，更易维护，详见 [V 2.7.0](https://github.com/iTofu/LCActionSheet/releases/tag/2.7.0)。
+
+* 支持 iPad，支持横屏，支持竖屏，支持一会横屏一会竖屏，支持超长标题，理论上支持无数个按钮，统统支持。
+
+* 注释完整，代码风格良好，善意满满，便于阅读源码，照顾强迫症，拓展更多功能请前往 [PR](https://github.com/iTofu/LCActionSheet/pulls)。三个诸葛亮，顶个好工匠。
 
 * 集百家之长，使用 [Masonry](https://github.com/SnapKit/Masonry) 进行布局，感谢 [Masonry](https://github.com/SnapKit/Masonry)。
 
-* 支持 iPad，支持横屏，支持竖屏，支持一会横屏一会竖屏，理论上支持无数个按钮，统统支持。
-
-* 有骨气。我就不改状态栏颜色，我就是这么刚。
-
-* 系统的 UIActionSheet，弱爆了。
+* 有骨气。就不改状态栏颜色，就是这么刚。
 
 > 💬 **告示**
 > 
-> 英文还不错的同学可以抽空帮我翻译出 README 的英文版，我好往 [CocoaControls](https://www.cocoacontrols.com/) 上扔啊~
+> 英文还不错时间又充裕的同学可以帮我翻译出 README 的英文版，我好往 [CocoaControls](https://www.cocoacontrols.com/) 上扔啊~
 >
 > 可白文翻译，使用 [Markdown](http://www.appinn.com/markdown/) 编辑更佳！义务的哦，如果翻译用心的话我个人请你喝杯咖啡 ☕️！
 > 
-> 直接 [PR](https://github.com/iTofu/LCActionSheet/pulls) 或者 [发我邮箱](mailto://devtip@163.com) ：devtip@163.com 都可！
+> 直接 [PR](https://github.com/iTofu/LCActionSheet/pulls) 或者发我邮箱：devtip@163.com 都可！
 
-## 代码 Code
+
+
+## 代码 Usage
 
 * 两种导入方法：
 
@@ -73,7 +78,7 @@ In me the tiger sniffs the rose.
     [actionSheet show];
     ```
 
-  2. 可自定义项，[LCActionSheet.h](https://github.com/iTofu/LCActionSheet/blob/master/LCActionSheet/LCActionSheet.h) 有完整注释
+  2. 可自定义项，[LCActionSheet.h](https://github.com/iTofu/LCActionSheet/blob/master/LCActionSheet/LCActionSheet.h) 中有完整注释
 
     ```objc
     LCActionSheet *actionSheet     = [[LCActionSheet alloc] initWithTitle:nil
@@ -94,9 +99,11 @@ In me the tiger sniffs the rose.
     actionSheet.unBlur             = YES;
     actionSheet.blurEffectStyle    = UIBlurEffectStyleLight;
     
-    // V 2.1.0 use `destructiveButtonIndexSet` instead of `redButtonIndexSet`.
     actionSheet.destructiveButtonIndexSet = [NSSet setWithObjects:@0, @2, nil];
     actionSheet.destructiveButtonColor    = [UIColor blueColor];
+    
+    // V 2.7.0+
+    actionSheet.titleEdgeInsets = UIEdgeInsetsMake(10, 20, 30, 40);
     
     [actionSheet show];
     ```
@@ -109,6 +116,8 @@ In me the tiger sniffs the rose.
         NSLog(@"clickedButtonAtIndex: %d", (int)buttonIndex);
         
     } otherButtonTitles:@"Button 1", @"Button 2", @"Button 3", @"Button 4", @"Button 5", @"Button 6", nil];
+    
+    // actionSheet.blurEffectStyle = UIBlurEffectStyleLight;
     
     actionSheet.scrolling          = YES;
     actionSheet.visibleButtonCount = 3.6f;
@@ -158,8 +167,119 @@ In me the tiger sniffs the rose.
     }
     ```
 
+* [V 2.7.0](https://github.com/iTofu/LCActionSheet/releases/tag/2.7.0) 新增 [LCActionSheetConfig](https://github.com/iTofu/LCActionSheet/blob/master/LCActionSheet/LCActionSheetConfig.h) 类，用来统一配置 LCActionSheet 的样式（参数）。LCActionSheetConfig 提供一个单例，你应该在首次初始化 LCActionSheet 之前配置该单例以统一配置 LCActionSheet，之后你还可以继续修改 LCActionSheet 实例的任意参数。示例代码如下：
 
-## 版本 Release
+  ```objc
+  // 统一配置 Config 作用于全局样式
+  LCActionSheetConfig *config = [LCActionSheetConfig shared];
+
+  config.title              = @"Common Title";
+  config.cancelButtonTitle  = @"Close";
+  config.titleColor         = [UIColor orangeColor];
+  config.buttonColor        = [UIColor greenColor];
+  config.titleFont          = [UIFont boldSystemFontOfSize:15.0f];
+  config.buttonFont         = [UIFont boldSystemFontOfSize:15.0f];
+  config.buttonHeight       = 60.0f;
+  config.scrolling          = YES;
+  config.visibleButtonCount = 3.6f;
+  config.darkViewNoTaped    = YES;
+  config.unBlur             = YES;
+  config.blurEffectStyle    = UIBlurEffectStyleDark;
+
+  config.destructiveButtonIndexSet = [NSSet setWithObjects:@0, @2, nil];
+  config.destructiveButtonColor    = [UIColor blueColor];
+
+  // 初始化 LCActionSheet, 与之前的初始化没有区别, 框架内会根据 Config 初始化
+  LCActionSheet *sheet =
+  [[LCActionSheet alloc] initWithTitle:nil
+                              delegate:self
+                     cancelButtonTitle:@"Cancel"
+                     otherButtonTitles:@"Button 1", @"Button 2", @"Button 3", nil];
+
+  // 如果当前样式与全局样式不同, 可以继续修改参数...
+  sheet.titleColor = [UIColor orangeColor];
+
+  [sheet show];
+  ```
+
+
+## 小伙伴们 Partners
+
+你可以在这里查看本框架的部分集成统计：[CocoaPods 统计](https://cocoapods.org/pods/LCActionSheet)。
+
+下表列举了集成本框架的部分项目：
+
+| 名称 | 简介 |
+| :-: | :-: |
+| [PrPr直播](https://itunes.apple.com/cn/app/id1150254794) | 二次元直播平台 |
+| [德玛西亚](https://itunes.apple.com/cn/app/id1067564880) | 英雄联盟<sup>&copy;</sup> 周边 App |
+| [揽梦云签](https://itunes.apple.com/cn/app/id1006513728) | 考勤打卡 + 移动办公 |
+| ... | ... |
+
+注：**本框架开源且不含任何信息上传功能代码**，上表仅用作统计和效果参考，如果你的项目中使用了本框架并希望加入上表，请发邮件到 devtip@163.com 或者 [新建一个 Issue](https://github.com/iTofu/LCActionSheet/issues/new) 告诉我你的应用名称和应用链接，我会尽快添加 :)
+
+
+## 版本 ChangeLog
+
+
+### V 2.7.0 (2016.11.29)
+
+* 新增 [LCActionSheetConfig](https://github.com/iTofu/LCActionSheet/blob/master/LCActionSheet/LCActionSheetConfig.h) 类，用来统一配置 LCActionSheet 的样式（参数），使用方式见 [Usage](https://github.com/iTofu/LCActionSheet#代码-usage)。[#29](https://github.com/iTofu/LCActionSheet/issues/29) by [Abel94](https://github.com/Abel94)。
+
+* 添加 `titleEdgeInsets` 属性，默认值 `UIEdgeInsetsMake(15.0f, 15.0f, 15.0f, 15.0f)`，[#29](https://github.com/iTofu/LCActionSheet/issues/29) by [Abel94](https://github.com/Abel94)：
+
+  ```objc
+  @interface LCActionSheet : UIView
+
+  @property (nonatomic, assign) UIEdgeInsets titleEdgeInsets;
+
+  @end
+  ```
+
+* 重写 LCActionSheet 初始化逻辑。
+
+* 重写线条和阴影效果，采用加载颜色而不是加载图片的方式。
+
+
+### V 2.6.3 (2016.11.28)
+
+* 修复 Bug：Swift 调用时，destructiveButtonIndexSet 设置无效，[#28](https://github.com/iTofu/LCActionSheet/issues/28) by [Abel94](https://github.com/Abel94)。
+
+
+### V 2.6.2 (2016.11.23)
+
+* 修复更换按钮颜色对取消按钮失效的 Bug。
+
+
+### V 2.6.1 (2016.11.22)
+
+* 优化标题为空时的效果。
+
+
+### V 2.6.0 (2016.10.22)
+
+* 修复取消按钮不显示时 UI 上的一个 Bug。另外你可以通过设置 `cancelButtonTitle` 为 `nil` 或 `@""` 来不显示取消按钮，这是一个 Tip，并不是一个 Feature。。。
+
+* 修正一些逻辑：
+
+  * `cancelButtonIndex` 始终返回 `0`。
+
+  * 除取消按钮以外的按钮自上而下 Index 从 1 递增。也就是说，无论取消按钮是否显示，Index 0 始终会被取消按钮占有。
+
+
+### V 2.5.2 (2016.09.23)
+
+* ~~**注：** 因 CocoaPods 对 Xcode 8 的一些问题（[Issue 5661](https://github.com/CocoaPods/CocoaPods/issues/5661)、[Issue 5843](https://github.com/CocoaPods/CocoaPods/issues/5843)...），暂时无法推到 CocoaPods Repo，你需要在 Podfile 进行如下的修改，直接指向当前版本即可：~~
+
+  ```ruby
+  # 不需要了，作者借了个 Xcode 7 的电脑去更新了。。。
+  pod 'LCActionSheet' # , :git => 'https://github.com/iTofu/LCActionSheet.git'
+  ```
+
+* 修复一个影响用户体验的效果，详见：[Issue 25](https://github.com/iTofu/LCActionSheet/issues/25)。
+
+* 完善剩下的部分注释，主要是 Block 部分。
+
 
 ### V 2.5.1 (2016.09.08)
 
@@ -168,7 +288,7 @@ In me the tiger sniffs the rose.
 
 ### V 2.5.0 (2016.09.05 ⚠️ 属性名变化)
 
-* 添加 `cancenButtonIndex` 属性。在 `cancelTitle.length > 0` 的情况下始终返回 `0`，否则返回 `-1`：
+* 添加 `cancenButtonIndex` 属性，始终返回 `0`：
 
   ```objc
   @interface LCActionSheet : UIView
@@ -385,13 +505,13 @@ In me the tiger sniffs the rose.
 
 ## 联系 Support
 
-* 有问题请前往 [New Issue](https://github.com/iTofu/LCActionSheet/issues/new)，谢谢 :)
+* 有疑问或建议请 [New Issue](https://github.com/iTofu/LCActionSheet/issues/new)，谢谢 :)
 
 * Mail: devtip@163.com
 
 * Blog: http://LeoDev.me
 
-* 如果你觉得我的项目对你有所帮助，想要进行一些捐赠的话，我也很感谢！👇
+* 如果你觉得我的项目对你有所帮助，想要进行捐赠的话，非常感谢你的情怀~
 
   ![Leo](http://7xl8ia.com1.z0.glb.clouddn.com/alipay.png)
 

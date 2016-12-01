@@ -17,35 +17,6 @@
 		3B07D8D61D956B0D00B657F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B07D8D41D956B0D00B657F6 /* LaunchScreen.storyboard */; };
 		3B07D8E11D956B0D00B657F6 /* YLZGTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8E01D956B0D00B657F6 /* YLZGTests.m */; };
 		3B07D8EC1D956B0D00B657F6 /* YLZGUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8EB1D956B0D00B657F6 /* YLZGUITests.m */; };
-		3B1CFCA31DD1780400C4B538 /* AddProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC671DD1780400C4B538 /* AddProductController.m */; };
-		3B1CFCA41DD1780400C4B538 /* ChangeOrderPriceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC691DD1780400C4B538 /* ChangeOrderPriceController.m */; };
-		3B1CFCA51DD1780400C4B538 /* ChangeTaoxiController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC6B1DD1780400C4B538 /* ChangeTaoxiController.m */; };
-		3B1CFCA61DD1780400C4B538 /* EditProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC6D1DD1780400C4B538 /* EditProductController.m */; };
-		3B1CFCA71DD1780400C4B538 /* SpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC6F1DD1780400C4B538 /* SpotViewController.m */; };
-		3B1CFCA81DD1780400C4B538 /* AllProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC721DD1780400C4B538 /* AllProductList.m */; };
-		3B1CFCA91DD1780400C4B538 /* AllProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC741DD1780400C4B538 /* AllProductModel.m */; };
-		3B1CFCAA1DD1780400C4B538 /* AllTaoxiProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC761DD1780400C4B538 /* AllTaoxiProductModel.m */; };
-		3B1CFCAB1DD1780400C4B538 /* MutableSelectedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC781DD1780400C4B538 /* MutableSelectedModel.m */; };
-		3B1CFCAC1DD1780400C4B538 /* TaoxiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC7A1DD1780400C4B538 /* TaoxiModel.m */; };
-		3B1CFCAD1DD1780400C4B538 /* TaoxiNamePrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC7C1DD1780400C4B538 /* TaoxiNamePrice.m */; };
-		3B1CFCAE1DD1780400C4B538 /* TaoxiProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC7E1DD1780400C4B538 /* TaoxiProductModel.m */; };
-		3B1CFCAF1DD1780400C4B538 /* AddProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC811DD1780400C4B538 /* AddProductCell.m */; };
-		3B1CFCB01DD1780400C4B538 /* EditProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC831DD1780400C4B538 /* EditProductCell.m */; };
-		3B1CFCB11DD1780400C4B538 /* MutableSpotTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC851DD1780400C4B538 /* MutableSpotTableCell.m */; };
-		3B1CFCB21DD1780400C4B538 /* OfflineOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC871DD1780400C4B538 /* OfflineOrderTableCell.m */; };
-		3B1CFCB31DD1780400C4B538 /* RightBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC891DD1780400C4B538 /* RightBadgeView.m */; };
-		3B1CFCB41DD1780400C4B538 /* CardNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC8D1DD1780400C4B538 /* CardNumViewController.m */; };
-		3B1CFCB51DD1780400C4B538 /* CusTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC8F1DD1780400C4B538 /* CusTypeViewController.m */; };
-		3B1CFCB61DD1780400C4B538 /* TaoxiTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC911DD1780400C4B538 /* TaoxiTypeViewController.m */; };
-		3B1CFCB71DD1780400C4B538 /* OrderNameController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC961DD1780400C4B538 /* OrderNameController.m */; };
-		3B1CFCB81DD1780400C4B538 /* OrderPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC981DD1780400C4B538 /* OrderPhoneController.m */; };
-		3B1CFCB91DD1780400C4B538 /* LixianOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC9B1DD1780400C4B538 /* LixianOrderController.m */; };
-		3B1CFCBA1DD1780400C4B538 /* OpenOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFC9D1DD1780400C4B538 /* OpenOrderViewController.m */; };
-		3B1CFCBB1DD1780400C4B538 /* OfflineDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFCA01DD1780400C4B538 /* OfflineDataManager.m */; };
-		3B1CFCBC1DD1780400C4B538 /* OffLineOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFCA21DD1780400C4B538 /* OffLineOrder.m */; };
-		3B1CFCBF1DD17A5E00C4B538 /* OpenOrderCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFCBE1DD17A5E00C4B538 /* OpenOrderCardModel.m */; };
-		3B1CFCC21DD17D0700C4B538 /* CardNumTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFCC11DD17D0700C4B538 /* CardNumTableCell.m */; };
-		3B1CFCC51DD1BCB700C4B538 /* RudiRuceVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1CFCC41DD1BCB700C4B538 /* RudiRuceVController.m */; };
 		3B343B361DEBFECC00474549 /* TaskDongtaiController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343AE21DEBFECC00474549 /* TaskDongtaiController.m */; };
 		3B343B371DEBFECC00474549 /* MyCareTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343AE81DEBFECC00474549 /* MyCareTaskController.m */; };
 		3B343B381DEBFECC00474549 /* MyCreateTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343AEA1DEBFECC00474549 /* MyCreateTaskController.m */; };
@@ -319,9 +290,32 @@
 		3B9E17091DD2FC5F0028C72F /* HuangzhuangBingTu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E17081DD2FC5F0028C72F /* HuangzhuangBingTu.m */; };
 		3B9E170F1DD2FFD10028C72F /* SumFinaceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E170E1DD2FFD10028C72F /* SumFinaceTableCell.m */; };
 		3B9E17121DD3139C0028C72F /* FinaceIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9E17111DD3139C0028C72F /* FinaceIconView.m */; };
+		3B9EF3AF1DEFBD2C00C66888 /* CardNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3AE1DEFBD2C00C66888 /* CardNumViewController.m */; };
+		3B9EF3B21DEFBD4A00C66888 /* CardNumTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3B11DEFBD4A00C66888 /* CardNumTableCell.m */; };
+		3B9EF3B51DEFBD6000C66888 /* OpenOrderCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3B41DEFBD6000C66888 /* OpenOrderCardModel.m */; };
+		3B9EF3B81DEFBED600C66888 /* SpotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3B71DEFBED600C66888 /* SpotViewController.m */; };
+		3B9EF3BB1DEFBF0300C66888 /* MutableSpotTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3BA1DEFBF0300C66888 /* MutableSpotTableCell.m */; };
+		3B9EF3BE1DEFBF2400C66888 /* MutableSelectedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3BD1DEFBF2400C66888 /* MutableSelectedModel.m */; };
+		3B9EF3C41DEFC6B100C66888 /* ChangeTaoxiController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3C31DEFC6B100C66888 /* ChangeTaoxiController.m */; };
+		3B9EF3C71DEFC71900C66888 /* TaoxiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3C61DEFC71900C66888 /* TaoxiModel.m */; };
+		3B9EF3CC1DEFC72D00C66888 /* TaoxiNamePrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3C91DEFC72D00C66888 /* TaoxiNamePrice.m */; };
+		3B9EF3CD1DEFC72D00C66888 /* TaoxiProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3CB1DEFC72D00C66888 /* TaoxiProductModel.m */; };
+		3B9EF3D01DEFCB3400C66888 /* TaoxiTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3CF1DEFCB3400C66888 /* TaoxiTypeViewController.m */; };
+		3B9EF3D71DEFD11900C66888 /* AllProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3D21DEFD11900C66888 /* AllProductList.m */; };
+		3B9EF3D81DEFD11900C66888 /* AllProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3D41DEFD11900C66888 /* AllProductModel.m */; };
+		3B9EF3D91DEFD11900C66888 /* AllTaoxiProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3D61DEFD11900C66888 /* AllTaoxiProductModel.m */; };
+		3B9EF3DC1DEFD59C00C66888 /* EditProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3DB1DEFD59C00C66888 /* EditProductCell.m */; };
 		3BA06F241DCC512C000886A8 /* MoreToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F1F1DCC512C000886A8 /* MoreToolsViewController.m */; };
 		3BA06F251DCC512C000886A8 /* ToolsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F211DCC512C000886A8 /* ToolsModel.m */; };
 		3BA06F261DCC512C000886A8 /* ToolsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F231DCC512C000886A8 /* ToolsTableViewCell.m */; };
+		3BA8D9551DEEB7E300645405 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA8D9541DEEB7E300645405 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3BA8D9631DEEC0DA00645405 /* OpenOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D9621DEEC0DA00645405 /* OpenOrderViewController.m */; };
+		3BA8D9691DEEC1B900645405 /* LixianOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D9681DEEC1B900645405 /* LixianOrderController.m */; };
+		3BA8D96C1DEECA4E00645405 /* RightBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D96B1DEECA4E00645405 /* RightBadgeView.m */; };
+		3BA8D9711DEECA6400645405 /* OfflineDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D96E1DEECA6400645405 /* OfflineDataManager.m */; };
+		3BA8D9721DEECA6400645405 /* OffLineOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D9701DEECA6400645405 /* OffLineOrder.m */; };
+		3BA8D9751DEECB4A00645405 /* CusTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D9741DEECB4A00645405 /* CusTypeViewController.m */; };
+		3BA8D9781DEECB9B00645405 /* OpenOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D9771DEECB9B00645405 /* OpenOrderTableCell.m */; };
 		3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6C5061DC042C8008346BD /* NewFutherModel.m */; };
 		3BCA323A1D9CC07600A0E980 /* YLConstKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32391D9CC07600A0E980 /* YLConstKey.m */; };
 		3BCA32401D9CC14100A0E980 /* SuperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA323E1D9CC14100A0E980 /* SuperViewController.m */; };
@@ -444,64 +438,6 @@
 		3B07D8EB1D956B0D00B657F6 /* YLZGUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YLZGUITests.m; sourceTree = "<group>"; };
 		3B07D8ED1D956B0D00B657F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B07D8FC1D9578CE00B657F6 /* YLZG.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YLZG.entitlements; sourceTree = "<group>"; };
-		3B1CFC661DD1780400C4B538 /* AddProductController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductController.h; sourceTree = "<group>"; };
-		3B1CFC671DD1780400C4B538 /* AddProductController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductController.m; sourceTree = "<group>"; };
-		3B1CFC681DD1780400C4B538 /* ChangeOrderPriceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeOrderPriceController.h; sourceTree = "<group>"; };
-		3B1CFC691DD1780400C4B538 /* ChangeOrderPriceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeOrderPriceController.m; sourceTree = "<group>"; };
-		3B1CFC6A1DD1780400C4B538 /* ChangeTaoxiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeTaoxiController.h; sourceTree = "<group>"; };
-		3B1CFC6B1DD1780400C4B538 /* ChangeTaoxiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTaoxiController.m; sourceTree = "<group>"; };
-		3B1CFC6C1DD1780400C4B538 /* EditProductController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProductController.h; sourceTree = "<group>"; };
-		3B1CFC6D1DD1780400C4B538 /* EditProductController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProductController.m; sourceTree = "<group>"; };
-		3B1CFC6E1DD1780400C4B538 /* SpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotViewController.h; sourceTree = "<group>"; };
-		3B1CFC6F1DD1780400C4B538 /* SpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotViewController.m; sourceTree = "<group>"; };
-		3B1CFC711DD1780400C4B538 /* AllProductList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllProductList.h; sourceTree = "<group>"; };
-		3B1CFC721DD1780400C4B538 /* AllProductList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllProductList.m; sourceTree = "<group>"; };
-		3B1CFC731DD1780400C4B538 /* AllProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllProductModel.h; sourceTree = "<group>"; };
-		3B1CFC741DD1780400C4B538 /* AllProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllProductModel.m; sourceTree = "<group>"; };
-		3B1CFC751DD1780400C4B538 /* AllTaoxiProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTaoxiProductModel.h; sourceTree = "<group>"; };
-		3B1CFC761DD1780400C4B538 /* AllTaoxiProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTaoxiProductModel.m; sourceTree = "<group>"; };
-		3B1CFC771DD1780400C4B538 /* MutableSelectedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableSelectedModel.h; sourceTree = "<group>"; };
-		3B1CFC781DD1780400C4B538 /* MutableSelectedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableSelectedModel.m; sourceTree = "<group>"; };
-		3B1CFC791DD1780400C4B538 /* TaoxiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoxiModel.h; sourceTree = "<group>"; };
-		3B1CFC7A1DD1780400C4B538 /* TaoxiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoxiModel.m; sourceTree = "<group>"; };
-		3B1CFC7B1DD1780400C4B538 /* TaoxiNamePrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoxiNamePrice.h; sourceTree = "<group>"; };
-		3B1CFC7C1DD1780400C4B538 /* TaoxiNamePrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoxiNamePrice.m; sourceTree = "<group>"; };
-		3B1CFC7D1DD1780400C4B538 /* TaoxiProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoxiProductModel.h; sourceTree = "<group>"; };
-		3B1CFC7E1DD1780400C4B538 /* TaoxiProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoxiProductModel.m; sourceTree = "<group>"; };
-		3B1CFC801DD1780400C4B538 /* AddProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductCell.h; sourceTree = "<group>"; };
-		3B1CFC811DD1780400C4B538 /* AddProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductCell.m; sourceTree = "<group>"; };
-		3B1CFC821DD1780400C4B538 /* EditProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProductCell.h; sourceTree = "<group>"; };
-		3B1CFC831DD1780400C4B538 /* EditProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProductCell.m; sourceTree = "<group>"; };
-		3B1CFC841DD1780400C4B538 /* MutableSpotTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableSpotTableCell.h; sourceTree = "<group>"; };
-		3B1CFC851DD1780400C4B538 /* MutableSpotTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableSpotTableCell.m; sourceTree = "<group>"; };
-		3B1CFC861DD1780400C4B538 /* OfflineOrderTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineOrderTableCell.h; sourceTree = "<group>"; };
-		3B1CFC871DD1780400C4B538 /* OfflineOrderTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineOrderTableCell.m; sourceTree = "<group>"; };
-		3B1CFC881DD1780400C4B538 /* RightBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightBadgeView.h; sourceTree = "<group>"; };
-		3B1CFC891DD1780400C4B538 /* RightBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightBadgeView.m; sourceTree = "<group>"; };
-		3B1CFC8C1DD1780400C4B538 /* CardNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardNumViewController.h; sourceTree = "<group>"; };
-		3B1CFC8D1DD1780400C4B538 /* CardNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardNumViewController.m; sourceTree = "<group>"; };
-		3B1CFC8E1DD1780400C4B538 /* CusTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CusTypeViewController.h; sourceTree = "<group>"; };
-		3B1CFC8F1DD1780400C4B538 /* CusTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CusTypeViewController.m; sourceTree = "<group>"; };
-		3B1CFC901DD1780400C4B538 /* TaoxiTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoxiTypeViewController.h; sourceTree = "<group>"; };
-		3B1CFC911DD1780400C4B538 /* TaoxiTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoxiTypeViewController.m; sourceTree = "<group>"; };
-		3B1CFC951DD1780400C4B538 /* OrderNameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderNameController.h; sourceTree = "<group>"; };
-		3B1CFC961DD1780400C4B538 /* OrderNameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderNameController.m; sourceTree = "<group>"; };
-		3B1CFC971DD1780400C4B538 /* OrderPhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderPhoneController.h; sourceTree = "<group>"; };
-		3B1CFC981DD1780400C4B538 /* OrderPhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderPhoneController.m; sourceTree = "<group>"; };
-		3B1CFC9A1DD1780400C4B538 /* LixianOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LixianOrderController.h; sourceTree = "<group>"; };
-		3B1CFC9B1DD1780400C4B538 /* LixianOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LixianOrderController.m; sourceTree = "<group>"; };
-		3B1CFC9C1DD1780400C4B538 /* OpenOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenOrderViewController.h; sourceTree = "<group>"; };
-		3B1CFC9D1DD1780400C4B538 /* OpenOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenOrderViewController.m; sourceTree = "<group>"; };
-		3B1CFC9F1DD1780400C4B538 /* OfflineDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineDataManager.h; sourceTree = "<group>"; };
-		3B1CFCA01DD1780400C4B538 /* OfflineDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineDataManager.m; sourceTree = "<group>"; };
-		3B1CFCA11DD1780400C4B538 /* OffLineOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffLineOrder.h; sourceTree = "<group>"; };
-		3B1CFCA21DD1780400C4B538 /* OffLineOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffLineOrder.m; sourceTree = "<group>"; };
-		3B1CFCBD1DD17A5E00C4B538 /* OpenOrderCardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenOrderCardModel.h; sourceTree = "<group>"; };
-		3B1CFCBE1DD17A5E00C4B538 /* OpenOrderCardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenOrderCardModel.m; sourceTree = "<group>"; };
-		3B1CFCC01DD17D0700C4B538 /* CardNumTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardNumTableCell.h; sourceTree = "<group>"; };
-		3B1CFCC11DD17D0700C4B538 /* CardNumTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardNumTableCell.m; sourceTree = "<group>"; };
-		3B1CFCC31DD1BCB700C4B538 /* RudiRuceVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RudiRuceVController.h; sourceTree = "<group>"; };
-		3B1CFCC41DD1BCB700C4B538 /* RudiRuceVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RudiRuceVController.m; sourceTree = "<group>"; };
 		3B343AE11DEBFECC00474549 /* TaskDongtaiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDongtaiController.h; sourceTree = "<group>"; };
 		3B343AE21DEBFECC00474549 /* TaskDongtaiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDongtaiController.m; sourceTree = "<group>"; };
 		3B343AE71DEBFECC00474549 /* MyCareTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCareTaskController.h; sourceTree = "<group>"; };
@@ -1060,12 +996,57 @@
 		3B9E170E1DD2FFD10028C72F /* SumFinaceTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SumFinaceTableCell.m; sourceTree = "<group>"; };
 		3B9E17101DD3139C0028C72F /* FinaceIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinaceIconView.h; sourceTree = "<group>"; };
 		3B9E17111DD3139C0028C72F /* FinaceIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinaceIconView.m; sourceTree = "<group>"; };
+		3B9EF3AD1DEFBD2C00C66888 /* CardNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardNumViewController.h; sourceTree = "<group>"; };
+		3B9EF3AE1DEFBD2C00C66888 /* CardNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardNumViewController.m; sourceTree = "<group>"; };
+		3B9EF3B01DEFBD4A00C66888 /* CardNumTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardNumTableCell.h; sourceTree = "<group>"; };
+		3B9EF3B11DEFBD4A00C66888 /* CardNumTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardNumTableCell.m; sourceTree = "<group>"; };
+		3B9EF3B31DEFBD6000C66888 /* OpenOrderCardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenOrderCardModel.h; sourceTree = "<group>"; };
+		3B9EF3B41DEFBD6000C66888 /* OpenOrderCardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenOrderCardModel.m; sourceTree = "<group>"; };
+		3B9EF3B61DEFBED600C66888 /* SpotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotViewController.h; sourceTree = "<group>"; };
+		3B9EF3B71DEFBED600C66888 /* SpotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotViewController.m; sourceTree = "<group>"; };
+		3B9EF3B91DEFBF0300C66888 /* MutableSpotTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableSpotTableCell.h; sourceTree = "<group>"; };
+		3B9EF3BA1DEFBF0300C66888 /* MutableSpotTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableSpotTableCell.m; sourceTree = "<group>"; };
+		3B9EF3BC1DEFBF2400C66888 /* MutableSelectedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableSelectedModel.h; sourceTree = "<group>"; };
+		3B9EF3BD1DEFBF2400C66888 /* MutableSelectedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableSelectedModel.m; sourceTree = "<group>"; };
+		3B9EF3C21DEFC6B100C66888 /* ChangeTaoxiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeTaoxiController.h; sourceTree = "<group>"; };
+		3B9EF3C31DEFC6B100C66888 /* ChangeTaoxiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeTaoxiController.m; sourceTree = "<group>"; };
+		3B9EF3C51DEFC71900C66888 /* TaoxiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoxiModel.h; sourceTree = "<group>"; };
+		3B9EF3C61DEFC71900C66888 /* TaoxiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoxiModel.m; sourceTree = "<group>"; };
+		3B9EF3C81DEFC72D00C66888 /* TaoxiNamePrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoxiNamePrice.h; sourceTree = "<group>"; };
+		3B9EF3C91DEFC72D00C66888 /* TaoxiNamePrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoxiNamePrice.m; sourceTree = "<group>"; };
+		3B9EF3CA1DEFC72D00C66888 /* TaoxiProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoxiProductModel.h; sourceTree = "<group>"; };
+		3B9EF3CB1DEFC72D00C66888 /* TaoxiProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoxiProductModel.m; sourceTree = "<group>"; };
+		3B9EF3CE1DEFCB3400C66888 /* TaoxiTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaoxiTypeViewController.h; sourceTree = "<group>"; };
+		3B9EF3CF1DEFCB3400C66888 /* TaoxiTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoxiTypeViewController.m; sourceTree = "<group>"; };
+		3B9EF3D11DEFD11900C66888 /* AllProductList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllProductList.h; sourceTree = "<group>"; };
+		3B9EF3D21DEFD11900C66888 /* AllProductList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllProductList.m; sourceTree = "<group>"; };
+		3B9EF3D31DEFD11900C66888 /* AllProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllProductModel.h; sourceTree = "<group>"; };
+		3B9EF3D41DEFD11900C66888 /* AllProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllProductModel.m; sourceTree = "<group>"; };
+		3B9EF3D51DEFD11900C66888 /* AllTaoxiProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTaoxiProductModel.h; sourceTree = "<group>"; };
+		3B9EF3D61DEFD11900C66888 /* AllTaoxiProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTaoxiProductModel.m; sourceTree = "<group>"; };
+		3B9EF3DA1DEFD59C00C66888 /* EditProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProductCell.h; sourceTree = "<group>"; };
+		3B9EF3DB1DEFD59C00C66888 /* EditProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProductCell.m; sourceTree = "<group>"; };
 		3BA06F1E1DCC512C000886A8 /* MoreToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreToolsViewController.h; sourceTree = "<group>"; };
 		3BA06F1F1DCC512C000886A8 /* MoreToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreToolsViewController.m; sourceTree = "<group>"; };
 		3BA06F201DCC512C000886A8 /* ToolsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsModel.h; sourceTree = "<group>"; };
 		3BA06F211DCC512C000886A8 /* ToolsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsModel.m; sourceTree = "<group>"; };
 		3BA06F221DCC512C000886A8 /* ToolsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsTableViewCell.h; sourceTree = "<group>"; };
 		3BA06F231DCC512C000886A8 /* ToolsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsTableViewCell.m; sourceTree = "<group>"; };
+		3BA8D9541DEEB7E300645405 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		3BA8D9611DEEC0DA00645405 /* OpenOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenOrderViewController.h; sourceTree = "<group>"; };
+		3BA8D9621DEEC0DA00645405 /* OpenOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenOrderViewController.m; sourceTree = "<group>"; };
+		3BA8D9671DEEC1B900645405 /* LixianOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LixianOrderController.h; sourceTree = "<group>"; };
+		3BA8D9681DEEC1B900645405 /* LixianOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LixianOrderController.m; sourceTree = "<group>"; };
+		3BA8D96A1DEECA4E00645405 /* RightBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightBadgeView.h; sourceTree = "<group>"; };
+		3BA8D96B1DEECA4E00645405 /* RightBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightBadgeView.m; sourceTree = "<group>"; };
+		3BA8D96D1DEECA6400645405 /* OfflineDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineDataManager.h; sourceTree = "<group>"; };
+		3BA8D96E1DEECA6400645405 /* OfflineDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineDataManager.m; sourceTree = "<group>"; };
+		3BA8D96F1DEECA6400645405 /* OffLineOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffLineOrder.h; sourceTree = "<group>"; };
+		3BA8D9701DEECA6400645405 /* OffLineOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OffLineOrder.m; sourceTree = "<group>"; };
+		3BA8D9731DEECB4A00645405 /* CusTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CusTypeViewController.h; sourceTree = "<group>"; };
+		3BA8D9741DEECB4A00645405 /* CusTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CusTypeViewController.m; sourceTree = "<group>"; };
+		3BA8D9761DEECB9B00645405 /* OpenOrderTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenOrderTableCell.h; sourceTree = "<group>"; };
+		3BA8D9771DEECB9B00645405 /* OpenOrderTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenOrderTableCell.m; sourceTree = "<group>"; };
 		3BC6C5051DC042C8008346BD /* NewFutherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFutherModel.h; sourceTree = "<group>"; };
 		3BC6C5061DC042C8008346BD /* NewFutherModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFutherModel.m; sourceTree = "<group>"; };
 		3BCA32351D9CBF5200A0E980 /* YLZGHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YLZGHeader.h; sourceTree = "<group>"; };
@@ -1235,6 +1216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA8D9551DEEB7E300645405 /* UserNotifications.framework in Frameworks */,
 				F861F19A60C03DD5F0C35469 /* libPods-YLZG.a in Frameworks */,
 				3B7ABCF91DB6176600F3D12B /* libopencore-amrwb.a in Frameworks */,
 				3B75EFC81DC2E3EF00D54807 /* libWeChatSDK.a in Frameworks */,
@@ -1361,152 +1343,6 @@
 				3B07D8C61D956B0D00B657F6 /* Supporting Files */,
 			);
 			name = "系统文件";
-			sourceTree = "<group>";
-		};
-		3B1CFC641DD1780400C4B538 /* 第二组 */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFC651DD1780400C4B538 /* C */,
-				3B1CFC701DD1780400C4B538 /* M */,
-				3B1CFC7F1DD1780400C4B538 /* V */,
-			);
-			name = "第二组";
-			path = "C/第二组";
-			sourceTree = "<group>";
-		};
-		3B1CFC651DD1780400C4B538 /* C */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFC6C1DD1780400C4B538 /* EditProductController.h */,
-				3B1CFC6D1DD1780400C4B538 /* EditProductController.m */,
-				3B1CFC661DD1780400C4B538 /* AddProductController.h */,
-				3B1CFC671DD1780400C4B538 /* AddProductController.m */,
-				3B1CFC681DD1780400C4B538 /* ChangeOrderPriceController.h */,
-				3B1CFC691DD1780400C4B538 /* ChangeOrderPriceController.m */,
-				3B1CFC6A1DD1780400C4B538 /* ChangeTaoxiController.h */,
-				3B1CFC6B1DD1780400C4B538 /* ChangeTaoxiController.m */,
-				3B1CFC6E1DD1780400C4B538 /* SpotViewController.h */,
-				3B1CFC6F1DD1780400C4B538 /* SpotViewController.m */,
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		3B1CFC701DD1780400C4B538 /* M */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFC711DD1780400C4B538 /* AllProductList.h */,
-				3B1CFC721DD1780400C4B538 /* AllProductList.m */,
-				3B1CFC731DD1780400C4B538 /* AllProductModel.h */,
-				3B1CFC741DD1780400C4B538 /* AllProductModel.m */,
-				3B1CFC751DD1780400C4B538 /* AllTaoxiProductModel.h */,
-				3B1CFC761DD1780400C4B538 /* AllTaoxiProductModel.m */,
-				3B1CFC771DD1780400C4B538 /* MutableSelectedModel.h */,
-				3B1CFC781DD1780400C4B538 /* MutableSelectedModel.m */,
-				3B1CFC791DD1780400C4B538 /* TaoxiModel.h */,
-				3B1CFC7A1DD1780400C4B538 /* TaoxiModel.m */,
-				3B1CFC7B1DD1780400C4B538 /* TaoxiNamePrice.h */,
-				3B1CFC7C1DD1780400C4B538 /* TaoxiNamePrice.m */,
-				3B1CFC7D1DD1780400C4B538 /* TaoxiProductModel.h */,
-				3B1CFC7E1DD1780400C4B538 /* TaoxiProductModel.m */,
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
-		3B1CFC7F1DD1780400C4B538 /* V */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFC801DD1780400C4B538 /* AddProductCell.h */,
-				3B1CFC811DD1780400C4B538 /* AddProductCell.m */,
-				3B1CFC821DD1780400C4B538 /* EditProductCell.h */,
-				3B1CFC831DD1780400C4B538 /* EditProductCell.m */,
-				3B1CFC841DD1780400C4B538 /* MutableSpotTableCell.h */,
-				3B1CFC851DD1780400C4B538 /* MutableSpotTableCell.m */,
-				3B1CFC861DD1780400C4B538 /* OfflineOrderTableCell.h */,
-				3B1CFC871DD1780400C4B538 /* OfflineOrderTableCell.m */,
-				3B1CFC881DD1780400C4B538 /* RightBadgeView.h */,
-				3B1CFC891DD1780400C4B538 /* RightBadgeView.m */,
-			);
-			path = V;
-			sourceTree = "<group>";
-		};
-		3B1CFC8A1DD1780400C4B538 /* 第三组 */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFC8B1DD1780400C4B538 /* C */,
-				3B1CFC921DD1780400C4B538 /* M */,
-				3B1CFC931DD1780400C4B538 /* V */,
-			);
-			name = "第三组";
-			path = "C/第三组";
-			sourceTree = "<group>";
-		};
-		3B1CFC8B1DD1780400C4B538 /* C */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFC8C1DD1780400C4B538 /* CardNumViewController.h */,
-				3B1CFC8D1DD1780400C4B538 /* CardNumViewController.m */,
-				3B1CFC8E1DD1780400C4B538 /* CusTypeViewController.h */,
-				3B1CFC8F1DD1780400C4B538 /* CusTypeViewController.m */,
-				3B1CFC901DD1780400C4B538 /* TaoxiTypeViewController.h */,
-				3B1CFC911DD1780400C4B538 /* TaoxiTypeViewController.m */,
-				3B1CFCC31DD1BCB700C4B538 /* RudiRuceVController.h */,
-				3B1CFCC41DD1BCB700C4B538 /* RudiRuceVController.m */,
-			);
-			path = C;
-			sourceTree = "<group>";
-		};
-		3B1CFC921DD1780400C4B538 /* M */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFCBD1DD17A5E00C4B538 /* OpenOrderCardModel.h */,
-				3B1CFCBE1DD17A5E00C4B538 /* OpenOrderCardModel.m */,
-			);
-			path = M;
-			sourceTree = "<group>";
-		};
-		3B1CFC931DD1780400C4B538 /* V */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFCC01DD17D0700C4B538 /* CardNumTableCell.h */,
-				3B1CFCC11DD17D0700C4B538 /* CardNumTableCell.m */,
-			);
-			path = V;
-			sourceTree = "<group>";
-		};
-		3B1CFC941DD1780400C4B538 /* 第一组 */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFC951DD1780400C4B538 /* OrderNameController.h */,
-				3B1CFC961DD1780400C4B538 /* OrderNameController.m */,
-				3B1CFC971DD1780400C4B538 /* OrderPhoneController.h */,
-				3B1CFC981DD1780400C4B538 /* OrderPhoneController.m */,
-			);
-			name = "第一组";
-			path = "C/第一组";
-			sourceTree = "<group>";
-		};
-		3B1CFC991DD1780400C4B538 /* 主页 */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFC9C1DD1780400C4B538 /* OpenOrderViewController.h */,
-				3B1CFC9D1DD1780400C4B538 /* OpenOrderViewController.m */,
-				3B1CFC9A1DD1780400C4B538 /* LixianOrderController.h */,
-				3B1CFC9B1DD1780400C4B538 /* LixianOrderController.m */,
-			);
-			name = "主页";
-			path = "C/主页";
-			sourceTree = "<group>";
-		};
-		3B1CFC9E1DD1780400C4B538 /* T */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFC9F1DD1780400C4B538 /* OfflineDataManager.h */,
-				3B1CFCA01DD1780400C4B538 /* OfflineDataManager.m */,
-				3B1CFCA11DD1780400C4B538 /* OffLineOrder.h */,
-				3B1CFCA21DD1780400C4B538 /* OffLineOrder.m */,
-			);
-			name = T;
-			path = C/T;
 			sourceTree = "<group>";
 		};
 		3B343ADF1DEBFECC00474549 /* 动态 */ = {
@@ -1941,7 +1777,7 @@
 		3B4C0FB21DC85DDC00827D4F /* ERP应用 */ = {
 			isa = PBXGroup;
 			children = (
-				3B4C0FC11DC85DDC00827D4F /* 开单 */,
+				3BA8D9561DEEBE4900645405 /* 开单 */,
 				3B948B551DD993C600D75112 /* 今日订单 */,
 				3B948B5F1DD993C600D75112 /* 我的工作 */,
 				3B4C0FB31DC85DDC00827D4F /* 业绩榜 */,
@@ -1992,18 +1828,6 @@
 				3B4C0FC01DC85DDC00827D4F /* YLZGTitleLabel.m */,
 			);
 			path = V;
-			sourceTree = "<group>";
-		};
-		3B4C0FC11DC85DDC00827D4F /* 开单 */ = {
-			isa = PBXGroup;
-			children = (
-				3B1CFC991DD1780400C4B538 /* 主页 */,
-				3B1CFC9E1DD1780400C4B538 /* T */,
-				3B1CFC941DD1780400C4B538 /* 第一组 */,
-				3B1CFC641DD1780400C4B538 /* 第二组 */,
-				3B1CFC8A1DD1780400C4B538 /* 第三组 */,
-			);
-			path = "开单";
 			sourceTree = "<group>";
 		};
 		3B4C0FF41DC85DDC00827D4F /* 摄控本 */ = {
@@ -3216,6 +3040,45 @@
 			path = V;
 			sourceTree = "<group>";
 		};
+		3B9EF3BF1DEFC5DF00C66888 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				3B9EF3C21DEFC6B100C66888 /* ChangeTaoxiController.h */,
+				3B9EF3C31DEFC6B100C66888 /* ChangeTaoxiController.m */,
+				3B9EF3CE1DEFCB3400C66888 /* TaoxiTypeViewController.h */,
+				3B9EF3CF1DEFCB3400C66888 /* TaoxiTypeViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		3B9EF3C01DEFC5DF00C66888 /* M */ = {
+			isa = PBXGroup;
+			children = (
+				3B9EF3C51DEFC71900C66888 /* TaoxiModel.h */,
+				3B9EF3C61DEFC71900C66888 /* TaoxiModel.m */,
+				3B9EF3C81DEFC72D00C66888 /* TaoxiNamePrice.h */,
+				3B9EF3C91DEFC72D00C66888 /* TaoxiNamePrice.m */,
+				3B9EF3CA1DEFC72D00C66888 /* TaoxiProductModel.h */,
+				3B9EF3CB1DEFC72D00C66888 /* TaoxiProductModel.m */,
+				3B9EF3D11DEFD11900C66888 /* AllProductList.h */,
+				3B9EF3D21DEFD11900C66888 /* AllProductList.m */,
+				3B9EF3D31DEFD11900C66888 /* AllProductModel.h */,
+				3B9EF3D41DEFD11900C66888 /* AllProductModel.m */,
+				3B9EF3D51DEFD11900C66888 /* AllTaoxiProductModel.h */,
+				3B9EF3D61DEFD11900C66888 /* AllTaoxiProductModel.m */,
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		3B9EF3C11DEFC5DF00C66888 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				3B9EF3DA1DEFD59C00C66888 /* EditProductCell.h */,
+				3B9EF3DB1DEFD59C00C66888 /* EditProductCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
 		3BA06F1B1DCC512C000886A8 /* 实用工具 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3243,6 +3106,82 @@
 				3BA06F231DCC512C000886A8 /* ToolsTableViewCell.m */,
 			);
 			path = "首页";
+			sourceTree = "<group>";
+		};
+		3BA8D9561DEEBE4900645405 /* 开单 */ = {
+			isa = PBXGroup;
+			children = (
+				3BA8D95C1DEEC0C400645405 /* 开单主页 */,
+				3BA8D95D1DEEC0C400645405 /* 客户信息 */,
+				3BA8D95E1DEEC0C400645405 /* 离线开单 */,
+				3BA8D95F1DEEC0C400645405 /* 其他信息 */,
+				3BA8D9601DEEC0C400645405 /* 套系信息 */,
+			);
+			path = "开单";
+			sourceTree = "<group>";
+		};
+		3BA8D95C1DEEC0C400645405 /* 开单主页 */ = {
+			isa = PBXGroup;
+			children = (
+				3BA8D9611DEEC0DA00645405 /* OpenOrderViewController.h */,
+				3BA8D9621DEEC0DA00645405 /* OpenOrderViewController.m */,
+				3BA8D9761DEECB9B00645405 /* OpenOrderTableCell.h */,
+				3BA8D9771DEECB9B00645405 /* OpenOrderTableCell.m */,
+			);
+			path = "开单主页";
+			sourceTree = "<group>";
+		};
+		3BA8D95D1DEEC0C400645405 /* 客户信息 */ = {
+			isa = PBXGroup;
+			children = (
+				3BA8D9731DEECB4A00645405 /* CusTypeViewController.h */,
+				3BA8D9741DEECB4A00645405 /* CusTypeViewController.m */,
+			);
+			path = "客户信息";
+			sourceTree = "<group>";
+		};
+		3BA8D95E1DEEC0C400645405 /* 离线开单 */ = {
+			isa = PBXGroup;
+			children = (
+				3BA8D9671DEEC1B900645405 /* LixianOrderController.h */,
+				3BA8D9681DEEC1B900645405 /* LixianOrderController.m */,
+				3BA8D96D1DEECA6400645405 /* OfflineDataManager.h */,
+				3BA8D96E1DEECA6400645405 /* OfflineDataManager.m */,
+				3BA8D96F1DEECA6400645405 /* OffLineOrder.h */,
+				3BA8D9701DEECA6400645405 /* OffLineOrder.m */,
+				3BA8D96A1DEECA4E00645405 /* RightBadgeView.h */,
+				3BA8D96B1DEECA4E00645405 /* RightBadgeView.m */,
+			);
+			path = "离线开单";
+			sourceTree = "<group>";
+		};
+		3BA8D95F1DEEC0C400645405 /* 其他信息 */ = {
+			isa = PBXGroup;
+			children = (
+				3B9EF3B61DEFBED600C66888 /* SpotViewController.h */,
+				3B9EF3B71DEFBED600C66888 /* SpotViewController.m */,
+				3B9EF3BC1DEFBF2400C66888 /* MutableSelectedModel.h */,
+				3B9EF3BD1DEFBF2400C66888 /* MutableSelectedModel.m */,
+				3B9EF3B91DEFBF0300C66888 /* MutableSpotTableCell.h */,
+				3B9EF3BA1DEFBF0300C66888 /* MutableSpotTableCell.m */,
+				3B9EF3AD1DEFBD2C00C66888 /* CardNumViewController.h */,
+				3B9EF3AE1DEFBD2C00C66888 /* CardNumViewController.m */,
+				3B9EF3B31DEFBD6000C66888 /* OpenOrderCardModel.h */,
+				3B9EF3B41DEFBD6000C66888 /* OpenOrderCardModel.m */,
+				3B9EF3B01DEFBD4A00C66888 /* CardNumTableCell.h */,
+				3B9EF3B11DEFBD4A00C66888 /* CardNumTableCell.m */,
+			);
+			path = "其他信息";
+			sourceTree = "<group>";
+		};
+		3BA8D9601DEEC0C400645405 /* 套系信息 */ = {
+			isa = PBXGroup;
+			children = (
+				3B9EF3BF1DEFC5DF00C66888 /* C */,
+				3B9EF3C01DEFC5DF00C66888 /* M */,
+				3B9EF3C11DEFC5DF00C66888 /* V */,
+			);
+			path = "套系信息";
 			sourceTree = "<group>";
 		};
 		3BCA323B1D9CC14100A0E980 /* 管理者 */ = {
@@ -3587,6 +3526,7 @@
 		587A5D129C3BA99CB55B03DD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BA8D9541DEEB7E300645405 /* UserNotifications.framework */,
 				487A4302373A59827214ABFD /* libPods-YLZG.a */,
 				10D181EFDFDFBC5340FDE7D5 /* libPods-YLZGTests.a */,
 				86ED1CFA9A80F470DA0E1435 /* libPods-YLZGUITests.a */,
@@ -3891,7 +3831,6 @@
 				3B7ABCAA1DB5B33400F3D12B /* GroupMemberView.m in Sources */,
 				3B9E16F71DD2C13D0028C72F /* TodayFinaceModel.m in Sources */,
 				3B343B461DEBFECC00474549 /* ProduceFileVController.m in Sources */,
-				3B1CFCBC1DD1780400C4B538 /* OffLineOrder.m in Sources */,
 				3BCF39C01D9E3D5500BEE236 /* ContactListViewController.m in Sources */,
 				3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */,
 				3B4C10A91DC85DDC00827D4F /* YejiDetialViewController.m in Sources */,
@@ -3912,8 +3851,8 @@
 				3B3BBFC01DB4852700C9E2FD /* CreateGroupsController.m in Sources */,
 				3B4C134A1DC85F4700827D4F /* PlaceViewController.m in Sources */,
 				3B4C13731DC85F4700827D4F /* StaffInfoModel.m in Sources */,
+				3BA8D9721DEECA6400645405 /* OffLineOrder.m in Sources */,
 				3B7ABCF11DB6176600F3D12B /* EMCDDeviceManager+Microphone.m in Sources */,
-				3B1CFCAC1DD1780400C4B538 /* TaoxiModel.m in Sources */,
 				3B4C13551DC85F4700827D4F /* DakaMapView.m in Sources */,
 				3B343B391DEBFECC00474549 /* MyManagerTaskController.m in Sources */,
 				3B4C10371DC85DDC00827D4F /* OutComeModel.m in Sources */,
@@ -3921,6 +3860,7 @@
 				3BCF3A3D1D9E6CF800BEE236 /* SDCycleScrollView.m in Sources */,
 				3B4C131C1DC85F4700827D4F /* FabuViewController.m in Sources */,
 				3B56D7831DC739CE003A57FD /* IMChatManager.m in Sources */,
+				3B9EF3B81DEFBED600C66888 /* SpotViewController.m in Sources */,
 				3B4C103E1DC85DDC00827D4F /* TitleColorDescView.m in Sources */,
 				3BCF39D71D9E447B00BEE236 /* LimiteCache.m in Sources */,
 				3B56D7841DC739CE003A57FD /* ChatListHeadView.m in Sources */,
@@ -3958,6 +3898,7 @@
 				3B3BBFBC1DB484EA00C9E2FD /* YLSearchBar.m in Sources */,
 				3B07D8CB1D956B0D00B657F6 /* AppDelegate.m in Sources */,
 				3BCF3A221D9E6A4800BEE236 /* NewFutherViewController.m in Sources */,
+				3B9EF3AF1DEFBD2C00C66888 /* CardNumViewController.m in Sources */,
 				3B4C13291DC85F4700827D4F /* AllQiandaoViewController.m in Sources */,
 				3B4C103D1DC85DDC00827D4F /* OutTitleColorView.m in Sources */,
 				3B4C13381DC85F4700827D4F /* CustomProgress.m in Sources */,
@@ -3965,6 +3906,7 @@
 				3B4C13561DC85F4700827D4F /* EditPaibanTableCell.m in Sources */,
 				3B343B591DEBFECC00474549 /* SelectTaskFuzerController.m in Sources */,
 				3B4C13631DC85F4700827D4F /* WaichuTableCell.m in Sources */,
+				3B9EF3CC1DEFC72D00C66888 /* TaoxiNamePrice.m in Sources */,
 				3BA06F251DCC512C000886A8 /* ToolsModel.m in Sources */,
 				3B343B411DEBFECC00474549 /* TaskListTableCell.m in Sources */,
 				3B4C135D1DC85F4700827D4F /* YuanCurrentTimeView.m in Sources */,
@@ -3995,19 +3937,16 @@
 				3B4C133C1DC85F4700827D4F /* TeamZhengchangTableCell.m in Sources */,
 				3B56D7651DC739CE003A57FD /* ChatListViewController.m in Sources */,
 				3B56D76D1DC739CE003A57FD /* EaseUserModel.m in Sources */,
-				3B1CFCA71DD1780400C4B538 /* SpotViewController.m in Sources */,
 				3B4C136F1DC85F4700827D4F /* QingjiaViewController.m in Sources */,
 				3B4C10A51DC85DDC00827D4F /* HomeReusableView.m in Sources */,
 				3B7ABCA11DB5B31D00F3D12B /* IviteMemberViewController.m in Sources */,
 				3BCF3A0B1D9E65E800BEE236 /* FRegionModel.m in Sources */,
-				3B1CFCB61DD1780400C4B538 /* TaoxiTypeViewController.m in Sources */,
 				3B4C136C1DC85F4700827D4F /* WaitApperTableCell.m in Sources */,
 				3BCA326C1D9CC2F100A0E980 /* LoginViewController.m in Sources */,
 				3BCA32621D9CC25100A0E980 /* DismissingAnimator.m in Sources */,
 				3B4C13611DC85F4700827D4F /* TanxingPaibanCell.m in Sources */,
 				3B4C10D51DC85DDC00827D4F /* PreOrderVController.m in Sources */,
 				3B56D7751DC739CE003A57FD /* EaseBubbleView+Location.m in Sources */,
-				3B1CFCB51DD1780400C4B538 /* CusTypeViewController.m in Sources */,
 				3BCF397D1D9DF44500BEE236 /* ZCAccount.m in Sources */,
 				3BCF39A51D9E320C00BEE236 /* NormalTableCell.m in Sources */,
 				3BCF3A3A1D9E6CF800BEE236 /* TADotView.m in Sources */,
@@ -4016,20 +3955,17 @@
 				3B4C135F1DC85F4700827D4F /* CheckSettingVController.m in Sources */,
 				3B4C13701DC85F4700827D4F /* ShenpiersViewController.m in Sources */,
 				3B4C10CC1DC85DDC00827D4F /* ShekongbenCell.m in Sources */,
-				3B1CFCBB1DD1780400C4B538 /* OfflineDataManager.m in Sources */,
 				3B4C13621DC85F4700827D4F /* SuperSettingController.m in Sources */,
 				3B4C13251DC85F4700827D4F /* CheckTabBarController.m in Sources */,
 				3B5DC71D1DB87107000F7A06 /* EaseEmotionEscape.m in Sources */,
-				3B1CFCA91DD1780400C4B538 /* AllProductModel.m in Sources */,
-				3B1CFCA61DD1780400C4B538 /* EditProductController.m in Sources */,
 				3B3BBF961DB475FA00C9E2FD /* ContactTableViewCell.m in Sources */,
-				3B1CFCB91DD1780400C4B538 /* LixianOrderController.m in Sources */,
 				3B5DC7121DB870DD000F7A06 /* EaseMessageReadManager.m in Sources */,
 				3B4C135C1DC85F4700827D4F /* TimeSliderView.m in Sources */,
 				3BCF39E11D9E4E1B00BEE236 /* UserInfoViewController.m in Sources */,
 				3B4C136E1DC85F4700827D4F /* CommonApplyController.m in Sources */,
 				3BF93D7E1DADDC950002EACA /* CalendarViewController.m in Sources */,
 				3B4C10AA1DC85DDC00827D4F /* YejiViewController.m in Sources */,
+				3B9EF3D81DEFD11900C66888 /* AllProductModel.m in Sources */,
 				3B56D7691DC739CE003A57FD /* EaseRefreshTableViewController.m in Sources */,
 				3B5DC71B1DB87107000F7A06 /* EaseEmoji.m in Sources */,
 				3BCF39ED1D9E5AD200BEE236 /* PhoneViewController.m in Sources */,
@@ -4038,33 +3974,34 @@
 				3BCA32631D9CC25100A0E980 /* PresentingAnimator.m in Sources */,
 				3B4C13421DC85F4700827D4F /* ChooseMemVController.m in Sources */,
 				3B5DC7201DB87265000F7A06 /* FixFopen.c in Sources */,
-				3B1CFCC21DD17D0700C4B538 /* CardNumTableCell.m in Sources */,
 				3B9E17031DD2F32C0028C72F /* CaiwuDetialCell.m in Sources */,
 				3B4C135E1DC85F4700827D4F /* ChangeRulesController.m in Sources */,
 				3B4C10381DC85DDC00827D4F /* FinalTableViewCell.m in Sources */,
 				3B4C135B1DC85F4700827D4F /* TimePickerView.m in Sources */,
 				3B4C10D81DC85DDC00827D4F /* ChooseTimeView.m in Sources */,
+				3B9EF3C41DEFC6B100C66888 /* ChangeTaoxiController.m in Sources */,
 				3B9E17061DD2F8350028C72F /* CaiwuDetialViewController.m in Sources */,
 				3B343B441DEBFECC00474549 /* ProduceDetialVController.m in Sources */,
 				3B4C132C1DC85F4700827D4F /* QiaodaoMapViewController.m in Sources */,
 				3B4C10D21DC85DDC00827D4F /* SearchTableViewCell.m in Sources */,
 				3B4C13521DC85F4700827D4F /* WholeSetModel.m in Sources */,
 				3BCA32401D9CC14100A0E980 /* SuperViewController.m in Sources */,
+				3B9EF3C71DEFC71900C66888 /* TaoxiModel.m in Sources */,
 				3B4C136B1DC85F4700827D4F /* AppearView.m in Sources */,
 				3B343B7A1DEC016F00474549 /* ProduceDiscussModel.m in Sources */,
 				3BF93D791DADDC950002EACA /* CalendarDayModel.m in Sources */,
-				3B1CFCA41DD1780400C4B538 /* ChangeOrderPriceController.m in Sources */,
 				3B56D7761DC739CE003A57FD /* EaseBubbleView+Text.m in Sources */,
 				3B4C10A61DC85DDC00827D4F /* NavigationView.m in Sources */,
 				3BCF39741D9DF42100BEE236 /* UserInfoManager.m in Sources */,
 				3B9E16F11DD2BD540028C72F /* TodayFinanceController.m in Sources */,
+				3BA8D9751DEECB4A00645405 /* CusTypeViewController.m in Sources */,
+				3B9EF3B51DEFBD6000C66888 /* OpenOrderCardModel.m in Sources */,
 				3B56D7741DC739CE003A57FD /* EaseBubbleView+Image.m in Sources */,
 				3BF93D7C1DADDC950002EACA /* CalendarMonthCollectionViewLayout.m in Sources */,
 				3B4C133B1DC85F4700827D4F /* TeamPaihangbangTableViewCell.m in Sources */,
 				3B4C13691DC85F4700827D4F /* ApproveModel.m in Sources */,
 				3B3BBFA51DB47C0400C9E2FD /* FriendTableViewCell.m in Sources */,
 				3B07D8C81D956B0D00B657F6 /* main.m in Sources */,
-				3B1CFCAA1DD1780400C4B538 /* AllTaoxiProductModel.m in Sources */,
 				3BCF39EB1D9E5AD200BEE236 /* MyAreaManagerController.m in Sources */,
 				3B4C13491DC85F4700827D4F /* GudingBanciVController.m in Sources */,
 				3B4C10C71DC85DDC00827D4F /* QujianPreViewController.m in Sources */,
@@ -4072,13 +4009,11 @@
 				3B447B191DC98C0B00316E3C /* ForgetSecretController.m in Sources */,
 				3B4C13201DC85F4700827D4F /* NoticeDetialView.m in Sources */,
 				3BCF398D1D9DF8BD00BEE236 /* YLZGChatManager.m in Sources */,
-				3B1CFCAF1DD1780400C4B538 /* AddProductCell.m in Sources */,
-				3B1CFCBF1DD17A5E00C4B538 /* OpenOrderCardModel.m in Sources */,
 				3B3BBFB81DB484EA00C9E2FD /* GroupTextView.m in Sources */,
 				3B343B8F1DEC017A00474549 /* TaskDetialModel.m in Sources */,
 				3B7ABCF51DB6176600F3D12B /* amrFileCodec.mm in Sources */,
-				3B1CFCB31DD1780400C4B538 /* RightBadgeView.m in Sources */,
 				3B343B581DEBFECC00474549 /* SelectTaskCaresController.m in Sources */,
+				3B9EF3CD1DEFC72D00C66888 /* TaoxiProductModel.m in Sources */,
 				3B343B8E1DEC017A00474549 /* TaskDetialDynamicModel.m in Sources */,
 				3B948B6E1DD993C600D75112 /* MyJobsDetialController.m in Sources */,
 				3B343B361DEBFECC00474549 /* TaskDongtaiController.m in Sources */,
@@ -4086,14 +4021,12 @@
 				3BCF3A071D9E65E800BEE236 /* CityViewController.m in Sources */,
 				3B4C131E1DC85F4700827D4F /* NoticeManager.m in Sources */,
 				3B343B8C1DEC017A00474549 /* TaskDetialCheckModel.m in Sources */,
-				3B1CFCBA1DD1780400C4B538 /* OpenOrderViewController.m in Sources */,
 				3BF93D7D1DADDC950002EACA /* CalendarMonthHeaderView.m in Sources */,
 				3B5DC7111DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				3B4C13331DC85F4700827D4F /* TeamPaihangbangViewController.m in Sources */,
 				3B4C13531DC85F4700827D4F /* BanciButton.m in Sources */,
 				3B9E16F41DD2C11E0028C72F /* TodayFinaceDetialModel.m in Sources */,
 				3B343B7B1DEC016F00474549 /* ProduceFileModel.m in Sources */,
-				3B1CFCB41DD1780400C4B538 /* CardNumViewController.m in Sources */,
 				3B56D7731DC739CE003A57FD /* EaseBubbleView+Gif.m in Sources */,
 				3B56D7681DC739CE003A57FD /* EaseMessageViewController.m in Sources */,
 				3B343B481DEBFECC00474549 /* ProduceTaskVController.m in Sources */,
@@ -4101,7 +4034,6 @@
 				3B3BBFD51DB4BF3C00C9E2FD /* FriendDetialController.m in Sources */,
 				3BCF3A0D1D9E65E800BEE236 /* SuperTableViewController.m in Sources */,
 				3B4C10D71DC85DDC00827D4F /* SearchOrderModel.m in Sources */,
-				3B1CFCB71DD1780400C4B538 /* OrderNameController.m in Sources */,
 				3B4C10D11DC85DDC00827D4F /* SearchViewModel.m in Sources */,
 				3B343B491DEBFECC00474549 /* TaskProductsController.m in Sources */,
 				3BCF39701D9DF42100BEE236 /* GroupListManager.m in Sources */,
@@ -4115,11 +4047,12 @@
 				3B4C133A1DC85F4700827D4F /* TeamKaoqinView.m in Sources */,
 				3B4C13351DC85F4700827D4F /* DeptTeamKaoqinModel.m in Sources */,
 				3B343B561DEBFECC00474549 /* AddNewTaskController.m in Sources */,
-				3B1CFCAB1DD1780400C4B538 /* MutableSelectedModel.m in Sources */,
 				3B3BBF931DB475EF00C9E2FD /* ContactHeadView.m in Sources */,
 				3B56D77C1DC739CE003A57FD /* EaseChatBarMoreView.m in Sources */,
 				3B4C13541DC85F4700827D4F /* BanciSettingCell.m in Sources */,
 				3B4C103A1DC85DDC00827D4F /* NoColorTableViewCell.m in Sources */,
+				3BA8D96C1DEECA4E00645405 /* RightBadgeView.m in Sources */,
+				3B9EF3BB1DEFBF0300C66888 /* MutableSpotTableCell.m in Sources */,
 				3BCA32561D9CC1F900A0E980 /* HomeNavigationController+RightGesture.m in Sources */,
 				3B4C13671DC85F4700827D4F /* ShenpiSuggestController.m in Sources */,
 				3B4C10CB1DC85DDC00827D4F /* ShekongbenModel.m in Sources */,
@@ -4127,20 +4060,20 @@
 				3B4C10CF1DC85DDC00827D4F /* SearchDBManager.m in Sources */,
 				3B343B421DEBFECC00474549 /* AddNewTaskProController.m in Sources */,
 				3B343B471DEBFECC00474549 /* ProduceMemVController.m in Sources */,
+				3BA8D9631DEEC0DA00645405 /* OpenOrderViewController.m in Sources */,
 				3BCA32591D9CC1F900A0E980 /* NSDateFormatter+Category.m in Sources */,
 				3B4C13461DC85F4700827D4F /* AddNewBanciController.m in Sources */,
 				3B4C133E1DC85F4700827D4F /* MineKaoqinTableViewCell.m in Sources */,
 				3B56D7811DC739CE003A57FD /* EaseTextView.m in Sources */,
 				3B4C13411DC85F4700827D4F /* ChooseAdminsController.m in Sources */,
 				3BCF39751D9DF42100BEE236 /* YLZGDataManager.m in Sources */,
-				3B1CFCB11DD1780400C4B538 /* MutableSpotTableCell.m in Sources */,
 				3B4C10C81DC85DDC00827D4F /* ShekongBenController.m in Sources */,
-				3B1CFCB81DD1780400C4B538 /* OrderPhoneController.m in Sources */,
 				3B5DC7101DB870DD000F7A06 /* EaseChineseToPinyin.m in Sources */,
 				3B56D77E1DC739CE003A57FD /* EaseRecordView.m in Sources */,
 				3B7ABCA01DB5B31D00F3D12B /* AllMembersController.m in Sources */,
 				3B343B7D1DEC016F00474549 /* ProduceTaskModel.m in Sources */,
 				3B56D77F1DC739CE003A57FD /* EaseChatToolbar.m in Sources */,
+				3B9EF3BE1DEFBF2400C66888 /* MutableSelectedModel.m in Sources */,
 				3BCA32571D9CC1F900A0E980 /* MBProgressHUD+Add.m in Sources */,
 				3B4C136A1DC85F4700827D4F /* AppearHeadView.m in Sources */,
 				3B4C10A21DC85DDC00827D4F /* HomeViewController.m in Sources */,
@@ -4148,7 +4081,6 @@
 				3BCF39E41D9E50D300BEE236 /* NoDequTableCell.m in Sources */,
 				3B7ABCEF1DB6176600F3D12B /* EMAudioRecorderUtil.m in Sources */,
 				3B948B6D1DD993C600D75112 /* TodayOrderCell.m in Sources */,
-				3B1CFCAD1DD1780400C4B538 /* TaoxiNamePrice.m in Sources */,
 				3BCF3A211D9E6A4800BEE236 /* MyStudioVController.m in Sources */,
 				3B6E0AD61DCB0C3100309037 /* SaleToolModel.m in Sources */,
 				3B7ABCA91DB5B33400F3D12B /* GroupMemberCollectionCell.m in Sources */,
@@ -4159,8 +4091,8 @@
 				3BCF39C11D9E3D5500BEE236 /* ApplyModel.m in Sources */,
 				3B4C103B1DC85DDC00827D4F /* OutComeColorCell.m in Sources */,
 				3B56D76A1DC739CE003A57FD /* ReSendViewController.m in Sources */,
-				3B1CFCA51DD1780400C4B538 /* ChangeTaoxiController.m in Sources */,
 				3B948B6F1DD993C600D75112 /* MyJobsViewController.m in Sources */,
+				3B9EF3D91DEFD11900C66888 /* AllTaoxiProductModel.m in Sources */,
 				3B4C10401DC85DDC00827D4F /* TitleLabel.m in Sources */,
 				3BCF3A381D9E6CF800BEE236 /* TAAbstractDotView.m in Sources */,
 				3B4C10331DC85DDC00827D4F /* MonthFinanceVController.m in Sources */,
@@ -4172,14 +4104,16 @@
 				3B3BBFA21DB47B7500C9E2FD /* AddFriendViewController.m in Sources */,
 				3B4C10D31DC85DDC00827D4F /* OrderCheckViewController.m in Sources */,
 				3B4C13371DC85F4700827D4F /* TeamPaihangbangModel.m in Sources */,
-				3B1CFCB21DD1780400C4B538 /* OfflineOrderTableCell.m in Sources */,
+				3BA8D9781DEECB9B00645405 /* OpenOrderTableCell.m in Sources */,
 				3B4C10341DC85DDC00827D4F /* MonthInComeController.m in Sources */,
+				3B9EF3D71DEFD11900C66888 /* AllProductList.m in Sources */,
 				3B4C132D1DC85F4700827D4F /* AllQiandaoModel.m in Sources */,
 				3B7ABCF21DB6176600F3D12B /* EMCDDeviceManager+ProximitySensor.m in Sources */,
+				3B9EF3D01DEFCB3400C66888 /* TaoxiTypeViewController.m in Sources */,
 				3B4C131D1DC85F4700827D4F /* PublicNoticeController.m in Sources */,
-				3B1CFCB01DD1780400C4B538 /* EditProductCell.m in Sources */,
 				3B4C13391DC85F4700827D4F /* TeamKaoqinTableViewCell.m in Sources */,
 				3BA06F241DCC512C000886A8 /* MoreToolsViewController.m in Sources */,
+				3B9EF3B21DEFBD4A00C66888 /* CardNumTableCell.m in Sources */,
 				3B4C13401DC85F4700827D4F /* AddKaoqinzuController.m in Sources */,
 				3BCF3A0A1D9E65E800BEE236 /* FMetaTool.m in Sources */,
 				3B56D76E1DC739CE003A57FD /* EaseBaseMessageCell.m in Sources */,
@@ -4209,11 +4143,11 @@
 				3BCF39D41D9E43FF00BEE236 /* WifiNetManager.m in Sources */,
 				3BCF3A0C1D9E65E800BEE236 /* FSort.m in Sources */,
 				3BCF3A081D9E65E800BEE236 /* FCityGroup.m in Sources */,
+				3BA8D9691DEEC1B900645405 /* LixianOrderController.m in Sources */,
 				3B4C13711DC85F4700827D4F /* WaichuViewController.m in Sources */,
 				3BCF3A091D9E65E800BEE236 /* FCityModel.m in Sources */,
 				3B343B571DEBFECC00474549 /* ChooseProduceController.m in Sources */,
 				3B4C134F1DC85F4700827D4F /* GudingPaibanModel.m in Sources */,
-				3B1CFCA31DD1780400C4B538 /* AddProductController.m in Sources */,
 				3B56D7771DC739CE003A57FD /* EaseBubbleView+Video.m in Sources */,
 				3B9E17091DD2FC5F0028C72F /* HuangzhuangBingTu.m in Sources */,
 				3BF93D781DADDC950002EACA /* CalendarDayCell.m in Sources */,
@@ -4222,9 +4156,7 @@
 				3B4C134C1DC85F4700827D4F /* TimeSetViewController.m in Sources */,
 				3B56D7821DC739CE003A57FD /* SendLocationModel.m in Sources */,
 				3BCF3A061D9E65E800BEE236 /* CitySearchResultController.m in Sources */,
-				3B1CFCA81DD1780400C4B538 /* AllProductList.m in Sources */,
 				3B4C10CD1DC85DDC00827D4F /* SearchDetailViewController.m in Sources */,
-				3B1CFCC51DD1BCB700C4B538 /* RudiRuceVController.m in Sources */,
 				3B4C13211DC85F4700827D4F /* NoticeTableCell.m in Sources */,
 				3B343B4A1DEBFECC00474549 /* HeadIconView.m in Sources */,
 				3B4C13281DC85F4700827D4F /* AllQiandaoDetailViewController.m in Sources */,
@@ -4235,6 +4167,7 @@
 				3B3BBFC31DB4861400C9E2FD /* GroupNameViewController.m in Sources */,
 				3B4C10351DC85DDC00827D4F /* MonthOutComeController.m in Sources */,
 				3BCF39A21D9E31E300BEE236 /* WoViewController.m in Sources */,
+				3B9EF3DC1DEFD59C00C66888 /* EditProductCell.m in Sources */,
 				3B4C13571DC85F4700827D4F /* KaoqinTableCell.m in Sources */,
 				3B3BBFC61DB4862700C9E2FD /* IvitGroupMembersController.m in Sources */,
 				3BCF3A3C1D9E6CF800BEE236 /* SDCollectionViewCell.m in Sources */,
@@ -4258,11 +4191,11 @@
 				3B56D77A1DC739CE003A57FD /* EaseFaceView.m in Sources */,
 				3B9E17121DD3139C0028C72F /* FinaceIconView.m in Sources */,
 				3BCF397E1D9DF44500BEE236 /* ZCAccountTool.m in Sources */,
+				3BA8D9711DEECA6400645405 /* OfflineDataManager.m in Sources */,
 				3B4C13451DC85F4700827D4F /* TanxingPreViewController.m in Sources */,
 				3B7ABCF61DB6176600F3D12B /* wav.mm in Sources */,
 				3B56D77D1DC739CE003A57FD /* MoreToolButton.m in Sources */,
 				3BCF39711D9DF42100BEE236 /* HTTPManager.m in Sources */,
-				3B1CFCAE1DD1780400C4B538 /* TaoxiProductModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

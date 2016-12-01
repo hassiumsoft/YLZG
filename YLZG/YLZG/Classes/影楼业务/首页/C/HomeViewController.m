@@ -14,7 +14,6 @@
 #import <MJExtension.h>
 #import "AppDelegate.h"
 #import <MJRefresh.h>
-#import "OfflineDataManager.h"
 #import "HTTPManager.h"
 #import "ZCAccountTool.h"
 #import "EmptyViewController.h"
@@ -499,10 +498,7 @@
         if (!self.isJuFenxiang) {
             
             [self getJufenxiangInfo];
-            NSArray *offOrderArr = [OfflineDataManager getAllOffLineOrderFromSandBox];
-            if (offOrderArr.count >= 1) {
-                [OfflineDataManager registerLocalNotification:offOrderArr.count Count:(int)offOrderArr.count];
-            }
+            
         }
     }
     
