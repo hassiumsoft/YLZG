@@ -304,7 +304,9 @@
 		3B9EF3D71DEFD11900C66888 /* AllProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3D21DEFD11900C66888 /* AllProductList.m */; };
 		3B9EF3D81DEFD11900C66888 /* AllProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3D41DEFD11900C66888 /* AllProductModel.m */; };
 		3B9EF3D91DEFD11900C66888 /* AllTaoxiProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3D61DEFD11900C66888 /* AllTaoxiProductModel.m */; };
-		3B9EF3DC1DEFD59C00C66888 /* EditProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3DB1DEFD59C00C66888 /* EditProductCell.m */; };
+		3B9EF3DF1DEFF80400C66888 /* AddProductController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3DE1DEFF80400C66888 /* AddProductController.m */; };
+		3B9EF3E21DEFF82400C66888 /* AddProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3E11DEFF82400C66888 /* AddProductCell.m */; };
+		3B9EF3E51DF011CB00C66888 /* EditProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9EF3E41DF011CB00C66888 /* EditProductCell.m */; };
 		3BA06F241DCC512C000886A8 /* MoreToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F1F1DCC512C000886A8 /* MoreToolsViewController.m */; };
 		3BA06F251DCC512C000886A8 /* ToolsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F211DCC512C000886A8 /* ToolsModel.m */; };
 		3BA06F261DCC512C000886A8 /* ToolsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F231DCC512C000886A8 /* ToolsTableViewCell.m */; };
@@ -1024,8 +1026,12 @@
 		3B9EF3D41DEFD11900C66888 /* AllProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllProductModel.m; sourceTree = "<group>"; };
 		3B9EF3D51DEFD11900C66888 /* AllTaoxiProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTaoxiProductModel.h; sourceTree = "<group>"; };
 		3B9EF3D61DEFD11900C66888 /* AllTaoxiProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTaoxiProductModel.m; sourceTree = "<group>"; };
-		3B9EF3DA1DEFD59C00C66888 /* EditProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProductCell.h; sourceTree = "<group>"; };
-		3B9EF3DB1DEFD59C00C66888 /* EditProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProductCell.m; sourceTree = "<group>"; };
+		3B9EF3DD1DEFF80400C66888 /* AddProductController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductController.h; sourceTree = "<group>"; };
+		3B9EF3DE1DEFF80400C66888 /* AddProductController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductController.m; sourceTree = "<group>"; };
+		3B9EF3E01DEFF82400C66888 /* AddProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProductCell.h; sourceTree = "<group>"; };
+		3B9EF3E11DEFF82400C66888 /* AddProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProductCell.m; sourceTree = "<group>"; };
+		3B9EF3E31DF011CB00C66888 /* EditProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProductCell.h; sourceTree = "<group>"; };
+		3B9EF3E41DF011CB00C66888 /* EditProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProductCell.m; sourceTree = "<group>"; };
 		3BA06F1E1DCC512C000886A8 /* MoreToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreToolsViewController.h; sourceTree = "<group>"; };
 		3BA06F1F1DCC512C000886A8 /* MoreToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreToolsViewController.m; sourceTree = "<group>"; };
 		3BA06F201DCC512C000886A8 /* ToolsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsModel.h; sourceTree = "<group>"; };
@@ -3043,6 +3049,8 @@
 		3B9EF3BF1DEFC5DF00C66888 /* C */ = {
 			isa = PBXGroup;
 			children = (
+				3B9EF3DD1DEFF80400C66888 /* AddProductController.h */,
+				3B9EF3DE1DEFF80400C66888 /* AddProductController.m */,
 				3B9EF3C21DEFC6B100C66888 /* ChangeTaoxiController.h */,
 				3B9EF3C31DEFC6B100C66888 /* ChangeTaoxiController.m */,
 				3B9EF3CE1DEFCB3400C66888 /* TaoxiTypeViewController.h */,
@@ -3073,8 +3081,10 @@
 		3B9EF3C11DEFC5DF00C66888 /* V */ = {
 			isa = PBXGroup;
 			children = (
-				3B9EF3DA1DEFD59C00C66888 /* EditProductCell.h */,
-				3B9EF3DB1DEFD59C00C66888 /* EditProductCell.m */,
+				3B9EF3E01DEFF82400C66888 /* AddProductCell.h */,
+				3B9EF3E11DEFF82400C66888 /* AddProductCell.m */,
+				3B9EF3E31DF011CB00C66888 /* EditProductCell.h */,
+				3B9EF3E41DF011CB00C66888 /* EditProductCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3890,6 +3900,7 @@
 				3B4C13431DC85F4700827D4F /* EditAdminsViewController.m in Sources */,
 				3B4C10C61DC85DDC00827D4F /* PaizhaoPreViewController.m in Sources */,
 				3BCF39991D9E12A200BEE236 /* AboutZhichengController.m in Sources */,
+				3B9EF3DF1DEFF80400C66888 /* AddProductController.m in Sources */,
 				3BCF39731D9DF42100BEE236 /* StudioContactManager.m in Sources */,
 				3BCA32431D9CC1A600A0E980 /* HomeNavigationController.m in Sources */,
 				3B7ABCAB1DB5B33400F3D12B /* IviteGroupersCollectionCell.m in Sources */,
@@ -3906,6 +3917,7 @@
 				3B4C13561DC85F4700827D4F /* EditPaibanTableCell.m in Sources */,
 				3B343B591DEBFECC00474549 /* SelectTaskFuzerController.m in Sources */,
 				3B4C13631DC85F4700827D4F /* WaichuTableCell.m in Sources */,
+				3B9EF3E21DEFF82400C66888 /* AddProductCell.m in Sources */,
 				3B9EF3CC1DEFC72D00C66888 /* TaoxiNamePrice.m in Sources */,
 				3BA06F251DCC512C000886A8 /* ToolsModel.m in Sources */,
 				3B343B411DEBFECC00474549 /* TaskListTableCell.m in Sources */,
@@ -3927,6 +3939,7 @@
 				3B343B371DEBFECC00474549 /* MyCareTaskController.m in Sources */,
 				3B4C10D41DC85DDC00827D4F /* PayMoneyViewController.m in Sources */,
 				3B343B7E1DEC016F00474549 /* TaskListModel.m in Sources */,
+				3B9EF3E51DF011CB00C66888 /* EditProductCell.m in Sources */,
 				3B56D7721DC739CE003A57FD /* EaseBubbleView+File.m in Sources */,
 				3B4C135A1DC85F4700827D4F /* SubTitleView.m in Sources */,
 				3B4C133F1DC85F4700827D4F /* MineKaoqinView.m in Sources */,
@@ -4167,7 +4180,6 @@
 				3B3BBFC31DB4861400C9E2FD /* GroupNameViewController.m in Sources */,
 				3B4C10351DC85DDC00827D4F /* MonthOutComeController.m in Sources */,
 				3BCF39A21D9E31E300BEE236 /* WoViewController.m in Sources */,
-				3B9EF3DC1DEFD59C00C66888 /* EditProductCell.m in Sources */,
 				3B4C13571DC85F4700827D4F /* KaoqinTableCell.m in Sources */,
 				3B3BBFC61DB4862700C9E2FD /* IvitGroupMembersController.m in Sources */,
 				3BCF3A3C1D9E6CF800BEE236 /* SDCollectionViewCell.m in Sources */,

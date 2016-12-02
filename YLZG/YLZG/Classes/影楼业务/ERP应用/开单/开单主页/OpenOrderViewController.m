@@ -23,11 +23,15 @@
 #import "AllTaoxiProductModel.h"
 #import "AllProductList.h"
 #import "AllProductModel.h"
+#import "OfflineDataManager.h"
+#import "PDTSimpleCalendarViewController.h"
+#import "AddProductController.h"
 
 
 #define ProductHeight 70
+#define OrderDescPlace @"带*号的为必填项"
 
-@interface OpenOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface OpenOrderViewController ()<UITableViewDelegate,UITableViewDataSource,PDTSimpleCalendarViewDelegate>
 /** 开单表格 */
 @property (strong,nonatomic) UITableView *orderTableView;
 /** 开单表格数据源 */
@@ -61,6 +65,8 @@
 @property (strong,nonatomic) UITextField *taoxiPriceField;
 /** 套系产品json* */
 @property (strong,nonatomic) NSString *taoxiProductJson;
+/** 记住加急是哪一行 */
+@property (assign,nonatomic) NSInteger jiajiIndexPath;
 
 
 
@@ -196,9 +202,10 @@
             NSLog(@"self.productArray = %@",self.productArray);
             if (self.productArray.count >= 1) {
                 // 添加产品表格
-                
+                cell.contentLabel.text = @"产品单价";
+                cell.nameLabel.textColor = [UIColor grayColor];
+                cell.contentLabel.textColor = [UIColor grayColor];
                 self.productTableView.frame = CGRectMake(0, 48, SCREEN_WIDTH, self.productArray.count * ProductHeight + self.proFootView.height);
-                
                 [cell.contentView addSubview:self.productTableView];
                 [self.productTableView reloadData];
             }
@@ -245,6 +252,7 @@
 - (UITableViewCell *)CreateProductCell:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath
 {
     TaoxiProductModel *model = self.productArray[indexPath.item];
+    model.row = indexPath.row;
     EditProductCell *cell = [EditProductCell sharedEditProductCell:tableView];
     cell.model = model;
     return cell;
@@ -371,8 +379,249 @@
     footV.backgroundColor = [UIColor clearColor];
     return footV;
 }
+
+#pragma mark - 添加套系产品
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.orderTableView) {
+        return NULL;
+    }else{
+        UITableViewRowAction *action1 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"加急" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            
+            // 记住是哪一行
+            self.jiajiIndexPath = indexPath.row;
+            
+            PDTSimpleCalendarViewController *calender = [[PDTSimpleCalendarViewController alloc]init];
+            calender.title = @"选择加急时间";
+            calender.delegate = self;
+            calender.overlayTextColor = MainColor;
+            calender.weekdayHeaderEnabled = YES;
+            [self.navigationController pushViewController:calender animated:YES];
+        }];
+        action1.backgroundColor = MainColor;
+        
+        UITableViewRowAction *action2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            if (self.productArray.count == 1) {
+                [self showWarningTips:@"再删就没有了"];
+            }else{
+                [self.productArray removeObjectAtIndex:indexPath.row];
+                [self.productTableView setHeight:(self.productArray.count + 2)*44];
+                [self.orderTableView reloadData];
+                [self.productTableView reloadData];
+            }
+            
+        }];
+        action2.backgroundColor = WechatRedColor;
+        
+        return @[action1,action2];
+    }
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.orderTableView) {
+        return UITableViewCellEditingStyleNone;
+    }else{
+        return UITableViewCellEditingStyleDelete;
+    }
+}
+- (void)simpleCalendarViewController:(PDTSimpleCalendarViewController *)controller didSelectDate:(NSDate *)date
+{
+    NSDate *nextDay = [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];//后一天
+    [self.orderTableView endEditing:YES];
+    NSDate *currentDate = [NSDate date];
+    int result = [self compareOneDay:nextDay withAnotherDay:currentDate];
+    if (result == -1) {
+        [self showErrorTips:@"不能先于当前日期"];
+        return;
+    }
+    
+    TaoxiProductModel *model = self.productArray[self.jiajiIndexPath];
+    model.isUrgent = @"1";
+    NSString *time = [NSString stringWithFormat:@"%@",nextDay];
+    model.urgentTime = [time substringWithRange:NSMakeRange(0, 10)];
+    [self.productArray replaceObjectAtIndex:self.jiajiIndexPath withObject:model];
+    [self.orderTableView reloadData];
+    [self.productTableView reloadData];
+    
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+}
+// - 比较2各日期的先后顺序
+- (int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
+    NSString *oneDayStr = [dateFormatter stringFromDate:oneDay];
+    NSString *anotherDayStr = [dateFormatter stringFromDate:anotherDay];
+    NSDate *dateA = [dateFormatter dateFromString:oneDayStr];
+    NSDate *dateB = [dateFormatter dateFromString:anotherDayStr];
+    NSComparisonResult result = [dateA compare:dateB];
+    NSLog(@"date1 : %@, date2 : %@", oneDay, anotherDay);
+    if (result == NSOrderedDescending) {
+        //NSLog(@"Date1  is in the future");
+        return 1;
+    }
+    else if (result == NSOrderedAscending){
+        //NSLog(@"Date1 is in the past");
+        return -1;
+    }
+    //NSLog(@"Both dates are the same");
+    return 0;
+    
+}
+// - 由时间戳转化为东八区时间字符串
+- (NSString *)TimeIntToDateStr:(NSTimeInterval)timeInterval
+{
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    
+    NSLocale *locale = [[NSLocale alloc]initWithLocaleIdentifier:@"zh"];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setLocale:locale];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"]; // 星期一
+    NSString *dateStr = [formatter stringFromDate:date];
+    return dateStr;
+    
+}
+
+
 #pragma mark - 其他方法
-// - 获取数据-- 如果这个之前没有被加载过，无法实现离线订单
+// -- 网络不好，先保存订单
+- (void)saveData
+{
+    if (self.cusNameField.text.length < 1) {
+        [self showErrorTips:@"请完善姓名"];
+        return;
+    }
+    if (![self.cusPhoneField.text isPhoneNum]) {
+        [self showErrorTips:@"号码有误"];
+        return;
+    }
+    if (self.taoxiNameStr.length < 1) {
+        [self showErrorTips:@"请选择套系"];
+        return;
+    }
+    if (self.taoxiPriceField.text.length < 1) {
+        [self showErrorTips:@"请完善套系价格"];
+        return;
+    }
+    if (self.spotJsonStr.length < 1) {
+        [self showErrorTips:@"请选择景点"];
+        return;
+    }
+    if (self.cusTypeStr.length < 1) {
+        [self showErrorTips:@"请选择客户来源"];
+        return;
+    }
+    if (self.taoxiClassStr.length < 1) {
+        [self showErrorTips:@"请选择套系类别"];
+        return;
+    }
+    if (self.rudiField.text.length < 1) {
+        [self showErrorTips:@"请编辑入底"];
+        return;
+    }
+    if (self.ruceField.text.length < 1) {
+        [self showErrorTips:@"请编辑入册"];
+        return;
+    }
+    
+    NSString *beizhu;
+    if ([self.beizhuField.text isEqualToString:OrderDescPlace]) {
+        beizhu = @"无备注";
+    }else{
+        beizhu = self.beizhuField.text;
+    }
+    
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"当前无网络，建议离线保存订单" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        ZCAccount *account = [ZCAccountTool account];
+        NSString *url = @"http://zsylou.wxwkf.com/index.php/home/newtrade/newtrade?uid=%@&price=%@&set=%@&guest=%@&msg=%@&mobile=%@&productlist=%@&spot=%@&negative=%@&album=%@&category=%@&source=%@&number=%@&guest2=%@&mobile2=%@";
+        NSLog(@"开单url = %@",url);
+#warning 产品列表json串
+        NSString *productJsonStr;
+        NSString *allUrl = [NSString stringWithFormat:OpenOrder_Url_New,account.userID,self.taoxiPriceField.text,self.taoxiNameStr,self.cusNameField.text,beizhu,self.cusPhoneField.text,productJsonStr,self.spotJsonStr,self.rudiField.text,self.ruceField.text,self.taoxiClassStr,self.cusTypeStr,self.cardNumStr,self.cusNameField2.text,self.cusPhoneField2.text];
+        
+        
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"allUrl"] = allUrl; // ⚠️长度限制，暂用未UTF8的字符串
+        dict[@"productlist"] = productJsonStr;
+        dict[@"guest"] = self.cusNameField.text;
+        dict[@"spot"] = self.spotJsonStr;
+        dict[@"mobile"] = self.cusPhoneField.text;
+        dict[@"set"] = self.taoxiNameStr;
+        dict[@"price"] = self.taoxiPriceField.text;
+        dict[@"msg"] = beizhu;
+        
+        [OfflineDataManager saveToSandBox:dict];
+        
+    }];
+    
+    
+    [alertC addAction:action1];
+    [alertC addAction:action2];
+    [self presentViewController:alertC animated:YES completion:^{
+        
+    }];
+    
+}
+// 开订单
+- (void)sendOrder
+{
+    if (self.cusNameField.text.length < 1) {
+        [self showErrorTips:@"请完善姓名"];
+        return;
+    }
+    if (![self.cusPhoneField.text isPhoneNum]) {
+        [self showErrorTips:@"号码有误"];
+        return;
+    }
+    if (self.taoxiNameStr.length < 1) {
+        [self showErrorTips:@"请选择套系"];
+        return;
+    }
+    if (self.taoxiPriceField.text.length < 1) {
+        [self showErrorTips:@"请完善套系价格"];
+        return;
+    }
+    if (self.spotJsonStr.length < 1) {
+        [self showErrorTips:@"请选择景点"];
+        return;
+    }
+    if (self.cusTypeStr.length < 1) {
+        [self showErrorTips:@"请选择客户来源"];
+        return;
+    }
+    if (self.taoxiClassStr.length < 1) {
+        [self showErrorTips:@"请选择套系类别"];
+        return;
+    }
+    if (self.rudiField.text.length < 1) {
+        [self showErrorTips:@"请编辑入底"];
+        return;
+    }
+    if (self.ruceField.text.length < 1) {
+        [self showErrorTips:@"请编辑入册"];
+        return;
+    }
+    
+    NSString *beizhu;
+    if ([self.beizhuField.text isEqualToString:OrderDescPlace]) {
+        beizhu = @"无备注";
+    }else{
+        beizhu = self.beizhuField.text;
+    }
+    
+    for (TaoxiProductModel *productModel in self.productArray) {
+        NSLog(@"productModel = %@",productModel);
+    }
+    
+    [self.orderTableView reloadData];
+}
+// -- 获取产品数据-- 如果这个之前没有被加载过，无法实现离线订单
 - (void)loadProductData
 {
     ZCAccount *account = [ZCAccountTool account];
@@ -385,7 +634,6 @@
         
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
         if (status == 1) {
-            
             
             // 先判断self.taoName。空就是全部套系及下产品，不空就是该套系下的产品
             if (self.taoxiNameStr.length < 1) {
@@ -401,6 +649,10 @@
                 for (AllTaoxiProductModel *bigModel in bigArray) {
                     NSArray *oneList = bigModel.productList;  // 一个套系下的产品数组
                     for (TaoxiProductModel *model in oneList) {
+#warning 设置产品的一些初始值
+                        model.number = 1;
+                        model.isUrgent = @"0";
+                        model.urgentTime = @"0";
                         [self.productArray addObject:model];
                     }
                 }
@@ -412,7 +664,12 @@
 //                self.isAllProduct = NO;
                 NSArray *result = [responseObject objectForKey:@"result"];
                 self.productArray = [TaoxiProductModel mj_objectArrayWithKeyValuesArray:result];
-                
+                for (TaoxiProductModel *model in self.productArray) {
+#warning 设置产品的一些初始值
+                    model.number = 1;
+                    model.isUrgent = @"0";
+                    model.urgentTime = @"0";
+                }
                 [self.orderTableView reloadData];
                 
             }
@@ -420,6 +677,7 @@
         }else{
             // 会出现自定义套系。没有对应的产品
             NSString *message = [responseObject objectForKey:@"message"];
+            [self.orderTableView reloadData];
             if ([message isEqualToString:@"没有套系包含的产品信息"]) {
                 [self sendErrorWarning:@"该套系没有包含的产品信息，请到ERP后台添加产品信息"];
             }else{
@@ -474,7 +732,7 @@
         _productTableView.delegate = self;
         _productTableView.dataSource = self;
         _productTableView.scrollEnabled = NO;
-        _productTableView.backgroundColor = HWRandomColor;
+        _productTableView.backgroundColor = self.view.backgroundColor;
         _productTableView.tableFooterView = self.proFootView;
     }
     return _productTableView;
@@ -491,6 +749,39 @@
         sendButton.layer.cornerRadius = 4;
         [sendButton setFrame:CGRectMake(20, 50, SCREEN_WIDTH - 40, 40)];
         [sendButton setTitle:@"提交订单" forState:UIControlStateNormal];
+        [sendButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            // 1.判断网络状况。正常那就发送订单，不正常则保存到离线订单
+            AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+            [manager startMonitoring];
+            [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+                switch (status) {
+                    case AFNetworkReachabilityStatusNotReachable:
+                    {
+                        // 无网络
+                        [self saveData];
+                        
+                        break;
+                    }
+                    case AFNetworkReachabilityStatusReachableViaWiFi:
+                    {
+                        // wifi网络
+                        [self sendOrder];
+//                        [self saveData];
+                        break;
+                    }
+                    case AFNetworkReachabilityStatusReachableViaWWAN:
+                    {
+                        // 无线网络
+                        [self sendOrder];
+//                        [self saveData];
+                        break;
+                    }
+                    default:
+                        
+                        break;
+                }
+            }];
+        }];
         [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_footView addSubview:sendButton];
     }
@@ -499,13 +790,34 @@
 - (UIView *)proFootView
 {
     if (!_proFootView) {
-        _proFootView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-        _proFootView.backgroundColor = HWRandomColor;
+        _proFootView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+        _proFootView.backgroundColor = [UIColor whiteColor];
         _proFootView.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-            [self showErrorTips:@"添加产品"];
+        UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [addButton setTitle:@"添加更多产品" forState:UIControlStateNormal];
+        [addButton setTitleColor:MainColor forState:UIControlStateNormal];
+        [addButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            AddProductController *addPro = [AddProductController new];
+            addPro.DidBlock = ^(AllProductList *model){
+                TaoxiProductModel *addProduct = [TaoxiProductModel new];
+                addProduct.pro_name = model.pro_name;
+                addProduct.pro_price = model.pro_price;
+                addProduct.isUrgent = @"0";
+                addProduct.urgentTime = @"0";
+                addProduct.number = 1;
+                [self.productArray addObject:addProduct];
+                [self.orderTableView reloadData];
+            };
+            [self.navigationController pushViewController:addPro animated:YES];
         }];
-        [_proFootView addGestureRecognizer:tap];
+        [addButton setFrame:CGRectMake(100*CKproportion, 3, SCREEN_WIDTH - 200*CKproportion, 38)];
+        addButton.layer.masksToBounds = YES;
+        addButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+        addButton.backgroundColor = [UIColor whiteColor];
+        addButton.layer.borderColor = MainColor.CGColor;
+        addButton.layer.borderWidth = 1;;
+        addButton.layer.cornerRadius = 4;
+        [_proFootView addSubview:addButton];
     }
     return _proFootView;
 }
@@ -602,7 +914,7 @@
         _beizhuField.textAlignment = NSTextAlignmentRight;
         _beizhuField.textColor = RGBACOLOR(37, 37, 37, 1);
         _beizhuField.font = [UIFont systemFontOfSize:14];
-        _beizhuField.placeholder = @"带*号的为必填项";
+        _beizhuField.placeholder = OrderDescPlace;
     }
     return _beizhuField;
 }

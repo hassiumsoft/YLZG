@@ -19,14 +19,14 @@
 /** 产品数量 */
 @property (assign,nonatomic) int number;
 /** category */
-@property (copy,nonatomic) NSString *category;
+//@property (copy,nonatomic) NSString *category;
 /** 是否加急 */
 @property (copy,nonatomic) NSString *isUrgent;
 /** 加急时间 */
 @property (copy,nonatomic) NSString *urgentTime;
 
 
-/********** IndexPath.section **********/
-@property (assign,nonatomic) NSInteger section;
+/********** IndexPath.row **********/
+@property (assign,nonatomic) NSInteger row;
 
 @end

@@ -1,14 +1,28 @@
 //
 //  EditProductCell.m
-//  ChatDemo-UI3.0
+//  YLZG
 //
-//  Created by Chan_Sir on 16/5/17.
-//  Copyright © 2016年 Chan_Sir. All rights reserved.
+//  Created by Chan_Sir on 2016/12/1.
+//  Copyright © 2016年 陈振超. All rights reserved.
 //
 
 #import "EditProductCell.h"
-#import "UIView+Extension.h"
 #import <Masonry.h>
+
+@interface EditProductCell ()<UITextFieldDelegate>
+
+/** 产品名称 */
+@property (strong,nonatomic) UILabel *productPrice;
+/** 产品单价 */
+@property (strong,nonatomic) UILabel *productName;
+/** 产品数量 */
+@property (strong,nonatomic) UITextField *productNumField;
+/** 加急图标 */
+@property (strong,nonatomic) UIImageView *jiajiImage;
+/** 加急时间 */
+@property (copy,nonatomic) UILabel *jiajiTimeL;
+
+@end
 
 @implementation EditProductCell
 
@@ -18,120 +32,123 @@
     EditProductCell *cell = [[EditProductCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     return cell;
 }
-
 - (void)setModel:(TaoxiProductModel *)model
 {
     _model = model;
-    _titleLabel.text = model.pro_name;
-    _priceLabel.text = [NSString stringWithFormat:@"￥%@ x %d",model.pro_price,model.number];
-    
+    _productName.text = model.pro_name;
+    _productPrice.text = [NSString stringWithFormat:@"￥%@",model.pro_price];
+    _jiajiTimeL.text = model.urgentTime;
     if ([model.isUrgent intValue] == 1) {
-        // 加急
-        [self.jiajiImageV setHidden:NO];
-        [self.jiajiLabel setHidden:NO];
-        self.jiajiLabel.text = model.urgentTime;
+        self.jiajiTimeL.hidden = NO;
+        self.jiajiImage.hidden = NO;
     }else{
-        // 不加急
-        [self.jiajiLabel setHidden:YES];
-        [self.jiajiImageV setHidden:YES];
+        self.jiajiTimeL.hidden = YES;
+        self.jiajiImage.hidden = YES;
     }
     
 }
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
+    
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = NorMalBackGroudColor;
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-        [self setupSubViews];
+        [self setupSubView];
     }
     return self;
 }
-- (void)setupSubViews
+- (void)setupSubView
 {
-    UIView *leftV = [[UIView alloc]initWithFrame:CGRectMake(12, 0, 35, 75)];
-    leftV.backgroundColor = RGBACOLOR(29, 163, 232, 1);
-    leftV.userInteractionEnabled = YES;
-    [self addSubview:leftV];
+    // 产品名称
+    self.productName = [[UILabel alloc]initWithFrame:CGRectMake(18, 10, 150, 21)];
+    self.productName.font = [UIFont systemFontOfSize:14];
+    self.productName.textColor = RGBACOLOR(87, 87, 87, 1);
+    [self addSubview:self.productName];
     
-    UIView *backView = [[UIView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(leftV.frame), 0, SCREEN_WIDTH - 24 - 35 - 8, 75)];
-    backView.backgroundColor = [UIColor whiteColor];
-    [self addSubview:backView];
     
-    self.titleLabel = [[UILabel alloc]init];
-    self.titleLabel.text = @"我和动物朋友的影集";
-    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    self.titleLabel.textColor = RGBACOLOR(21, 21, 21, 1);
-    [backView addSubview:self.titleLabel];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(backView.mas_top).offset(17);
-        make.left.equalTo(backView.mas_left).offset(20);
+    // 产品数量
+    UILabel *numLabel = [[UILabel alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.productName.frame), 40, 23)];
+    numLabel.text = @"产品数量:";
+    numLabel.layer.masksToBounds = YES;
+    numLabel.layer.cornerRadius = 4;
+    numLabel.font = [UIFont systemFontOfSize:12];
+    numLabel.textColor = RGBACOLOR(87, 87, 87, 1);
+    [self addSubview:numLabel];
+    
+    self.productNumField = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(numLabel.frame)+2, CGRectGetMaxY(self.productName.frame), 40, 21)];
+    self.productNumField.text = @"1";
+    self.productNumField.delegate = self;
+    self.productNumField.backgroundColor = [UIColor whiteColor];
+    self.productNumField.font = [UIFont systemFontOfSize:12];
+    self.productNumField.keyboardType = UIKeyboardTypeNumberPad;
+    self.productNumField.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:self.productNumField];
+    
+    
+    // 产品价格
+    self.productPrice = [[UILabel alloc]init];
+    self.productPrice.textAlignment = NSTextAlignmentRight;
+    self.productPrice.font = self.productName.font;
+    self.productPrice.textColor = self.productName.textColor;
+    [self addSubview:self.productPrice];
+    [self.productPrice mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right).offset(-25);
+        make.centerY.equalTo(self.mas_centerY);
         make.height.equalTo(@21);
     }];
     
-    self.priceLabel = [[UILabel alloc]init];
-    self.priceLabel.text = @"￥1850";
-    self.priceLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-    self.priceLabel.textColor = RGBACOLOR(67, 67, 67, 1);
-    [backView addSubview:self.priceLabel];
-    [self.priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(2);
-        make.left.equalTo(backView.mas_left).offset(20);
-        make.height.equalTo(@20);
+    // 加急时间
+    [self addSubview:self.jiajiTimeL];
+    [self.jiajiTimeL mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mas_centerY);
+        make.right.equalTo(self.mas_right).offset(-120);
+        make.width.equalTo(@120);
+        make.height.equalTo(@21);
     }];
     
-    self.jiajiLabel = [[UILabel alloc]init];
-    self.jiajiLabel.text = @"2016年06月18日";
-    self.jiajiLabel.textColor = [UIColor grayColor];
-    self.jiajiLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-    [backView addSubview:self.jiajiLabel];
-    [self.jiajiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(backView.mas_bottom).offset(-2);
-        make.right.equalTo(backView.mas_right).offset(-20);
-        make.height.equalTo(@20);
+    // 加急图标 jiaji_icon
+    [self addSubview:self.jiajiImage];
+    [self.jiajiImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mas_centerY);
+        make.centerX.equalTo(self.jiajiTimeL.mas_centerX);
+        make.width.and.height.equalTo(@40);
     }];
     
-    self.jiajiImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"jiaji"]];
-    [backView addSubview:self.jiajiImageV];
-    [self.jiajiImageV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(backView.mas_right).offset(-12);
-        make.width.and.height.equalTo(@36);
-        make.bottom.equalTo(self.jiajiLabel.mas_top);
-    }];
-    
+    self.jiajiImage.hidden = YES;
+    self.jiajiTimeL.hidden = YES;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if ([textField.text isEqualToString:@""] || [textField.text isEqualToString:@"0"]) {
+        _productNumField.text = @"1";
+    }
     
 }
-
-#pragma mark - 代理告诉VC编辑产品
-- (void)editProduct
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    
-    if (self.block) {
-        self.block(self.model);
+    if ([string isChinese]) {
+        return NO;
+    }else{
+        return YES;
     }
 }
-
-
-
-- (UIImage *)imageWithBgColor:(UIColor *)color
+- (UIImageView *)jiajiImage
 {
-    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
-    
-    UIGraphicsBeginImageContext(rect.size);
-    
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    
-    CGContextFillRect(context, rect);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return image;
+    if (!_jiajiImage) {
+        _jiajiImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"jiaji"]];
+    }
+    return _jiajiImage;
 }
-
+- (UILabel *)jiajiTimeL
+{
+    if (!_jiajiTimeL) {
+        _jiajiTimeL = [[UILabel alloc]init];
+        _jiajiTimeL.font = [UIFont systemFontOfSize:12];
+        _jiajiTimeL.textColor = [UIColor grayColor];
+        _jiajiTimeL.textAlignment = NSTextAlignmentCenter;
+    }
+    return _jiajiTimeL;
+}
 
 @end

@@ -19,6 +19,7 @@
 #import "YLConstKey.h"
 #import "UIView+Extension.h"
 #import "NSDate+Category.h"
+#import "NSString+StrCategory.h"
 #import "UIViewController+Actions.h"
 
 
