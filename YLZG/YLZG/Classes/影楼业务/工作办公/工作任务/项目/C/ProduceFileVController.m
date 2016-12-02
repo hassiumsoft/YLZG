@@ -9,6 +9,8 @@
 #import "ProduceFileVController.h"
 #import "NormalIconView.h"
 #import "ProduceDetialFileCell.h"
+#import "HomeNavigationController.h"
+#import "ShowBigImgVController.h"
 #import <Masonry.h>
 
 
@@ -44,6 +46,25 @@
 {
     ProduceFileModel *model = self.fileArray[indexPath.row];
     ProduceDetialFileCell *cell = [ProduceDetialFileCell sharedProduceDetialFileCell:tableView];
+    cell.DidBlock = ^(NSInteger fileType){
+        [self.view endEditing:YES];
+        if (fileType == 1) {
+            // 查看大图
+            
+            ShowBigImgVController *show = [ShowBigImgVController new];
+            HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:show];
+            show.iconStr = model.uri;
+            [self presentViewController:nav animated:NO completion:^{
+                
+            }];
+            
+        }else{
+            // 查看文件
+            NSArray *itemArr = @[model.uri];
+            UIActivityViewController *activity = [[UIActivityViewController alloc]initWithActivityItems:itemArr applicationActivities:nil];
+            [self presentViewController:activity animated:TRUE completion:nil];
+        }
+    };
     cell.fileModel = model;
     return cell;
 }
@@ -52,6 +73,20 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ProduceFileModel *fileModel = self.fileArray[indexPath.row];
+    if (fileModel.type == 0) {
+        // 没有附件
+        return 60;
+    }else if (fileModel.type == 1){
+        // 附件是图片
+        return 150;
+    }else {
+        // 附件是文件
+        return 150;
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -70,7 +105,6 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = self.view.backgroundColor;
-        _tableView.rowHeight = 60;
     }
     return _tableView;
 }

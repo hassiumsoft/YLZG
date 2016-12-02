@@ -13,6 +13,8 @@
 
 @property (strong,nonatomic) ProduceFileModel *fileModel;
 
+@property (copy,nonatomic) void (^DidBlock)(NSInteger fileType);
+
 + (instancetype)sharedProduceDetialFileCell:(UITableView *)tableView;
 
 @end

@@ -38,7 +38,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"登录";
-    KGLog(@"根目录 = %@",[ClearCacheTool homePath]);
     [self setupSubViews];
 }
 #pragma mark - 点击登录

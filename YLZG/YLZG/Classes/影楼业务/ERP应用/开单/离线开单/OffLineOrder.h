@@ -19,7 +19,8 @@
 @property (copy,nonatomic) NSString *allUrl;
 /** 产品信息,二维数组打成json字符串 */
 @property (copy,nonatomic) NSString *productlist;
-
+/** 是否选中 */
+@property (assign,nonatomic) BOOL isSelect;
 /** 客人姓名 */
 @property (copy,nonatomic) NSString *guest;
 /** 客人电话 */

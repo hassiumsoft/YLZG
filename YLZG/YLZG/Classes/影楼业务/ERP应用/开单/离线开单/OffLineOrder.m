@@ -15,5 +15,11 @@
     
 }
 
+- (void)setMsg:(NSString *)msg
+{
+    if (msg.length < 1) {
+        msg = @"无备注";
+    }
+}
 
 @end

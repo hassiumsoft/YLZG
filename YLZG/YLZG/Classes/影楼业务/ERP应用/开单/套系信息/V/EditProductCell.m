@@ -7,6 +7,7 @@
 //
 
 #import "EditProductCell.h"
+#import <SVProgressHUD.h>
 #import <Masonry.h>
 
 @interface EditProductCell ()<UITextFieldDelegate>
@@ -38,6 +39,7 @@
     _productName.text = model.pro_name;
     _productPrice.text = [NSString stringWithFormat:@"￥%@",model.pro_price];
     _jiajiTimeL.text = model.urgentTime;
+    _productNumField.text = [NSString stringWithFormat:@"%d",model.number];
     if ([model.isUrgent intValue] == 1) {
         self.jiajiTimeL.hidden = NO;
         self.jiajiImage.hidden = NO;
@@ -52,7 +54,7 @@
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = NorMalBackGroudColor;
+        self.backgroundColor = RGBACOLOR(247, 247, 247, 1);
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         [self setupSubView];
     }
@@ -68,7 +70,7 @@
     
     
     // 产品数量
-    UILabel *numLabel = [[UILabel alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.productName.frame), 40, 23)];
+    UILabel *numLabel = [[UILabel alloc]initWithFrame:CGRectMake(18, CGRectGetMaxY(self.productName.frame) + 5, 60, 23)];
     numLabel.text = @"产品数量:";
     numLabel.layer.masksToBounds = YES;
     numLabel.layer.cornerRadius = 4;
@@ -76,8 +78,10 @@
     numLabel.textColor = RGBACOLOR(87, 87, 87, 1);
     [self addSubview:numLabel];
     
-    self.productNumField = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(numLabel.frame)+2, CGRectGetMaxY(self.productName.frame), 40, 21)];
+    self.productNumField = [[UITextField alloc]initWithFrame:CGRectMake(CGRectGetMaxX(numLabel.frame)+2, CGRectGetMaxY(self.productName.frame) + 5, 40, 30)];
     self.productNumField.text = @"1";
+    self.productName.layer.masksToBounds = YES;
+    self.productName.layer.cornerRadius = 4;
     self.productNumField.delegate = self;
     self.productNumField.backgroundColor = [UIColor whiteColor];
     self.productNumField.font = [UIFont systemFontOfSize:12];
@@ -123,11 +127,21 @@
     if ([textField.text isEqualToString:@""] || [textField.text isEqualToString:@"0"]) {
         _productNumField.text = @"1";
     }
+    self.model.number = [textField.text intValue];
+    if (self.block) {
+        _block(self.model);
+    }
     
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if ([string isChinese]) {
+        [SVProgressHUD showErrorWithStatus:@"非法输入"];
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
         return NO;
     }else{
         return YES;

@@ -52,10 +52,11 @@
     
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:SearchTaoxi_URL,account.userID];
-    
+    [self showHudMessage:@"正在加载···"];
     [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
+        [self hideHud:0];
         if (status == 1) {
             // 解析成功
             NSArray *jsonArr = [responseObject objectForKey:@"result"];
@@ -79,6 +80,7 @@
             [self sendErrorWarning:@"获取失败"];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self hideHud:0];
         [self sendErrorWarning:error.localizedDescription];
     }];
     

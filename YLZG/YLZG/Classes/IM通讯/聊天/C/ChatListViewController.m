@@ -74,7 +74,7 @@
 #pragma mark - 表格相关
 - (void)setupSubViews
 {
-    KGLog(@"根目录 = %@",[ClearCacheTool homePath]);
+    
     [self.view addSubview:self.tableView];
     // footer
     UILabel * footer = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];

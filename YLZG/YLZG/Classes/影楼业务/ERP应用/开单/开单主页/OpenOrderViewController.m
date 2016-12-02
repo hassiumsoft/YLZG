@@ -24,6 +24,7 @@
 #import "AllProductList.h"
 #import "AllProductModel.h"
 #import "OfflineDataManager.h"
+#import "PayMoneyViewController.h"
 #import "PDTSimpleCalendarViewController.h"
 #import "AddProductController.h"
 
@@ -203,7 +204,7 @@
             if (self.productArray.count >= 1) {
                 // 添加产品表格
                 cell.contentLabel.text = @"产品单价";
-                cell.nameLabel.textColor = [UIColor grayColor];
+                cell.nameLabel.textColor = RGBACOLOR(67, 67, 67, 1);
                 cell.contentLabel.textColor = [UIColor grayColor];
                 self.productTableView.frame = CGRectMake(0, 48, SCREEN_WIDTH, self.productArray.count * ProductHeight + self.proFootView.height);
                 [cell.contentView addSubview:self.productTableView];
@@ -251,10 +252,14 @@
 }
 - (UITableViewCell *)CreateProductCell:(UITableView *)tableView IndexPath:(NSIndexPath *)indexPath
 {
-    TaoxiProductModel *model = self.productArray[indexPath.item];
-    model.row = indexPath.row;
+    TaoxiProductModel *proModel = self.productArray[indexPath.item];
+    proModel.row = indexPath.row;
     EditProductCell *cell = [EditProductCell sharedEditProductCell:tableView];
-    cell.model = model;
+    cell.block = ^(TaoxiProductModel *model){
+        [self.productArray replaceObjectAtIndex:indexPath.row withObject:model];
+        [self.productTableView reloadData];
+    };
+    cell.model = proModel;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -390,7 +395,7 @@
             
             // 记住是哪一行
             self.jiajiIndexPath = indexPath.row;
-            
+            [self.view endEditing:YES];
             PDTSimpleCalendarViewController *calender = [[PDTSimpleCalendarViewController alloc]init];
             calender.title = @"选择加急时间";
             calender.delegate = self;
@@ -537,14 +542,17 @@
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }];
-    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        ZCAccount *account = [ZCAccountTool account];
-        NSString *url = @"http://zsylou.wxwkf.com/index.php/home/newtrade/newtrade?uid=%@&price=%@&set=%@&guest=%@&msg=%@&mobile=%@&productlist=%@&spot=%@&negative=%@&album=%@&category=%@&source=%@&number=%@&guest2=%@&mobile2=%@";
-        NSLog(@"开单url = %@",url);
-#warning 产品列表json串
-        NSString *productJsonStr;
-        NSString *allUrl = [NSString stringWithFormat:OpenOrder_Url_New,account.userID,self.taoxiPriceField.text,self.taoxiNameStr,self.cusNameField.text,beizhu,self.cusPhoneField.text,productJsonStr,self.spotJsonStr,self.rudiField.text,self.ruceField.text,self.taoxiClassStr,self.cusTypeStr,self.cardNumStr,self.cusNameField2.text,self.cusPhoneField2.text];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"保存订单" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
+        ZCAccount *account = [ZCAccountTool account];
+        NSMutableArray *dictArray = [NSMutableArray arrayWithCapacity:1];
+        NSMutableArray *copyProductArr = [NSMutableArray arrayWithArray:self.productArray];
+        for (TaoxiProductModel *productModel in copyProductArr) {
+            NSDictionary *dict = [productModel mj_keyValues];
+            [dictArray addObject:dict];
+        }
+        NSString *productJsonStr = [self toJsonStr:dictArray];
+        NSString *allUrl = [NSString stringWithFormat:OpenOrder_Url_New,account.userID,self.taoxiPriceField.text,self.taoxiNameStr,self.cusNameField.text,beizhu,self.cusPhoneField.text,productJsonStr,self.spotJsonStr,self.rudiField.text,self.ruceField.text,self.taoxiClassStr,self.cusTypeStr,self.cardNumStr,self.cusNameField2.text,self.cusPhoneField2.text];
         
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[@"allUrl"] = allUrl; // ⚠️长度限制，暂用未UTF8的字符串
@@ -557,6 +565,9 @@
         dict[@"msg"] = beizhu;
         
         [OfflineDataManager saveToSandBox:dict];
+        
+        [self clearData];
+        [self setupRightBar];
         
     }];
     
@@ -615,11 +626,52 @@
         beizhu = self.beizhuField.text;
     }
     
-    for (TaoxiProductModel *productModel in self.productArray) {
-        NSLog(@"productModel = %@",productModel);
+    NSMutableArray *dictArray = [NSMutableArray arrayWithCapacity:1];
+    NSMutableArray *copyProductArr = [NSMutableArray arrayWithArray:self.productArray];
+    for (TaoxiProductModel *productModel in copyProductArr) {
+         NSDictionary *dict = [productModel mj_keyValues];
+        [dictArray addObject:dict];
     }
     
-    [self.orderTableView reloadData];
+    NSString *productJsonStr = [self toJsonStr:dictArray];
+    
+    NSString *allUrl = [NSString stringWithFormat:OpenOrder_Url_New,[ZCAccountTool account].userID,self.taoxiPriceField.text,self.taoxiNameStr,self.cusNameField.text,beizhu,self.cusPhoneField.text,productJsonStr,self.spotJsonStr,self.rudiField.text,self.ruceField.text,self.taoxiClassStr,self.cusTypeStr,self.cardNumStr,self.cusNameField2.text,self.cusPhoneField2.text];
+    [self showHudMessage:@"上传订单中···"];
+    [HTTPManager GET:allUrl params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self hideHud:0];
+        int status = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        NSString *orderID = [[responseObject objectForKey:@"trade_id"] description];
+        if (status == 1) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"开单成功" message:@"立即前往支付？取消则可在订单收款里查询订单再支付" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self clearData];
+                
+            }];
+            UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"立即支付" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self clearData];
+                // 立即前往支付
+                PayMoneyViewController *payMoney = [PayMoneyViewController new];
+                payMoney.orderID = orderID;
+                payMoney.price = self.taoxiPriceField.text;
+                [self.navigationController pushViewController:payMoney animated:YES];
+                
+            }];
+            
+            [alertC addAction:action1];
+            [alertC addAction:action2];
+            [self presentViewController:alertC animated:YES completion:^{
+                
+            }];
+        }else{
+            [self sendErrorWarning:message];
+        }
+        
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self hideHud:0];
+        [self sendErrorWarning:error.localizedDescription];
+    }];
+    
 }
 // -- 获取产品数据-- 如果这个之前没有被加载过，无法实现离线订单
 - (void)loadProductData
@@ -649,7 +701,6 @@
                 for (AllTaoxiProductModel *bigModel in bigArray) {
                     NSArray *oneList = bigModel.productList;  // 一个套系下的产品数组
                     for (TaoxiProductModel *model in oneList) {
-#warning 设置产品的一些初始值
                         model.number = 1;
                         model.isUrgent = @"0";
                         model.urgentTime = @"0";
@@ -665,7 +716,6 @@
                 NSArray *result = [responseObject objectForKey:@"result"];
                 self.productArray = [TaoxiProductModel mj_objectArrayWithKeyValuesArray:result];
                 for (TaoxiProductModel *model in self.productArray) {
-#warning 设置产品的一些初始值
                     model.number = 1;
                     model.isUrgent = @"0";
                     model.urgentTime = @"0";
@@ -794,7 +844,7 @@
         _proFootView.backgroundColor = [UIColor whiteColor];
         _proFootView.userInteractionEnabled = YES;
         UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [addButton setTitle:@"添加更多产品" forState:UIControlStateNormal];
+        [addButton setTitle:@"添加套系产品" forState:UIControlStateNormal];
         [addButton setTitleColor:MainColor forState:UIControlStateNormal];
         [addButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             AddProductController *addPro = [AddProductController new];
@@ -810,7 +860,7 @@
             };
             [self.navigationController pushViewController:addPro animated:YES];
         }];
-        [addButton setFrame:CGRectMake(100*CKproportion, 3, SCREEN_WIDTH - 200*CKproportion, 38)];
+        [addButton setFrame:CGRectMake(110*CKproportion, 3, SCREEN_WIDTH - 220*CKproportion, 35)];
         addButton.layer.masksToBounds = YES;
         addButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         addButton.backgroundColor = [UIColor whiteColor];
@@ -917,6 +967,31 @@
         _beizhuField.placeholder = OrderDescPlace;
     }
     return _beizhuField;
+}
+- (void)clearData
+{
+    // 把数据清空
+    self.taoxiPriceField.text = @"";
+    [self.productArray removeAllObjects];
+    self.cusNameField.text = @"";
+    self.cusPhoneField.text = @"";
+    self.taoxiPriceField.text = @"";
+    self.spotStr = @"";
+    self.spotJsonStr = @"";
+    self.cusTypeStr = @"";
+    self.taoxiNameStr = @"";
+    self.rudiField.text = @"";
+    self.ruceField.text = @"";
+    self.cusNameField2.text = @"";
+    self.cusPhoneField2.text = @"";
+    self.cardNumStr = @"";
+    self.beizhuField.text = @"";
+    self.taoxiClassStr = @"";
+    
+    self.orderArray = @[@[@"客户姓名*",@"客户电话*",@"客户来源*",@"客户姓名2",@"客户电话2"],@[@"套系类别*",@"套系名称*",@"套系金额*",@"套系产品*"],@[@"选择风景*",@"入底*",@"入册*",@"会员卡号",@"订单备注"]];
+    
+    [self.orderTableView reloadData];
+    [self.productTableView reloadData];
 }
 
 @end

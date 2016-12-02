@@ -177,6 +177,7 @@
 #pragma mark - 获取数据
 - (void)getDetialData
 {
+    
     NSString *url = [NSString stringWithFormat:ProduceDetial_URL,[ZCAccountTool account].userID,_listModel.id];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
