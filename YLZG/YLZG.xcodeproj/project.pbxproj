@@ -18,6 +18,12 @@
 		3B07D8E11D956B0D00B657F6 /* YLZGTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8E01D956B0D00B657F6 /* YLZGTests.m */; };
 		3B07D8EC1D956B0D00B657F6 /* YLZGUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8EB1D956B0D00B657F6 /* YLZGUITests.m */; };
 		3B129DEE1DF127F700F23F0D /* OfflineOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B129DED1DF127F700F23F0D /* OfflineOrderTableCell.m */; };
+		3B129DF61DF1584A00F23F0D /* NineTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B129DF51DF1584A00F23F0D /* NineTabbarController.m */; };
+		3B129E021DF159D700F23F0D /* NineMyCareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B129E011DF159D700F23F0D /* NineMyCareViewController.m */; };
+		3B129E051DF15A0100F23F0D /* NineAllMobanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B129E041DF15A0100F23F0D /* NineAllMobanViewController.m */; };
+		3B129E081DF15A2900F23F0D /* NineMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B129E071DF15A2900F23F0D /* NineMeViewController.m */; };
+		3B129E0B1DF1644E00F23F0D /* NineReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B129E0A1DF1644E00F23F0D /* NineReusableView.m */; };
+		3B129E0E1DF1658400F23F0D /* NineTopViewReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B129E0D1DF1658400F23F0D /* NineTopViewReusableView.m */; };
 		3B343B361DEBFECC00474549 /* TaskDongtaiController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343AE21DEBFECC00474549 /* TaskDongtaiController.m */; };
 		3B343B371DEBFECC00474549 /* MyCareTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343AE81DEBFECC00474549 /* MyCareTaskController.m */; };
 		3B343B381DEBFECC00474549 /* MyCreateTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343AEA1DEBFECC00474549 /* MyCreateTaskController.m */; };
@@ -443,6 +449,18 @@
 		3B07D8FC1D9578CE00B657F6 /* YLZG.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YLZG.entitlements; sourceTree = "<group>"; };
 		3B129DEC1DF127F700F23F0D /* OfflineOrderTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineOrderTableCell.h; sourceTree = "<group>"; };
 		3B129DED1DF127F700F23F0D /* OfflineOrderTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineOrderTableCell.m; sourceTree = "<group>"; };
+		3B129DF41DF1584A00F23F0D /* NineTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineTabbarController.h; sourceTree = "<group>"; };
+		3B129DF51DF1584A00F23F0D /* NineTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineTabbarController.m; sourceTree = "<group>"; };
+		3B129E001DF159D700F23F0D /* NineMyCareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineMyCareViewController.h; sourceTree = "<group>"; };
+		3B129E011DF159D700F23F0D /* NineMyCareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineMyCareViewController.m; sourceTree = "<group>"; };
+		3B129E031DF15A0100F23F0D /* NineAllMobanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineAllMobanViewController.h; sourceTree = "<group>"; };
+		3B129E041DF15A0100F23F0D /* NineAllMobanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineAllMobanViewController.m; sourceTree = "<group>"; };
+		3B129E061DF15A2900F23F0D /* NineMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineMeViewController.h; sourceTree = "<group>"; };
+		3B129E071DF15A2900F23F0D /* NineMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineMeViewController.m; sourceTree = "<group>"; };
+		3B129E091DF1644E00F23F0D /* NineReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineReusableView.h; sourceTree = "<group>"; };
+		3B129E0A1DF1644E00F23F0D /* NineReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineReusableView.m; sourceTree = "<group>"; };
+		3B129E0C1DF1658400F23F0D /* NineTopViewReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineTopViewReusableView.h; sourceTree = "<group>"; };
+		3B129E0D1DF1658400F23F0D /* NineTopViewReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineTopViewReusableView.m; sourceTree = "<group>"; };
 		3B343AE11DEBFECC00474549 /* TaskDongtaiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDongtaiController.h; sourceTree = "<group>"; };
 		3B343AE21DEBFECC00474549 /* TaskDongtaiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDongtaiController.m; sourceTree = "<group>"; };
 		3B343AE71DEBFECC00474549 /* MyCareTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCareTaskController.h; sourceTree = "<group>"; };
@@ -1354,6 +1372,129 @@
 			name = "系统文件";
 			sourceTree = "<group>";
 		};
+		3B129DEF1DF1565400F23F0D /* 九宫格 */ = {
+			isa = PBXGroup;
+			children = (
+				3B129DF31DF1574300F23F0D /* 主页 */,
+				3B129DF01DF1574300F23F0D /* 关注 */,
+				3B129DF11DF1574300F23F0D /* 全部模板 */,
+				3B129DF21DF1574300F23F0D /* 我的 */,
+			);
+			path = "九宫格";
+			sourceTree = "<group>";
+		};
+		3B129DF01DF1574300F23F0D /* 关注 */ = {
+			isa = PBXGroup;
+			children = (
+				3B129DF71DF158EB00F23F0D /* C */,
+				3B129DF81DF158EB00F23F0D /* M */,
+				3B129DF91DF158EB00F23F0D /* V */,
+			);
+			path = "关注";
+			sourceTree = "<group>";
+		};
+		3B129DF11DF1574300F23F0D /* 全部模板 */ = {
+			isa = PBXGroup;
+			children = (
+				3B129DFA1DF158F400F23F0D /* C */,
+				3B129DFB1DF158F400F23F0D /* M */,
+				3B129DFC1DF158F400F23F0D /* V */,
+			);
+			path = "全部模板";
+			sourceTree = "<group>";
+		};
+		3B129DF21DF1574300F23F0D /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				3B129DFD1DF158FD00F23F0D /* C */,
+				3B129DFE1DF158FD00F23F0D /* M */,
+				3B129DFF1DF158FD00F23F0D /* V */,
+			);
+			path = "我的";
+			sourceTree = "<group>";
+		};
+		3B129DF31DF1574300F23F0D /* 主页 */ = {
+			isa = PBXGroup;
+			children = (
+				3B129DF41DF1584A00F23F0D /* NineTabbarController.h */,
+				3B129DF51DF1584A00F23F0D /* NineTabbarController.m */,
+			);
+			path = "主页";
+			sourceTree = "<group>";
+		};
+		3B129DF71DF158EB00F23F0D /* C */ = {
+			isa = PBXGroup;
+			children = (
+				3B129E001DF159D700F23F0D /* NineMyCareViewController.h */,
+				3B129E011DF159D700F23F0D /* NineMyCareViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		3B129DF81DF158EB00F23F0D /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		3B129DF91DF158EB00F23F0D /* V */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		3B129DFA1DF158F400F23F0D /* C */ = {
+			isa = PBXGroup;
+			children = (
+				3B129E031DF15A0100F23F0D /* NineAllMobanViewController.h */,
+				3B129E041DF15A0100F23F0D /* NineAllMobanViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		3B129DFB1DF158F400F23F0D /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		3B129DFC1DF158F400F23F0D /* V */ = {
+			isa = PBXGroup;
+			children = (
+				3B129E091DF1644E00F23F0D /* NineReusableView.h */,
+				3B129E0A1DF1644E00F23F0D /* NineReusableView.m */,
+				3B129E0C1DF1658400F23F0D /* NineTopViewReusableView.h */,
+				3B129E0D1DF1658400F23F0D /* NineTopViewReusableView.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		3B129DFD1DF158FD00F23F0D /* C */ = {
+			isa = PBXGroup;
+			children = (
+				3B129E061DF15A2900F23F0D /* NineMeViewController.h */,
+				3B129E071DF15A2900F23F0D /* NineMeViewController.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		3B129DFE1DF158FD00F23F0D /* M */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		3B129DFF1DF158FD00F23F0D /* V */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
 		3B343ADF1DEBFECC00474549 /* 动态 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1518,6 +1659,8 @@
 		3B343B2B1DEBFECC00474549 /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
+				3B343B341DEBFECC00474549 /* TaskTabbarController.h */,
+				3B343B351DEBFECC00474549 /* TaskTabbarController.m */,
 				3B343B2C1DEBFECC00474549 /* AddNewTaskController.h */,
 				3B343B2D1DEBFECC00474549 /* AddNewTaskController.m */,
 				3B343B2E1DEBFECC00474549 /* ChooseProduceController.h */,
@@ -1526,8 +1669,6 @@
 				3B343B311DEBFECC00474549 /* SelectTaskCaresController.m */,
 				3B343B321DEBFECC00474549 /* SelectTaskFuzerController.h */,
 				3B343B331DEBFECC00474549 /* SelectTaskFuzerController.m */,
-				3B343B341DEBFECC00474549 /* TaskTabbarController.h */,
-				3B343B351DEBFECC00474549 /* TaskTabbarController.m */,
 			);
 			path = "主页";
 			sourceTree = "<group>";
@@ -1719,6 +1860,7 @@
 		3B4C0EAC1DC85DDB00827D4F /* 工作办公 */ = {
 			isa = PBXGroup;
 			children = (
+				3B129DEF1DF1565400F23F0D /* 九宫格 */,
 				3B948B721DD9943700D75112 /* 工作任务 */,
 				3BA06F1B1DCC512C000886A8 /* 实用工具 */,
 				3B4C12E21DC85F4700827D4F /* 审批 */,
@@ -3888,6 +4030,7 @@
 				3B4C13601DC85F4700827D4F /* InGroupViewController.m in Sources */,
 				3B4C134E1DC85F4700827D4F /* DetialBanciModel.m in Sources */,
 				3B75EFCB1DC2EE0800D54807 /* WXApiManager.m in Sources */,
+				3B129E021DF159D700F23F0D /* NineMyCareViewController.m in Sources */,
 				3B75EFCE1DC2F02C00D54807 /* WXShareView.m in Sources */,
 				3B948B711DD993C600D75112 /* MyJobsTableCell.m in Sources */,
 				3B4C134B1DC85F4700827D4F /* TanxingBanciSettingController.m in Sources */,
@@ -3906,6 +4049,7 @@
 				3B4C10C61DC85DDC00827D4F /* PaizhaoPreViewController.m in Sources */,
 				3BCF39991D9E12A200BEE236 /* AboutZhichengController.m in Sources */,
 				3B9EF3DF1DEFF80400C66888 /* AddProductController.m in Sources */,
+				3B129E051DF15A0100F23F0D /* NineAllMobanViewController.m in Sources */,
 				3BCF39731D9DF42100BEE236 /* StudioContactManager.m in Sources */,
 				3BCA32431D9CC1A600A0E980 /* HomeNavigationController.m in Sources */,
 				3B7ABCAB1DB5B33400F3D12B /* IviteGroupersCollectionCell.m in Sources */,
@@ -3976,6 +4120,7 @@
 				3B4C13621DC85F4700827D4F /* SuperSettingController.m in Sources */,
 				3B4C13251DC85F4700827D4F /* CheckTabBarController.m in Sources */,
 				3B5DC71D1DB87107000F7A06 /* EaseEmotionEscape.m in Sources */,
+				3B129E081DF15A2900F23F0D /* NineMeViewController.m in Sources */,
 				3B3BBF961DB475FA00C9E2FD /* ContactTableViewCell.m in Sources */,
 				3B5DC7121DB870DD000F7A06 /* EaseMessageReadManager.m in Sources */,
 				3B4C135C1DC85F4700827D4F /* TimeSliderView.m in Sources */,
@@ -4049,6 +4194,7 @@
 				3B56D7681DC739CE003A57FD /* EaseMessageViewController.m in Sources */,
 				3B343B481DEBFECC00474549 /* ProduceTaskVController.m in Sources */,
 				3B4C13321DC85F4700827D4F /* CheckInfoViewController.m in Sources */,
+				3B129E0B1DF1644E00F23F0D /* NineReusableView.m in Sources */,
 				3B3BBFD51DB4BF3C00C9E2FD /* FriendDetialController.m in Sources */,
 				3BCF3A0D1D9E65E800BEE236 /* SuperTableViewController.m in Sources */,
 				3B4C10D71DC85DDC00827D4F /* SearchOrderModel.m in Sources */,
@@ -4150,6 +4296,7 @@
 				3B4C10361DC85DDC00827D4F /* InComeModel.m in Sources */,
 				3B7ABCF01DB6176600F3D12B /* EMCDDeviceManager+Media.m in Sources */,
 				3BCF39BF1D9E3D5500BEE236 /* ApplyViewController.m in Sources */,
+				3B129DF61DF1584A00F23F0D /* NineTabbarController.m in Sources */,
 				3B4C134D1DC85F4700827D4F /* BanciModel.m in Sources */,
 				3B343B8D1DEC017A00474549 /* TaskDetialDiscussModel.m in Sources */,
 				3B4C10CA1DC85DDC00827D4F /* XuanpianPreViewController.m in Sources */,
@@ -4159,6 +4306,7 @@
 				3B4C10A41DC85DDC00827D4F /* HomeCollectionCell.m in Sources */,
 				3B4C10CE1DC85DDC00827D4F /* SearchOrderViewController.m in Sources */,
 				187075391DC195FA002448C6 /* SettingViewController.m in Sources */,
+				3B129E0E1DF1658400F23F0D /* NineTopViewReusableView.m in Sources */,
 				3BCF39D41D9E43FF00BEE236 /* WifiNetManager.m in Sources */,
 				3BCF3A0C1D9E65E800BEE236 /* FSort.m in Sources */,
 				3BCF3A081D9E65E800BEE236 /* FCityGroup.m in Sources */,

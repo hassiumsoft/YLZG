@@ -19,6 +19,7 @@
 #import "EmptyViewController.h"
 #import "NewFutherViewController.h"
 
+
 #import "OpenOrderViewController.h"
 #import "SearchOrderViewController.h"
 #import "PreOrderVController.h"
@@ -31,6 +32,7 @@
 #import "TodayOrderViewController.h"
 #import "MonthFinanceVController.h"
 #import "MyJobsViewController.h"
+#import "NineTabbarController.h"
 #import "CheckTabBarController.h"
 #import "PublicNoticeController.h"
 #import "SaleToolViewController.h"
@@ -140,15 +142,15 @@
     if ([self.userModel.type intValue] == 1) {
         // 老板
 
-        self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"今日财务",@"财务统计"],@[@"审批",@"考勤打卡",@"工作任务",@"实用工具"],@[@"营销工具"]]];
-        self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_icon_tofinace",@"btn_icon_monthfinace"],@[@"btn_ico_shenpi",@"btn_ico_kaoqin",@"btn_ico_kaoqin",@"btn_more"],@[@"btn_ico_kaoqin"]]];
-        self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1"],@[@"-1",@"-1",@"-1",@"-1"],@[@"-1"]]];
+        self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"今日财务",@"财务统计"],@[@"九宫格",@"审批",@"考勤打卡",@"工作任务",@"实用工具"],@[@"营销工具"]]];
+        self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_icon_tofinace",@"btn_icon_monthfinace"],@[@"btn_ico_shenpi",@"btn_ico_shenpi",@"btn_ico_kaoqin",@"btn_ico_kaoqin",@"btn_more"],@[@"btn_ico_kaoqin"]]];
+        self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1"],@[@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1"]]];
         
     }else{
         // 员工
-        self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"审批",@"考勤打卡",@"工作任务",@"实用工具"],@[@"营销工具"]]];
-        self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_ico_shenpi",@"btn_ico_kaoqin",@"btn_ico_kaoqin",@"btn_more"],@[@"btn_ico_kaoqin"]]];
-        self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1",@"-1",@"-1"],@[@"-1"]]];
+        self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"九宫格",@"审批",@"考勤打卡",@"工作任务",@"实用工具"],@[@"营销工具"]]];
+        self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_ico_shenpi",@"btn_ico_shenpi",@"btn_ico_kaoqin",@"btn_ico_kaoqin",@"btn_more"],@[@"btn_ico_kaoqin"]]];
+        self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1"]]];
 
     }
     
@@ -265,16 +267,20 @@
         }else if (indexPath.section == 2){
             // 工作办公
             if (indexPath.row == 0) {
+                // 九宫格
+                NineTabbarController *nineTabbar = [NineTabbarController new];
+                [self.navigationController pushViewController:nineTabbar animated:YES];
+            }else if(indexPath.row == 1) {
                 // 审批
                 MyApproveVController *appear = [MyApproveVController new];
                 [self.navigationController pushViewController:appear animated:YES];
 
-            }else if(indexPath.row == 1){
+            }else if(indexPath.row == 2){
 
                 // 考勤打卡
                 CheckTabBarController *kaoqin = [CheckTabBarController new];
                 [self.navigationController pushViewController:kaoqin animated:YES];
-            }else if (indexPath.row == 2){
+            }else if (indexPath.row == 3){
                 // 工作任务
                 TaskTabbarController *task = [TaskTabbarController new];
                 [self.navigationController pushViewController:task animated:YES];
@@ -343,16 +349,20 @@
         } else if(indexPath.section == 1){
             // 工作办公
             if (indexPath.row == 0) {
+                // 九宫格
+                NineTabbarController *nineTabbar = [NineTabbarController new];
+                [self.navigationController pushViewController:nineTabbar animated:YES];
+            }else if (indexPath.row == 1) {
                 // 审批
                 MyApproveVController *appear = [MyApproveVController new];
                 [self.navigationController pushViewController:appear animated:YES];
 
-            }else if(indexPath.row == 1){
+            }else if(indexPath.row == 2){
 
                 // 考勤打卡
                 CheckTabBarController *kaoqin = [CheckTabBarController new];
                 [self.navigationController pushViewController:kaoqin animated:YES];
-            }else if (indexPath.row == 2){
+            }else if (indexPath.row == 3){
                 // 工作任务
                 TaskTabbarController *task = [TaskTabbarController new];
                 [self.navigationController pushViewController:task animated:YES];
