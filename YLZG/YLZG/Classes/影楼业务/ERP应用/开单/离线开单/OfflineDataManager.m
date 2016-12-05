@@ -105,7 +105,7 @@ static FMDatabase *_db;
     }
     return array;
 }
-
+/**
 #pragma mark - 本地通知
 + (void)registerLocalNotification:(NSInteger)alertTime Count:(int)count
 {
@@ -143,6 +143,7 @@ static FMDatabase *_db;
 //    // 执行通知注册
 //    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
+*/
 
 #pragma mark - 获取本地时区的当前时间
 + (NSString *)getCurrentAreaDateAndTime

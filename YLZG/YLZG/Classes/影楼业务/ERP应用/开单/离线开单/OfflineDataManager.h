@@ -42,6 +42,6 @@
  *
  *  @param alertTime 触发本地通知的时间
  */
-+ (void)registerLocalNotification:(NSInteger)alertTime Count:(int)count;
+//+ (void)registerLocalNotification:(NSInteger)alertTime Count:(int)count;
 
 @end

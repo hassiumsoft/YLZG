@@ -12,7 +12,7 @@
 #import "NineAllMobanViewController.h"
 
 
-@interface NineTabbarController ()
+@interface NineTabbarController ()<UITabBarControllerDelegate>
 
 @end
 

@@ -280,6 +280,9 @@
 		3B7ABCF71DB6176600F3D12B /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B7ABCE51DB6176600F3D12B /* EMVoiceConverter.mm */; };
 		3B7ABCF81DB6176600F3D12B /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7ABCE91DB6176600F3D12B /* libopencore-amrnb.a */; };
 		3B7ABCF91DB6176600F3D12B /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7ABCED1DB6176600F3D12B /* libopencore-amrwb.a */; };
+		3B87BFC41DF3E0CC00970625 /* NineCareTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFC31DF3E0CC00970625 /* NineCareTableViewCell.m */; };
+		3B87BFC71DF3EF3000970625 /* NineListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFC61DF3EF3000970625 /* NineListViewController.m */; };
+		3B87BFCA1DF3F9A900970625 /* MobanHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFC91DF3F9A900970625 /* MobanHeadView.m */; };
 		3B948B6B1DD993C600D75112 /* TodayOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B948B581DD993C600D75112 /* TodayOrderViewController.m */; };
 		3B948B6C1DD993C600D75112 /* TodayOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B948B5B1DD993C600D75112 /* TodayOrderModel.m */; };
 		3B948B6D1DD993C600D75112 /* TodayOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B948B5E1DD993C600D75112 /* TodayOrderCell.m */; };
@@ -985,6 +988,12 @@
 		3B7ABCEB1DB6176600F3D12B /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
 		3B7ABCEC1DB6176600F3D12B /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
 		3B7ABCED1DB6176600F3D12B /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		3B87BFC21DF3E0CC00970625 /* NineCareTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineCareTableViewCell.h; sourceTree = "<group>"; };
+		3B87BFC31DF3E0CC00970625 /* NineCareTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineCareTableViewCell.m; sourceTree = "<group>"; };
+		3B87BFC51DF3EF3000970625 /* NineListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineListViewController.h; sourceTree = "<group>"; };
+		3B87BFC61DF3EF3000970625 /* NineListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineListViewController.m; sourceTree = "<group>"; };
+		3B87BFC81DF3F9A900970625 /* MobanHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobanHeadView.h; sourceTree = "<group>"; };
+		3B87BFC91DF3F9A900970625 /* MobanHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobanHeadView.m; sourceTree = "<group>"; };
 		3B948B571DD993C600D75112 /* TodayOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayOrderViewController.h; sourceTree = "<group>"; };
 		3B948B581DD993C600D75112 /* TodayOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayOrderViewController.m; sourceTree = "<group>"; };
 		3B948B5A1DD993C600D75112 /* TodayOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayOrderModel.h; sourceTree = "<group>"; };
@@ -1441,6 +1450,8 @@
 		3B129DF91DF158EB00F23F0D /* V */ = {
 			isa = PBXGroup;
 			children = (
+				3B87BFC21DF3E0CC00970625 /* NineCareTableViewCell.h */,
+				3B87BFC31DF3E0CC00970625 /* NineCareTableViewCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -1450,6 +1461,8 @@
 			children = (
 				3B129E031DF15A0100F23F0D /* NineAllMobanViewController.h */,
 				3B129E041DF15A0100F23F0D /* NineAllMobanViewController.m */,
+				3B87BFC51DF3EF3000970625 /* NineListViewController.h */,
+				3B87BFC61DF3EF3000970625 /* NineListViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -1464,6 +1477,8 @@
 		3B129DFC1DF158F400F23F0D /* V */ = {
 			isa = PBXGroup;
 			children = (
+				3B87BFC81DF3F9A900970625 /* MobanHeadView.h */,
+				3B87BFC91DF3F9A900970625 /* MobanHeadView.m */,
 				3B129E091DF1644E00F23F0D /* NineReusableView.h */,
 				3B129E0A1DF1644E00F23F0D /* NineReusableView.m */,
 				3B129E0C1DF1658400F23F0D /* NineTopViewReusableView.h */,
@@ -3988,6 +4003,7 @@
 				3B7ABCAA1DB5B33400F3D12B /* GroupMemberView.m in Sources */,
 				3B9E16F71DD2C13D0028C72F /* TodayFinaceModel.m in Sources */,
 				3B343B461DEBFECC00474549 /* ProduceFileVController.m in Sources */,
+				3B87BFC71DF3EF3000970625 /* NineListViewController.m in Sources */,
 				3BCF39C01D9E3D5500BEE236 /* ContactListViewController.m in Sources */,
 				3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */,
 				3B4C10A91DC85DDC00827D4F /* YejiDetialViewController.m in Sources */,
@@ -4132,6 +4148,7 @@
 				3B56D7691DC739CE003A57FD /* EaseRefreshTableViewController.m in Sources */,
 				3B5DC71B1DB87107000F7A06 /* EaseEmoji.m in Sources */,
 				3BCF39ED1D9E5AD200BEE236 /* PhoneViewController.m in Sources */,
+				3B87BFCA1DF3F9A900970625 /* MobanHeadView.m in Sources */,
 				3B4C13311DC85F4700827D4F /* qiaodaocountBtn.m in Sources */,
 				3B4C13341DC85F4700827D4F /* TeamZhengchangDakaController.m in Sources */,
 				3BCA32631D9CC25100A0E980 /* PresentingAnimator.m in Sources */,
@@ -4293,6 +4310,7 @@
 				3B343B451DEBFECC00474549 /* ProduceDiscussVController.m in Sources */,
 				3B4C132A1DC85F4700827D4F /* CheckWorkViewController.m in Sources */,
 				3BCF39A81D9E322F00BEE236 /* ImageBrowser.m in Sources */,
+				3B87BFC41DF3E0CC00970625 /* NineCareTableViewCell.m in Sources */,
 				3B4C10361DC85DDC00827D4F /* InComeModel.m in Sources */,
 				3B7ABCF01DB6176600F3D12B /* EMCDDeviceManager+Media.m in Sources */,
 				3BCF39BF1D9E3D5500BEE236 /* ApplyViewController.m in Sources */,

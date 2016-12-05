@@ -1,39 +1,38 @@
 //
-//  NineAllMobanViewController.m
+//  NineListViewController.m
 //  YLZG
 //
-//  Created by Chan_Sir on 2016/12/2.
+//  Created by Chan_Sir on 2016/12/4.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import "NineAllMobanViewController.h"
+#import "NineListViewController.h"
 #import <MJRefresh.h>
 #import <MJExtension.h>
-#import "NineReusableView.h"
 #import "HTTPManager.h"
-#import "NineTopViewReusableView.h"
+#import "MobanHeadView.h"
 #import "HomeCollectionCell.h"
 #import "ZCAccountTool.h"
 
 
-#define topViewH 160*CKproportion
+#define TopHeight 50
 
-@interface NineAllMobanViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface NineListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 /** 数据源 */
 @property (copy,nonatomic) NSArray *array;
 /** UICollectionView */
 @property (strong,nonatomic) UICollectionView *collectionView;
-
+/** 头部 */
 
 @end
 
-@implementation NineAllMobanViewController
 
+@implementation NineListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"九宫格";
+    self.title = @"模板列表";
     [self setupSubViews];
 }
 
@@ -49,24 +48,26 @@
     }];
     
     
+    MobanHeadView *headView = [[MobanHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, TopHeight)];
+    [self.view addSubview:headView];
 }
 
 
 #pragma mark - 表格相关
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    return 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 6;
+    return 16;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     HomeCollectionCell *cell = [HomeCollectionCell sharedCell:collectionView Path:indexPath];
     cell.backgroundColor = HWRandomColor;
     return cell;
-
+    
 }
 // 返回这个UICollectionView是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -96,62 +97,22 @@
 {
     return 1;
 }
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView * reusableview = nil;
-    if(kind == UICollectionElementKindSectionHeader){
-        
-        NSArray *titleArr = @[@"热门模板",@"推荐模板"];
-        if (indexPath.section == 0) {
-            // 顶部视图
-            NineTopViewReusableView * headerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"NineTopViewReusableView" forIndexPath:indexPath];
-            headerview.titleArray = @[@"全部",@"儿童类",@"生活类",@"季节类",@"关怀类",@"正能量",@"山水类",@"母婴类"];
-            headerview.DidClickBlock = ^(){
-                [self showErrorTips:@"热门模板"];
-            };
-            reusableview = headerview;
-        }else{
-            NineReusableView * headerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"NineReusableView" forIndexPath:indexPath];
-            headerview.title = titleArr[indexPath.section];
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-                [self showErrorTips:@"推荐模板"];
-            }];
-            [headerview addGestureRecognizer:tap];
-            reusableview = headerview;
-        }
-        
-    }
-    return reusableview;
-}
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        return CGSizeMake(SCREEN_WIDTH, topViewH);
-    }else{
-        return CGSizeMake(SCREEN_WIDTH, 44);
-    }
-}
 #pragma mark - 懒加载
 - (UICollectionView *)collectionView
 {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     if (!_collectionView) {
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 108) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, TopHeight, SCREEN_WIDTH, SCREEN_HEIGHT - TopHeight - 64) collectionViewLayout:flowLayout];
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = self.view.backgroundColor;
         [_collectionView registerClass:[HomeCollectionCell class] forCellWithReuseIdentifier:@"HomeCollectionCell"];
-        
-        
-        [_collectionView registerClass:[NineTopViewReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"NineTopViewReusableView"];
-        [_collectionView registerClass:[NineReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"NineReusableView"];
     }
     return _collectionView;
 }
-
 
 
 @end
