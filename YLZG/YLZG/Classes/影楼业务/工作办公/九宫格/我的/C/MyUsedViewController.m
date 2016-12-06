@@ -107,19 +107,23 @@
         [self.tableView.mj_header endRefreshing];
         if (code == 1) {
             NSArray *result = [responseObject objectForKey:@"result"];
-            NSArray *tempArr = [MyUsedModel mj_objectArrayWithKeyValuesArray:result];
-            [self.array addObjectsFromArray:tempArr];
-            [self.tableView reloadData];
-            
-            if (currentPage == page) {
-                // 提示没有更多了
-                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+            if (result.count >= 1) {
+                NSArray *tempArr = [MyUsedModel mj_objectArrayWithKeyValuesArray:result];
+                [self.array addObjectsFromArray:tempArr];
+                [self.tableView reloadData];
+                
+                if (currentPage == page) {
+                    // 提示没有更多了
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }else{
+                    // 可以继续上拉加载数据
+                    currentPage++;
+                    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+                        [self getDataWithPage:currentPage Nums:1];
+                    }];
+                }
             }else{
-                // 可以继续上拉加载数据
-                currentPage++;
-                self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-                    [self getDataWithPage:currentPage Nums:1];
-                }];
+                [self showErrorTips:@"没有数据"];
             }
             
         }else{

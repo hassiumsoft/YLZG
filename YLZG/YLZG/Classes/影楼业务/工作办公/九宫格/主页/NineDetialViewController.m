@@ -17,6 +17,7 @@
 @interface NineDetialViewController ()
 
 
+
 @end
 
 @implementation NineDetialViewController
@@ -60,25 +61,24 @@
         
         UIImageView *button = [[UIImageView alloc]initWithImage:[self imageWithBgColor:HWRandomColor]];
         [button setFrame:frame];
-        button.layer.masksToBounds = YES;
-        button.layer.cornerRadius = 3;
         [self.view addSubview:button];
         
     }
     
     
     // 转发按钮
-//    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    sendButton.backgroundColor = MainColor;
-//    [sendButton setTitle:@"一键转发" forState:UIControlStateNormal];
-//    [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [sendButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-//        [self showSuccessTips:@"转发"];
-//    }];
-//    [sendButton setFrame:CGRectMake(20, self.view.height - 20, self.view.width - 40, 40)];
-//    sendButton.layer.masksToBounds = YES;
-//    sendButton.layer.cornerRadius = 4;
-//    [self.view addSubview:sendButton];
+    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    sendButton.backgroundColor = MainColor;
+    [sendButton setTitle:@"一键转发" forState:UIControlStateNormal];
+    [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [sendButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+        [self showSuccessTips:@"转发"];
+    }];
+    [sendButton setFrame:CGRectMake(20, self.view.height - 20 - 64 - 40, self.view.width - 40, 40)];
+    sendButton.layer.masksToBounds = YES;
+    sendButton.layer.cornerRadius = 4;
+    [self.view addSubview:sendButton];
+    
 }
 
 

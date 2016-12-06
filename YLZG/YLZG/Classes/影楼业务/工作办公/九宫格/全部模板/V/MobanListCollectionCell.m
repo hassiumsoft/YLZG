@@ -15,6 +15,9 @@
 
 /** 图标 */
 @property (strong,nonatomic) UIImageView *imageView;
+/** 标题 */
+@property (strong,nonatomic) UILabel *nameLabel;
+
 
 @end
 
@@ -43,17 +46,26 @@
 {
     _model = model;
     [_imageView sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"nine_place"]];
+    _nameLabel.text = model.name;
 }
 
 - (void)setupSubViews
 {
     self.backgroundColor = [UIColor whiteColor];
+    CGFloat W = (SCREEN_WIDTH-4)/3;
     
     self.imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"nine_place"]];
 //    self.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [self.imageView setFrame:self.contentView.bounds];
+    [self.imageView setFrame:CGRectMake(0, 0, W, W)];
     [self addSubview:self.imageView];
 
+    
+    self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, W, W, 30)];
+    self.nameLabel.font = [UIFont systemFontOfSize:15];
+    self.nameLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:self.nameLabel];
+    
+    
 }
 
 

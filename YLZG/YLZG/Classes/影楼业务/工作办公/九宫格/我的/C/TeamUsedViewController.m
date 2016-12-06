@@ -12,7 +12,7 @@
 #import <MJExtension/MJExtension.h>
 #import <MJRefresh.h>
 #import "TeamUsedModel.h"
-#import "NormalTableCell.h"
+#import "TeamUsedTableCell.h"
 
 
 @interface TeamUsedViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -34,7 +34,6 @@
 
 - (void)setupSubViews
 {
-    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getData];
@@ -49,34 +48,57 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    TeamUsedModel *usedModel = self.array[section];
+    return usedModel.lists.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
-    TeamUsedModel *listModel = self.array[indexPath.section];
-    cell.textLabel.text = listModel.date;
+    TeamUsedTableCell *cell = [TeamUsedTableCell sharedTeamUsedTableCell:tableView];
+    TeamUsedModel *usedModel = self.array[indexPath.section];
+    TeamUsedListModel *listsModel = usedModel.lists[indexPath.row];
+    cell.model = listsModel;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    
+    return 100;
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 25;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    TeamUsedModel *usedModel = self.array[section];
+    UIView *headV = [UIView new];
+    headV.backgroundColor = NorMalBackGroudColor;
+    UILabel *headLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2 - 35, 2, 70, 21)];
+    headLabel.backgroundColor = MainColor;
+    headLabel.text = usedModel.date;
+    headLabel.font = [UIFont systemFontOfSize:11];
+    headLabel.textColor = [UIColor whiteColor];
+    headLabel.textAlignment = NSTextAlignmentCenter;
+    headLabel.layer.masksToBounds = YES;
+    headLabel.layer.cornerRadius = 3;
+    [headV addSubview:headLabel];
+    
+    return headV;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 6;
+    return 1;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *footV = [UIView new];
-    footV.backgroundColor = [UIColor whiteColor];
+    footV.backgroundColor = self.view.backgroundColor;
     return footV;
 }
 
@@ -88,7 +110,6 @@
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.backgroundColor = self.view.backgroundColor;
-        _tableView.contentInset = UIEdgeInsetsMake(6, 0, 0, 0);
         
     }
     return _tableView;

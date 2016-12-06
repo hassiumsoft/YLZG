@@ -25,10 +25,10 @@
     self.delegate = self;
     self.view.backgroundColor = NorMalBackGroudColor;
     NineAllMobanViewController *checkWork = [NineAllMobanViewController new];
-    [self addChildVC:checkWork Title:@"九宫格" image:@"btn_dongtai_" selectedImage:@"btn_dongtai_lan" Tag:1];
+    [self addChildVC:checkWork Title:@"九宫格" image:@"ico_scratchablelatex" selectedImage:@"ico_scratchablelatex_blue" Tag:1];
     
     NineMyCareViewController *zenVC = [[NineMyCareViewController alloc]init];
-    [self addChildVC:zenVC Title:@"关注模板" image:@"btn_dongtai_" selectedImage:@"btn_dongtai_lan" Tag:2];
+    [self addChildVC:zenVC Title:@"关注模板" image:@"ico_focuson" selectedImage:@"ico_focuson_blue" Tag:2];
     
     NineMeViewController *dongtaiVC = [[NineMeViewController alloc]init];
     [self addChildVC:dongtaiVC Title:@"模板管理" image:@"btn_dongtai_" selectedImage:@"btn_dongtai_lan" Tag:3];

@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的模板";
-    self.view.backgroundColor = HWRandomColor;
 }
 
 @end

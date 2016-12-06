@@ -20,6 +20,7 @@
 #import "UIView+Extension.h"
 #import "NSDate+Category.h"
 #import "NSString+StrCategory.h"
+#import "UITableViewCell+Actions.h"
 #import "UIViewController+Actions.h"
 
 

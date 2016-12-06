@@ -32,7 +32,7 @@
 }
 
 /** 数据源 */
-@property (copy,nonatomic) NSArray *array;
+@property (strong,nonatomic) NSMutableArray *array;
 /** UICollectionView */
 @property (strong,nonatomic) UICollectionView *collectionView;
 
@@ -70,10 +70,9 @@
         if (code == 1) {
             
             
-            
             NSArray *result = [responseObject objectForKey:@"result"];
-            self.array = [MobanCateListModel mj_objectArrayWithKeyValuesArray:result];
-            
+            NSArray *modelArr = [MobanCateListModel mj_objectArrayWithKeyValuesArray:result];
+            [self.array addObjectsFromArray:modelArr];
             [self.collectionView reloadData];
             currentPage++;
             
@@ -81,7 +80,7 @@
                 [self getDataWithPage:currentPage Nums:10];
             }];
             
-            if (ccccPage == sumPage) {
+            if (ccccPage >= sumPage) {
                 [self.collectionView.mj_footer endRefreshingWithNoMoreData];
             }
             
@@ -175,7 +174,7 @@
 // 定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((SCREEN_WIDTH-4)/3, (SCREEN_WIDTH-4)/3);
+    return CGSizeMake((SCREEN_WIDTH-4)/3, (SCREEN_WIDTH-4)/3 + 30);
 }
 
 // 定义每个UICollectionView 的间距
@@ -216,7 +215,13 @@
     }
     return _collectionView;
 }
-
+- (NSMutableArray *)array
+{
+    if (!_array) {
+        _array = [[NSMutableArray alloc]init];
+    }
+    return _array;
+}
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
