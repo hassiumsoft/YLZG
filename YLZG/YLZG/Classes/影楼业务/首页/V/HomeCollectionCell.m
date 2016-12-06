@@ -32,17 +32,18 @@
     }
     return cell;
 }
-- (void)setModel:(ButtonIconModel *)model
+- (void)setIconModel:(ButtonIconModel *)iconModel
 {
-    _model = model;
-    if (model.fromType == FromLocal) {
-        _imageView.image = [UIImage imageNamed:model.ico];
-        _titleLabel.text = model.name;
-    }else if(model.fromType == FromWebSite){
-        [_imageView sd_setImageWithURL:[NSURL URLWithString:model.ico] placeholderImage:[UIImage imageNamed:@"btn_ico_jizan"]];
-        _titleLabel.text = model.name;
+    _iconModel = iconModel;
+    if (iconModel.fromType == FromLocal) {
+        _imageView.image = [UIImage imageNamed:iconModel.ico];
+        _titleLabel.text = iconModel.name;
+    }else if(iconModel.fromType == FromWebSite){
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:iconModel.ico] placeholderImage:[UIImage imageNamed:@"btn_ico_jizan"]];
+        _titleLabel.text = iconModel.name;
     }
 }
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -51,7 +52,6 @@
     }
     return self;
 }
-
 
 
 - (void)setupSubViews

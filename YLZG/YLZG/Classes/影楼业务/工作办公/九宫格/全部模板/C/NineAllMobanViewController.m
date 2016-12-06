@@ -11,8 +11,10 @@
 #import <MJExtension.h>
 #import "NineReusableView.h"
 #import "HTTPManager.h"
+#import "NineListViewController.h"
 #import "NineTopViewReusableView.h"
-#import "HomeCollectionCell.h"
+#import "MobanListCollectionCell.h"
+#import "NineDetialViewController.h"
 #import "ZCAccountTool.h"
 
 
@@ -20,10 +22,10 @@
 
 @interface NineAllMobanViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
-/** 数据源 */
-@property (copy,nonatomic) NSArray *array;
+
 /** UICollectionView */
 @property (strong,nonatomic) UICollectionView *collectionView;
+
 
 
 @end
@@ -34,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"九宫格";
-    [self setupSubViews];
+    [self getData];
 }
 
 - (void)setupSubViews
@@ -43,14 +45,39 @@
     [self.view addSubview:self.collectionView];
     
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.collectionView.mj_header endRefreshing];
-        });
+        [self getData];
     }];
     
     
 }
 
+- (void)getData
+{
+    NSString *url = [NSString stringWithFormat:NineList_Url,[ZCAccountTool account].userID];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self.collectionView.mj_header endRefreshing];
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            NSDictionary *result = [responseObject objectForKey:@"result"];
+            self.listModel = [MobanListModel mj_objectWithKeyValues:result];
+            
+//            // 把最后一个模板的值变成全部
+//            NineCategoryModel *firstModel = [self.listModel.category firstObject];
+//            firstModel.id = @"all";
+//            firstModel.name = @"全部模板";
+//            [self.listModel.category insertObject:firstModel atIndex:0];
+//            [self.listModel.category removeLastObject];
+            
+            [self setupSubViews];
+        }else{
+            [self sendErrorWarning:message];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.collectionView.mj_header endRefreshing];
+        [self sendErrorWarning:error.localizedDescription];
+    }];
+}
 
 #pragma mark - 表格相关
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -59,14 +86,31 @@
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 6;
+    if (section == 0) {
+        return self.listModel.hot.count;
+    }else{
+        return self.listModel.commend.count;
+    }
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    HomeCollectionCell *cell = [HomeCollectionCell sharedCell:collectionView Path:indexPath];
-    cell.backgroundColor = HWRandomColor;
-    return cell;
+    if (indexPath.section == 0) {
+        // 热门模板
+        MobanListCollectionCell *cell = [MobanListCollectionCell sharedCell:collectionView Path:indexPath];
+        cell.model = self.listModel.hot[indexPath.row];
+        return cell;
+    }else{
+        // 推荐模板
+        MobanListCollectionCell *cell = [MobanListCollectionCell sharedCell:collectionView Path:indexPath];
+        cell.model = self.listModel.commend[indexPath.row];
+        return cell;
+    }
 
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NineDetialViewController *nine = [NineDetialViewController new];
+    [self.navigationController pushViewController:nine animated:YES];
 }
 // 返回这个UICollectionView是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -105,16 +149,37 @@
         if (indexPath.section == 0) {
             // 顶部视图
             NineTopViewReusableView * headerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"NineTopViewReusableView" forIndexPath:indexPath];
-            headerview.titleArray = @[@"全部",@"儿童类",@"生活类",@"季节类",@"关怀类",@"正能量",@"山水类",@"母婴类"];
+            headerview.titleArray = self.listModel.category;
+            headerview.CategoryClick = ^(NineCategoryModel *cateModel){
+                NineListViewController *nineList = [NineListViewController new];
+                nineList.isSuaixuan = YES;
+                nineList.title = @"模板列表";
+                nineList.cateModelArray = self.listModel.category;
+                nineList.cateModel = cateModel;
+                [self.navigationController pushViewController:nineList animated:YES];
+            };
             headerview.DidClickBlock = ^(){
-                [self showErrorTips:@"热门模板"];
+                NineListViewController *nineList = [[NineListViewController alloc]init];
+                NineCategoryModel *model = [NineCategoryModel new];
+                model.id = @"hot";
+                model.name = @"热门模板";
+                nineList.cateModel = model;
+                nineList.title = @"热门模板";
+                [self.navigationController pushViewController:nineList animated:YES];
             };
             reusableview = headerview;
         }else{
             NineReusableView * headerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"NineReusableView" forIndexPath:indexPath];
             headerview.title = titleArr[indexPath.section];
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-                [self showErrorTips:@"推荐模板"];
+                NineListViewController *nineList = [[NineListViewController alloc]init];
+                nineList.isSuaixuan = NO;
+                NineCategoryModel *model = [NineCategoryModel new];
+                model.id = @"commend";
+                model.name = @"推荐模板";
+                nineList.title = @"推荐模板";
+                nineList.cateModel = model;
+                [self.navigationController pushViewController:nineList animated:YES];
             }];
             [headerview addGestureRecognizer:tap];
             reusableview = headerview;
@@ -143,7 +208,7 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.backgroundColor = self.view.backgroundColor;
-        [_collectionView registerClass:[HomeCollectionCell class] forCellWithReuseIdentifier:@"HomeCollectionCell"];
+        [_collectionView registerClass:[MobanListCollectionCell class] forCellWithReuseIdentifier:@"MobanListCollectionCell"];
         
         
         [_collectionView registerClass:[NineTopViewReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"NineTopViewReusableView"];

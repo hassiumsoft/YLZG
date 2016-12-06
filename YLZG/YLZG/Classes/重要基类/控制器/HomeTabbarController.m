@@ -349,9 +349,15 @@ static NSString *kGroupName = @"GroupName";
 
 - (void)dealloc
 {
-    [YLNotificationCenter removeObserver:self forKeyPath:HXSetupUntreatedApplyCount];
-    [YLNotificationCenter removeObserver:self forKeyPath:HXSetupUnreadMessageCount];
-    [YLNotificationCenter removeObserver:self forKeyPath:HXRePushToChat];
+//    [YLNotificationCenter removeObserver:self forKeyPath:HXSetupUntreatedApplyCount];
+//    [YLNotificationCenter removeObserver:self forKeyPath:HXSetupUnreadMessageCount];
+//    [YLNotificationCenter removeObserver:self forKeyPath:HXRePushToChat];
+    
+    
+    [YLNotificationCenter removeObserverBlocksForKeyPath:HXSetupUntreatedApplyCount];
+    [YLNotificationCenter removeObserverBlocksForKeyPath:HXSetupUnreadMessageCount];
+    [YLNotificationCenter removeObserverBlocksForKeyPath:HXRePushToChat];
+    
 }
 
 @end

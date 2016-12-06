@@ -7,7 +7,11 @@
 //
 
 #import "SuperViewController.h"
+#import "MobanListModel.h"
 
 @interface NineAllMobanViewController : SuperViewController
+
+/** 数据源 */
+@property (strong,nonatomic) MobanListModel *listModel;
 
 @end

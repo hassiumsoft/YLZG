@@ -16,6 +16,9 @@
 /** 背景图片 */
 @property (strong,nonatomic) UIImageView *backImageV;
 
+/** 标题 */
+@property (strong,nonatomic) UILabel *nameLabel;
+
 @end
 
 @implementation NineCareTableViewCell
@@ -39,6 +42,12 @@
     }
     return self;
 }
+- (void)setModel:(NineHotCommentModel *)model
+{
+    _model = model;
+    _nameLabel.text = model.name;
+    [_backImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"reg-fb-bg"]];
+}
 - (void)setupSubViews
 {
     self.backImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"reg-fb-bg"]];
@@ -50,6 +59,18 @@
         make.left.equalTo(self.mas_left).offset(12);
         make.right.equalTo(self.mas_right).offset(-12);
         make.top.equalTo(self.mas_top).offset(6);
+        make.bottom.equalTo(self.mas_bottom);
+    }];
+    
+    self.nameLabel = [[UILabel alloc]init];
+    self.nameLabel.font = [UIFont boldSystemFontOfSize:20];
+    self.nameLabel.textAlignment = NSTextAlignmentCenter;
+    self.nameLabel.numberOfLines = 0;
+    [self.contentView addSubview:self.nameLabel];
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.backImageV.mas_left);
+        make.right.equalTo(self.backImageV.mas_right);
+        make.top.equalTo(self.mas_top);
         make.bottom.equalTo(self.mas_bottom);
     }];
 }

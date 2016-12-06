@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NineHotCommentModel.h"
 
 @interface NineCareTableViewCell : UITableViewCell
 
+@property (strong,nonatomic) NineHotCommentModel *model;
 
 + (instancetype)sharedNineCell:(UITableView *)tableView;
 

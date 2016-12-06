@@ -236,4 +236,18 @@
 #define UpdateTaskDate_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&deadline=%@"
 
 
+// 九宫格--全部模板
+#define NineList_Url @"http://192.168.0.18/index.php/wei/retransmission/index?uid=%@"
+// 九宫格--分类模板
+#define NineCategory_Url @"http://192.168.0.18/index.php/wei/retransmission/lists?uid=%@&id=%@&page=%d&nums=%d"
+// 九宫格--关注列表
+#define NineCareList_Url @"http://192.168.0.18/index.php/wei/retransmission/myCare?uid=%@"
+// 九宫格--编辑关注模本分类
+#define NineCareEdit_Url @"http://192.168.0.18/index.php/wei/retransmission/updateCareCate?uid=%@&care=%@"
+// 九宫格--团队已经使用
+#define NineTeamUsed_Url @"http://192.168.0.18/index.php/wei/retransmission/groupRetrans?uid=%@&date=%@"
+// 九宫格--我已经使用
+#define NineMyUsed_Url @"http://192.168.0.18/index.php/wei/retransmission/myRetrans?uid=%@&page=%d&nums=%d"
+
+
 #endif /* PCH_HTTP_URL_h */

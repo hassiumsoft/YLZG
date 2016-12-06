@@ -7,7 +7,12 @@
 //
 
 #import "SuperViewController.h"
+#import "MobanListModel.h"
 
 @interface NineMyCareViewController : SuperViewController
+
+@property (strong,nonatomic) MobanListModel *listModel;
+
+- (void)getData;
 
 @end

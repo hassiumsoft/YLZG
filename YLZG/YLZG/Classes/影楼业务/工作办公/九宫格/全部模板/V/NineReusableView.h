@@ -14,7 +14,6 @@
 
 @interface NineReusableView : UICollectionReusableView
 
-
 @property (copy,nonatomic) NSString *title;
 
 @end

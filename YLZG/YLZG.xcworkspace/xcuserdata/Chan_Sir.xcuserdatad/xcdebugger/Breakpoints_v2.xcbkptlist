@@ -61,5 +61,21 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YLZG/Classes/&#x5f71;&#x697c;&#x4e1a;&#x52a1;/&#x5de5;&#x4f5c;&#x529e;&#x516c;/&#x4e5d;&#x5bab;&#x683c;/&#x5168;&#x90e8;&#x6a21;&#x677f;/C/NineListViewController.m"
+            timestampString = "502694184.624061"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "-getDataWithPage:Nums:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

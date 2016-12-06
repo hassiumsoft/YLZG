@@ -197,7 +197,7 @@
         model.ico = self.iconArray[indexPath.section][indexPath.row];
         model.id = self.idArray[indexPath.section][indexPath.row];
         model.fromType = FromLocal;
-        cell.model = model;
+        cell.iconModel = model;
         return cell;
     }else{
         // 营销工具部分<数据来源自网络>
@@ -207,7 +207,7 @@
         model.ico = self.iconArray[indexPath.section][indexPath.row];
         model.id = self.idArray[indexPath.section][indexPath.row];
         model.fromType = FromWebSite;
-        cell.model = model;
+        cell.iconModel = model;
         return cell;
     }
 }

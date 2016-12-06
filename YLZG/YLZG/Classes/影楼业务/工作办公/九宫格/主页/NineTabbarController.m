@@ -10,6 +10,7 @@
 #import "NineMeViewController.h"
 #import "NineMyCareViewController.h"
 #import "NineAllMobanViewController.h"
+#import "EditCareCategoryController.h"
 
 
 @interface NineTabbarController ()<UITabBarControllerDelegate>
@@ -27,10 +28,10 @@
     [self addChildVC:checkWork Title:@"九宫格" image:@"btn_dongtai_" selectedImage:@"btn_dongtai_lan" Tag:1];
     
     NineMyCareViewController *zenVC = [[NineMyCareViewController alloc]init];
-    [self addChildVC:zenVC Title:@"关注" image:@"btn_dongtai_" selectedImage:@"btn_dongtai_lan" Tag:2];
+    [self addChildVC:zenVC Title:@"关注模板" image:@"btn_dongtai_" selectedImage:@"btn_dongtai_lan" Tag:2];
     
     NineMeViewController *dongtaiVC = [[NineMeViewController alloc]init];
-    [self addChildVC:dongtaiVC Title:@"我的" image:@"btn_dongtai_" selectedImage:@"btn_dongtai_lan" Tag:3];
+    [self addChildVC:dongtaiVC Title:@"模板管理" image:@"btn_dongtai_" selectedImage:@"btn_dongtai_lan" Tag:3];
 }
 
 
@@ -65,6 +66,35 @@
 {
     self.title = item.title;
     
+    if ([item.title isEqualToString:@"关注模板"]) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editAction)];
+        [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    }else{
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    
+    NineAllMobanViewController *allMoban = self.childViewControllers[0];
+    MobanListModel *listModel = allMoban.listModel;
+    
+    NineMyCareViewController *careMoban = self.childViewControllers[1];
+    careMoban.listModel = listModel;
+    
+}
+
+- (void)editAction
+{
+    NineAllMobanViewController *allMoban = self.childViewControllers[0];
+    MobanListModel *listModel = allMoban.listModel;
+    
+    NineMyCareViewController *careMoban = self.childViewControllers[1];
+    
+    
+    EditCareCategoryController *editCare = [EditCareCategoryController new];
+    editCare.listModel = listModel;
+    editCare.SelectBlock = ^(){
+        [careMoban getData];
+    };
+    [self.navigationController pushViewController:editCare animated:YES];
 }
 
 

@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ButtonIconModel.h"
 
+
 @interface HomeCollectionCell : UICollectionViewCell
 
-/** 模型 */
-@property (strong,nonatomic) ButtonIconModel *model;
+
+/** 首页的icon模型 */
+@property (strong,nonatomic) ButtonIconModel *iconModel;
 /** 初始化 */
 + (instancetype)sharedCell:(UICollectionView *)collectionView Path:(NSIndexPath *)indexPath;
 

@@ -10,6 +10,7 @@
 #import <Masonry.h>
 
 
+
 #define TopHeight 160*CKproportion
 
 @interface NineTopViewReusableView ()
@@ -36,31 +37,37 @@
     CGFloat Height = self.height - 47 - 16;
     [self.titleView setHeight:Height];
     _titleArray = titleArray;
+    
+    
+    CGFloat spaceH = 15; // 横向间距
+    CGFloat spaceZ = 10; // 纵向间距
+    CGFloat W = (SCREEN_WIDTH - spaceH*5)/4;  // 宽
+    CGFloat H = (Height - 2 * spaceZ)/3;
     for (int i = 0; i < titleArray.count; i++) {
-        CGFloat spaceH = 15; // 横向间距
-        CGFloat spaceZ = 10; // 纵向间距
-        CGFloat W = (SCREEN_WIDTH - spaceH*5)/4;  // 宽
-        CGFloat H = (Height - 2 * spaceZ)/3;
-        for (int i = 0; i < titleArray.count; i++) {
-            CGRect frame;
-            frame.size.width = W;
-            frame.size.height = H + 8;
-            frame.origin.x = (i%4) * (frame.size.width + spaceH) + spaceH;
-            frame.origin.y = floor(i/4) * (frame.size.height + spaceZ) + spaceZ;
-            
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.backgroundColor = [UIColor whiteColor];
-            [button setFrame:frame];
-            button.layer.masksToBounds = YES;
-            button.layer.cornerRadius = 3;
-            button.layer.borderColor = [UIColor lightGrayColor].CGColor;
-            button.layer.borderWidth = 1.f;
-            button.titleLabel.font = [UIFont systemFontOfSize:15];
-            [button setTitleColor:RGBACOLOR(30, 30, 30, 1) forState:UIControlStateNormal];
-            [button setTitle:titleArray[i] forState:UIControlStateNormal];
-            [self.titleView addSubview:button];
-            
-        }
+        NineCategoryModel *model = titleArray[i];
+        CGRect frame;
+        frame.size.width = W;
+        frame.size.height = H + 8;
+        frame.origin.x = (i%4) * (frame.size.width + spaceH) + spaceH;
+        frame.origin.y = floor(i/4) * (frame.size.height + spaceZ) + spaceZ;
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.backgroundColor = [UIColor whiteColor];
+        [button setFrame:frame];
+        [button addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            if (self.CategoryClick) {
+                _CategoryClick(model);
+            }
+        }];
+        button.layer.masksToBounds = YES;
+        button.layer.cornerRadius = 3;
+        button.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        button.layer.borderWidth = 1.f;
+        button.titleLabel.font = [UIFont systemFontOfSize:15];
+        [button setTitleColor:RGBACOLOR(30, 30, 30, 1) forState:UIControlStateNormal];
+        [button setTitle:model.name forState:UIControlStateNormal];
+        [self.titleView addSubview:button];
+        
     }
 }
 - (void)setupSubViews
