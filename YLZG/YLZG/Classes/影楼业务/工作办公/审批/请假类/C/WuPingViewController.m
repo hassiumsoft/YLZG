@@ -132,6 +132,7 @@
     }else if (indexPath.section == 2) {
         // 选择审批人
         ShenpiersViewController *shenpier = [[ShenpiersViewController alloc]init];
+        shenpier.title = @"选择审批人";
         shenpier.delegate = self;
         [self.navigationController pushViewController:shenpier animated:YES];
     }else{

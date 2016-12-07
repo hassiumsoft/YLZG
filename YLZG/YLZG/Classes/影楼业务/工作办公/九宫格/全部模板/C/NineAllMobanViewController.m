@@ -11,6 +11,8 @@
 #import <MJExtension.h>
 #import "NineReusableView.h"
 #import "HTTPManager.h"
+#import "UserInfoManager.h"
+#import "NineSearchResultController.h"
 #import "NineListViewController.h"
 #import "NineTopViewReusableView.h"
 #import "MobanListCollectionCell.h"
@@ -20,12 +22,13 @@
 
 #define topViewH 160*CKproportion
 
-@interface NineAllMobanViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface NineAllMobanViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UISearchBarDelegate>
 
 
 /** UICollectionView */
 @property (strong,nonatomic) UICollectionView *collectionView;
-
+/** 搜索框 */
+@property (strong,nonatomic) UISearchBar *searBar;
 
 
 @end
@@ -49,6 +52,49 @@
     }];
     
     
+    [self.view addSubview:self.searBar];
+}
+- (UISearchBar *)searBar
+{
+    if (!_searBar) {
+        _searBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+        _searBar.delegate = self;
+        _searBar.returnKeyType = UIReturnKeySearch;
+        _searBar.searchBarStyle = UISearchBarStyleMinimal;
+        _searBar.placeholder = @"模板关键字";
+    }
+    return _searBar;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    
+    [self.view endEditing:YES];
+    if (searchBar.text.length < 1) {
+        return;
+    }
+    
+    NSString *url = [NSString stringWithFormat:NineSearch_Url,[ZCAccountTool account].userID,searchBar.text];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            NSArray *result = [responseObject objectForKey:@"result"];
+            if (result.count >= 1) {
+                NSArray *modelArr = [NineHotCommentModel mj_objectArrayWithKeyValuesArray:result];
+                NineSearchResultController *nineSearch = [NineSearchResultController new];
+                nineSearch.array = modelArr;
+                [self.navigationController pushViewController:nineSearch animated:YES];
+            }else{
+                [self showErrorTips:@"没有相关模板"];
+            }
+            
+        }else{
+            [self showErrorTips:message];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self sendErrorWarning:error.localizedDescription];
+    }];
 }
 
 - (void)getData
@@ -109,8 +155,26 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NineDetialViewController *nine = [NineDetialViewController new];
-    [self.navigationController pushViewController:nine animated:YES];
+    if (indexPath.section == 0) {
+        // 热门模板
+        NineDetialViewController *nine = [NineDetialViewController new];
+        NineHotCommentModel *model = self.listModel.hot[indexPath.row];
+        nine.isManager = [[UserInfoManager getUserInfo].type intValue] ? YES : NO;
+        nine.mobanID = model.id;
+        nine.title = model.name;
+        [self.navigationController pushViewController:nine animated:YES];
+        
+        
+    }else{
+        // 推荐模板
+        NineDetialViewController *nine = [NineDetialViewController new];
+        NineHotCommentModel *model = self.listModel.commend[indexPath.row];
+        nine.isManager = NO;
+        nine.mobanID = model.id;
+        nine.title = model.name;
+        [self.navigationController pushViewController:nine animated:YES];
+    }
+    
 }
 // 返回这个UICollectionView是否可以被选择
 -(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -202,7 +266,7 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     if (!_collectionView) {
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 108) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, SCREEN_HEIGHT - 108 - 44) collectionViewLayout:flowLayout];
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.delegate = self;

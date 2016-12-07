@@ -238,6 +238,8 @@
 
 // 九宫格--全部模板
 #define NineList_Url @"http://192.168.0.18/index.php/wei/retransmission/index?uid=%@"
+// 九宫格--搜索模板
+#define NineSearch_Url @"http://192.168.0.18/index.php/wei/retransmission/search?uid=%@&keyword=%@"
 // 九宫格--分类模板
 #define NineCategory_Url @"http://192.168.0.18/index.php/wei/retransmission/lists?uid=%@&id=%@&page=%d&nums=%d"
 // 九宫格--关注列表
@@ -247,7 +249,8 @@
 // 九宫格--团队已经使用
 #define NineTeamUsed_Url @"http://192.168.0.18/index.php/wei/retransmission/groupRetrans?uid=%@&date=%@"
 // 九宫格--我已经使用
-#define NineMyUsed_Url @"http://192.168.0.18/index.php/wei/retransmission/myRetrans?uid=%@&page=%d&nums=%d"
+#define NineMyUsed_Url @"http://192.168.0.18/index.php/wei/retransmission/myRetrans?uid=%@&date=%@"
+
 
 
 #endif /* PCH_HTTP_URL_h */

@@ -19,6 +19,7 @@
  当退出编辑模式时需调用clear，用来清理内存，已选择照片的缓存
  **/
 + (void)clear;
+//+ (void)setMaxCount:(NSInteger)maxCount;
 - (UIToolbar *)customToolbar;
 - (void)setLeftTitle:(NSString *)title;
 - (void)cancel;

@@ -10,4 +10,12 @@
 
 @interface NineDetialViewController : SuperViewController
 
+/** 是否有管理权限 */
+@property (assign,nonatomic) BOOL isManager;
+
+/** 在团队已用里面用 */
+@property (copy,nonatomic) NSString *date;
+/** 模板ID */
+@property (copy,nonatomic) NSString *mobanID;
+
 @end

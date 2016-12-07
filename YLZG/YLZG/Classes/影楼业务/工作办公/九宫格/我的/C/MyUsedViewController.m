@@ -16,12 +16,10 @@
 
 @interface MyUsedViewController ()<UITableViewDelegate,UITableViewDataSource>
 
-{
-    int currentPage;
-}
+
 @property (strong,nonatomic) UITableView *tableView;
 
-@property (strong,nonatomic) NSMutableArray *array;
+@property (copy,nonatomic) NSArray *array;
 
 @end
 
@@ -34,11 +32,11 @@
 }
 - (void)setupSubViews
 {
-    currentPage = 1;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self getDataWithPage:currentPage Nums:1];
+        [self getData];
     }];
     [self.tableView.mj_header beginRefreshing];
     
@@ -95,33 +93,27 @@
 }
 
 
-- (void)getDataWithPage:(int)page Nums:(int)nums
+- (void)getData
 {
-    NSString *url = [NSString stringWithFormat:NineMyUsed_Url,[ZCAccountTool account].userID,page,nums];
+    NSString *url = [NSString stringWithFormat:NineMyUsed_Url,[ZCAccountTool account].userID,[self getCurrentTime]];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
-        int page = [[[responseObject objectForKey:@"page"] description] intValue];
         
         [self.tableView.mj_header endRefreshing];
         if (code == 1) {
             NSArray *result = [responseObject objectForKey:@"result"];
             if (result.count >= 1) {
-                NSArray *tempArr = [MyUsedModel mj_objectArrayWithKeyValuesArray:result];
-                [self.array addObjectsFromArray:tempArr];
+                self.array = [MyUsedModel mj_objectArrayWithKeyValuesArray:result];
                 [self.tableView reloadData];
                 
-                if (currentPage == page) {
-                    // 提示没有更多了
-                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                }else{
-                    // 可以继续上拉加载数据
-                    currentPage++;
-                    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-                        [self getDataWithPage:currentPage Nums:1];
+                self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+                        
                     }];
-                }
+                // 提示没有更多了
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                
             }else{
                 [self showErrorTips:@"没有数据"];
             }
@@ -135,12 +127,6 @@
     }];
 }
 
-- (NSMutableArray *)array
-{
-    if (!_array) {
-        _array = [NSMutableArray array];
-    }
-    return _array;
-}
+
 
 @end

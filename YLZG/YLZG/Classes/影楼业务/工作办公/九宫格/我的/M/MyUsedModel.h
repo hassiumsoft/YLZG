@@ -7,12 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MyUsedListsModel.h"
+
 
 @interface MyUsedModel : NSObject
 
 @property (copy,nonatomic) NSString *date;
 
-@property (copy,nonatomic) NSArray *lists;
+/** 模板分类名字 */
+@property (copy,nonatomic) NSString *category;
+/** 转发时间 */
+@property (assign,nonatomic) NSTimeInterval create_at;
+/** 模板ID */
+@property (copy,nonatomic) NSString *id;
+/** 模板名称 */
+@property (copy,nonatomic) NSString *name;
+/** 缩略图 */
+@property (copy,nonatomic) NSString *thumb;
 
 @end

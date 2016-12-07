@@ -75,11 +75,26 @@
 	selectNum = [[UIBarButtonItem alloc] initWithTitle:@"0/9" style:UIBarButtonItemStylePlain target:nil action:nil];
 	UIBarButtonItem *fix2 = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 	UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(choiceDone)];
+    
+    [leftFix setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [rightFix setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [fix setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [fix2 setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [preview setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [done setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [selectNum setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    
 	[toolbar setItems:@[leftFix, preview, fix, selectNum, fix2, done, rightFix]];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCount:) name:@"selectdPhotos" object:nil];
 	selectNum.title = [NSString stringWithFormat:@"%ld/9", (unsigned long)ASSETHELPER.selectdPhotos.count];
+    
+    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
 }
-
+//+ (void)setMaxCount:(NSInteger)maxCount {
+//    [JFAssetHelper sharedAssetHelper].maxCount = maxCount;
+//}
 - (void)setLeftTitle:(NSString *)title{
 	preview.title = title;
 }

@@ -17,6 +17,7 @@
 
 @property (strong,nonatomic) UIView *titleView;
 
+
 @end
 
 @implementation NineTopViewReusableView

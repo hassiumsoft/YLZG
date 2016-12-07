@@ -148,7 +148,6 @@
         [_searchBar becomeFirstResponder];
         _searchBar.delegate = self;
         _searchBar.returnKeyType = UIReturnKeySearch;
-        
         _searchBar.placeholder = @"姓名、手机号码或会员卡号";
         
     }

@@ -39,7 +39,7 @@
     }
     return cell;
 }
-- (void)setModel:(TeamUsedListModel *)model
+- (void)setModel:(TeamUsedModel *)model
 {
     _model = model;
     [_mobanImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[self imageWithBgColor:HWRandomColor]];

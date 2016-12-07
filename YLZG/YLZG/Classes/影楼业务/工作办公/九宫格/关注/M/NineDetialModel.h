@@ -10,4 +10,6 @@
 
 @interface NineDetialModel : NSObject
 
+
+
 @end

@@ -11,6 +11,7 @@
 #import "NineMyCareViewController.h"
 #import "NineAllMobanViewController.h"
 #import "EditCareCategoryController.h"
+#import "CreateMobanViewController.h"
 
 
 @interface NineTabbarController ()<UITabBarControllerDelegate>
@@ -69,6 +70,9 @@
     if ([item.title isEqualToString:@"关注模板"]) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editAction)];
         [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    }else if ([item.title isEqualToString:@"模板管理"]){
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"创建模板" style:UIBarButtonItemStylePlain target:self action:@selector(createMobanAction)];
+        [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     }else{
         self.navigationItem.rightBarButtonItem = nil;
     }
@@ -79,6 +83,12 @@
     NineMyCareViewController *careMoban = self.childViewControllers[1];
     careMoban.listModel = listModel;
     
+}
+
+- (void)createMobanAction
+{
+    CreateMobanViewController *create = [CreateMobanViewController new];
+    [self.navigationController pushViewController:create animated:YES];
 }
 
 - (void)editAction

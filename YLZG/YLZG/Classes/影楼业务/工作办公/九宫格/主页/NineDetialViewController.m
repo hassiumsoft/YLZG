@@ -10,6 +10,7 @@
 #import <Masonry.h>
 #import <MJExtension.h>
 #import "NineDetialModel.h"
+#import "ZCAccountTool.h"
 #import "HTTPManager.h"
 #import <UIImageView+WebCache.h>
 
@@ -24,16 +25,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"模板详细";
+//    self.title = @"模板详细";
     [self getData];
     
 }
 #pragma mark - 获取数据
 - (void)getData
 {
+    
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.18/index.php/wei/retransmission/detail?uid=%@&id=%@&date=%@",[ZCAccountTool account].userID,self.mobanID,self.date];
+    [self showHudMessage:@"正在加载"];
+    
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self hideHud:0];
+        NSLog(@"responseObject = %@",responseObject);
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self hideHud:0];
+        [self sendErrorWarning:error.localizedDescription];
+    }];
+    
     NineDetialModel *model = [NineDetialModel new];
     [self setupSubViews:model];
 }
+
 #pragma mark - 绘制UI界面
 - (void)setupSubViews:(NineDetialModel *)model
 {
@@ -66,18 +80,24 @@
     }
     
     
-    // 转发按钮
-    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    sendButton.backgroundColor = MainColor;
-    [sendButton setTitle:@"一键转发" forState:UIControlStateNormal];
-    [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [sendButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        [self showSuccessTips:@"转发"];
-    }];
-    [sendButton setFrame:CGRectMake(20, self.view.height - 20 - 64 - 40, self.view.width - 40, 40)];
-    sendButton.layer.masksToBounds = YES;
-    sendButton.layer.cornerRadius = 4;
-    [self.view addSubview:sendButton];
+    if (self.isManager) {
+        // 有管理权限
+        
+        
+    }else{
+        // 没有管理权限，一个转发按钮
+        UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        sendButton.backgroundColor = MainColor;
+        [sendButton setTitle:@"一键转发" forState:UIControlStateNormal];
+        [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [sendButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
+            [self showSuccessTips:@"转发"];
+        }];
+        [sendButton setFrame:CGRectMake(20, self.view.height - 20 - 64 - 40, self.view.width - 40, 40)];
+        sendButton.layer.masksToBounds = YES;
+        sendButton.layer.cornerRadius = 4;
+        [self.view addSubview:sendButton];
+    }
     
 }
 

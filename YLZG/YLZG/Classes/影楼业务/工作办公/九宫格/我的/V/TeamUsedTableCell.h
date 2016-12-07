@@ -7,17 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TeamUsedListModel.h"
-
+#import "TeamUsedModel.h"
 
 /********* 团队已用 ***********/
 
 @interface TeamUsedTableCell : UITableViewCell
 
 
-
-
-@property (strong,nonatomic) TeamUsedListModel *model;
+@property (strong,nonatomic) TeamUsedModel *model;
 
 + (instancetype)sharedTeamUsedTableCell:(UITableView *)tableView;
 

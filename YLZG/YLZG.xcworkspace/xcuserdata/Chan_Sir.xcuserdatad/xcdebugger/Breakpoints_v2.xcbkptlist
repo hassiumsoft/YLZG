@@ -61,5 +61,37 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YLZG/Classes/&#x5f71;&#x697c;&#x4e1a;&#x52a1;/&#x5de5;&#x4f5c;&#x529e;&#x516c;/&#x4e5d;&#x5bab;&#x683c;/&#x4e3b;&#x9875;/NineDetialViewController.m"
+            timestampString = "502783557.673096"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-getData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YLZG/Classes/&#x5f71;&#x697c;&#x4e1a;&#x52a1;/&#x5de5;&#x4f5c;&#x529e;&#x516c;/&#x4e5d;&#x5bab;&#x683c;/&#x4e3b;&#x9875;/NineDetialViewController.m"
+            timestampString = "502783561.383997"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "-getData"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

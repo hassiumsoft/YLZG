@@ -9,8 +9,10 @@
 #import "TeamUsedViewController.h"
 #import "HTTPManager.h"
 #import "ZCAccountTool.h"
+#import "UserInfoManager.h"
 #import <MJExtension/MJExtension.h>
 #import <MJRefresh.h>
+#import "NineDetialViewController.h"
 #import "TeamUsedModel.h"
 #import "TeamUsedTableCell.h"
 
@@ -48,20 +50,25 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    TeamUsedModel *usedModel = self.array[section];
-    return usedModel.lists.count;
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TeamUsedTableCell *cell = [TeamUsedTableCell sharedTeamUsedTableCell:tableView];
     TeamUsedModel *usedModel = self.array[indexPath.section];
-    TeamUsedListModel *listsModel = usedModel.lists[indexPath.row];
-    cell.model = listsModel;
+    cell.model = usedModel;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    TeamUsedModel *usedModel = self.array[indexPath.section];
+    NineDetialViewController *detial = [NineDetialViewController new];
+    detial.isManager = [[UserInfoManager getUserInfo].type intValue] ? YES : NO;
+    detial.date = usedModel.date;
+    detial.mobanID = usedModel.id;
+    detial.title = usedModel.name;
+    [self.navigationController pushViewController:detial animated:YES];
     
 }
 
@@ -98,7 +105,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *footV = [UIView new];
-    footV.backgroundColor = self.view.backgroundColor;
+    footV.backgroundColor = [UIColor clearColor];
     return footV;
 }
 
@@ -127,7 +134,12 @@
         if (code == 1) {
             NSArray *result = [responseObject objectForKey:@"result"];
             self.array = [TeamUsedModel mj_objectArrayWithKeyValuesArray:result];
+//            self.array = [self SortArrayByDate:modelArray];
             [self.tableView reloadData];
+            self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                
+            }];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
             
         }else{
             [self sendErrorWarning:message];
@@ -136,6 +148,17 @@
         [self.tableView.mj_header endRefreshing];
         [self sendErrorWarning:error.localizedDescription];
     }];
+}
+
+- (NSArray *)SortArrayByDate:(NSArray *)modelArr
+{
+//    NSArray *jjj = [modelArr sortedArrayUsingComparator:^NSComparisonResult(TeamUsedModel *model1, TeamUsedModel *model2) {
+//        return [model1.date compare:model2.date];
+//    }];
+//    self.array = jjj;
+//    return self.array;
+    return 0;
+    
 }
 
 

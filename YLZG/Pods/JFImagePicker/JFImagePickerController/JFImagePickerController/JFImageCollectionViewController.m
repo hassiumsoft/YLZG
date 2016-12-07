@@ -35,8 +35,10 @@
 
 - (void)viewWillAppear:(BOOL)animated{
 	self.navigationItem.title = [[ASSETHELPER.assetGroups objectAtIndex:ASSETHELPER.currentGroupIndex] valueForProperty:ALAssetsGroupPropertyName];
-	UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-	self.navigationItem.rightBarButtonItem = cancel;
+    [self.navigationItem.leftBarButtonItem setTintColor:[UIColor whiteColor]];
+    
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showNormalPhotoBrowser:) name:@"showNormalPhotoBrowser" object:nil];
 }
 
