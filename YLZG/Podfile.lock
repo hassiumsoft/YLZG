@@ -21,7 +21,6 @@ PODS:
   - FMDB/standard (2.6.2)
   - Hyphenate_CN (3.2.1)
   - IQKeyboardManager (4.0.7)
-  - JFImagePicker (1.0.0)
   - JPush-iOS-SDK (2.2.0)
   - LCActionSheet (2.7.0):
     - Masonry (~> 1.0.1)
@@ -50,7 +49,6 @@ DEPENDENCIES:
   - FMDB
   - Hyphenate_CN
   - IQKeyboardManager
-  - JFImagePicker
   - JPush-iOS-SDK
   - LCActionSheet
   - Masonry (~> 1.0.1)
@@ -71,7 +69,6 @@ SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   Hyphenate_CN: 4a5f35e530161190331c1b0deb93434f2f63ed44
   IQKeyboardManager: 69002bb4fea60596b710e57d426abc00e5063630
-  JFImagePicker: 2914c69dac80767a98664e768ac50118664e9f04
   JPush-iOS-SDK: 44ae7a71c04ff0b08031451d985993ece83acadf
   LCActionSheet: f9899232fbb4a1bd51213b1988f8a884259bc1ab
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
@@ -86,6 +83,6 @@ SPEC CHECKSUMS:
   UMengAnalytics: 0bde5737767dfc18afb03a4cd6ba9d57bb2ad10d
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: a7d533bebc6f12206f9cf2f7bba16af61b2b2d6b
+PODFILE CHECKSUM: 6637a4169f64364e9a856a791d5e8d80ec7b2ba9
 
 COCOAPODS: 1.0.1

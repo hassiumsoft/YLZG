@@ -9,6 +9,8 @@
 #import "MyUsedViewController.h"
 #import "HTTPManager.h"
 #import "ZCAccountTool.h"
+#import "NineDetialViewController.h"
+#import "UserInfoManager.h"
 #import <MJExtension/MJExtension.h>
 #import <MJRefresh.h>
 #import "MyUsedModel.h"
@@ -59,7 +61,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    MyUsedModel *usedModel = self.array[indexPath.row];
     
+    NineDetialViewController *detial = [NineDetialViewController new];
+    detial.isManager = [[UserInfoManager getUserInfo].type intValue] ? YES : NO;
+    detial.date = usedModel.date;
+    detial.mobanID = usedModel.id;
+    detial.title = usedModel.name;
+    [self.navigationController pushViewController:detial animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -24,14 +24,14 @@
 }
 
 - (void)setupView {
-    _scrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _scrollView.delegate = self;
     _scrollView.minimumZoomScale = 1;//设置最小放大比例
     _scrollView.maximumZoomScale = 2.5;//设置最大放大比例
     [self addSubview:_scrollView];
     
-    _imageView = [[UIImageView alloc] initWithFrame:_scrollView.bounds];
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     [_scrollView addSubview:_imageView];

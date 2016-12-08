@@ -27,11 +27,15 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-	self.navigationItem.title = @"相册";
-    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-    
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+//	self.navigationItem.title = @"相册";
+    UILabel *label = [[UILabel alloc] init];
+    label.textColor = [UIColor whiteColor];
+    label.text = @"相册";
+    label.font = [UIFont systemFontOfSize:17];
+    [label sizeToFit];
+    self.navigationItem.titleView = label;
+	UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+	self.navigationItem.rightBarButtonItem = cancel;
 }
 
 - (void)cancel{

@@ -44,6 +44,11 @@
     CGFloat W = (SCREEN_WIDTH - spaceH*5)/4;  // 宽
     CGFloat H = (Height - 2 * spaceZ)/3;
     for (int i = 0; i < titleArray.count; i++) {
+        
+        if (i >= 8) {
+            return;
+        }
+        
         NineCategoryModel *model = titleArray[i];
         CGRect frame;
         frame.size.width = W;

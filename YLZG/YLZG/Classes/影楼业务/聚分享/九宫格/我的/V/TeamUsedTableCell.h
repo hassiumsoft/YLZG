@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TeamUsedModel.h"
 #import "MyUsedModel.h"
+#import "MyMobanModel.h"
 
 /********* 团队已用 ***********/
 
@@ -18,6 +19,8 @@
 @property (strong,nonatomic) TeamUsedModel *teamUsedModel;
 
 @property (strong,nonatomic) MyUsedModel *myUsedModel;
+
+@property (strong,nonatomic) MyMobanModel *myMobanModel;
 
 + (instancetype)sharedTeamUsedTableCell:(UITableView *)tableView;
 

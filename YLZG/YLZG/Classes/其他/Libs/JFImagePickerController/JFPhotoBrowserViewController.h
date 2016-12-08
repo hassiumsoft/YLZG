@@ -10,7 +10,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "JFImagePickerViewCell.h"
 @interface JFPhotoBrowserViewController : UIViewController
-
+@property (nonatomic, assign) NSInteger maxCount;
 - (JFPhotoBrowserViewController *)initWithPreview;
 - (JFPhotoBrowserViewController *)initWithNormal;
 @property (nonatomic, weak) id delegate;

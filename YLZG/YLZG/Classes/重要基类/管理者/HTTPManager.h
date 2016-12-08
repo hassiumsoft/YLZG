@@ -108,6 +108,16 @@ typedef void(^YLZGComplition)();
              success:(YLZGResponseSuccess)success
                 fail:(YLZGResponseFail)fail;
 
+
++ (void)uploadMoreImagesURL:(NSString *)url
+                imagesArray:(NSArray *)images
+                     params:(NSDictionary *)params
+                       name:(NSString *)name
+                   fileName:(NSString *)filename
+                   mimeType:(NSString *) mimeType
+                   progress:(YLZGProgress)progress
+                    success:(YLZGResponseSuccess)success
+                       fail:(YLZGResponseFail)fail;
 /**
  *  含有baseURL的get方法
  *

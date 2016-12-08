@@ -13,61 +13,53 @@ typedef enum {
 } NavigationBarItemType;
 
 #import "WSPhotosBroseVC.h"
+#import <LCActionSheet.h>
+
+
+@interface WSPhotosBroseVC ()
+
+
+@end
 
 @implementation WSPhotosBroseVC
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setupNav];
+    
+    
 }
 
-
-- (void)initializeView {
-    [super initializeView];
-    [self setBarButtonWithText:@"删除" target:self action:@selector(onClickDel) type:NavigationBarItemTypeRight];
-    [self setBarButtonWithText:@"返回" target:self action:@selector(onClickBack) type:NavigationBarItemTypeLeft];
-}
-
--(UIBarButtonItem *)setBarButtonWithText:(NSString*)text
-                                  target:(id)target
-                                  action:(SEL)action
-                                    type:(NavigationBarItemType)type
+- (void)setupNav
 {
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [button setTitle:text forState:UIControlStateNormal];
-    [button sizeToFit];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"删除" style:UIBarButtonItemStylePlain target:self action:@selector(onClickDel)];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:15]} forState:UIControlStateNormal];
     
-    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    space.width = -8;
-    
-    UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    if (type == NavigationBarItemTypeLeft) {
-        self.navigationItem.leftBarButtonItems = @[space,buttonItem];
-    }
-    else if(type == NavigationBarItemTypeRight) {
-        self.navigationItem.rightBarButtonItems = @[space,buttonItem];
-    }
-    else {
-        self.navigationItem.backBarButtonItem = buttonItem;
-    }
-    
-    return buttonItem;
 }
+
+
 
 
 - (void)onClickDel {
-    if(self.showIndex >= 0 && self.showIndex < self.imageArray.count) {
-        [self.imageArray removeObjectAtIndex:self.showIndex];
-        [self.collectionView reloadData];
-    }
-    [self refreshTitle];
-    if(self.imageArray.count == 0) {
-        [self onClickBack];
-    }
+    
+    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"删除这张照片？" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+        if (buttonIndex == 1) {
+            if(self.showIndex >= 0 && self.showIndex < self.imageArray.count) {
+                [self.imageArray removeObjectAtIndex:self.showIndex];
+                [self.collectionView reloadData];
+            }
+            [self refreshTitle];
+            if(self.imageArray.count == 0) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    } otherButtonTitles:@"确定删除", nil];
+    sheet.destructiveButtonIndexSet = [NSSet setWithObject:@"1"];
+    [sheet show];
+    
 }
 
 - (void)onClickBack {
@@ -78,7 +70,13 @@ typedef enum {
         }
         self.completion(array);
     }
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self onClickBack];
 }
 
 @end

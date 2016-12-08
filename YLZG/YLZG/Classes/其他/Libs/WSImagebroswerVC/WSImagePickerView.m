@@ -8,13 +8,12 @@
 
 #import "WSImagePickerView.h"
 #import "WSPhotosBroseVC.h"
-#import <SVProgressHUD.h>
-#import <JFImagePickerController.h>
-
+#import "JFImagePickerController.h"
+#import <LCActionSheet.h>
 
 static NSString *imagePickerCellIdentifier = @"imagePickerCellIdentifier";
 
-@interface WSImagePickerView()<UICollectionViewDelegate,UICollectionViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface WSImagePickerView()<UICollectionViewDelegate,UICollectionViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     NSMutableArray<UIImage *> *_photosArray;
 }
@@ -66,12 +65,6 @@ static NSString *imagePickerCellIdentifier = @"imagePickerCellIdentifier";
 }
 
 - (void)refreshCollectionView {
-    
-    if (_photosArray.count > 9) {
-        
-        return;
-    }
-    
     NSInteger n;
     CGFloat width = _collectionView.frame.size.width - _config.sectionInset.left - _config.sectionInset.right;
     n = (width + _config.minimumInteritemSpacing)/(_config.itemSize.width + _config.minimumInteritemSpacing);
@@ -126,7 +119,7 @@ static NSString *imagePickerCellIdentifier = @"imagePickerCellIdentifier";
     }
     else {
         imgView.image = nil;
-        imgView.image = [UIImage imageNamed:@"ico_add"];
+        imgView.image = [UIImage imageNamed:@"bg_photo_add"];
     }
     return cell;
 }
@@ -159,35 +152,23 @@ static NSString *imagePickerCellIdentifier = @"imagePickerCellIdentifier";
 }
 
 - (void)pickPhotos{
-    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从照片库选取",nil];
-    [action showInView:self.navigationController.view];
-}
-
-
-#pragma mark - UIActionSheet delegate -
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    switch (buttonIndex) {
-        case 0:
-        {
+    
+    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"选择9张照片" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+        if (buttonIndex == 1) {
             UIImagePickerController *vc = [UIImagePickerController new];
             vc.sourceType = UIImagePickerControllerSourceTypeCamera;//sourcetype有三种分别是camera，photoLibrary和photoAlbum
             vc.delegate = self;
             [self.navigationController presentViewController:vc animated:YES completion:nil];
-        }
-            break;
-        case 1:
-        {
-//            NSInteger count = _config.photosMaxCount - _photosArray.count;
-//            [JFImagePickerController setMaxCount:count];
+        } else if(buttonIndex == 2){
+            NSInteger count = _config.photosMaxCount - _photosArray.count;
+            [JFImagePickerController setMaxCount:count];
             JFImagePickerController *picker = [[JFImagePickerController alloc] initWithRootViewController:[UIViewController new]];
             picker.pickerDelegate = self;
             [self.navigationController presentViewController:picker animated:YES completion:nil];
         }
-            break;
-            
-        default:
-            break;
-    }
+    } otherButtonTitles:@"拍照",@"从相册中选择", nil];
+    [sheet show];
+    
 }
 
 

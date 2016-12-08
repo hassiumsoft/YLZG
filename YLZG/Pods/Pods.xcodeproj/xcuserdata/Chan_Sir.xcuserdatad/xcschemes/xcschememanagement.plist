@@ -24,11 +24,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>JFImagePicker.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>LCActionSheet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -107,11 +102,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>04C385D29F73D4B74BE2A649E8C2050E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>10CC11AEF1784C1BE1505E0EE26D8DAE</key>
 		<dict>
 			<key>primary</key>
@@ -122,17 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>38C743090AFF8D976957EA9FB4022AFA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>5813251FEA21E4AEE97385709F1912DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7014FBB336626878E503C56CCD27CCA1</key>
+		<key>6276313A15D57F2DBE3025141B7421D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>681E15A616D185B75405AA26ACA73600</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,12 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>928353533005A4198EBDA5B700D37B64</key>
+		<key>785DDFB0AF5FA3D1A9562472A0C7754B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>959B6D29178D58E509C6219C302C84E2</key>
+		<key>928353533005A4198EBDA5B700D37B64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -172,11 +162,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BC0EBCF8CDD4D6019DBFE50AA2DF6974</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D0D0C9D20C43FA94D4C88FBFE2601B8E</key>
 		<dict>
 			<key>primary</key>
@@ -193,6 +178,11 @@
 			<true/>
 		</dict>
 		<key>E2FE87384A67337831E53490EEA8BF11</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E9CFE3FCF9A42B3FC2D95F6F3814271D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

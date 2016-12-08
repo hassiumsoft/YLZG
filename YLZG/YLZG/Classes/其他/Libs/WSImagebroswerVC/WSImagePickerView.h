@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HomeNavigationController.h"
 
 @class WSImagePickerConfig;
 @interface WSImagePickerView : UIView
 
-@property (nonatomic, weak) HomeNavigationController *navigationController;
+@property (nonatomic, weak) UINavigationController *navigationController;
 @property (nonatomic, copy) void(^viewHeightChanged)(CGFloat height);
 
 - (instancetype)initWithFrame:(CGRect)frame config:(WSImagePickerConfig *)config;

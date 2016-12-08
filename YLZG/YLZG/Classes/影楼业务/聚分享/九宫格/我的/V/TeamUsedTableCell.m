@@ -57,6 +57,20 @@
     _resendLabel.text = [NSString stringWithFormat:@"已被转发%@次",teamUsedModel.times];
 }
 
+- (void)setMyMobanModel:(MyMobanModel *)myMobanModel
+{
+    _myMobanModel = myMobanModel;
+    [_mobanImageV sd_setImageWithURL:[NSURL URLWithString:myMobanModel.thumb] placeholderImage:[self imageWithBgColor:HWRandomColor]];
+    _mobanNameL.text = myMobanModel.name;
+    _bifaImageV.hidden = YES;
+    if (myMobanModel.useis) {
+        _isUsedImageV.image = [UIImage imageNamed:@"ico_hasbeenused"];
+    }else{
+        _isUsedImageV.image = [UIImage imageNamed:@"nine_unused"];
+    }
+    _resendLabel.text = [NSString stringWithFormat:@"已被转发%@次",myMobanModel.times];
+}
+
 - (void)setMyUsedModel:(MyUsedModel *)myUsedModel
 {
     _myUsedModel = myUsedModel;
@@ -68,6 +82,7 @@
     _isUsedImageV.hidden = YES;
     
 }
+
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -86,9 +101,8 @@
     [self.contentView addSubview:self.mobanImageV];
     [self.mobanImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(12);
-        make.top.equalTo(self.mas_top).offset(10);
-        make.bottom.equalTo(self.mas_bottom).offset(-8);
-        make.width.equalTo(@(70*CKproportion));
+        make.centerY.equalTo(self.mas_centerY);
+        make.width.and.height.equalTo(@(63));
     }];
     
     
@@ -111,7 +125,6 @@
         make.centerY.equalTo(self.mas_centerY);
         make.left.equalTo(self.mobanImageV.mas_right).offset(4);
         make.height.equalTo(@42);
-        make.right.equalTo(self.bifaImageV.mas_left);
     }];
     
     // 我已使用

@@ -110,9 +110,9 @@
 + (void)uploadWithURL:(NSString *)url params:(NSDictionary *)params fileData:(NSData *)filedata name:(NSString *)name fileName:(NSString *)filename mimeType:(NSString *)mimeType progress:(YLZGProgress)progress success:(YLZGResponseSuccess)success fail:(YLZGResponseFail)fail
 {
     AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO];
-    
-    
-    [manager POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
+    NSString *URL = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
+    [manager POST:URL parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         [formData appendPartWithFileData:filedata name:name fileName:filename mimeType:mimeType];
         
@@ -125,6 +125,36 @@
         id dic = [HTTPManager responseConfiguration:responseObject];
         success(task,dic);
         
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        fail(task,error);
+    }];
+}
+
++ (void)uploadMoreImagesURL:(NSString *)url imagesArray:(NSArray *)images params:(NSDictionary *)params name:(NSString *)name fileName:(NSString *)filename mimeType:(NSString *)mimeType progress:(YLZGProgress)progress success:(YLZGResponseSuccess)success fail:(YLZGResponseFail)fail
+{
+    AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO];
+    NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
+    NSString *URL = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
+    [manager POST:URL parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        for (int i = 0; i < images.count; i++) {
+            
+            UIImage *image = images[i];
+            
+            NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+            
+            NSString *FileName = [NSString stringWithFormat:@"moban_%d",i];
+            
+            [formData appendPartWithFileData:imageData name:name fileName:FileName mimeType:mimeType];
+            
+        }
+        
+        NSLog(@"formData = %@",formData);
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        progress(uploadProgress);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        id dic = [HTTPManager responseConfiguration:responseObject];
+        success(task,dic);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         fail(task,error);
     }];

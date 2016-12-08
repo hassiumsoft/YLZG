@@ -130,7 +130,7 @@
             //  分享
             LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
                 [[YLZGDataManager sharedManager] getShareUrlCompletion:^(NSString *url) {
-                    [self shareImagestoWechat:url Type:1];
+//                    [self shareImagestoWechat:url Type:1];
                     if (buttonIndex == 1) {
                         [self shareWebPagetoWechat:url Type:0];
                     }else if(buttonIndex == 2){

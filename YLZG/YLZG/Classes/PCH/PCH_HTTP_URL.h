@@ -253,11 +253,16 @@
 #define NineTeamUsed_Url @"http://192.168.0.18/index.php/wei/retransmission/groupRetrans?uid=%@&date=%@"
 // 九宫格--我已经使用
 #define NineMyUsed_Url @"http://192.168.0.18/index.php/wei/retransmission/myRetrans?uid=%@&date=%@"
-
 // 九宫格--模板详情
 #define NineDetial_Url @"http://192.168.0.18/index.php/wei/retransmission/detail?uid=%@&id=%@&date=%@"
 // 九宫格--转发提醒
 #define NineResendTips_Url @"http://192.168.0.18/index.php/wei/retransmission/retransRemind?uid=%@&id=%@"
+// 九宫格--上传模板
+#define UpLoadMoban_Url @"http://192.168.0.18/index.php/wei/retransmission/create?uid=%@&name=%@&content=%@&isShare=%d"
+// 九宫格--删除我的模板
+#define DeleteMyMoban_Url @"http://192.168.0.18/index.php/wei/retransmission/delete?uid=%@&id=%@"
+// 九宫格--我的模板
+#define GetMyMoban_Url @"http://192.168.0.18/index.php/wei/retransmission/myTemplet?uid=%@&date=%@"
 
 
 

@@ -1,15 +1,17 @@
 //
 //  WSImageBroswerVC.h
-//  doucui
+//  YLZG
 //
-//  Created by 吴振松 on 16/10/12.
-//  Copyright © 2016年 lootai. All rights reserved.
+//  Created by Chan_Sir on 2016/12/8.
+//  Copyright © 2016年 陈振超. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "SuperViewController.h"
 #import "WSImageModel.h"
 
-@interface WSImageBroswerVC : UIViewController
+
+@interface WSImageBroswerVC : SuperViewController
+
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, strong) NSMutableArray<WSImageModel *>* imageArray;
@@ -19,5 +21,5 @@
 - (void)initializeData;
 - (void)refreshTitle;
 
-@end
 
+@end

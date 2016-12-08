@@ -306,6 +306,20 @@
 		3B8531A41DF8F9B800AB9C4F /* TeamUsedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531831DF8F9B800AB9C4F /* TeamUsedModel.m */; };
 		3B8531A51DF8F9B800AB9C4F /* TeamUsedTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531861DF8F9B800AB9C4F /* TeamUsedTableCell.m */; };
 		3B8531A81DF9003F00AB9C4F /* ZhuanfaCountTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531A71DF9003F00AB9C4F /* ZhuanfaCountTableCell.m */; };
+		3B8531BA1DF9190F00AB9C4F /* JFAssetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531AB1DF9190F00AB9C4F /* JFAssetHelper.m */; };
+		3B8531BB1DF9190F00AB9C4F /* JFImageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531AD1DF9190F00AB9C4F /* JFImageCollectionViewController.m */; };
+		3B8531BC1DF9190F00AB9C4F /* JFImageGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531AF1DF9190F00AB9C4F /* JFImageGroupTableViewController.m */; };
+		3B8531BD1DF9190F00AB9C4F /* JFImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531B11DF9190F00AB9C4F /* JFImageManager.m */; };
+		3B8531BE1DF9190F00AB9C4F /* JFImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531B31DF9190F00AB9C4F /* JFImagePickerController.m */; };
+		3B8531BF1DF9190F00AB9C4F /* JFImagePickerViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531B51DF9190F00AB9C4F /* JFImagePickerViewCell.m */; };
+		3B8531C01DF9190F00AB9C4F /* JFPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531B71DF9190F00AB9C4F /* JFPhotoBrowserViewController.m */; };
+		3B8531C11DF9190F00AB9C4F /* JFPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531B91DF9190F00AB9C4F /* JFPhotoView.m */; };
+		3B8531CC1DF9194600AB9C4F /* WSImageBroserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531C31DF9194600AB9C4F /* WSImageBroserCell.m */; };
+		3B8531CE1DF9194600AB9C4F /* WSImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531C71DF9194600AB9C4F /* WSImageModel.m */; };
+		3B8531CF1DF9194600AB9C4F /* WSImagePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531C91DF9194600AB9C4F /* WSImagePickerView.m */; };
+		3B8531D01DF9194600AB9C4F /* WSPhotosBroseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531CB1DF9194600AB9C4F /* WSPhotosBroseVC.m */; };
+		3B8531D31DF9330B00AB9C4F /* WSImageBroswerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531D21DF9330B00AB9C4F /* WSImageBroswerVC.m */; };
+		3B8531D61DF9605900AB9C4F /* MyMobanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531D51DF9605900AB9C4F /* MyMobanModel.m */; };
 		3B87BFE91DF54C9700970625 /* QZSortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFE61DF54C9700970625 /* QZSortCell.m */; };
 		3B87BFEE1DF558EC00970625 /* QZConditionFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFEB1DF558EC00970625 /* QZConditionFilterView.m */; };
 		3B87BFEF1DF558EC00970625 /* QZFilterDataTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFED1DF558EC00970625 /* QZFilterDataTableView.m */; };
@@ -432,11 +446,6 @@
 		3BF93D7E1DADDC950002EACA /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF93D731DADDC950002EACA /* CalendarViewController.m */; };
 		3BF93D7F1DADDC950002EACA /* chack.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BF93D741DADDC950002EACA /* chack.png */; };
 		3BF93D801DADDC950002EACA /* NSDate+WQCalendarLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF93D771DADDC950002EACA /* NSDate+WQCalendarLogic.m */; };
-		3BFA9EA81DF7A56F00330CF0 /* WSImageBroserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EA11DF7A56F00330CF0 /* WSImageBroserCell.m */; };
-		3BFA9EA91DF7A56F00330CF0 /* WSImageBroswerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EA31DF7A56F00330CF0 /* WSImageBroswerVC.m */; };
-		3BFA9EAA1DF7A56F00330CF0 /* WSImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EA51DF7A56F00330CF0 /* WSImageModel.m */; };
-		3BFA9EAB1DF7A56F00330CF0 /* WSPhotosBroseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EA71DF7A56F00330CF0 /* WSPhotosBroseVC.m */; };
-		3BFA9EAE1DF7A63F00330CF0 /* WSImagePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EAD1DF7A63F00330CF0 /* WSImagePickerView.m */; };
 		5A27D435BC6DED825DA7C727 /* libPods-YLZGTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10D181EFDFDFBC5340FDE7D5 /* libPods-YLZGTests.a */; };
 		F861F19A60C03DD5F0C35469 /* libPods-YLZG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 487A4302373A59827214ABFD /* libPods-YLZG.a */; };
 /* End PBXBuildFile section */
@@ -1071,6 +1080,34 @@
 		3B8531861DF8F9B800AB9C4F /* TeamUsedTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamUsedTableCell.m; sourceTree = "<group>"; };
 		3B8531A61DF9003F00AB9C4F /* ZhuanfaCountTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhuanfaCountTableCell.h; sourceTree = "<group>"; };
 		3B8531A71DF9003F00AB9C4F /* ZhuanfaCountTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhuanfaCountTableCell.m; sourceTree = "<group>"; };
+		3B8531AA1DF9190F00AB9C4F /* JFAssetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFAssetHelper.h; sourceTree = "<group>"; };
+		3B8531AB1DF9190F00AB9C4F /* JFAssetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFAssetHelper.m; sourceTree = "<group>"; };
+		3B8531AC1DF9190F00AB9C4F /* JFImageCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFImageCollectionViewController.h; sourceTree = "<group>"; };
+		3B8531AD1DF9190F00AB9C4F /* JFImageCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFImageCollectionViewController.m; sourceTree = "<group>"; };
+		3B8531AE1DF9190F00AB9C4F /* JFImageGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFImageGroupTableViewController.h; sourceTree = "<group>"; };
+		3B8531AF1DF9190F00AB9C4F /* JFImageGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFImageGroupTableViewController.m; sourceTree = "<group>"; };
+		3B8531B01DF9190F00AB9C4F /* JFImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFImageManager.h; sourceTree = "<group>"; };
+		3B8531B11DF9190F00AB9C4F /* JFImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFImageManager.m; sourceTree = "<group>"; };
+		3B8531B21DF9190F00AB9C4F /* JFImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFImagePickerController.h; sourceTree = "<group>"; };
+		3B8531B31DF9190F00AB9C4F /* JFImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFImagePickerController.m; sourceTree = "<group>"; };
+		3B8531B41DF9190F00AB9C4F /* JFImagePickerViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFImagePickerViewCell.h; sourceTree = "<group>"; };
+		3B8531B51DF9190F00AB9C4F /* JFImagePickerViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFImagePickerViewCell.m; sourceTree = "<group>"; };
+		3B8531B61DF9190F00AB9C4F /* JFPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFPhotoBrowserViewController.h; sourceTree = "<group>"; };
+		3B8531B71DF9190F00AB9C4F /* JFPhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFPhotoBrowserViewController.m; sourceTree = "<group>"; };
+		3B8531B81DF9190F00AB9C4F /* JFPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFPhotoView.h; sourceTree = "<group>"; };
+		3B8531B91DF9190F00AB9C4F /* JFPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFPhotoView.m; sourceTree = "<group>"; };
+		3B8531C21DF9194600AB9C4F /* WSImageBroserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSImageBroserCell.h; sourceTree = "<group>"; };
+		3B8531C31DF9194600AB9C4F /* WSImageBroserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSImageBroserCell.m; sourceTree = "<group>"; };
+		3B8531C61DF9194600AB9C4F /* WSImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSImageModel.h; sourceTree = "<group>"; };
+		3B8531C71DF9194600AB9C4F /* WSImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSImageModel.m; sourceTree = "<group>"; };
+		3B8531C81DF9194600AB9C4F /* WSImagePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSImagePickerView.h; sourceTree = "<group>"; };
+		3B8531C91DF9194600AB9C4F /* WSImagePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSImagePickerView.m; sourceTree = "<group>"; };
+		3B8531CA1DF9194600AB9C4F /* WSPhotosBroseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSPhotosBroseVC.h; sourceTree = "<group>"; };
+		3B8531CB1DF9194600AB9C4F /* WSPhotosBroseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSPhotosBroseVC.m; sourceTree = "<group>"; };
+		3B8531D11DF9330B00AB9C4F /* WSImageBroswerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSImageBroswerVC.h; sourceTree = "<group>"; };
+		3B8531D21DF9330B00AB9C4F /* WSImageBroswerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSImageBroswerVC.m; sourceTree = "<group>"; };
+		3B8531D41DF9605900AB9C4F /* MyMobanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMobanModel.h; sourceTree = "<group>"; };
+		3B8531D51DF9605900AB9C4F /* MyMobanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMobanModel.m; sourceTree = "<group>"; };
 		3B87BFE51DF54C9700970625 /* QZSortCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZSortCell.h; sourceTree = "<group>"; };
 		3B87BFE61DF54C9700970625 /* QZSortCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZSortCell.m; sourceTree = "<group>"; };
 		3B87BFEA1DF558EC00970625 /* QZConditionFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZConditionFilterView.h; sourceTree = "<group>"; };
@@ -1321,16 +1358,6 @@
 		3BF93D751DADDC950002EACA /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		3BF93D761DADDC950002EACA /* NSDate+WQCalendarLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WQCalendarLogic.h"; sourceTree = "<group>"; };
 		3BF93D771DADDC950002EACA /* NSDate+WQCalendarLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WQCalendarLogic.m"; sourceTree = "<group>"; };
-		3BFA9EA01DF7A56F00330CF0 /* WSImageBroserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSImageBroserCell.h; sourceTree = "<group>"; };
-		3BFA9EA11DF7A56F00330CF0 /* WSImageBroserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSImageBroserCell.m; sourceTree = "<group>"; };
-		3BFA9EA21DF7A56F00330CF0 /* WSImageBroswerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSImageBroswerVC.h; sourceTree = "<group>"; };
-		3BFA9EA31DF7A56F00330CF0 /* WSImageBroswerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSImageBroswerVC.m; sourceTree = "<group>"; };
-		3BFA9EA41DF7A56F00330CF0 /* WSImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSImageModel.h; sourceTree = "<group>"; };
-		3BFA9EA51DF7A56F00330CF0 /* WSImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSImageModel.m; sourceTree = "<group>"; };
-		3BFA9EA61DF7A56F00330CF0 /* WSPhotosBroseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSPhotosBroseVC.h; sourceTree = "<group>"; };
-		3BFA9EA71DF7A56F00330CF0 /* WSPhotosBroseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSPhotosBroseVC.m; sourceTree = "<group>"; };
-		3BFA9EAC1DF7A63F00330CF0 /* WSImagePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSImagePickerView.h; sourceTree = "<group>"; };
-		3BFA9EAD1DF7A63F00330CF0 /* WSImagePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSImagePickerView.m; sourceTree = "<group>"; };
 		487A4302373A59827214ABFD /* libPods-YLZG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YLZG.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FE1C9497118A328E37A4D9 /* Pods-YLZGUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLZGUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLZGUITests/Pods-YLZGUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6D221FEFCC875B1AC7AAF5C4 /* Pods-YLZG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLZG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLZG/Pods-YLZG.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3117,14 +3144,14 @@
 		3B8531761DF8F9B800AB9C4F /* C */ = {
 			isa = PBXGroup;
 			children = (
-				3B8531771DF8F9B800AB9C4F /* MyMobanViewController.h */,
-				3B8531781DF8F9B800AB9C4F /* MyMobanViewController.m */,
-				3B8531791DF8F9B800AB9C4F /* MyUsedViewController.h */,
-				3B85317A1DF8F9B800AB9C4F /* MyUsedViewController.m */,
-				3B85317B1DF8F9B800AB9C4F /* NineMeViewController.h */,
-				3B85317C1DF8F9B800AB9C4F /* NineMeViewController.m */,
 				3B85317D1DF8F9B800AB9C4F /* TeamUsedViewController.h */,
 				3B85317E1DF8F9B800AB9C4F /* TeamUsedViewController.m */,
+				3B8531791DF8F9B800AB9C4F /* MyUsedViewController.h */,
+				3B85317A1DF8F9B800AB9C4F /* MyUsedViewController.m */,
+				3B8531771DF8F9B800AB9C4F /* MyMobanViewController.h */,
+				3B8531781DF8F9B800AB9C4F /* MyMobanViewController.m */,
+				3B85317B1DF8F9B800AB9C4F /* NineMeViewController.h */,
+				3B85317C1DF8F9B800AB9C4F /* NineMeViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -3136,6 +3163,8 @@
 				3B8531811DF8F9B800AB9C4F /* MyUsedModel.m */,
 				3B8531821DF8F9B800AB9C4F /* TeamUsedModel.h */,
 				3B8531831DF8F9B800AB9C4F /* TeamUsedModel.m */,
+				3B8531D41DF9605900AB9C4F /* MyMobanModel.h */,
+				3B8531D51DF9605900AB9C4F /* MyMobanModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -3147,6 +3176,29 @@
 				3B8531861DF8F9B800AB9C4F /* TeamUsedTableCell.m */,
 			);
 			path = V;
+			sourceTree = "<group>";
+		};
+		3B8531A91DF9190F00AB9C4F /* JFImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				3B8531AA1DF9190F00AB9C4F /* JFAssetHelper.h */,
+				3B8531AB1DF9190F00AB9C4F /* JFAssetHelper.m */,
+				3B8531AC1DF9190F00AB9C4F /* JFImageCollectionViewController.h */,
+				3B8531AD1DF9190F00AB9C4F /* JFImageCollectionViewController.m */,
+				3B8531AE1DF9190F00AB9C4F /* JFImageGroupTableViewController.h */,
+				3B8531AF1DF9190F00AB9C4F /* JFImageGroupTableViewController.m */,
+				3B8531B01DF9190F00AB9C4F /* JFImageManager.h */,
+				3B8531B11DF9190F00AB9C4F /* JFImageManager.m */,
+				3B8531B21DF9190F00AB9C4F /* JFImagePickerController.h */,
+				3B8531B31DF9190F00AB9C4F /* JFImagePickerController.m */,
+				3B8531B41DF9190F00AB9C4F /* JFImagePickerViewCell.h */,
+				3B8531B51DF9190F00AB9C4F /* JFImagePickerViewCell.m */,
+				3B8531B61DF9190F00AB9C4F /* JFPhotoBrowserViewController.h */,
+				3B8531B71DF9190F00AB9C4F /* JFPhotoBrowserViewController.m */,
+				3B8531B81DF9190F00AB9C4F /* JFPhotoView.h */,
+				3B8531B91DF9190F00AB9C4F /* JFPhotoView.m */,
+			);
+			path = JFImagePickerController;
 			sourceTree = "<group>";
 		};
 		3B87BFE01DF54C9700970625 /* SortTableView */ = {
@@ -3509,14 +3561,14 @@
 		3BCA323B1D9CC14100A0E980 /* 管理者 */ = {
 			isa = PBXGroup;
 			children = (
+				3BCF39661D9DF42100BEE236 /* HTTPManager.h */,
+				3BCF39671D9DF42100BEE236 /* HTTPManager.m */,
 				3B75EFC91DC2EE0800D54807 /* WXApiManager.h */,
 				3B75EFCA1DC2EE0800D54807 /* WXApiManager.m */,
 				3BCF39D21D9E43FF00BEE236 /* WifiNetManager.h */,
 				3BCF39D31D9E43FF00BEE236 /* WifiNetManager.m */,
 				3BCF39641D9DF42100BEE236 /* GroupListManager.h */,
 				3BCF39651D9DF42100BEE236 /* GroupListManager.m */,
-				3BCF39661D9DF42100BEE236 /* HTTPManager.h */,
-				3BCF39671D9DF42100BEE236 /* HTTPManager.m */,
 				3BCF39681D9DF42100BEE236 /* HuanxinContactManager.h */,
 				3BCF39691D9DF42100BEE236 /* HuanxinContactManager.m */,
 				3BCF396A1D9DF42100BEE236 /* StudioContactManager.h */,
@@ -3590,6 +3642,7 @@
 		3BCA32541D9CC1F900A0E980 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				3B8531A91DF9190F00AB9C4F /* JFImagePickerController */,
 				3BFA9E9F1DF7A56F00330CF0 /* WSImagebroswerVC */,
 				3B87BFE01DF54C9700970625 /* SortTableView */,
 				3B75EFC31DC2E3EF00D54807 /* WeChatSDK */,
@@ -3852,16 +3905,16 @@
 		3BFA9E9F1DF7A56F00330CF0 /* WSImagebroswerVC */ = {
 			isa = PBXGroup;
 			children = (
-				3BFA9EAC1DF7A63F00330CF0 /* WSImagePickerView.h */,
-				3BFA9EAD1DF7A63F00330CF0 /* WSImagePickerView.m */,
-				3BFA9EA01DF7A56F00330CF0 /* WSImageBroserCell.h */,
-				3BFA9EA11DF7A56F00330CF0 /* WSImageBroserCell.m */,
-				3BFA9EA21DF7A56F00330CF0 /* WSImageBroswerVC.h */,
-				3BFA9EA31DF7A56F00330CF0 /* WSImageBroswerVC.m */,
-				3BFA9EA41DF7A56F00330CF0 /* WSImageModel.h */,
-				3BFA9EA51DF7A56F00330CF0 /* WSImageModel.m */,
-				3BFA9EA61DF7A56F00330CF0 /* WSPhotosBroseVC.h */,
-				3BFA9EA71DF7A56F00330CF0 /* WSPhotosBroseVC.m */,
+				3B8531C21DF9194600AB9C4F /* WSImageBroserCell.h */,
+				3B8531C31DF9194600AB9C4F /* WSImageBroserCell.m */,
+				3B8531D11DF9330B00AB9C4F /* WSImageBroswerVC.h */,
+				3B8531D21DF9330B00AB9C4F /* WSImageBroswerVC.m */,
+				3B8531C61DF9194600AB9C4F /* WSImageModel.h */,
+				3B8531C71DF9194600AB9C4F /* WSImageModel.m */,
+				3B8531C81DF9194600AB9C4F /* WSImagePickerView.h */,
+				3B8531C91DF9194600AB9C4F /* WSImagePickerView.m */,
+				3B8531CA1DF9194600AB9C4F /* WSPhotosBroseVC.h */,
+				3B8531CB1DF9194600AB9C4F /* WSPhotosBroseVC.m */,
 			);
 			path = WSImagebroswerVC;
 			sourceTree = "<group>";
@@ -4174,6 +4227,7 @@
 				3B7ABCAA1DB5B33400F3D12B /* GroupMemberView.m in Sources */,
 				3B9E16F71DD2C13D0028C72F /* TodayFinaceModel.m in Sources */,
 				3B343B461DEBFECC00474549 /* ProduceFileVController.m in Sources */,
+				3B8531D31DF9330B00AB9C4F /* WSImageBroswerVC.m in Sources */,
 				3BCF39C01D9E3D5500BEE236 /* ContactListViewController.m in Sources */,
 				3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */,
 				3B4C10A91DC85DDC00827D4F /* YejiDetialViewController.m in Sources */,
@@ -4230,7 +4284,6 @@
 				3B4C10A31DC85DDC00827D4F /* ButtonIconModel.m in Sources */,
 				3BCF3A3B1D9E6CF800BEE236 /* TAPageControl.m in Sources */,
 				3B4C10C51DC85DDC00827D4F /* KanyangPreViewController.m in Sources */,
-				3BFA9EAE1DF7A63F00330CF0 /* WSImagePickerView.m in Sources */,
 				3B8531911DF8F9B800AB9C4F /* NineHotCommentModel.m in Sources */,
 				3BCA325C1D9CC1F900A0E980 /* UIView+Extension.m in Sources */,
 				3B3BBF9C1DB477D800C9E2FD /* YLGroup.m in Sources */,
@@ -4248,6 +4301,7 @@
 				3B7ABCAB1DB5B33400F3D12B /* IviteGroupersCollectionCell.m in Sources */,
 				3B343B4C1DEBFECC00474549 /* ProduceDetialFileCell.m in Sources */,
 				3BCA325A1D9CC1F900A0E980 /* NSString+StrCategory.m in Sources */,
+				3B8531BD1DF9190F00AB9C4F /* JFImageManager.m in Sources */,
 				3B3BBFBC1DB484EA00C9E2FD /* YLSearchBar.m in Sources */,
 				3B07D8CB1D956B0D00B657F6 /* AppDelegate.m in Sources */,
 				3BCF3A221D9E6A4800BEE236 /* NewFutherViewController.m in Sources */,
@@ -4290,6 +4344,7 @@
 				3B4C13661DC85F4700827D4F /* MyApproveVController.m in Sources */,
 				3B343B931DEC077C00474549 /* TaskDiscussTableCell.m in Sources */,
 				3B4C13651DC85F4700827D4F /* ApproveListViewController.m in Sources */,
+				3B8531CC1DF9194600AB9C4F /* WSImageBroserCell.m in Sources */,
 				3B4C13741DC85F4700827D4F /* StaffTableViewCell.m in Sources */,
 				3B4C133C1DC85F4700827D4F /* TeamZhengchangTableCell.m in Sources */,
 				3B56D7651DC739CE003A57FD /* ChatListViewController.m in Sources */,
@@ -4307,7 +4362,6 @@
 				3B4C10D51DC85DDC00827D4F /* PreOrderVController.m in Sources */,
 				3B56D7751DC739CE003A57FD /* EaseBubbleView+Location.m in Sources */,
 				3BCF397D1D9DF44500BEE236 /* ZCAccount.m in Sources */,
-				3BFA9EA81DF7A56F00330CF0 /* WSImageBroserCell.m in Sources */,
 				3BCF39A51D9E320C00BEE236 /* NormalTableCell.m in Sources */,
 				3BCF3A3A1D9E6CF800BEE236 /* TADotView.m in Sources */,
 				3BCF39DE1D9E454D00BEE236 /* NSString+Hashing.m in Sources */,
@@ -4329,13 +4383,13 @@
 				3B9EF3D81DEFD11900C66888 /* AllProductModel.m in Sources */,
 				3B56D7691DC739CE003A57FD /* EaseRefreshTableViewController.m in Sources */,
 				3B5DC71B1DB87107000F7A06 /* EaseEmoji.m in Sources */,
+				3B8531BE1DF9190F00AB9C4F /* JFImagePickerController.m in Sources */,
 				3BCF39ED1D9E5AD200BEE236 /* PhoneViewController.m in Sources */,
 				3B4C13311DC85F4700827D4F /* qiaodaocountBtn.m in Sources */,
 				3B4C13341DC85F4700827D4F /* TeamZhengchangDakaController.m in Sources */,
 				3BCA32631D9CC25100A0E980 /* PresentingAnimator.m in Sources */,
 				3B4C13421DC85F4700827D4F /* ChooseMemVController.m in Sources */,
 				3B85318A1DF8F9B800AB9C4F /* ZhuanfaCountController.m in Sources */,
-				3BFA9EA91DF7A56F00330CF0 /* WSImageBroswerVC.m in Sources */,
 				3B5DC7201DB87265000F7A06 /* FixFopen.c in Sources */,
 				3B9E17031DD2F32C0028C72F /* CaiwuDetialCell.m in Sources */,
 				3B4C135E1DC85F4700827D4F /* ChangeRulesController.m in Sources */,
@@ -4369,9 +4423,11 @@
 				3B07D8C81D956B0D00B657F6 /* main.m in Sources */,
 				3BCF39EB1D9E5AD200BEE236 /* MyAreaManagerController.m in Sources */,
 				3B8531891DF8F9B800AB9C4F /* NineTabbarController.m in Sources */,
+				3B8531BB1DF9190F00AB9C4F /* JFImageCollectionViewController.m in Sources */,
 				3B4C13491DC85F4700827D4F /* GudingBanciVController.m in Sources */,
 				3B4C10C71DC85DDC00827D4F /* QujianPreViewController.m in Sources */,
 				3BCF39901D9DF94100BEE236 /* UIViewController+Actions.m in Sources */,
+				3B8531C11DF9190F00AB9C4F /* JFPhotoView.m in Sources */,
 				3B447B191DC98C0B00316E3C /* ForgetSecretController.m in Sources */,
 				3B4C13201DC85F4700827D4F /* NoticeDetialView.m in Sources */,
 				3BCF398D1D9DF8BD00BEE236 /* YLZGChatManager.m in Sources */,
@@ -4396,11 +4452,11 @@
 				3B4C13531DC85F4700827D4F /* BanciButton.m in Sources */,
 				3B9E16F41DD2C11E0028C72F /* TodayFinaceDetialModel.m in Sources */,
 				3B343B7B1DEC016F00474549 /* ProduceFileModel.m in Sources */,
-				3BFA9EAA1DF7A56F00330CF0 /* WSImageModel.m in Sources */,
 				3B56D7731DC739CE003A57FD /* EaseBubbleView+Gif.m in Sources */,
 				3B56D7681DC739CE003A57FD /* EaseMessageViewController.m in Sources */,
 				3B343B481DEBFECC00474549 /* ProduceTaskVController.m in Sources */,
 				3B4C13321DC85F4700827D4F /* CheckInfoViewController.m in Sources */,
+				3B8531CE1DF9194600AB9C4F /* WSImageModel.m in Sources */,
 				3B3BBFD51DB4BF3C00C9E2FD /* FriendDetialController.m in Sources */,
 				3BCF3A0D1D9E65E800BEE236 /* SuperTableViewController.m in Sources */,
 				3B4C10D71DC85DDC00827D4F /* SearchOrderModel.m in Sources */,
@@ -4409,12 +4465,14 @@
 				3B8531981DF8F9B800AB9C4F /* NineDetialImageModel.m in Sources */,
 				3BCF39701D9DF42100BEE236 /* GroupListManager.m in Sources */,
 				3B6E0ACA1DCAF2C600309037 /* SaleToolViewController.m in Sources */,
+				3B8531BA1DF9190F00AB9C4F /* JFAssetHelper.m in Sources */,
 				3B4C131F1DC85F4700827D4F /* NoticeModel.m in Sources */,
 				3B7ABCEE1DB6176600F3D12B /* EMAudioPlayerUtil.m in Sources */,
 				3B85318D1DF8F9B800AB9C4F /* NineSearchResultController.m in Sources */,
 				3BF93D801DADDC950002EACA /* NSDate+WQCalendarLogic.m in Sources */,
 				3B4C13511DC85F4700827D4F /* LocationsModel.m in Sources */,
 				3BCF39C21D9E3D5500BEE236 /* ColleaguesModel.m in Sources */,
+				3B8531C01DF9190F00AB9C4F /* JFPhotoBrowserViewController.m in Sources */,
 				3B343B7C1DEC016F00474549 /* ProduceMemberModel.m in Sources */,
 				3B4C133A1DC85F4700827D4F /* TeamKaoqinView.m in Sources */,
 				3B4C13351DC85F4700827D4F /* DeptTeamKaoqinModel.m in Sources */,
@@ -4479,7 +4537,6 @@
 				3B3BBFA21DB47B7500C9E2FD /* AddFriendViewController.m in Sources */,
 				3B4C10D31DC85DDC00827D4F /* OrderCheckViewController.m in Sources */,
 				3B4C13371DC85F4700827D4F /* TeamPaihangbangModel.m in Sources */,
-				3BFA9EAB1DF7A56F00330CF0 /* WSPhotosBroseVC.m in Sources */,
 				3BA8D9781DEECB9B00645405 /* OpenOrderTableCell.m in Sources */,
 				3B4C10341DC85DDC00827D4F /* MonthInComeController.m in Sources */,
 				3B9EF3D71DEFD11900C66888 /* AllProductList.m in Sources */,
@@ -4494,6 +4551,7 @@
 				3B9EF3B21DEFBD4A00C66888 /* CardNumTableCell.m in Sources */,
 				3B4C13401DC85F4700827D4F /* AddKaoqinzuController.m in Sources */,
 				3B8531A81DF9003F00AB9C4F /* ZhuanfaCountTableCell.m in Sources */,
+				3B8531CF1DF9194600AB9C4F /* WSImagePickerView.m in Sources */,
 				3BCF3A0A1D9E65E800BEE236 /* FMetaTool.m in Sources */,
 				3B8531961DF8F9B800AB9C4F /* NineMyCareViewController.m in Sources */,
 				3B56D76E1DC739CE003A57FD /* EaseBaseMessageCell.m in Sources */,
@@ -4511,9 +4569,11 @@
 				3BCF39A81D9E322F00BEE236 /* ImageBrowser.m in Sources */,
 				3B4C10361DC85DDC00827D4F /* InComeModel.m in Sources */,
 				3B7ABCF01DB6176600F3D12B /* EMCDDeviceManager+Media.m in Sources */,
+				3B8531D01DF9194600AB9C4F /* WSPhotosBroseVC.m in Sources */,
 				3BCF39BF1D9E3D5500BEE236 /* ApplyViewController.m in Sources */,
 				3B8531A01DF8F9B800AB9C4F /* MyUsedViewController.m in Sources */,
 				3B4C134D1DC85F4700827D4F /* BanciModel.m in Sources */,
+				3B8531D61DF9605900AB9C4F /* MyMobanModel.m in Sources */,
 				3B343B8D1DEC017A00474549 /* TaskDetialDiscussModel.m in Sources */,
 				3B4C10CA1DC85DDC00827D4F /* XuanpianPreViewController.m in Sources */,
 				3B343B381DEBFECC00474549 /* MyCreateTaskController.m in Sources */,
@@ -4529,9 +4589,11 @@
 				3BA8D9691DEEC1B900645405 /* LixianOrderController.m in Sources */,
 				3B4C13711DC85F4700827D4F /* WaichuViewController.m in Sources */,
 				3BCF3A091D9E65E800BEE236 /* FCityModel.m in Sources */,
+				3B8531BF1DF9190F00AB9C4F /* JFImagePickerViewCell.m in Sources */,
 				3B343B571DEBFECC00474549 /* ChooseProduceController.m in Sources */,
 				3B4C134F1DC85F4700827D4F /* GudingPaibanModel.m in Sources */,
 				3B56D7771DC739CE003A57FD /* EaseBubbleView+Video.m in Sources */,
+				3B8531BC1DF9190F00AB9C4F /* JFImageGroupTableViewController.m in Sources */,
 				3B9E17091DD2FC5F0028C72F /* HuangzhuangBingTu.m in Sources */,
 				3BF93D781DADDC950002EACA /* CalendarDayCell.m in Sources */,
 				3BCF3A1F1D9E6A4800BEE236 /* AboutUSController.m in Sources */,
