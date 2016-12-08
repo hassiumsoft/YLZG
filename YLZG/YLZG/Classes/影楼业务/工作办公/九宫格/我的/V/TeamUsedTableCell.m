@@ -52,7 +52,7 @@
     if (model.useis) {
         _isUsedImageV.image = [UIImage imageNamed:@"ico_hasbeenused"];
     }else{
-        _isUsedImageV.image = [UIImage imageNamed:@""];
+        _isUsedImageV.image = [UIImage imageNamed:@"nine_unused"];
     }
     _resendLabel.text = [NSString stringWithFormat:@"已被转发%@次",model.times];
 }

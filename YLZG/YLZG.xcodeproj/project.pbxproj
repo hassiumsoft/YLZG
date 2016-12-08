@@ -431,6 +431,11 @@
 		3BFA9EAA1DF7A56F00330CF0 /* WSImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EA51DF7A56F00330CF0 /* WSImageModel.m */; };
 		3BFA9EAB1DF7A56F00330CF0 /* WSPhotosBroseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EA71DF7A56F00330CF0 /* WSPhotosBroseVC.m */; };
 		3BFA9EAE1DF7A63F00330CF0 /* WSImagePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EAD1DF7A63F00330CF0 /* WSImagePickerView.m */; };
+		3BFA9EB41DF7EC3C00330CF0 /* ZhuanfaCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EB31DF7EC3C00330CF0 /* ZhuanfaCountModel.m */; };
+		3BFA9EB71DF7ED2F00330CF0 /* ZhuanfaListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EB61DF7ED2F00330CF0 /* ZhuanfaListModel.m */; };
+		3BFA9EBA1DF7F93500330CF0 /* NineDetialImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EB91DF7F93500330CF0 /* NineDetialImageModel.m */; };
+		3BFA9EBD1DF8073300330CF0 /* ZhuanfaCountController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EBC1DF8073300330CF0 /* ZhuanfaCountController.m */; };
+		3BFA9EC01DF8111C00330CF0 /* CountHeadLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFA9EBF1DF8111C00330CF0 /* CountHeadLabel.m */; };
 		5A27D435BC6DED825DA7C727 /* libPods-YLZGTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10D181EFDFDFBC5340FDE7D5 /* libPods-YLZGTests.a */; };
 		F861F19A60C03DD5F0C35469 /* libPods-YLZG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 487A4302373A59827214ABFD /* libPods-YLZG.a */; };
 /* End PBXBuildFile section */
@@ -1313,6 +1318,16 @@
 		3BFA9EA71DF7A56F00330CF0 /* WSPhotosBroseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSPhotosBroseVC.m; sourceTree = "<group>"; };
 		3BFA9EAC1DF7A63F00330CF0 /* WSImagePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSImagePickerView.h; sourceTree = "<group>"; };
 		3BFA9EAD1DF7A63F00330CF0 /* WSImagePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSImagePickerView.m; sourceTree = "<group>"; };
+		3BFA9EB21DF7EC3C00330CF0 /* ZhuanfaCountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhuanfaCountModel.h; sourceTree = "<group>"; };
+		3BFA9EB31DF7EC3C00330CF0 /* ZhuanfaCountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhuanfaCountModel.m; sourceTree = "<group>"; };
+		3BFA9EB51DF7ED2F00330CF0 /* ZhuanfaListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhuanfaListModel.h; sourceTree = "<group>"; };
+		3BFA9EB61DF7ED2F00330CF0 /* ZhuanfaListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhuanfaListModel.m; sourceTree = "<group>"; };
+		3BFA9EB81DF7F93500330CF0 /* NineDetialImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineDetialImageModel.h; sourceTree = "<group>"; };
+		3BFA9EB91DF7F93500330CF0 /* NineDetialImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineDetialImageModel.m; sourceTree = "<group>"; };
+		3BFA9EBB1DF8073300330CF0 /* ZhuanfaCountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhuanfaCountController.h; sourceTree = "<group>"; };
+		3BFA9EBC1DF8073300330CF0 /* ZhuanfaCountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZhuanfaCountController.m; sourceTree = "<group>"; };
+		3BFA9EBE1DF8111C00330CF0 /* CountHeadLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountHeadLabel.h; sourceTree = "<group>"; };
+		3BFA9EBF1DF8111C00330CF0 /* CountHeadLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountHeadLabel.m; sourceTree = "<group>"; };
 		487A4302373A59827214ABFD /* libPods-YLZG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YLZG.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FE1C9497118A328E37A4D9 /* Pods-YLZGUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLZGUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLZGUITests/Pods-YLZGUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6D221FEFCC875B1AC7AAF5C4 /* Pods-YLZG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLZG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLZG/Pods-YLZG.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1506,6 +1521,8 @@
 				3BFA9E9D1DF79C6200330CF0 /* CreateMobanViewController.m */,
 				3B4E31D51DF6662D00C2AE25 /* NineDetialViewController.h */,
 				3B4E31D61DF6662D00C2AE25 /* NineDetialViewController.m */,
+				3BFA9EBB1DF8073300330CF0 /* ZhuanfaCountController.h */,
+				3BFA9EBC1DF8073300330CF0 /* ZhuanfaCountController.m */,
 			);
 			path = "主页";
 			sourceTree = "<group>";
@@ -1526,6 +1543,12 @@
 			children = (
 				3B87BFCE1DF4F5DD00970625 /* NineDetialModel.h */,
 				3B87BFCF1DF4F5DD00970625 /* NineDetialModel.m */,
+				3BFA9EB81DF7F93500330CF0 /* NineDetialImageModel.h */,
+				3BFA9EB91DF7F93500330CF0 /* NineDetialImageModel.m */,
+				3BFA9EB21DF7EC3C00330CF0 /* ZhuanfaCountModel.h */,
+				3BFA9EB31DF7EC3C00330CF0 /* ZhuanfaCountModel.m */,
+				3BFA9EB51DF7ED2F00330CF0 /* ZhuanfaListModel.h */,
+				3BFA9EB61DF7ED2F00330CF0 /* ZhuanfaListModel.m */,
 				3B4E31C91DF6520B00C2AE25 /* NineCareModel.h */,
 				3B4E31CA1DF6520B00C2AE25 /* NineCareModel.m */,
 			);
@@ -1539,6 +1562,8 @@
 				3B87BFC31DF3E0CC00970625 /* NineCareTableViewCell.m */,
 				3B4E31D81DF6677300C2AE25 /* EditCareTableViewCell.h */,
 				3B4E31D91DF6677300C2AE25 /* EditCareTableViewCell.m */,
+				3BFA9EBE1DF8111C00330CF0 /* CountHeadLabel.h */,
+				3BFA9EBF1DF8111C00330CF0 /* CountHeadLabel.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -4170,6 +4195,7 @@
 				3B4C13551DC85F4700827D4F /* DakaMapView.m in Sources */,
 				3B343B391DEBFECC00474549 /* MyManagerTaskController.m in Sources */,
 				3B4C10371DC85DDC00827D4F /* OutComeModel.m in Sources */,
+				3BFA9EB71DF7ED2F00330CF0 /* ZhuanfaListModel.m in Sources */,
 				3B3BBFA81DB47E4400C9E2FD /* ApplyTableViewCell.m in Sources */,
 				3BCF3A3D1D9E6CF800BEE236 /* SDCycleScrollView.m in Sources */,
 				3B4C131C1DC85F4700827D4F /* FabuViewController.m in Sources */,
@@ -4373,6 +4399,7 @@
 				3B3BBFD51DB4BF3C00C9E2FD /* FriendDetialController.m in Sources */,
 				3BCF3A0D1D9E65E800BEE236 /* SuperTableViewController.m in Sources */,
 				3B4C10D71DC85DDC00827D4F /* SearchOrderModel.m in Sources */,
+				3BFA9EBD1DF8073300330CF0 /* ZhuanfaCountController.m in Sources */,
 				3B4C10D11DC85DDC00827D4F /* SearchViewModel.m in Sources */,
 				3B343B491DEBFECC00474549 /* TaskProductsController.m in Sources */,
 				3BCF39701D9DF42100BEE236 /* GroupListManager.m in Sources */,
@@ -4402,6 +4429,7 @@
 				3B343B421DEBFECC00474549 /* AddNewTaskProController.m in Sources */,
 				3B343B471DEBFECC00474549 /* ProduceMemVController.m in Sources */,
 				3BA8D9631DEEC0DA00645405 /* OpenOrderViewController.m in Sources */,
+				3BFA9EBA1DF7F93500330CF0 /* NineDetialImageModel.m in Sources */,
 				3BCA32591D9CC1F900A0E980 /* NSDateFormatter+Category.m in Sources */,
 				3B4E31E31DF684C200C2AE25 /* MyMobanViewController.m in Sources */,
 				3B4C13461DC85F4700827D4F /* AddNewBanciController.m in Sources */,
@@ -4426,6 +4454,7 @@
 				3BCF3A211D9E6A4800BEE236 /* MyStudioVController.m in Sources */,
 				3B6E0AD61DCB0C3100309037 /* SaleToolModel.m in Sources */,
 				3B7ABCA91DB5B33400F3D12B /* GroupMemberCollectionCell.m in Sources */,
+				3BFA9EC01DF8111C00330CF0 /* CountHeadLabel.m in Sources */,
 				3B5DC71E1DB87107000F7A06 /* EaseEmotionManager.m in Sources */,
 				3B4C13581DC85F4700827D4F /* MutliChoceStaffCell.m in Sources */,
 				3BCF397C1D9DF44500BEE236 /* UserInfoModel.m in Sources */,
@@ -4528,6 +4557,7 @@
 				3B4C10AB1DC85DDC00827D4F /* StaffYejiModel.m in Sources */,
 				3B56D76C1DC739CE003A57FD /* EaseMessageModel.m in Sources */,
 				3B4C13591DC85F4700827D4F /* QIaodaoBeizhuView.m in Sources */,
+				3BFA9EB41DF7EC3C00330CF0 /* ZhuanfaCountModel.m in Sources */,
 				3BCF39C31D9E3D5500BEE236 /* ContactersModel.m in Sources */,
 				3BF93D7A1DADDC950002EACA /* CalendarHomeViewController.m in Sources */,
 				3B4C13481DC85F4700827D4F /* ChooseBanciVController.m in Sources */,

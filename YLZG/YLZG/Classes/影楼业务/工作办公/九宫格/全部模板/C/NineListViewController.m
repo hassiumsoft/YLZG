@@ -15,6 +15,7 @@
 #import "QZConditionFilterView.h"
 #import "MobanListCollectionCell.h"
 #import "ZCAccountTool.h"
+#import "UserInfoManager.h"
 #import "MobanCateListModel.h"
 
 
@@ -171,7 +172,8 @@
 {
     NineHotCommentModel *model = self.array[indexPath.row];
     NineDetialViewController *nine = [NineDetialViewController new];
-    nine.isManager = NO;
+    nine.isManager = [[UserInfoManager getUserInfo].type intValue] ? YES : NO;
+    nine.date = [self getCurrentTime];
     nine.mobanID = model.id;
     nine.title = model.name;
     [self.navigationController pushViewController:nine animated:YES];

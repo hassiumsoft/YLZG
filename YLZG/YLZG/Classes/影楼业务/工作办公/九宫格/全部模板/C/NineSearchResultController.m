@@ -121,6 +121,7 @@
     NineDetialViewController *nine = [NineDetialViewController new];
     nine.isManager = [[UserInfoManager getUserInfo].type intValue] ? YES : NO;
     nine.mobanID = model.id;
+    nine.date = [self getCurrentTime];
     nine.title = model.name;
     [self.navigationController pushViewController:nine animated:YES];
 }

@@ -160,6 +160,7 @@
         NineDetialViewController *nine = [NineDetialViewController new];
         NineHotCommentModel *model = self.listModel.hot[indexPath.row];
         nine.isManager = [[UserInfoManager getUserInfo].type intValue] ? YES : NO;
+        nine.date = [self getCurrentTime];
         nine.mobanID = model.id;
         nine.title = model.name;
         [self.navigationController pushViewController:nine animated:YES];
@@ -169,7 +170,8 @@
         // 推荐模板
         NineDetialViewController *nine = [NineDetialViewController new];
         NineHotCommentModel *model = self.listModel.commend[indexPath.row];
-        nine.isManager = NO;
+        nine.isManager = [[UserInfoManager getUserInfo].type intValue] ? YES : NO;
+        nine.date = [self getCurrentTime];
         nine.mobanID = model.id;
         nine.title = model.name;
         [self.navigationController pushViewController:nine animated:YES];

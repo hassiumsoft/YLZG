@@ -123,7 +123,7 @@
 - (void)getData:(BOOL)isFirst
 {
     ZCAccount *account = [ZCAccountTool account];
-    NSString *str = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/my_contacts?uid=%@",account.userID];
+    NSString *str = [NSString stringWithFormat:ContactList_Url,account.userID];
     
     [HTTPManager POST:str params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.tableView.mj_header endRefreshing];

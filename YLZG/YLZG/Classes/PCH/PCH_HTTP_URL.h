@@ -203,6 +203,9 @@
 #define GaojiSetting_Url @"http://zsylou.wxwkf.com/index.php/home/attence/update_whole?uid=%@&privilege_time=%@&latetime=%@&absent=%@&ontip=%@&offtip=%@&earlytime=%@&outtip=%d&sply=%d"
 // 45、查询某成员是否已在某成员组
 #define IsInSomeGroup_Url @"http://zsylou.wxwkf.com/index.php/home/attence/check_is_in_group?uid=%@"
+
+// 获取通讯录数据
+#define ContactList_Url @"http://zsylou.wxwkf.com/index.php/home/easemob/my_contacts?uid=%@"
 // 群组成员
 #define GroupMember_URL @"http://zsylou.wxwkf.com/index.php/home/easemob/get_group_users_list?uid=%@&gid=%@"
 
@@ -250,6 +253,11 @@
 #define NineTeamUsed_Url @"http://192.168.0.18/index.php/wei/retransmission/groupRetrans?uid=%@&date=%@"
 // 九宫格--我已经使用
 #define NineMyUsed_Url @"http://192.168.0.18/index.php/wei/retransmission/myRetrans?uid=%@&date=%@"
+
+// 九宫格--模板详情
+#define NineDetial_Url @"http://192.168.0.18/index.php/wei/retransmission/detail?uid=%@&id=%@&date=%@"
+// 九宫格--转发提醒
+#define NineResendTips_Url @"http://192.168.0.18/index.php/wei/retransmission/retransRemind?uid=%@&id=%@"
 
 
 
