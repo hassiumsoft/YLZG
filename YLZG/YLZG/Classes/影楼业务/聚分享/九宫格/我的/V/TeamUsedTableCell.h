@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "TeamUsedModel.h"
+#import "MyUsedModel.h"
 
 /********* 团队已用 ***********/
 
 @interface TeamUsedTableCell : UITableViewCell
 
 
-@property (strong,nonatomic) TeamUsedModel *model;
+@property (strong,nonatomic) TeamUsedModel *teamUsedModel;
+
+@property (strong,nonatomic) MyUsedModel *myUsedModel;
 
 + (instancetype)sharedTeamUsedTableCell:(UITableView *)tableView;
 

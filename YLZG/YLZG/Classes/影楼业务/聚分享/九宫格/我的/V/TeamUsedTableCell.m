@@ -22,8 +22,8 @@
 @property (strong,nonatomic) UIImageView *isUsedImageV;
 /** 转发次数 */
 @property (strong,nonatomic) UILabel *resendLabel;
-/** 转发时间 */
-@property (strong,nonatomic) UILabel *timeLabel;
+//* 转发时间 
+//@property (strong,nonatomic) UILabel *timeLabel;
 
 @end
 
@@ -39,23 +39,36 @@
     }
     return cell;
 }
-- (void)setModel:(TeamUsedModel *)model
+- (void)setTeamUsedModel:(TeamUsedModel *)teamUsedModel
 {
-    _model = model;
-    [_mobanImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[self imageWithBgColor:HWRandomColor]];
-    _mobanNameL.text = model.name;
-    if (model.mind) {
+    _teamUsedModel = teamUsedModel;
+    [_mobanImageV sd_setImageWithURL:[NSURL URLWithString:teamUsedModel.thumb] placeholderImage:[self imageWithBgColor:HWRandomColor]];
+    _mobanNameL.text = teamUsedModel.name;
+    if (teamUsedModel.mind) {
         _bifaImageV.image = [UIImage imageNamed:@"ico_betfair_red"];
     }else{
         _bifaImageV.image = [UIImage imageNamed:@"ico_betfair"];
     }
-    if (model.useis) {
+    if (teamUsedModel.useis) {
         _isUsedImageV.image = [UIImage imageNamed:@"ico_hasbeenused"];
     }else{
         _isUsedImageV.image = [UIImage imageNamed:@"nine_unused"];
     }
-    _resendLabel.text = [NSString stringWithFormat:@"已被转发%@次",model.times];
+    _resendLabel.text = [NSString stringWithFormat:@"已被转发%@次",teamUsedModel.times];
 }
+
+- (void)setMyUsedModel:(MyUsedModel *)myUsedModel
+{
+    _myUsedModel = myUsedModel;
+    [_mobanImageV sd_setImageWithURL:[NSURL URLWithString:myUsedModel.thumb] placeholderImage:[self imageWithBgColor:HWRandomColor]];
+    _mobanNameL.text = myUsedModel.name;
+    
+    _resendLabel.text = [self TimeIntToDateStr:myUsedModel.create_at];
+    _bifaImageV.hidden = YES;
+    _isUsedImageV.hidden = YES;
+    
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

@@ -9,7 +9,7 @@
 #import "ZhuanfaCountController.h"
 #import <MJExtension.h>
 #import "FriendDetialController.h"
-#import "NormalTableCell.h"
+#import "ZhuanfaCountTableCell.h"
 #import "YLZGDataManager.h"
 #import <UIImageView+WebCache.h>
 #import "CountHeadLabel.h"
@@ -50,34 +50,12 @@
 {
     ZhuanfaListModel *zhuanfaModel = self.countModel.personlist[indexPath.row];
     
-    NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
-    [tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-    [cell.xian removeFromSuperview];
-    [cell setAccessoryType:UITableViewCellAccessoryNone];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    
-    UILabel *label = [self CreateNumLabel];
-    label.text = zhuanfaModel.times;
-    [cell.contentView addSubview:label];
-    
-    [[YLZGDataManager sharedManager] getOneStudioByUID:zhuanfaModel.uid Block:^(ContactersModel *model) {
-        cell.textLabel.text = model.realname;
-        [cell.imageV sd_setImageWithURL:[NSURL URLWithString:model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"上次转发时间:%@",[self TimeIntToDateStr:zhuanfaModel.create_at]];
-        
-    }];
-    
+    ZhuanfaCountTableCell *cell = [ZhuanfaCountTableCell sharedZhuanfaCountCell:tableView];
+    cell.model = zhuanfaModel;
     return cell;
 }
 
-- (UILabel *)CreateNumLabel
-{
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 85, 15, 80, 30)];
-    label.textColor = MainColor;
-    label.font = [UIFont boldSystemFontOfSize:24];
-    label.textAlignment = NSTextAlignmentCenter;
-    return label;
-}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

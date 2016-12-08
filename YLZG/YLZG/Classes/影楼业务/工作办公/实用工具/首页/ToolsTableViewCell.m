@@ -65,13 +65,11 @@
     }];
     
     self.appIconV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"12"]];
-    self.appIconV.layer.masksToBounds = YES;
-    self.appIconV.layer.cornerRadius = 30*CKproportion;
     [self addSubview:self.appIconV];
     [self.appIconV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
         make.left.equalTo(self.mas_left).offset(3);
-        make.width.and.height.equalTo(@(54));
+        make.width.and.height.equalTo(@(40));
     }];
     
     self.appNameLabel = [[UILabel alloc]init];
@@ -79,7 +77,7 @@
     [self addSubview:self.appNameLabel];
     [self.appNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.appIconV.mas_centerY);
-        make.left.equalTo(self.appIconV.mas_right).offset(3);
+        make.left.equalTo(self.appIconV.mas_right).offset(6);
         make.height.equalTo(@22);
     }];
     
