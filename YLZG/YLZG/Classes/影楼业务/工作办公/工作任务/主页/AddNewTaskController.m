@@ -238,7 +238,7 @@
                 }
                 self.guanzhuArrJson = [self toJsonStr:jsonArr];
                 StaffInfoModel *lastModel = [modelArray lastObject];
-                self.guanzhuerStr = [NSString stringWithFormat:@"%@等%ld人",lastModel.nickname,modelArray.count];
+                self.guanzhuerStr = [NSString stringWithFormat:@"%@等%ld人",lastModel.nickname,(unsigned long)modelArray.count];
                 [self.tableView reloadData];
             };
             [self.navigationController pushViewController:care animated:YES];
@@ -278,7 +278,6 @@
 }
 - (void)addNewTask
 {
-    // http://192.168.0.18/index.php/home/task/create?uid=159&pid=1&name=任务名称&manager=159&deadline=2016-11-22&check=[“检查项1”,”检查项2”]&care=[“130”,”131”,”129”]&description=任务描述
     if ((self.nameField.text.length < 1) || (self.selectProduceStr.length < 1) || (self.endDateStr.length < 1)){
         [self showErrorTips:@"完善带*选项"];
         return;

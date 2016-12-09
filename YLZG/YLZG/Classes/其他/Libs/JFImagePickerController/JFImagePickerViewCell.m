@@ -78,7 +78,7 @@
 	CGPoint location = [tap locationInView:self];
 	if (CGRectContainsPoint(CGRectMake(placeholder.frame.origin.x-5, placeholder.frame.origin.y-5, placeholder.frame.size.width+10, placeholder.frame.size.height+10), location)) {
 		if (self.numOfSelect==nil&&ASSETHELPER.selectdPhotos.count>= ASSETHELPER.maxCount) {
-            [[[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"最多可以选择%@张照片",@(ASSETHELPER.maxCount)] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+            [[[UIAlertView alloc] initWithTitle:@"温馨提示" message:[NSString stringWithFormat:@"最多可以选择%@张照片",@(ASSETHELPER.maxCount)] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
 			return;
 		}
 		if (self.numOfSelect==nil) {

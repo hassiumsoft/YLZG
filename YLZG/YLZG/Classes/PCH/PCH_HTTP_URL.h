@@ -91,7 +91,7 @@
 
 // 14.今日财务 旧http://zsylou.wxwkf.com/index.php/home/todayfinance/query?date=2016-04-25&uid=159
 
-#define Financial_Url @"http://192.168.0.18/index.php/home/todayfinance/query?date=%@&uid=%@"
+#define Financial_Url @"http://101.200.186.72/index.php/home/todayfinance/query?date=%@&uid=%@"
 
 // 16.查询套系名称及价格
 #define SearchTaoxi_URL @"http://zsylou.wxwkf.com/index.php/home/set/query_set?uid=%@"
@@ -216,53 +216,53 @@
 // 工具-H5页面
 #define YingxiaoToolHTM5_URL @"http://zsylou.wxwkf.com/index.php/home/tool/show?uid=%@&id=%@"
 // 任务--项目列表
-#define TaskProductList_URL @"http://192.168.0.18/index.php/home/project/lists?uid=%@"
+#define TaskProductList_URL @"http://101.200.186.72/index.php/home/project/lists?uid=%@"
 // 任务--创建项目
-#define CreateProduce_URL @"http://192.168.0.18/index.php/home/project/create?uid=%@&name=%@&member=%@"
+#define CreateProduce_URL @"http://101.200.186.72/index.php/home/project/create?uid=%@&name=%@&member=%@"
 // 项目详情
-#define ProduceDetial_URL @"http://192.168.0.18/index.php/home/project/detail?uid=%@&id=%@"
+#define ProduceDetial_URL @"http://101.200.186.72/index.php/home/project/detail?uid=%@&id=%@"
 // 删除任务里的项目
-#define DeleteTaskProduce_Url @"http://192.168.0.18/index.php/home/project/delete?uid=%@&id=%@"
+#define DeleteTaskProduce_Url @"http://101.200.186.72/index.php/home/project/delete?uid=%@&id=%@"
 // 创建新任务
-#define CreateNewTask_Url @"http://192.168.0.18/index.php/home/task/create?uid=%@&pid=%@&name=%@&manager=%@&deadline=%@&check=%@&care=%@&description=%@"
+#define CreateNewTask_Url @"http://101.200.186.72/index.php/home/task/create?uid=%@&pid=%@&name=%@&manager=%@&deadline=%@&check=%@&care=%@&description=%@"
 // 任务-任务列表
-#define TaskList_Url @"http://192.168.0.18/index.php/home/task/lists?uid=%@"
+#define TaskList_Url @"http://101.200.186.72/index.php/home/task/lists?uid=%@"
 // 任务-详细信息
-#define TaskDetial_Url @"http://192.168.0.18/index.php/home/task/detail?uid=%@&id=%@"
+#define TaskDetial_Url @"http://101.200.186.72/index.php/home/task/detail?uid=%@&id=%@"
 // 任务--修改任务状态
-#define UpdateTaskStatus_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&status=%d"
+#define UpdateTaskStatus_Url @"http://101.200.186.72/index.php/home/task/update?uid=%@&pid=%@&id=%@&status=%d"
 // 任务--修改任务名称
-#define UpdateTaskName_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&name=%@"
+#define UpdateTaskName_Url @"http://101.200.186.72/index.php/home/task/update?uid=%@&pid=%@&id=%@&name=%@"
 // 任务--修改任务负责人
-#define UpdateTaskFuzer_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&manager=%@"
+#define UpdateTaskFuzer_Url @"http://101.200.186.72/index.php/home/task/update?uid=%@&pid=%@&id=%@&manager=%@"
 // 任务--修改任务截止日期
-#define UpdateTaskDate_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&deadline=%@"
+#define UpdateTaskDate_Url @"http://101.200.186.72/index.php/home/task/update?uid=%@&pid=%@&id=%@&deadline=%@"
 
 
 // 九宫格--全部模板
-#define NineList_Url @"http://192.168.0.18/index.php/wei/retransmission/index?uid=%@"
+#define NineList_Url @"http://101.200.186.72/index.php/wei/retransmission/index?uid=%@"
 // 九宫格--搜索模板
-#define NineSearch_Url @"http://192.168.0.18/index.php/wei/retransmission/search?uid=%@&keyword=%@"
+#define NineSearch_Url @"http://101.200.186.72/index.php/wei/retransmission/search?uid=%@&keyword=%@"
 // 九宫格--分类模板
-#define NineCategory_Url @"http://192.168.0.18/index.php/wei/retransmission/lists?uid=%@&id=%@&page=%d&nums=%d"
+#define NineCategory_Url @"http://101.200.186.72/index.php/wei/retransmission/lists?uid=%@&id=%@&page=%d&nums=%d"
 // 九宫格--关注列表
-#define NineCareList_Url @"http://192.168.0.18/index.php/wei/retransmission/myCare?uid=%@"
+#define NineCareList_Url @"http://101.200.186.72/index.php/wei/retransmission/myCare?uid=%@"
 // 九宫格--编辑关注模本分类
-#define NineCareEdit_Url @"http://192.168.0.18/index.php/wei/retransmission/updateCareCate?uid=%@&care=%@"
+#define NineCareEdit_Url @"http://101.200.186.72/index.php/wei/retransmission/updateCareCate?uid=%@&care=%@"
 // 九宫格--团队已经使用
-#define NineTeamUsed_Url @"http://192.168.0.18/index.php/wei/retransmission/groupRetrans?uid=%@&date=%@"
+#define NineTeamUsed_Url @"http://101.200.186.72/index.php/wei/retransmission/groupRetrans?uid=%@&date=%@"
 // 九宫格--我已经使用
-#define NineMyUsed_Url @"http://192.168.0.18/index.php/wei/retransmission/myRetrans?uid=%@&date=%@"
+#define NineMyUsed_Url @"http://101.200.186.72/index.php/wei/retransmission/myRetrans?uid=%@&date=%@"
 // 九宫格--模板详情
-#define NineDetial_Url @"http://192.168.0.18/index.php/wei/retransmission/detail?uid=%@&id=%@&date=%@"
+#define NineDetial_Url @"http://101.200.186.72/index.php/wei/retransmission/detail?uid=%@&id=%@&date=%@"
 // 九宫格--转发提醒
-#define NineResendTips_Url @"http://192.168.0.18/index.php/wei/retransmission/retransRemind?uid=%@&id=%@"
+#define NineResendTips_Url @"http://101.200.186.72/index.php/wei/retransmission/retransRemind?uid=%@&id=%@"
 // 九宫格--上传模板
-#define UpLoadMoban_Url @"http://192.168.0.18/index.php/wei/retransmission/create?uid=%@&name=%@&content=%@&isShare=%d"
+#define UpLoadMoban_Url @"http://101.200.186.72/index.php/wei/retransmission/create?uid=%@&name=%@&content=%@&isShare=%d"
 // 九宫格--删除我的模板
-#define DeleteMyMoban_Url @"http://192.168.0.18/index.php/wei/retransmission/delete?uid=%@&id=%@"
+#define DeleteMyMoban_Url @"http://101.200.186.72/index.php/wei/retransmission/delete?uid=%@&id=%@"
 // 九宫格--我的模板
-#define GetMyMoban_Url @"http://192.168.0.18/index.php/wei/retransmission/myTemplet?uid=%@&date=%@"
+#define GetMyMoban_Url @"http://101.200.186.72/index.php/wei/retransmission/myTemplet?uid=%@&date=%@"
 
 
 

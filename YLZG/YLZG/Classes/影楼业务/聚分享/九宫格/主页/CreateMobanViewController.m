@@ -2,7 +2,7 @@
 //  CreateMobanViewController.m
 //  YLZG
 //
-//  Created by Chan_Sir on 2016/12/7.
+//  Created by Chan_Sir on 2016/12/9.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
@@ -11,9 +11,15 @@
 #import "ZCAccountTool.h"
 #import "HomeNavigationController.h"
 #import "HTTPManager.h"
+#import "NoDequTableCell.h"
 #import <Masonry.h>
 
-@interface CreateMobanViewController ()<UITextViewDelegate>
+
+@interface CreateMobanViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
+
+@property (strong,nonatomic) UITableView *tableView;
+
+@property (copy,nonatomic) NSArray *array;
 
 @property (strong,nonatomic) UIView *photoView;
 
@@ -25,8 +31,12 @@
 
 @property (strong,nonatomic) UISwitch *switchV;
 
+@property (assign,nonatomic) CGFloat PhotoHeight;
+
+@property (strong,nonatomic) UIView *footView;
 
 @end
+
 
 #define ContentPlace @"将作为您发送到朋友圈的文字描述"
 
@@ -37,79 +47,101 @@
     self.title = @"创建模板";
     [self setupSubViews];
 }
+
+#pragma mark - 上传模板
+- (void)uploadMoban
+{
+    [self.view endEditing:YES];
+    
+    if (self.nameField.text.length < 1) {
+        [self showErrorTips:@"请输入模板名称"];
+        return;
+    }
+    if (self.contentTextView.text.length < 1) {
+        [self showErrorTips:@"请输入模板内容"];
+        return;
+    }
+    NSArray *imageArray = [self.pickerView getPhotos];
+    if (imageArray.count < 1) {
+        [self showErrorTips:@"请选择图片"];
+        return;
+    }
+    
+    // UpLoadMoban_Url
+    NSString *url = @"http://192.168.0.18/index.php/wei/retransmission/create";
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param setObject:[ZCAccountTool account].userID forKey:@"uid"];
+    [param setObject:self.nameField.text forKey:@"name"];
+    [param setObject:self.contentTextView.text forKey:@"content"];
+    [param setObject:@(self.switchV.on) forKey:@"isShare"];
+    
+    for (int i = 0; i < imageArray.count; i++) {
+        
+        UIImage *image = imageArray[i];
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        NSString *baseStr = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+        NSString *key = [NSString stringWithFormat:@"file%d",i+1];
+        
+        [param setObject:baseStr forKey:key];
+    }
+    [self showHudMessage:@"正在上传···"];
+    
+    [HTTPManager POST:url params:param success:^(NSURLSessionDataTask *task, id responseObject) {
+        [self hideHud:0];
+        
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+            [alertC addAction:action1];
+            [self presentViewController:alertC animated:YES completion:^{
+                
+            }];
+        }else{
+            [self sendErrorWarning:message];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self hideHud:0];
+        [self sendErrorWarning:error.localizedDescription];
+    }];
+    
+}
+
+#pragma mark - 视图相关
 - (void)setupSubViews
 {
-    // 模板名称
     
-    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 10, 80, 44)];
-    label1.text = @"模板名称";
-    label1.textColor = RGBACOLOR(37, 37, 37, 1);
-    label1.textAlignment = NSTextAlignmentCenter;
-    label1.font = [UIFont systemFontOfSize:16];
+    self.PhotoHeight = 280/3;
+    self.array = @[@"模板名称",@"模板描述",@"共享模板"];
+    [self.view addSubview:self.tableView];
+    self.footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.PhotoHeight)];
+    self.footView.backgroundColor = self.view.backgroundColor;
+    self.footView.userInteractionEnabled = YES;
     
-    self.nameField = [[UITextField alloc]initWithFrame:CGRectMake(0, 10, self.view.width, 44)];
-    self.nameField.placeholder = @"如：春节大放送";
-    NSDictionary *dict = @{NSFontAttributeName:[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor lightGrayColor]};
-    self.nameField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:self.nameField.placeholder attributes:dict];
-    self.nameField.font = [UIFont systemFontOfSize:15];
-    self.nameField.backgroundColor = [UIColor whiteColor];
-    self.nameField.leftView = label1;
-    self.nameField.leftViewMode = UITextFieldViewModeAlways;
-    [self.view addSubview:self.nameField];
-    
-    // 模板内容
-    UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(label1.frame) + 10, 80, 44)];
-    label2.text = @"模板内容";
-    label2.textColor = label1.textColor;
-    label2.backgroundColor = [UIColor clearColor];
-    label2.textAlignment = NSTextAlignmentCenter;
-    label2.font = [UIFont systemFontOfSize:16];
-    [self.view addSubview:label2];
-    
-    self.contentTextView = [[UITextView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(label2.frame), 78, self.view.width - 80 - 10, 80)];
-    self.contentTextView.text = ContentPlace;
-    self.contentTextView.delegate = self;
-    self.contentTextView.font = [UIFont systemFontOfSize:13];
-    self.contentTextView.textColor = [UIColor lightGrayColor];
-    self.contentTextView.backgroundColor = [UIColor whiteColor];
-    self.contentTextView.layer.masksToBounds = YES;
-    self.contentTextView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.contentTextView.layer.borderWidth = 0.5;
-    self.contentTextView.layer.cornerRadius = 6;
-    [self.view addSubview:self.contentTextView];
-    
-    // 是否共享
-    UIView *shareView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.contentTextView.frame) + 10, self.view.width, 44)];
-    shareView.userInteractionEnabled = YES;
-    shareView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:shareView];
-    
-    UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80, 44)];
-    label3.text = @"共享模板";
-    label3.textColor = label1.textColor;
-    label3.backgroundColor = [UIColor clearColor];
-    label3.textAlignment = NSTextAlignmentCenter;
-    label3.font = [UIFont systemFontOfSize:16];
-    [shareView addSubview:label3];
-    
-    self.switchV = [[UISwitch alloc]initWithFrame:CGRectMake(self.view.width - 60, 4, 50, 36)];
-    [self.switchV setOnTintColor:MainColor];
-    [self.switchV setOn:YES animated:YES];
-    [shareView addSubview:self.switchV];
-    
-    // 9张图片的视图
-    self.photoView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(shareView.frame) + 15, SCREEN_WIDTH, 280/3)];
+    // 放置9张图片的UI
+    self.photoView = [[UIView alloc]initWithFrame:CGRectMake(0, 6, SCREEN_WIDTH, self.PhotoHeight)];
     self.photoView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.photoView];
+    [self.footView addSubview:self.photoView];
+    
+    CGFloat space = 20;
+    CGFloat W = (SCREEN_WIDTH - space * 4)/3;
     
     WSImagePickerConfig *config = [WSImagePickerConfig new];
-    config.itemSize = CGSizeMake(80, 80);
+    config.itemSize = CGSizeMake(W, W);
     config.photosMaxCount = 9;
     
     WSImagePickerView *pickerView = [[WSImagePickerView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 0) config:config];
-    //Height changed with photo selection
     __weak typeof(self) weakSelf = self;
     pickerView.viewHeightChanged = ^(CGFloat height) {
+        
+        self.PhotoHeight = height;
+        
+        [weakSelf.footView setHeight:self.PhotoHeight];
         weakSelf.photoView.height = height;
         [weakSelf.view setNeedsLayout];
         [weakSelf.view layoutIfNeeded];
@@ -117,32 +149,130 @@
     pickerView.navigationController = self.navigationController;
     [self.photoView addSubview:pickerView];
     self.pickerView = pickerView;
-    
-    //refresh superview height
     [pickerView refreshImagePickerViewWithPhotoArray:nil];
     
-    // 保存模板按钮
-    UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    saveButton.backgroundColor = MainColor;
-    [saveButton setTitle:@"保存模板" forState:UIControlStateNormal];
-    [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    saveButton.layer.masksToBounds = YES;
-    saveButton.layer.cornerRadius = 4;
-    [saveButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-        // 上传模板
-        
-        [self uploadMoban];
-    }];
-    [self.view addSubview:saveButton];
-    [saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left).offset(20);
-        make.top.equalTo(self.photoView.mas_bottom).offset(40);
-        make.right.equalTo(self.view.mas_right).offset(-20);
-        make.height.equalTo(@40);
-    }];
+    self.tableView.tableFooterView = self.footView;
+    
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(uploadMoban)];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     
 }
 
+#pragma mark - 表格绘制
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.array.count;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        // 模板名称
+        NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+        cell.textLabel.text = self.array[indexPath.section];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        [cell.contentLabel removeFromSuperview];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell addSubview:self.nameField];
+        return cell;
+    }else if (indexPath.section == 1){
+        // 模板描述
+        NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+        cell.textLabel.text = self.array[indexPath.section];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        [cell.contentLabel removeFromSuperview];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell addSubview:self.self.contentTextView];
+        return cell;
+    }else{
+        // 共享模板
+        NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+        cell.textLabel.text = self.array[indexPath.section];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        [cell.contentLabel removeFromSuperview];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell addSubview:self.switchV];
+        return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.view endEditing:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 6;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footV = [UIView new];
+    footV.backgroundColor = self.view.backgroundColor;
+    return footV;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return 44;
+    }else if (indexPath.section == 1){
+        return 80;
+    }else{
+        return 44;
+    }
+}
+#pragma mark - 懒加载
+- (UITableView *)tableView
+{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+        _tableView.backgroundColor = self.view.backgroundColor;
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        _tableView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
+    }
+    return _tableView;
+}
+- (UITextField *)nameField
+{
+    if (!_nameField) {
+        _nameField = [[UITextField alloc]initWithFrame:CGRectMake(90, 0, self.view.width - 90 - 10, 44)];
+        _nameField.placeholder = @"如：春节大放送";
+        NSDictionary *dict = @{NSFontAttributeName:[UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor lightGrayColor]};
+        _nameField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:self.nameField.placeholder attributes:dict];
+        _nameField.font = [UIFont systemFontOfSize:15];
+        _nameField.backgroundColor = [UIColor whiteColor];
+        _nameField.leftViewMode = UITextFieldViewModeAlways;
+        _nameField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        
+    }
+    return _nameField;
+}
+- (UITextView *)contentTextView
+{
+    if (!_contentTextView) {
+        _contentTextView = [[UITextView alloc]initWithFrame:CGRectMake(90, 10, self.view.width - 100, 60)];
+        _contentTextView.text = ContentPlace;
+        _contentTextView.delegate = self;
+        _contentTextView.font = [UIFont systemFontOfSize:13];
+        _contentTextView.textColor = [UIColor lightGrayColor];
+        _contentTextView.backgroundColor = [UIColor whiteColor];
+        _contentTextView.layer.masksToBounds = YES;
+        _contentTextView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _contentTextView.layer.borderWidth = 0.5;
+        _contentTextView.layer.cornerRadius = 6;
+        
+    }
+    return _contentTextView;
+}
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     if ([textView.text isEqualToString:ContentPlace]) {
@@ -158,98 +288,18 @@
         textView.font = [UIFont systemFontOfSize:12];
         textView.textColor = [UIColor lightGrayColor];
     }
+
 }
-
-
-#pragma mark - 上传模板
-- (void)uploadMoban
+- (UISwitch *)switchV
 {
-    
-    if (self.nameField.text.length < 1) {
-        [self showErrorTips:@"请输入模板名称"];
-        return;
+    if (!_switchV) {
+        _switchV = [[UISwitch alloc]initWithFrame:CGRectMake(self.view.width - 60, 4, 50, 36)];
+        [_switchV setOnTintColor:MainColor];
+        [_switchV setOn:YES animated:YES];
     }
-    if (self.contentTextView.text.length < 1) {
-        [self showErrorTips:@"请输入模板内容"];
-        return;
-    }
-    NSArray *imageArray = [self.pickerView getPhotos];
-    if (imageArray.count < 1) {
-        [self showErrorTips:@"请选择图片"];
-        return;
-    }
-    NSString *url = [NSString stringWithFormat:UpLoadMoban_Url,[ZCAccountTool account].userID,self.nameField.text,self.contentTextView.text,self.switchV.on];
-    
-    
-    NSString *name = @"file";
-    NSString *fileName = @"moban.png";
-    [self showHudMessage:@"上传中···"];
-    
-    
-/**
-    NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
-    NSString *URL = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
-    //遍历这个图片数组
-    
-    NSMutableArray *imageSourceArr = [NSMutableArray array];
-    
-    for (UIImage *image in imageArray) {
-        
-        //将每张图片转化成data数据
-        NSData *imageData = UIImageJPEGRepresentation(image, 0.3);
-        
-        //将转化后的data数据加入到一个可变数组中
-        [imageSourceArr addObject:imageData];
-    }
-    
-    //请求格式为二进制格式
-    AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
-    
-    //创建请求对象
-    NSMutableURLRequest *request = [serializer multipartFormRequestWithMethod:@"POST" URLString:URL parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        //循环遍历imageSourceArr可变数组
-        [imageSourceArr enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            
-            [formData appendPartWithFileData:obj name:name fileName:fileName mimeType:@"image/jpg"];
-        }];
-        
-    } error:nil];
-    //创建网络请求的管理类对象
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    
-    //创建上传任务对象
-    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:^(NSProgress *uploadProgress) {
-        NSLog(@"uploadProgress = %@",uploadProgress);
-    } completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        if (error) {
-            [self showHudMessage:error.localizedDescription];
-        }
-        [self hideHud:0];
-        NSLog(@"responseObject = %@",responseObject);
-    }];
-    
-    [uploadTask resume];
- 
- */
-    
-    
-    [HTTPManager uploadMoreImagesURL:url imagesArray:imageArray params:nil name:name fileName:fileName mimeType:@"image/png" progress:^(NSProgress *progress) {
-        NSLog(@" progress = %@",progress);
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self hideHud:0];
-        int code = [[[responseObject objectForKey:@"code"] description] intValue];
-        NSString *message = [[responseObject objectForKey:@"message"] description];
-        
-        if (code == 1) {
-            [self sendErrorWarning:message];
-        }else{
-            [self sendErrorWarning:message];
-        }
-    } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
-        [self sendErrorWarning:error.localizedDescription];
-    }];
-    
+    return _switchV;
 }
+
 
 @end
+

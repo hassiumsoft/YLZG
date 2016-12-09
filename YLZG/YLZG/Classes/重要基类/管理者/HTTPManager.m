@@ -13,7 +13,7 @@
 +(void)GET:(NSString *)url params:(NSDictionary *)params
    success:(YLZGResponseSuccess)success fail:(YLZGResponseFail)fail{
     
-    AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO];
+    AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO TimeOut:12];
     
     NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
     NSString *URL = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
@@ -31,7 +31,7 @@
 +(void)GET:(NSString *)url baseURL:(NSString *)baseUrl params:(NSDictionary *)params
    success:(YLZGResponseSuccess)success fail:(YLZGResponseFail)fail{
     
-    AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:baseUrl sessionConfiguration:NO];
+    AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:baseUrl sessionConfiguration:NO TimeOut:12];
     NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
     NSString *URL = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
     [manager GET:URL parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -51,7 +51,7 @@
 +(void)POST:(NSString *)url params:(NSDictionary *)params
     success:(YLZGResponseSuccess)success fail:(YLZGResponseFail)fail{
     
-    AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO];
+    AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO TimeOut:12];
     NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
     NSString *URL = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
     [manager POST:URL parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -72,7 +72,7 @@
         success(nil,dic);
     }else{
         // 读取缓存失败、存数据
-        AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO];
+        AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO TimeOut:12];
         
         NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
         NSString *URL = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
@@ -109,7 +109,7 @@
 }
 + (void)uploadWithURL:(NSString *)url params:(NSDictionary *)params fileData:(NSData *)filedata name:(NSString *)name fileName:(NSString *)filename mimeType:(NSString *)mimeType progress:(YLZGProgress)progress success:(YLZGResponseSuccess)success fail:(YLZGResponseFail)fail
 {
-    AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO];
+    AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO TimeOut:12];
     NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
     NSString *URL = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
     [manager POST:URL parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
@@ -132,19 +132,23 @@
 
 + (void)uploadMoreImagesURL:(NSString *)url imagesArray:(NSArray *)images params:(NSDictionary *)params name:(NSString *)name fileName:(NSString *)filename mimeType:(NSString *)mimeType progress:(YLZGProgress)progress success:(YLZGResponseSuccess)success fail:(YLZGResponseFail)fail
 {
-    AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO];
+    AFHTTPSessionManager *manager = [HTTPManager managerWithBaseURL:nil sessionConfiguration:NO TimeOut:30];
     NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
     NSString *URL = [url stringByAddingPercentEncodingWithAllowedCharacters:set];
+    NSLog(@"URL = %@",URL);
     [manager POST:URL parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
         for (int i = 0; i < images.count; i++) {
             
             UIImage *image = images[i];
-            
             NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
             
-            NSString *FileName = [NSString stringWithFormat:@"moban_%d",i];
+            NSData *newImageData = [imageData base64EncodedDataWithOptions:NSDataBase64Encoding64CharacterLineLength];
             
-            [formData appendPartWithFileData:imageData name:name fileName:FileName mimeType:mimeType];
+            NSString *FileName = [NSString stringWithFormat:@"%d.jpeg",i];
+            
+            
+            [formData appendPartWithFileData:newImageData name:name fileName:FileName mimeType:mimeType];
             
         }
         
@@ -160,7 +164,7 @@
     }];
 }
 
-+(AFHTTPSessionManager *)managerWithBaseURL:(NSString *)baseURL  sessionConfiguration:(BOOL)isconfiguration{
++(AFHTTPSessionManager *)managerWithBaseURL:(NSString *)baseURL  sessionConfiguration:(BOOL)isconfiguration TimeOut:(CGFloat)timeOut{
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFHTTPSessionManager *manager =nil;
@@ -181,7 +185,7 @@
     
     //如果报接受类型不一致请替换一致text/html或别的
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json",@"text/javascript", nil];
-    [manager.requestSerializer setTimeoutInterval:10.0];
+    [manager.requestSerializer setTimeoutInterval:timeOut];
     manager.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     
     return manager;

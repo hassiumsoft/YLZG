@@ -194,7 +194,7 @@
         self.navigationItem.rightBarButtonItem = nil;
         return;
     }
-    NSString *message = [NSString stringWithFormat:@"发送(%ld)",selectOrderArr.count];
+    NSString *message = [NSString stringWithFormat:@"发送(%ld)",(unsigned long)selectOrderArr.count];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:message style:UIBarButtonItemStylePlain target:self action:@selector(sendOrder)];
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     

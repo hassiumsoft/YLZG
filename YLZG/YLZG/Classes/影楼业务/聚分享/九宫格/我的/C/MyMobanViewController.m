@@ -148,6 +148,7 @@
         [self.tableView.mj_header endRefreshing];
         if (code == 1) {
             NSArray *result = [responseObject objectForKey:@"result"];
+            
             if (result.count >= 1) {
                 self.array = [MyMobanModel mj_objectArrayWithKeyValuesArray:result];
                 [self.tableView reloadData];

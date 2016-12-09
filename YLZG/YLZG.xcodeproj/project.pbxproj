@@ -274,7 +274,6 @@
 		3B7ABCF71DB6176600F3D12B /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B7ABCE51DB6176600F3D12B /* EMVoiceConverter.mm */; };
 		3B7ABCF81DB6176600F3D12B /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7ABCE91DB6176600F3D12B /* libopencore-amrnb.a */; };
 		3B7ABCF91DB6176600F3D12B /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7ABCED1DB6176600F3D12B /* libopencore-amrwb.a */; };
-		3B8531871DF8F9B800AB9C4F /* CreateMobanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B85313E1DF8F9B800AB9C4F /* CreateMobanViewController.m */; };
 		3B8531881DF8F9B800AB9C4F /* NineDetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531401DF8F9B800AB9C4F /* NineDetialViewController.m */; };
 		3B8531891DF8F9B800AB9C4F /* NineTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531421DF8F9B800AB9C4F /* NineTabbarController.m */; };
 		3B85318A1DF8F9B800AB9C4F /* ZhuanfaCountController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531441DF8F9B800AB9C4F /* ZhuanfaCountController.m */; };
@@ -320,6 +319,7 @@
 		3B8531D01DF9194600AB9C4F /* WSPhotosBroseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531CB1DF9194600AB9C4F /* WSPhotosBroseVC.m */; };
 		3B8531D31DF9330B00AB9C4F /* WSImageBroswerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531D21DF9330B00AB9C4F /* WSImageBroswerVC.m */; };
 		3B8531D61DF9605900AB9C4F /* MyMobanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8531D51DF9605900AB9C4F /* MyMobanModel.m */; };
+		3B85C25A1DFA4529007FEFD7 /* CreateMobanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B85C2591DFA4529007FEFD7 /* CreateMobanViewController.m */; };
 		3B87BFE91DF54C9700970625 /* QZSortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFE61DF54C9700970625 /* QZSortCell.m */; };
 		3B87BFEE1DF558EC00970625 /* QZConditionFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFEB1DF558EC00970625 /* QZConditionFilterView.m */; };
 		3B87BFEF1DF558EC00970625 /* QZFilterDataTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFED1DF558EC00970625 /* QZFilterDataTableView.m */; };
@@ -1016,8 +1016,6 @@
 		3B7ABCEB1DB6176600F3D12B /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
 		3B7ABCEC1DB6176600F3D12B /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
 		3B7ABCED1DB6176600F3D12B /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
-		3B85313D1DF8F9B800AB9C4F /* CreateMobanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMobanViewController.h; sourceTree = "<group>"; };
-		3B85313E1DF8F9B800AB9C4F /* CreateMobanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMobanViewController.m; sourceTree = "<group>"; };
 		3B85313F1DF8F9B800AB9C4F /* NineDetialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineDetialViewController.h; sourceTree = "<group>"; };
 		3B8531401DF8F9B800AB9C4F /* NineDetialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineDetialViewController.m; sourceTree = "<group>"; };
 		3B8531411DF8F9B800AB9C4F /* NineTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineTabbarController.h; sourceTree = "<group>"; };
@@ -1108,6 +1106,8 @@
 		3B8531D21DF9330B00AB9C4F /* WSImageBroswerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSImageBroswerVC.m; sourceTree = "<group>"; };
 		3B8531D41DF9605900AB9C4F /* MyMobanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMobanModel.h; sourceTree = "<group>"; };
 		3B8531D51DF9605900AB9C4F /* MyMobanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMobanModel.m; sourceTree = "<group>"; };
+		3B85C2581DFA4529007FEFD7 /* CreateMobanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMobanViewController.h; sourceTree = "<group>"; };
+		3B85C2591DFA4529007FEFD7 /* CreateMobanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMobanViewController.m; sourceTree = "<group>"; };
 		3B87BFE51DF54C9700970625 /* QZSortCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZSortCell.h; sourceTree = "<group>"; };
 		3B87BFE61DF54C9700970625 /* QZSortCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZSortCell.m; sourceTree = "<group>"; };
 		3B87BFEA1DF558EC00970625 /* QZConditionFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZConditionFilterView.h; sourceTree = "<group>"; };
@@ -3015,8 +3015,8 @@
 		3B85313C1DF8F9B800AB9C4F /* 主页 */ = {
 			isa = PBXGroup;
 			children = (
-				3B85313D1DF8F9B800AB9C4F /* CreateMobanViewController.h */,
-				3B85313E1DF8F9B800AB9C4F /* CreateMobanViewController.m */,
+				3B85C2581DFA4529007FEFD7 /* CreateMobanViewController.h */,
+				3B85C2591DFA4529007FEFD7 /* CreateMobanViewController.m */,
 				3B85313F1DF8F9B800AB9C4F /* NineDetialViewController.h */,
 				3B8531401DF8F9B800AB9C4F /* NineDetialViewController.m */,
 				3B8531411DF8F9B800AB9C4F /* NineTabbarController.h */,
@@ -4437,7 +4437,6 @@
 				3B343B581DEBFECC00474549 /* SelectTaskCaresController.m in Sources */,
 				3B9EF3CD1DEFC72D00C66888 /* TaoxiProductModel.m in Sources */,
 				3B87BFEF1DF558EC00970625 /* QZFilterDataTableView.m in Sources */,
-				3B8531871DF8F9B800AB9C4F /* CreateMobanViewController.m in Sources */,
 				3B343B8E1DEC017A00474549 /* TaskDetialDynamicModel.m in Sources */,
 				3B948B6E1DD993C600D75112 /* MyJobsDetialController.m in Sources */,
 				3B343B361DEBFECC00474549 /* TaskDongtaiController.m in Sources */,
@@ -4467,6 +4466,7 @@
 				3B6E0ACA1DCAF2C600309037 /* SaleToolViewController.m in Sources */,
 				3B8531BA1DF9190F00AB9C4F /* JFAssetHelper.m in Sources */,
 				3B4C131F1DC85F4700827D4F /* NoticeModel.m in Sources */,
+				3B85C25A1DFA4529007FEFD7 /* CreateMobanViewController.m in Sources */,
 				3B7ABCEE1DB6176600F3D12B /* EMAudioPlayerUtil.m in Sources */,
 				3B85318D1DF8F9B800AB9C4F /* NineSearchResultController.m in Sources */,
 				3BF93D801DADDC950002EACA /* NSDate+WQCalendarLogic.m in Sources */,

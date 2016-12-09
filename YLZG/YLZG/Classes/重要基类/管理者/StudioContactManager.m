@@ -44,26 +44,28 @@ static FMDatabase *_db;
     
     // 保存前先删除之前的记录,保持信息最新
     if (![_db open]) {
-        return nil;
-    }
-    NSString *delete = @"select * from studio_contacts";
-    [_db executeUpdate:delete];
-    
-    // uid,name,nickname,realname,qq,mobile,location,head,gender,dept,birth
-    
-    NSDictionary *dict = [studiosModel mj_keyValues];
-    NSArray *memArr = [dict objectForKey:@"member"];
-    NSString *memberJson = [self toJsonStr:memArr];
-    
-    NSString *sql = [NSString stringWithFormat:@"insert into studio_contacts (dept,member) values ('%@','%@')",studiosModel.dept,memberJson];
-    
-    BOOL result = [_db executeUpdate:sql];
-    if (result) {
-        KGLog(@"保存成功");
+        return NO;
     }else{
-        KGLog(@"保存失败");
+        NSString *delete = @"select * from studio_contacts";
+        [_db executeUpdate:delete];
+        
+        // uid,name,nickname,realname,qq,mobile,location,head,gender,dept,birth
+        
+        NSDictionary *dict = [studiosModel mj_keyValues];
+        NSArray *memArr = [dict objectForKey:@"member"];
+        NSString *memberJson = [self toJsonStr:memArr];
+        
+        NSString *sql = [NSString stringWithFormat:@"insert into studio_contacts (dept,member) values ('%@','%@')",studiosModel.dept,memberJson];
+        
+        BOOL result = [_db executeUpdate:sql];
+        if (result) {
+            KGLog(@"保存成功");
+        }else{
+            KGLog(@"保存失败");
+        }
+        return result;
     }
-    return result;
+    
 }
 #pragma mark - 获取全部影楼同事信息
 + (NSMutableArray *)getAllStudiosContactsInfo

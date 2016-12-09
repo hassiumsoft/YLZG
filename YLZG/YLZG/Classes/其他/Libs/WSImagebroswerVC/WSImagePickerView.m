@@ -219,10 +219,12 @@ static NSString *imagePickerCellIdentifier = @"imagePickerCellIdentifier";
 
 - (instancetype)init {
     if(self = [super init]) {
-        _itemSize = CGSizeMake(60, 60);
-        _sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
-        _minimumLineSpacing = 10.0f;
-        _minimumInteritemSpacing = 10.0f;
+        CGFloat space = 20;
+        CGFloat W = (SCREEN_WIDTH - space * 4)/3;
+        _itemSize = CGSizeMake(W, W);
+        _sectionInset = UIEdgeInsetsMake(space, space, space, space);
+        _minimumLineSpacing = space;
+        _minimumInteritemSpacing = space;
         _photosMaxCount = 9;
     }
     return self;

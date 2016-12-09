@@ -97,13 +97,15 @@
         frame.origin.x = (i%3) * (frame.size.width + spaceH) + spaceH + 15;
         frame.origin.y = floor(i/3) * (frame.size.height + spaceZ) + spaceZ + 120*CKproportion;
         
-        
         NineDetialImageModel *imageModel = model.images[i];
         UIImageView *imageV = [[UIImageView alloc]initWithImage:[self imageWithBgColor:HWRandomColor]];
-        [imageV sd_setImageWithURL:[NSURL URLWithString:imageModel.url] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            NSLog(@"imageURL = %@",imageURL);
-            [self.imageArray addObject:image];
+        
+        [imageV sd_setImageWithURL:[NSURL URLWithString:imageModel.url] placeholderImage:[self imageWithBgColor:HWRandomColor] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (!error) {
+                [self.imageArray addObject:image];
+            }
         }];
+        
         imageV.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
             [ImageBrowser showImage:imageV];
@@ -170,9 +172,14 @@
 - (void)SendToWechat
 {
     
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:self.imageArray applicationActivities:nil];
+    if (self.imageArray.count >= 1) {
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:self.imageArray applicationActivities:nil];
+        
+        [self presentViewController:activityVC animated:TRUE completion:nil];
+    }else{
+        [self showErrorTips:@"图片加载失败"];
+    }
     
-    [self presentViewController:activityVC animated:TRUE completion:nil];
 }
 
 #pragma mark - 转发提醒

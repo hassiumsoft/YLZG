@@ -100,20 +100,15 @@
 - (void)getData
 {
     NSString *url = [NSString stringWithFormat:NineList_Url,[ZCAccountTool account].userID];
+    [self showHudMessage:@"加载中···"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.collectionView.mj_header endRefreshing];
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
+        [self hideHud:0];
         if (code == 1) {
             NSDictionary *result = [responseObject objectForKey:@"result"];
             self.listModel = [MobanListModel mj_objectWithKeyValues:result];
-            
-//            // 把最后一个模板的值变成全部
-//            NineCategoryModel *firstModel = [self.listModel.category firstObject];
-//            firstModel.id = @"all";
-//            firstModel.name = @"全部模板";
-//            [self.listModel.category insertObject:firstModel atIndex:0];
-//            [self.listModel.category removeLastObject];
             
             [self setupSubViews];
         }else{
@@ -121,6 +116,7 @@
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
         [self.collectionView.mj_header endRefreshing];
+        [self hideHud:0];
         [self sendErrorWarning:error.localizedDescription];
     }];
 }

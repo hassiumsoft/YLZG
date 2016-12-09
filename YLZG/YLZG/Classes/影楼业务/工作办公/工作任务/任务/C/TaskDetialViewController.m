@@ -527,7 +527,7 @@
         
         // --多少人关注
         UILabel *guanzhuL = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 65, 0, 65, 30)];
-        guanzhuL.text = [NSString stringWithFormat:@"%ld人关注",self.detialModel.care.count];
+        guanzhuL.text = [NSString stringWithFormat:@"%ld人关注",(unsigned long)self.detialModel.care.count];
         guanzhuL.textColor = [UIColor grayColor];
         guanzhuL.font = label.font;
         [headV addSubview:guanzhuL];

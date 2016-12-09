@@ -163,7 +163,7 @@
 	if (!isPreview) {
 		if ([placeholder.backgroundColor isEqual:[[UIColor blackColor] colorWithAlphaComponent:.1]]) {
 			if (ASSETHELPER.selectdPhotos.count>= ASSETHELPER.maxCount) {
-                [[[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"最多可以选择%@张照片",@(ASSETHELPER.maxCount)] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
+                [[[UIAlertView alloc] initWithTitle:@"温馨提示" message:[NSString stringWithFormat:@"最多可以选择%@张照片",@(ASSETHELPER.maxCount)] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil] show];
 				return;
 			}
 			[ASSETHELPER.selectdPhotos addObject:@{[NSString stringWithFormat:@"%ld-%ld",(long)page, (long)ASSETHELPER.currentGroupIndex]: @(ASSETHELPER.selectdPhotos.count+1)}];
