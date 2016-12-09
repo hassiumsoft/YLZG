@@ -46,7 +46,12 @@
 {
     _model = model;
     _nameLabel.text = model.name;
-    [_backImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"reg-fb-bg"]];
+    if ([model.id isEqualToString:@"group"]) {
+        _backImageV.image = [UIImage imageNamed:model.thumb];
+    }else{
+        [_backImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"reg-fb-bg"]];
+    }
+    
 }
 - (void)setupSubViews
 {
@@ -63,9 +68,10 @@
     }];
     
     self.nameLabel = [[UILabel alloc]init];
-    self.nameLabel.font = [UIFont boldSystemFontOfSize:20];
+    self.nameLabel.font = [UIFont boldSystemFontOfSize:28];
     self.nameLabel.textAlignment = NSTextAlignmentCenter;
     self.nameLabel.numberOfLines = 0;
+    self.nameLabel.textColor = [UIColor whiteColor];
     [self.contentView addSubview:self.nameLabel];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backImageV.mas_left);

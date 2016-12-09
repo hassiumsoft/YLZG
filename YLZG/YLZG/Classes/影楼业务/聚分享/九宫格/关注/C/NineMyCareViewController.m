@@ -21,7 +21,7 @@
 
 @property (strong,nonatomic) UITableView *tableView;
 
-@property (copy,nonatomic) NSArray *array;
+@property (strong,nonatomic) NSMutableArray *array;
 
 @end
 
@@ -59,9 +59,16 @@
         NSString *message = [[responseObject objectForKey:@"message"] description];
         [self.tableView.mj_header endRefreshing];
         if (code == 1) {
+            
+            NineCareModel *teamCare = [NineCareModel new];
+            teamCare.id = @"group";
+            teamCare.name = @"团队制作";
+            teamCare.thumb = @"moban_team";
+            
             NSArray *result = [responseObject objectForKey:@"result"];
             if (result.count >= 1) {
                 self.array = [NineCareModel mj_objectArrayWithKeyValuesArray:result];
+                [self.array insertObject:teamCare atIndex:0];
                 [self.tableView reloadData];
             }else{
                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您还没有关注分类模板" preferredStyle:UIAlertControllerStyleAlert];
@@ -110,6 +117,7 @@
     NineCategoryModel *model = self.array[indexPath.section];
     nineList.isSuaixuan = NO;
     nineList.cateModel = model;
+    nineList.cateModel.id = model.id;
     nineList.title = [NSString stringWithFormat:@"%@详情",model.name];
     [self.navigationController pushViewController:nineList animated:YES];
 }
@@ -143,4 +151,13 @@
     }
     return _tableView;
 }
+
+- (NSMutableArray *)array
+{
+    if (!_array) {
+        _array = [[NSMutableArray alloc]init];
+    }
+    return _array;
+}
+
 @end
