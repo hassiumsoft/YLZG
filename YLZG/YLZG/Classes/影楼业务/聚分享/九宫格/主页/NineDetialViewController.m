@@ -146,7 +146,7 @@
                     [self ReSendNotice];
                 }
             }];
-            [button setFrame:CGRectMake((i%titleArr.count) * (W + space) + space, self.view.height - 20 - 64 - 40, W, 40)];
+            [button setFrame:CGRectMake((i%titleArr.count) * (W + space) + space, self.view.height - 64 - 40, W, 40)];
             
             [self.view addSubview:button];
         }
@@ -158,7 +158,7 @@
         [sendButton setTitle:@"一键转发" forState:UIControlStateNormal];
         [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [sendButton addTarget:self action:@selector(SendToWechat) forControlEvents:UIControlEventTouchUpInside];
-        [sendButton setFrame:CGRectMake(20, self.view.height - 20 - 64 - 40, self.view.width - 40, 40)];
+        [sendButton setFrame:CGRectMake(20, self.view.height - 20 - 64 - 0, self.view.width - 40, 40)];
         sendButton.layer.masksToBounds = YES;
         sendButton.layer.cornerRadius = 4;
         [self.view addSubview:sendButton];
@@ -173,12 +173,31 @@
 {
     
     if (self.imageArray.count >= 1) {
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:self.imageArray applicationActivities:nil];
         
-        [self presentViewController:activityVC animated:TRUE completion:nil];
+        [self showHudMessage:@"发送中···"];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:self.imageArray applicationActivities:nil];
+        UIPasteboard *pasted = [UIPasteboard generalPasteboard];
+        [pasted setString:self.detialModel.content];
+        [self showSuccessTips:@"已复制到剪切板"];
+        
+        [self presentViewController:activityVC animated:TRUE completion:^{
+            NSString *url = [NSString stringWithFormat:ZhuanfaCount_Url,[ZCAccountTool account].userID,self.detialModel.id,self.detialModel.cid];
+            [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                [self hideHud:0];
+                int code = [[[responseObject objectForKey:@"code"] description] intValue];
+                NSString *message = [[responseObject objectForKey:@"message"] description];
+                if (code != 1) {
+                    [self sendErrorWarning:message];
+                }
+            } fail:^(NSURLSessionDataTask *task, NSError *error) {
+                [self hideHud:0];
+                [self sendErrorWarning:error.localizedDescription];
+            }];
+        }];
     }else{
         [self showErrorTips:@"图片加载失败"];
     }
+    
     
 }
 

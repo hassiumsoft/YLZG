@@ -2,36 +2,22 @@
 //  CheckWorkViewController.h
 //  YLZG
 //
-//  Created by apple on 2016/10/14.
+//  Created by Chan_Sir on 2016/12/12.
 //  Copyright © 2016年 陈振超. All rights reserved.
 //
 
 #import "SuperViewController.h"
 
-//#import <BaiduMapAPI_Map/BMKMapComponent.h>
-//#import <BaiduMapAPI_Location/BMKLocationComponent.h>
-//#import <BaiduMapAPI_Search/BMKSearchComponent.h>
-
-#import <BaiduMapAPI_Base/BMKBaseComponent.h>//引入base相关所有的头文件
-
-#import <BaiduMapAPI_Map/BMKMapComponent.h>//引入地图功能所有的头文件
-
-#import <BaiduMapAPI_Search/BMKSearchComponent.h>//引入检索功能所有的头文件
-
-#import <BaiduMapAPI_Cloud/BMKCloudSearchComponent.h>//引入云检索功能所有的头文件
-
-#import <BaiduMapAPI_Location/BMKLocationComponent.h>//引入定位功能所有的头文件
-
-#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>//引入计算工具所有的头文件
-
-#import <BaiduMapAPI_Radar/BMKRadarComponent.h>//引入周边雷达功能所有的头文件
-
-#import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
+typedef NS_ENUM(NSInteger,DakaStatus) {
+    DakaClicked = 1, // 已经打卡
+    UnDakaClicked = 0  // 没有打卡
+};
+typedef NS_ENUM(NSInteger,OnOffWorkType) {
+    OnWorkType = 1,  // 上班
+    OffWorkType = 2  // 下班
+};
 
 
 @interface CheckWorkViewController : SuperViewController
 
-/** 接口数据 */
-@property (nonatomic, strong) NSMutableDictionary * dataDict;
-- (void)updateBtnWithTag:(NSString *)tag;
 @end

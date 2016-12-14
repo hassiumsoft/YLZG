@@ -17,8 +17,8 @@ static CGRect oldframe;
     backgroundView.backgroundColor=[UIColor blackColor];
     backgroundView.alpha=0;
     UIImageView *imageView=[[UIImageView alloc]initWithFrame:oldframe];
-    imageView.image=image;
-    imageView.tag=1;
+    imageView.image = image;
+    imageView.tag = 1;
     [backgroundView addSubview:imageView];
     [window addSubview:backgroundView];
     

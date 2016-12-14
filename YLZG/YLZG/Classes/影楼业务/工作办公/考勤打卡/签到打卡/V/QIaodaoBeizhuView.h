@@ -27,8 +27,7 @@
 // 打卡备注
 @property (nonatomic, strong) UITextView * beizhuView;
 
-//// 接收地址字典
-//@property (nonatomic, strong) NSMutableDictionary * addressDict;
+@property (copy,nonatomic) void (^DakaClickBlock)(NSString *beizhu);
 
 + (instancetype)sharedBeizhuView;
 

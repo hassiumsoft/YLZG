@@ -192,7 +192,7 @@
 {
     if (_bgView)  return;
     _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 108, self.width, SCREEN_HEIGHT-(self.y+self.height))];
-    _bgView.backgroundColor = [UIColor colorWithDisplayP3Red:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.6];
+    _bgView.backgroundColor = RGBACOLOR(0, 0, 0, 0.6);
     UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
     [_bgView addGestureRecognizer:tap];
     [[UIApplication sharedApplication].keyWindow addSubview:_bgView];
@@ -257,7 +257,6 @@
         NSLog(@"iS Filter is NO");
     }
     
-#warning   取传过来的值，传过来什么请求就请求什么
     
     NSArray *tempDataSource1 = [NSArray arrayWithArray:dataSource1Ary];
     

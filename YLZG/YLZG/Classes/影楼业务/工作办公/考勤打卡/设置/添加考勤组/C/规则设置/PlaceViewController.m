@@ -11,7 +11,7 @@
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>
 #import <BaiduMapAPI_Search/BMKSearchComponent.h>
 #import "NormalTableCell.h"
-#import "QiandaoViewController.h"
+
 
 
 // BMKGeoCodeSearchDelegate

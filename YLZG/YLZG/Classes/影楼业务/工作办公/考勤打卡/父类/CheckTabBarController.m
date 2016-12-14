@@ -15,7 +15,7 @@
 #import <SVProgressHUD.h>
 #import "InGroupViewController.h"
 #import "ZCAccountTool.h"
-//
+
 
 
 
@@ -39,12 +39,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"打卡";
+    self.title = @"考勤打卡";
  
     self.delegate = self;
     
     CheckWorkViewController *checkWork = [CheckWorkViewController new];
-    [self addChildVC:checkWork Title:@"打卡" image:@"tabbar_daka_normal" selectedImage:@"tabbar_daka_selected" Tag:1];
+    [self addChildVC:checkWork Title:@"考勤打卡" image:@"tabbar_daka_normal" selectedImage:@"tabbar_daka_selected" Tag:1];
     
 
     CheckInfoViewController *zenVC = [[CheckInfoViewController alloc]init];
@@ -65,7 +65,7 @@
 {
     
     if (tabBarController.selectedIndex == 0) {
-        self.title = @"打卡";
+        self.title = @"考勤打卡";
         self.navigationItem.rightBarButtonItem = nil;
     } else if(tabBarController.selectedIndex == 1){
         self.title = @"统计";
@@ -76,10 +76,6 @@
         self.title = @"设置";
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"高级设置" style:UIBarButtonItemStylePlain target:self action:@selector(superSetting)];
         [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-        //        }else{
-        //            self.title = @"考勤组";
-        //            self.navigationItem.rightBarButtonItem = nil;
-        //        }
     }
 }
 
@@ -115,9 +111,6 @@
     
 }
 
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    
-}
+
 
 @end

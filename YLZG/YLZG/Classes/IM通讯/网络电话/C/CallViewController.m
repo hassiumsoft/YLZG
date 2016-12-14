@@ -453,7 +453,7 @@
 + (BOOL)canVideo
 {
     if([[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending){
-        if(!([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusAuthorized)){\
+        if(!([AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo] == AVAuthorizationStatusAuthorized)){
             UIAlertView * alt = [[UIAlertView alloc] initWithTitle:@"没有摄像头权限" message:@"请前往设置授权" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alt show];
             return NO;

@@ -8,6 +8,7 @@
 
 #import "QIaodaoBeizhuView.h"
 #import <Masonry.h>
+
 #define PlaceText @"填写打卡备注(选填)"
 
 @interface QIaodaoBeizhuView ()<UITextViewDelegate>
@@ -46,6 +47,11 @@ static QIaodaoBeizhuView * _instance;
         make.width.equalTo(@(image.size.width));
         make.height.equalTo(@(image.size.height));
     }];
+    
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+//        [self removeFromSuperview];
+//    }];
+//    [self.whiteView addGestureRecognizer:tap];
    
     // 第一行
     self.topLabel = [[UILabel alloc] init];
@@ -67,7 +73,7 @@ static QIaodaoBeizhuView * _instance;
         make.left.equalTo(self.whiteView.mas_left);
         make.top.equalTo(self.topLabel.mas_bottom).equalTo(@20);
         make.width.equalTo(self.whiteView.mas_width);
-        make.height.equalTo(@100);
+        make.height.equalTo(@80);
     }];
     
     // 打卡时间
@@ -126,7 +132,6 @@ static QIaodaoBeizhuView * _instance;
     self.beizhuView.textColor = [UIColor lightGrayColor];
     self.beizhuView.delegate = self;
     [self.whiteView addSubview:self.beizhuView];
-    
     
     
     // 最后两个按钮
@@ -190,10 +195,14 @@ static QIaodaoBeizhuView * _instance;
             break;
         case 11:
         {
-            [self removeFromSuperview];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"dakaTime" object:self.beizhuView.text ];
+            
+            // 告诉控制器
+            if (self.DakaClickBlock) {
+                _DakaClickBlock(self.beizhuView.text);
+                [self removeFromSuperview];
+            }
         }
-            break;
+        break;
             
         default:
             break;

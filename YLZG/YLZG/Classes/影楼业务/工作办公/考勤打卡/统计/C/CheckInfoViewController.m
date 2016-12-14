@@ -34,8 +34,6 @@
     [super viewDidLoad];
     // 初始化
     [self selfInitCheckInfoViewControllerVC];
-    // 请求数据
-    [self loadCheckInfoViewControllerData];
     // 搭建UI
     [self creatCheckInfoViewControllerUI];
 }
@@ -48,10 +46,6 @@
 }
 
 
-#pragma mark - 请求数据
-- (void)loadCheckInfoViewControllerData{
-    
-}
 
 
 #pragma mark - 搭建UI

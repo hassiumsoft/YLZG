@@ -498,31 +498,43 @@
     self.placeJson = [self toJsonStr:self.placeInfoArray];
     KGLog(@"self.placeJson = %@",self.placeJson);
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.securityPolicy.allowInvalidCertificates = YES;
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"application/x-json",@"text/html", nil];
-    
     ZCAccount *account = [ZCAccountTool account];
-//    @"http://zsylou.wxwkf.com/index.php/home/attence/new_attence_group?uid=%@&name=%@&type=%@&admins=%@&routers=%@&locations=%@&privilege_meter=%@&rules=%@&users=%@"
-    NSString *url = [NSString stringWithFormat:CreateKaoqunGroup_Url,account.userID,self.name,self.type,self.adminArrJson,self.wifiJson,self.placeJson,self.areaField.text,self.banciTimeJsonStr,self.memArrJson];
-    KGLog(@"新增考勤组url = %@",url);
+    
+    NSString *url = CreateKaoqunGroup_Url;
 
     [self showHudMessage:@"设置中"];
+//    http://zsylou.wxwkf.com/index.php/home/attence/new_attence_group?uid=%@&name=%@&type=%@&admins=%@&routers=%@&locations=%@&privilege_meter=%@&rules=%@&users=%@
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:account.userID forKey:@"uid"];
+    [params setValue:self.name forKey:@"name"];
+    [params setValue:self.type forKey:@"type"];
+    [params setValue:self.adminArrJson forKey:@"admins"];
+    [params setValue:self.wifiJson forKey:@"routers"];
+    [params setValue:self.placeJson forKey:@"locations"];
+    [params setValue:self.areaField.text forKey:@"privilege_meter"];
+    [params setValue:self.banciTimeJsonStr forKey:@"rules"];
+    [params setValue:self.memArrJson forKey:@"users"];
     
     /****************************************************************/
     
-    /***************************************************************/
 
-    [HTTPManager POST:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [HTTPManager POST:url params:params success:^(NSURLSessionDataTask *task, id responseObject) {
 
             [SVProgressHUD dismiss];
             KGLog(@"json = %@",responseObject);
             NSString *message = [[responseObject objectForKey:@"message"]description];
             int code = [[[responseObject objectForKey:@"code"] description] intValue];
             if (code == 1) {
+                
+                NSString *message;
+                if ([self.type intValue] == 1) {
+                    message = @"固定班次设置成功";
+                }else{
+                    message = @"弹性班制设置成功，您可以前往后台管理系统完善未来一个月内的排班";
+                }
+                
                 // 设置成功，告诉上个界面刷新。返回
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"新考勤组设置成功！" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [self.navigationController popToRootViewControllerAnimated:YES];
                 }];

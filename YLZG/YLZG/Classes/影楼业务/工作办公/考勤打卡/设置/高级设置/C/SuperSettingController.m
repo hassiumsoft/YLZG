@@ -336,7 +336,6 @@
 {
     
     ZCAccount *account = [ZCAccountTool account];
-//    @"http://zsylou.wxwkf.com/index.php/home/attence/update_whole?uid=%@&privilege_time=%@&latetime=%@&absent=%@&ontip=%@&offtip=%@&earlytime=%@&outtip=%d&sply=%d"
     NSString *url = [NSString stringWithFormat:GaojiSetting_Url,account.userID,self.model.privilege_time,self.model.latetime,self.model.absent,self.model.ontip,self.model.offtip,self.model.earlytime,self.model.outtip,self.model.sply];
     KGLog(@"高级设置url = %@",url);
     

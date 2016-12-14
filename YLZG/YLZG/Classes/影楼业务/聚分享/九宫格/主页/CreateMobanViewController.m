@@ -66,15 +66,22 @@
         [self showErrorTips:@"请选择图片"];
         return;
     }
+//    http://192.168.0.18/index.php/wei/retransmission/create
+//    UpLoadMoban_Url  @"http://zsylou.wxwkf.com/index.php/wei/retransmission/create"
     
-    // UpLoadMoban_Url
-    NSString *url = @"http://192.168.0.18/index.php/wei/retransmission/create";
+    NSString *url = UpLoadMoban_Url;
+    NSString *isShare;
+    if (self.switchV.on) {
+        isShare = @"1";
+    }else{
+        isShare = @"0";
+    }
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param setObject:[ZCAccountTool account].userID forKey:@"uid"];
     [param setObject:self.nameField.text forKey:@"name"];
     [param setObject:self.contentTextView.text forKey:@"content"];
-    [param setObject:@(self.switchV.on) forKey:@"isShare"];
+    [param setObject:isShare forKey:@"isShare"];
     
     for (int i = 0; i < imageArray.count; i++) {
         
@@ -89,7 +96,7 @@
     
     [HTTPManager POST:url params:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [self hideHud:0];
-        
+        NSLog(@"responseObject = %@",responseObject);
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         if (code == 1) {
