@@ -145,6 +145,7 @@
     _headerImageView = [[UIImageView alloc] init];
     _headerImageView.layer.masksToBounds = YES;
     _headerImageView.layer.cornerRadius = 55;
+    _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
     [_headerImageView sd_setImageWithURL:[NSURL URLWithString:self.userModel.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
     [_topView addSubview:_headerImageView];
     [_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -536,7 +537,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 }
+
+
 
 @end

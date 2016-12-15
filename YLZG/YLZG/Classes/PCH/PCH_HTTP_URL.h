@@ -161,7 +161,7 @@
 #define QiandaoDakaAll_Url  @"http://zsylou.wxwkf.com/index.php/home/attence/get_user_rule?uid=%@"
 
 //  打卡成功传给服务器数据的接口
-#define QiandaoDakaChenggong_Url @"http://zsylou.wxwkf.com/index.php/home/attence/checkin?uid=%@&type=%@&id=%@&time=%@&location=%@&status=%@&outside=%@&remark=%@"
+#define QiandaoDakaChenggong_Url @"http://zsylou.wxwkf.com/index.php/home/attence/checkin?uid=%@&type=%@&id=%@&time=%@router=%@&&location=%@&status=%@&outside=%@&remark=%@"
 //  统计中我的考勤
 #define Count_MyKaoqin_Url @"http://zsylou.wxwkf.com/index.php/home/attence/user_count_checkin?uid=%@&month=%@"
 //  团队考勤

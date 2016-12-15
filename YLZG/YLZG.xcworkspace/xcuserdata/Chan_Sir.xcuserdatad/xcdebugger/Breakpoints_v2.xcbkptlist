@@ -61,21 +61,5 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "YLZG/Classes/&#x5f71;&#x697c;&#x4e1a;&#x52a1;/&#x5de5;&#x4f5c;&#x529e;&#x516c;/&#x8003;&#x52e4;&#x6253;&#x5361;/&#x7b7e;&#x5230;&#x6253;&#x5361;/C/CheckWorkViewController.m"
-            timestampString = "503397240.561032"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
-            landmarkName = "-setupOffWorkViewDakaStstus:OnOffWork:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

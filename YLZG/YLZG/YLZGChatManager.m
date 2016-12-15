@@ -237,6 +237,7 @@ static YLZGChatManager *chatManager = nil;
                 [self startCallTimer];
                 
                 _callController = [[CallViewController alloc] initWithSession:_callSession isCaller:YES status:@"连接中..."];
+                
                 [_tabbarVC presentViewController:_callController animated:NO completion:nil];
             }else{
                 [self showAlertMessage:@"创建实时通话失败，请稍后重试。"];
@@ -260,6 +261,7 @@ static YLZGChatManager *chatManager = nil;
     }
     
 }
+
 // 开始呼叫电话
 - (void)startCallTimer
 {

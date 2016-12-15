@@ -142,7 +142,7 @@
 - (void)getTodayRule
 {
     NSString *url = [NSString stringWithFormat:QiandaoDakaAll_Url,[ZCAccountTool account].userID];
-    [self showHudMessage:@"获取今日信息···"];
+    [self showHudMessage:@"今日信息···"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"responseObject = %@",responseObject);
         [self hideHud:0];
@@ -154,8 +154,8 @@
             NSDictionary *whole = [result objectForKey:@"whole"];
             NSArray *locations = [result objectForKey:@"locations"];
             self.wifiNameArray = [result objectForKey:@"routers"];
-            NSDictionary *checkOn = result[@"check"][@"on"];
-            NSDictionary *checkOff = result[@"check"][@"off"];
+            NSDictionary *checkOn = result[@"checkin"][@"on"];
+            NSDictionary *checkOff = result[@"checkin"][@"off"];
             
             self.ruleModel = [TodayDakaRuleModel mj_objectWithKeyValues:rule];
             self.wholeModel = [TodayDakaWholeModel mj_objectWithKeyValues:whole];
@@ -238,7 +238,18 @@
     int status = [self getStateAndupdate:NO];
     if (status == 1) {
         // 正常打卡
-        
+        if (!self.checkInModel.id) {
+            // 上班正常打卡
+            // 绘制上班打卡视图
+            [self setupOnWorkTimeDakaStatus:UnDakaClicked OnOffWork:OnWorkType];
+            // 下班--里面无信息，空view
+            [self setupOffWorkViewDakaStstus:DakaClicked OnOffWork:OnWorkType];
+            //  绘制签到时的视图
+            [self setupQiandaoViewDakaStstus:UnDakaClicked OnOffWork:OnWorkType];
+        }else if(!self.checkOffModel.id){
+            // 下班正常打卡
+            
+        }
     }else if (status == 2 || status == 3){
         // 迟到打卡 --- 上班
         
@@ -292,13 +303,14 @@
     
     // 左侧小图标
     UIImageView *iconV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"workTimeImage"]];
-    [iconV setFrame:CGRectMake(20, 10, 25, 25)];
+    [iconV setFrame:CGRectMake(10, 10, 25, 25)];
     iconV.contentMode = UIViewContentModeScaleAspectFill;
     [self.OnWorkView addSubview:iconV];
     
     // 最迟打卡时间
-    UILabel *beginTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, 10, self.view.width - 60, 23)];
+    UILabel *beginTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, 10, self.view.width - 60, 42)];
     beginTimeLabel.text = [NSString stringWithFormat:@"上班打卡时间 %@",self.ruleModel.start];
+    beginTimeLabel.numberOfLines = 2;
     beginTimeLabel.font = [UIFont systemFontOfSize:13];
     [self.OnWorkView addSubview:beginTimeLabel];
     
@@ -307,15 +319,36 @@
     if (dakaStutas == UnDakaClicked) {
         // 属于上班，展示打卡信息
         
-        // 您现在所在的位置
-        UILabel *LocationLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, CGRectGetMaxY(beginTimeLabel.frame), SCREEN_WIDTH - 50, 24)];
-        TodayDakaLocationsModel *lastLocation = [self.locationArray lastObject];
-        LocationLabel.text = lastLocation.address;
-        LocationLabel.numberOfLines = 0;
-        LocationLabel.font = [UIFont systemFontOfSize:13];
-        LocationLabel.textColor = [UIColor grayColor];
-        [self.OnWorkView addSubview:LocationLabel];
-        //
+        // 还没打卡，告诉用户，所在的位置和WiFi范围。
+        UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, CGRectGetMaxY(beginTimeLabel.frame), SCREEN_WIDTH - 50, 22)];
+        label1.text = @"*上班打卡，请确保您符合以下任一条件：";
+        label1.font = [UIFont systemFontOfSize:13];
+        [self.OnWorkView addSubview:label1];
+        // 地址
+        UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, CGRectGetMaxY(label1.frame), SCREEN_WIDTH - 80, 42)];
+        label2.font = [UIFont systemFontOfSize:13];
+        TodayDakaLocationsModel *lastLocalModel = [self.locationArray lastObject];
+        label2.text = [NSString stringWithFormat:@"1、'%@'方圆%@米范围内",lastLocalModel.address,self.privilege_meter];
+        label2.font = [UIFont systemFontOfSize:13];
+        label2.numberOfLines = 2;
+        [self.OnWorkView addSubview:label2];
+        
+        // WiFi
+        UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 5, CGRectGetMaxY(label2.frame), SCREEN_WIDTH - 80, 42)];
+        label3.font = [UIFont systemFontOfSize:13];
+        NSMutableString *formatWifi = [NSMutableString new];
+        for (int i = 0; i < self.wifiNameArray.count; i++) {
+            
+            NSString *wifi = self.wifiNameArray[i];
+            if (i != 0) {
+                wifi = [NSString stringWithFormat:@"、%@",wifi];
+            }
+            formatWifi = (NSMutableString *)[formatWifi stringByAppendingString:wifi];
+        }
+        label3.text = [NSString stringWithFormat:@"2、您手机所连接的WiFi包含其中:%@",formatWifi];
+        label3.font = [UIFont systemFontOfSize:13];
+        label3.numberOfLines = 2;
+        [self.OnWorkView addSubview:label3];
         
         
     }else{
@@ -327,7 +360,7 @@
             beginTimeLabel.text = [NSString stringWithFormat:@"打卡时间%@(上班时间%@,弹性%@分钟)",self.checkInModel.time,self.ruleModel.start,self.wholeModel.privilege_time];
             // 打卡地址
             UILabel *dakaLocal = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, CGRectGetMaxY(beginTimeLabel.frame), SCREEN_WIDTH - 50, 24)];
-            dakaLocal.text = [NSString stringWithFormat:@"打卡地址%@",[[self.checkInModel.location objectForKey:@"address"] description]];
+            dakaLocal.text = [NSString stringWithFormat:@"打卡地址：%@",[[self.checkInModel.location objectForKey:@"address"] description]];
             dakaLocal.font = [UIFont systemFontOfSize:13];
             [self.OnWorkView addSubview:dakaLocal];
             // WiFi信息
@@ -348,7 +381,7 @@
             // 没有打上班卡--准备打卡
             beginTimeLabel.text = [NSString stringWithFormat:@"缺卡(上班时间%@,弹性%@分钟)",self.ruleModel.start,self.wholeModel.privilege_time];
             // 上午缺卡
-            UILabel *queKaLabel = [[UILabel alloc]initWithFrame:CGRectMake(50, CGRectGetMaxY(beginTimeLabel.frame) + 20, SCREEN_WIDTH - 100, 40)];
+            UILabel *queKaLabel = [[UILabel alloc]initWithFrame:CGRectMake(50, CGRectGetMaxY(beginTimeLabel.frame) + 40*CKproportion, SCREEN_WIDTH - 100, 40)];
             queKaLabel.text = @"上班缺卡";
             queKaLabel.font = [UIFont boldSystemFontOfSize:28];
             queKaLabel.textColor = WechatRedColor;
@@ -385,19 +418,60 @@
     
     // 左侧小图标
     UIImageView *iconV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"workTimeImage"]];
-    [iconV setFrame:CGRectMake(20, 10, 25, 25)];
+    [iconV setFrame:CGRectMake(10, 10, 25, 25)];
     iconV.contentMode = UIViewContentModeScaleAspectFill;
     [self.OffWorkView addSubview:iconV];
     
-    // 最迟打卡时间
-    UILabel *beginTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, 10, self.view.width - 60, 23)];
+    // 最早打卡时间
+    UILabel *beginTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, 10, self.view.width - 60, 42)];
     beginTimeLabel.text = [NSString stringWithFormat:@"下班打卡时间 %@",self.ruleModel.end];
+    beginTimeLabel.numberOfLines = 2;
     beginTimeLabel.font = [UIFont systemFontOfSize:15];
     [self.OffWorkView addSubview:beginTimeLabel];
     
     if (dakaStutas == UnDakaClicked) {
+        // 还没打卡，告诉用户，所在的位置和WiFi范围。
+        UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, CGRectGetMaxY(beginTimeLabel.frame), SCREEN_WIDTH - 50, 22)];
+        label1.text = @"*下班打卡，请确保您符合以下任一条件：";
+        label1.font = [UIFont systemFontOfSize:13];
+        [self.OffWorkView addSubview:label1];
+        // 地址
+        UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, CGRectGetMaxY(label1.frame), SCREEN_WIDTH - 80, 42)];
+        label2.font = [UIFont systemFontOfSize:13];
+        TodayDakaLocationsModel *lastLocalModel = [self.locationArray lastObject];
+        label2.text = [NSString stringWithFormat:@"1、'%@'方圆%@米范围内",lastLocalModel.address,self.privilege_meter];
+        label2.font = [UIFont systemFontOfSize:13];
+        label2.numberOfLines = 2;
+        [self.OffWorkView addSubview:label2];
+        
+        // WiFi
+        UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 5, CGRectGetMaxY(label2.frame), SCREEN_WIDTH - 80, 42)];
+        label3.font = [UIFont systemFontOfSize:13];
+        NSMutableString *formatWifi = [NSMutableString new];
+        for (int i = 0; i < self.wifiNameArray.count; i++) {
+            
+            NSString *wifi = self.wifiNameArray[i];
+            if (i != 0) {
+                wifi = [NSString stringWithFormat:@"、%@",wifi];
+            }
+            formatWifi = (NSMutableString *)[formatWifi stringByAppendingString:wifi];
+        }
+        label3.text = [NSString stringWithFormat:@"2、您手机所连接的WiFi包含其中:%@",formatWifi];
+        label3.font = [UIFont systemFontOfSize:13];
+        label3.numberOfLines = 2;
+        [self.OffWorkView addSubview:label3];
         
     }else{
+        // 已经打了下班卡
+#warning 下班区域的展示
+        if (self.checkOffModel.time) {
+            // 打了下班卡 打下班卡的信息展示一下
+            
+        }else{
+            // 没打下班卡---告诉用户你在哪里了
+            
+            
+        }
         
     }
     
@@ -423,11 +497,12 @@
     yuanView.yuanClick = ^(){
         QIaodaoBeizhuView *beizhuView = [QIaodaoBeizhuView sharedBeizhuView];
         beizhuView.DakaClickBlock = ^(NSString *beizhu){
-            [self showSuccessTips:beizhu];
+            [self dakaAction:beizhu];
         };
         beizhuView.frame = SCREEN_BOUNDS;
-        beizhuView.addressText.text = @"您已进入WiFi打卡范围";
+        beizhuView.addressText.text = self.geoResult.address;
         [self.view addSubview:beizhuView];
+        
     };
     if ([self getStateAndupdate:NO] == 2 || [self getStateAndupdate:NO] == 3) {
         yuanView.firstLabel.text = @"迟到打卡";
@@ -445,7 +520,6 @@
     [self.QiandaoView addSubview:yuanView];
     
     // WiFi范围
-    
     UILabel *wifiLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(yuanView.frame), self.view.width, 21)];
     NSString *currentWifiName = [[DakaManager sharedManager] getWifiName];
     wifiLabel.textAlignment = NSTextAlignmentCenter;
@@ -460,6 +534,36 @@
         wifiLabel.text = [NSString stringWithFormat:@"😭您尚未到达设定WiFi范围内"];
         wifiLabel.textColor = WechatRedColor;
     }
+}
+#pragma mark - 打卡操作
+- (void)dakaAction:(NSString *)beizhu
+{
+//    @"http://zsylou.wxwkf.com/index.php/home/attence/checkin?uid=%@&type=%@&id=%@&time=%@&location=%@&status=%@&outside=%@&remark=%@"
+    
+    NSString *typeStr = [NSString stringWithFormat:@"%d",[self getStateAndupdate:NO]];
+    NSString *latitude = [NSString stringWithFormat:@"%f",self.geoResult.location.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f",self.geoResult.location.longitude];
+    NSDictionary *addressDict = @{@"address":self.geoResult.address,@"latitude":latitude,@"longitude":longitude};
+    NSString *state = [NSString stringWithFormat:@"%d",[self getStateAndupdate:NO]];
+    NSString *outsideStr = @"0";
+    NSString *currentWifiName = [[DakaManager sharedManager] getWifiName];
+    NSString * url = [NSString stringWithFormat:QiandaoDakaChenggong_Url, [ZCAccountTool account].userID, typeStr,self.checkInModel.id, [self getHHCurrentTime],currentWifiName,[self toJsonStr:addressDict], state, outsideStr, beizhu];
+    [self showHudMessage:@"正在打卡"];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"]  description];
+        [self hideHud:0];
+        if (code == 1) {
+            // 签到成功
+            [self getTodayRule];
+            [self sendErrorWarning:@"打卡成功"];
+        }else {
+            [self sendErrorWarning:message];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self hideHud:0];
+        [self sendErrorWarning:error.localizedDescription];
+    }];
 }
 
 #pragma mark - state相关
