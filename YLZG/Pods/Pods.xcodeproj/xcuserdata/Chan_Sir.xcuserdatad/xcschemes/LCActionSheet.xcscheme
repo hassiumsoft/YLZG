@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '26E285C5AFA5003EF6B95C0C5E00BEA5'
+               BlueprintIdentifier = '2D4C1D1C81ED4586A5EE0C9EAF402B9A'
                BlueprintName = 'LCActionSheet'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libLCActionSheet.a'>

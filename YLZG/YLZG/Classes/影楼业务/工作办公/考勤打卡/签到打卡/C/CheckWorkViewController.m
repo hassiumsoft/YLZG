@@ -241,7 +241,7 @@
         if (!self.checkInModel.id) {
             // 上班正常打卡
             // 绘制上班打卡视图
-            [self setupOnWorkTimeDakaStatus:UnDakaClicked OnOffWork:OnWorkType];
+            [self setupOnWorkTimeDakaStatus:DakaClicked OnOffWork:OnWorkType];
             // 下班--里面无信息，空view
             [self setupOffWorkViewDakaStstus:DakaClicked OnOffWork:OnWorkType];
             //  绘制签到时的视图
@@ -267,7 +267,7 @@
         // 早退打卡
         
         // 上班--记录上班的信息
-        [self setupOnWorkTimeDakaStatus:DakaClicked OnOffWork:OnWorkType];
+        [self setupOnWorkTimeDakaStatus:UnDakaClicked OnOffWork:OnWorkType];
         // 下班--里面无信息，空view
         [self setupOffWorkViewDakaStstus:UnDakaClicked OnOffWork:OnWorkType];
         //  绘制签到时的视图

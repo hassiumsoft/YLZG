@@ -19,9 +19,9 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
-  - Hyphenate_CN (3.2.1)
+  - Hyphenate_CN (3.2.2.2)
   - IQKeyboardManager (4.0.7)
-  - JPush-iOS-SDK (2.2.0)
+  - JPush-iOS-SDK (3.0.0)
   - LCActionSheet (2.7.0):
     - Masonry (~> 1.0.1)
   - Masonry (1.0.2)
@@ -37,8 +37,8 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - SVProgressHUD (2.0.4)
-  - UMengAnalytics (4.1.4)
+  - SVProgressHUD (2.1.2)
+  - UMengAnalytics (4.1.8)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -67,9 +67,9 @@ SPEC CHECKSUMS:
   BaiduMapKit: 4cfaedb118cff7e157e9771859a4bf65a261b2a1
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  Hyphenate_CN: 4a5f35e530161190331c1b0deb93434f2f63ed44
+  Hyphenate_CN: fb0ecb6bce81a8e784ee02e9e2c0ddfba9a365d1
   IQKeyboardManager: 69002bb4fea60596b710e57d426abc00e5063630
-  JPush-iOS-SDK: 44ae7a71c04ff0b08031451d985993ece83acadf
+  JPush-iOS-SDK: 440eae13bcbff6ce32febd4fe9cb290c56192e8c
   LCActionSheet: f9899232fbb4a1bd51213b1988f8a884259bc1ab
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
@@ -79,10 +79,10 @@ SPEC CHECKSUMS:
   PDTSimpleCalendar: d1c03387678422715dc021aa1a85d70f4d1014f2
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
-  UMengAnalytics: 0bde5737767dfc18afb03a4cd6ba9d57bb2ad10d
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  UMengAnalytics: 6ef66c49bea0779d2ce02a72d862510d97619a7a
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 6637a4169f64364e9a856a791d5e8d80ec7b2ba9
+PODFILE CHECKSUM: e527dc8793393303a0645c603f2bdcc83a8b9f4f
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0.beta.1
