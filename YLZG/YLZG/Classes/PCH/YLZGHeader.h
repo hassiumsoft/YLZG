@@ -22,6 +22,7 @@
 #import "NSString+StrCategory.h"
 #import "UITableViewCell+Actions.h"
 #import "UIViewController+Actions.h"
+#import "YLZGDataManager.h"
 
 
 #import <YYKit.h>

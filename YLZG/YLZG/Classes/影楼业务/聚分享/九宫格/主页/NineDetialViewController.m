@@ -127,7 +127,8 @@
             button.titleLabel.font = [UIFont systemFontOfSize:15];
             button.layer.masksToBounds = YES;
             button.layer.cornerRadius = 4;
-            button.layer.borderColor = MainColor.CGColor;
+            UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
+            button.layer.borderColor = color.CGColor;
             button.layer.borderWidth = 1.f;
             [button setTitle:titleArr[i] forState:UIControlStateNormal];
             [button setTitleColor:MainColor forState:UIControlStateNormal];

@@ -37,7 +37,7 @@
     numLabel.textAlignment = NSTextAlignmentCenter;
     numLabel.layer.masksToBounds = YES;
     numLabel.layer.cornerRadius = 4;
-    numLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;;
+    numLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
     numLabel.layer.borderWidth = 1;
     [self addSubview:numLabel];
     [numLabel mas_makeConstraints:^(MASConstraintMaker *make) {

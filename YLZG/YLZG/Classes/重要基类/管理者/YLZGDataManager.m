@@ -15,6 +15,8 @@
 #import "ZCAccountTool.h"
 #import "GroupListManager.h"
 #import <SVProgressHUD.h>
+#import "NSDate+Category.h"
+
 
 
 typedef NSMutableArray* (^BlockType) (NSMutableArray *);
@@ -193,5 +195,35 @@ static YLZGDataManager *controller = nil;
     }];
 }
 
+
+- (BOOL)isSpringFestival
+{
+    // 今天
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    formatter.dateFormat=@"yyyy-MM-dd HH:mm:ss";
+    
+    NSTimeZone *timeZone = [NSTimeZone systemTimeZone]; // 上海时区
+    NSDate *date = [NSDate date];
+    NSInteger seconds = [timeZone secondsFromGMTForDate:date];
+    NSDate *newDate = [date dateByAddingTimeInterval:seconds];
+    NSString *str = [NSString stringWithFormat:@"%@",newDate];
+    
+    // 东八区的时间
+    NSString *realTime = [str substringWithRange:NSMakeRange(0, 11)];
+    realTime = [realTime stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    int todayDate = [realTime intValue];
+    int springStartDate = 20170126;
+    int springEndDate = 20170211;
+    if (todayDate >= springStartDate && todayDate <= springEndDate) {
+        // 春节期间
+        return YES;
+    }else{
+        // 不是春节期间
+        return NO;
+    }
+    
+//    return YES;
+    
+}
 
 @end

@@ -485,7 +485,12 @@
         [_headV addSubview:self.searchBar];
         
         NSArray *titleArr = @[@"新的朋友",@"影楼社区"];
-        NSArray *imageArr = @[@"contact_newmsg",@"contact_newfri"];
+        NSArray *imageArr;
+        if ([[YLZGDataManager sharedManager] isSpringFestival]) {
+            imageArr = @[@"nian_contact_newmsg",@"nian_contact_newfri"];
+        }else{
+            imageArr = @[@"contact_newmsg",@"contact_newfri"];
+        }
         for (int i = 0; i < 2; i++) {
             NormalconButton *button = [NormalconButton sharedHomeIconView];
             button.label.text = titleArr[i];

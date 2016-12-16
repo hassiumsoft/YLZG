@@ -47,7 +47,8 @@
 {
     self.backgroundColor    = [UIColor whiteColor];
     self.layer.cornerRadius = CGRectGetWidth(self.frame) / 2;
-    self.layer.borderColor  = MainColor.CGColor;
+    UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
+    self.layer.borderColor  = color.CGColor;
     self.layer.borderWidth  = 2;
 }
 

@@ -101,7 +101,8 @@
     [button setTitleColor:MainColor forState:UIControlStateNormal];
     [button addTarget:self action:@selector(addFriendBtn) forControlEvents:UIControlEventTouchUpInside];
     button.layer.masksToBounds =YES;
-    button.layer.borderColor = MainColor.CGColor;
+    UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
+    button.layer.borderColor = color.CGColor;
     button.layer.borderWidth = 1.f;
     button.layer.cornerRadius = 6.f;
     button.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];

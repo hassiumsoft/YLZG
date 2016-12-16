@@ -42,6 +42,7 @@ static NSString *kGroupName = @"GroupName";
     WoViewController *_woVC;
 }
 
+@property (strong,nonatomic) NSMutableArray *tabbarArray;
 
 @end
 
@@ -76,24 +77,40 @@ static NSString *kGroupName = @"GroupName";
 {
     self.selectedIndex = 0;
     self.title = @"我的影楼";
-    // 首页
-    _homeVC = [HomeViewController new];
-    [self addChildVC:_homeVC Title:@"我的影楼" image:@"btn_yingyong" selectedImage:@"btn_yingyong_dj" Tag:1];
     
-    // 消息
-    _chatListVC = [[ChatListViewController alloc] init];
-    [self addChildVC:_chatListVC Title:@"消息" image:@"btn_xiaoxi" selectedImage:@"btn_xiaoxi_dj" Tag:2];
-    [_chatListVC networkChanged:_connectionState];
-    
-    // 通讯录
-    _contactVC = [[ContactListViewController alloc] init];
-    
-    [self addChildVC:_contactVC Title:@"通讯录" image:@"btn_tongxunlu" selectedImage:@"btn_tongxunlu_dj" Tag:3];
-    
-    // 我
-    _woVC = [WoViewController new];
-    [self addChildVC:_woVC Title:@"我" image:@"btn_-wode" selectedImage:@"btn_-wode_dj" Tag:4];
-    _woVC.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    if ([[YLZGDataManager sharedManager] isSpringFestival]) {
+        // 春节期间
+        // 首页
+        _homeVC = [HomeViewController new];
+        [self addChildVC:_homeVC Title:@"" image:@"nian_jin_normal" selectedImage:@"nian_jin_heighted" Tag:1];
+        // 消息
+        _chatListVC = [[ChatListViewController alloc] init];
+        [self addChildVC:_chatListVC Title:@"消息" image:@"nian_ji_normal" selectedImage:@"nian_ji_height" Tag:2];
+        [_chatListVC networkChanged:_connectionState];
+        // 通讯录
+        _contactVC = [[ContactListViewController alloc] init];
+        [self addChildVC:_contactVC Title:@"通讯录" image:@"nian_bao_normal" selectedImage:@"nian_bao_heighted" Tag:3];
+        // 我
+        _woVC = [WoViewController new];
+        [self addChildVC:_woVC Title:@"我" image:@"nian_chun_normal" selectedImage:@"nian_chun_heighted" Tag:4];
+        _woVC.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    }else{
+        // 平常时间
+        // 首页
+        _homeVC = [HomeViewController new];
+        [self addChildVC:_homeVC Title:@"我的影楼" image:@"btn_yingyong" selectedImage:@"btn_yingyong_dj" Tag:1];
+        // 消息
+        _chatListVC = [[ChatListViewController alloc] init];
+        [self addChildVC:_chatListVC Title:@"消息" image:@"btn_xiaoxi" selectedImage:@"btn_xiaoxi_dj" Tag:2];
+        [_chatListVC networkChanged:_connectionState];
+        // 通讯录
+        _contactVC = [[ContactListViewController alloc] init];
+        [self addChildVC:_contactVC Title:@"通讯录" image:@"btn_tongxunlu" selectedImage:@"btn_tongxunlu_dj" Tag:3];
+        // 我
+        _woVC = [WoViewController new];
+        [self addChildVC:_woVC Title:@"我" image:@"btn_-wode" selectedImage:@"btn_-wode_dj" Tag:4];
+        _woVC.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    }
     
     
 }
@@ -101,26 +118,53 @@ static NSString *kGroupName = @"GroupName";
 #pragma mark - 添加子控制器
 - (void)addChildVC:(UIViewController *)childVC Title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage Tag:(NSInteger)tag
 {
-    childVC.title = title;
-    childVC.tabBarItem.image = [UIImage imageNamed:image];
+    
+    childVC.tabBarItem.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     childVC.tabBarItem.tag = tag;
+    
+    [self.tabbarArray addObject:childVC.tabBarItem];
     
     //    childVC.tabBarItem.imag
     childVC.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     NSMutableDictionary *textAttres = [NSMutableDictionary dictionary];
     textAttres[NSFontAttributeName] = [UIFont systemFontOfSize:9];
-    textAttres[NSForegroundColorAttributeName] = RGBACOLOR(191, 191, 191, 1);
+    if ([[YLZGDataManager sharedManager] isSpringFestival]) {
+        textAttres[NSForegroundColorAttributeName] = SpringColor;
+    }else{
+        textAttres[NSForegroundColorAttributeName] = RGBACOLOR(191, 191, 191, 1);
+    }
     
     NSMutableDictionary *selectTextAttres = [NSMutableDictionary dictionary];
     selectTextAttres[NSForegroundColorAttributeName] = MainColor;
     selectTextAttres[NSFontAttributeName] = [UIFont systemFontOfSize:9];
-    
+
     [childVC.tabBarItem setTitleTextAttributes:textAttres forState:UIControlStateNormal];
     [childVC.tabBarItem setTitleTextAttributes:selectTextAttres forState:UIControlStateSelected];
+    
+    childVC.title = title;
+    
     HomeNavigationController *normalNav = [[HomeNavigationController alloc]initWithRootViewController:childVC];
     [self addChildViewController:normalNav];
     
+}
+
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
+{
+    if ([[YLZGDataManager sharedManager] isSpringFestival]) {
+        for (UITabBarItem *otherItem in self.tabbarArray) {
+            if (otherItem.tag == 1) {
+                otherItem.title = @"我的影楼";
+            }else if (otherItem.tag == 2){
+                otherItem.title = @"消息";
+            }else if (otherItem.tag == 3){
+                otherItem.title = @"通讯录";
+            }else{
+                otherItem.title = @"我";
+            }
+        }
+        item.title = @"";
+    }
 }
 
 - (void)didReceiveLocalNotification:(UILocalNotification *)notification
@@ -358,6 +402,14 @@ static NSString *kGroupName = @"GroupName";
     [YLNotificationCenter removeObserverBlocksForKeyPath:HXSetupUnreadMessageCount];
     [YLNotificationCenter removeObserverBlocksForKeyPath:HXRePushToChat];
     
+}
+
+- (NSMutableArray *)tabbarArray
+{
+    if (!_tabbarArray) {
+        _tabbarArray = [NSMutableArray array];
+    }
+    return _tabbarArray;
 }
 
 @end

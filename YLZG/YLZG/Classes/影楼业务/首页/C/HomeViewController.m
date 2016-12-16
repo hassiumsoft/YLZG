@@ -14,6 +14,7 @@
 #import <MJExtension.h>
 #import "AppDelegate.h"
 #import <MJRefresh.h>
+#import "YLZGDataManager.h"
 #import "HTTPManager.h"
 #import "ZCAccountTool.h"
 #import "EmptyViewController.h"
@@ -153,10 +154,15 @@
         self.titleArray = [NSMutableArray arrayWithArray:@[@[@"开单",@"查询",@"预约",@"摄控本",@"订单收款",@"业绩榜",@"我的工作",@"今日订单"],@[@"审批",@"考勤打卡",@"工作任务",@"实用工具"],@[@"营销工具"]]];
         self.iconArray = [NSMutableArray arrayWithArray:@[@[@"btn_ico_kaidan",@"btn_ico_chaxun",@"btn_ico_yuyue",@"btn_ico_shekongben",@"btn_ico_dingdanshoukuan",@"btn_ico_yejibang",@"btn_ico_jinrigongzuo",@"btn_jinridingdan"],@[@"btn_ico_shenpi",@"btn_ico_kaoqin",@"task",@"btn_more"],@[@"btn_ico_kaoqin"]]];
         self.idArray = [NSMutableArray arrayWithArray:@[@[@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1",@"-1"],@[@"-1",@"-1",@"-1",@"-1"],@[@"-1"]]];
-
     }
     
     [self.view addSubview:self.collectionView];
+    BOOL isSpring = [[YLZGDataManager sharedManager] isSpringFestival];
+    if (isSpring) {
+        self.topView.image = [UIImage imageNamed:@"nian_sy_bg"];
+    }else{
+        self.topView.image = [UIImage imageNamed:@"sy_bg"];
+    }
     [self.collectionView insertSubview:self.topView atIndex:0];
     // 悬浮栏
     _suspendNav = [[NavigationView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 64)];
@@ -175,7 +181,6 @@
     [self.view addSubview:self.refreshButton];
     
     [self.view addSubview:self.indicatorV];
-    
     
 }
 
@@ -471,7 +476,12 @@
     // 改变导航栏alpha
     CGPoint point = _collectionView.contentOffset;
     CGFloat alpha = (point.y + topViewH) < topViewH ? ((point.y + topViewH) / topViewH) : 1;
-    _suspendNav.backgroundColor = RGBACOLOR(31, 139, 229, alpha);
+    
+    if ([[YLZGDataManager sharedManager] isSpringFestival]) {
+        _suspendNav.backgroundColor = RGBACOLOR(194, 16, 31, alpha);
+    }else{
+        _suspendNav.backgroundColor = RGBACOLOR(31, 139, 229, alpha);
+    }
     _suspendNav.titleLabel.textColor = RGBACOLOR(255, 255, 255, alpha);
     CGFloat y = scrollView.contentOffset.y;//根据实际选择加不加上NavigationBarHight（44、64 或者没有导航条）
     if (y < -topViewH) {
@@ -512,7 +522,13 @@
         self.topView.image = [UIImage imageNamed:@"lose_wlan"];
     }else{
         // 获得连接
-        self.topView.image = [UIImage imageNamed:@"sy_bg"];
+        BOOL isSpring = [[YLZGDataManager sharedManager] isSpringFestival];
+        if (isSpring) {
+            self.topView.image = [UIImage imageNamed:@"nian_sy_bg"];
+        }else{
+            self.topView.image = [UIImage imageNamed:@"sy_bg"];
+        }
+        
         if (!self.isJuFenxiang) {
             
             [self getJufenxiangInfo];

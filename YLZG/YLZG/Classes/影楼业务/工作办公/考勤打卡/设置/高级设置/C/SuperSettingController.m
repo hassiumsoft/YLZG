@@ -100,7 +100,7 @@
 {
     self.titleArray = @[@[@"设置上班弹性时间",@"设置严重迟到时间",@"设置旷工时间"],@[@"是否绑定审批",@"外勤打卡通知"],@[@"上班打卡提醒",@"下班打卡提醒"],@[@"上班最早打卡时间"]];
     
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds ];;
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds ];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 48;

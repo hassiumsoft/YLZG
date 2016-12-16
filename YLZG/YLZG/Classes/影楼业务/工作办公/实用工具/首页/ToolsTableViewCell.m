@@ -85,7 +85,8 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.layer.masksToBounds = YES;
     button.layer.cornerRadius = 5;
-    button.layer.borderColor = MainColor.CGColor;
+    UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
+    button.layer.borderColor = color.CGColor;
     button.layer.borderWidth = 1.f;
     [button setTitle:@"详 情" forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:13];

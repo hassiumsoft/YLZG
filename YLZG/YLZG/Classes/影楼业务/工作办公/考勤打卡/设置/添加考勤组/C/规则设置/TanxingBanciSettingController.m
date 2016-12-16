@@ -122,7 +122,8 @@
         
         banciBtn.tag = i;
         banciBtn.layer.cornerRadius = 4;
-        banciBtn.layer.borderColor = MainColor.CGColor;
+        UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
+        banciBtn.layer.borderColor = color.CGColor;
         banciBtn.layer.borderWidth = 1.f;
         [banciBtn addTarget:self action:@selector(chooseBanciBtn:) forControlEvents:UIControlEventTouchUpInside];
         NSString *title = model.classname;
@@ -226,7 +227,8 @@
     for (UIButton *button in self.btnArray) {
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         button.backgroundColor = [UIColor whiteColor];
-        button.layer.borderColor = MainColor.CGColor;
+        UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
+        button.layer.borderColor = color.CGColor;
         button.layer.borderWidth = 1.f;
     }
     sender.backgroundColor = MainColor;

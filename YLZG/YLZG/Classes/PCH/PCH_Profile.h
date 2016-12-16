@@ -49,7 +49,10 @@
 #define iOS_Version [[[UIDevice currentDevice] systemVersion] doubleValue]
 
 // 主要颜色
-#define MainColor RGBACOLOR(31, 139, 229, 1)
+#define MainColor [[YLZGDataManager sharedManager] isSpringFestival] ? SpringColor : NormalColor
+
+#define NormalColor RGBACOLOR(31, 139, 229, 1)
+#define SpringColor RGBACOLOR(194, 16, 31, 1)
 // 微信里删除的红色
 #define WechatRedColor RGBACOLOR(227, 69, 69, 1)
 // 当前控制器默认背景颜色

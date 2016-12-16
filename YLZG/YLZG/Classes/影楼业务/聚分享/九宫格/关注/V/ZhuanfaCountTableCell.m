@@ -84,7 +84,7 @@
     }];
     
     self.timeLabel = [[UILabel alloc]init];
-    self.timeLabel.textColor = RGBACOLOR(56, 56, 56, 1);;
+    self.timeLabel.textColor = RGBACOLOR(56, 56, 56, 1);
     self.timeLabel.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:self.timeLabel];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {

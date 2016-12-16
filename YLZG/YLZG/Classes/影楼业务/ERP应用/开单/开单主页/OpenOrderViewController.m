@@ -864,8 +864,9 @@
         addButton.layer.masksToBounds = YES;
         addButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         addButton.backgroundColor = [UIColor whiteColor];
-        addButton.layer.borderColor = MainColor.CGColor;
-        addButton.layer.borderWidth = 1;;
+        UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
+        addButton.layer.borderColor = color.CGColor;
+        addButton.layer.borderWidth = 1;
         addButton.layer.cornerRadius = 4;
         [_proFootView addSubview:addButton];
     }

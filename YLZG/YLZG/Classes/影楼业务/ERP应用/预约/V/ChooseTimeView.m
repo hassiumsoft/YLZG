@@ -89,7 +89,8 @@
 {
     if (!_datePicker) {
         _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_coverBtn.frame) + 40, SCREEN_WIDTH, self.height - _coverBtn.height - 40)];
-        _datePicker.layer.borderColor = MainColor.CGColor;
+        UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
+        _datePicker.layer.borderColor = color.CGColor;
         _datePicker.layer.borderWidth = 1.f;
         _datePicker.datePickerMode = UIDatePickerModeTime;
         _datePicker.backgroundColor = [UIColor whiteColor];

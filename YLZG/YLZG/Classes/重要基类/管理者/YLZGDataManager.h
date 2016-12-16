@@ -39,5 +39,12 @@ typedef void(^ShareUrlBlock)(NSString *url);
 /** 获取分享链接 */
 - (void)getShareUrlCompletion:(ShareUrlBlock)shareURL;
 
+/**
+ 是否为春节期间
+
+ @return BOOL
+ */
+- (BOOL)isSpringFestival;
+
 
 @end

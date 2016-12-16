@@ -252,7 +252,8 @@
         phoneBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         phoneBtn.layer.masksToBounds = YES;
         [phoneBtn addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchUpInside];
-        phoneBtn.layer.borderColor = MainColor.CGColor;
+        UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
+        phoneBtn.layer.borderColor = color.CGColor;
         phoneBtn.layer.borderWidth = 1.f;
         [phoneBtn setTitleColor:MainColor forState:UIControlStateNormal];
         phoneBtn.backgroundColor = [UIColor whiteColor];

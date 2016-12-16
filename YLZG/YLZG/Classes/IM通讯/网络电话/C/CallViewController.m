@@ -249,7 +249,7 @@
     [_cancelButton setImage:[UIImage imageNamed:@"call_guaduan"] forState:UIControlStateNormal];
     _cancelButton.layer.masksToBounds = YES;
     _cancelButton.layer.cornerRadius = ButtonWH/2;
-    [_cancelButton setBackgroundColor:[UIColor redColor]];;
+    [_cancelButton setBackgroundColor:[UIColor redColor]];
     [_cancelButton addTarget:self action:@selector(hangupAction) forControlEvents:UIControlEventTouchUpInside];
     [_actionView addSubview:_cancelButton];
     [_cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
