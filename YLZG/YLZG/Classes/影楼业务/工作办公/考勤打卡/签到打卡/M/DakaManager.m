@@ -10,6 +10,7 @@
 #import "CheckInOnModel.h"
 #import "CheckInOffModel.h"
 #import "TodayDakaLocationsModel.h"
+#import <AFNetworking.h>
 #import <SystemConfiguration/CaptiveNetwork.h>
 
 
@@ -39,7 +40,7 @@
 {
     BOOL isInArea = NO;
     for (int i = 0; i < locationArr.count; i++) {
-        TodayDakaLocationsModel *locationModel = locationArr[i];
+//        TodayDakaLocationsModel *locationModel = locationArr[i];
         // 只要有一个在范围就可以提示能打卡
         
     }
@@ -50,8 +51,47 @@
 #pragma mark -获取当前的wifi名字
 - (NSString *)getWifiName
 {
-    NSString *wifiName = nil;
+    __weak __block NSString *wifiName = nil;
     
+    AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
+    [manager startMonitoring];
+    [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusNotReachable:
+            {
+                // 无网络
+                wifiName = @"蜂窝网络";
+                
+                break;
+            }
+            case AFNetworkReachabilityStatusReachableViaWiFi:
+            {
+                // wifi网络
+                wifiName = [self getWifi];
+                
+                break;
+            }
+            case AFNetworkReachabilityStatusReachableViaWWAN:
+            {
+                // 无线网络
+                
+                wifiName = @"无网络";
+                break;
+            }
+            default:
+                
+                break;
+        }
+    }];
+    
+    return wifiName;
+    
+}
+
+- (NSString *)getWifi
+{
+    
+    NSString *wifiName = nil;
     CFArrayRef wifiInterfaces = CNCopySupportedInterfaces();
     
     if (!wifiInterfaces) {
@@ -73,9 +113,8 @@
     }
     
     CFRelease(wifiInterfaces);
+    
     return wifiName;
 }
-
-
 
 @end

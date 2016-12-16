@@ -12,6 +12,8 @@
 #import "TeamPaihangbangTableViewCell.h"
 #import "CalendarHomeViewController.h"
 #import <MJExtension.h>
+#import "NormalIconView.h"
+#import <Masonry.h>
 
 @interface TeamPaihangbangViewController ()<DateMineKaoqinPickerDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -37,20 +39,36 @@
 #pragma mark - 生命周期
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 初始化
-    [self selfInitTeamPaihangbangViewControllerVC];
+    self.title = @"排行榜";
     // 请求数据
-    [self loadTeamPaihangbangViewControllerData];
-    // 搭建UI
+//    [self loadTeamPaihangbangViewControllerData];
+    // 搭建头部UI
     [self creatTeamPaihangbangViewControllerUI];
+    // 表格
+//    [self createTabelView];
     
-    [self createTabelView];
+    [self CreateEmptyView:@"还没有数据统计"];
 }
 
-#pragma mark - 初始化
-- (void)selfInitTeamPaihangbangViewControllerVC{
-    self.title = @"排行榜";
+- (void)CreateEmptyView:(NSString *)message
+{
+    // 全部为空值
+    NormalIconView *emptyView = [NormalIconView sharedHomeIconView];
+    emptyView.iconView.image = [UIImage imageNamed:@"happyness"];
+    emptyView.label.text = message;
+    emptyView.label.numberOfLines = 0;
+    emptyView.label.textColor = RGBACOLOR(209, 40, 123, 1);
+    emptyView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:emptyView];
+    
+    
+    [emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.centerY.equalTo(self.view.mas_centerY).offset(-64);
+        make.width.and.height.equalTo(@140);
+    }];
 }
+
 
 
 #pragma mark - 请求数据
@@ -115,7 +133,7 @@
                            ];
         self.dataSource = [TeamPaihangbangModel mj_objectArrayWithKeyValuesArray:arr];
     }
-    [self createTabelView];
+//    [self createTabelView];
 }
 
 #pragma mark -当前时间
