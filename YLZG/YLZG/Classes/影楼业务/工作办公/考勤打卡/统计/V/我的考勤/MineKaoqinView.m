@@ -218,19 +218,12 @@
 
 - (void)getDateWithMonth:(NSString *)monthStr{
 
-    AFHTTPSessionManager * requestManager = [AFHTTPSessionManager manager];
-    requestManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    requestManager.requestSerializer.timeoutInterval = 10.f;
-    requestManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/json",nil];
-    
-    
     [SVProgressHUD showWithStatus:@"努力加载中..."];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     ZCAccount * account = [ZCAccountTool account];
     NSString * url = [NSString stringWithFormat:Count_MyKaoqin_Url, account.userID, monthStr];
 
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
- 
 
             [_dataSource removeAllObjects];
             [_rightView removeFromSuperview];

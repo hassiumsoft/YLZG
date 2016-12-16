@@ -234,7 +234,7 @@
     // 定位
     [self.locService startUserLocationService];
     
-#warning 需要判断什么时候上班打卡，什么时候下班打卡
+//#warning 需要判断什么时候上班打卡，什么时候下班打卡
     int status = [self getStateAndupdate:NO];
     if (status == 1) {
         // 正常打卡
@@ -248,7 +248,10 @@
             [self setupQiandaoViewDakaStstus:UnDakaClicked OnOffWork:OnWorkType];
         }else if(!self.checkOffModel.id){
             // 下班正常打卡
-            
+            [self setupOnWorkTimeDakaStatus:DakaClicked OnOffWork:OnWorkType];
+            [self setupOffWorkViewDakaStstus:DakaClicked OnOffWork:OnWorkType];
+            //  绘制签到时的视图
+            [self setupQiandaoViewDakaStstus:UnDakaClicked OnOffWork:OnWorkType];
         }
     }else if (status == 2 || status == 3){
         // 迟到打卡 --- 上班
@@ -463,14 +466,61 @@
         
     }else{
         // 已经打了下班卡
-#warning 下班区域的展示
-        if (self.checkOffModel.time) {
+
+        if (self.checkOffModel.id) {
             // 打了下班卡 打下班卡的信息展示一下
+            beginTimeLabel.text = [NSString stringWithFormat:@"打卡时间%@(下班时间%@)",self.checkInModel.time,self.ruleModel.end];
+            // 打卡地址
+            UILabel *dakaLocal = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, CGRectGetMaxY(beginTimeLabel.frame), SCREEN_WIDTH - 50, 24)];
+            dakaLocal.text = [NSString stringWithFormat:@"打卡地址：%@",[[self.checkInModel.location objectForKey:@"address"] description]];
+            dakaLocal.font = [UIFont systemFontOfSize:13];
+            [self.OnWorkView addSubview:dakaLocal];
+            // WiFi信息
+            UILabel *wifiLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame)+10, CGRectGetMaxY(dakaLocal.frame), SCREEN_WIDTH - 50, 24)];
+            wifiLabel.text = [NSString stringWithFormat:@"WiFi信息：%@",self.checkInModel.router];
+            wifiLabel.font = dakaLocal.font;
+            [self.OnWorkView addSubview:wifiLabel];
             
+            UIImageView *yesImgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"big_yes"]];
+            [self.OnWorkView addSubview:yesImgV];
+            [yesImgV mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.OnWorkView.mas_centerX);
+                make.bottom.equalTo(self.OnWorkView.mas_bottom);
+                make.width.and.height.equalTo(@(80*CKproportion));
+            }];
         }else{
             // 没打下班卡---告诉用户你在哪里了
             
+            // 还没打卡，告诉用户，所在的位置和WiFi范围。
+            UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, CGRectGetMaxY(beginTimeLabel.frame), SCREEN_WIDTH - 50, 22)];
+            label1.text = @"*下班打卡，请确保您符合以下任一条件：";
+            label1.font = [UIFont systemFontOfSize:13];
+            [self.OffWorkView addSubview:label1];
+            // 地址
+            UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 10, CGRectGetMaxY(label1.frame), SCREEN_WIDTH - 80, 42)];
+            label2.font = [UIFont systemFontOfSize:13];
+            TodayDakaLocationsModel *lastLocalModel = [self.locationArray lastObject];
+            label2.text = [NSString stringWithFormat:@"1、'%@'方圆%@米范围内",lastLocalModel.address,self.privilege_meter];
+            label2.font = [UIFont systemFontOfSize:13];
+            label2.numberOfLines = 2;
+            [self.OffWorkView addSubview:label2];
             
+            // WiFi
+            UILabel *label3 = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(iconV.frame) + 5, CGRectGetMaxY(label2.frame), SCREEN_WIDTH - 80, 42)];
+            label3.font = [UIFont systemFontOfSize:13];
+            NSMutableString *formatWifi = [NSMutableString new];
+            for (int i = 0; i < self.wifiNameArray.count; i++) {
+                
+                NSString *wifi = self.wifiNameArray[i];
+                if (i != 0) {
+                    wifi = [NSString stringWithFormat:@"、%@",wifi];
+                }
+                formatWifi = (NSMutableString *)[formatWifi stringByAppendingString:wifi];
+            }
+            label3.text = [NSString stringWithFormat:@"2、您手机所连接的WiFi包含其中:%@",formatWifi];
+            label3.font = [UIFont systemFontOfSize:13];
+            label3.numberOfLines = 2;
+            [self.OffWorkView addSubview:label3];
         }
         
     }
@@ -540,7 +590,12 @@
 {
 //    @"http://zsylou.wxwkf.com/index.php/home/attence/checkin?uid=%@&type=%@&id=%@&time=%@&location=%@&status=%@&outside=%@&remark=%@"
     
-    NSString *typeStr = [NSString stringWithFormat:@"%d",[self getStateAndupdate:NO]];
+    NSString *typeStr;
+    if (!self.checkInModel.id) {
+        typeStr = @"1";// 上班打卡
+    }else{
+        typeStr = @"2";// 下班打卡
+    }
     NSString *latitude = [NSString stringWithFormat:@"%f",self.geoResult.location.latitude];
     NSString *longitude = [NSString stringWithFormat:@"%f",self.geoResult.location.longitude];
     NSDictionary *addressDict = @{@"address":self.geoResult.address,@"latitude":latitude,@"longitude":longitude};
@@ -724,7 +779,6 @@
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 {
     self.geoResult = result;
-#warning 刷新视图
     [self setupTodayRuleView];
     
 }

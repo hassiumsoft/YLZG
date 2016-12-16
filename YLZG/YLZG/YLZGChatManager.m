@@ -327,6 +327,16 @@ static YLZGChatManager *chatManager = nil;
             [self showAlertMessage:@"呼叫失败 请稍后重试"];
             break;
         }
+        case EMCallEndReasonUnsupported:
+        {
+            [self showAlertMessage:@"功能不支持"];
+            break;
+        }
+        case EMCallEndReasonRemoteOffline:
+        {
+            [self showAlertMessage:@"对方不在线"];
+            break;
+        }
         default:
             break;
     }
@@ -438,6 +448,16 @@ static YLZGChatManager *chatManager = nil;
                 case EMCallEndReasonFailed:
                 {
                     [self showAlertMessage:@"呼叫失败 请稍后重试"];
+                    break;
+                }
+                case EMCallEndReasonUnsupported:
+                {
+                    [self showAlertMessage:@"功能不支持"];
+                    break;
+                }
+                case EMCallEndReasonRemoteOffline:
+                {
+                    [self showAlertMessage:@"对方不在线"];
                     break;
                 }
                 default:
@@ -674,11 +694,20 @@ static YLZGChatManager *chatManager = nil;
     self.contactListVC = nil;
     self.callController = nil;
     self.chatVC = nil;
+    
+    [self stopCallTimer];
+    if (_callSession) {
+        [[EMClient sharedClient].callManager endCall:_callSession.callId reason:EMCallEndReasonFailed];
+    }
+    _callSession = nil;
+    [_callController close];
+    _callController = nil;
+    
     [[EMClient sharedClient] logout:NO completion:^(EMError *aError) {
+        
         
     }];
     
-    [self hangupCallWithReason:EMCallEndReasonFailed];
 }
 
 - (BOOL)isNeedShowNotification:(NSString *)fromChatter
