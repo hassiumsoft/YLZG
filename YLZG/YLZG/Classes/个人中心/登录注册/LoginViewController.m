@@ -45,6 +45,16 @@
 {
     [self.view endEditing:YES];
     
+//    self.nameField.text = @"whdmx_whdmx";
+//    self.passField.text = @"710321";
+//    [[EMClient sharedClient] registerWithUsername:self.nameField.text password:self.passField.text completion:^(NSString *aUsername, EMError *aError) {
+//        if (aError) {
+//            [self sendErrorWarning:aError.errorDescription];
+//        }
+//    }];
+//    
+//    return;
+    
     if (self.nameField.text.length < 1) {
         [self showErrorTips:@"账户名不能为空"];
         return;
@@ -53,6 +63,8 @@
         [self showErrorTips:@"密码不能为空"];
         return;
     }
+    
+    
     NSString *deviceName = [UIDevice currentDevice].name;
     CGFloat deviceVersion = [[UIDevice currentDevice].systemVersion floatValue];
     

@@ -7,11 +7,10 @@
 //
 
 #import "CheckWorkViewController.h"
-#import <objc/runtime.h>
 #import "DakaManager.h"
-#import "qiaodaocountBtn.h"
 #import "YuanCurrentTimeView.h"
 #import "DakaMapView.h"
+#import "KaoqinInfoView.h"
 #import "ZCAccountTool.h"
 #import "SVProgressHUD.h"
 #import <AFNetworking.h>
@@ -50,10 +49,6 @@
 
 // 最底层的scrollview
 @property (nonatomic, strong) UIScrollView * backScrollView;
-// 日期
-@property (nonatomic, strong) qiaodaocountBtn * dateButton;
-//// 日历
-//@property (nonatomic, strong) SCXDateTimePicker * datePicker;
 
 // 签到备注
 @property (nonatomic, strong) QIaodaoBeizhuView * qiandaoBeizhuView;
@@ -182,9 +177,7 @@
 #pragma mark - 搭建UI
 - (void)creatCheckWorkVControllerUI{
   
-//    [YLNotificationCenter addObserver:self selector:@selector(dakaTimeClicked:) name:@"dakaTime" object:nil];
-    
-    //    self.backScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+
     self.backScrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     self.backScrollView.userInteractionEnabled = YES;
     self.backScrollView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT+100);
@@ -193,12 +186,11 @@
     [self.view addSubview:self.backScrollView];
     
     // 上面的一行
-    _dateButton = [qiaodaocountBtn shareqiaodaocountBtn];
-    _dateButton.frame = CGRectMake(0, 0, SCREEN_WIDTH, 44);
-    _dateButton.label.text = [NSString stringWithFormat:@"%@  %@", [self getCurrentTime], [self featureWeekdayWithDate:[self getCurrentTime]]];
-    [self.backScrollView addSubview:_dateButton];
+    KaoqinInfoView *kaoqinInfoView = [[KaoqinInfoView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 130)];
+    kaoqinInfoView.dict = self.dataDict;
+    [self.backScrollView addSubview:kaoqinInfoView];
     
-    self.whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_dateButton.frame)+1, SCREEN_WIDTH, 300)];
+    self.whiteView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(kaoqinInfoView.frame)+1, SCREEN_WIDTH, 300 * CKproportion)];
     self.whiteView.backgroundColor = [UIColor whiteColor];
     [self.backScrollView addSubview:self.whiteView];
     
@@ -739,11 +731,18 @@
     NSMutableArray * distaceArr = [[NSMutableArray alloc] init];
     BMKMapPoint pHome = BMKMapPointForCoordinate(CLLocationCoordinate2DMake([_hideLoacationDict[@"latitude"] doubleValue],[_hideLoacationDict[@"longitude"] doubleValue]));
     
-    for (int i = 0; i < [_dataDict[@"locations"] count]; i++) {
-        BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake([_dataDict[@"latitude"][i] doubleValue],[_dataDict[@"longitude"][i] doubleValue]));
-        double distance = BMKMetersBetweenMapPoints(pHome,point1);
-        [distaceArr addObject:[NSString stringWithFormat:@"%f",distance]];
+    
+    id locations = [_dataDict objectForKey:@"locations"];
+    if ([locations isKindOfClass:[NSNull class]]) {
+        
+    }else{
+        for (int i = 0; i < [_dataDict[@"locations"] count]; i++) {
+            BMKMapPoint point1 = BMKMapPointForCoordinate(CLLocationCoordinate2DMake([_dataDict[@"latitude"][i] doubleValue],[_dataDict[@"longitude"][i] doubleValue]));
+            double distance = BMKMetersBetweenMapPoints(pHome,point1);
+            [distaceArr addObject:[NSString stringWithFormat:@"%f",distance]];
+        }
     }
+    
     
     // 如果没有wifi的时候判断距离
     if (_dataDict[@"routers"] == nil || _dataDict[@"routers"] == 0) {

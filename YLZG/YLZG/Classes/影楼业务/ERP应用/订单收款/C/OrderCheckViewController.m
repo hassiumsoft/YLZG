@@ -106,11 +106,11 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setTitle:titleArr[indexPath.row] forState:UIControlStateNormal];
         button.backgroundColor = MainColor;
-        button.layer.cornerRadius = 6;
+        button.layer.cornerRadius = 4;
         button.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         [button addTarget:self action:@selector(checkClick) forControlEvents:UIControlEventTouchUpInside];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [button setFrame:CGRectMake(20, SCREEN_HEIGHT - 55 * 4 - 30 - 64 - 50, SCREEN_WIDTH - 40, 38)];
+        [button setFrame:CGRectMake(20, SCREEN_HEIGHT - 55 * 4 - 30 - 64 - 50, SCREEN_WIDTH - 40, 40)];
         [cell addSubview:button];
         
         return cell;

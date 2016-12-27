@@ -101,7 +101,7 @@
     textAttres[NSForegroundColorAttributeName] = RGBACOLOR(191, 191, 191, 1);
     
     NSMutableDictionary *selectTextAttres = [NSMutableDictionary dictionary];
-    selectTextAttres[NSForegroundColorAttributeName] = MainColor;
+    selectTextAttres[NSForegroundColorAttributeName] = NormalColor;
     selectTextAttres[NSFontAttributeName] = [UIFont systemFontOfSize:9];
     
     [childVC.tabBarItem setTitleTextAttributes:textAttres forState:UIControlStateNormal];

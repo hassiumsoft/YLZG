@@ -163,7 +163,7 @@
         newLabel.text = @"新建项目";
         newLabel.adjustsFontSizeToFitWidth = YES;
         newLabel.font = [UIFont systemFontOfSize:14];
-        newLabel.textColor = MainColor;
+        newLabel.textColor = NormalColor;
         [_createView addSubview:newLabel];
         
         UIImageView *addImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"btn_tianjia_lan"]];

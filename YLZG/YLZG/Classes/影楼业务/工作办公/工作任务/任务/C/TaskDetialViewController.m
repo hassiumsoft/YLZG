@@ -126,7 +126,12 @@
             // 截止日期
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             cell.textLabel.text = @"截止日期";
-            cell.contentLabel.text = [self timeIntervalToDate:self.detialModel.deadline];
+            // 往后推迟一天
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.detialModel.deadline];
+            NSDate *nextDay = [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];//后一天
+            NSString *time = [NSString stringWithFormat:@"%@",nextDay];
+            NSString *chooseDate = [time substringWithRange:NSMakeRange(0, 16)];
+            cell.contentLabel.text = chooseDate;
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             
             [cell addSubview:self.xian3];
@@ -181,6 +186,12 @@
 #pragma mark - 修改任务状态
 - (void)updateTaskStatusWithStatus:(BOOL)status ComPleteBlock:(CompleteBlock)complete
 {
+    
+    if (self.detialModel.status == 1) {
+        [self showSuccessTips:@"任务已完成"];
+        return;
+    }
+    
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"您确定已完成该任务？" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
             [self showHudMessage:@"修改中···"];
@@ -191,6 +202,7 @@
                 NSString *message = [[responseObject objectForKey:@"message"] description];
                 if (code == 1) {
                     [YLNotificationCenter postNotificationName:TaskReloadData object:nil];
+                    self.detialModel.status = 1;
                     complete();
                 }else{
                     [self sendErrorWarning:message];
@@ -228,6 +240,7 @@
 // 修改任务名称
 - (void)editTaskName
 {
+    
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"编辑任务" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
             
@@ -274,8 +287,28 @@
             // 呈现警告视图
             [self presentViewController:alertDialog animated:YES completion:nil];
             
+        }else if(buttonIndex == 2){
+            // 删除任务
+            NSString *url = [NSString stringWithFormat:DeleteTask_URL,[ZCAccountTool account].userID,self.detialModel.pid,self.detialModel.id];
+            [self showHudMessage:@"删除任务中"];
+            [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                [self hideHud:0];
+                int code = [[[responseObject objectForKey:@"code"] description] intValue];
+                NSString *message = [responseObject objectForKey:@"message"];
+                if (code == 1) {
+                    // 告诉之前的界面刷新数据
+                    [YLNotificationCenter postNotificationName:TaskReloadData object:nil];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }else{
+                    [self sendErrorWarning:message];
+                }
+            } fail:^(NSURLSessionDataTask *task, NSError *error) {
+                [self hideHud:0];
+                [self sendErrorWarning:error.localizedDescription];
+            }];
         }
-    } otherButtonTitles:@"修改任务昵称", nil];
+    } otherButtonTitles:@"修改任务昵称",@"删除任务", nil];
+    sheet.destructiveButtonIndexSet = [NSSet setWithObject:@2];
     [sheet show];
 }
 #pragma mark - 修改负责人
@@ -360,7 +393,25 @@
         [_isGuanzhuBtn setFrame:CGRectMake(SCREEN_WIDTH - 45, 10, 30, 30)];
         __weak __block TaskDetialViewController *copy_self = self;
         [_isGuanzhuBtn addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
-            [copy_self.isGuanzhuBtn setImage:[UIImage imageNamed:@"task_isguanzhu"] forState:UIControlStateNormal];
+            ZCAccount *account = [ZCAccountTool account];
+            NSString *url = [NSString stringWithFormat:CareOrNotCareTask_URL,account.userID,copy_self.detialModel.pid,copy_self.detialModel.id,!copy_self.detialModel.isCare];
+            [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                NSLog(@"responseObject = %@",responseObject);
+                int code = [[[responseObject objectForKey:@"code"] description] intValue];
+                NSString *message = [[responseObject objectForKey:@"message"] description];
+                if (code == 1) {
+                    [YLNotificationCenter postNotificationName:TaskReloadData object:nil];
+                    if (copy_self.detialModel.isCare) {
+                        [copy_self.isGuanzhuBtn setImage:[UIImage imageNamed:@"task_noguanzhu"] forState:UIControlStateNormal];
+                    }else{
+                        [copy_self.isGuanzhuBtn setImage:[UIImage imageNamed:@"task_isguanzhu"] forState:UIControlStateNormal];
+                    }
+                }else{
+                    [copy_self showErrorTips:message];
+                }
+            } fail:^(NSURLSessionDataTask *task, NSError *error) {
+                [copy_self sendErrorWarning:error.localizedDescription];
+            }];
             
         }];
     }
@@ -432,6 +483,10 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 1) {
             // 修改负责人
+            if (self.detialModel.status == 1) {
+                
+                return;
+            }
             SelectTaskFuzerController *select = [SelectTaskFuzerController new];
             select.title = @"修改负责人";
             select.SelectBlock = ^(ProduceMemberModel *model){
@@ -442,6 +497,10 @@
             [self.navigationController pushViewController:select animated:YES];
         }else if (indexPath.row == 2){
             // 修改截止日期
+            if (self.detialModel.status == 1) {
+                
+                return;
+            }
             PDTSimpleCalendarViewController *calendar = [PDTSimpleCalendarViewController new];
             calendar.title = @"修改任务截止日期";
             calendar.delegate = self;
@@ -571,7 +630,7 @@
 {
     NSString *url = [NSString stringWithFormat:TaskDetial_Url,[ZCAccountTool account].userID,self.listModel.id];
     [self showHudMessage:@"正在加载···"];
-    NSLog(@"任务详情url = %@",url);
+    KGLog(@"任务详情url = %@",url);
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self hideHud:0];
         int code = [[[responseObject objectForKey:@"code"] description] intValue];

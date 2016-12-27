@@ -66,8 +66,6 @@
         [self showErrorTips:@"请选择图片"];
         return;
     }
-//    http://192.168.0.18/index.php/wei/retransmission/create
-//    UpLoadMoban_Url  @"http://zsylou.wxwkf.com/index.php/wei/retransmission/create"
     
     NSString *url = UpLoadMoban_Url;
     NSString *isShare;

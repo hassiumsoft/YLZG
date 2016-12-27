@@ -50,7 +50,12 @@
         [self setAccessoryType:UITableViewCellAccessoryNone];
     }
     _taskNameLabel.text = taskListmodel.name;
-    _dateLabel.text = [self timeIntervalToDate:taskListmodel.deadline];
+    // 往后推迟一天
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:taskListmodel.deadline];
+    NSDate *nextDay = [NSDate dateWithTimeInterval:24*60*60 sinceDate:date];//后一天
+    NSString *time = [NSString stringWithFormat:@"%@",nextDay];
+    NSString *chooseDate = [time substringWithRange:NSMakeRange(0, 10)];
+    _dateLabel.text = chooseDate;
     _produceNameL.text = taskListmodel.project;
 }
 - (void)setProduceDetialModel:(ProduceTaskModel *)produceDetialModel

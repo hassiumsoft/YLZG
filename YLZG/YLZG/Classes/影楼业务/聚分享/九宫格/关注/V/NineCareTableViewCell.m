@@ -9,13 +9,13 @@
 #import "NineCareTableViewCell.h"
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
+#import "UIImage+Category.h"
 
 
 @interface NineCareTableViewCell ()
 
 /** 背景图片 */
 @property (strong,nonatomic) UIImageView *backImageV;
-
 /** 标题 */
 @property (strong,nonatomic) UILabel *nameLabel;
 
@@ -49,7 +49,9 @@
     if ([model.id isEqualToString:@"group"]) {
         _backImageV.image = [UIImage imageNamed:model.thumb];
     }else{
-        [_backImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"reg-fb-bg"]];
+        [_backImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"reg-fb-bg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            _backImageV.image = [UIImage boxblurImage:image withBlurNumber:0.5];
+        }];
     }
     
 }

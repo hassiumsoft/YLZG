@@ -322,7 +322,9 @@
 		3B87BFE91DF54C9700970625 /* QZSortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFE61DF54C9700970625 /* QZSortCell.m */; };
 		3B87BFEE1DF558EC00970625 /* QZConditionFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFEB1DF558EC00970625 /* QZConditionFilterView.m */; };
 		3B87BFEF1DF558EC00970625 /* QZFilterDataTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFED1DF558EC00970625 /* QZFilterDataTableView.m */; };
+		3B88F3DF1E120EE900494032 /* KaoqinInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B88F3DE1E120EE900494032 /* KaoqinInfoView.m */; };
 		3B9099D61E00E1C90090B6DD /* WholeSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9099D51E00E1C90090B6DD /* WholeSetModel.m */; };
+		3B913AB41E07846D00D7F1E9 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B913AB31E07846D00D7F1E9 /* UIImage+Category.m */; };
 		3B948B6B1DD993C600D75112 /* TodayOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B948B581DD993C600D75112 /* TodayOrderViewController.m */; };
 		3B948B6C1DD993C600D75112 /* TodayOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B948B5B1DD993C600D75112 /* TodayOrderModel.m */; };
 		3B948B6D1DD993C600D75112 /* TodayOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B948B5E1DD993C600D75112 /* TodayOrderCell.m */; };
@@ -1112,8 +1114,12 @@
 		3B87BFEB1DF558EC00970625 /* QZConditionFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZConditionFilterView.m; sourceTree = "<group>"; };
 		3B87BFEC1DF558EC00970625 /* QZFilterDataTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZFilterDataTableView.h; sourceTree = "<group>"; };
 		3B87BFED1DF558EC00970625 /* QZFilterDataTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZFilterDataTableView.m; sourceTree = "<group>"; };
+		3B88F3DD1E120EE900494032 /* KaoqinInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaoqinInfoView.h; sourceTree = "<group>"; };
+		3B88F3DE1E120EE900494032 /* KaoqinInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaoqinInfoView.m; sourceTree = "<group>"; };
 		3B9099D41E00E1C90090B6DD /* WholeSetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WholeSetModel.h; sourceTree = "<group>"; };
 		3B9099D51E00E1C90090B6DD /* WholeSetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WholeSetModel.m; sourceTree = "<group>"; };
+		3B913AB21E07846D00D7F1E9 /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
+		3B913AB31E07846D00D7F1E9 /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
 		3B948B571DD993C600D75112 /* TodayOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayOrderViewController.h; sourceTree = "<group>"; };
 		3B948B581DD993C600D75112 /* TodayOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayOrderViewController.m; sourceTree = "<group>"; };
 		3B948B5A1DD993C600D75112 /* TodayOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayOrderModel.h; sourceTree = "<group>"; };
@@ -2269,6 +2275,8 @@
 				3B4C12651DC85F4700827D4F /* qiaodaocountBtn.m */,
 				3B213F361DFE58DA0088728C /* DakaTableViewCell.h */,
 				3B213F371DFE58DA0088728C /* DakaTableViewCell.m */,
+				3B88F3DD1E120EE900494032 /* KaoqinInfoView.h */,
+				3B88F3DE1E120EE900494032 /* KaoqinInfoView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3590,6 +3598,8 @@
 		3BCA32441D9CC1F900A0E980 /* 延展 */ = {
 			isa = PBXGroup;
 			children = (
+				3B913AB21E07846D00D7F1E9 /* UIImage+Category.h */,
+				3B913AB31E07846D00D7F1E9 /* UIImage+Category.m */,
 				3BCF39EE1D9E630300BEE236 /* NSDate+Category.h */,
 				3BCF39EF1D9E630300BEE236 /* NSDate+Category.m */,
 				3BCA32451D9CC1F900A0E980 /* Foundation+Log.m */,
@@ -4275,6 +4285,7 @@
 				3B4C134B1DC85F4700827D4F /* TanxingBanciSettingController.m in Sources */,
 				3BCA323A1D9CC07600A0E980 /* YLConstKey.m in Sources */,
 				3B3BBF9F1DB4780F00C9E2FD /* GroupListViewController.m in Sources */,
+				3B88F3DF1E120EE900494032 /* KaoqinInfoView.m in Sources */,
 				3B948B6B1DD993C600D75112 /* TodayOrderViewController.m in Sources */,
 				3B4C10A31DC85DDC00827D4F /* ButtonIconModel.m in Sources */,
 				3BCF3A3B1D9E6CF800BEE236 /* TAPageControl.m in Sources */,
@@ -4415,6 +4426,7 @@
 				3B4C13691DC85F4700827D4F /* ApproveModel.m in Sources */,
 				3B3BBFA51DB47C0400C9E2FD /* FriendTableViewCell.m in Sources */,
 				3B07D8C81D956B0D00B657F6 /* main.m in Sources */,
+				3B913AB41E07846D00D7F1E9 /* UIImage+Category.m in Sources */,
 				3BCF39EB1D9E5AD200BEE236 /* MyAreaManagerController.m in Sources */,
 				3B8531891DF8F9B800AB9C4F /* NineTabbarController.m in Sources */,
 				3B8531BB1DF9190F00AB9C4F /* JFImageCollectionViewController.m in Sources */,

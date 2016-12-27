@@ -8,12 +8,20 @@
 
 #import "MyCreateTaskController.h"
 #import "TaskListTableCell.h"
+#import "ZCAccountTool.h"
+#import "HTTPManager.h"
+#import <MJExtension.h>
 #import "TaskDetialViewController.h"
 
 @interface MyCreateTaskController ()<UITableViewDelegate,UITableViewDataSource>
+//{
+//    int CurrentPage;
+//}
 
 /** 表格 */
 @property (strong,nonatomic) UITableView *tableView;
+
+//@property (strong,nonatomic) NSMutableArray *finishedArray;
 
 @end
 
@@ -25,6 +33,26 @@
 //    self.view.backgroundColor = [UIColor whiteColor];
     [self setupSubViews];
 }
+
+//- (void)getFinishedData
+//{
+//    CurrentPage = 1;
+//    
+//    NSString *url = [NSString stringWithFormat:TaskFinished_URL,[ZCAccountTool account].userID,1,CurrentPage,20];
+//    
+//    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+//        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+//        if (code == 1) {
+//            NSArray *result = [responseObject objectForKey:@"result"];
+//            self.finishedArray = [TaskListModel mj_objectArrayWithKeyValuesArray:result];
+//            [self.tableView reloadData];
+//        }
+//    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+//        [self sendErrorWarning:error.localizedDescription];
+//    }];
+//    
+//}
+//
 
 - (void)setupSubViews
 {
@@ -81,5 +109,15 @@
 {
     _array = array;
 }
+
+
+//- (NSMutableArray *)finishedArray
+//{
+//    if (!_finishedArray) {
+//        _finishedArray = [NSMutableArray array];
+//    }
+//    return _finishedArray;
+//}
+
 
 @end

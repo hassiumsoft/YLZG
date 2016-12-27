@@ -470,7 +470,7 @@
     if (!_sendMsgBtn) {
         _sendMsgBtn = [[UIButton alloc]initWithFrame:CGRectMake(25, 20, SCREEN_WIDTH - 50, 40)];
         _sendMsgBtn.layer.cornerRadius = 5;
-        _sendMsgBtn.backgroundColor = MainColor;
+        _sendMsgBtn.backgroundColor = NormalColor;
         [_sendMsgBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sendMsgBtn setTitle:@"发消息" forState:UIControlStateNormal];
         [_sendMsgBtn addTarget:self action:@selector(sendMessageAction) forControlEvents:UIControlEventTouchUpInside];
