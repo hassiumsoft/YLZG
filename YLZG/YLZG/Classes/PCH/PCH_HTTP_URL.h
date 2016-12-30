@@ -221,7 +221,10 @@
 #define DeleteTask_URL @"http://192.168.0.18/index.php/home/task/delete?uid=%@&pid=%@&id=%@"
 // 任务--已完成的任务
 #define TaskFinished_URL @"http://192.168.0.18/index.php/home/task/done?uid=%@&type=%d&page=%d&num=%d"
-
+// 任务--任务动态
+#define TaskDongtai_Url @"http://192.168.0.18/index.php/home/dynamic/lists?uid=%@&date=%@"
+// 任务--发布文字评论
+#define TaskSendContent_Url @"http://192.168.0.18/index.php/home/discuss/onlyText?uid=%@&pid=%@&type=%d&item=%@&content=%@"
 
 
 // 九宫格--全部模板
@@ -250,6 +253,7 @@
 #define GetMyMoban_Url @"http://zsylou.wxwkf.com/index.php/wei/retransmission/myTemplet?uid=%@&date=%@"
 // 九宫格--转发计数
 #define ZhuanfaCount_Url @"http://zsylou.wxwkf.com/index.php/wei/retransmission/retransTimes?uid=%@&id=%@&cid=%@"
+
 
 
 

@@ -94,7 +94,7 @@
     
     [HTTPManager POST:url params:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [self hideHud:0];
-        NSLog(@"responseObject = %@",responseObject);
+        KGLog(@"responseObject = %@",responseObject);
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         if (code == 1) {

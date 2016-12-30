@@ -10,4 +10,6 @@
 
 @interface TaskInputView : UIView
 
+- (instancetype)initWithFrame:(CGRect)frame DidClick:(void (^)(NSString *contentStr))block;
+
 @end

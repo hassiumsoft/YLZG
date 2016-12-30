@@ -60,9 +60,43 @@
 - (void)setupSubViews
 {
     [self.view addSubview:self.tableView];
+    self.taskInputView = [[TaskInputView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), self.view.width, 50) DidClick:^(NSString *contentStr) {
+        [self.view endEditing:YES];
+        
+        NSString *url = [NSString stringWithFormat:TaskSendContent_Url,[ZCAccountTool account].userID,self.detialModel.pid,1,self.detialModel.id,contentStr];
+        [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSLog(@"responseObject = %@",responseObject);
+            int code = [[[responseObject objectForKey:@"code"] description] intValue];
+            NSString *message = [[responseObject objectForKey:@"message"] description];
+            if (code == 1) {
+                NSString *url = [NSString stringWithFormat:TaskDetial_Url,[ZCAccountTool account].userID,self.listModel.id];
+                [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                    
+                    int code = [[[responseObject objectForKey:@"code"] description] intValue];
+                    NSString *message = [[responseObject objectForKey:@"message"] description];
+                    if (code == 1) {
+                        NSDictionary *result = [responseObject objectForKey:@"result"];
+                        self.detialModel = [TaskDetialModel mj_objectWithKeyValues:result];
+                        [self.tableView reloadData];
+                    }else{
+                        [self showErrorTips:message];
+                    }
+                } fail:^(NSURLSessionDataTask *task, NSError *error) {
+                    
+                    [self sendErrorWarning:error.localizedDescription];
+                }];
+            }else{
+                [self showWarningTips:message];
+            }
+        } fail:^(NSURLSessionDataTask *task, NSError *error) {
+            [self hideHud:0];
+            [self sendErrorWarning:error.localizedDescription];
+        }];
+    }];
     [self.view addSubview:self.taskInputView];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editTaskName)];
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -618,13 +652,7 @@
     }
     return _tableView;
 }
-- (TaskInputView *)taskInputView
-{
-    if (!_taskInputView) {
-        _taskInputView = [[TaskInputView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableView.frame), self.view.width, 50)];
-    }
-    return _taskInputView;
-}
+
 #pragma mark - 获取数据
 - (void)getData
 {

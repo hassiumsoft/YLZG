@@ -216,15 +216,15 @@ static YLZGDataManager *controller = nil;
     int springEndDate = 20170211;
     
     
-//    if (todayDate >= springStartDate && todayDate <= springEndDate) {
-//        // 春节期间
-//        return YES;
-//    }else{
-//        // 不是春节期间
-//        return NO;
-//    }
+    if (todayDate >= springStartDate && todayDate <= springEndDate) {
+        // 春节期间
+        return YES;
+    }else{
+        // 不是春节期间
+        return NO;
+    }
     
-    return YES;
+//    return YES;
     
 }
 
