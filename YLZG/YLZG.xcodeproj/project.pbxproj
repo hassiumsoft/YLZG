@@ -26,6 +26,9 @@
 		3B0DE65D1DFFDDF300CB55A4 /* YuanCurrentTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DE65C1DFFDDF300CB55A4 /* YuanCurrentTimeView.m */; };
 		3B0DE6601DFFDE3300CB55A4 /* QIaodaoBeizhuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0DE65F1DFFDE3300CB55A4 /* QIaodaoBeizhuView.m */; };
 		3B129DEE1DF127F700F23F0D /* OfflineOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B129DED1DF127F700F23F0D /* OfflineOrderTableCell.m */; };
+		3B1483FB1E1C980400D334F3 /* DongtaiListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1483FA1E1C980400D334F3 /* DongtaiListModel.m */; };
+		3B1483FE1E1C990F00D334F3 /* TodayDongtaiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1483FD1E1C990F00D334F3 /* TodayDongtaiModel.m */; };
+		3B1484011E1CAC2200D334F3 /* DongtaiListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1484001E1CAC2200D334F3 /* DongtaiListTableCell.m */; };
 		3B213F301DFE37190088728C /* CheckTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B213F2B1DFE37190088728C /* CheckTabBarController.m */; };
 		3B213F311DFE37190088728C /* HengpinNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B213F2D1DFE37190088728C /* HengpinNavController.m */; };
 		3B213F321DFE37190088728C /* SCXDateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B213F2F1DFE37190088728C /* SCXDateTimePicker.m */; };
@@ -510,6 +513,12 @@
 		3B0DE65F1DFFDE3300CB55A4 /* QIaodaoBeizhuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QIaodaoBeizhuView.m; sourceTree = "<group>"; };
 		3B129DEC1DF127F700F23F0D /* OfflineOrderTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineOrderTableCell.h; sourceTree = "<group>"; };
 		3B129DED1DF127F700F23F0D /* OfflineOrderTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineOrderTableCell.m; sourceTree = "<group>"; };
+		3B1483F91E1C980400D334F3 /* DongtaiListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DongtaiListModel.h; sourceTree = "<group>"; };
+		3B1483FA1E1C980400D334F3 /* DongtaiListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DongtaiListModel.m; sourceTree = "<group>"; };
+		3B1483FC1E1C990F00D334F3 /* TodayDongtaiModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayDongtaiModel.h; sourceTree = "<group>"; };
+		3B1483FD1E1C990F00D334F3 /* TodayDongtaiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayDongtaiModel.m; sourceTree = "<group>"; };
+		3B1483FF1E1CAC2200D334F3 /* DongtaiListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DongtaiListTableCell.h; sourceTree = "<group>"; };
+		3B1484001E1CAC2200D334F3 /* DongtaiListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DongtaiListTableCell.m; sourceTree = "<group>"; };
 		3B213F2A1DFE37190088728C /* CheckTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckTabBarController.h; sourceTree = "<group>"; };
 		3B213F2B1DFE37190088728C /* CheckTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckTabBarController.m; sourceTree = "<group>"; };
 		3B213F2C1DFE37190088728C /* HengpinNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HengpinNavController.h; sourceTree = "<group>"; };
@@ -1529,6 +1538,10 @@
 		3B343AE31DEBFECC00474549 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				3B1483F91E1C980400D334F3 /* DongtaiListModel.h */,
+				3B1483FA1E1C980400D334F3 /* DongtaiListModel.m */,
+				3B1483FC1E1C990F00D334F3 /* TodayDongtaiModel.h */,
+				3B1483FD1E1C990F00D334F3 /* TodayDongtaiModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -1536,6 +1549,8 @@
 		3B343AE41DEBFECC00474549 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				3B1483FF1E1CAC2200D334F3 /* DongtaiListTableCell.h */,
+				3B1484001E1CAC2200D334F3 /* DongtaiListTableCell.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -4496,6 +4511,7 @@
 				3B4C13671DC85F4700827D4F /* ShenpiSuggestController.m in Sources */,
 				3B4C10CB1DC85DDC00827D4F /* ShekongbenModel.m in Sources */,
 				3B4C10D01DC85DDC00827D4F /* SearchModel.m in Sources */,
+				3B1483FB1E1C980400D334F3 /* DongtaiListModel.m in Sources */,
 				3B4C10CF1DC85DDC00827D4F /* SearchDBManager.m in Sources */,
 				3B343B421DEBFECC00474549 /* AddNewTaskProController.m in Sources */,
 				3B343B471DEBFECC00474549 /* ProduceMemVController.m in Sources */,
@@ -4555,6 +4571,7 @@
 				3B129DEE1DF127F700F23F0D /* OfflineOrderTableCell.m in Sources */,
 				3BA06F241DCC512C000886A8 /* MoreToolsViewController.m in Sources */,
 				3B9EF3B21DEFBD4A00C66888 /* CardNumTableCell.m in Sources */,
+				3B1483FE1E1C990F00D334F3 /* TodayDongtaiModel.m in Sources */,
 				3B4C13401DC85F4700827D4F /* AddKaoqinzuController.m in Sources */,
 				3B8531A81DF9003F00AB9C4F /* ZhuanfaCountTableCell.m in Sources */,
 				3B8531CF1DF9194600AB9C4F /* WSImagePickerView.m in Sources */,
@@ -4603,6 +4620,7 @@
 				3B9E17091DD2FC5F0028C72F /* HuangzhuangBingTu.m in Sources */,
 				3BF93D781DADDC950002EACA /* CalendarDayCell.m in Sources */,
 				3BCF3A1F1D9E6A4800BEE236 /* AboutUSController.m in Sources */,
+				3B1484011E1CAC2200D334F3 /* DongtaiListTableCell.m in Sources */,
 				3B6E0AD31DCAF35400309037 /* SaleDataViewController.m in Sources */,
 				3B85318E1DF8F9B800AB9C4F /* MobanCateListModel.m in Sources */,
 				3B8531901DF8F9B800AB9C4F /* NineCategoryModel.m in Sources */,
