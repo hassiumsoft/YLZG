@@ -13,7 +13,7 @@
 #define Base_URL @"http://zsylou.wxwkf.com/"
 
 // 登录接口
-#define YLLoginURL @"http://192.168.0.18/index.php/home/login/login?username=%@&password=%@&sn=%@"
+#define YLLoginURL @"http://zsylou.wxwkf.com/index.php/home/login/login?username=%@&password=%@&sn=%@"
 // 上传头像
 #define UploadHeadUTL @"http://zsylou.wxwkf.com/index.php/home/contacts/upload_avatar?uid=%@"
 // 修改昵称
@@ -194,37 +194,37 @@
 
 
 // 任务--项目列表
-#define TaskProductList_URL @"http://192.168.0.18/index.php/home/project/lists?uid=%@"
+#define TaskProductList_URL @"http://zsylou.wxwkf.com/index.php/home/project/lists?uid=%@"
 // 任务--创建项目
-#define CreateProduce_URL @"http://192.168.0.18/index.php/home/project/create?uid=%@&name=%@&member=%@"
+#define CreateProduce_URL @"http://zsylou.wxwkf.com/index.php/home/project/create?uid=%@&name=%@&member=%@"
 // 项目详情
-#define ProduceDetial_URL @"http://192.168.0.18/index.php/home/project/detail?uid=%@&id=%@"
+#define ProduceDetial_URL @"http://zsylou.wxwkf.com/index.php/home/project/detail?uid=%@&id=%@"
 // 删除任务里的项目
-#define DeleteTaskProduce_Url @"http://192.168.0.18/index.php/home/project/delete?uid=%@&id=%@"
+#define DeleteTaskProduce_Url @"http://zsylou.wxwkf.com/index.php/home/project/delete?uid=%@&id=%@"
 // 创建新任务
-#define CreateNewTask_Url @"http://192.168.0.18m/index.php/home/task/create?uid=%@&pid=%@&name=%@&manager=%@&deadline=%@&check=%@&care=%@&description=%@"
+#define CreateNewTask_Url @"http://zsylou.wxwkf.comm/index.php/home/task/create?uid=%@&pid=%@&name=%@&manager=%@&deadline=%@&check=%@&care=%@&description=%@"
 // 任务-任务列表
-#define TaskList_Url @"http://192.168.0.18/index.php/home/task/lists?uid=%@"
+#define TaskList_Url @"http://zsylou.wxwkf.com/index.php/home/task/lists?uid=%@"
 // 任务-详细信息
-#define TaskDetial_Url @"http://192.168.0.18/index.php/home/task/detail?uid=%@&id=%@"
+#define TaskDetial_Url @"http://zsylou.wxwkf.com/index.php/home/task/detail?uid=%@&id=%@"
 // 任务--修改任务状态
-#define UpdateTaskStatus_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&status=%d"
+#define UpdateTaskStatus_Url @"http://zsylou.wxwkf.com/index.php/home/task/update?uid=%@&pid=%@&id=%@&status=%d"
 // 任务--修改任务名称
-#define UpdateTaskName_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&name=%@"
+#define UpdateTaskName_Url @"http://zsylou.wxwkf.com/index.php/home/task/update?uid=%@&pid=%@&id=%@&name=%@"
 // 任务--修改任务负责人
-#define UpdateTaskFuzer_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&manager=%@"
+#define UpdateTaskFuzer_Url @"http://zsylou.wxwkf.com/index.php/home/task/update?uid=%@&pid=%@&id=%@&manager=%@"
 // 任务--修改任务截止日期
-#define UpdateTaskDate_Url @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&deadline=%@"
+#define UpdateTaskDate_Url @"http://zsylou.wxwkf.com/index.php/home/task/update?uid=%@&pid=%@&id=%@&deadline=%@"
 // 任务--关注或取消关注任务
-#define CareOrNotCareTask_URL @"http://192.168.0.18/index.php/home/task/update?uid=%@&pid=%@&id=%@&icare=%d"
+#define CareOrNotCareTask_URL @"http://zsylou.wxwkf.com/index.php/home/task/update?uid=%@&pid=%@&id=%@&icare=%d"
 // 任务--删除任务
-#define DeleteTask_URL @"http://192.168.0.18/index.php/home/task/delete?uid=%@&pid=%@&id=%@"
+#define DeleteTask_URL @"http://zsylou.wxwkf.com/index.php/home/task/delete?uid=%@&pid=%@&id=%@"
 // 任务--已完成的任务
-#define TaskFinished_URL @"http://192.168.0.18/index.php/home/task/done?uid=%@&type=%d&page=%d&num=%d"
+#define TaskFinished_URL @"http://zsylou.wxwkf.com/index.php/home/task/done?uid=%@&type=%d&page=%d&num=%d"
 // 任务--任务动态
-#define TaskDongtai_Url @"http://192.168.0.18/index.php/home/dynamic/lists?uid=%@&date=%@"
+#define TaskDongtai_Url @"http://zsylou.wxwkf.com/index.php/home/dynamic/lists?uid=%@&date=%@"
 // 任务--发布文字评论
-#define TaskSendContent_Url @"http://192.168.0.18/index.php/home/discuss/onlyText?uid=%@&pid=%@&type=%d&item=%@&content=%@"
+#define TaskSendContent_Url @"http://zsylou.wxwkf.com/index.php/home/discuss/onlyText?uid=%@&pid=%@&type=%d&item=%@&content=%@"
 
 
 // 九宫格--全部模板
