@@ -249,6 +249,9 @@
 		3B5DC71D1DB87107000F7A06 /* EaseEmotionEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC7181DB87107000F7A06 /* EaseEmotionEscape.m */; };
 		3B5DC71E1DB87107000F7A06 /* EaseEmotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC71A1DB87107000F7A06 /* EaseEmotionManager.m */; };
 		3B5DC7201DB87265000F7A06 /* FixFopen.c in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC71F1DB87265000F7A06 /* FixFopen.c */; };
+		3B62EDF71E1DE0F30071A91B /* NineXuanchuanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B62EDF61E1DE0F30071A91B /* NineXuanchuanController.m */; };
+		3B62EDFA1E1DE14B0071A91B /* NineWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B62EDF91E1DE14B0071A91B /* NineWebViewController.m */; };
+		3B62EDFD1E1DE1560071A91B /* NineDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B62EDFC1E1DE1560071A91B /* NineDataViewController.m */; };
 		3B6E0ACA1DCAF2C600309037 /* SaleToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0AC91DCAF2C600309037 /* SaleToolViewController.m */; };
 		3B6E0ACD1DCAF32400309037 /* SaleIntrolduceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0ACC1DCAF32400309037 /* SaleIntrolduceController.m */; };
 		3B6E0AD01DCAF33C00309037 /* SaleWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E0ACF1DCAF33C00309037 /* SaleWebViewController.m */; };
@@ -963,6 +966,12 @@
 		3B5DC7191DB87107000F7A06 /* EaseEmotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseEmotionManager.h; sourceTree = "<group>"; };
 		3B5DC71A1DB87107000F7A06 /* EaseEmotionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseEmotionManager.m; sourceTree = "<group>"; };
 		3B5DC71F1DB87265000F7A06 /* FixFopen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FixFopen.c; sourceTree = "<group>"; };
+		3B62EDF51E1DE0F30071A91B /* NineXuanchuanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineXuanchuanController.h; sourceTree = "<group>"; };
+		3B62EDF61E1DE0F30071A91B /* NineXuanchuanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineXuanchuanController.m; sourceTree = "<group>"; };
+		3B62EDF81E1DE14B0071A91B /* NineWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineWebViewController.h; sourceTree = "<group>"; };
+		3B62EDF91E1DE14B0071A91B /* NineWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineWebViewController.m; sourceTree = "<group>"; };
+		3B62EDFB1E1DE1560071A91B /* NineDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NineDataViewController.h; sourceTree = "<group>"; };
+		3B62EDFC1E1DE1560071A91B /* NineDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NineDataViewController.m; sourceTree = "<group>"; };
 		3B6E0AC81DCAF2C600309037 /* SaleToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleToolViewController.h; sourceTree = "<group>"; };
 		3B6E0AC91DCAF2C600309037 /* SaleToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleToolViewController.m; sourceTree = "<group>"; };
 		3B6E0ACB1DCAF32400309037 /* SaleIntrolduceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleIntrolduceController.h; sourceTree = "<group>"; };
@@ -2871,6 +2880,19 @@
 			path = V;
 			sourceTree = "<group>";
 		};
+		3B62EDF41E1DE0D10071A91B /* 宣传页 */ = {
+			isa = PBXGroup;
+			children = (
+				3B62EDF51E1DE0F30071A91B /* NineXuanchuanController.h */,
+				3B62EDF61E1DE0F30071A91B /* NineXuanchuanController.m */,
+				3B62EDF81E1DE14B0071A91B /* NineWebViewController.h */,
+				3B62EDF91E1DE14B0071A91B /* NineWebViewController.m */,
+				3B62EDFB1E1DE1560071A91B /* NineDataViewController.h */,
+				3B62EDFC1E1DE1560071A91B /* NineDataViewController.m */,
+			);
+			path = "宣传页";
+			sourceTree = "<group>";
+		};
 		3B6E0AC51DCAF28500309037 /* C */ = {
 			isa = PBXGroup;
 			children = (
@@ -3003,6 +3025,7 @@
 		3B85313B1DF8F9B800AB9C4F /* 九宫格 */ = {
 			isa = PBXGroup;
 			children = (
+				3B62EDF41E1DE0D10071A91B /* 宣传页 */,
 				3B85313C1DF8F9B800AB9C4F /* 主页 */,
 				3B8531451DF8F9B800AB9C4F /* 全部模板 */,
 				3B85315D1DF8F9B800AB9C4F /* 关注 */,
@@ -4385,6 +4408,7 @@
 				3BCF39A51D9E320C00BEE236 /* NormalTableCell.m in Sources */,
 				3BCF3A3A1D9E6CF800BEE236 /* TADotView.m in Sources */,
 				3BCF39DE1D9E454D00BEE236 /* NSString+Hashing.m in Sources */,
+				3B62EDFD1E1DE1560071A91B /* NineDataViewController.m in Sources */,
 				3B4C13751DC85F4700827D4F /* WorkTableViewCell.m in Sources */,
 				3B4C135F1DC85F4700827D4F /* CheckSettingVController.m in Sources */,
 				3B4C13701DC85F4700827D4F /* ShenpiersViewController.m in Sources */,
@@ -4453,6 +4477,7 @@
 				3B4C13201DC85F4700827D4F /* NoticeDetialView.m in Sources */,
 				3BCF398D1D9DF8BD00BEE236 /* YLZGChatManager.m in Sources */,
 				3B3BBFB81DB484EA00C9E2FD /* GroupTextView.m in Sources */,
+				3B62EDFA1E1DE14B0071A91B /* NineWebViewController.m in Sources */,
 				3B343B8F1DEC017A00474549 /* TaskDetialModel.m in Sources */,
 				3B0DE6571DFFA9B700CB55A4 /* CheckInOffModel.m in Sources */,
 				3B7ABCF51DB6176600F3D12B /* amrFileCodec.mm in Sources */,
@@ -4632,6 +4657,7 @@
 				3B4C10CD1DC85DDC00827D4F /* SearchDetailViewController.m in Sources */,
 				3B4C13211DC85F4700827D4F /* NoticeTableCell.m in Sources */,
 				3B343B4A1DEBFECC00474549 /* HeadIconView.m in Sources */,
+				3B62EDF71E1DE0F30071A91B /* NineXuanchuanController.m in Sources */,
 				3B3BBFE21DB4D2F800C9E2FD /* CallViewController.m in Sources */,
 				3BCF39721D9DF42100BEE236 /* HuanxinContactManager.m in Sources */,
 				3B8531971DF8F9B800AB9C4F /* NineCareModel.m in Sources */,

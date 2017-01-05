@@ -116,14 +116,13 @@
         
         [banciBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         if (i == 0) {
-            banciBtn.backgroundColor = MainColor;
+            banciBtn.backgroundColor = NormalColor;
             [banciBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         }
         
         banciBtn.tag = i;
         banciBtn.layer.cornerRadius = 4;
-        UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
-        banciBtn.layer.borderColor = color.CGColor;
+        banciBtn.layer.borderColor = NormalColor.CGColor;
         banciBtn.layer.borderWidth = 1.f;
         [banciBtn addTarget:self action:@selector(chooseBanciBtn:) forControlEvents:UIControlEventTouchUpInside];
         NSString *title = model.classname;

@@ -38,8 +38,8 @@
 #import "PublicNoticeController.h"
 #import "SaleToolViewController.h"
 #import "TaskTabbarController.h"
-
 #import "NineTabbarController.h"
+#import "NineXuanchuanController.h"
 
 
 
@@ -303,9 +303,12 @@
                 model.id = self.idArray[indexPath.section][indexPath.row];
                 model.fromType = FromWebSite;
                 
+                
+                
                 if ([model.name isEqualToString:@"九宫格"]) {
                     // 九宫格
-                    NineTabbarController *nineTabbar = [NineTabbarController new];
+                    NineXuanchuanController *nineTabbar = [NineXuanchuanController new];
+                    nineTabbar.saleModel = model;
                     [self.navigationController pushViewController:nineTabbar animated:YES];
                 }else{
                     SaleToolViewController *sale = [SaleToolViewController new];
@@ -388,9 +391,12 @@
                 model.id = self.idArray[indexPath.section][indexPath.row];
                 model.fromType = FromWebSite;
                 
+                
+                
                 if ([model.name isEqualToString:@"九宫格"]) {
                     // 九宫格
-                    NineTabbarController *nineTabbar = [NineTabbarController new];
+                    NineXuanchuanController *nineTabbar = [NineXuanchuanController new];
+                    nineTabbar.saleModel = model;
                     [self.navigationController pushViewController:nineTabbar animated:YES];
                 }else{
                     SaleToolViewController *sale = [SaleToolViewController new];

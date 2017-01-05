@@ -845,7 +845,7 @@
         _proFootView.userInteractionEnabled = YES;
         UIButton *addButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [addButton setTitle:@"添加套系产品" forState:UIControlStateNormal];
-        [addButton setTitleColor:MainColor forState:UIControlStateNormal];
+        [addButton setTitleColor:NormalColor forState:UIControlStateNormal];
         [addButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id  _Nonnull sender) {
             AddProductController *addPro = [AddProductController new];
             addPro.DidBlock = ^(AllProductList *model){
@@ -864,8 +864,7 @@
         addButton.layer.masksToBounds = YES;
         addButton.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         addButton.backgroundColor = [UIColor whiteColor];
-        UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
-        addButton.layer.borderColor = color.CGColor;
+        addButton.layer.borderColor = NormalColor.CGColor;
         addButton.layer.borderWidth = 1;
         addButton.layer.cornerRadius = 4;
         [_proFootView addSubview:addButton];

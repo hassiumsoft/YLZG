@@ -18,6 +18,8 @@
 @property (copy,nonatomic) NSString *ico;
 /** 简短说明 */
 @property (copy,nonatomic) NSString *remarks;
+/** 是否购买 */
+@property (assign,nonatomic) BOOL isBuy;
 /** 工具名称 */
 @property (copy,nonatomic) NSString *name;
 

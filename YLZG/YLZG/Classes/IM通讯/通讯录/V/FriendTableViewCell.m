@@ -98,11 +98,10 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"添加" forState:UIControlStateNormal];
-    [button setTitleColor:MainColor forState:UIControlStateNormal];
+    [button setTitleColor:NormalColor forState:UIControlStateNormal];
     [button addTarget:self action:@selector(addFriendBtn) forControlEvents:UIControlEventTouchUpInside];
     button.layer.masksToBounds =YES;
-    UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
-    button.layer.borderColor = color.CGColor;
+    button.layer.borderColor = NormalColor.CGColor;
     button.layer.borderWidth = 1.f;
     button.layer.cornerRadius = 6.f;
     button.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
