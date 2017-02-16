@@ -43,22 +43,24 @@ static FMDatabase *_db;
     
     // 保存前先删除之前的记录,保持信息最新
     if (![_db open]) {
-        return nil;
-    }
-    NSString *delete = @"select * from huanxin_contacts";
-    [_db executeUpdate:delete];
-    
-    // uid,name,nickname,realname,qq,mobile,location,head,gender,dept,birth
-    
-    NSString *sql = [NSString stringWithFormat:@"insert into huanxin_contacts (uid,name,sid,nickname,realname,qq,mobile,location,head,gender,dept,birth) values ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",contactModel.uid,contactModel.name,contactModel.sid,contactModel.nickname,contactModel.realname,contactModel.qq,contactModel.mobile,contactModel.location,contactModel.head,contactModel.gender,contactModel.dept,contactModel.birth];
-    
-    BOOL result = [_db executeUpdate:sql];
-    if (result) {
-        KGLog(@"保存成功");
+        return NO;
     }else{
-        KGLog(@"保存失败");
+        NSString *delete = @"select * from huanxin_contacts";
+        [_db executeUpdate:delete];
+        
+        // uid,name,nickname,realname,qq,mobile,location,head,gender,dept,birth
+        
+        NSString *sql = [NSString stringWithFormat:@"insert into huanxin_contacts (uid,name,sid,nickname,realname,qq,mobile,location,head,gender,dept,birth) values ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",contactModel.uid,contactModel.name,contactModel.sid,contactModel.nickname,contactModel.realname,contactModel.qq,contactModel.mobile,contactModel.location,contactModel.head,contactModel.gender,contactModel.dept,contactModel.birth];
+        
+        BOOL result = [_db executeUpdate:sql];
+        if (result) {
+            KGLog(@"保存成功");
+        }else{
+            KGLog(@"保存失败");
+        }
+        return result;
     }
-    return result;
+    
 }
 #pragma mark - 获取全部环信好友信息
 + (NSMutableArray *)getAllHuanxinContactsInfo

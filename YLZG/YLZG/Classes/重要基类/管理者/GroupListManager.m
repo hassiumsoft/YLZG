@@ -44,22 +44,24 @@ static FMDatabase *_db;
 {
     // 保存前先删除之前的记录,保持信息最新
     if (![_db open]) {
-        return nil;
-    }
-    NSString *delete = @"select * from t_groups";
-    [_db executeUpdate:delete];
-    
-    //    gid,zcid,affiliations,allowinvites,dsp,gname,maxusers,membersonly,owner,pub,sid
-    
-    NSString *sql = [NSString stringWithFormat:@"insert into t_groups (gid,zcid,affiliations,allowinvites,dsp,gname,maxusers,membersonly,owner,pub,sid) values ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",model.gid,model.id,model.affiliations,model.allowinvites,model.dsp,model.gname,model.maxusers,model.membersonly,model.owner,[NSString stringWithFormat:@"%d",model.pub],model.sid];
-    
-    BOOL result = [_db executeUpdate:sql];
-    if (result) {
-        KGLog(@"保存成功");
+        return NO;
     }else{
-        KGLog(@"保存失败");
+        NSString *delete = @"select * from t_groups";
+        [_db executeUpdate:delete];
+        
+        //    gid,zcid,affiliations,allowinvites,dsp,gname,maxusers,membersonly,owner,pub,sid
+        
+        NSString *sql = [NSString stringWithFormat:@"insert into t_groups (gid,zcid,affiliations,allowinvites,dsp,gname,maxusers,membersonly,owner,pub,sid) values ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",model.gid,model.id,model.affiliations,model.allowinvites,model.dsp,model.gname,model.maxusers,model.membersonly,model.owner,[NSString stringWithFormat:@"%d",model.pub],model.sid];
+        
+        BOOL result = [_db executeUpdate:sql];
+        if (result) {
+            KGLog(@"保存成功");
+        }else{
+            KGLog(@"保存失败");
+        }
+        return result;
     }
-    return result;
+    
 }
 + (YLGroup *)getGroupInfoByGroupName:(NSString *)groupName
 {
@@ -120,7 +122,7 @@ static FMDatabase *_db;
         model.maxusers = [result stringForColumn:@"maxusers"];
         model.membersonly = [result stringForColumn:@"membersonly"];
         model.owner = [result stringForColumn:@"owner"];
-        model.pub = [result stringForColumn:@"pub"];
+        model.pub = [[result stringForColumn:@"pub"] boolValue];
         model.sid = [result stringForColumn:@"sid"];
         [array addObject:model];
     }
@@ -130,12 +132,12 @@ static FMDatabase *_db;
 + (BOOL)deleteAllGroupInfo
 {
     if (![_db open]) {
-        return nil;
+        return NO;
+    }else{
+        NSString *sql = @"DELETE FROM t_groups";
+        BOOL result = [_db executeUpdate:sql];  // NO
+        return result;
     }
-    
-    NSString *sql = @"DELETE FROM t_groups";
-    BOOL result = [_db executeUpdate:sql];  // NO
-    return result;
     
 }
 

@@ -68,7 +68,8 @@
         if ([ud valueForKey:kLocalCallBitrate] && _callSession.type == EMCallTypeVideo) {
 
             EMCallOptions *open = [[EMClient sharedClient].callManager getCallOptions];
-            [open setVideoKbps:[[ud valueForKey:kLocalCallBitrate] intValue]];
+            [open maxVideoKbps];
+//            [open setVideoKbps:[[ud valueForKey:kLocalCallBitrate] intValue]];
             
         }
     }

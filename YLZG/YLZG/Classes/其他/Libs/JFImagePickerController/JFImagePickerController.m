@@ -180,9 +180,9 @@
     [[JFImageManager sharedManager] clearMem];
 }
 
-- (NSUInteger)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskPortrait;
-}
+//- (NSUInteger)supportedInterfaceOrientations{
+//    return UIInterfaceOrientationMaskPortrait;
+//}
 
 - (BOOL)shouldAutorotate{
     return NO;
