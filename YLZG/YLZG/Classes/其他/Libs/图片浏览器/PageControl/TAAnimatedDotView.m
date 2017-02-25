@@ -43,13 +43,19 @@ static CGFloat const kAnimateDuration = 1;
     return self;
 }
 
+- (void)setDotColor:(UIColor *)dotColor
+{
+    _dotColor = dotColor;
+    self.layer.borderColor  = dotColor.CGColor;
+}
 
 - (void)initialization
 {
+    _dotColor = [UIColor whiteColor];
     self.backgroundColor    = [UIColor clearColor];
     self.layer.cornerRadius = CGRectGetWidth(self.frame) / 2;
     self.layer.borderColor  = [UIColor whiteColor].CGColor;
-    self.layer.borderWidth  = 2;
+    self.layer.borderWidth  = 1;
 }
 
 
@@ -62,18 +68,19 @@ static CGFloat const kAnimateDuration = 1;
     }
 }
 
+static CGFloat damping = 0.25;
 
 - (void)animateToActiveState
 {
-    [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:-20 options:UIViewAnimationOptionCurveLinear animations:^{
-        self.backgroundColor = [UIColor whiteColor];
+    [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:damping initialSpringVelocity:-20 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.backgroundColor = _dotColor;
         self.transform = CGAffineTransformMakeScale(1.4, 1.4);
     } completion:nil];
 }
 
 - (void)animateToDeactiveState
 {
-    [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:.5 initialSpringVelocity:0 options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:kAnimateDuration delay:0 usingSpringWithDamping:damping initialSpringVelocity:0 options:UIViewAnimationOptionCurveLinear animations:^{
         self.backgroundColor = [UIColor clearColor];
         self.transform = CGAffineTransformIdentity;
     } completion:nil];

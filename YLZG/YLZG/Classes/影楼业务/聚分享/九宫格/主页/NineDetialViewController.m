@@ -14,9 +14,9 @@
 #import "HTTPManager.h"
 #import "ZhuanfaCountModel.h"
 #import "ZhuanfaListModel.h"
-#import "ImageBrowser.h"
 #import <UIImageView+WebCache.h>
 #import "ZhuanfaCountController.h"
+#import "XLPhotoBrowser.h"
 
 
 @interface NineDetialViewController ()
@@ -90,7 +90,10 @@
     CGFloat spaceZ = 3; // 纵向间距
     CGFloat W = (SCREEN_WIDTH - spaceH*4 - 30)/3;  // 宽
     CGFloat H = W;
+    NSMutableArray *urlArray = [NSMutableArray array];
+    
     for (int i = 0; i < model.images.count; i++) {
+        
         CGRect frame;
         frame.size.width = W;
         frame.size.height = H;
@@ -98,8 +101,9 @@
         frame.origin.y = floor(i/3) * (frame.size.height + spaceZ) + spaceZ + 120*CKproportion;
         
         NineDetialImageModel *imageModel = model.images[i];
+        [urlArray addObject:imageModel.url];
         UIImageView *imageV = [[UIImageView alloc]initWithImage:[self imageWithBgColor:HWRandomColor]];
-        
+        imageV.tag = i;
         [imageV sd_setImageWithURL:[NSURL URLWithString:imageModel.url] placeholderImage:[self imageWithBgColor:HWRandomColor] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (!error) {
                 [self.imageArray addObject:image];
@@ -108,7 +112,7 @@
         
         imageV.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-            [ImageBrowser showImage:imageV];
+            [XLPhotoBrowser showPhotoBrowserWithImages:urlArray currentImageIndex:imageV.tag];
         }];
         [imageV addGestureRecognizer:tap];
         [imageV setFrame:frame];

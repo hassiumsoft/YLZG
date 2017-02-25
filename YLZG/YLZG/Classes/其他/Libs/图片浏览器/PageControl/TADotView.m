@@ -42,23 +42,21 @@
     return self;
 }
 
-
 - (void)initialization
 {
-    self.backgroundColor    = [UIColor whiteColor];
+    self.backgroundColor    = [UIColor clearColor];
     self.layer.cornerRadius = CGRectGetWidth(self.frame) / 2;
-    UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
-    self.layer.borderColor  = color.CGColor;
-    self.layer.borderWidth  = 2;
+    self.layer.borderColor  = [UIColor whiteColor].CGColor;
+    self.layer.borderWidth  = 1;
 }
 
 
 - (void)changeActivityState:(BOOL)active
 {
     if (active) {
-        self.backgroundColor = MainColor;
-    } else {
         self.backgroundColor = [UIColor whiteColor];
+    } else {
+        self.backgroundColor = [UIColor clearColor];
     }
 }
 
