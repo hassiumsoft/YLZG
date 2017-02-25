@@ -7,7 +7,7 @@
 //
 
 #import "EditProductCell.h"
-#import <SVProgressHUD.h>
+
 #import <Masonry.h>
 
 @interface EditProductCell ()<UITextFieldDelegate>
@@ -136,12 +136,7 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     if ([string isChinese]) {
-        [SVProgressHUD showErrorWithStatus:@"非法输入"];
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-        [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
-        });
+        [MBProgressHUD showError:@"非法输入"];
         return NO;
     }else{
         return YES;

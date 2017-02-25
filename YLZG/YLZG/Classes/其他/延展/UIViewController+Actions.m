@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+Actions.h"
-#import <SVProgressHUD.h>
+
 
 @implementation UIViewController (Actions)
 - (NSString *)timeIntervalToDate:(NSTimeInterval)timeInterval
@@ -139,44 +139,34 @@
 }
 - (void)showErrorTips:(NSString *)tips
 {
-    [SVProgressHUD showErrorWithStatus:tips];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
+    [MBProgressHUD showError:tips];
     
-    [self hideHud:2];
+    [self hideHud:1.5];
 }
 - (void)hideHud:(NSInteger)seconds
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
     });
 }
 - (void)showSuccessTips:(NSString *)tips
 {
-    [SVProgressHUD showSuccessWithStatus:tips];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeNative];
-    [self hideHud:2];
+    [MBProgressHUD showSuccess:tips];
+    [self hideHud:1.5];
 }
 - (void)showWarningTips:(NSString *)tips
 {
-    [SVProgressHUD showInfoWithStatus:tips];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
-    [self hideHud:2];
+    [MBProgressHUD showError:tips];
+    [self hideHud:1.5];
 }
 - (void)showHint:(NSString *)hint
 {
-    [SVProgressHUD showInfoWithStatus:hint];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
-    [self hideHud:2];
+    [MBProgressHUD showSuccess:hint];
+    [self hideHud:1.5];
 }
 - (void)showHudMessage:(NSString *)message
 {
-    [SVProgressHUD showWithStatus:message];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [MBProgressHUD showMessage:message];
     
 }
 

@@ -273,6 +273,8 @@
 		3B70BB3A1E612E8300C19901 /* XLPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B70BB281E612E8300C19901 /* XLPhotoBrowser.m */; };
 		3B70BB3B1E612E8300C19901 /* XLProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B70BB2B1E612E8300C19901 /* XLProgressView.m */; };
 		3B70BB3C1E612E8300C19901 /* XLZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B70BB2D1E612E8300C19901 /* XLZoomingScrollView.m */; };
+		3B70BB431E61318100C19901 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B70BB3F1E61318100C19901 /* MBProgressHUD+MJ.m */; };
+		3B70BB471E6139AC00C19901 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B70BB461E6139AC00C19901 /* MBProgressHUD.bundle */; };
 		3B75EFC81DC2E3EF00D54807 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B75EFC41DC2E3EF00D54807 /* libWeChatSDK.a */; };
 		3B75EFCB1DC2EE0800D54807 /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75EFCA1DC2EE0800D54807 /* WXApiManager.m */; };
 		3B75EFCE1DC2F02C00D54807 /* WXShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B75EFCD1DC2F02C00D54807 /* WXShareView.m */; };
@@ -397,7 +399,6 @@
 		3BCA32431D9CC1A600A0E980 /* HomeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32421D9CC1A600A0E980 /* HomeNavigationController.m */; };
 		3BCA32551D9CC1F900A0E980 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32451D9CC1F900A0E980 /* Foundation+Log.m */; };
 		3BCA32561D9CC1F900A0E980 /* HomeNavigationController+RightGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32471D9CC1F900A0E980 /* HomeNavigationController+RightGesture.m */; };
-		3BCA32571D9CC1F900A0E980 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32491D9CC1F900A0E980 /* MBProgressHUD+Add.m */; };
 		3BCA32581D9CC1F900A0E980 /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA324B1D9CC1F900A0E980 /* NSDate+Extension.m */; };
 		3BCA32591D9CC1F900A0E980 /* NSDateFormatter+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA324D1D9CC1F900A0E980 /* NSDateFormatter+Category.m */; };
 		3BCA325A1D9CC1F900A0E980 /* NSString+StrCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA324F1D9CC1F900A0E980 /* NSString+StrCategory.m */; };
@@ -1024,6 +1025,9 @@
 		3B70BB2B1E612E8300C19901 /* XLProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLProgressView.m; sourceTree = "<group>"; };
 		3B70BB2C1E612E8300C19901 /* XLZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLZoomingScrollView.h; sourceTree = "<group>"; };
 		3B70BB2D1E612E8300C19901 /* XLZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLZoomingScrollView.m; sourceTree = "<group>"; };
+		3B70BB3E1E61318100C19901 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
+		3B70BB3F1E61318100C19901 /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		3B70BB461E6139AC00C19901 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
 		3B75EFC41DC2E3EF00D54807 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		3B75EFC51DC2E3EF00D54807 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		3B75EFC61DC2E3EF00D54807 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -1281,8 +1285,6 @@
 		3BCA32451D9CC1F900A0E980 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
 		3BCA32461D9CC1F900A0E980 /* HomeNavigationController+RightGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HomeNavigationController+RightGesture.h"; sourceTree = "<group>"; };
 		3BCA32471D9CC1F900A0E980 /* HomeNavigationController+RightGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HomeNavigationController+RightGesture.m"; sourceTree = "<group>"; };
-		3BCA32481D9CC1F900A0E980 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
-		3BCA32491D9CC1F900A0E980 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		3BCA324A1D9CC1F900A0E980 /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
 		3BCA324B1D9CC1F900A0E980 /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
 		3BCA324C1D9CC1F900A0E980 /* NSDateFormatter+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+Category.h"; sourceTree = "<group>"; };
@@ -3018,6 +3020,16 @@
 			path = PageControl;
 			sourceTree = "<group>";
 		};
+		3B70BB3D1E61318100C19901 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				3B70BB3E1E61318100C19901 /* MBProgressHUD+MJ.h */,
+				3B70BB3F1E61318100C19901 /* MBProgressHUD+MJ.m */,
+				3B70BB461E6139AC00C19901 /* MBProgressHUD.bundle */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		3B75EFC31DC2E3EF00D54807 /* WeChatSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -3735,8 +3747,6 @@
 				3BCA32451D9CC1F900A0E980 /* Foundation+Log.m */,
 				3BCA32461D9CC1F900A0E980 /* HomeNavigationController+RightGesture.h */,
 				3BCA32471D9CC1F900A0E980 /* HomeNavigationController+RightGesture.m */,
-				3BCA32481D9CC1F900A0E980 /* MBProgressHUD+Add.h */,
-				3BCA32491D9CC1F900A0E980 /* MBProgressHUD+Add.m */,
 				3BCA324A1D9CC1F900A0E980 /* NSDate+Extension.h */,
 				3BCA324B1D9CC1F900A0E980 /* NSDate+Extension.m */,
 				3BCA324C1D9CC1F900A0E980 /* NSDateFormatter+Category.h */,
@@ -3758,6 +3768,7 @@
 		3BCA32541D9CC1F900A0E980 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				3B70BB3D1E61318100C19901 /* MBProgressHUD */,
 				3B70BB0D1E612E8300C19901 /* 图片浏览器 */,
 				3B8531A91DF9190F00AB9C4F /* JFImagePickerController */,
 				3BFA9E9F1DF7A56F00330CF0 /* WSImagebroswerVC */,
@@ -4172,6 +4183,7 @@
 				3B70BB321E612E8300C19901 /* FSActionSheet_cancel@2x.png in Resources */,
 				3B07D8D31D956B0D00B657F6 /* Assets.xcassets in Resources */,
 				3BCF3A111D9E661700BEE236 /* cityGroups.plist in Resources */,
+				3B70BB471E6139AC00C19901 /* MBProgressHUD.bundle in Resources */,
 				3BCF3A121D9E661700BEE236 /* FoBaike.plist in Resources */,
 				3B70BB331E612E8300C19901 /* FSActionSheet_cancel@3x.png in Resources */,
 				3BF93D7F1DADDC950002EACA /* chack.png in Resources */,
@@ -4457,6 +4469,7 @@
 				3B3BBFB91DB484EA00C9E2FD /* IvitMembersTableCell.m in Sources */,
 				3B4C13471DC85F4700827D4F /* ChengyuanChangeController.m in Sources */,
 				3B56D7701DC739CE003A57FD /* EaseMessageCell.m in Sources */,
+				3B70BB431E61318100C19901 /* MBProgressHUD+MJ.m in Sources */,
 				3B343B371DEBFECC00474549 /* MyCareTaskController.m in Sources */,
 				3B4C10D41DC85DDC00827D4F /* PayMoneyViewController.m in Sources */,
 				3B343B7E1DEC016F00474549 /* TaskListModel.m in Sources */,
@@ -4638,7 +4651,6 @@
 				3B343B7D1DEC016F00474549 /* ProduceTaskModel.m in Sources */,
 				3B56D77F1DC739CE003A57FD /* EaseChatToolbar.m in Sources */,
 				3B9EF3BE1DEFBF2400C66888 /* MutableSelectedModel.m in Sources */,
-				3BCA32571D9CC1F900A0E980 /* MBProgressHUD+Add.m in Sources */,
 				3B4C136A1DC85F4700827D4F /* AppearHeadView.m in Sources */,
 				3B70BB2F1E612E8300C19901 /* FSActionSheetCell.m in Sources */,
 				3B4C10A21DC85DDC00827D4F /* HomeViewController.m in Sources */,

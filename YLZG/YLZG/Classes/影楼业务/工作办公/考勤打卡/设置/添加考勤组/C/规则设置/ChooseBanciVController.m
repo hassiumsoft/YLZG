@@ -10,7 +10,7 @@
 #import "BanciSettingCell.h"
 #import "NormalTableCell.h"
 #import <Masonry.h>
-#import "SVProgressHUD.h"
+
 #import "AddNewBanciController.h"
 #import "HomeNavigationController.h"
 #import <AFNetworking.h>
@@ -66,7 +66,7 @@
 
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-            [SVProgressHUD dismiss];
+            [MBProgressHUD hideHUD];
 
             int code = [[[responseObject objectForKey:@"code"]description] intValue];
             NSString *message = [[responseObject objectForKey:@"message"] description];
@@ -80,7 +80,7 @@
                
             }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
 
@@ -209,11 +209,11 @@
                 [self showHudMessage:@"处理中···"];
                 [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 
-                    [SVProgressHUD dismiss];
+                    [MBProgressHUD hideHUD];
                         NSString *message = [responseObject objectForKey:@"message"];
                         int code = [[[responseObject objectForKey:@"code"] description] intValue];
                         if (code == 1) {
-                            [SVProgressHUD dismiss];
+                            [MBProgressHUD hideHUD];
                             [self.array removeObjectAtIndex:indexPath.row];
                             [self.selectedArr removeAllObjects];
                             [self setupRightBar];
@@ -224,7 +224,7 @@
  
 
                 } fail:^(NSURLSessionDataTask *task, NSError *error) {
-                    [SVProgressHUD dismiss];
+                    [MBProgressHUD hideHUD];
                     
                     [self sendErrorWarning:error.localizedDescription];
                 }];

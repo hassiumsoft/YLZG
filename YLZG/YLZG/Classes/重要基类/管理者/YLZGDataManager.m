@@ -14,7 +14,7 @@
 #import <MJExtension.h>
 #import "ZCAccountTool.h"
 #import "GroupListManager.h"
-#import <SVProgressHUD.h>
+
 #import "NSDate+Category.h"
 
 
@@ -91,12 +91,10 @@ static YLZGDataManager *controller = nil;
             }
             reloadTable();
         }else{
-            [SVProgressHUD showErrorWithStatus:message];
-            [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+            [MBProgressHUD showError:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [MBProgressHUD showError:error.localizedDescription];
     }];
     
 }

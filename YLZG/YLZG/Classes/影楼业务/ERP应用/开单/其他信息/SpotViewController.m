@@ -9,7 +9,7 @@
 #import "SpotViewController.h"
 #import "MutableSpotTableCell.h"
 #import "ZCAccountTool.h"
-#import "SVProgressHUD.h"
+
 #import "MutableSelectedModel.h"
 #import "HTTPManager.h"
 

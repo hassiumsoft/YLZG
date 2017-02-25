@@ -11,7 +11,7 @@
 #import "NoDequTableCell.h"
 #import "TimePickerView.h"
 #import "ZCAccountTool.h"
-#import "SVProgressHUD.h"
+
 #import <AFNetworking.h>
 #import "HTTPManager.h"
 
@@ -102,7 +102,7 @@
     [self showHudMessage:@"设置中···"];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         KGLog(@"json = %@",responseObject);
         NSString *message = [[responseObject objectForKey:@"message"]description];
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
@@ -122,7 +122,7 @@
             [self sendErrorWarning:message];
         }
      }fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
 
     }];

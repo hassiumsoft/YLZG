@@ -14,7 +14,7 @@
 #import "TeamKaoqinTableViewCell.h"
 #import "TeamPaihangbangViewController.h"
 #import "TeamZhengchangDakaController.h"
-#import <SVProgressHUD.h>
+
 #import "ZCAccountTool.h"
 #import <MJExtension.h>
 #import "HTTPManager.h"
@@ -79,8 +79,7 @@
 
 #pragma mark -获取数据相关
 - (void)geDataWithTime:(NSString *)time {
-    [SVProgressHUD showWithStatus:@"努力加载中"];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [MBProgressHUD showMessage:@"请稍后"];
     ZCAccount * account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:Count_TeamKaoqin_Url, account.userID, time];
    
@@ -93,7 +92,7 @@
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-           [SVProgressHUD dismiss];
+           [MBProgressHUD hideHUD];
             int status = [[[responseObject objectForKey:@"code"] description] intValue];
             NSString *message = [[responseObject objectForKey:@"message"] description];
             if (status == 1) {
@@ -113,10 +112,10 @@
                 [self.checkCOntroller sendErrorWarning:message];
             }
 
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
 
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         [self.checkCOntroller sendErrorWarning:error.localizedDescription];
 
     }];
@@ -301,8 +300,7 @@
     NSArray *  hh = _collectArray[tap.view.tag - 100];
     if (hh.count == 0) {
         NSString *mesage = [NSString stringWithFormat:@"没有人%@",titleArr[tap.view.tag - 100]];
-        [SVProgressHUD showSuccessWithStatus:mesage];
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+        [MBProgressHUD showSuccess:mesage];
     }else {
         TeamZhengchangDakaController * vc = [[TeamZhengchangDakaController alloc] init];
         vc.title = [NSString stringWithFormat:@"%@人员",titleArr[tap.view.tag - 100]];

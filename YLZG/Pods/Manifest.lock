@@ -37,7 +37,6 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - SVProgressHUD (2.1.2)
   - UMengAnalytics (4.1.8)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
@@ -58,7 +57,6 @@ DEPENDENCIES:
   - PDTSimpleCalendar (~> 0.9.1)
   - pop
   - SDWebImage (~> 3.8.1)
-  - SVProgressHUD
   - UMengAnalytics
   - YYKit
 
@@ -79,10 +77,9 @@ SPEC CHECKSUMS:
   PDTSimpleCalendar: d1c03387678422715dc021aa1a85d70f4d1014f2
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   UMengAnalytics: 6ef66c49bea0779d2ce02a72d862510d97619a7a
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: e527dc8793393303a0645c603f2bdcc83a8b9f4f
+PODFILE CHECKSUM: 37ff8981b55df012aae6dfe94d35bbd5bbfd0a4e
 
 COCOAPODS: 1.2.0.beta.1

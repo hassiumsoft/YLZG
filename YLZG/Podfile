@@ -10,9 +10,9 @@ target 'YLZG' do
     pod 'MJRefresh'
     pod 'FMDB'
     pod 'IQKeyboardManager'
-    pod 'SVProgressHUD'
     pod 'BaiduMapKit'
     pod 'UMengAnalytics'
+    
     pod 'Hyphenate_CN'#, '~> 3.2.2'
     pod 'pop'
     pod 'MWPhotoBrowser'

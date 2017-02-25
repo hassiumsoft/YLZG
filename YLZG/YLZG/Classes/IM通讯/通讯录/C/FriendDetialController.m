@@ -11,7 +11,7 @@
 #import "StudioContactManager.h"
 #import "NormalTableCell.h"
 #import "NSString+StrCategory.h"
-#import <SVProgressHUD.h>
+
 #import "YLZGDataManager.h"
 #import <MJExtension.h>
 #import "ImageBrowser.h"

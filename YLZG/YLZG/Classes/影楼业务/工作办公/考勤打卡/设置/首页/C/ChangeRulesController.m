@@ -15,7 +15,7 @@
 #import "GudingBanciVController.h"
 #import <AFNetworking.h>
 #import <MJExtension.h>
-#import "SVProgressHUD.h"
+
 #import "ZCAccountTool.h"
 #import "ChooseBanciVController.h"
 #import "TanxingBanciSettingController.h"
@@ -520,7 +520,7 @@
 
     [HTTPManager POST:url params:params success:^(NSURLSessionDataTask *task, id responseObject) {
 
-            [SVProgressHUD dismiss];
+            [MBProgressHUD hideHUD];
             KGLog(@"json = %@",responseObject);
             NSString *message = [[responseObject objectForKey:@"message"]description];
             int code = [[[responseObject objectForKey:@"code"] description] intValue];
@@ -559,7 +559,7 @@
 
 
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
         KGLog(@"%@",error.localizedDescription);
     }];

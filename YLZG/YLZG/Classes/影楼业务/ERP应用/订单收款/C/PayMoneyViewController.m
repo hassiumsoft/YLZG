@@ -10,7 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "ZCAccountTool.h"
 #import "HTTPManager.h"
-#import <SVProgressHUD.h>
+
 
 @interface PayMoneyViewController ()
 
@@ -40,19 +40,18 @@
     NSString *str = [NSString stringWithFormat:ErweimaImage_Url,account.userID,@""];
     NSCharacterSet * set = [NSCharacterSet URLQueryAllowedCharacterSet];
     NSString * url = [str stringByAddingPercentEncodingWithAllowedCharacters:set];
-    [SVProgressHUD showWithStatus:@"获取中···"];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [MBProgressHUD showMessage:@"请稍后"];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"]description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         if (code == 1) {
-            [SVProgressHUD dismiss];
+            [MBProgressHUD hideHUD];
             self.alipay_url = [[responseObject objectForKey:@"alipay"] description];
             self.wechatpay_url = [[responseObject objectForKey:@"weipay"] description];
             [self setupSubViews];
         }else{
-            [SVProgressHUD dismiss];
+            [MBProgressHUD hideHUD];
             [self sendErrorWarning:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
@@ -157,8 +156,7 @@
     NSString *str = [NSString stringWithFormat:FinishedPayOrder_Url,account.userID,(int)self.payType,self.moneyField.text,self.orderID];
     NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
     NSString *url = [str stringByAddingPercentEncodingWithAllowedCharacters:set];
-    [SVProgressHUD showWithStatus:@"请稍后···"];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [MBProgressHUD showMessage:@"请稍后"];
     [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -167,7 +165,7 @@
         if (!error) {
             int code = [[[json objectForKey:@"code"] description] intValue];
             NSString *message = [[json objectForKey:@"message"] description];
-            [SVProgressHUD dismiss];
+            [MBProgressHUD hideHUD];
             if (code == 1) {
                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -185,12 +183,12 @@
                 [self sendErrorWarning:message];
             }
         } else {
-            [SVProgressHUD dismiss];
+            [MBProgressHUD hideHUD];
             [self sendErrorWarning:@"数据异常"];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
 }

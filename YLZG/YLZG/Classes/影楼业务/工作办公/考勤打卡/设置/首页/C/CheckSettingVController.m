@@ -19,7 +19,7 @@
 #import <MJExtension.h>
 #import <MJRefresh.h>
 #import "KaoqinModel.h"
-#import "SVProgressHUD.h"
+
 #import "LCActionSheet.h"
 #import <AFNetworking.h>
 #import "TanxingPreViewController.h"
@@ -200,17 +200,17 @@
             
             [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 
-                [SVProgressHUD dismiss];
+                [MBProgressHUD hideHUD];
                 
                 int code = [[[responseObject objectForKey:@"code"] description] intValue];
                 if (code == 1) {
                     [self.array removeObjectAtIndex:indexPath.section - 1];
                     [self.tableView reloadData];
                 }else{
-                    [SVProgressHUD dismiss];
+                    [MBProgressHUD hideHUD];
                 }
             } fail:^(NSURLSessionDataTask *task, NSError *error) {
-                [SVProgressHUD dismiss];
+                [MBProgressHUD hideHUD];
                 [self sendErrorWarning:error.localizedDescription];
             }];
         }];

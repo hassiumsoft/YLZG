@@ -11,7 +11,7 @@
 #import "TaoxiModel.h"
 #import <MJExtension.h>
 #import "NormalTableCell.h"
-#import "SVProgressHUD.h"
+
 #import "HTTPManager.h"
 
 

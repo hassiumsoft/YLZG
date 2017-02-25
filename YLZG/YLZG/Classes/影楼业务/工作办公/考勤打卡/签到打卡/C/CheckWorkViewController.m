@@ -12,7 +12,6 @@
 #import "DakaMapView.h"
 #import "KaoqinInfoView.h"
 #import "ZCAccountTool.h"
-#import "SVProgressHUD.h"
 #import <AFNetworking.h>
 #import "HTTPManager.h"
 #import "NormalIconView.h"
@@ -128,20 +127,20 @@
 #pragma mark - 请求数据
 - (void)loadCheckWorkVControllerData{
     
-    [SVProgressHUD showWithStatus:@"正在加载"];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    
+    [MBProgressHUD showMessage:@"请稍后"];
     ZCAccount * account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:QiandaoDakaAll_Url,account.userID];
     
     [HTTPManager GET:url  params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         if (status == 1) {
             self.dataDict = responseObject[@"result"];
             // 搭建UI
-            [SVProgressHUD dismiss];
+            
             [self creatCheckWorkVControllerUI];
         }else {
             
@@ -149,8 +148,8 @@
         }
         
      }fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showSuccessWithStatus:error.localizedDescription];
+        [MBProgressHUD hideHUD];
+         [self sendErrorWarning:error.localizedDescription];
     }];
     
 }
@@ -490,8 +489,8 @@
 - (void)getQiandaochenggongDataWithType:(NSString *)typeStr andID:(NSString *)ID andTime:(NSString *)time andAddress:(NSString *)addressDict andState:(NSString *)state andOutside:(NSString *)outsideStr andRemark:(NSString *)remark
 {
     
-    [SVProgressHUD showWithStatus:@"正在加载"];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [MBProgressHUD showMessage:@"请稍后"];
+    
     ZCAccount * account = [ZCAccountTool account];
     
     NSString *wifiName = [[DakaManager sharedManager] getWifiName];
@@ -507,13 +506,13 @@
                 [self loadCheckWorkVControllerData];
                 [self sendErrorWarning:@"打卡成功"];
             }else {
-                [SVProgressHUD showSuccessWithStatus:message];
+                [MBProgressHUD showSuccess:message];
             }
 
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showSuccessWithStatus:error.localizedDescription];
+        [MBProgressHUD hideHUD];
+        [self sendErrorWarning:error.localizedDescription];
     }];
  
 }

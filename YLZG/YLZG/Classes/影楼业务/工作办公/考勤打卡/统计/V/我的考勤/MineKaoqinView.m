@@ -11,7 +11,7 @@
 #import "DateMineKaoqinPicker.h"
 #import "MineKaoqinTableViewCell.h"
 #import "ZCAccountTool.h"
-#import <SVProgressHUD.h>
+
 #import "HTTPManager.h"
 #import <AFNetworking.h>
 #import "UserInfoManager.h"
@@ -218,8 +218,7 @@
 
 - (void)getDateWithMonth:(NSString *)monthStr{
 
-    [SVProgressHUD showWithStatus:@"努力加载中..."];
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [MBProgressHUD showMessage:@"请稍后"];
     ZCAccount * account = [ZCAccountTool account];
     NSString * url = [NSString stringWithFormat:Count_MyKaoqin_Url, account.userID, monthStr];
 
@@ -228,7 +227,7 @@
             [_dataSource removeAllObjects];
             [_rightView removeFromSuperview];
         
-          [SVProgressHUD dismiss];
+          [MBProgressHUD hideHUD];
            int status = [[[responseObject objectForKey:@"code"] description] intValue];
            NSString *message = [[responseObject objectForKey:@"message"] description];
             if (status == 1) {
@@ -256,7 +255,7 @@
 
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
         [self.superCheckController sendErrorWarning:error.localizedDescription];
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUD];
     }];
     
    

@@ -12,7 +12,7 @@
 #import "CheckSettingVController.h"
 #import "HomeNavigationController.h"
 #import "SuperSettingController.h"
-#import <SVProgressHUD.h>
+
 #import "InGroupViewController.h"
 #import "ZCAccountTool.h"
 
