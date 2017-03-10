@@ -283,15 +283,15 @@
 {
     
     if ([self.nameLabel.text isEqualToString:@"选择预约项目"]) {
-        [self sendErrorWarning:@"请选择预约项目"];
+        [MBProgressHUD showError:@"请选择预约项目"];
         return;
     }
     if ([self.timeLabel.text isEqualToString:@"预计到店时间"]) {
-        [self sendErrorWarning:@"请选择预计到店时间"];
+        [MBProgressHUD showError:@"请选择预计到店时间"];
         return;
     }
     if ([self.orderIDLabel.text isEqualToString:@"根据号码查询"]) {
-        [self sendErrorWarning:@"请输入号码查询订单编号"];
+        [MBProgressHUD showError:@"请选择订单编号"];
         return;
     }
     

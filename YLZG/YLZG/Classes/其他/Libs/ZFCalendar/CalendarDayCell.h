@@ -12,7 +12,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CalendarDayModel.h"
-#import "Color.h"
+
 
 @interface CalendarDayCell : UICollectionViewCell
 {

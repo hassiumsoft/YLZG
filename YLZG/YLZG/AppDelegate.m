@@ -37,6 +37,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"sy_bg"]];
     [self setupSDKWithOptions:launchOptions];
     [self chooseRootViewControllerWithVersion];
     [self.window makeKeyAndVisible];

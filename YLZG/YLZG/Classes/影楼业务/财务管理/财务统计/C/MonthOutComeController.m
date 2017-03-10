@@ -243,4 +243,11 @@
     return _sumLabel;
 }
 
+- (void)setMonth:(NSString *)month
+{
+    _month = month;
+    self.monthLabel.text = month;
+}
+
+
 @end

@@ -186,6 +186,11 @@
     
 }
 
+- (void)setMonth:(NSString *)month
+{
+    _month = month;
+    self.monthLabel.text = month;
+}
 
 #pragma mark -- 选中哪一块饼干
 - (void)lxmPieView:(LXMPieView *)pieView didSelectSectionAtIndex:(NSInteger)index {

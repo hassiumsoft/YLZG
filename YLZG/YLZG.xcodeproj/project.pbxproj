@@ -34,6 +34,7 @@
 		3B213F321DFE37190088728C /* SCXDateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B213F2F1DFE37190088728C /* SCXDateTimePicker.m */; };
 		3B213F381DFE58DA0088728C /* DakaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B213F371DFE58DA0088728C /* DakaTableViewCell.m */; };
 		3B213F3B1DFE5E710088728C /* TodayDakaRuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B213F3A1DFE5E710088728C /* TodayDakaRuleModel.m */; };
+		3B302F3D1E726D3500BA40B5 /* MonthPicerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B302F3C1E726D3500BA40B5 /* MonthPicerView.m */; };
 		3B343B361DEBFECC00474549 /* TaskDongtaiController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343AE21DEBFECC00474549 /* TaskDongtaiController.m */; };
 		3B343B371DEBFECC00474549 /* MyCareTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343AE81DEBFECC00474549 /* MyCareTaskController.m */; };
 		3B343B381DEBFECC00474549 /* MyCreateTaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B343AEA1DEBFECC00474549 /* MyCreateTaskController.m */; };
@@ -544,6 +545,8 @@
 		3B213F371DFE58DA0088728C /* DakaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DakaTableViewCell.m; sourceTree = "<group>"; };
 		3B213F391DFE5E710088728C /* TodayDakaRuleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayDakaRuleModel.h; sourceTree = "<group>"; };
 		3B213F3A1DFE5E710088728C /* TodayDakaRuleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayDakaRuleModel.m; sourceTree = "<group>"; };
+		3B302F3B1E726D3500BA40B5 /* MonthPicerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthPicerView.h; sourceTree = "<group>"; };
+		3B302F3C1E726D3500BA40B5 /* MonthPicerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MonthPicerView.m; sourceTree = "<group>"; };
 		3B343AE11DEBFECC00474549 /* TaskDongtaiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskDongtaiController.h; sourceTree = "<group>"; };
 		3B343AE21DEBFECC00474549 /* TaskDongtaiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskDongtaiController.m; sourceTree = "<group>"; };
 		3B343AE71DEBFECC00474549 /* MyCareTaskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCareTaskController.h; sourceTree = "<group>"; };
@@ -1413,7 +1416,6 @@
 		3BF93D721DADDC950002EACA /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		3BF93D731DADDC950002EACA /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		3BF93D741DADDC950002EACA /* chack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chack.png; sourceTree = "<group>"; };
-		3BF93D751DADDC950002EACA /* Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Color.h; sourceTree = "<group>"; };
 		3BF93D761DADDC950002EACA /* NSDate+WQCalendarLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WQCalendarLogic.h"; sourceTree = "<group>"; };
 		3BF93D771DADDC950002EACA /* NSDate+WQCalendarLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WQCalendarLogic.m"; sourceTree = "<group>"; };
 		487A4302373A59827214ABFD /* libPods-YLZG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YLZG.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1905,6 +1907,8 @@
 		3B4C0E901DC85DDB00827D4F /* V */ = {
 			isa = PBXGroup;
 			children = (
+				3B302F3B1E726D3500BA40B5 /* MonthPicerView.h */,
+				3B302F3C1E726D3500BA40B5 /* MonthPicerView.m */,
 				3B4C0E911DC85DDB00827D4F /* FinalTableViewCell.h */,
 				3B4C0E921DC85DDB00827D4F /* FinalTableViewCell.m */,
 				3B4C0E931DC85DDB00827D4F /* LXMPieView.h */,
@@ -4007,7 +4011,6 @@
 				3BF93D721DADDC950002EACA /* CalendarViewController.h */,
 				3BF93D731DADDC950002EACA /* CalendarViewController.m */,
 				3BF93D741DADDC950002EACA /* chack.png */,
-				3BF93D751DADDC950002EACA /* Color.h */,
 				3BF93D761DADDC950002EACA /* NSDate+WQCalendarLogic.h */,
 				3BF93D771DADDC950002EACA /* NSDate+WQCalendarLogic.m */,
 			);
@@ -4700,6 +4703,7 @@
 				3B8531961DF8F9B800AB9C4F /* NineMyCareViewController.m in Sources */,
 				3B56D76E1DC739CE003A57FD /* EaseBaseMessageCell.m in Sources */,
 				3B6E0AD01DCAF33C00309037 /* SaleWebViewController.m in Sources */,
+				3B302F3D1E726D3500BA40B5 /* MonthPicerView.m in Sources */,
 				3B213F301DFE37190088728C /* CheckTabBarController.m in Sources */,
 				3B56D76F1DC739CE003A57FD /* EaseCustomMessageCell.m in Sources */,
 				3B343B4B1DEBFECC00474549 /* ProduceDetialDiscussCell.m in Sources */,
@@ -4935,7 +4939,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YLZG/YLZG.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = HEG7GWP2LQ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = $SRCROOT/YLZG/Classes/PCH/YLZGHeader.h;
 				INFOPLIST_FILE = YLZG/Info.plist;
@@ -4961,7 +4965,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YLZG/YLZG.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = HEG7GWP2LQ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = $SRCROOT/YLZG/Classes/PCH/YLZGHeader.h;
 				INFOPLIST_FILE = YLZG/Info.plist;

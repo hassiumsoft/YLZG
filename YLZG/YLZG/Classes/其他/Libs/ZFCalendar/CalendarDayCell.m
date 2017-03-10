@@ -11,6 +11,7 @@
 // 发布代码于最专业的源码分享网站: Code4App.com
 
 #import "CalendarDayCell.h"
+#import <Masonry.h>
 
 @implementation CalendarDayCell
 
@@ -18,6 +19,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+//        self.backgroundColor = HWRandomColor;
         [self initView];
     }
     return self;
@@ -26,29 +28,54 @@
 - (void)initView{
     
     //选中时显示的图片
-    imgview = [[UIImageView alloc]initWithFrame:CGRectMake(5, 15, self.bounds.size.width-5, self.bounds.size.width-5)];
-    imgview.image = [UIImage imageNamed:@"chack.png"];
+    imgview = [[UIImageView alloc]initWithFrame:CGRectZero];
+    imgview.layer.masksToBounds = YES;
+    imgview.layer.cornerRadius = self.width/2;
+    imgview.image = [UIImage imageWithColor:MainColor];
     [self addSubview:imgview];
+    [imgview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.mas_centerY);
+        make.centerX.equalTo(self.mas_centerX);
+        make.width.height.equalTo(@(self.bounds.size.width));
+    }];
     
     //日期
     day_lab = [[UILabel alloc]initWithFrame:CGRectMake(0, 15, self.bounds.size.width, self.bounds.size.width-10)];
     day_lab.textAlignment = NSTextAlignmentCenter;
-    day_lab.font = [UIFont systemFontOfSize:14];
+    day_lab.font = [UIFont systemFontOfSize:15*CKproportion];
     [self addSubview:day_lab];
+    [day_lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.bottom.equalTo(self.mas_centerY);
+        make.width.equalTo(@(self.width));
+        make.height.equalTo(@21);
+    }];
 
     //农历
-    day_title = [[UILabel alloc]initWithFrame:CGRectMake(0, self.bounds.size.height-30, self.bounds.size.width, 13)];
-    day_title.textColor = [UIColor colorWithWhite:0.583 alpha:1.000];
-    day_title.font = [UIFont boldSystemFontOfSize:10];
+    day_title = [[UILabel alloc]initWithFrame:CGRectZero];
+    day_title.textColor = [UIColor grayColor];
+    day_title.font = [UIFont boldSystemFontOfSize:12];
     day_title.textAlignment = NSTextAlignmentCenter;
     [self addSubview:day_title];
+    [day_title mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(day_lab.mas_bottom).offset(-4);
+        make.centerX.equalTo(self.mas_centerX);
+        make.width.equalTo(@(self.width));
+        make.height.equalTo(@21);
+    }];
     
     //预约数量
     day_plan = [[UILabel alloc]initWithFrame:CGRectMake(0, self.bounds.size.height-15, self.bounds.size.width, 13)];
     day_plan.textColor = [UIColor redColor];
-    day_plan.font = [UIFont boldSystemFontOfSize:10];
+    day_plan.font = day_title.font;
     day_plan.textAlignment = NSTextAlignmentCenter;
     [self addSubview:day_plan];
+    [day_plan mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.width.equalTo(@(self.width));
+        make.top.equalTo(day_title.mas_bottom).offset(-6);
+        make.height.equalTo(@21);
+    }];
 
 }
 
@@ -85,7 +112,7 @@
                 day_lab.textColor = [UIColor orangeColor];
             }else{
                 day_lab.text = [NSString stringWithFormat:@"%lu",(unsigned long)model.day];
-                day_lab.textColor = COLOR_THEME;
+                day_lab.textColor = MainColor;
             }
             day_plan.text = [NSString stringWithFormat:@"%lu",(unsigned long)model.plan];
             day_title.text = model.Chinese_calendar;
@@ -100,7 +127,7 @@
                 day_lab.textColor = [UIColor orangeColor];
             }else{
                 day_lab.text = [NSString stringWithFormat:@"%lu",(unsigned long)model.day];
-                day_lab.textColor = COLOR_THEME1;
+                day_lab.textColor = MainColor;
             }
             day_plan.text = [NSString stringWithFormat:@"%lu",(unsigned long)model.plan];
             day_title.text = model.Chinese_calendar;

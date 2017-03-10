@@ -9,9 +9,10 @@
 #import "MonthFinanceVController.h"
 #import "MonthInComeController.h"
 #import "MonthOutComeController.h"
-#import <PDTSimpleCalendarViewController.h>
+//#import <PDTSimpleCalendarViewController.h>
 #import "ZCAccountTool.h"
 #import "InComeModel.h"
+#import "MonthPicerView.h"
 #import "OutComeModel.h"
 #import "TitleLabel.h"
 #import <Masonry.h>
@@ -23,7 +24,7 @@
 #define NavTitleW 50
 #define NavTitleH 25
 
-@interface MonthFinanceVController ()<UIScrollViewDelegate,PDTSimpleCalendarViewDelegate>
+@interface MonthFinanceVController ()<UIScrollViewDelegate>
 {
     BOOL isReloadData; // 是否重新加载📚数据
 }
@@ -264,63 +265,14 @@ static CGFloat const EYWTitleHeight = 44;
 #pragma mark - 切换月份
 - (void)changeMonths
 {
-    PDTSimpleCalendarViewController *calender = [[PDTSimpleCalendarViewController alloc]init];
-    calender.title = @"点击选择月份";
-    calender.delegate = self;
-    calender.overlayTextColor = MainColor;
-    calender.weekdayHeaderEnabled = YES;
-    calender.firstDate = [NSDate dateWithHoursBeforeNow:6*30*24];
-    calender.lastDate = [NSDate date];
-    [self.navigationController pushViewController:calender animated:YES];
-}
-- (void)simpleCalendarViewController:(PDTSimpleCalendarViewController *)controller didSelectDate:(NSDate *)date
-{
-    KGLog(@"date = %@",date);
-    
-    NSDate *currentDate = [NSDate date];
-    int result = [self compareOneDay:date withAnotherDay:currentDate];
-    if (result == 1) {
-        [self showErrorTips:@"不能先于当前日期"];
-        return;
-    }else{ // -1
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    MonthPicerView *datePicker = [[MonthPicerView alloc]initWithFrame:keyWindow.bounds];
+    datePicker.SelectDateBlock = ^(NSString *selectDate){
+        self.changeMonth = selectDate;
         isReloadData = YES;
-    }
-    NSString *time = [NSString stringWithFormat:@"%@",date];
-    NSString *timeC = [time substringWithRange:NSMakeRange(0, 7)];
-    self.changeMonth = [NSString stringWithFormat:@"%@",timeC];  // 选中的年月日
-    [controller.navigationController popViewControllerAnimated:YES];
-    
-    
-    [self loadData:self.changeMonth];
-    
-    
-}
-- (void)reloadData
-{
-    
-}
-
-#pragma mark - 比较2各日期的先后顺序
-- (int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay
-{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    NSString *oneDayStr = [dateFormatter stringFromDate:oneDay];
-    NSString *anotherDayStr = [dateFormatter stringFromDate:anotherDay];
-    NSDate *dateA = [dateFormatter dateFromString:oneDayStr];
-    NSDate *dateB = [dateFormatter dateFromString:anotherDayStr];
-    NSComparisonResult result = [dateA compare:dateB];
-    NSLog(@"date1 : %@, date2 : %@", oneDay, anotherDay);
-    if (result == NSOrderedDescending) {
-        //NSLog(@"Date1  is in the future");
-        return 1;
-    }
-    else if (result == NSOrderedAscending){
-        //NSLog(@"Date1 is in the past");
-        return -1;
-    }
-    //NSLog(@"Both dates are the same");
-    return 0;
+        [self loadData:self.changeMonth];
+    };
+    [keyWindow addSubview:datePicker];
     
 }
 @end

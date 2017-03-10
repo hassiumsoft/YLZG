@@ -207,7 +207,7 @@
     UILabel * footer = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
     footer.backgroundColor = self.view.backgroundColor;
     footer.numberOfLines = 2;
-    footer.text = @"CopyRight © 2016\r智诚科技(北京实验室)";
+    footer.text = @"CopyRight © 2017\r智诚科技(北京实验室)";
     footer.textAlignment = NSTextAlignmentCenter;
     footer.textColor = [UIColor grayColor];
     footer.font = [UIFont fontWithName:@"Iowan Old Style" size:12];

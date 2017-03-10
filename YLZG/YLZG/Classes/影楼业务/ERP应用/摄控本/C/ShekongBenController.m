@@ -338,7 +338,7 @@
         } else if(self.currentIndex == 1){
             calender.calendartitle = @"查看选片预约数";
         }else if (self.currentIndex == 2){
-            calender.calendartitle = @"查看化妆预约数";
+            calender.calendartitle = @"查看看样预约数";
         }else{
             calender.calendartitle = @"查看取件预约数";
         }
