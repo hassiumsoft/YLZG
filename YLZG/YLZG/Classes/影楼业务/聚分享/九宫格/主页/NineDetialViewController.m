@@ -21,6 +21,10 @@
 
 @interface NineDetialViewController ()
 
+{
+    int LoadCount;
+}
+
 /** 模板详细模型 */
 @property (strong,nonatomic) NineDetialModel *detialModel;
 
@@ -29,6 +33,8 @@
 
 /** 保存的图片数组 */
 @property (strong,nonatomic) NSMutableArray *imageArray;
+/** 保存ImageView的数组 */
+@property (strong,nonatomic) NSMutableArray *imgViewArray;
 
 @end
 
@@ -37,6 +43,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.title = @"模板详细";
+    LoadCount = 0;
+    self.automaticallyAdjustsScrollViewInsets = YES;
     [self getData];
     
 }
@@ -47,7 +55,7 @@
     NSString *url = [NSString stringWithFormat:NineDetial_Url,[ZCAccountTool account].userID,self.mobanID,self.date];
     [self showHudMessage:@"正在加载"];
     
-    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self hideHud:0];
         
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
@@ -102,11 +110,17 @@
         
         NineDetialImageModel *imageModel = model.images[i];
         [urlArray addObject:imageModel.url];
-        UIImageView *imageV = [[UIImageView alloc]initWithImage:[self imageWithBgColor:HWRandomColor]];
+        
+        
+        UIImageView *imageV = [[UIImageView alloc]initWithImage:[UIImage imageWithColor:HWRandomColor]];
+        [imageV setFrame:frame];
         imageV.tag = i;
+        
+        
         [imageV sd_setImageWithURL:[NSURL URLWithString:imageModel.url] placeholderImage:[self imageWithBgColor:HWRandomColor] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            
             if (!error) {
-                [self.imageArray addObject:image];
+                LoadCount++;
             }
         }];
         
@@ -115,10 +129,14 @@
             [XLPhotoBrowser showPhotoBrowserWithImages:urlArray currentImageIndex:imageV.tag];
         }];
         [imageV addGestureRecognizer:tap];
-        [imageV setFrame:frame];
+        
         [self.view addSubview:imageV];
+        [self.imgViewArray addObject:imageV];
     }
     
+    UIView *bottomV = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 70 - 64, SCREEN_WIDTH, 70)];
+//    bottomV.backgroundColor = HWRandomColor;
+    [self.view addSubview:bottomV];
     
     if (self.isManager) {
         // 有管理权限
@@ -150,9 +168,9 @@
                     [self ReSendNotice];
                 }
             }];
-            [button setFrame:CGRectMake((i%titleArr.count) * (W + space) + space, self.view.height - 64 - 40, W, 40)];
+            [button setFrame:CGRectMake((i%titleArr.count) * (W + space) + space, 5, W, 40)];
             
-            [self.view addSubview:button];
+            [bottomV addSubview:button];
         }
         
     }else{
@@ -162,10 +180,10 @@
         [sendButton setTitle:@"一键转发" forState:UIControlStateNormal];
         [sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [sendButton addTarget:self action:@selector(SendToWechat) forControlEvents:UIControlEventTouchUpInside];
-        [sendButton setFrame:CGRectMake(20, self.view.height - 20 - 64 - 0, self.view.width - 40, 40)];
+        [sendButton setFrame:CGRectMake(20, 5, self.view.width - 40, 40)];
         sendButton.layer.masksToBounds = YES;
         sendButton.layer.cornerRadius = 4;
-        [self.view addSubview:sendButton];
+        [bottomV addSubview:sendButton];
     }
     
 }
@@ -175,32 +193,37 @@
 #pragma mark - 发送到微信
 - (void)SendToWechat
 {
-    
-    if (self.imageArray.count >= 1) {
-        
-        [self showHudMessage:@"发送中···"];
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:self.imageArray applicationActivities:nil];
-        UIPasteboard *pasted = [UIPasteboard generalPasteboard];
-        [pasted setString:self.detialModel.content];
-        [self showSuccessTips:@"已复制到剪切板"];
-        
-        [self presentViewController:activityVC animated:TRUE completion:^{
-            NSString *url = [NSString stringWithFormat:ZhuanfaCount_Url,[ZCAccountTool account].userID,self.detialModel.id,self.detialModel.cid];
-            [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                [self hideHud:0];
-                int code = [[[responseObject objectForKey:@"code"] description] intValue];
-                NSString *message = [[responseObject objectForKey:@"message"] description];
-                if (code != 1) {
-                    [self sendErrorWarning:message];
-                }
-            } fail:^(NSURLSessionDataTask *task, NSError *error) {
-                [self hideHud:0];
-                [self sendErrorWarning:error.localizedDescription];
-            }];
-        }];
-    }else{
-        [self showErrorTips:@"图片加载失败"];
+    if (LoadCount < self.detialModel.images.count) {
+        [MBProgressHUD showError:@"下载未完成"];
+        return;
     }
+    
+    [self.imageArray removeAllObjects];
+    
+    for (UIImageView *kkk in self.imgViewArray) {
+        [self.imageArray addObject:kkk.image];
+    }
+    
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:self.imageArray applicationActivities:nil];
+    UIPasteboard *pasted = [UIPasteboard generalPasteboard];
+    [pasted setString:self.detialModel.content];
+    [self showSuccessTips:@"已复制到剪切板"];
+    
+    [self presentViewController:activityVC animated:TRUE completion:^{
+        NSString *url = [NSString stringWithFormat:ZhuanfaCount_Url,[ZCAccountTool account].userID,self.detialModel.id,self.detialModel.cid];
+        [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            int code = [[[responseObject objectForKey:@"code"] description] intValue];
+            NSString *message = [[responseObject objectForKey:@"message"] description];
+            if (code != 1) {
+                [self sendErrorWarning:message];
+            }
+        } fail:^(NSURLSessionDataTask *task, NSError *error) {
+            
+            [self sendErrorWarning:error.localizedDescription];
+        }];
+    }];
     
     
 }
@@ -208,6 +231,7 @@
 #pragma mark - 转发提醒
 - (void)ReSendNotice
 {
+    
     NSString *url = [NSString stringWithFormat:NineResendTips_Url,[ZCAccountTool account].userID,self.detialModel.id];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
@@ -229,6 +253,12 @@
     }
     return _imageArray;
 }
-
+- (NSMutableArray *)imgViewArray
+{
+    if (!_imgViewArray) {
+        _imgViewArray = [NSMutableArray array];
+    }
+    return _imgViewArray;
+}
 
 @end

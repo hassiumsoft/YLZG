@@ -714,7 +714,7 @@
             self.alpha = 1.0;
         }];
         XLPBLog(@"需要提供源视图才能做弹出/退出图片浏览器的缩放动画");
-        return;
+//        return;
     }
     startRect = [self.sourceImageView.superview convertRect:self.sourceImageView.frame toView:self];
     
