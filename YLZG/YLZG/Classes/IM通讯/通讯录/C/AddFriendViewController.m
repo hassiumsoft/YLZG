@@ -60,7 +60,7 @@
     NSMutableArray *tongshiArr = [NSMutableArray array];
     
     NSMutableArray  *listFriend = [StudioContactManager getAllStudiosContactsInfo];
-    UserInfoModel *myModel = [UserInfoManager getUserInfo];
+    UserInfoModel *myModel = [[UserInfoManager sharedManager] getUserInfo];
     for (int i = 0; i < listFriend.count; i++) {
         ColleaguesModel *lastModel = listFriend[i];
         for(int j = 0 ;j <lastModel.member.count;j++){
@@ -167,7 +167,7 @@
             [self presentViewController:alertController animated:YES completion:nil];
             
         }else{
-            UserInfoModel *myModel = [UserInfoManager getUserInfo];
+            UserInfoModel *myModel = [[UserInfoManager sharedManager] getUserInfo];
             self.message = [NSString stringWithFormat:@"我是%@",myModel.realname];
             NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/askfriend?uid=%@&aname=%@&anick=%@&ahead=%@&msg=%@&fuid=%@&fname=%@&fnick=%@&fhead=%@",account.userID,myModel.username,myModel.nickname,myModel.head,self.message,model.uid,model.name,model.nickname,model.head];
             self.putURL = url;
@@ -215,7 +215,7 @@
         return headView;
     }else{
         // 显示我的登录号
-        UserInfoModel *myModel = [UserInfoManager getUserInfo];
+        UserInfoModel *myModel = [[UserInfoManager sharedManager] getUserInfo];
         UIView *headView = [[UIView alloc]initWithFrame:CGRectZero];
         headView.backgroundColor = self.view.backgroundColor;
         UILabel *label = [[UILabel alloc]init];

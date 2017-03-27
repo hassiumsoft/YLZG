@@ -15,6 +15,7 @@
 #import "EditCareCategoryController.h"
 #import "ZCAccountTool.h"
 #import <MJRefresh.h>
+#import "TeamClassViewController.h"
 
 
 @interface NineMyCareViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -29,7 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"关注模板";
+    self.title = @"关注";
     [self setupSubViews];
 }
 - (void)setupSubViews
@@ -112,14 +113,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NineListViewController *nineList = [[NineListViewController alloc]init];
-    // NineHotCommentModel
     NineCategoryModel *model = self.array[indexPath.section];
-    nineList.isSuaixuan = NO;
-    nineList.cateModel = model;
-    nineList.cateModel.id = model.id;
-    nineList.title = [NSString stringWithFormat:@"%@详情",model.name];
-    [self.navigationController pushViewController:nineList animated:YES];
+    
+    if ([model.name isEqualToString:@"团队制作"]) {
+        TeamClassViewController *nineList = [[TeamClassViewController alloc]init];
+        [self.navigationController pushViewController:nineList animated:YES];
+    }else{
+        NineListViewController *nineList = [[NineListViewController alloc]init];
+        nineList.isSuaixuan = NO;
+        nineList.cateModel = model;
+        nineList.cateModel.id = model.id;
+        nineList.title = [NSString stringWithFormat:@"%@详情",model.name];
+        [self.navigationController pushViewController:nineList animated:YES];
+    }
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

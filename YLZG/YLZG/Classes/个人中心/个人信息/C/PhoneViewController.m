@@ -40,7 +40,7 @@
     [super viewDidLoad];
     self.title = @"手机号码";
     self.view.backgroundColor = [UIColor whiteColor];
-    UserInfoModel *model = [UserInfoManager getUserInfo];
+    UserInfoModel *model = [[UserInfoManager sharedManager] getUserInfo];
     
     if ([model.mobile isPhoneNum]) {
         self.phoneStr = model.mobile;
@@ -142,7 +142,7 @@
                 NSUserDefaults *userDefault = USER_DEFAULT;
                 [userDefault setObject:self.textField.text forKey:@"userPhone"];
                 [userDefault synchronize];
-                [UserInfoManager updataUserInfoWithKey:@"mobile" Value:self.textField.text];
+                [[UserInfoManager sharedManager] updateWithKey:UUmobile Value:self.textField.text];
                 
                 [self setupPhoneVies];
             }else{

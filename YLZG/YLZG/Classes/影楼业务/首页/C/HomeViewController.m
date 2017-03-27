@@ -138,7 +138,7 @@
 - (void)setupSubViews
 {
     self.automaticallyAdjustsScrollViewInsets = YES;
-    self.userModel = [UserInfoManager getUserInfo];
+    self.userModel = [[UserInfoManager sharedManager] getUserInfo];
     
     self.title = @"我的影楼";
     

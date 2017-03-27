@@ -56,7 +56,7 @@ static ApplyViewController *controller = nil;
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/get_msg?uid=%@",account.userID];
     
-    UserInfoModel *myModel = [UserInfoManager getUserInfo];
+    UserInfoModel *myModel = [[UserInfoManager sharedManager] getUserInfo];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"]description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
@@ -121,7 +121,7 @@ static ApplyViewController *controller = nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UserInfoModel *myModel = [UserInfoManager getUserInfo];
+    UserInfoModel *myModel = [[UserInfoManager sharedManager] getUserInfo];
     ApplyTableViewCell *cell = [ApplyTableViewCell sharedAddFriendTableViewCell:tableView];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //    [cell.xian removeFromSuperview];

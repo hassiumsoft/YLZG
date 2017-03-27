@@ -53,11 +53,11 @@
             //如有需要，加入条件，过滤掉不想删除的文件
             KGLog(@"---fileName = %@---",fileName);
             if ([fileName isEqualToString:@"user.sqlite"]
-                || [fileName isEqualToString:@"zcaccount.archive"]
+                || [fileName isEqualToString:@"account.archive"]
                 || [fileName isEqualToString:@"studio_contacts.sqlite"]
                 || [fileName isEqualToString:@"huanxin_contacts.sqlite"]
                 || [fileName isEqualToString:@"t_groups.sqlite"]) {
-                [UserInfoManager deleteAllData];
+                [[UserInfoManager sharedManager] removeDataSave];
                 [HuanxinContactManager deleteAllInfo];
                 [StudioContactManager deleteAllInfo];
                 [GroupListManager deleteAllGroupInfo];

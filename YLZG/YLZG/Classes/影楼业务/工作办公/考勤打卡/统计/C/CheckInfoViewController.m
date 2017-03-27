@@ -50,7 +50,7 @@
 
 #pragma mark - 搭建UI
 - (void)creatCheckInfoViewControllerUI{
-    UserInfoModel * account = [UserInfoManager getUserInfo];
+    UserInfoModel * account = [[UserInfoManager sharedManager] getUserInfo];
     // 1是店主.0是店员
 //    NSString * str = account.type;
     // 最底层的滚动视图

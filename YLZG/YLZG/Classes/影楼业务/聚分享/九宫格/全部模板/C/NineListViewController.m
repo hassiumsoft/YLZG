@@ -172,7 +172,7 @@
 {
     NineHotCommentModel *model = self.array[indexPath.row];
     NineDetialViewController *nine = [NineDetialViewController new];
-    nine.isManager = [[UserInfoManager getUserInfo].type intValue] ? YES : NO;
+    nine.isManager = [[[UserInfoManager sharedManager] getUserInfo].type intValue] ? YES : NO;
     nine.date = [self getCurrentTime];
     nine.mobanID = model.id;
     nine.title = model.name;

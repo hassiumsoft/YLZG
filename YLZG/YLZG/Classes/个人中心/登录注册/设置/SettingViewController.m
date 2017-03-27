@@ -165,7 +165,7 @@
 - (void)clearSDWebImageCache:(NSString *)path DeleteBlock:(DeleteCompleteBlock)deleBlock
 {
     
-    [self showHudMessage:@"~~~"];
+    [self showHudMessage:nil];
     NSFileManager *fileManager=[NSFileManager defaultManager];
     
     if ([fileManager fileExistsAtPath:path]) {

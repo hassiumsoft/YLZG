@@ -31,7 +31,6 @@
 @end
 
 
-
 @implementation GroupListViewController
 
 - (void)viewDidLoad {

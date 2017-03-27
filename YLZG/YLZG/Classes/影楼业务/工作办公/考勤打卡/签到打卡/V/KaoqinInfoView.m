@@ -42,7 +42,7 @@
 
 - (void)setupSubViews
 {
-    UserInfoModel *userModel = [UserInfoManager getUserInfo];
+    UserInfoModel *userModel = [[UserInfoManager sharedManager] getUserInfo];
     self.headV = [[UIImageView alloc]initWithFrame:CGRectMake(10, 3, 40, 40)];
     [self.headV sd_setImageWithURL:[NSURL URLWithString:userModel.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
     self.headV.layer.masksToBounds = YES;

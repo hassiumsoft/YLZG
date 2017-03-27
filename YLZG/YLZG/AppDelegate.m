@@ -56,15 +56,10 @@
 {
     ZCAccount *account = [ZCAccountTool account];
     if (!account) {
-        KGLog(@"归档为空，请重新登录。");
+        [YLNotificationCenter postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
         return;
     }
-    NSString *deviceName = [UIDevice currentDevice].name;
-    CGFloat deviceVersion = [[UIDevice currentDevice].systemVersion floatValue];
-    
-    NSString *deviceInfo = [NSString stringWithFormat:@"%@_%g",deviceName,deviceVersion];
-    deviceInfo = [deviceInfo stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-    NSString *url = [NSString stringWithFormat:YLLoginURL,account.username,account.password,deviceInfo];
+    NSString *url = [NSString stringWithFormat:YLLoginURL,account.username,account.password,@"iPhone"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         // 更新用户信息模型
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
@@ -72,16 +67,18 @@
         if (code == 1) {
             NSDictionary *result = [responseObject objectForKey:@"result"];
             UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:result];
-            [UserInfoManager deleteAllData];
-            [UserInfoManager saveInfoToSandBox:model];
+            [[UserInfoManager sharedManager] removeDataSave];
+            [[UserInfoManager sharedManager] saveUserInfo:model Success:^{
+                NSLog(@"自动登录 = %@",message);
+            } Fail:^(NSString *errorMsg) {
+                [YLNotificationCenter postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+            }];
             [MobClick profileSignInWithPUID:model.username];
         }else{
-            NSString *msg = [NSString stringWithFormat:@"%@-建议退出再登录",message];
-            UIAlertView *alertV = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:msg delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertV show];
+            [YLNotificationCenter postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        [YLNotificationCenter postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
     }];
     
 }
@@ -94,7 +91,6 @@
         // 自动登录成功
         self.isShowNewPage = YES;
         HomeTabbarController *tabBarVC = [[HomeTabbarController alloc] init];
-//        HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:tabBarVC];
         [YLZGChatManager sharedManager].tabbarVC = tabBarVC;
         [[YLZGChatManager sharedManager] asyncPushOptions];
         [[YLZGChatManager sharedManager] asyncConversationFromDB];

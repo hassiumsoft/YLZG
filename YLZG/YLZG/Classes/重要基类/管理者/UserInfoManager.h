@@ -8,55 +8,49 @@
 
 #import <Foundation/Foundation.h>
 #import "UserInfoModel.h"
+#import "ZCAccountTool.h"
 
 
-/********* 用FMDB对用户信息进行本地增删查改 ********/
 
 
 @interface UserInfoManager : NSObject
 
 /**
- *  第一次智诚服务器后保存用户信息
- *
- *  @param model 用户模型
+ 单例初始化
+ 
+ @return UserInfoManager
  */
-+ (void)saveInfoToSandBox:(UserInfoModel *)model;
++ (instancetype)sharedManager;
 
 /**
- *  返回用户所有的数据
- *
- *  @return 用户模型
+ 保存用户全部信息
+ 
+ @param userModel 用户信息模型
+ @param success 保存成功
+ @param fail 保存失败
  */
-+ (UserInfoModel *)getUserInfo;
-
-/**
- *  更新某条信息
- *
- *  @param key   ⚠️用户表格里的字段名。必须参照建表语句⚠️
- *  @param value ⚠️字段对应的值，需要更新的内容⚠️
- *
- *  @return 修改是否成功
- */
-+ (BOOL)updataUserInfoWithKey:(NSString *)key Value:(NSString *)value;
-
-/**
- *  先删除某条数据，再保存新的
- *
- *  @param indexID 是否成功
- */
-+ (BOOL)deleteOneDataInfo:(NSInteger)indexID;
+- (void)saveUserInfo:(UserInfoModel *)userModel Success:(void (^)())success Fail:(void (^)(NSString *errorMsg))fail;
 
 
 /**
- *  删除全部数据
- *
- *  @return 是否成功
+ 获取用户全部信息
+ 
+ @return UserInfoModel
  */
-+ (BOOL)deleteAllData;
+- (UserInfoModel *)getUserInfo;
 
+/**
+ 更新某条信息
+ 
+ @param key FYQConstKey里的U开头的Key
+ @param value 新值
+ */
+- (void)updateWithKey:(NSString *)key Value:(NSString *)value;
 
-
-
+/**
+ 删除信息缓存
+ */
+- (void)removeDataSave;
 
 @end
 

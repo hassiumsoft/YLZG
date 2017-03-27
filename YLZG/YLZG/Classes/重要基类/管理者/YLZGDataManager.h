@@ -25,6 +25,10 @@ typedef void(^ShareUrlBlock)(NSString *url);
 
 /** 单例初始化 */
 + (instancetype)sharedManager;
+
+/** 登录 */
+- (void)loginWithUserName:(NSString *)userName PassWord:(NSString *)passWord Success:(void (^)())success Fail:(void (^)(NSString *errorMsg))fail;
+
 /** 获取未处理的申请通知 */
 - (void)loadUnApplyApplyFriendArr:(ApplyFriend)ApplyFriendArr;
 

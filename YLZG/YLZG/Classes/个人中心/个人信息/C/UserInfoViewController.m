@@ -182,8 +182,8 @@
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
         [self hideHud:0];
         if (status == 1) {
-            [UserInfoManager updataUserInfoWithKey:@"birth" Value:birth];
-            self.userModel = [UserInfoManager getUserInfo];
+            [[UserInfoManager sharedManager] updateWithKey:UUbirth Value:birth];
+            self.userModel = [[UserInfoManager sharedManager] getUserInfo];
             [self.tableView reloadData];
             
             [self.navigationController popViewControllerAnimated:YES];
@@ -267,12 +267,10 @@
                 [YLNotificationCenter postNotificationName:YLHeadImageChanged object:nil];
                 
                 NSString *head = [[responseObject objectForKey:@"head"] description];
-                BOOL result = [UserInfoManager updataUserInfoWithKey:@"head" Value:head];
-                if (result) {
-                    [self showSuccessTips:message];
-                    self.userModel = [UserInfoManager getUserInfo];
-                    [self.tableView reloadData];
-                }
+                [[UserInfoManager sharedManager] updateWithKey:UUhead Value:head];
+                [self showSuccessTips:message];
+                self.userModel = [[UserInfoManager sharedManager] getUserInfo];
+                [self.tableView reloadData];
             }else{
                 [self showErrorTips:message];
             }
@@ -332,7 +330,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.userModel = [UserInfoManager getUserInfo];
+    self.userModel = [[UserInfoManager sharedManager] getUserInfo];
     self.title = self.userModel.nickname.length >= 1 ? self.userModel.nickname : self.userModel.realname;
     [self.tableView reloadData];
     

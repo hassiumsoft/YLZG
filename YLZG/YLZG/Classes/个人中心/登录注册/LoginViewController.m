@@ -45,16 +45,6 @@
 {
     [self.view endEditing:YES];
     
-//    self.nameField.text = @"whdmx_whdmx";
-//    self.passField.text = @"710321";
-//    [[EMClient sharedClient] registerWithUsername:self.nameField.text password:self.passField.text completion:^(NSString *aUsername, EMError *aError) {
-//        if (aError) {
-//            [self sendErrorWarning:aError.errorDescription];
-//        }
-//    }];
-//    
-//    return;
-    
     if (self.nameField.text.length < 1) {
         [self showErrorTips:@"账户名不能为空"];
         return;
@@ -63,159 +53,30 @@
         [self showErrorTips:@"密码不能为空"];
         return;
     }
-    
-    
-    NSString *deviceName = [UIDevice currentDevice].name;
-    CGFloat deviceVersion = [[UIDevice currentDevice].systemVersion floatValue];
-    
-    NSString *deviceInfo = [NSString stringWithFormat:@"%@_%g",deviceName,deviceVersion];
-    deviceInfo = [deviceInfo stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-    NSString *url = [NSString stringWithFormat:YLLoginURL,self.nameField.text,self.passField.text,deviceInfo];
-    [self showHudMessage:@"登录中···"];
-    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [MBProgressHUD showMessage:@"登录中···"];
+    [[YLZGDataManager sharedManager] loginWithUserName:self.nameField.text PassWord:self.passField.text Success:^{
         
-        [self hideHud:0];
-        int code = [[[responseObject objectForKey:@"code"] description] intValue];
-        NSString *message = [[responseObject objectForKey:@"message"] description];
-        if (code == 1) {
-            NSDictionary *result = [responseObject objectForKey:@"result"];
-            UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:result];
-            if ([model.is_register_easemob boolValue]) {
-                // 已经注册环信，登录环信
-                [[EMClient sharedClient] loginWithUsername:self.nameField.text password:self.passField.text completion:^(NSString *aUsername, EMError *aError) {
-                    
-                    NSUserDefaults *UD = [NSUserDefaults standardUserDefaults];
-                    [UD setObject:self.nameField.text forKey:UDLoginUserName];
-                    [UD synchronize];
-                    
-                    if (!aError) {
-                        // 登录环信成功
-                        [self saveUserInfoAction:result Complete:^{
-                            
-                            HomeTabbarController *homeTab = [HomeTabbarController new];
-                            CATransition *animation = [CATransition animation];
-                            animation.duration = 0.8;
-                            animation.timingFunction = UIViewAnimationCurveEaseInOut;
-                            animation.type = kCATransitionFade;
-                            animation.subtype = kCATransitionFromBottom;
-                            [self.view.window.layer addAnimation:animation forKey:nil];
-                            [self presentViewController:homeTab animated:NO completion:^{
-                                
-                            }];
-                        }];
-                        
-                    }else{
-                        // 登录环信失败
-                        NSString *errorMsg = [NSString stringWithFormat:@"HXError:%@",aError.errorDescription];
-                        [self sendErrorWarning:errorMsg];
-                    }
-                }];
-                
-            }else{
-                // 没有注册环信
-                
-            }
-        }else{
-            // 登录智诚服务器失败
-            [self sendErrorWarning:message];
-        }
+        [MBProgressHUD hideHUD];
+        HomeTabbarController *tabbar = [[HomeTabbarController alloc]init];
+        UIWindow *window = [UIApplication sharedApplication].keyWindow;
         
-    } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
-        [self sendErrorWarning:error.localizedDescription];
+        CATransition *animation = [CATransition animation];
+        animation.duration = 0.8;
+        animation.timingFunction = UIViewAnimationCurveEaseInOut;
+        animation.type = kCATransitionFade;
+        animation.subtype = kCATransitionFromBottom;
+        [self.view.window.layer addAnimation:animation forKey:nil];
+        
+        window.rootViewController = tabbar;
+        [window makeKeyAndVisible];
+        
+    } Fail:^(NSString *errorMsg) {
+        [MBProgressHUD hideHUD];
+        [self sendErrorWarning:errorMsg];
     }];
-}
-#pragma mark - 用户信息缓存的操作
-- (void)saveUserInfoAction:(NSDictionary *)json Complete:(LoginCompleteBlock)block
-{
-    
-    // 友盟
-    [MobClick profileSignInWithPUID:self.nameField.text];
-    
-    // 到这步就可以把账户信息归档
-    NSMutableDictionary *newDic = [NSMutableDictionary dictionary];
-    
-    // 比较和之前的账号是否一致
-    UserInfoModel *loginedModel = [UserInfoManager getUserInfo];
-    if ([self.nameField.text isEqualToString:loginedModel.username]) {
-        // 和刚刚已退出的账号一致，不删除.但是需要替换更新的用户数据
-        /** ⚠️ 使用FMDB存储更新的数据 */
-        UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:json];
-        model.password = self.passField.text;
-        model.username = self.nameField.text;
-        [UserInfoManager saveInfoToSandBox:model];
-        
-        newDic[@"username"] = model.username;
-        newDic[@"password"] = model.password;
-        newDic[@"userID"] = model.uid;
-        
-        ZCAccount *account = [ZCAccount accountWithDict:newDic];
-        [ZCAccountTool saveAccount:account];
-        
-        // 删除data缓存
-        [HTTPManager ClearCacheDataCompletion:^{
-            
-        }];
-        
-        // 设置自动登录
-        [EMClient sharedClient].options.isAutoLogin = YES;
-        [EMClient sharedClient].pushOptions.displayName = model.realname.length>0 ? model.realname : model.nickname;
-        [EMClient sharedClient].pushOptions.displayStyle = EMPushDisplayStyleMessageSummary;
-        
-        
-        // 极光推送
-        [JPUSHService setTags:[NSSet setWithObject:model.sid] aliasInbackground:model.uid];
-        [[EMClient sharedClient] setApnsNickname:model.realname];
-        
-        block();
-    }else{
-        // 另外一个账号，删除之前的记录
-        [self clearSomeDataComplete:^{
-            /** ⚠️ 使用FMDB存储数据 */
-            UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:json];
-            model.password = self.passField.text;
-            model.username = self.nameField.text;
-            [UserInfoManager saveInfoToSandBox:model];
-            
-            newDic[@"username"] = model.username;
-            newDic[@"password"] = model.password;
-            newDic[@"userID"] = model.uid;
-            
-            ZCAccount *account = [ZCAccount accountWithDict:newDic];
-            [ZCAccountTool saveAccount:account];
-            
-            
-            // 设置自动登录
-            [EMClient sharedClient].options.isAutoLogin = YES;
-            [EMClient sharedClient].pushOptions.displayName = model.realname.length>0 ? model.realname : model.nickname;
-            [EMClient sharedClient].pushOptions.displayStyle = EMPushDisplayStyleMessageSummary;
-            
-            
-            // 极光推送
-            [JPUSHService setTags:[NSSet setWithObject:model.sid] aliasInbackground:model.uid];
-            [[EMClient sharedClient] setApnsNickname:model.realname];
-            
-            block();
-        }];
-    }
     
 }
-#pragma mark - 如果和之前的登录账号一致，则不需删除沙盒数据
-- (void)clearSomeDataComplete:(DeleteCompleteBlock)deleteBlock
-{
-    // 清除沙盒里的数据
-    // ⚠️ 开发阶段并没有删除ZCAccount里的数据
-    NSString *dicPath = [ClearCacheTool docPath];
-    [ClearCacheTool clearSDWebImageCache:dicPath];
-    
-    NSUserDefaults *userDefault = USER_DEFAULT;
-    [userDefault removeObjectForKey:@"userPhone"]; // 缓存手机号码的键
-    [userDefault removeObjectForKey:@"city"]; // 地区缓存
-    [userDefault removeObjectForKey:@"birthDay"]; // 生日
-    
-    
-    deleteBlock();
-}
+
 #pragma mark - 绘制UI
 - (void)setupSubViews
 {

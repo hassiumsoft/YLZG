@@ -62,6 +62,29 @@ NSString *const CFBundleVersion = @"CFBundleVersion";
 NSString *const UDUnApplyCount = @"UDUnApplyCount";
 NSString *const UDLoginUserName = @"UDLoginUserName";
 
+NSString *const UUuid = @"UUuid";
+NSString *const UUcreatetime = @"UUcreatetime";
+NSString *const UUusername = @"UUusername";
+NSString *const UUpassword = @"UUpassword";
+NSString *const UUstore_simple_name = @"UUstore_simple_name";
+NSString *const UUnickname = @"UUnickname";
+NSString *const UUrealname = @"UUrealname";
+NSString *const UUmobile = @"UUmobile";
+NSString *const UUhead = @"UUhead";
+NSString *const UUbirth = @"UUbirth";
+NSString *const UUtype = @"UUtype";
+NSString *const UUsid = @"UUsid";
+NSString *const UUsuid = @"UUsuid";
+NSString *const UUloginip = @"UUloginip";
+NSString *const UUlogintime = @"UUlogintime";
+NSString *const UUqq = @"UUqq";
+NSString *const UUvcip = @"UUvcip";
+NSString *const UUattence_group = @"UUattence_group";
+NSString *const UUattence_admin_group = @"UUattence_admin_group";
+NSString *const UUdept = @"UUdept";
+NSString *const UUgender = @"UUgender";
+NSString *const UUis_register_easemob = @"UUis_register_easemob";
+NSString *const UUlocation = @"UUlocation";
 
 /************** 其他键值 **************/
 /** 发帖弹出vc-减去宽度*/

@@ -115,7 +115,7 @@
 }
 - (void)buttonClick:(UIButton *)sender
 {
-    UserInfoModel *model = [UserInfoManager getUserInfo];
+    UserInfoModel *model = [[UserInfoManager sharedManager] getUserInfo];
     if (![self.oldPass.text isEqualToString:model.password]) {
         [self sendErrorWarning:@"旧密码不正确"];
         return;
@@ -141,18 +141,16 @@
         [self.indicatorV stopAnimating];
         [sender setTitle:@"确认修改" forState:UIControlStateNormal];
         if (code == 1) {
-            BOOL result = [UserInfoManager updataUserInfoWithKey:@"password" Value:self.xinPass2.text];
-            if (result) {
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [self.navigationController popViewControllerAnimated:YES];
-                }];
+            [[UserInfoManager sharedManager] updateWithKey:UUpassword Value:self.xinPass2.text];
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            
+            [alertC addAction:action1];
+            [self presentViewController:alertC animated:YES completion:^{
                 
-                [alertC addAction:action1];
-                [self presentViewController:alertC animated:YES completion:^{
-                    
-                }];
-            }
+            }];
             
         }else{
             [self showErrorTips:message];

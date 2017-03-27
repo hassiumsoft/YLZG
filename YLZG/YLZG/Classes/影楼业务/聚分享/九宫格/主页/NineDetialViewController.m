@@ -32,7 +32,7 @@
 @property (strong,nonatomic) ZhuanfaCountModel *countModel;
 
 /** 保存的图片数组 */
-@property (strong,nonatomic) NSMutableArray *imageArray;
+//@property (strong,nonatomic) NSMutableArray *imageArray;
 /** 保存ImageView的数组 */
 @property (strong,nonatomic) NSMutableArray *imgViewArray;
 
@@ -63,7 +63,7 @@
         if (code == 1) {
             NSDictionary *result = [responseObject objectForKey:@"result"];
             self.detialModel = [NineDetialModel mj_objectWithKeyValues:result];
-            
+#warning 有错，确实count
             self.countModel = [ZhuanfaCountModel mj_objectWithKeyValues:self.detialModel.count];
             
             [self setupSubViews:self.detialModel];
@@ -198,31 +198,50 @@
         return;
     }
     
-    [self.imageArray removeAllObjects];
+    NSMutableArray *imageArray = [NSMutableArray array];
     
-    for (UIImageView *kkk in self.imgViewArray) {
-        [self.imageArray addObject:kkk.image];
+    for (int i = 0; i < self.imgViewArray.count; i++) {
+        
+        UIImageView *imageView = self.imgViewArray[i];
+        if (imageView.tag == i) {
+            [imageArray addObject:imageView.image];
+            
+        }
+        
     }
     
     
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:self.imageArray applicationActivities:nil];
+    
+    // UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:imageArray applicationActivities:nil];
+    UIActivity *activity = [[UIActivity alloc]init];
+    [activity prepareWithActivityItems:imageArray];
+    NSArray *activityArray = @[activity];
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:imageArray applicationActivities:activityArray];
+    activityVC.excludedActivityTypes = @[UIActivityTypeAirDrop,UIActivityTypePostToTencentWeibo,UIActivityTypeSaveToCameraRoll,UIActivityTypeCopyToPasteboard,UIActivityTypePostToWeibo,UIActivityTypePostToTwitter,UIActivityTypePostToFacebook];
+    
+    activityVC.completionWithItemsHandler = ^(UIActivityType __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError){
+        if (completed) {
+            NSString *url = [NSString stringWithFormat:ZhuanfaCount_Url,[ZCAccountTool account].userID,self.detialModel.id,self.detialModel.cid];
+            [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                
+                int code = [[[responseObject objectForKey:@"code"] description] intValue];
+                NSString *message = [[responseObject objectForKey:@"message"] description];
+                if (code != 1) {
+                    [self sendErrorWarning:message];
+                }
+            } fail:^(NSURLSessionDataTask *task, NSError *error) {
+                
+                [self sendErrorWarning:error.localizedDescription];
+            }];
+        }
+    };
+    
     UIPasteboard *pasted = [UIPasteboard generalPasteboard];
     [pasted setString:self.detialModel.content];
-    [self showSuccessTips:@"已复制到剪切板"];
+    [MBProgressHUD showSuccess:@"已复制到剪切板"];
     
     [self presentViewController:activityVC animated:TRUE completion:^{
-        NSString *url = [NSString stringWithFormat:ZhuanfaCount_Url,[ZCAccountTool account].userID,self.detialModel.id,self.detialModel.cid];
-        [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            
-            int code = [[[responseObject objectForKey:@"code"] description] intValue];
-            NSString *message = [[responseObject objectForKey:@"message"] description];
-            if (code != 1) {
-                [self sendErrorWarning:message];
-            }
-        } fail:^(NSURLSessionDataTask *task, NSError *error) {
-            
-            [self sendErrorWarning:error.localizedDescription];
-        }];
+        
     }];
     
     
@@ -246,13 +265,7 @@
     }];
 }
 
-- (NSMutableArray *)imageArray
-{
-    if (!_imageArray) {
-        _imageArray = [[NSMutableArray alloc]init];
-    }
-    return _imageArray;
-}
+
 - (NSMutableArray *)imgViewArray
 {
     if (!_imgViewArray) {

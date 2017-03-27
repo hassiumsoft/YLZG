@@ -8,128 +8,158 @@
 
 #import "UserInfoManager.h"
 #import <MJExtension.h>
-#import <FMDB.h>
 
-static FMDatabase *_db;
+
+
 
 @implementation UserInfoManager
 
-+ (void)initialize
+#pragma mark - 单例初始化
++ (instancetype)sharedManager
 {
-    // 打开数据库
-    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"user.sqlite"];
-    _db = [FMDatabase databaseWithPath:path];
-    BOOL open = [_db open];
-    if (open) {
-        KGLog(@"打开数据库成功");
-    } else {
-        KGLog(@"打开数据库失败");
-        return;
-    }
+    static UserInfoManager *_sharedManager = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _sharedManager = [[self alloc] init];
+    });
+    return _sharedManager;
+}
+#pragma mark - 保存数据
+- (void)saveUserInfo:(UserInfoModel *)userModel Success:(void (^)())success Fail:(void (^)(NSString *))fail
+{
     
-    // 建表语句 缺少head、
-    BOOL result = [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_user (id integer PRIMARY KEY AUTOINCREMENT,uid text,createtime text,username text,password text,store_simple_name text,nickname text,realname text,mobile text,birth text,type text,sid text,suid text,loginip text,logintime text,qq text,dept text,gender text,is_register_easemob bool,location text,head text,vcip text,attence_admin_group text,attence_group text);"];
-    if (result) {
-        KGLog(@"表格创建成功");
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict setValue:userModel.uid forKey:@"userID"];
+    [dict setValue:userModel.password forKey:@"password"];
+    [dict setValue:userModel.username forKey:@"username"];
+    ZCAccount *account = [ZCAccount accountWithDict:dict];
+    [ZCAccountTool saveAccount:account];
+    
+    NSUserDefaults *UD = [NSUserDefaults standardUserDefaults];
+    [UD setObject:userModel.uid forKey:UUuid];
+    [UD setObject:userModel.createtime forKey:UUcreatetime];
+    [UD setObject:userModel.username forKey:UUusername];
+    [UD setObject:userModel.password forKey:UUpassword];
+    [UD setObject:userModel.store_simple_name forKey:UUstore_simple_name];
+    [UD setObject:userModel.nickname forKey:UUnickname];
+    [UD setObject:userModel.realname forKey:UUrealname];
+    [UD setObject:userModel.mobile forKey:UUmobile];
+    [UD setObject:userModel.head forKey:UUhead];
+    [UD setObject:userModel.birth forKey:UUbirth];
+    [UD setObject:userModel.type forKey:UUtype];
+    [UD setObject:userModel.sid forKey:UUsid];
+    [UD setObject:userModel.suid forKey:UUsuid];
+    [UD setObject:userModel.loginip forKey:UUloginip];
+    [UD setObject:userModel.qq forKey:UUqq];
+    [UD setObject:userModel.vcip forKey:UUvcip];
+    [UD setObject:userModel.attence_group forKey:UUattence_group];
+    [UD setObject:userModel.attence_admin_group forKey:UUattence_admin_group];
+    [UD setObject:userModel.dept forKey:UUdept];
+    [UD setObject:userModel.gender forKey:UUgender];
+    [UD setObject:userModel.is_register_easemob forKey:UUis_register_easemob];
+    [UD setObject:userModel.location forKey:UUlocation];
+    
+    BOOL isSave = [UD synchronize];
+    if (isSave) {
+        success();
     }else{
-        KGLog(@"表格创建失败");
-    }
-}
-
-#pragma mark - 保存
-+ (void)saveInfoToSandBox:(UserInfoModel *)model
-{
-    
-    NSString *sql = [NSString stringWithFormat:@"insert into t_user (uid,createtime,username,password,store_simple_name,nickname,realname,mobile,birth,type,sid,suid,loginip,logintime,qq,dept,gender,is_register_easemob,location,head,vcip,attence_admin_group,attence_group) values ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",model.uid,model.createtime,model.username,model.password,model.store_simple_name,model.nickname,model.realname,model.mobile,model.birth,model.type,model.sid,model.suid,model.loginip,model.logintime,model.qq,model.dept,model.gender,model.is_register_easemob,model.location,model.head,model.vcip,model.attence_admin_group,model.attence_group];
-    
-    BOOL result = [_db executeUpdate:sql];
-    if (result) {
-        KGLog(@"保存成功");
-    }else{
-        KGLog(@"保存失败");
-    }
-}
-#pragma mark - 修改
-+ (BOOL)updataUserInfoWithKey:(NSString *)key Value:(NSString *)value
-{
-    NSString *sql = [NSString stringWithFormat:@"UPDATE t_user SET '%@' = '%@'",key,value];
-    BOOL result = [_db executeUpdate:sql];
-    return result;
-}
-
-#pragma mark - 查询我的信息
-+ (UserInfoModel *)getUserInfo
-{
-    if (![_db open]) {
-        return nil;
-    }
-    
-    NSString *sql = @"select * from t_user";
-    FMResultSet *result = [_db executeQuery:sql];
-    NSMutableArray *array = [NSMutableArray array];
-    while ([result next]) {
-        UserInfoModel *user = [[UserInfoModel alloc]init];
-        user.uid = [result stringForColumn:@"uid"];
-        user.createtime = [result stringForColumn:@"createtime"];
-        user.username = [result stringForColumn:@"username"];
-        user.password = [result stringForColumn:@"password"];
-        user.store_simple_name = [result stringForColumn:@"store_simple_name"];
-        user.realname = [result stringForColumn:@"realname"];
-        user.mobile = [result stringForColumn:@"mobile"];
-        user.head = [result stringForColumn:@"head"];
-        user.birth = [result stringForColumn:@"birth"];
-        user.nickname = [result stringForColumn:@"nickname"];
-        user.type = [result stringForColumn:@"type"];
-        user.sid = [result stringForColumn:@"sid"];
-        user.suid = [result stringForColumn:@"suid"];
-        user.loginip = [result stringForColumn:@"loginip"];
-        user.logintime = [result stringForColumn:@"logintime"];
-        user.qq = [result stringForColumn:@"qq"];
-        user.dept = [result stringForColumn:@"dept"];
-        user.gender = [result stringForColumn:@"gender"];
-        user.is_register_easemob = [result stringForColumn:@"is_register_easemob"];
-        user.location = [result stringForColumn:@"location"];
-        user.vcip = [result stringForColumn:@"vcip"];
-        user.attence_admin_group = [result stringForColumn:@"attence_admin_group"];
-        user.attence_group = [result stringForColumn:@"attence_group"];
-        
-        [array addObject:user];
-    }
-    UserInfoModel *model = [array lastObject];
-    return model;
-}
-#pragma mark - 删除数据
-+ (BOOL)deleteOneDataInfo:(NSInteger)indexID
-{
-    BOOL result;
-    if ([_db open]) {
-        NSString *sql = [NSString stringWithFormat:@"delete from t_offorder where id = '%ld'",(long)indexID];
-        result = [_db executeUpdate:sql];
-        if (result) {
-            //            [MBProgressHUD showError:@"删除成功"];
-            KGLog(@"删除成功");
-        }else{
-            //            [MBProgressHUD showError:@"删除失败"];
-            KGLog(@"删除失败");
-        }
-        return result;
-    }else{
-        return result;
+        fail(@"信息保存失败");
     }
     
 }
-
-#pragma mark - 删除t_user表格中的全部数据
-+ (BOOL)deleteAllData
+#pragma mark - 更新缓存
+- (void)updateWithKey:(NSString *)key Value:(NSString *)value
 {
-    NSString *sql = @"DELETE FROM t_user";
-    BOOL result = [_db executeUpdate:sql];  // NO
-    return result;
+    NSUserDefaults *UD = [NSUserDefaults standardUserDefaults];
+    [UD setObject:value forKey:key];
+    [UD synchronize];
 }
 
-- (void)dealloc
+#pragma mark - 清除缓存
+- (void)removeDataSave
 {
-    [_db close];
+    
+    NSUserDefaults *UD = [NSUserDefaults standardUserDefaults];
+    [UD removeObjectForKey:UUuid];
+    [UD removeObjectForKey:UUcreatetime];
+    [UD removeObjectForKey:UUusername];
+    [UD removeObjectForKey:UUpassword];
+    [UD removeObjectForKey:UUstore_simple_name];
+    [UD removeObjectForKey:UUnickname];
+    [UD removeObjectForKey:UUrealname];
+    [UD removeObjectForKey:UUmobile];
+    [UD removeObjectForKey:UUhead];
+    [UD removeObjectForKey:UUbirth];
+    [UD removeObjectForKey:UUtype];
+    [UD removeObjectForKey:UUsid];
+    [UD removeObjectForKey:UUloginip];
+    [UD removeObjectForKey:UUlogintime];
+    [UD removeObjectForKey:UUqq];
+    [UD removeObjectForKey:UUvcip];
+    [UD removeObjectForKey:UUattence_admin_group];
+    [UD removeObjectForKey:UUattence_group];
+    [UD removeObjectForKey:UUdept];
+    [UD removeObjectForKey:UUgender];
+    [UD removeObjectForKey:UUis_register_easemob];
+    [UD removeObjectForKey:UUlocation];
+}
+
+#pragma mark - 获取用户模型
+- (UserInfoModel *)getUserInfo
+{
+    UserInfoModel *userModel = [UserInfoModel new];
+    NSUserDefaults *UD = [NSUserDefaults standardUserDefaults];
+    NSString *userID = [UD objectForKey:UUuid];
+    NSString *createtime = [UD objectForKey:UUcreatetime];
+    NSString *username = [UD objectForKey:UUusername];
+    NSString *password = [UD objectForKey:UUpassword];
+    NSString *store_simple_name = [UD objectForKey:UUstore_simple_name];
+    NSString *nickname = [UD objectForKey:UUnickname];
+    NSString *realname = [UD objectForKey:UUrealname];
+    NSString *mobile = [UD objectForKey:UUmobile];
+    NSString *head = [UD objectForKey:UUhead];
+    NSString *birth = [UD objectForKey:UUbirth];
+    NSString *type = [UD objectForKey:UUtype];
+    NSString *sid = [UD objectForKey:UUsid];
+    NSString *suid = [UD objectForKey:UUsuid];
+    NSString *loginip = [UD objectForKey:UUloginip];
+    NSString *logintime = [UD objectForKey:UUlogintime];
+    NSString *qq = [UD objectForKey:UUqq];
+    NSString *vcip = [UD objectForKey:UUvcip];
+    NSString *attence_group = [UD objectForKey:UUattence_group];
+    NSString *attence_admin_group = [UD objectForKey:UUattence_admin_group];
+    NSString *dept = [UD objectForKey:UUdept];
+    NSString *gender = [UD objectForKey:UUgender];
+    NSString *is_register_easemob = [UD objectForKey:UUis_register_easemob];
+    NSString *location = [UD objectForKey:UUlocation];
+    
+    userModel.uid = userID;
+    userModel.createtime = createtime;
+    userModel.username = username;
+    userModel.password = password;
+    userModel.store_simple_name = store_simple_name;
+    userModel.nickname = nickname;
+    userModel.realname = realname;
+    userModel.mobile = mobile;
+    userModel.head = head;
+    userModel.birth = birth;
+    userModel.birth = birth;
+    userModel.sid = sid;
+    userModel.type = type;
+    userModel.suid = suid;
+    userModel.loginip = loginip;
+    userModel.logintime = logintime;
+    userModel.qq = qq;
+    userModel.vcip = vcip;
+    userModel.attence_admin_group = attence_admin_group;
+    userModel.attence_group = attence_group;
+    userModel.dept = dept;
+    userModel.gender = gender;
+    userModel.is_register_easemob = is_register_easemob;
+    userModel.location = location;
+    
+    
+    return userModel;
 }
 
 @end

@@ -63,7 +63,7 @@
 - (void)loadData
 {
     
-    self.city = [UserInfoManager getUserInfo].location;
+    self.city = [[UserInfoManager sharedManager] getUserInfo].location;
     // 在转模型之前修改plist文件里值
     
     self.cityGroups = [FCityGroup mj_objectArrayWithFilename:@"cityGroups.plist"];
@@ -256,15 +256,10 @@
     }else{
         selectCity = self.city;
     }
-    BOOL isSave = [UserInfoManager updataUserInfoWithKey:@"location" Value:selectCity];
-    if (isSave) {
-        if (_CityBlock) {
-            _CityBlock(selectCity);
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        
-    }else{
-        [self showErrorTips:@"修改失败"];
+    [[UserInfoManager sharedManager] updateWithKey:UUlocation Value:selectCity];
+    if (_CityBlock) {
+        _CityBlock(selectCity);
+        [self.navigationController popViewControllerAnimated:YES];
     }
     
 }

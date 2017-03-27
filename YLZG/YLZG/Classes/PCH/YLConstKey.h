@@ -109,6 +109,30 @@ extern NSString *const CFBundleVersion; // 第一次进来展示引导页
 extern NSString *const UDUnApplyCount; // 未处理的好友请求
 extern NSString *const UDLoginUserName; // 登录名缓存
 
+extern NSString *const UUuid;
+extern NSString *const UUcreatetime;
+extern NSString *const UUusername;
+extern NSString *const UUpassword;
+extern NSString *const UUstore_simple_name;
+extern NSString *const UUnickname;
+extern NSString *const UUrealname;
+extern NSString *const UUmobile;
+extern NSString *const UUhead;
+extern NSString *const UUbirth;
+extern NSString *const UUtype;
+extern NSString *const UUsid;
+extern NSString *const UUsuid;
+extern NSString *const UUloginip;
+extern NSString *const UUlogintime;
+extern NSString *const UUqq;
+extern NSString *const UUvcip;
+extern NSString *const UUattence_group;
+extern NSString *const UUattence_admin_group;
+extern NSString *const UUdept;
+extern NSString *const UUgender;
+extern NSString *const UUis_register_easemob;
+extern NSString *const UUlocation;
+
 /************** 其他键值 *************/
 
 /** 发帖弹出vc-减去宽度*/

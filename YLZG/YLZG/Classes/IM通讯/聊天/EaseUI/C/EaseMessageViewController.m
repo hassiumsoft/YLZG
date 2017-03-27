@@ -965,7 +965,7 @@
     }else{   // 非时间cell
         
         id<IMessageModel> model = object;
-        UserInfoModel *userInfo = [UserInfoManager getUserInfo];
+        UserInfoModel *userInfo = [[UserInfoManager sharedManager] getUserInfo];
         if (model.isSender) {
             // 当前登录者
             model.nickname = userInfo.nickname;
@@ -1319,7 +1319,7 @@
             [self _sendMessage:message];
             
         } else {
-            UserInfoModel *userModel = [UserInfoManager getUserInfo];
+            UserInfoModel *userModel = [[UserInfoManager sharedManager] getUserInfo];
             // 构造消息，发送消息
             NSDictionary *ext = @{MESSAGE_ATTR_EXPRESSION_ID:emotion.emotionId,MESSAGE_ATTR_IS_BIG_EXPRESSION:@(YES),@"avatarURLPath":userModel.head,@"nickname":userModel.realname,@"uid":userModel.uid};
             EMMessage *message = [IMChatManager sendGifEmoticonMsg:emotion.emotionTitle to:self.conversation.conversationId messageType:_chatType ext:ext];
@@ -1718,7 +1718,7 @@
         if (_dataSource && [_dataSource respondsToSelector:@selector(messageViewController:modelForMessage:)]) {
             model = [_dataSource messageViewController:self modelForMessage:message];
         }else{
-            UserInfoModel *userInfo = [UserInfoManager getUserInfo];
+            UserInfoModel *userInfo = [[UserInfoManager sharedManager] getUserInfo];
             model = [[EaseMessageModel alloc] initWithMessage:message];
             model.nickname = userInfo.nickname;
             model.avatarURLPath = userInfo.head;

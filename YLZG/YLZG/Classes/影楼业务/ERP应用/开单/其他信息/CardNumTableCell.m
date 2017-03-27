@@ -61,7 +61,7 @@
     }else{
         _imageV.image = [UIImage imageNamed:@"card_normal"];
     }
-    if ([[UserInfoManager getUserInfo].type intValue] == 1) {
+    if ([[[UserInfoManager sharedManager] getUserInfo].type intValue] == 1) {
         _phoneLabel.text = [NSString stringWithFormat:@"📱 %@",model.phone];
     }else{
         NSString *phone = model.phone;

@@ -148,7 +148,7 @@
         make.centerY.equalTo(phLabel.mas_centerY);
     }];
     
-    UserInfoModel *userModel = [UserInfoManager getUserInfo];
+    UserInfoModel *userModel = [[UserInfoManager sharedManager] getUserInfo];
     if ([userModel.type intValue] == 1) {
         phoneLabel.text = [NSString stringWithFormat:@"%@(点击拨打)",self.model.paphone];
         phoneLabel.userInteractionEnabled = YES;

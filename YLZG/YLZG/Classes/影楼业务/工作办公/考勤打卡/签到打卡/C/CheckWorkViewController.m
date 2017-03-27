@@ -489,7 +489,7 @@
 - (void)getQiandaochenggongDataWithType:(NSString *)typeStr andID:(NSString *)ID andTime:(NSString *)time andAddress:(NSString *)addressDict andState:(NSString *)state andOutside:(NSString *)outsideStr andRemark:(NSString *)remark
 {
     
-    [MBProgressHUD showMessage:@"请稍后"];
+    [MBProgressHUD showMessage:@"打卡中···"];
     
     ZCAccount * account = [ZCAccountTool account];
     
@@ -499,17 +499,18 @@
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 
-            int status = [[[responseObject objectForKey:@"code"] description] intValue];
-            NSString *message = [[responseObject objectForKey:@"message"]  description];
-            if (status == 1) {
-                // 签到成功
-                [self loadCheckWorkVControllerData];
-                [self sendErrorWarning:@"打卡成功"];
-            }else {
-                [MBProgressHUD showSuccess:message];
-            }
-
         [MBProgressHUD hideHUD];
+        int status = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"]  description];
+        if (status == 1) {
+            // 签到成功
+            [self loadCheckWorkVControllerData];
+            [self sendErrorWarning:@"打卡成功"];
+        }else {
+            [MBProgressHUD showSuccess:message];
+        }
+
+        
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];

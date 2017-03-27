@@ -38,7 +38,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"九宫格";
+    self.title = @"素材市场";
     [self getData];
 }
 
@@ -155,7 +155,7 @@
         // 热门模板
         NineDetialViewController *nine = [NineDetialViewController new];
         NineHotCommentModel *model = self.listModel.hot[indexPath.row];
-        nine.isManager = [[UserInfoManager getUserInfo].type intValue] ? YES : NO;
+        nine.isManager = [[[UserInfoManager sharedManager] getUserInfo].type intValue] ? YES : NO;
         nine.date = [self getCurrentTime];
         nine.mobanID = model.id;
         nine.title = model.name;
@@ -166,7 +166,7 @@
         // 推荐模板
         NineDetialViewController *nine = [NineDetialViewController new];
         NineHotCommentModel *model = self.listModel.commend[indexPath.row];
-        nine.isManager = [[UserInfoManager getUserInfo].type intValue] ? YES : NO;
+        nine.isManager = [[[UserInfoManager sharedManager] getUserInfo].type intValue] ? YES : NO;
         nine.date = [self getCurrentTime];
         nine.mobanID = model.id;
         nine.title = model.name;

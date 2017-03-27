@@ -29,6 +29,9 @@
 		3B1483FB1E1C980400D334F3 /* DongtaiListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1483FA1E1C980400D334F3 /* DongtaiListModel.m */; };
 		3B1483FE1E1C990F00D334F3 /* TodayDongtaiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1483FD1E1C990F00D334F3 /* TodayDongtaiModel.m */; };
 		3B1484011E1CAC2200D334F3 /* DongtaiListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1484001E1CAC2200D334F3 /* DongtaiListTableCell.m */; };
+		3B1FD3E21E7A2B2600DA6EE9 /* TeamClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD3E11E7A2B2600DA6EE9 /* TeamClassViewController.m */; };
+		3B1FD3E51E7A3AD200DA6EE9 /* TeamClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD3E41E7A3AD200DA6EE9 /* TeamClassModel.m */; };
+		3B1FD3E81E7A646500DA6EE9 /* SelectClassesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD3E71E7A646500DA6EE9 /* SelectClassesController.m */; };
 		3B213F301DFE37190088728C /* CheckTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B213F2B1DFE37190088728C /* CheckTabBarController.m */; };
 		3B213F311DFE37190088728C /* HengpinNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B213F2D1DFE37190088728C /* HengpinNavController.m */; };
 		3B213F321DFE37190088728C /* SCXDateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B213F2F1DFE37190088728C /* SCXDateTimePicker.m */; };
@@ -535,6 +538,12 @@
 		3B1483FD1E1C990F00D334F3 /* TodayDongtaiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayDongtaiModel.m; sourceTree = "<group>"; };
 		3B1483FF1E1CAC2200D334F3 /* DongtaiListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DongtaiListTableCell.h; sourceTree = "<group>"; };
 		3B1484001E1CAC2200D334F3 /* DongtaiListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DongtaiListTableCell.m; sourceTree = "<group>"; };
+		3B1FD3E01E7A2B2600DA6EE9 /* TeamClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamClassViewController.h; sourceTree = "<group>"; };
+		3B1FD3E11E7A2B2600DA6EE9 /* TeamClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamClassViewController.m; sourceTree = "<group>"; };
+		3B1FD3E31E7A3AD200DA6EE9 /* TeamClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamClassModel.h; sourceTree = "<group>"; };
+		3B1FD3E41E7A3AD200DA6EE9 /* TeamClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamClassModel.m; sourceTree = "<group>"; };
+		3B1FD3E61E7A646500DA6EE9 /* SelectClassesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectClassesController.h; sourceTree = "<group>"; };
+		3B1FD3E71E7A646500DA6EE9 /* SelectClassesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectClassesController.m; sourceTree = "<group>"; };
 		3B213F2A1DFE37190088728C /* CheckTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckTabBarController.h; sourceTree = "<group>"; };
 		3B213F2B1DFE37190088728C /* CheckTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckTabBarController.m; sourceTree = "<group>"; };
 		3B213F2C1DFE37190088728C /* HengpinNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HengpinNavController.h; sourceTree = "<group>"; };
@@ -3153,6 +3162,8 @@
 				3B8531421DF8F9B800AB9C4F /* NineTabbarController.m */,
 				3B8531431DF8F9B800AB9C4F /* ZhuanfaCountController.h */,
 				3B8531441DF8F9B800AB9C4F /* ZhuanfaCountController.m */,
+				3B1FD3E61E7A646500DA6EE9 /* SelectClassesController.h */,
+				3B1FD3E71E7A646500DA6EE9 /* SelectClassesController.m */,
 			);
 			path = "主页";
 			sourceTree = "<group>";
@@ -3225,6 +3236,8 @@
 				3B8531601DF8F9B800AB9C4F /* EditCareCategoryController.m */,
 				3B8531611DF8F9B800AB9C4F /* NineMyCareViewController.h */,
 				3B8531621DF8F9B800AB9C4F /* NineMyCareViewController.m */,
+				3B1FD3E01E7A2B2600DA6EE9 /* TeamClassViewController.h */,
+				3B1FD3E11E7A2B2600DA6EE9 /* TeamClassViewController.m */,
 			);
 			path = C;
 			sourceTree = "<group>";
@@ -3242,6 +3255,8 @@
 				3B85316B1DF8F9B800AB9C4F /* ZhuanfaCountModel.m */,
 				3B85316C1DF8F9B800AB9C4F /* ZhuanfaListModel.h */,
 				3B85316D1DF8F9B800AB9C4F /* ZhuanfaListModel.m */,
+				3B1FD3E31E7A3AD200DA6EE9 /* TeamClassModel.h */,
+				3B1FD3E41E7A3AD200DA6EE9 /* TeamClassModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -4135,7 +4150,7 @@
 					3B07D8C21D956B0D00B657F6 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = HEG7GWP2LQ;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -4449,6 +4464,7 @@
 				3B9EF3AF1DEFBD2C00C66888 /* CardNumViewController.m in Sources */,
 				3B70BB3C1E612E8300C19901 /* XLZoomingScrollView.m in Sources */,
 				3B4C103D1DC85DDC00827D4F /* OutTitleColorView.m in Sources */,
+				3B1FD3E81E7A646500DA6EE9 /* SelectClassesController.m in Sources */,
 				3B4C13381DC85F4700827D4F /* CustomProgress.m in Sources */,
 				3B7ABCF71DB6176600F3D12B /* EMVoiceConverter.mm in Sources */,
 				3B4C13561DC85F4700827D4F /* EditPaibanTableCell.m in Sources */,
@@ -4525,6 +4541,7 @@
 				3B56D7691DC739CE003A57FD /* EaseRefreshTableViewController.m in Sources */,
 				3B5DC71B1DB87107000F7A06 /* EaseEmoji.m in Sources */,
 				3B8531BE1DF9190F00AB9C4F /* JFImagePickerController.m in Sources */,
+				3B1FD3E51E7A3AD200DA6EE9 /* TeamClassModel.m in Sources */,
 				3BCF39ED1D9E5AD200BEE236 /* PhoneViewController.m in Sources */,
 				3B4C13311DC85F4700827D4F /* qiaodaocountBtn.m in Sources */,
 				3B4C13341DC85F4700827D4F /* TeamZhengchangDakaController.m in Sources */,
@@ -4743,6 +4760,7 @@
 				3B70BB2E1E612E8300C19901 /* FSActionSheet.m in Sources */,
 				3B343B571DEBFECC00474549 /* ChooseProduceController.m in Sources */,
 				3B4C134F1DC85F4700827D4F /* GudingPaibanModel.m in Sources */,
+				3B1FD3E21E7A2B2600DA6EE9 /* TeamClassViewController.m in Sources */,
 				3B56D7771DC739CE003A57FD /* EaseBubbleView+Video.m in Sources */,
 				3B8531BC1DF9190F00AB9C4F /* JFImageGroupTableViewController.m in Sources */,
 				3B9E17091DD2FC5F0028C72F /* HuangzhuangBingTu.m in Sources */,
@@ -4938,8 +4956,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YLZG/YLZG.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = HEG7GWP2LQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = $SRCROOT/YLZG/Classes/PCH/YLZGHeader.h;
 				INFOPLIST_FILE = YLZG/Info.plist;
@@ -4953,8 +4971,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiomanager.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8d9176df-030f-4869-93a5-82d8dbee8024";
-				PROVISIONING_PROFILE_SPECIFIER = YLZG_STORE_Profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -4964,8 +4982,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YLZG/YLZG.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = HEG7GWP2LQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = $SRCROOT/YLZG/Classes/PCH/YLZGHeader.h;
 				INFOPLIST_FILE = YLZG/Info.plist;
@@ -4979,8 +4997,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiomanager.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8d9176df-030f-4869-93a5-82d8dbee8024";
-				PROVISIONING_PROFILE_SPECIFIER = YLZG_STORE_Profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

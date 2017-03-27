@@ -99,7 +99,7 @@
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"📱" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        if ([[UserInfoManager getUserInfo].type intValue] == 1) {
+        if ([[[UserInfoManager sharedManager] getUserInfo].type intValue] == 1) {
             OpenOrderCardModel *model = self.array[indexPath.row];
             NSString *tel = [NSString stringWithFormat:@"tel:%@",model.phone];
             UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];

@@ -64,11 +64,9 @@
 {
     FCityModel *city = self.resultCities[indexPath.row];
     [YLNotificationCenter postNotificationName:YLCityDidChangeNotification object:nil userInfo:@{YLSelectCityName:city.name}];
-    BOOL isSave = [UserInfoManager updataUserInfoWithKey:@"location" Value:city.name];
-    if (isSave) {
-        if (_DidSelectCity) {
-            _DidSelectCity();
-        }
+    [[UserInfoManager sharedManager] updateWithKey:UUlocation Value:city.name];
+    if (_DidSelectCity) {
+        _DidSelectCity();
     }
 }
 

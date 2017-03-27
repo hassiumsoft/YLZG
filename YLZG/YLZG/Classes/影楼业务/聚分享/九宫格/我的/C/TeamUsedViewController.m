@@ -64,7 +64,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     TeamUsedModel *usedModel = self.array[indexPath.section];
     NineDetialViewController *detial = [NineDetialViewController new];
-    detial.isManager = [[UserInfoManager getUserInfo].type intValue] ? YES : NO;
+    detial.isManager = [[[UserInfoManager sharedManager] getUserInfo].type intValue] ? YES : NO;
     detial.date = usedModel.date;
     detial.mobanID = usedModel.id;
     detial.title = usedModel.name;

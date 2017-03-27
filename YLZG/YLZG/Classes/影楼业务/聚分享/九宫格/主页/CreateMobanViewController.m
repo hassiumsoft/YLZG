@@ -13,6 +13,8 @@
 #import "HTTPManager.h"
 #import "NoDequTableCell.h"
 #import <Masonry.h>
+#import "SelectClassesController.h"
+#import "TeamClassModel.h"
 
 
 @interface CreateMobanViewController ()<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
@@ -34,6 +36,8 @@
 @property (assign,nonatomic) CGFloat PhotoHeight;
 
 @property (strong,nonatomic) UIView *footView;
+/** 分类模型 */
+@property (strong,nonatomic) TeamClassModel *classModel;
 
 @end
 
@@ -66,6 +70,10 @@
         [self showErrorTips:@"请选择图片"];
         return;
     }
+    if (!self.classModel.name) {
+        [MBProgressHUD showError:@"请选择分类"];
+        return;
+    }
     
     NSString *url = UpLoadMoban_Url;
     NSString *isShare;
@@ -80,6 +88,12 @@
     [param setObject:self.nameField.text forKey:@"name"];
     [param setObject:self.contentTextView.text forKey:@"content"];
     [param setObject:isShare forKey:@"isShare"];
+    if (self.classModel.isNewAdd) {
+        [param setObject:self.classModel.name forKey:@"cid"];
+    }else{
+        [param setObject:self.classModel.id forKey:@"cid"];
+    }
+    
     
     for (int i = 0; i < imageArray.count; i++) {
         
@@ -122,7 +136,7 @@
 {
     
     self.PhotoHeight = 280/3;
-    self.array = @[@"模板名称",@"模板描述",@"共享模板"];
+    self.array = @[@"模板名称",@"模板描述",@"共享模板",@"添加到分类"];
     [self.view addSubview:self.tableView];
     self.footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.PhotoHeight)];
     self.footView.backgroundColor = self.view.backgroundColor;
@@ -195,7 +209,7 @@
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         [cell addSubview:self.self.contentTextView];
         return cell;
-    }else{
+    }else if (indexPath.section == 2){
         // 共享模板
         NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
         cell.textLabel.text = self.array[indexPath.section];
@@ -205,6 +219,16 @@
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         [cell addSubview:self.switchV];
         return cell;
+    }else{
+        // 添加到分类
+        NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
+        cell.textLabel.text = self.array[indexPath.section];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        cell.contentLabel.text = self.classModel.name;
+        [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        
+        return cell;
     }
 }
 
@@ -212,7 +236,15 @@
 {
     [self.view endEditing:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    if (indexPath.section == 3) {
+        // 添加到分类
+        SelectClassesController *select = [SelectClassesController new];
+        select.SelectClassBlock = ^(TeamClassModel *model){
+            self.classModel = model;
+            [self.tableView reloadData];
+        };
+        [self.navigationController pushViewController:select animated:YES];
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {

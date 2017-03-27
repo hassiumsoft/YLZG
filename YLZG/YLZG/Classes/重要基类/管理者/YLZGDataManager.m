@@ -14,8 +14,10 @@
 #import <MJExtension.h>
 #import "ZCAccountTool.h"
 #import "GroupListManager.h"
-
 #import "NSDate+Category.h"
+#import <UMMobClick/MobClick.h>
+#import "ClearCacheTool.h"
+#import <JPush-iOS-SDK/JPUSHService.h>
 
 
 
@@ -40,13 +42,115 @@ static YLZGDataManager *controller = nil;
     return controller;
 }
 
+- (void)loginWithUserName:(NSString *)userName PassWord:(NSString *)passWord Success:(void (^)())success Fail:(void (^)(NSString *))fail
+{
+    NSString *url = [NSString stringWithFormat:YLLoginURL,userName,passWord,@"iPhone"];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            NSDictionary *result = [responseObject objectForKey:@"result"];
+            UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:result];
+            model.password = passWord;
+            [[EMClient sharedClient] loginWithUsername:userName password:passWord completion:^(NSString *aUsername, EMError *aError) {
+                if (!aError) {
+                    // 登录成功，保存用户信息
+                    [self saveUserInfoLastUserName:userName UserModel:model Success:^{
+                        success();
+                    } Fail:^(NSString *errorMsg) {
+                        fail(errorMsg);
+                    }];
+                }else{
+                    fail(aError.errorDescription);
+                }
+            }];
+        }else{
+            fail(message);
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        fail(error.localizedDescription);
+    }];
+}
+
+- (void)saveUserInfoLastUserName:(NSString *)lastUserName UserModel:(UserInfoModel *)userModel Success:(void (^)())success Fail:(void (^)(NSString *errorMsg))fail
+{
+    // 友盟
+    [MobClick profileSignInWithPUID:userModel.username];
+    UserInfoModel *lastModel = [[UserInfoManager sharedManager] getUserInfo];
+    
+    NSMutableDictionary *newDic = [NSMutableDictionary dictionary];
+    if ([lastUserName isEqualToString:lastModel.username]) {
+        // 和刚刚已退出的账号一致，不删除.但是需要替换更新的用户数据
+        [[UserInfoManager sharedManager] saveUserInfo:userModel Success:^{
+            // 删除data缓存
+            [HTTPManager ClearCacheDataCompletion:^{
+                
+            }];
+            newDic[@"username"] = userModel.username;
+            newDic[@"password"] = userModel.password;
+            newDic[@"userID"] = userModel.uid;
+            
+            // 设置自动登录
+            [EMClient sharedClient].options.isAutoLogin = YES;
+            [EMClient sharedClient].pushOptions.displayName = userModel.realname.length>0 ? userModel.realname : userModel.nickname;
+            [EMClient sharedClient].pushOptions.displayStyle = EMPushDisplayStyleMessageSummary;
+            
+            
+            // 极光推送
+            [JPUSHService setTags:[NSSet setWithObject:userModel.sid] aliasInbackground:userModel.uid];
+            [[EMClient sharedClient] setApnsNickname:userModel.realname];
+            
+            ZCAccount *account = [ZCAccount accountWithDict:newDic];
+            [ZCAccountTool saveAccount:account];
+            
+            success();
+        } Fail:^(NSString *errorMsg) {
+            fail(errorMsg);
+        }];
+        
+    }else{
+        // 另外一个账号，删除之前的记录
+        [self clearSomeDataComplete:^{
+            newDic[@"username"] = userModel.username;
+            newDic[@"password"] = userModel.password;
+            newDic[@"userID"] = userModel.uid;
+            
+            ZCAccount *account = [ZCAccount accountWithDict:newDic];
+            [ZCAccountTool saveAccount:account];
+            
+            
+            // 设置自动登录
+            [EMClient sharedClient].options.isAutoLogin = YES;
+            [EMClient sharedClient].pushOptions.displayName = userModel.realname.length>0 ? userModel.realname : userModel.nickname;
+            [EMClient sharedClient].pushOptions.displayStyle = EMPushDisplayStyleMessageSummary;
+            
+            
+            // 极光推送
+            [JPUSHService setTags:[NSSet setWithObject:userModel.sid] aliasInbackground:userModel.uid];
+            [[EMClient sharedClient] setApnsNickname:userModel.realname];
+        }];
+    }
+}
+#pragma mark - 如果和之前的登录账号一致，则不需删除沙盒数据
+- (void)clearSomeDataComplete:(void (^)())deleteBlock
+{
+    // 清除沙盒里的数据
+    // ⚠️ 开发阶段并没有删除ZCAccount里的数据
+    NSString *dicPath = [ClearCacheTool docPath];
+    [ClearCacheTool clearSDWebImageCache:dicPath];
+    
+    [[UserInfoManager sharedManager] removeDataSave];
+    
+    
+    deleteBlock();
+}
 #pragma mark -- 下载数据
 - (void)loadUnApplyApplyFriendArr:(ApplyFriend)ApplyFriendArr{
     
     ZCAccount *account = [ZCAccountTool account];
     NSString *URL = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/get_msg?uid=%@",account.userID];
     
-    UserInfoModel *myModel = [UserInfoManager getUserInfo];
+    UserInfoModel *myModel = [[UserInfoManager sharedManager] getUserInfo];
     [HTTPManager GET:URL params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"]description] intValue];
         NSMutableArray *peopleArr = [NSMutableArray array];

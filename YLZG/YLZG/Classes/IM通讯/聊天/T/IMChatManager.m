@@ -30,7 +30,7 @@ static IMChatManager *manager = nil;
 //每次获取最新的扩展信息
 + (NSDictionary *)getNewestExt
 {
-    UserInfoModel *userModel = [UserInfoManager getUserInfo];
+    UserInfoModel *userModel = [[UserInfoManager sharedManager] getUserInfo];
     NSDictionary *ext = @{@"avatarURLPath":userModel.head,@"nickname":userModel.realname,@"uid":userModel.uid};
     return ext;
 }

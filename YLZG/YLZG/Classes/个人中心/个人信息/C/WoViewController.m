@@ -52,7 +52,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated
 {
-    self.userModel = [UserInfoManager getUserInfo];
+    self.userModel = [[UserInfoManager sharedManager] getUserInfo];
     [self.tableView reloadData];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -31,7 +31,7 @@
 
 - (void)getData
 {
-    UserInfoModel *model = [UserInfoManager getUserInfo];
+    UserInfoModel *model = [[UserInfoManager sharedManager] getUserInfo];
     self.title = [model.store_simple_name mj_firstCharUpper];
     
     ZCAccount *account = [ZCAccountTool account];

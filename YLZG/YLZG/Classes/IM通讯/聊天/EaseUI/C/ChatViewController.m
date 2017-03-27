@@ -145,7 +145,7 @@
   didSelectAvatarMessageModel:(id<IMessageModel>)messageModel
 {
     
-    UserInfoModel *model = [UserInfoManager getUserInfo];
+    UserInfoModel *model = [[UserInfoManager sharedManager] getUserInfo];
     if ([messageModel.nickname containsString:model.store_simple_name]) {
         // 同事
         if (messageModel.isSender) {
@@ -233,7 +233,7 @@
 - (NSDictionary*)emotionExtFormessageViewController:(EaseMessageViewController *)viewController
                                         easeEmotion:(EaseEmotion*)easeEmotion
 {
-    UserInfoModel *userModel = [UserInfoManager getUserInfo];
+    UserInfoModel *userModel = [[UserInfoManager sharedManager] getUserInfo];
     return @{MESSAGE_ATTR_EXPRESSION_ID:easeEmotion.emotionId,MESSAGE_ATTR_IS_BIG_EXPRESSION:@(YES),@"avatarURLPath":userModel.head,@"nickname":userModel.realname,@"uid":userModel.uid};
 }
 

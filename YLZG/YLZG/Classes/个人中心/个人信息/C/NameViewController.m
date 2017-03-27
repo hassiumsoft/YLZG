@@ -56,7 +56,7 @@
     self.textField.leftViewMode = UITextFieldViewModeAlways;
     self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textField.backgroundColor = [UIColor whiteColor];
-    UserInfoModel *model = [UserInfoManager getUserInfo];
+    UserInfoModel *model = [[UserInfoManager sharedManager] getUserInfo];
     self.textField.placeholder = model.nickname;
     self.textField.delegate = self;
     [self.view addSubview:self.textField];
@@ -114,7 +114,7 @@
             
             if (code == 1) {
                 
-                [UserInfoManager updataUserInfoWithKey:@"nickname" Value:self.textField.text];
+                [[UserInfoManager sharedManager] updateWithKey:UUnickname Value:self.textField.text];
                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [YLNotificationCenter postNotificationName:HXUpdataContacts object:nil];

@@ -31,7 +31,7 @@
 
 - (void)setupSubViews
 {
-    UserInfoModel *userModel = [UserInfoManager getUserInfo];
+    UserInfoModel *userModel = [[UserInfoManager sharedManager] getUserInfo];
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.text = [userModel.store_simple_name mj_firstCharUpper];
     self.titleLabel.textColor = RGBACOLOR(255, 255, 255, 0);

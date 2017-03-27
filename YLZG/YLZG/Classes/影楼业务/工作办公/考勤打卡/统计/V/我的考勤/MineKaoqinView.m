@@ -58,7 +58,7 @@
 - (void)createView {
     self.backgroundColor = RGBACOLOR(228, 228, 228, 1);
     
-    UserInfoModel *user = [UserInfoManager getUserInfo];
+    UserInfoModel *user = [[UserInfoManager sharedManager] getUserInfo];
     if ([user.type isEqualToString:@"1"]) {
          _backImageV = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH-20, SCREEN_HEIGHT-190)];
     }else {

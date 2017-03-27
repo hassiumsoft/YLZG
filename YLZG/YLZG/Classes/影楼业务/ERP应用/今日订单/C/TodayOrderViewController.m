@@ -145,7 +145,7 @@
 #pragma mark - TodayOrderCellDelegate
 - (void)openPhoneWebView:(TodayOrderModel *)model
 {
-    UserInfoModel *userModel = [UserInfoManager getUserInfo];
+    UserInfoModel *userModel = [[UserInfoManager sharedManager] getUserInfo];
     if ([userModel.type intValue] == 1) {
         NSString *phone;
         if (model.phone.length > 11) {
