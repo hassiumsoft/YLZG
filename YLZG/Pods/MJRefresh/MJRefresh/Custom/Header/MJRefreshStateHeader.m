@@ -40,6 +40,7 @@
 - (UILabel *)lastUpdatedTimeLabel
 {
     if (!_lastUpdatedTimeLabel) {
+        _lastUpdatedTimeLabel.hidden = YES;
         [self addSubview:_lastUpdatedTimeLabel = [UILabel mj_label]];
     }
     return _lastUpdatedTimeLabel;

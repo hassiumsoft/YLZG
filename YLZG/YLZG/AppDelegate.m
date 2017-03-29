@@ -56,29 +56,37 @@
 {
     ZCAccount *account = [ZCAccountTool account];
     if (!account) {
-        [YLNotificationCenter postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+        [self goToLoginViewController:nil];
         return;
     }
     NSString *url = [NSString stringWithFormat:YLLoginURL,account.username,account.password,@"iPhone"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         // 更新用户信息模型
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
-        NSString *message = [[responseObject objectForKey:@"message"] description];
+//        NSString *message = [[responseObject objectForKey:@"message"] description];
         if (code == 1) {
             NSDictionary *result = [responseObject objectForKey:@"result"];
             UserInfoModel *model = [UserInfoModel mj_objectWithKeyValues:result];
             [[UserInfoManager sharedManager] removeDataSave];
-            [[UserInfoManager sharedManager] saveUserInfo:model Success:^{
-                NSLog(@"自动登录 = %@",message);
+            [[UserInfoManager sharedManager] saveUserName:account.username PassWord:account.password UserInfo:model Success:^{
+                self.isShowNewPage = YES;
+                HomeTabbarController *tabBarVC = [[HomeTabbarController alloc] init];
+                [YLZGChatManager sharedManager].tabbarVC = tabBarVC;
+                [[YLZGChatManager sharedManager] asyncPushOptions];
+                [[YLZGChatManager sharedManager] asyncConversationFromDB];
+                self.window.rootViewController = tabBarVC;
             } Fail:^(NSString *errorMsg) {
-                [YLNotificationCenter postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+                LoginViewController *loginVC = [[LoginViewController alloc] init];
+                self.window.rootViewController = loginVC;
             }];
             [MobClick profileSignInWithPUID:model.username];
         }else{
-            [YLNotificationCenter postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+            LoginViewController *loginVC = [[LoginViewController alloc] init];
+            self.window.rootViewController = loginVC;
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [YLNotificationCenter postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+        LoginViewController *loginVC = [[LoginViewController alloc] init];
+        self.window.rootViewController = loginVC;
     }];
     
 }
@@ -108,7 +116,6 @@
 {
     
     LoginViewController *loginVC = [[LoginViewController alloc] init];
-//    HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:loginVC];
     self.window.rootViewController = loginVC;
 }
 

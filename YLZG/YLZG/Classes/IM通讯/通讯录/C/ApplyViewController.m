@@ -131,13 +131,13 @@ static ApplyViewController *controller = nil;
         //添加好友
         if (flag == 0) {
             if (indexPath.row < [self.dataSource count]) {
-                [self showHudMessage:@"同意添加"];
+                
                 _status = 2;
                 self.message = [NSString stringWithFormat:@"我是%@我同意添加好友",myModel.nickname];
             }
             
         }else if(flag == 1){
-            [self showHudMessage:@"拒绝添加"];
+            
             self.message = [NSString stringWithFormat:@"我是%@我拒绝添加好友",myModel.nickname];
             _status = 3;
             [YLNotificationCenter postNotificationName:HXSetupUntreatedApplyCount object:nil];

@@ -67,9 +67,8 @@
         make.centerY.equalTo(self.view.mas_centerY).offset(-64);
         make.width.and.height.equalTo(@140);
     }];
+    
 }
-
-
 
 #pragma mark - 请求数据
 - (void)loadTeamPaihangbangViewControllerData{

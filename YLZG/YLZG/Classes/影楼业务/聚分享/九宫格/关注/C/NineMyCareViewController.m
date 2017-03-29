@@ -15,7 +15,8 @@
 #import "EditCareCategoryController.h"
 #import "ZCAccountTool.h"
 #import <MJRefresh.h>
-#import "TeamClassViewController.h"
+#import "TeamClassListViewController.h"
+
 
 
 @interface NineMyCareViewController ()<UITableViewDelegate,UITableViewDataSource>
@@ -116,7 +117,7 @@
     NineCategoryModel *model = self.array[indexPath.section];
     
     if ([model.name isEqualToString:@"团队制作"]) {
-        TeamClassViewController *nineList = [[TeamClassViewController alloc]init];
+        TeamClassListViewController *nineList = [[TeamClassListViewController alloc]init];
         [self.navigationController pushViewController:nineList animated:YES];
     }else{
         NineListViewController *nineList = [[NineListViewController alloc]init];

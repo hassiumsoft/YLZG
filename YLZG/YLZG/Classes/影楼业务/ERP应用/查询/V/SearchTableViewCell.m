@@ -35,12 +35,18 @@
 
 - (void)setModel:(SearchViewModel *)model {
     _model = model;
-    _orderIDLabel.text = [NSString stringWithFormat:@"订单号：%@",model.tradeID];
+    NSString *orderID = model.tradeID.length > 1 ? model.tradeID : model.tradeid;
+    _orderIDLabel.text = [NSString stringWithFormat:@"订单号：%@",orderID];
     _setLabel.text = model.set;
     _storeLabel.text = [NSString stringWithFormat:@"开单人：%@",model.store];
-    _guestnameLabel.text = model.guestname;
+    _guestnameLabel.text = model.guestname.length > 1 ? model.guestname : model.baby;
     _phoneLabel.text = model.phone;
-    _proceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];
+    if (model.multi == 0) {
+        _proceLabel.text = [NSString stringWithFormat:@"￥%@",model.balance];
+    }else{
+        _proceLabel.text = [NSString stringWithFormat:@"￥%@",model.price];
+    }
+    
     NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc]initWithString:_proceLabel.text];
     [attriStr beginEditing];
     [attriStr addAttribute:NSFontAttributeName value:[UIFont preferredFontForTextStyle:UIFontTextStyleFootnote] range:NSMakeRange(0, 1)];

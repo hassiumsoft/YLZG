@@ -41,7 +41,7 @@
     
     [self.view addSubview:self.searchBar];
     
-    [self loadEmptyView:@""];
+//    [self loadEmptyView:@""];
 }
 - (UITableView *)searchTableView
 {
@@ -61,6 +61,7 @@
     if (!_searchBar) {
         _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 48)];
         _searchBar.delegate = self;
+        _searchBar.text = @"18103756638";
         _searchBar.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         [_searchBar becomeFirstResponder];
         _searchBar.backgroundColor = self.view.backgroundColor;
@@ -77,6 +78,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    NSLog(@"_dataSource = %@",_dataSource);
     return _dataSource.count;
 }
 #pragma mark - UITableViewDataSource
@@ -109,12 +111,13 @@
 - (void)loadSearchViewControllerData{
     
     // 取出登录成功的uid
-    ZCAccount * dict = [ZCAccountTool account];
-    NSString * uid = dict.userID;
+    ZCAccount *account = [ZCAccountTool account];
+    NSString * uid = account.userID;
     NSString * url = [NSString stringWithFormat:SEARCH_URL,self.searchBar.text,uid];
     [self showHudMessage:@"请求中···"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
+        NSLog(@"responseObject = %@",responseObject);
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         [self hideHud:0];
         [self.dataSource removeAllObjects];
@@ -125,7 +128,9 @@
                 NSArray * arr = responseObject[@"result"];
                 
                 self.dataSource = [SearchViewModel mj_objectArrayWithKeyValuesArray:arr];
-                
+                for (SearchViewModel *model in self.dataSource) {
+                    model.multi = 1;
+                }
                 // 刷新表格
                 [self.view addSubview:self.searchTableView];
                 [self.searchTableView reloadData];
@@ -135,12 +140,21 @@
             }else if (multi == 0){
                 // 直接填充
                 
-                SearchOrderModel *model = [SearchOrderModel mj_objectWithKeyValues:dict];
-                KGLog(@"---%@---",model.tradeid);
+                SearchOrderModel *model = [SearchOrderModel mj_objectWithKeyValues:responseObject];
+                
+                SearchViewModel *viewModel = [SearchViewModel mj_objectWithKeyValues:responseObject];
+                
+                [self.dataSource addObject:viewModel];
+                [self.view addSubview:self.searchTableView];
+                [self.searchTableView reloadData];
+                
                 if ([self.delegate respondsToSelector:@selector(detialOrderModel:)]) {
                     [self.delegate detialOrderModel:model];
                     [self.navigationController popViewControllerAnimated:YES];
                 }
+                
+                
+                
                 
             }else if (multi == 5){
                 [self loadEmptyView:@"账号未登录，建议退出账号重试"];
@@ -180,12 +194,6 @@
     [self.searchTableView removeFromSuperview];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    CATransition *animation = [CATransition animation];
-    animation.duration = 2.f;
-    animation.timingFunction = UIViewAnimationCurveEaseInOut;
-    animation.type = @"rippleEffect";
-    animation.subtype = kCATransitionFromTop;
-    [self.view.window.layer addAnimation:animation forKey:nil];
     
     // 全部为空值
     
@@ -213,6 +221,12 @@
     }
     return _emptyView;
 }
-
+- (NSMutableArray *)dataSource
+{
+    if (!_dataSource) {
+        _dataSource = [NSMutableArray array];
+    }
+    return _dataSource;
+}
 
 @end

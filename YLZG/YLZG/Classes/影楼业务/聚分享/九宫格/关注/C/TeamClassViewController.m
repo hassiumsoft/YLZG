@@ -14,6 +14,7 @@
 #import "MobanListCollectionCell.h"
 #import "NineDetialViewController.h"
 #import "MobanCateListModel.h"
+#import <MJRefresh.h>
 #import "UserInfoManager.h"
 
 @interface TeamClassViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
@@ -31,10 +32,12 @@
 @implementation TeamClassViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    self.title = @"团队制作分类";
-    [self getTeamClassArray];
+//    self.title = @"团队制作分类";
+    self.title = self.classModel.name;
     [self setupSubViews];
+    
 }
 
 
@@ -42,6 +45,10 @@
 {
     
     [self.view addSubview:self.collectionView];
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getDataTeamClassModel:self.classModel];
+    }];
+    [self.collectionView.mj_header beginRefreshing];
     
 }
 
@@ -56,9 +63,8 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    id kkk = self.array[indexPath.row];
     MobanListCollectionCell *cell = [MobanListCollectionCell sharedCell:collectionView Path:indexPath];
-//    cell.model = self.array[indexPath.row];
+    cell.model = self.array[indexPath.row];
     return cell;
     
 }
@@ -125,52 +131,19 @@
     return _array;
 }
 
-#pragma mark - 获取分类数组
-- (void)getTeamClassArray
-{
-    NSString *url = [NSString stringWithFormat:TeamClasses_Url,[ZCAccountTool account].userID];
-    [MBProgressHUD showMessage:@"加载中···"];
-    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        
-        int code = [[[responseObject objectForKey:@"code"] description] intValue];
-        NSString *message = [[responseObject objectForKey:@"result"] description];
-        if (code == 1) {
-            NSArray *result = [responseObject objectForKey:@"result"];
-            if (result.count >= 1) {
-                self.classArray = [TeamClassModel mj_objectArrayWithKeyValuesArray:result];
-                // 默认展示第一个分类
-                [self getDataWithPage:1 TeamClassModel:self.classArray.firstObject Nums:100];
-                
-            }else{
-                [MBProgressHUD hideHUD];
-                [self sendErrorWarning:@"您的团队还没有创建模板，快去创建模板界面创建吧。"];
-            }
-        }else{
-            [MBProgressHUD hideHUD];
-            [self sendErrorWarning:message];
-        }
-        
-    } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
-        [self sendErrorWarning:error.localizedDescription];
-    }];
-}
-
 /**
  获取分类模板数据
  
- @param ccccPage 当前分页
- @param num 每页多少数据
+ 
  */
-- (void)getDataWithPage:(int)ccccPage TeamClassModel:(TeamClassModel *)classModel Nums:(int)num
+- (void)getDataTeamClassModel:(TeamClassModel *)classModel
 {
     
-    NSString *url = [NSString stringWithFormat:NineCategory_Url,[ZCAccountTool account].userID,classModel.id,ccccPage,num];
+    NSString *url = [NSString stringWithFormat:NineTeamClassMobanList_Url,[ZCAccountTool account].userID,classModel.cid];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        [MBProgressHUD hideHUD];
+        [self.collectionView.mj_header endRefreshing];
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         if (code == 1) {
@@ -181,15 +154,19 @@
                 NSArray *modelArr = [MobanCateListModel mj_objectArrayWithKeyValuesArray:result];
                 [self.array addObjectsFromArray:modelArr];
                 [self.collectionView reloadData];
+                self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                    
+                }];
+                [self.collectionView.mj_footer endRefreshingWithNoMoreData];
             }else{
-                [self sendErrorWarning:@"该分类下没有模板"];
+                [MBProgressHUD showError:@"该分类下暂无模板"];
             }
             
         }else{
             [self showErrorTips:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
+        [self.collectionView.mj_header endRefreshing];
         [self sendErrorWarning:error.localizedDescription];
     }];
 }

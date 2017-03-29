@@ -10,10 +10,8 @@
 
 @interface TeamClassModel : NSObject
 
-/** 是否为新添加 */
-@property (assign,nonatomic) BOOL isNewAdd;
 
-@property (copy,nonatomic) NSString *id;
+@property (copy,nonatomic) NSString *cid;
 
 @property (copy,nonatomic) NSString *name;
 

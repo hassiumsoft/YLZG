@@ -7,7 +7,11 @@
 //
 
 #import "SuperViewController.h"
+#import "TeamClassModel.h"
 
 @interface TeamClassViewController : SuperViewController
+
+/** 团队分类模型 */
+@property (strong,nonatomic) TeamClassModel *classModel;
 
 @end

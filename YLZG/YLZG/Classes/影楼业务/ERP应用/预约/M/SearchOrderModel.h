@@ -12,6 +12,19 @@
 
 /** 订单ID */
 @property (copy,nonatomic) NSString *tradeid;
-/**  */
+/** ID */
+@property (copy,nonatomic) NSString *tradeID;
+/** 电话 */
+@property (copy,nonatomic) NSString *maphone;
+/** 门市 */
+@property (copy,nonatomic) NSString *store;
+/** 产品相关 */
+@property (copy,nonatomic) NSString *packages;
+
+
+/** 套系名称 */
+@property (copy,nonatomic) NSString *set;
+/** 价格 */
+@property (copy,nonatomic) NSString *price;
 
 @end

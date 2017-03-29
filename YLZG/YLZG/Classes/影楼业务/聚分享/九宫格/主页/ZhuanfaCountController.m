@@ -95,7 +95,6 @@
     if (!_headView) {
         _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 80)];
         _headView.backgroundColor = [UIColor whiteColor];
-        ZhuanfaCountModel *model = self.countModel;
         NSArray *titleArr = @[@"团队人数",@"已转发人数",@"未转发人数"];
         NSArray *numArr = @[self.countModel.all,self.countModel.done,self.countModel.dont];
         

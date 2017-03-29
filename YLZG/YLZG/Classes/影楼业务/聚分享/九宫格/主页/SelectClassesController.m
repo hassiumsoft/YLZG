@@ -10,6 +10,7 @@
 #import "ZCAccountTool.h"
 #import "HTTPManager.h"
 #import <MJExtension.h>
+#import <MJRefresh.h>
 #import "NormalTableCell.h"
 
 
@@ -29,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"选择模板分类";
-    [self getTeamClassArray];
+    
     [self setupSubViews];
 }
 
@@ -40,25 +41,31 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"新建分类" style:UIBarButtonItemStylePlain target:self action:@selector(createClass)];
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:15]} forState:UIControlStateNormal];
     
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self getTeamClassArray];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
 }
 
 - (void)createClass
 {
+    __weak SelectClassesController *copySelf = self;
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加分类" message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *alertAction1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         
     }];
     UIAlertAction *alertAction2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        TeamClassModel *teamModel = [TeamClassModel new];
-        teamModel.isNewAdd = YES;
-        teamModel.name = self.addClassName;
-        teamModel.id = @"-1";
-        if (self.SelectClassBlock) {
-            _SelectClassBlock(teamModel);
-            [self.navigationController popViewControllerAnimated:YES];
-        }
+        // 添加团队分类模板
+        [self addTeamClassName:[alertController.textFields lastObject].text Completion:^(TeamClassModel *lastModel) {
+            if (copySelf.SelectClassBlock) {
+                copySelf.SelectClassBlock(lastModel);
+                [copySelf.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+        
     }];
-    __weak SelectClassesController *copySelf = self;
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = copySelf;
@@ -68,6 +75,24 @@
     [alertController addAction:alertAction2];
     [self presentViewController:alertController animated:YES completion:^{
         
+    }];
+}
+- (void)addTeamClassName:(NSString *)name Completion:(void (^)(TeamClassModel *lastModel))completion
+{
+    NSString *url = [NSString stringWithFormat:NineAddTeamClass_Url,[ZCAccountTool account].userID,name];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"responseObject = %@",responseObject);
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            NSDictionary *result = [responseObject objectForKey:@"result"];
+            TeamClassModel *model = [TeamClassModel mj_objectWithKeyValues:result];
+            completion(model);
+        }else{
+            [self sendErrorWarning:message];
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self sendErrorWarning:error.localizedDescription];
     }];
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -111,12 +136,11 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height) style:UITableViewStyleGrouped];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.rowHeight = 50;
+        _tableView.rowHeight = 60;
         _tableView.backgroundColor = self.view.backgroundColor;
-        _tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
     }
     return _tableView;
 }
@@ -126,9 +150,9 @@
 - (void)getTeamClassArray
 {
     NSString *url = [NSString stringWithFormat:TeamClasses_Url,[ZCAccountTool account].userID];
-    [MBProgressHUD showMessage:@"加载中···"];
+    
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [MBProgressHUD hideHUD];
+        [self.tableView.mj_header endRefreshing];
         
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"result"] description];
@@ -137,14 +161,13 @@
             if (result.count >= 1) {
                 
                 NSArray *classArr = [TeamClassModel mj_objectArrayWithKeyValuesArray:result];
-                for (TeamClassModel *model in classArr) {
-                    model.isNewAdd = NO;
-                }
+                
                 self.classArray = classArr;
                 [self.tableView reloadData];
+                
             }else{
                 
-                [self sendErrorWarning:@"您的团队还没有创建模板，快去创建模板界面创建吧。"];
+                [self sendErrorWarning:@"您的团队还没有创建分类，点击右上角创建分类"];
             }
         }else{
             
@@ -152,7 +175,7 @@
         }
         
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
+        [self.tableView.mj_header endRefreshing];
         [self sendErrorWarning:error.localizedDescription];
     }];
 }

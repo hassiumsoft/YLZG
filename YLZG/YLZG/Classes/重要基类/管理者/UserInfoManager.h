@@ -29,7 +29,17 @@
  @param success 保存成功
  @param fail 保存失败
  */
-- (void)saveUserInfo:(UserInfoModel *)userModel Success:(void (^)())success Fail:(void (^)(NSString *errorMsg))fail;
+
+/**
+ 保存用户信息
+
+ @param userName 登录名
+ @param passWord 密码
+ @param userModel 用户模型
+ @param success 成功的回调
+ @param fail 失败的回调
+ */
+- (void)saveUserName:(NSString *)userName PassWord:(NSString *)passWord UserInfo:(UserInfoModel *)userModel Success:(void (^)())success Fail:(void (^)(NSString *errorMsg))fail;
 
 
 /**

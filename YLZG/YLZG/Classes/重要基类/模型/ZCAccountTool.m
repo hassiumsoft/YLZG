@@ -8,7 +8,7 @@
 
 #import "ZCAccountTool.h"
 
-#define accountPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"account.archive"]
+#define accountPath [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"zcaccount.archive"]
 
 @implementation ZCAccountTool
 

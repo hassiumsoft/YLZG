@@ -88,8 +88,14 @@
     }else if (indexPath.row == 3){
         // 详情
         NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-        if (self.model) {
-            cell.contentLabel.text = [NSString stringWithFormat:@"%@ ￥%@",self.model.set,self.model.price];
+        if (self.model.multi == 0) {
+            cell.contentLabel.text = self.model.price;
+        }else{
+            if (isFirst == YES) {
+                cell.contentLabel.text = nil;
+            }else{
+                cell.contentLabel.text = [NSString stringWithFormat:@"%@ ￥%@",self.model.set,self.model.price];
+            }
         }
         cell.textLabel.text = titleArr[indexPath.row];
         
@@ -129,7 +135,7 @@
 }
 - (void)checkClick
 {
-    if (!self.model) {
+    if (self.model.tradeid.length == 0 || self.model.tradeID.length == 0) {
         [self showErrorTips:@"请先查询订单"];
         return;
     }
@@ -156,9 +162,24 @@
 #pragma mark - 查询回调
 - (void)searchOrderModel:(SearchViewModel *)model
 {
+    
+    if (model.multi == 0) {
+        model.price = model.balance;
+        model.phone = model.maphone;
+        model.tradeID = model.tradeid;
+        model.guestname = model.guestname.length > 1 ? model.guestname : model.baby;
+        
+    }
     if ([model.price intValue] == 0) {
-        [self showErrorTips:@"该订单已付款"];
-        [self hideHud:1.5];
+        [MBProgressHUD showError:@"该订单已付款"];
+        isFirst = YES;
+        model.price = nil;
+        model.phone = nil;
+        model.tradeID = nil;
+        model.guestname = nil;
+        model.set = nil;
+        self.model = model;
+        [self.tableView reloadData];
         return;
     }
     isFirst = NO;

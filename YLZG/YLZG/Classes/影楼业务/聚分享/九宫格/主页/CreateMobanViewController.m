@@ -88,11 +88,7 @@
     [param setObject:self.nameField.text forKey:@"name"];
     [param setObject:self.contentTextView.text forKey:@"content"];
     [param setObject:isShare forKey:@"isShare"];
-    if (self.classModel.isNewAdd) {
-        [param setObject:self.classModel.name forKey:@"cid"];
-    }else{
-        [param setObject:self.classModel.id forKey:@"cid"];
-    }
+    [param setObject:self.classModel.cid forKey:@"cid"];
     
     
     for (int i = 0; i < imageArray.count; i++) {
@@ -105,6 +101,7 @@
         [param setObject:baseStr forKey:key];
     }
     [self showHudMessage:@"正在上传···"];
+    NSLog(@"参数param = %@",param);
     
     [HTTPManager POST:url params:param success:^(NSURLSessionDataTask *task, id responseObject) {
         [self hideHud:0];
@@ -234,6 +231,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [self.view endEditing:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 3) {

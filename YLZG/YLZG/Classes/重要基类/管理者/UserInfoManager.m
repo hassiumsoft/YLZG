@@ -25,12 +25,12 @@
     return _sharedManager;
 }
 #pragma mark - 保存数据
-- (void)saveUserInfo:(UserInfoModel *)userModel Success:(void (^)())success Fail:(void (^)(NSString *))fail
+- (void)saveUserName:(NSString *)userName PassWord:(NSString *)passWord UserInfo:(UserInfoModel *)userModel Success:(void (^)())success Fail:(void (^)(NSString *))fail
 {
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:userModel.uid forKey:@"userID"];
-    [dict setValue:userModel.password forKey:@"password"];
+    [dict setValue:passWord forKey:@"password"];
     [dict setValue:userModel.username forKey:@"username"];
     ZCAccount *account = [ZCAccount accountWithDict:dict];
     [ZCAccountTool saveAccount:account];

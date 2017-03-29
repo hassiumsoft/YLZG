@@ -53,10 +53,11 @@
 {
     
     NSString *url = [NSString stringWithFormat:NineDetial_Url,[ZCAccountTool account].userID,self.mobanID,self.date];
-    [self showHudMessage:@"正在加载"];
+    [MBProgressHUD showMessage:@"加载中···"];
     
     [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self hideHud:0];
+        
+        [MBProgressHUD hideHUD];
         
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
@@ -73,10 +74,9 @@
         }
         
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
-    
     
 }
 
@@ -113,6 +113,7 @@
         
         
         UIImageView *imageV = [[UIImageView alloc]initWithImage:[UIImage imageWithColor:HWRandomColor]];
+        
         [imageV setFrame:frame];
         imageV.tag = i;
         
@@ -210,37 +211,42 @@
         
     }
     
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"由于iPhone系统的封闭性，文字描述已复制到剪切板，请在发送前手动粘贴到输入框或编辑文字。适合场景：微信朋友圈、QQ空间、支付宝、Facebook" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIActivity *activity = [[UIActivity alloc]init];
+        [activity prepareWithActivityItems:imageArray];
+        NSArray *activityArray = @[activity];
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:imageArray applicationActivities:activityArray];
+        activityVC.excludedActivityTypes = @[UIActivityTypeAirDrop,UIActivityTypePostToTencentWeibo,UIActivityTypeSaveToCameraRoll,UIActivityTypeCopyToPasteboard,UIActivityTypePostToWeibo,UIActivityTypePostToTwitter,UIActivityTypePostToFacebook];
+        
+        activityVC.completionWithItemsHandler = ^(UIActivityType __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError){
+            if (completed) {
+                NSString *url = [NSString stringWithFormat:ZhuanfaCount_Url,[ZCAccountTool account].userID,self.detialModel.id,self.detialModel.cid];
+                [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+                    
+                    int code = [[[responseObject objectForKey:@"code"] description] intValue];
+                    NSString *message = [[responseObject objectForKey:@"message"] description];
+                    if (code != 1) {
+                        [self sendErrorWarning:message];
+                    }
+                } fail:^(NSURLSessionDataTask *task, NSError *error) {
+                    
+                    [self sendErrorWarning:error.localizedDescription];
+                }];
+            }
+        };
+        
+        UIPasteboard *pasted = [UIPasteboard generalPasteboard];
+        [pasted setString:self.detialModel.content];
+//        [MBProgressHUD showSuccess:@"已复制到剪切板"];
+        
+        [self presentViewController:activityVC animated:TRUE completion:^{
+            
+        }];
+    }];
     
-    
-    // UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:imageArray applicationActivities:nil];
-    UIActivity *activity = [[UIActivity alloc]init];
-    [activity prepareWithActivityItems:imageArray];
-    NSArray *activityArray = @[activity];
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:imageArray applicationActivities:activityArray];
-    activityVC.excludedActivityTypes = @[UIActivityTypeAirDrop,UIActivityTypePostToTencentWeibo,UIActivityTypeSaveToCameraRoll,UIActivityTypeCopyToPasteboard,UIActivityTypePostToWeibo,UIActivityTypePostToTwitter,UIActivityTypePostToFacebook];
-    
-    activityVC.completionWithItemsHandler = ^(UIActivityType __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError){
-        if (completed) {
-            NSString *url = [NSString stringWithFormat:ZhuanfaCount_Url,[ZCAccountTool account].userID,self.detialModel.id,self.detialModel.cid];
-            [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                
-                int code = [[[responseObject objectForKey:@"code"] description] intValue];
-                NSString *message = [[responseObject objectForKey:@"message"] description];
-                if (code != 1) {
-                    [self sendErrorWarning:message];
-                }
-            } fail:^(NSURLSessionDataTask *task, NSError *error) {
-                
-                [self sendErrorWarning:error.localizedDescription];
-            }];
-        }
-    };
-    
-    UIPasteboard *pasted = [UIPasteboard generalPasteboard];
-    [pasted setString:self.detialModel.content];
-    [MBProgressHUD showSuccess:@"已复制到剪切板"];
-    
-    [self presentViewController:activityVC animated:TRUE completion:^{
+    [alertC addAction:action1];
+    [self presentViewController:alertC animated:YES completion:^{
         
     }];
     

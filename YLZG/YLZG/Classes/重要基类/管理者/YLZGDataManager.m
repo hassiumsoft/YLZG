@@ -55,11 +55,12 @@ static YLZGDataManager *controller = nil;
             [[EMClient sharedClient] loginWithUsername:userName password:passWord completion:^(NSString *aUsername, EMError *aError) {
                 if (!aError) {
                     // 登录成功，保存用户信息
-                    [self saveUserInfoLastUserName:userName UserModel:model Success:^{
+                    [self saveUserInfoLastUserName:userName PassWord:passWord UserModel:model Success:^{
                         success();
                     } Fail:^(NSString *errorMsg) {
                         fail(errorMsg);
                     }];
+                    
                 }else{
                     fail(aError.errorDescription);
                 }
@@ -72,7 +73,7 @@ static YLZGDataManager *controller = nil;
     }];
 }
 
-- (void)saveUserInfoLastUserName:(NSString *)lastUserName UserModel:(UserInfoModel *)userModel Success:(void (^)())success Fail:(void (^)(NSString *errorMsg))fail
+- (void)saveUserInfoLastUserName:(NSString *)lastUserName PassWord:(NSString *)passWord UserModel:(UserInfoModel *)userModel Success:(void (^)())success Fail:(void (^)(NSString *errorMsg))fail
 {
     // 友盟
     [MobClick profileSignInWithPUID:userModel.username];
@@ -81,13 +82,13 @@ static YLZGDataManager *controller = nil;
     NSMutableDictionary *newDic = [NSMutableDictionary dictionary];
     if ([lastUserName isEqualToString:lastModel.username]) {
         // 和刚刚已退出的账号一致，不删除.但是需要替换更新的用户数据
-        [[UserInfoManager sharedManager] saveUserInfo:userModel Success:^{
+        [[UserInfoManager sharedManager] saveUserName:userModel.username PassWord:passWord UserInfo:userModel Success:^{
             // 删除data缓存
             [HTTPManager ClearCacheDataCompletion:^{
                 
             }];
             newDic[@"username"] = userModel.username;
-            newDic[@"password"] = userModel.password;
+            newDic[@"password"] = passWord;
             newDic[@"userID"] = userModel.uid;
             
             // 设置自动登录
@@ -104,31 +105,40 @@ static YLZGDataManager *controller = nil;
             [ZCAccountTool saveAccount:account];
             
             success();
+
         } Fail:^(NSString *errorMsg) {
             fail(errorMsg);
         }];
         
+        
     }else{
         // 另外一个账号，删除之前的记录
         [self clearSomeDataComplete:^{
-            newDic[@"username"] = userModel.username;
-            newDic[@"password"] = userModel.password;
-            newDic[@"userID"] = userModel.uid;
-            
-            ZCAccount *account = [ZCAccount accountWithDict:newDic];
-            [ZCAccountTool saveAccount:account];
-            
-            
-            // 设置自动登录
-            [EMClient sharedClient].options.isAutoLogin = YES;
-            [EMClient sharedClient].pushOptions.displayName = userModel.realname.length>0 ? userModel.realname : userModel.nickname;
-            [EMClient sharedClient].pushOptions.displayStyle = EMPushDisplayStyleMessageSummary;
-            
-            
-            // 极光推送
-            [JPUSHService setTags:[NSSet setWithObject:userModel.sid] aliasInbackground:userModel.uid];
-            [[EMClient sharedClient] setApnsNickname:userModel.realname];
+            [[UserInfoManager sharedManager] saveUserName:userModel.username PassWord:passWord UserInfo:userModel Success:^{
+                newDic[@"username"] = userModel.username;
+                newDic[@"password"] = passWord;
+                newDic[@"userID"] = userModel.uid;
+                
+                ZCAccount *account = [ZCAccount accountWithDict:newDic];
+                [ZCAccountTool saveAccount:account];
+                
+                
+                // 设置自动登录
+                [EMClient sharedClient].options.isAutoLogin = YES;
+                [EMClient sharedClient].pushOptions.displayName = userModel.realname.length>0 ? userModel.realname : userModel.nickname;
+                [EMClient sharedClient].pushOptions.displayStyle = EMPushDisplayStyleMessageSummary;
+                
+                
+                // 极光推送
+                [JPUSHService setTags:[NSSet setWithObject:userModel.sid] aliasInbackground:userModel.uid];
+                [[EMClient sharedClient] setApnsNickname:userModel.realname];
+                
+                success();
+            } Fail:^(NSString *errorMsg) {
+                fail(errorMsg);
+            }];
         }];
+        
     }
 }
 #pragma mark - 如果和之前的登录账号一致，则不需删除沙盒数据

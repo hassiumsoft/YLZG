@@ -1,15 +1,15 @@
 "MJRefreshHeaderIdleText" = "下拉可以刷新";
 "MJRefreshHeaderPullingText" = "鬆開立即刷新";
-"MJRefreshHeaderRefreshingText" = "正在刷新數據中...";
+"MJRefreshHeaderRefreshingText" = "🌲🌲🌲🌲";
 
-"MJRefreshAutoFooterIdleText" = "點擊或上拉加載更多";
-"MJRefreshAutoFooterRefreshingText" = "正在加載更多的數據...";
-"MJRefreshAutoFooterNoMoreDataText" = "已經全部加載完畢";
+"MJRefreshAutoFooterIdleText" = "點擊或上拉加載";
+"MJRefreshAutoFooterRefreshingText" = "🌲🌲🌲🌲";
+"MJRefreshAutoFooterNoMoreDataText" = "全部加載完畢";
 
-"MJRefreshBackFooterIdleText" = "上拉可以加載更多";
-"MJRefreshBackFooterPullingText" = "鬆開立即加載更多";
-"MJRefreshBackFooterRefreshingText" = "正在加載更多的數據...";
-"MJRefreshBackFooterNoMoreDataText" = "已經全部加載完畢";
+"MJRefreshBackFooterIdleText" = "上拉加載";
+"MJRefreshBackFooterPullingText" = "鬆開立即加載";
+"MJRefreshBackFooterRefreshingText" = "🌲🌲🌲🌲";
+"MJRefreshBackFooterNoMoreDataText" = "全部加載完畢";
 
 "MJRefreshHeaderLastTimeText" = "最後更新：";
 "MJRefreshHeaderDateTodayText" = "今天";

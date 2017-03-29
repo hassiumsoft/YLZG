@@ -470,6 +470,7 @@
 		3BF93D7E1DADDC950002EACA /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF93D731DADDC950002EACA /* CalendarViewController.m */; };
 		3BF93D7F1DADDC950002EACA /* chack.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BF93D741DADDC950002EACA /* chack.png */; };
 		3BF93D801DADDC950002EACA /* NSDate+WQCalendarLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF93D771DADDC950002EACA /* NSDate+WQCalendarLogic.m */; };
+		3BFC5C041E8B89B500C62788 /* TeamClassListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BFC5C031E8B89B500C62788 /* TeamClassListViewController.m */; };
 		5A27D435BC6DED825DA7C727 /* libPods-YLZGTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10D181EFDFDFBC5340FDE7D5 /* libPods-YLZGTests.a */; };
 		F861F19A60C03DD5F0C35469 /* libPods-YLZG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 487A4302373A59827214ABFD /* libPods-YLZG.a */; };
 /* End PBXBuildFile section */
@@ -1427,6 +1428,8 @@
 		3BF93D741DADDC950002EACA /* chack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chack.png; sourceTree = "<group>"; };
 		3BF93D761DADDC950002EACA /* NSDate+WQCalendarLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WQCalendarLogic.h"; sourceTree = "<group>"; };
 		3BF93D771DADDC950002EACA /* NSDate+WQCalendarLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WQCalendarLogic.m"; sourceTree = "<group>"; };
+		3BFC5C021E8B89B500C62788 /* TeamClassListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamClassListViewController.h; sourceTree = "<group>"; };
+		3BFC5C031E8B89B500C62788 /* TeamClassListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamClassListViewController.m; sourceTree = "<group>"; };
 		487A4302373A59827214ABFD /* libPods-YLZG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YLZG.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FE1C9497118A328E37A4D9 /* Pods-YLZGUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLZGUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLZGUITests/Pods-YLZGUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6D221FEFCC875B1AC7AAF5C4 /* Pods-YLZG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YLZG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YLZG/Pods-YLZG.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3236,6 +3239,8 @@
 				3B8531601DF8F9B800AB9C4F /* EditCareCategoryController.m */,
 				3B8531611DF8F9B800AB9C4F /* NineMyCareViewController.h */,
 				3B8531621DF8F9B800AB9C4F /* NineMyCareViewController.m */,
+				3BFC5C021E8B89B500C62788 /* TeamClassListViewController.h */,
+				3BFC5C031E8B89B500C62788 /* TeamClassListViewController.m */,
 				3B1FD3E01E7A2B2600DA6EE9 /* TeamClassViewController.h */,
 				3B1FD3E11E7A2B2600DA6EE9 /* TeamClassViewController.m */,
 			);
@@ -4639,6 +4644,7 @@
 				3B8531C01DF9190F00AB9C4F /* JFPhotoBrowserViewController.m in Sources */,
 				3B343B7C1DEC016F00474549 /* ProduceMemberModel.m in Sources */,
 				3B4C133A1DC85F4700827D4F /* TeamKaoqinView.m in Sources */,
+				3BFC5C041E8B89B500C62788 /* TeamClassListViewController.m in Sources */,
 				3B4C13351DC85F4700827D4F /* DeptTeamKaoqinModel.m in Sources */,
 				3B343B561DEBFECC00474549 /* AddNewTaskController.m in Sources */,
 				3B3BBF931DB475EF00C9E2FD /* ContactHeadView.m in Sources */,

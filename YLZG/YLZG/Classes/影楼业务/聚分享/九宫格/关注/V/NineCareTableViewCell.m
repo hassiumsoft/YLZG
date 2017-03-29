@@ -50,9 +50,15 @@
         _backImageV.image = [UIImage imageNamed:model.thumb];
     }else{
         [_backImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"reg-fb-bg"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            _backImageV.image = [UIImage boxblurImage:image withBlurNumber:0.5];
+//            _backImageV.image = [UIImage boxblurImage:image withBlurNumber:0.5];
         }];
     }
+    
+}
+- (void)setTeamClassModel:(TeamClassModel *)teamClassModel
+{
+    _teamClassModel = teamClassModel;
+    _nameLabel.text = teamClassModel.name;
     
 }
 - (void)setupSubViews
