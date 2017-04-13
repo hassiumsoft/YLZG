@@ -49,12 +49,12 @@
             }
             NSString *careIDJson = [self toJsonStr:IDArray];
             NSString *url = [NSString stringWithFormat:NineCareEdit_Url,[ZCAccountTool account].userID,careIDJson];
-            [self showHudMessage:@"添加关注中···"];
+            
             
             [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 int code = [[[responseObject objectForKey:@"code"] description] intValue];
                 NSString *message = [[responseObject objectForKey:@"message"]description];
-                [self hideHud:0];
+                
                 if (code == 1) {
                     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -73,7 +73,7 @@
                 }
                 
             } fail:^(NSURLSessionDataTask *task, NSError *error) {
-                [self hideHud:0];
+                
                 [self sendErrorWarning:error.localizedDescription];
             }];
         }else{

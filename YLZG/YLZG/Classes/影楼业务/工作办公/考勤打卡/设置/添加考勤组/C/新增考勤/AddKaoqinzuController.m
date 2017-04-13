@@ -175,6 +175,7 @@
         }
     }
 }
+
 #pragma mark - 选中负责人后的代理
 - (void)chooseAdminWithArray:(NSArray *)adminArrar
 {

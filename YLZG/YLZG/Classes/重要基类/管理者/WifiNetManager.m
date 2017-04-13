@@ -21,7 +21,7 @@ static WifiNetManager *NetworksManager;
 
 + (NSNumber *)numberFromBSSID:(NSString *) bssid
 {
-    uint64_t longmac;
+    uint64_t longmac = 0;
     int MAC_LEN = 6;
     short unsigned int *bs_in = malloc(sizeof(short unsigned int) * MAC_LEN);
     if (sscanf([bssid cStringUsingEncoding: [NSString defaultCStringEncoding]],"%hX:%hX:%hX:%hX:%hX:%hX",&bs_in[0], &bs_in[1], &bs_in[2], &bs_in[3], &bs_in[4], &bs_in[5]) == MAC_LEN)

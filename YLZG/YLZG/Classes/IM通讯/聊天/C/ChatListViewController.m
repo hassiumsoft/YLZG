@@ -11,6 +11,7 @@
 #import "MessageListTableCell.h"
 #import <MJRefresh.h>
 #import <MJExtension.h>
+#import "ChatListHeadView.h"
 #import "ChatViewController.h"
 #import "YLZGDataManager.h"
 #import "ClearCacheTool.h"
@@ -24,11 +25,9 @@
 /** 数据源 */
 @property (strong,nonatomic) NSMutableArray *array;
 /** TableHeadView */
-@property (strong,nonatomic) UIView *headView;
+@property (strong,nonatomic) ChatListHeadView *headView;
 /** 断网时的红色提示 */
 @property (nonatomic, strong) UIView *networkStateView;
-/** 搜索框 */
-@property (strong,nonatomic) UISearchBar *searchBar;
 
 
 @end
@@ -87,14 +86,12 @@
     self.tableView.tableFooterView = footer;
     self.tableView.backgroundColor = self.view.backgroundColor;
     
-    
-    [self.headView addSubview:self.searchBar];
     self.tableView.tableHeaderView = self.headView;
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getDataFromRAM];
     }];
-    
+    self.tableView.mj_header.ignoredScrollViewContentInsetTop = 8;
 }
 #pragma mark - 从内存中获取聊天列表
 - (void)getDataFromRAM
@@ -202,12 +199,10 @@
 {
     if (connectionState == EMConnectionDisconnected) {
         // 失去连接
-        self.searchBar.barTintColor = RGBACOLOR(222, 67, 86, 1);
-        self.searchBar.placeholder = @"网络失去连接";
+        
     }else{
         // 获得连接
-        self.searchBar.barTintColor = nil;
-        self.searchBar.placeholder = @"搜索";
+        
     }
     
 }
@@ -221,6 +216,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.rowHeight = 60;
+        _tableView.contentInset = UIEdgeInsetsMake(8, 0, 0, 0);
         
     }
     return _tableView;
@@ -228,23 +224,20 @@
 - (UIView *)headView
 {
     if (!_headView) {
-        _headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+        _headView = [[ChatListHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];
         _headView.userInteractionEnabled = YES;
-        _headView.backgroundColor = [UIColor whiteColor];
-        
+        _headView.backgroundColor = [UIColor clearColor];
+        _headView.ClickBlock = ^(ClickType clickType) {
+            if (clickType == WorkZhushouType) {
+                [MBProgressHUD showSuccess:@"掌柜工作助手"];
+            }else if (clickType == WorkMishuType){
+                [MBProgressHUD showSuccess:@"掌柜小秘书"];
+            }
+        };
     }
     return _headView;
 }
-- (UISearchBar *)searchBar
-{
-    if (!_searchBar) {
-        _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
-        _searchBar.placeholder = @"搜索";
-//        _searchBar.showsCancelButton = YES;
-        _searchBar.backgroundColor = [UIColor colorWithRed:0.747 green:0.756 blue:0.751 alpha:1.000];
-    }
-    return _searchBar;
-}
+
 
 
 

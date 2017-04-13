@@ -98,7 +98,7 @@
         return;
     }
     NSString *insterSQL = [NSString stringWithFormat:@"INSERT OR REPLACE INTO %@ (keyWord,currentTime) VALUES (?,?)",TABLE_NAME];
-    char *errorMsg;
+    char *errorMsg = NULL;
     sqlite3_stmt *stmt;
     if (sqlite3_prepare_v2(dataBase, insterSQL.UTF8String, -1, &stmt, nil) == SQLITE_OK) {
         sqlite3_bind_text(stmt, 1, searchModel.keyWord.UTF8String, -1, nil);

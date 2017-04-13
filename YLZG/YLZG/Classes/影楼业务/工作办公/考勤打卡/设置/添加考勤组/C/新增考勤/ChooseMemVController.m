@@ -22,7 +22,7 @@
 /** 表格 */
 @property (strong,nonatomic) UITableView *tableView;
 /** 数据源 */
-@property (strong,nonatomic) NSMutableArray *array;
+@property (copy,nonatomic) NSArray *array;
 
 @end
 
@@ -32,52 +32,43 @@
     [super viewDidLoad];
 //    self.title = @"选择考勤组员";
     
+    
     [self setupTableView];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(doneAction)];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} forState:UIControlStateNormal];
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
+    
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getData];
     }];
     [self.tableView.mj_header beginRefreshing];
-}
-#pragma mark - 加载模拟数据
-- (void)getData
-{
-    self.array = [NSMutableArray array];
     
-    ZCAccount * account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:YLHome_Url, account.userID];
-    
-    [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-
-            int status = [[[responseObject objectForKey:@"code"] description] intValue];
-            [self.tableView.mj_header endRefreshing];
-            switch (status) {
-                case 0:
-                {
-                    // 获取失败
-                    [self sendErrorWarning:@"获取联系人失败"];
-                    break;
-                }
-                case 1:
-                {
-                    // 获取成功 sid：店铺员工ID。type：1是店长、0是店员
-                    NSArray *array = [responseObject objectForKey:@"result"];
-                    self.array = [StaffInfoModel mj_objectArrayWithKeyValuesArray:array];
-                    [self.tableView reloadData];
-                    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-                        
-                    }];
-                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
-                    break;
-                }
-                default:
-                    break;
+    UIButton *allChoose = [UIButton buttonWithType:UIButtonTypeCustom];
+    [allChoose setTitle:@"全选" forState:UIControlStateNormal];
+    [allChoose setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    allChoose.frame = CGRectMake(self.view.width/2 - 35, self.view.height - 64 - 80, 60, 60);
+    allChoose.layer.cornerRadius = 30;
+    allChoose.layer.shadowOffset =  CGSizeMake(4, 4);
+    allChoose.layer.shadowOpacity = 0.8;
+    allChoose.layer.shadowRadius = 4.f;
+    allChoose.layer.shadowColor =  [UIColor blackColor].CGColor;
+    allChoose.backgroundColor = MainColor;
+    allChoose.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    [allChoose addBlockForControlEvents:UIControlEventTouchUpInside block:^(UIButton *sender) {
+        if (self.array.count >= 1) {
+            for (StaffInfoModel *model in self.array) {
+                model.isSelected = YES;
             }
-    } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self.tableView.mj_header endRefreshing];
-        [self sendErrorWarning:error.localizedDescription];
+            
+            [self.tableView reloadData];
+            
+        }else{
+            [MBProgressHUD showError:@"没有数据"];
+        }
     }];
-    
+    [self.view addSubview:allChoose];
 }
+
 
 - (void)setupTableView
 {
@@ -97,11 +88,13 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     MutliChoceStaffCell *cell = [MutliChoceStaffCell sharedMutliChoceStaffCell:tableView];
     StaffInfoModel *model = self.array[indexPath.row];
+    model.index = indexPath.row;
     cell.model = model;
-    
     return cell;
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -109,31 +102,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     StaffInfoModel *model = self.array[indexPath.row];
-    if (!model.isSelected) {
-        for (int i = 0; i < self.array.count; i++) {
-            if (i == indexPath.row) {
-                StaffInfoModel *mm = self.array[i];
-                mm.isSelected = YES;
-                [self.array replaceObjectAtIndex:indexPath.row withObject:mm];
-                [self.tableView reloadData];
-                
-                [self.chooseArray addObject:mm];
-            }
-        }
-    }else{
-        for (int i = 0; i < self.array.count; i++) {
-            if (i == indexPath.row) {
-                StaffInfoModel *kk = self.array[i];
-                kk.isSelected = NO;
-                [self.array replaceObjectAtIndex:indexPath.row withObject:kk];
-                [self.tableView reloadData];
-                
-                [self.chooseArray removeObject:kk];
-            }
-        }
-    }
+    NSLog(@"model.index = %ld",model.index);
     
-    [self setupNav:self.chooseArray];
+    if (model.isSelected) {
+        model.isSelected = NO;
+    }else{
+        model.isSelected = YES;
+    }
+    [self.tableView reloadData];
+    
+    
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -142,31 +120,50 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self setupNav:self.chooseArray];
-    
-}
-- (void)setupNav:(NSMutableArray *)array
-{
-    
-    NSString *title;
-    if (self.chooseArray.count > 0) {
-        title = [NSString stringWithFormat:@"确定(%lu)",(unsigned long)self.chooseArray.count];
-    }else{
-        title = @"确定";
-    }
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(doneAction)];
-    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1]} forState:UIControlStateNormal];
-    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
-}
 - (void)doneAction
 {
+    for (StaffInfoModel *model in self.array) {
+        if (model.isSelected) {
+            [self.chooseArray addObject:model];
+        }
+    }
+    
     if ([self.delegate respondsToSelector:@selector(chooseMemWithArray:)]) {
         [self.delegate chooseMemWithArray:self.chooseArray];
         [self dismiss];
     }
+}
+
+#pragma mark - 加载模拟数据
+- (void)getData
+{
+    
+    ZCAccount * account = [ZCAccountTool account];
+    NSString *url = [NSString stringWithFormat:YLHome_Url, account.userID];
+    
+    [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        [self.tableView.mj_header endRefreshing];
+        if (code == 1) {
+            // 获取成功 sid：店铺员工ID。type：1是店长、0是店员
+            NSArray *array = [responseObject objectForKey:@"result"];
+            self.array = [StaffInfoModel mj_objectArrayWithKeyValuesArray:array];
+            [self.tableView reloadData];
+            self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                
+            }];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else{
+            [self sendErrorWarning:message];
+        }
+        
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.tableView.mj_header endRefreshing];
+        [self sendErrorWarning:error.localizedDescription];
+    }];
+    
 }
 - (void)dismiss
 {

@@ -168,7 +168,7 @@
     // 最后一条消息
     self.lastMsgLabel = [[UILabel alloc]init];
     self.lastMsgLabel.text = @"···";
-    self.lastMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    self.lastMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     self.lastMsgLabel.textColor = RGBACOLOR(67, 67, 67, 1);
     [self addSubview:self.lastMsgLabel];
     [self.lastMsgLabel mas_makeConstraints:^(MASConstraintMaker *make) {

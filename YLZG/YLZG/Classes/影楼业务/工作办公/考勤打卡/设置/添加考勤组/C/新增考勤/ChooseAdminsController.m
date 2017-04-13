@@ -37,7 +37,6 @@
     }];
     [self.tableView.mj_header beginRefreshing];
     
-    
 }
 
 #pragma mark - 加载模拟数据
@@ -158,7 +157,7 @@
         title = @"确定";
     }
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:title style:UIBarButtonItemStylePlain target:self action:@selector(doneAction)];
-    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1]} forState:UIControlStateNormal];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} forState:UIControlStateNormal];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 - (void)doneAction

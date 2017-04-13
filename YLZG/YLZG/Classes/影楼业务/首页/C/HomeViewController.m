@@ -79,7 +79,7 @@
     
     [self setupSubViews];
     [self getJufenxiangInfo];
-    [self showNewPages];
+//    [self showNewPages];
 }
 
 #pragma mark - 获取营销工具信息

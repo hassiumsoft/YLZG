@@ -64,7 +64,7 @@
         if (code == 1) {
             NSDictionary *result = [responseObject objectForKey:@"result"];
             self.detialModel = [NineDetialModel mj_objectWithKeyValues:result];
-#warning 有错，确实count
+//#warning 有错，确实count
             self.countModel = [ZhuanfaCountModel mj_objectWithKeyValues:self.detialModel.count];
             
             [self setupSubViews:self.detialModel];

@@ -7,44 +7,24 @@
 //
 
 #import "ChatListHeadView.h"
-#import "NoticeManager.h"
 #import <Masonry.h>
 
 @interface ChatListHeadView  ()
 
-@property (strong,nonatomic) UIView *redPoint;
+
+/** 工作助手最后一条信息 */
+@property (strong,nonatomic) UILabel *workLastMsgLabel;
+
+/** 小秘书最后一条信息 */
+@property (strong,nonatomic) UILabel *mishuLastMsgLabel;
 
 @end
 
 
 @implementation ChatListHeadView
 
-+ (instancetype)sharedChatListHeadView
-{
-    return [[self alloc]init];
-}
 
-- (void)setIsUnRead:(BOOL)isUnRead
-{
-    _isUnRead = isUnRead;
-    if (isUnRead) {
-        // 有未读消息，显示
-        [self.redPoint setHidden:NO];
-    }else{
-        // 没有未读消息，不显示
-        [self.redPoint setHidden:YES];
-    }
-    
-}
-- (void)reloadData
-{
-    NSArray *noticeArr = [NoticeManager getAllNoticeInfo];
-    if (noticeArr.count >= 1) {
-        NoticeModel *model = [noticeArr firstObject];
-        self.descLabel.text = [NSString stringWithFormat:@"%@：%@",model.realname,model.title];
-    }
-    
-}
+
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -52,63 +32,116 @@
     if (self) {
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor whiteColor];
-        [self setupSubViews];
+        
     }
     return self;
 }
-- (void)setupSubViews
+- (void)layoutSubviews
 {
-    self.imageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"group_back"]];
-    self.imageV.layer.masksToBounds = YES;
-    self.imageV.layer.cornerRadius = 4;
-    [self addSubview:self.imageV];
-    [self.imageV mas_makeConstraints:^(MASConstraintMaker *make) {
+    [super layoutSubviews];
+    
+    // 掌柜小助手
+    UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height/2)];
+    view1.userInteractionEnabled = YES;
+    view1.backgroundColor = [UIColor whiteColor];
+    [self addSubview:view1];
+    
+    UITapGestureRecognizer *zhushou = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        if (self.ClickBlock) {
+            _ClickBlock(WorkZhushouType);
+        }
+    }];
+    [view1 addGestureRecognizer:zhushou];
+    
+    UIImageView *xian1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
+    xian1.frame = CGRectMake(0, view1.height - 1, self.width, 1);
+    [view1 addSubview:xian1];
+    
+    
+    UIImageView *iconView1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"reg-fb-bg"]];
+    iconView1.layer.masksToBounds = YES;
+    iconView1.layer.cornerRadius = 4;
+    [view1 addSubview:iconView1];
+    [iconView1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15);
-        make.centerY.equalTo(self.mas_centerY);
+        make.centerY.equalTo(view1.mas_centerY);
         make.width.and.height.equalTo(@50);
     }];
     
-    self.titleLabel = [[UILabel alloc]init];
-    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    self.titleLabel.text = @"影楼公告";
-    [self addSubview:self.titleLabel];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.imageV.mas_right).offset(10);
+    UILabel *titleLabel1 = [[UILabel alloc]init];
+    titleLabel1.text = @"掌柜工作助手";
+    titleLabel1.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    [view1 addSubview:titleLabel1];
+    [titleLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(78);
         make.height.equalTo(@21);
-        make.bottom.equalTo(self.mas_centerY);
+        make.bottom.equalTo(iconView1.mas_centerY);
     }];
     
-    self.descLabel = [[UILabel alloc]init];
-    self.descLabel.text = @"我是卡马克";
-    self.descLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    self.descLabel.textColor = RGBACOLOR(67, 67, 67, 1);
-    [self addSubview:self.descLabel];
-    [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.titleLabel.mas_left);
-        make.right.equalTo(self.mas_right).offset(-38);
+    self.workLastMsgLabel = [[UILabel alloc]init];
+    self.workLastMsgLabel.text = @"莫西莫西明星们莫西莫西明细项目项目明星们莫西莫西明细项目";
+    self.workLastMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    self.workLastMsgLabel.textColor = RGBACOLOR(67, 67, 67, 1);
+    [view1 addSubview:self.workLastMsgLabel];
+    [self.workLastMsgLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(titleLabel1.mas_left);
+        make.top.equalTo(titleLabel1.mas_bottom);
         make.height.equalTo(@21);
-        make.top.equalTo(self.titleLabel.mas_bottom);
+        make.right.equalTo(view1.mas_right).offset(-38);
     }];
     
-    self.redPoint = [[UIView alloc]init];
-    self.redPoint.backgroundColor = [UIColor redColor];
-    self.redPoint.layer.masksToBounds = YES;
-    self.redPoint.layer.cornerRadius = 7;
-    [self addSubview:self.redPoint];
-    [self.redPoint mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.and.height.equalTo(@14);
-        make.centerY.equalTo(self.mas_centerY);
-        make.right.equalTo(self.mas_right).offset(-18);
-    }];
     
-    UIImageView *xian = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
-    [self addSubview:xian];
-    [xian mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.mas_bottom).offset(2);
-        make.height.equalTo(@2);
+    // 掌柜小秘书
+    UIView *view2 = [[UIView alloc]initWithFrame:CGRectMake(0, self.height/2, self.width, self.height/2)];
+    view2.userInteractionEnabled = YES;
+    view2.backgroundColor = [UIColor whiteColor];
+    [self addSubview:view2];
+    
+    UITapGestureRecognizer *mishu = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        if (self.ClickBlock) {
+            _ClickBlock(WorkMishuType);
+        }
+    }];
+    [view2 addGestureRecognizer:mishu];
+    
+    UIImageView *iconView2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"reg-fb-bg"]];
+    iconView2.layer.masksToBounds = YES;
+    iconView2.layer.cornerRadius = 4;
+    [view2 addSubview:iconView2];
+    [iconView2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15);
-        make.right.equalTo(self.mas_right);
+        make.centerY.equalTo(view2.mas_centerY);
+        make.width.and.height.equalTo(@50);
     }];
+    
+    UILabel *titleLabel2 = [[UILabel alloc]init];
+    titleLabel2.text = @"掌柜小秘书";
+    titleLabel2.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    [view2 addSubview:titleLabel2];
+    [titleLabel2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(78);
+        make.height.equalTo(@21);
+        make.bottom.equalTo(iconView2.mas_centerY);
+    }];
+    
+    self.mishuLastMsgLabel = [[UILabel alloc]init];
+    self.mishuLastMsgLabel.text = @"莫西莫西明星们莫西莫西明细项目项目明星们莫西莫西明细项目";
+    self.mishuLastMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    self.mishuLastMsgLabel.textColor = RGBACOLOR(67, 67, 67, 1);
+    [view2 addSubview:self.mishuLastMsgLabel];
+    [self.mishuLastMsgLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(titleLabel2.mas_left);
+        make.top.equalTo(titleLabel2.mas_bottom);
+        make.height.equalTo(@21);
+        make.right.equalTo(view2.mas_right).offset(-38);
+    }];
+
+    
+    UIImageView *xian2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
+    xian2.frame = CGRectMake(0, view2.height - 1, self.width, 1);
+    [view2 addSubview:xian2];
+
+    
 }
 
 @end

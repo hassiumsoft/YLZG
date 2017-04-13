@@ -44,5 +44,7 @@
 
 /** 多选里的是否被选中 */
 @property (assign,nonatomic) BOOL isSelected;
+/** 索引 */
+@property (assign,nonatomic) NSInteger index;
 
 @end

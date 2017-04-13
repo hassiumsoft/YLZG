@@ -60,20 +60,13 @@ static FMDatabase *_db;
 #pragma mark - 删除某条数据
 + (BOOL)deleteOrderAtIndex:(NSInteger)index
 {
-    BOOL result;
+    BOOL result = YES;
     if ([_db open]) {
         NSString *sql = [NSString stringWithFormat:@"delete from t_offorder where id = '%ld'",(long int)index];
         result = [_db executeUpdate:sql];
-        if (result) {
-//            [MBProgressHUD showError:@"删除成功"];
-            KGLog(@"删除成功");
-        }else{
-//            [MBProgressHUD showError:@"删除失败"];
-            KGLog(@"删除失败");
-        }
         return result;
     }else{
-        return result;
+        return NO;
     }
     
 }

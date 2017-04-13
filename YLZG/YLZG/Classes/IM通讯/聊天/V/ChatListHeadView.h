@@ -8,19 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger,ClickType) {
+    WorkZhushouType = 1,  // 工作助手
+    WorkMishuType = 2  // 小秘书
+};
 
 @interface ChatListHeadView : UIView
 
-@property (strong,nonatomic) UIImageView *imageV;
-
-@property (strong,nonatomic) UILabel *titleLabel;
-
-@property (strong,nonatomic) UILabel *descLabel;
-
-@property (assign,nonatomic) BOOL isUnRead;
-
-- (void)reloadData;
-
-+ (instancetype)sharedChatListHeadView;
+@property (copy,nonatomic) void (^ClickBlock)(ClickType clickType);
 
 @end

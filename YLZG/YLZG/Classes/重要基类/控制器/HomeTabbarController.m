@@ -7,7 +7,6 @@
 //
 
 #import "HomeTabbarController.h"
-#import "NewFutherViewController.h"
 #import "HomeViewController.h"
 #import "ChatListViewController.h"
 #import "ContactListViewController.h"

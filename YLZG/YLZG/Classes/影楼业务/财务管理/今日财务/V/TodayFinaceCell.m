@@ -36,7 +36,7 @@
     _model = model;
     _typeLabel.text = model.type;
     _listLabel.text = [NSString stringWithFormat:@"%d条明细",(int)model.list.count];
-    float sumPrice;
+    float sumPrice = 0;
     if (model.list.count >= 1) {
         for (CaiwuDetialModel *caiwuModel in model.list) {
             sumPrice += [caiwuModel.money floatValue];
