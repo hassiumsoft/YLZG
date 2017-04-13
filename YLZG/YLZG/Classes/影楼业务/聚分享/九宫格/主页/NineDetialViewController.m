@@ -199,22 +199,24 @@
         return;
     }
     
-    NSMutableArray *imageArray = [NSMutableArray array];
+    NSMutableArray *tempArray = [NSMutableArray array];
     
     for (int i = 0; i < self.imgViewArray.count; i++) {
         
         UIImageView *imageView = self.imgViewArray[i];
         if (imageView.tag == i) {
-            [imageArray addObject:imageView.image];
+            [tempArray addObject:imageView.image];
             
         }
         
     }
+    NSArray *imageArray = [NSArray arrayWithArray:tempArray];
     
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"由于iPhone系统的封闭性，文字描述已复制到剪切板，请在发送前手动粘贴到输入框或编辑文字。适合场景：微信朋友圈、QQ空间、支付宝、Facebook" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UIActivity *activity = [[UIActivity alloc]init];
         [activity prepareWithActivityItems:imageArray];
+        [activity canPerformWithActivityItems:imageArray];
         NSArray *activityArray = @[activity];
         UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:imageArray applicationActivities:activityArray];
         activityVC.excludedActivityTypes = @[UIActivityTypeAirDrop,UIActivityTypePostToTencentWeibo,UIActivityTypeSaveToCameraRoll,UIActivityTypeCopyToPasteboard,UIActivityTypePostToWeibo,UIActivityTypePostToTwitter,UIActivityTypePostToFacebook];
@@ -233,12 +235,13 @@
                     
                     [self sendErrorWarning:error.localizedDescription];
                 }];
+            }else{
+                [self sendErrorWarning:activityError.localizedDescription];
             }
         };
         
         UIPasteboard *pasted = [UIPasteboard generalPasteboard];
         [pasted setString:self.detialModel.content];
-//        [MBProgressHUD showSuccess:@"已复制到剪切板"];
         
         [self presentViewController:activityVC animated:TRUE completion:^{
             

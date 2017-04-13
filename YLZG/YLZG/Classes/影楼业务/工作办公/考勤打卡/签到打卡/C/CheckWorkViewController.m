@@ -128,14 +128,14 @@
 - (void)loadCheckWorkVControllerData{
     
     
-    [MBProgressHUD showMessage:@"请稍后"];
+    
     ZCAccount * account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:QiandaoDakaAll_Url,account.userID];
     
     [HTTPManager GET:url  params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
-        [MBProgressHUD hideHUD];
+        
         NSString *message = [[responseObject objectForKey:@"message"] description];
         if (status == 1) {
             self.dataDict = responseObject[@"result"];
@@ -148,8 +148,8 @@
         }
         
      }fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
-         [self sendErrorWarning:error.localizedDescription];
+        
+        [self sendErrorWarning:error.localizedDescription];
     }];
     
 }

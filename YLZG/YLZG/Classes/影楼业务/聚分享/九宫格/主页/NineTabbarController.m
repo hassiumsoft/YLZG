@@ -24,6 +24,8 @@
     [super viewDidLoad];
     self.title = @"关注";
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SelectNoOneController) name:@"NoCareData" object:nil];
+    
     self.delegate = self;
     self.view.backgroundColor = NorMalBackGroudColor;
     NineAllMobanViewController *checkWork = [NineAllMobanViewController new];
@@ -83,6 +85,10 @@
     NineMyCareViewController *careMoban = self.childViewControllers[1];
     careMoban.listModel = listModel;
     
+}
+- (void)SelectNoOneController
+{
+    self.selectedIndex = 0;
 }
 
 - (void)createMobanAction

@@ -37,9 +37,8 @@
 - (void)getData
 {
     ZCAccount *account = [ZCAccountTool account];
-    NSString *str = [NSString stringWithFormat:ErweimaImage_Url,account.userID,@""];
-    NSCharacterSet * set = [NSCharacterSet URLQueryAllowedCharacterSet];
-    NSString * url = [str stringByAddingPercentEncodingWithAllowedCharacters:set];
+    NSString *url = [NSString stringWithFormat:ErweimaImage_Url,account.userID,@""];
+    
     [MBProgressHUD showMessage:@"请稍后"];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -60,6 +59,7 @@
     }];
     
 }
+
 - (void)setupSubViews
 {
     
@@ -147,50 +147,38 @@
     }
     
     
-//    http://zsylou.wxwkf.com/index.php/home/PayTrade/pay?uid=159&type=2&money=800&trade_id=20160622-002
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html",@"text/json",nil];
-    ZCAccount *account = [ZCAccountTool account];
-    NSString *str = [NSString stringWithFormat:FinishedPayOrder_Url,account.userID,(int)self.payType,self.moneyField.text,self.orderID];
-    NSCharacterSet *set = [NSCharacterSet URLQueryAllowedCharacterSet];
-    NSString *url = [str stringByAddingPercentEncodingWithAllowedCharacters:set];
+    NSString *url = [NSString stringWithFormat:FinishedPayOrder_Url,[ZCAccountTool account].userID,(int)self.payType,self.moneyField.text,self.orderID];
+    
     [MBProgressHUD showMessage:@"请稍后"];
-    [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSError *error;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:&error];
-        if (!error) {
-            int code = [[[json objectForKey:@"code"] description] intValue];
-            NSString *message = [[json objectForKey:@"message"] description];
-            [MBProgressHUD hideHUD];
-            if (code == 1) {
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
-                UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                }];
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        [MBProgressHUD hideHUD];
+        if (code == 1) {
+            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }];
+            
+            [alertC addAction:action1];
+            [self presentViewController:alertC animated:YES completion:^{
                 
-                [alertC addAction:action1];
-                [self presentViewController:alertC animated:YES completion:^{
-                    
-                }];
-            }else if (code == 0){
-                NSString *errorMsg = @"失败，当前订单之前有过支付记录。请核对后台信息。";
-                [self sendErrorWarning:errorMsg];
-            }else{
-                [self sendErrorWarning:message];
-            }
-        } else {
-            [MBProgressHUD hideHUD];
-            [self sendErrorWarning:@"数据异常"];
+            }];
+        }else if (code == 0){
+            NSString *errorMsg = @"失败，当前订单之前有过支付记录。请核对后台信息。";
+            [self sendErrorWarning:errorMsg];
+        }else{
+            [self sendErrorWarning:message];
         }
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
+    
+    
 }
 
 - (void)buttonClick:(UIButton *)sender

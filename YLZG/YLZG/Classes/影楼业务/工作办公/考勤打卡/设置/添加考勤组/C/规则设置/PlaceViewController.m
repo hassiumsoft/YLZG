@@ -45,7 +45,7 @@
 }
 - (void)setupSubViews
 {
-    self.title = @"位置";
+    self.title = @"选择考勤位置";
     self.mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.view.height * 0.45)];
     self.mapView.delegate = self;
     self.mapView.showMapScaleBar = YES;

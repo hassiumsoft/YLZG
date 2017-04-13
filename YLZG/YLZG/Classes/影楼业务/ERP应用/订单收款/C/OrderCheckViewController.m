@@ -135,7 +135,8 @@
 }
 - (void)checkClick
 {
-    if (self.model.tradeid.length == 0 || self.model.tradeID.length == 0) {
+    
+    if (self.model.tradeid.length == 0 && self.model.tradeID.length == 0) {
         [self showErrorTips:@"请先查询订单"];
         return;
     }

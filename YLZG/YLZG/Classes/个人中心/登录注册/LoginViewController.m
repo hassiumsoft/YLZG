@@ -20,7 +20,7 @@
 #import "AboutZhichengController.h"
 #import "ClearCacheTool.h"
 
-@interface LoginViewController ()
+@interface LoginViewController ()<UITextFieldDelegate>
 
 /** 头像 */
 @property (strong,nonatomic) UIImageView *imageV;
@@ -100,6 +100,7 @@
     self.nameField = [[UITextField alloc]init];
     self.nameField.background = [UIImage imageNamed:@"userImage"];
     self.nameField.placeholder = @"影楼ERP登录名";
+    self.nameField.delegate = self;
     NSUserDefaults * us = [NSUserDefaults standardUserDefaults];
     self.nameField.text = [us objectForKey:UDLoginUserName];
     self.nameField.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
@@ -122,6 +123,7 @@
     self.passField = [[UITextField alloc]init];
     self.passField.background = [UIImage imageNamed:@"passworkImage"];
     self.passField.placeholder = @"ERP密码";
+    self.passField.delegate = self;
     self.passField.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     self.passField.secureTextEntry = YES;
     self.passField.tintColor = [UIColor whiteColor];
@@ -183,6 +185,21 @@
         [xian removeFromSuperview];
     }
     
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if ([textField.text containsString:@" "]) {
+        textField.text = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([textField.text containsString:@" "]) {
+        textField.text = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    }
+    return YES;
 }
 
 #pragma mark - 了解智诚

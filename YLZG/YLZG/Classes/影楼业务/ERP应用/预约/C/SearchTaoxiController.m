@@ -61,7 +61,7 @@
     if (!_searchBar) {
         _searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 48)];
         _searchBar.delegate = self;
-        _searchBar.text = @"18103756638";
+//        _searchBar.text = @"";
         _searchBar.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         [_searchBar becomeFirstResponder];
         _searchBar.backgroundColor = self.view.backgroundColor;

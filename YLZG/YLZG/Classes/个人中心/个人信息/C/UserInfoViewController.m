@@ -239,8 +239,7 @@
 #pragma mark -UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
-    [self showHudMessage:@"正在上传"];
-    //    __weak typeof(self) weakSelf = self;
+    [MBProgressHUD showMessage:@"正在上传"];
     UIImage * orgImage = info[UIImagePickerControllerOriginalImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
     if (orgImage) {
@@ -258,7 +257,7 @@
             
         } success:^(NSURLSessionDataTask *task, id responseObject) {
             
-            [self hideHud:0];
+            [MBProgressHUD hideHUD];
             
             int code = [[[responseObject objectForKey:@"code"] description] intValue];
             NSString *message = [[responseObject objectForKey:@"message"] description];
@@ -268,7 +267,7 @@
                 
                 NSString *head = [[responseObject objectForKey:@"head"] description];
                 [[UserInfoManager sharedManager] updateWithKey:UUhead Value:head];
-                [self showSuccessTips:message];
+                
                 self.userModel = [[UserInfoManager sharedManager] getUserInfo];
                 [self.tableView reloadData];
             }else{
@@ -276,12 +275,12 @@
             }
             
         } fail:^(NSURLSessionDataTask *task, NSError *error) {
-            [self hideHud:0];
+            
             KGLog(@"error = %@",error.localizedDescription);
         }];
         
     }else {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self showErrorTips:@"上传失败"];
     }
 }

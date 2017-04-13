@@ -73,21 +73,7 @@
                 [self.array insertObject:teamCare atIndex:0];
                 [self.tableView reloadData];
             }else{
-                UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:@"您还没有关注分类模板" preferredStyle:UIAlertControllerStyleAlert];
-                
-                UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-                    
-                }];
-                UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"添加关注" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                    [self editAction];
-                }];
-                
-                
-                [alertC addAction:action1];
-                [alertC addAction:action2];
-                [self presentViewController:alertC animated:YES completion:^{
-                    
-                }];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"NoCareData" object:nil];
             }
         }else{
             [self sendErrorWarning:message];

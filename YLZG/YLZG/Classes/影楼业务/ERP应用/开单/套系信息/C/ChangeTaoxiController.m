@@ -89,7 +89,7 @@
 - (void)setupMomTableView
 {
     self.view.backgroundColor = [UIColor whiteColor];
-    self.momTableV = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH * 0.34, self.view.height - SaveViewHeight)];
+    self.momTableV = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH * 0.34, self.view.height - SaveViewHeight - 64)];
     self.momTableV.backgroundColor = [UIColor whiteColor];
     self.momTableV.delegate = self;
     self.momTableV.dataSource = self;
