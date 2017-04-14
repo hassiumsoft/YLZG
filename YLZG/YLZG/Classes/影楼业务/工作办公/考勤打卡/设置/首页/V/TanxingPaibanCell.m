@@ -39,10 +39,10 @@
 {
     static NSString *ID = @"TanxingPaibanCell";
     TanxingPaibanCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     if (!cell) {
         cell = [[TanxingPaibanCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
+    
     return cell;
 }
 - (void)setMemModel:(StaffInfoModel *)memModel

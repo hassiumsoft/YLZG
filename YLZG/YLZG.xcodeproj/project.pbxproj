@@ -2567,7 +2567,6 @@
 			isa = PBXGroup;
 			children = (
 				3B4C12CF1DC85F4700827D4F /* C */,
-				3B4C12D61DC85F4700827D4F /* M */,
 				3B4C12D71DC85F4700827D4F /* V */,
 			);
 			path = "首页";
@@ -2584,13 +2583,6 @@
 				3B4C12D51DC85F4700827D4F /* InGroupViewController.m */,
 			);
 			path = C;
-			sourceTree = "<group>";
-		};
-		3B4C12D61DC85F4700827D4F /* M */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = M;
 			sourceTree = "<group>";
 		};
 		3B4C12D71DC85F4700827D4F /* V */ = {

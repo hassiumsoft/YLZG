@@ -244,9 +244,9 @@
 #pragma mark - 保存方案
 - (void)save
 {
-    if (self.rulesArray.count != self.membersArray.count) {
-        [self sendErrorWarning:@"请填满班次"];
-    }else{
+//    if (self.rulesArray.count != self.membersArray.count) {
+//        [self sendErrorWarning:@"请填满班次"];
+//    }else{
         // 转成json串,传递给上个界面
         NSString *rulesJson = [self toJsonStr:self.rulesArray];
         if ([self.delegate respondsToSelector:@selector(tanxingBanxiWithRulesJson:)]) {
@@ -255,7 +255,7 @@
                 
             }];
         }
-    }
+//    }
 }
 
 #pragma mark - 懒加载
