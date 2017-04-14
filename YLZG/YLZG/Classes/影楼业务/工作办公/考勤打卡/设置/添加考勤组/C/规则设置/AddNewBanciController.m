@@ -99,7 +99,7 @@
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:AddNewBanci_Url,account.userID,self.startTime,self.endTime];
 
-    [self showHudMessage:@"设置中···"];
+    [MBProgressHUD showMessage:@"设置中···"];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];

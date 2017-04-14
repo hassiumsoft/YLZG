@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NineCategoryModel.h"
+#import "CareMobanModel.h"
 
 @interface EditCareTableViewCell : UITableViewCell
 
-@property (strong,nonatomic) NineCategoryModel *cateModel;
+@property (strong,nonatomic) CareMobanModel *careModel;
 
 + (instancetype)sharedEditCareCell:(UITableView *)tableView;
 

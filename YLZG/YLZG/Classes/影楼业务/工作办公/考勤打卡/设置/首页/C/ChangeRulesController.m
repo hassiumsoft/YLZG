@@ -502,7 +502,7 @@
     
     NSString *url = CreateKaoqunGroup_Url;
 
-    [self showHudMessage:@"设置中"];
+    [MBProgressHUD showMessage:@"设置中"];
 //    http://zsylou.wxwkf.com/index.php/home/attence/new_attence_group?uid=%@&name=%@&type=%@&admins=%@&routers=%@&locations=%@&privilege_meter=%@&rules=%@&users=%@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:account.userID forKey:@"uid"];

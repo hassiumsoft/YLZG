@@ -207,7 +207,7 @@
         return;
     }
     
-    [self showHudMessage:@"上传订单中···"];
+    [MBProgressHUD showMessage:@"上传订单中···"];
     dispatch_async(ZCGlobalQueue, ^{
         for (int i = 0; i < self.selectArray.count; i++) {
             OffLineOrder *model = self.selectArray[i];
@@ -217,7 +217,7 @@
                 
                 if (status == 1) {
                     
-                    [self hideHud:0];
+                    [MBProgressHUD hideHUD];
                     // 除移
                     BOOL result = [OfflineDataManager deleteOrderAtIndex:model.id];
                     if (result) {
@@ -234,11 +234,11 @@
                         
                     }
                 }else{
-                    [self hideHud:0];
+                    [MBProgressHUD hideHUD];
                     [self sendErrorWarning:message];
                 }
             } fail:^(NSURLSessionDataTask *task, NSError *error) {
-                [self hideHud:0];
+                [MBProgressHUD hideHUD];
                 [self sendErrorWarning:error.localizedDescription];
             }];
             

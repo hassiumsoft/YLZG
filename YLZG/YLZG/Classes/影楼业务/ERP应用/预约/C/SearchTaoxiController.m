@@ -114,12 +114,12 @@
     ZCAccount *account = [ZCAccountTool account];
     NSString * uid = account.userID;
     NSString * url = [NSString stringWithFormat:SEARCH_URL,self.searchBar.text,uid];
-    [self showHudMessage:@"请求中···"];
+    [MBProgressHUD showMessage:@"请求中···"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSLog(@"responseObject = %@",responseObject);
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self.dataSource removeAllObjects];
         if (code == 1) {
             // 如果multi是1,返回列表成功;0表示显示详情页面,3表示失败
@@ -169,7 +169,7 @@
             
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
     

@@ -7,16 +7,10 @@
 //
 
 #import "SuperViewController.h"
-#import "MobanListModel.h"
+
 
 @interface EditCareCategoryController : SuperViewController
 
-
-
-/**
- 数据源
- */
-@property (strong,nonatomic) MobanListModel *listModel;
 
 /**
  告诉上个界面刷新数据

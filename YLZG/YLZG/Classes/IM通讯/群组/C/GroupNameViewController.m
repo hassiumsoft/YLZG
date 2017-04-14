@@ -117,7 +117,7 @@
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&name=%@",account.userID,self.groupModel.id,self.groupModel.gid,self.textField.text];
     
-    [self showHudMessage:@"请稍后"];
+    [MBProgressHUD showMessage:@"请稍后"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
@@ -127,7 +127,7 @@
             
             
             [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
-                [self hideHud:0];
+                [MBProgressHUD hideHUD];
                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     self.groupModel.gname = self.textField.text;
@@ -148,12 +148,12 @@
             }];
             
         }else{
-            [self hideHud:0];
+            [MBProgressHUD hideHUD];
             [self showErrorTips:message];
         }
         
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         // sendErrorWarning
         [self sendErrorWarning:error.localizedDescription];
     }];
@@ -169,7 +169,7 @@
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&dsp=%@",account.userID,self.groupModel.id,self.groupModel.gid,self.textField.text];
     
-    [self showHudMessage:@"请稍后"];
+    [MBProgressHUD showMessage:@"请稍后"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
@@ -178,7 +178,7 @@
             
             
             [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
-                [self hideHud:0];
+                [MBProgressHUD hideHUD];
                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     self.groupModel.dsp = self.textField.text;
@@ -199,12 +199,12 @@
             }];
             
         }else{
-            [self hideHud:0];
+            [MBProgressHUD hideHUD];
             [self showErrorTips:message];
         }
         
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         // sendErrorWarning
         [self sendErrorWarning:error.localizedDescription];
     }];

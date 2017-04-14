@@ -89,7 +89,7 @@
                 [self showWarningTips:message];
             }
         } fail:^(NSURLSessionDataTask *task, NSError *error) {
-            [self hideHud:0];
+            [MBProgressHUD hideHUD];
             [self sendErrorWarning:error.localizedDescription];
         }];
     }];
@@ -228,10 +228,10 @@
     
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"您确定已完成该任务？" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
-            [self showHudMessage:@"修改中···"];
+            [MBProgressHUD showMessage:@"修改中···"];
             NSString *url = [NSString stringWithFormat:UpdateTaskStatus_Url,[ZCAccountTool account].userID,self.detialModel.pid,self.detialModel.id,status];
             [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                [self hideHud:0];
+                [MBProgressHUD hideHUD];
                 int code = [[[responseObject objectForKey:@"code"] description] intValue];
                 NSString *message = [[responseObject objectForKey:@"message"] description];
                 if (code == 1) {
@@ -242,7 +242,7 @@
                     [self sendErrorWarning:message];
                 }
             } fail:^(NSURLSessionDataTask *task, NSError *error) {
-                [self hideHud:0];
+                [MBProgressHUD hideHUD];
                 [self sendErrorWarning:error.localizedDescription];
             }];
         }
@@ -297,7 +297,7 @@
                     NSString *newName = userEmail.text;
                     NSString *url = [NSString stringWithFormat:UpdateTaskName_Url,[ZCAccountTool account].userID,self.detialModel.pid,self.detialModel.id,newName];
                     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                        [self hideHud:0];
+                        [MBProgressHUD hideHUD];
                         int code = [[[responseObject objectForKey:@"code"] description] intValue];
                         NSString *message = [[responseObject objectForKey:@"message"] description];
                         if (code == 1) {
@@ -324,9 +324,9 @@
         }else if(buttonIndex == 2){
             // 删除任务
             NSString *url = [NSString stringWithFormat:DeleteTask_URL,[ZCAccountTool account].userID,self.detialModel.pid,self.detialModel.id];
-            [self showHudMessage:@"删除任务中"];
+            [MBProgressHUD showMessage:@"删除任务中"];
             [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-                [self hideHud:0];
+                [MBProgressHUD hideHUD];
                 int code = [[[responseObject objectForKey:@"code"] description] intValue];
                 NSString *message = [responseObject objectForKey:@"message"];
                 if (code == 1) {
@@ -337,7 +337,7 @@
                     [self sendErrorWarning:message];
                 }
             } fail:^(NSURLSessionDataTask *task, NSError *error) {
-                [self hideHud:0];
+                [MBProgressHUD hideHUD];
                 [self sendErrorWarning:error.localizedDescription];
             }];
         }
@@ -657,10 +657,10 @@
 - (void)getData
 {
     NSString *url = [NSString stringWithFormat:TaskDetial_Url,[ZCAccountTool account].userID,self.listModel.id];
-    [self showHudMessage:@"正在加载···"];
+    [MBProgressHUD showMessage:@"正在加载···"];
     KGLog(@"任务详情url = %@",url);
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         if (code == 1) {
@@ -671,7 +671,7 @@
             [self showErrorTips:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
     

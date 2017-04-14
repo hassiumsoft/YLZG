@@ -228,13 +228,13 @@ static NSString *TextPlace = @"一句话描述您的群聊";
     NSString *membersJson = [self toJsonStr:self.memberArr];
     NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/create_group?uid=%@&name=%@&dsp=%@&public=0&maxusers=%@&allowinvites=%d&members=%@",account.userID,self.groupName,self.textField.text,maxMembers,self.switchV.on,membersJson];
     KGLog(@"url = %@",url);
-    [self showHudMessage:@"请稍后"];
+    [MBProgressHUD showMessage:@"请稍后"];
     self.button.enabled = NO;
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         KGLog(@"responseObject = %@",responseObject);
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         self.button.enabled = YES;
         if (code == 1) {
             UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
@@ -253,7 +253,7 @@ static NSString *TextPlace = @"一句话描述您的群聊";
             [self sendErrorWarning:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         self.button.enabled = YES;
         [self sendErrorWarning:error.localizedDescription];
     }];

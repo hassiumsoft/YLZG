@@ -24,7 +24,6 @@
     [super viewDidLoad];
     self.title = @"关注";
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SelectNoOneController) name:@"NoCareData" object:nil];
     
     self.delegate = self;
     self.view.backgroundColor = NorMalBackGroudColor;
@@ -37,6 +36,9 @@
     NineMeViewController *dongtaiVC = [[NineMeViewController alloc]init];
     [self addChildVC:dongtaiVC Title:@"模板管理" image:@"ico_personal" selectedImage:@"ico_personal_blue" Tag:3];
     self.selectedIndex = 1;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editAction)];
+    [self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
 }
 
 
@@ -99,14 +101,12 @@
 
 - (void)editAction
 {
-    NineAllMobanViewController *allMoban = self.childViewControllers[0];
-    MobanListModel *listModel = allMoban.listModel;
+    
     
     NineMyCareViewController *careMoban = self.childViewControllers[1];
     
     
     EditCareCategoryController *editCare = [EditCareCategoryController new];
-    editCare.listModel = listModel;
     editCare.SelectBlock = ^(){
         [careMoban getData];
     };

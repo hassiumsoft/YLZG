@@ -38,12 +38,12 @@
 {
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:SearchSpot_Url,account.userID];
-    [self showHudMessage:@"加载中···"];
+    [MBProgressHUD showMessage:@"加载中···"];
     
     [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"]description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         if (code == 1) {
             NSArray *tempArray = [responseObject objectForKey:@"spot"];
             for (int i = 0; i < tempArray.count; i++) {
@@ -57,7 +57,7 @@
             [self showErrorTips:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
     

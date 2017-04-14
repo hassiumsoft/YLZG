@@ -37,15 +37,18 @@
     }
     return self;
 }
-- (void)setCateModel:(NineCategoryModel *)cateModel
+
+
+- (void)setCareModel:(CareMobanModel *)careModel
 {
-    _cateModel = cateModel;
-    if (cateModel.isSelected) {
+    _careModel = careModel;
+    if (careModel.status) {
         _selectImageV.image = [UIImage imageNamed:@"EditControlSelected"];
     }else{
         _selectImageV.image = [UIImage imageNamed:@"EditControl"];
     }
-    self.textLabel.text = cateModel.name;
+    self.textLabel.text = careModel.name;
+    
 }
 - (void)setupSubViews
 {

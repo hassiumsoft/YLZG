@@ -636,9 +636,9 @@
     NSString *productJsonStr = [self toJsonStr:dictArray];
     
     NSString *allUrl = [NSString stringWithFormat:OpenOrder_Url_New,[ZCAccountTool account].userID,self.taoxiPriceField.text,self.taoxiNameStr,self.cusNameField.text,beizhu,self.cusPhoneField.text,productJsonStr,self.spotJsonStr,self.rudiField.text,self.ruceField.text,self.taoxiClassStr,self.cusTypeStr,self.cardNumStr,self.cusNameField2.text,self.cusPhoneField2.text];
-    [self showHudMessage:@"上传订单中···"];
+    [MBProgressHUD showMessage:@"上传订单中···"];
     [HTTPManager GET:allUrl params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         NSString *orderID = [[responseObject objectForKey:@"trade_id"] description];
@@ -668,7 +668,7 @@
         }
         
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
     

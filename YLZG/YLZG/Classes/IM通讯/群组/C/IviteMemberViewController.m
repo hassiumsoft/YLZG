@@ -126,7 +126,7 @@
         url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/kick_out_group?uid=%@&sid=%@&gid=%@&id=%@&members=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id,memberJson];
     }
     
-    [self showHudMessage:@"请稍后"];
+    [MBProgressHUD showMessage:@"请稍后"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
@@ -141,12 +141,12 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
             
         }else{
-            [self hideHud:0];
+            [MBProgressHUD hideHUD];
             NSString *kkk = [NSString stringWithFormat:@"[%@]:建议您每次选择一个成员",message];
             [self sendErrorWarning:kkk];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self showErrorTips:error.localizedDescription];
     }];
     

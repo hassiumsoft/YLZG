@@ -389,6 +389,8 @@
 		3BA06F241DCC512C000886A8 /* MoreToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F1F1DCC512C000886A8 /* MoreToolsViewController.m */; };
 		3BA06F251DCC512C000886A8 /* ToolsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F211DCC512C000886A8 /* ToolsModel.m */; };
 		3BA06F261DCC512C000886A8 /* ToolsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA06F231DCC512C000886A8 /* ToolsTableViewCell.m */; };
+		3BA603381EA0C4B80001F1DB /* ContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA603371EA0C4B80001F1DB /* ContactListViewController.m */; };
+		3BA6033B1EA0CA8B0001F1DB /* CareMobanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA6033A1EA0CA8B0001F1DB /* CareMobanModel.m */; };
 		3BA8D9551DEEB7E300645405 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA8D9541DEEB7E300645405 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3BA8D9631DEEC0DA00645405 /* OpenOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D9621DEEC0DA00645405 /* OpenOrderViewController.m */; };
 		3BA8D9691DEEC1B900645405 /* LixianOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D9681DEEC1B900645405 /* LixianOrderController.m */; };
@@ -428,7 +430,6 @@
 		3BCF39A51D9E320C00BEE236 /* NormalTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39A41D9E320C00BEE236 /* NormalTableCell.m */; };
 		3BCF39A81D9E322F00BEE236 /* ImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39A71D9E322F00BEE236 /* ImageBrowser.m */; };
 		3BCF39BF1D9E3D5500BEE236 /* ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39B41D9E3D5500BEE236 /* ApplyViewController.m */; };
-		3BCF39C01D9E3D5500BEE236 /* ContactListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39B61D9E3D5500BEE236 /* ContactListViewController.m */; };
 		3BCF39C11D9E3D5500BEE236 /* ApplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39B91D9E3D5500BEE236 /* ApplyModel.m */; };
 		3BCF39C21D9E3D5500BEE236 /* ColleaguesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39BB1D9E3D5500BEE236 /* ColleaguesModel.m */; };
 		3BCF39C31D9E3D5500BEE236 /* ContactersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCF39BD1D9E3D5500BEE236 /* ContactersModel.m */; };
@@ -1269,6 +1270,10 @@
 		3BA06F211DCC512C000886A8 /* ToolsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsModel.m; sourceTree = "<group>"; };
 		3BA06F221DCC512C000886A8 /* ToolsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsTableViewCell.h; sourceTree = "<group>"; };
 		3BA06F231DCC512C000886A8 /* ToolsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsTableViewCell.m; sourceTree = "<group>"; };
+		3BA603361EA0C4B80001F1DB /* ContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListViewController.h; sourceTree = "<group>"; };
+		3BA603371EA0C4B80001F1DB /* ContactListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListViewController.m; sourceTree = "<group>"; };
+		3BA603391EA0CA8B0001F1DB /* CareMobanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CareMobanModel.h; sourceTree = "<group>"; };
+		3BA6033A1EA0CA8B0001F1DB /* CareMobanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CareMobanModel.m; sourceTree = "<group>"; };
 		3BA8D9541DEEB7E300645405 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		3BA8D9611DEEC0DA00645405 /* OpenOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenOrderViewController.h; sourceTree = "<group>"; };
 		3BA8D9621DEEC0DA00645405 /* OpenOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenOrderViewController.m; sourceTree = "<group>"; };
@@ -1348,8 +1353,6 @@
 		3BCF39A71D9E322F00BEE236 /* ImageBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBrowser.m; sourceTree = "<group>"; };
 		3BCF39B31D9E3D5500BEE236 /* ApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyViewController.h; sourceTree = "<group>"; };
 		3BCF39B41D9E3D5500BEE236 /* ApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyViewController.m; sourceTree = "<group>"; };
-		3BCF39B51D9E3D5500BEE236 /* ContactListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListViewController.h; sourceTree = "<group>"; };
-		3BCF39B61D9E3D5500BEE236 /* ContactListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListViewController.m; sourceTree = "<group>"; };
 		3BCF39B81D9E3D5500BEE236 /* ApplyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyModel.h; sourceTree = "<group>"; };
 		3BCF39B91D9E3D5500BEE236 /* ApplyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyModel.m; sourceTree = "<group>"; };
 		3BCF39BA1D9E3D5500BEE236 /* ColleaguesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColleaguesModel.h; sourceTree = "<group>"; };
@@ -3254,6 +3257,8 @@
 				3B85316D1DF8F9B800AB9C4F /* ZhuanfaListModel.m */,
 				3B1FD3E31E7A3AD200DA6EE9 /* TeamClassModel.h */,
 				3B1FD3E41E7A3AD200DA6EE9 /* TeamClassModel.m */,
+				3BA603391EA0CA8B0001F1DB /* CareMobanModel.h */,
+				3BA6033A1EA0CA8B0001F1DB /* CareMobanModel.m */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -3907,8 +3912,8 @@
 		3BCF39B21D9E3D5500BEE236 /* C */ = {
 			isa = PBXGroup;
 			children = (
-				3BCF39B51D9E3D5500BEE236 /* ContactListViewController.h */,
-				3BCF39B61D9E3D5500BEE236 /* ContactListViewController.m */,
+				3BA603361EA0C4B80001F1DB /* ContactListViewController.h */,
+				3BA603371EA0C4B80001F1DB /* ContactListViewController.m */,
 				3B3BBFD31DB4BF3C00C9E2FD /* FriendDetialController.h */,
 				3B3BBFD41DB4BF3C00C9E2FD /* FriendDetialController.m */,
 				3B3BBFA01DB47B7500C9E2FD /* AddFriendViewController.h */,
@@ -4147,7 +4152,7 @@
 					3B07D8C21D956B0D00B657F6 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = HEG7GWP2LQ;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -4375,7 +4380,6 @@
 				3B9E16F71DD2C13D0028C72F /* TodayFinaceModel.m in Sources */,
 				3B343B461DEBFECC00474549 /* ProduceFileVController.m in Sources */,
 				3B8531D31DF9330B00AB9C4F /* WSImageBroswerVC.m in Sources */,
-				3BCF39C01D9E3D5500BEE236 /* ContactListViewController.m in Sources */,
 				3B535ADE1E0390B20023F618 /* CheckWorkViewController.m in Sources */,
 				3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */,
 				3B4C10A91DC85DDC00827D4F /* YejiDetialViewController.m in Sources */,
@@ -4394,6 +4398,7 @@
 				3B85319D1DF8F9B800AB9C4F /* EditCareTableViewCell.m in Sources */,
 				3BCF39EC1D9E5AD200BEE236 /* NameViewController.m in Sources */,
 				3B70BB311E612E8300C19901 /* FSActionSheetItem.m in Sources */,
+				3BA603381EA0C4B80001F1DB /* ContactListViewController.m in Sources */,
 				3B343B901DEC017A00474549 /* TaskProduceListModel.m in Sources */,
 				3B9E17001DD2ED3F0028C72F /* TodayFinaceCell.m in Sources */,
 				3B7ABCF41DB6176600F3D12B /* EMCDDeviceManagerBase.m in Sources */,
@@ -4780,6 +4785,7 @@
 				3B3BBFE21DB4D2F800C9E2FD /* CallViewController.m in Sources */,
 				3BCF39721D9DF42100BEE236 /* HuanxinContactManager.m in Sources */,
 				3B8531971DF8F9B800AB9C4F /* NineCareModel.m in Sources */,
+				3BA6033B1EA0CA8B0001F1DB /* CareMobanModel.m in Sources */,
 				3BA06F261DCC512C000886A8 /* ToolsTableViewCell.m in Sources */,
 				3B3BBFC31DB4861400C9E2FD /* GroupNameViewController.m in Sources */,
 				3B4C10351DC85DDC00827D4F /* MonthOutComeController.m in Sources */,
@@ -4954,8 +4960,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YLZG/YLZG.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = HEG7GWP2LQ;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = $SRCROOT/YLZG/Classes/PCH/YLZGHeader.h;
 				INFOPLIST_FILE = YLZG/Info.plist;
@@ -4969,8 +4975,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiomanager.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8d9176df-030f-4869-93a5-82d8dbee8024";
+				PROVISIONING_PROFILE_SPECIFIER = YLZG_STORE_Profile;
 			};
 			name = Debug;
 		};
@@ -4980,8 +4986,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YLZG/YLZG.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = HEG7GWP2LQ;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = $SRCROOT/YLZG/Classes/PCH/YLZGHeader.h;
 				INFOPLIST_FILE = YLZG/Info.plist;
@@ -4995,8 +5001,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiomanager.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "8d9176df-030f-4869-93a5-82d8dbee8024";
+				PROVISIONING_PROFILE_SPECIFIER = YLZG_STORE_Profile;
 			};
 			name = Release;
 		};

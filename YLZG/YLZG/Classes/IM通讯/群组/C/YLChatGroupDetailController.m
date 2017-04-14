@@ -236,7 +236,7 @@
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&maxusers=%@",account.userID,self.groupModel.id,self.groupModel.gid,count];
     
-    [self showHudMessage:@"请稍后"];
+    [MBProgressHUD showMessage:@"请稍后"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
@@ -245,19 +245,19 @@
             
             
             [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
-                [self hideHud:0];
+                [MBProgressHUD hideHUD];
                 self.groupModel.maxusers = @"200";
                 // 修改缓存
                 [self.tableView reloadData];
             }];
             
         }else{
-            [self hideHud:0];
+            [MBProgressHUD hideHUD];
             [self showErrorTips:message];
         }
         
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         // sendErrorWarning
         [self sendErrorWarning:error.localizedDescription];
     }];
@@ -312,7 +312,7 @@
             // 退出群聊
             ZCAccount *account = [ZCAccountTool account];
             NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/quit_group?uid=%@&gid=%@&id=%@",account.userID,self.groupModel.gid,self.groupModel.id];
-            [self showHudMessage:@"请稍后"];
+            [MBProgressHUD showMessage:@"请稍后"];
             
             [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                 
@@ -322,13 +322,13 @@
                     // 清除一些缓存
                     
                     [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
-                        [self hideHud:0];
+                        [MBProgressHUD hideHUD];
                         [[NSNotificationCenter defaultCenter] postNotificationName:HXRemoveAllMessages object:self.groupModel.gid];
                         [self.navigationController popToRootViewControllerAnimated:YES];
                     }];
                     
                 }else{
-                    [self hideHud:0];
+                    [MBProgressHUD hideHUD];
                     
                 }
                 
@@ -349,7 +349,7 @@
             // 解散群聊
             ZCAccount *account = [ZCAccountTool account];
             NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/dismiss_group?uid=%@&sid=%@&gid=%@&id=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id];
-            [self showHudMessage:@"请稍后"];
+            [MBProgressHUD showMessage:@"请稍后"];
             
             [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                 
@@ -359,13 +359,13 @@
                     // 清除一些缓存
                     
                     [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
-                        [self hideHud:0];
+                        [MBProgressHUD hideHUD];
                         [[NSNotificationCenter defaultCenter] postNotificationName:HXRemoveAllMessages object:self.groupModel.gid];
                         [self.navigationController popToRootViewControllerAnimated:YES];
                     }];
                     
                 }else{
-                    [self hideHud:0];
+                    [MBProgressHUD hideHUD];
                     
                 }
                 

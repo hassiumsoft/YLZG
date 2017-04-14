@@ -63,11 +63,11 @@
 {
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:YejiURL,month,account.userID];
-    [self showHudMessage:@"加载中"];
+    [MBProgressHUD showMessage:@"加载中"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         // 告诉子控制器刷新数据
         NSArray *childArray = self.childViewControllers;
         
@@ -100,7 +100,7 @@
         }
         
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self showErrorTips:error.localizedDescription];
     }];
 }

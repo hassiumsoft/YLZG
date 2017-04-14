@@ -175,12 +175,12 @@
 }
 - (void)updataBirthDay:(NSString *)birth
 {
-    [self showHudMessage:@"更新中···"];
+    [MBProgressHUD showMessage:@"更新中···"];
     ZCAccount *account = [ZCAccountTool account];
     NSString *str = [NSString stringWithFormat:UploadBirthURL,birth,account.userID];
     [HTTPManager GET:str params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         if (status == 1) {
             [[UserInfoManager sharedManager] updateWithKey:UUbirth Value:birth];
             self.userModel = [[UserInfoManager sharedManager] getUserInfo];
@@ -192,7 +192,7 @@
             [self sendErrorWarning:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
 }

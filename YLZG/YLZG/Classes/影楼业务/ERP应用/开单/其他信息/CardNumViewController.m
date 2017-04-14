@@ -42,13 +42,14 @@
 - (void)getData:(NSString *)searchText
 {
     NSString *url = [NSString stringWithFormat:CardNum_URL,[ZCAccountTool account].userID,searchText];
-    [self showHudMessage:@"查询中···"];
+    [MBProgressHUD showMessage:@"查询中···"];
+    
     [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         
         if (code == 1) {
-            [self hideHud:0];
+            [MBProgressHUD hideHUD];
             NSArray *result = [responseObject objectForKey:@"result"];
             
             if (result.count >= 1) {
@@ -60,13 +61,13 @@
                 [self.tableView reloadData];
             }else{
                 [self showErrorTips:@"查无此卡"];
-                [self hideHud:2];
+                [MBProgressHUD hideHUD];
             }
         }else{
-            [self showErrorTips:message];
+            [MBProgressHUD showError:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
 }

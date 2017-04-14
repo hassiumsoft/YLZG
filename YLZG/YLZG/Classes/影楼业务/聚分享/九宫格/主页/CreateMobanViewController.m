@@ -100,11 +100,11 @@
         
         [param setObject:baseStr forKey:key];
     }
-    [self showHudMessage:@"正在上传···"];
+    [MBProgressHUD showMessage:@"正在上传···"];
     NSLog(@"参数param = %@",param);
     
     [HTTPManager POST:url params:param success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         KGLog(@"responseObject = %@",responseObject);
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
@@ -122,7 +122,7 @@
             [self sendErrorWarning:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
     

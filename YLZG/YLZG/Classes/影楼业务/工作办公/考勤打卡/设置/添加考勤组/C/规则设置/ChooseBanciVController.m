@@ -62,7 +62,7 @@
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:AllBanci_Url,account.userID];
     KGLog(@"url == %@",url);
-    [self showHudMessage:@"努力加载中···"];
+    [MBProgressHUD showMessage:@"努力加载中···"];
 
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -206,7 +206,7 @@
                 ZCAccount *account = [ZCAccountTool account];
                 NSString *url = [NSString stringWithFormat:DeleteOneBanci_Url,account.userID,model.classid];
                 KGLog(@"url == %@",url);
-                [self showHudMessage:@"处理中···"];
+                [MBProgressHUD showMessage:@"处理中···"];
                 [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 
                     [MBProgressHUD hideHUD];

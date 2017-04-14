@@ -52,11 +52,11 @@
     
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:SearchTaoxi_URL,account.userID];
-    [self showHudMessage:@"正在加载···"];
+    [MBProgressHUD showMessage:@"正在加载···"];
     [HTTPManager GETCache:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         if (status == 1) {
             // 解析成功
             NSArray *jsonArr = [responseObject objectForKey:@"result"];
@@ -80,7 +80,7 @@
             [self sendErrorWarning:@"获取失败"];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
     
@@ -205,7 +205,7 @@
 #pragma mark - 先获取全部套系下产品，为离线做准备
 - (void)lixianAction
 {
-    [self showHudMessage:@"操作中"];
+    [MBProgressHUD showMessage:@"操作中"];
     
     NSMutableArray *taoxiNameArr = [NSMutableArray array];
     NSMutableArray *tempArr = [NSMutableArray array];
@@ -227,7 +227,7 @@
             [HTTPManager GETCache:str params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
                 int status = [[[responseObject objectForKey:@"code"] description] intValue];
                 if (i == taoxiNameArr.count - 1) {
-                    [self hideHud:0];
+                    [MBProgressHUD hideHUD];
                     [self sendErrorWarning:@"产品列表缓存成功，在外出无网络状况下您也可实现开单，缓存时间48小时。"];
                 }
                 if (status == 1) {

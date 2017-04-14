@@ -290,9 +290,9 @@
         checkStr = @"";
     }
     NSString *url = [NSString stringWithFormat:CreateNewTask_Url,[ZCAccountTool account].userID,self.produceID,self.nameField.text,self.fuzerID,self.endDateStr,checkStr,self.guanzhuArrJson,self.taskDescField.text];
-    [self showHudMessage:@"创建中···"];
+    [MBProgressHUD showMessage:@"创建中···"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         
@@ -310,10 +310,10 @@
                 
             }];
         }else{
-            [self showHudMessage:message];
+            [MBProgressHUD showMessage:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
 }

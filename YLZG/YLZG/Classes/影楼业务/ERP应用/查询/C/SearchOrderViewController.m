@@ -74,11 +74,11 @@
     // 取出登录成功的uid
     ZCAccount * account = [ZCAccountTool account];
     NSString * url = [NSString stringWithFormat:SEARCH_URL,self.searchBar.text,account.userID];
-    [self showHudMessage:@"查询中···"];
+    [MBProgressHUD showMessage:@"查询中···"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         if (code == 1) {
             // 如果multi是1,返回列表成功;0表示显示详情页面,3表示失败
             int multi = [[[responseObject objectForKey:@"multi"] description] intValue];
@@ -113,7 +113,7 @@
             
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
     

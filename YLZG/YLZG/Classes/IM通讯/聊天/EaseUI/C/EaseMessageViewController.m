@@ -691,7 +691,7 @@
         return;
     }
     
-    [self showHudMessage:@"下载中"];
+    [MBProgressHUD showMessage:@"下载中"];
     [[EMClient sharedClient].chatManager downloadMessageAttachment:model.message progress:^(int progress) {
     
     } completion:^(EMMessage *message, EMError *error) {
@@ -730,7 +730,7 @@
                     return;
                 }
             }
-            [weakSelf showHudMessage:@"下载图片中···"];
+            
             
             [[EMClient sharedClient].chatManager downloadMessageAttachment:model.message progress:^(int progress) {
                 NSLog(@"progress = %d",progress);

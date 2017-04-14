@@ -117,11 +117,11 @@
     // 取出登录成功的uid
     ZCAccount * account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:SEARCHDEATIL_URL,self.detailTradeID,account.userID];
-    [self showHudMessage:@"加载中"];
+    [MBProgressHUD showMessage:@"加载中"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         self.dict = responseObject;
         int code = [[[self.dict objectForKey:@"code"] description] intValue];
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         if (code == 1) {
             int multi = [[[self.dict objectForKey:@"multi"] description] intValue];
             
@@ -138,7 +138,7 @@
             [self sendErrorWarning:self.dict[@"message"]];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
     

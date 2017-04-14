@@ -174,11 +174,11 @@
     }
     NSString *jsonStr = [self toJsonStr:mem];
     NSString *url = [NSString stringWithFormat:CreateProduce_URL,[ZCAccountTool account].userID,self.titleField.text,jsonStr];
-    [self showHudMessage:@""];
+    [MBProgressHUD showMessage:@""];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         if (code == 1) {
             
             if (self.ReloadDataBlock) {
@@ -197,7 +197,7 @@
             [self sendErrorWarning:message];
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self showErrorTips:error.localizedDescription];
     }];
 }

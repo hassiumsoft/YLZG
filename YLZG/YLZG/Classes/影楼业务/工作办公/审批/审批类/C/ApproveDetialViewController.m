@@ -84,12 +84,12 @@
 - (void)getData
 {
     ZCAccount *account = [ZCAccountTool account];
-    [self showHudMessage:@"加载中···"];
+    [MBProgressHUD showMessage:@"加载中···"];
     NSString *url = [NSString stringWithFormat:ShenpiWaitDeatil_URL,self.model.id,self.model.kind,account.userID];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
         
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         if (status == 1) {
             
             NSDictionary *dicionary = [responseObject objectForKey:@"result"];
@@ -102,7 +102,7 @@
             
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
     

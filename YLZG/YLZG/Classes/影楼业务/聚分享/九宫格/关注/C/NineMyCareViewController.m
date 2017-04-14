@@ -43,15 +43,19 @@
     }];
     [self.tableView.mj_header beginRefreshing];
     
+    UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 2)];
+    footView.backgroundColor = self.view.backgroundColor;
+    self.tableView.tableFooterView = footView;
+    
 }
 - (void)editAction
 {
     EditCareCategoryController *editVC = [EditCareCategoryController new];
-    editVC.listModel = self.listModel;
     editVC.SelectBlock = ^(){
         [self.tableView.mj_header beginRefreshing];
     };
     [self.navigationController pushViewController:editVC animated:YES];
+    
 }
 - (void)getData
 {
@@ -73,7 +77,7 @@
                 [self.array insertObject:teamCare atIndex:0];
                 [self.tableView reloadData];
             }else{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"NoCareData" object:nil];
+                [MBProgressHUD showError:@"您还没关注，点击右上角关注吧"];
             }
         }else{
             [self sendErrorWarning:message];
@@ -128,7 +132,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *footV = [UIView new];
-    footV.backgroundColor = [UIColor whiteColor];
+    footV.backgroundColor = [UIColor clearColor];
     return footV;
 }
 

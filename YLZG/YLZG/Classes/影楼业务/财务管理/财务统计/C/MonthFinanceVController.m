@@ -75,12 +75,12 @@ static CGFloat const EYWTitleHeight = 44;
 - (void)loadData:(NSString *)month
 {
     
-    [self showHudMessage:@"加载中···"];
+    [MBProgressHUD showMessage:@"加载中···"];
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/monthfinance/query?date=%@&uid=%@",self.changeMonth,account.userID];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         if (status == 1) {
             
             NSDictionary *incomeDic = [responseObject objectForKey:@"in"];
@@ -102,7 +102,7 @@ static CGFloat const EYWTitleHeight = 44;
             KGLog(@"message = %@",message);
         }
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         [self sendErrorWarning:error.localizedDescription];
     }];
     

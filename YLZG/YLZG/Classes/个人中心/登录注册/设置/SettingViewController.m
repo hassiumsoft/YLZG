@@ -165,7 +165,7 @@
 - (void)clearSDWebImageCache:(NSString *)path DeleteBlock:(DeleteCompleteBlock)deleBlock
 {
     
-    [self showHudMessage:nil];
+    [MBProgressHUD showMessage:nil];
     NSFileManager *fileManager=[NSFileManager defaultManager];
     
     if ([fileManager fileExistsAtPath:path]) {
@@ -185,12 +185,12 @@
     [[SDImageCache sharedImageCache] cleanDisk];
     [YLNotificationCenter postNotificationName:HXUpdataContacts object:nil];
     [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
         deleBlock();
     }];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self hideHud:0];
+        [MBProgressHUD hideHUD];
     });
     
 }
@@ -200,7 +200,7 @@
     LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"前后账号若一致，则不会删除您之前的聊天记录\r并且更新其他缓存数据。" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
             __weak SettingViewController *weakSelf = self;
-            [self showHudMessage:@"退出登录"];
+            [MBProgressHUD showMessage:@"退出登录"];
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 EMError *error = [[EMClient sharedClient] logout:YES];
                 dispatch_async(dispatch_get_main_queue(), ^{

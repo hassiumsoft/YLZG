@@ -106,7 +106,7 @@ static SendLocaltionController *defaultLocation = nil;
 
 - (void)mapView:(MKMapView *)mapView didFailToLocateUserWithError:(NSError *)error
 {
-    [self hideHud:0];
+    [MBProgressHUD hideHUD];
     if (error.code == 0) {
         [self showErrorTips:@"定位失败，\r请检查设置。"];
     }
@@ -148,7 +148,7 @@ static SendLocaltionController *defaultLocation = nil;
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
     
-    [self showHudMessage:@"获取中···"];
+    [MBProgressHUD showMessage:@"获取中···"];
 }
 
 -(void)createAnnotationWithCoords:(CLLocationCoordinate2D)coords
@@ -165,7 +165,7 @@ static SendLocaltionController *defaultLocation = nil;
 
 - (void)removeToLocation:(CLLocationCoordinate2D)locationCoordinate
 {
-    [self hideHud:0];
+    [MBProgressHUD hideHUD];
     
     _currentLocationCoordinate = locationCoordinate;
     float zoomLevel = 0.01;
@@ -201,7 +201,7 @@ static SendLocaltionController *defaultLocation = nil;
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self hideHud:0];
+    [MBProgressHUD hideHUD];
 }
 
 @end

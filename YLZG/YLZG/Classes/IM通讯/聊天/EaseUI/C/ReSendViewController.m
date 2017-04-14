@@ -130,7 +130,7 @@
                 image = [UIImage imageWithContentsOfFile:self.messageModel.fileLocalPath];
             }
             if (!image) {
-                [self hideHud:0];
+                [MBProgressHUD hideHUD];
                 [self showErrorTips:@"转发失败"];
                 [self performSelector:@selector(backAction) withObject:nil afterDelay:0.5];
                 return;
