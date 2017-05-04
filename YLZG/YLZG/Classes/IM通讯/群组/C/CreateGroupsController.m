@@ -187,7 +187,7 @@ static NSString *TextPlace = @"一句话描述您的群聊";
 
 - (void)setupSubViews
 {
-//    http://zsylou.wxwkf.com/index.php/home/easemob/create_group?
+//    http://192.168.0.158/index.php/home/easemob/create_group?
 //    uid=144
 //    &name=群组名称
 //    &dsp=群组描述
@@ -226,7 +226,7 @@ static NSString *TextPlace = @"一句话描述您的群聊";
     }
     ZCAccount *account = [ZCAccountTool account];
     NSString *membersJson = [self toJsonStr:self.memberArr];
-    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/create_group?uid=%@&name=%@&dsp=%@&public=0&maxusers=%@&allowinvites=%d&members=%@",account.userID,self.groupName,self.textField.text,maxMembers,self.switchV.on,membersJson];
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/create_group?uid=%@&name=%@&dsp=%@&public=0&maxusers=%@&allowinvites=%d&members=%@",account.userID,self.groupName,self.textField.text,maxMembers,self.switchV.on,membersJson];
     KGLog(@"url = %@",url);
     [MBProgressHUD showMessage:@"请稍后"];
     self.button.enabled = NO;
@@ -307,7 +307,7 @@ static NSString *TextPlace = @"一句话描述您的群聊";
 /**
 接口名称：创建群组
 功能：创建聊天群组
-示例地址：http://zsylou.wxwkf.com/index.php/home/easemob/create_group?uid=144&name=群组名称&dsp=群组描述&public=0&maxusers=200&allowinvites=1&members=[{"name":"aermei_dapeng","sid":"9","uid":"147"},{"name":"aermei_lele","sid":"9","uid":"326"}]
+示例地址：http://192.168.0.158/index.php/home/easemob/create_group?uid=144&name=群组名称&dsp=群组描述&public=0&maxusers=200&allowinvites=1&members=[{"name":"aermei_dapeng","sid":"9","uid":"147"},{"name":"aermei_lele","sid":"9","uid":"326"}]
 必选参数：
 uid   ——————> 用户UID
 name    ————> 用户UID

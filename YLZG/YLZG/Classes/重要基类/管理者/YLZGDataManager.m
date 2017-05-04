@@ -158,7 +158,7 @@ static YLZGDataManager *controller = nil;
 - (void)loadUnApplyApplyFriendArr:(ApplyFriend)ApplyFriendArr{
     
     ZCAccount *account = [ZCAccountTool account];
-    NSString *URL = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/get_msg?uid=%@",account.userID];
+    NSString *URL = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/get_msg?uid=%@",account.userID];
     
     UserInfoModel *myModel = [[UserInfoManager sharedManager] getUserInfo];
     [HTTPManager GET:URL params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -191,7 +191,7 @@ static YLZGDataManager *controller = nil;
     }
     
     ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/my_groups_list?uid=%@",account.userID];
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/my_groups_list?uid=%@",account.userID];
     KGLog(@"url = %@",url);
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"]description] intValue];
@@ -212,6 +212,75 @@ static YLZGDataManager *controller = nil;
     }];
     
 }
+#pragma mark - 获取通讯录好友
+- (void)refreshContactersSuccess:(void (^)(NSArray *))success Fail:(void (^)(NSString *))fail
+{
+    ZCAccount *account = [ZCAccountTool account];
+    if (!account) {
+        fail(@"用户未登录");
+        return;
+    }
+    NSArray *modelArray = [StudioContactManager getAllStudiosContactsInfo];
+    if (modelArray.count >= 1) {
+        success(modelArray);
+    }
+    
+    NSString *url = [NSString stringWithFormat:ContactList_Url,account.userID];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[NSString stringWithFormat:@"message"] description];
+        
+        if (code == 1) {
+            NSArray *result = [responseObject objectForKey:@"result"];
+            NSArray *modelArray = [ColleaguesModel mj_objectArrayWithKeyValuesArray:result];
+            
+            if (modelArray.count >= 1) {
+                [StudioContactManager deleteAllInfo];
+                for (int i = 0; i < modelArray.count; i++) {
+                    ColleaguesModel *collModel = modelArray[i];
+                    [StudioContactManager saveAllStudiosContactsInfo:collModel];
+                }
+                
+                success(modelArray);
+            }else{
+                fail(@"无数据");
+            }
+            
+        }else{
+            fail(message);
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        fail(error.localizedDescription);
+    }];
+}
+#pragma mark - 根据昵称模糊查询对方信息
+- (void)searchUserByName:(NSString *)nickName Success:(void (^)(NSArray *))Success Fail:(void (^)(NSString *))fail
+{
+    ZCAccount *account = [ZCAccountTool account];
+    if (!account) {
+        fail(@"用户未登录");
+        return;
+    }
+    NSString *url = [NSString stringWithFormat:SearchUser_URL,account.userID,nickName];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"responseObject = %@",responseObject);
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            NSArray *result = [responseObject objectForKey:@"result"];
+            NSArray *contactArray = [ContactersModel mj_objectArrayWithKeyValuesArray:result];
+            if (result.count >= 1) {
+                Success(contactArray);
+            }else{
+                fail(@"查无此人");
+            }
+        }else{
+            fail(message);
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        fail(error.localizedDescription);
+    }];
+}
 - (void)getOneStudioByUID:(NSString *)userID Block:(StuduoModelBlock)modelBlock
 {
     NSArray *allMembers = [self getAllFriendInfo];
@@ -224,8 +293,8 @@ static YLZGDataManager *controller = nil;
             }
         }
     }
-    
 }
+
 - (void)getOneStudioByUserName:(NSString *)userName Block:(StuduoModelBlock)modelBlock
 {
     
@@ -260,7 +329,6 @@ static YLZGDataManager *controller = nil;
 - (NSMutableArray *)getAllFriendInfo
 {
     
-//    NSArray *huanxinArr = [HuanxinContactManager getAllHuanxinContactsInfo];
     
     // 暂时只收录同事数组
     NSArray *studioArr = [StudioContactManager getAllStudiosContactsInfo];
@@ -273,15 +341,6 @@ static YLZGDataManager *controller = nil;
             [sumArr addObject:colleModel];
         }
     }
-    
-//    ZCAccount *account = [ZCAccountTool account];
-//    for (int i = 0; i < sumArr.count; i++) {
-//        ContactersModel *model = sumArr[i];
-//        if ([account.username isEqualToString:model.name]) {
-//            [sumArr removeObjectAtIndex:i];
-//        }
-//    }
-//    
     
     return sumArr;
     

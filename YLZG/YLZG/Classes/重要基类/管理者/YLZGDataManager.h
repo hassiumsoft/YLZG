@@ -38,6 +38,10 @@ typedef void(^ShareUrlBlock)(NSString *url);
 - (NSMutableArray *)getAllFriendInfo;
 /** 通过一个影楼ID获取一个用户的信息 */
 - (void)getOneStudioByUserName:(NSString *)userName Block:(StuduoModelBlock)modelBlock;
+/** 获取并保存通讯录好友 */
+- (void)refreshContactersSuccess:(void (^)(NSArray *userArray))success Fail:(void (^)(NSString *errorMsg))fail;
+/** 根据昵称模糊查询对方信息 */
+- (void)searchUserByName:(NSString *)nickName Success:(void (^)(NSArray *userArray))Success Fail:(void (^)(NSString *errorMsg))fail;
 /** 通过一个影楼UID获取一个用户的信息 */
 - (void)getOneStudioByUID:(NSString *)userID Block:(StuduoModelBlock)modelBlock;
 /** 获取分享链接 */

@@ -56,7 +56,7 @@
         avatarURLPath = ,
         nickname =
     }````````model.type = 0`````````lastReciveMsg.ext`````````lastReciveMsg.from = {
-        avatarURLPath = http://zsylou.wxwkf.com/Uploads/avatar/58031b9aeed58.jpeg,
+        avatarURLPath = http://192.168.0.158/Uploads/avatar/58031b9aeed58.jpeg,
         nickname = 管理员,
         uid = 159
     }

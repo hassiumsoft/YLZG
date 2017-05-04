@@ -185,7 +185,7 @@
                 [copy_self.navigationController pushViewController:userInfo animated:YES];
             }else{
                 FriendDetialController *friend = [FriendDetialController new];
-                friend.userName = model.name;
+                friend.contactModel = model;
                 friend.isRootPush = YES;
                 [copy_self.navigationController pushViewController:friend animated:YES];
             }
@@ -234,7 +234,7 @@
 - (void)changeMaxMembers:(NSString *)count
 {
     ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&maxusers=%@",account.userID,self.groupModel.id,self.groupModel.gid,count];
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&maxusers=%@",account.userID,self.groupModel.id,self.groupModel.gid,count];
     
     [MBProgressHUD showMessage:@"请稍后"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -311,7 +311,7 @@
         if (buttonIndex == 1) {
             // 退出群聊
             ZCAccount *account = [ZCAccountTool account];
-            NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/quit_group?uid=%@&gid=%@&id=%@",account.userID,self.groupModel.gid,self.groupModel.id];
+            NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/quit_group?uid=%@&gid=%@&id=%@",account.userID,self.groupModel.gid,self.groupModel.id];
             [MBProgressHUD showMessage:@"请稍后"];
             
             [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
@@ -348,7 +348,7 @@
         if (buttonIndex == 1) {
             // 解散群聊
             ZCAccount *account = [ZCAccountTool account];
-            NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/dismiss_group?uid=%@&sid=%@&gid=%@&id=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id];
+            NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/dismiss_group?uid=%@&sid=%@&gid=%@&id=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id];
             [MBProgressHUD showMessage:@"请稍后"];
             
             [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
@@ -432,7 +432,7 @@
                     [copy_self.navigationController pushViewController:userInfo animated:YES];
                 }else{
                     FriendDetialController *friend = [FriendDetialController new];
-                    friend.userName = model.name;
+                    friend.contactModel = model;
                     friend.isRootPush = YES;
                     [copy_self.navigationController pushViewController:friend animated:YES];
                 }

@@ -81,7 +81,7 @@
 - (void)getData:(BOOL)isFirst
 {
     ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/my_groups_list?uid=%@",account.userID];
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/my_groups_list?uid=%@",account.userID];
     KGLog(@"url = %@",url);
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [self.tableView.mj_header endRefreshing];

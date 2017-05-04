@@ -21,6 +21,7 @@
 #import "ChatViewController.h"
 #import "GroupListManager.h"
 #import "EMCDDeviceManager.h"
+#import "ClearCacheTool.h"
 #import "HomeNavigationController.h"
 #import "EaseConvertToCommonEmoticonsHelper.h"
 
@@ -65,6 +66,12 @@ static NSString *kGroupName = @"GroupName";
     [self loadUnreadMessageCount];
     // 刚进来获取未处理的审批数
     [self loadUntreatedApplyCount];
+    // 获取通讯录信息
+    [[YLZGDataManager sharedManager] refreshContactersSuccess:^(NSArray *userArray) {
+        _contactVC.array = userArray;
+    } Fail:^(NSString *errorMsg) {
+        [MBProgressHUD showError:errorMsg];
+    }];
     
     [YLZGChatManager sharedManager].chatListVC = _chatListVC;//消息列表
     [YLZGChatManager sharedManager].contactListVC = _contactVC;// 通讯录
@@ -76,7 +83,8 @@ static NSString *kGroupName = @"GroupName";
 {
     self.selectedIndex = 0;
     self.title = @"我的影楼";
-    
+    NSString *path = [ClearCacheTool docPath];
+    NSLog(@"根目录 = %@",path);
     if ([[YLZGDataManager sharedManager] isSpringFestival]) {
         // 春节期间
         // 首页

@@ -113,19 +113,22 @@
         
         
         UIImageView *imageV = [[UIImageView alloc]initWithImage:[UIImage imageWithColor:HWRandomColor]];
-        
         [imageV setFrame:frame];
+        imageV.userInteractionEnabled = YES;
+        imageV.contentMode = UIViewContentModeScaleAspectFill;
+        [imageV setContentScaleFactor:[UIScreen mainScreen].scale];
+        imageV.layer.masksToBounds = YES;
+        imageV.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         imageV.tag = i;
         
         
         [imageV sd_setImageWithURL:[NSURL URLWithString:imageModel.url] placeholderImage:[self imageWithBgColor:HWRandomColor] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            
             if (!error) {
                 LoadCount++;
             }
         }];
         
-        imageV.userInteractionEnabled = YES;
+        
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
             [XLPhotoBrowser showPhotoBrowserWithImages:urlArray currentImageIndex:imageV.tag];
         }];

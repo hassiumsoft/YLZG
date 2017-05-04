@@ -64,13 +64,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ZhuanfaListModel *listModel = self.countModel.personlist[indexPath.row];
-    FriendDetialController *friend = [FriendDetialController new];
-    [[YLZGDataManager sharedManager] getOneStudioByUID:listModel.uid Block:^(ContactersModel *model) {
-        friend.isRootPush = YES;
-        friend.userName = model.name;
-        [self.navigationController pushViewController:friend animated:YES];
-    }];
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

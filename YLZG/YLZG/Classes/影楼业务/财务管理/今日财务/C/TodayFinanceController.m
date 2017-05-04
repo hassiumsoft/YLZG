@@ -277,7 +277,7 @@
 - (void)getData:(NSString *)date
 {
     
-    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/todayfinance/query?date=%@&uid=%@",date,[ZCAccountTool account].userID];
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/todayfinance/query?date=%@&uid=%@",date,[ZCAccountTool account].userID];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];

@@ -96,7 +96,7 @@
 - (void)getData
 {
     ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/fuzzy_search?uid=%@&info=%@",account.userID,self.searchBar.text];
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/fuzzy_search?uid=%@&info=%@",account.userID,self.searchBar.text];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -169,7 +169,7 @@
         }else{
             UserInfoModel *myModel = [[UserInfoManager sharedManager] getUserInfo];
             self.message = [NSString stringWithFormat:@"我是%@",myModel.realname];
-            NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/askfriend?uid=%@&aname=%@&anick=%@&ahead=%@&msg=%@&fuid=%@&fname=%@&fnick=%@&fhead=%@",account.userID,myModel.username,myModel.nickname,myModel.head,self.message,model.uid,model.name,model.nickname,model.head];
+            NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/askfriend?uid=%@&aname=%@&anick=%@&ahead=%@&msg=%@&fuid=%@&fname=%@&fnick=%@&fhead=%@",account.userID,myModel.username,myModel.nickname,myModel.head,self.message,model.uid,model.name,model.nickname,model.head];
             self.putURL = url;
             [self showMessageAlertView:contactModel.name];
         }

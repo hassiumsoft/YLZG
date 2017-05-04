@@ -17,6 +17,7 @@
 #import "ClearCacheTool.h"
 #import "GroupListManager.h"
 #import "EaseConversationModel.h"
+#import "AddMoreView.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource,EMChatManagerDelegate,EMGroupManagerDelegate>
 
@@ -82,6 +83,17 @@
         [self getDataFromRAM];
     }];
     self.tableView.mj_header.ignoredScrollViewContentInsetTop = 8;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addMoreAction)];
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
+    
+}
+- (void)addMoreAction
+{
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    
+    AddMoreView *moreView = [[AddMoreView alloc]initWithFrame:keyWindow.bounds];
+    [keyWindow addSubview:moreView];
 }
 #pragma mark - 从内存中获取聊天列表
 - (void)getDataFromRAM

@@ -18,7 +18,7 @@
 {
     static NSString *ID = @"ContactTableViewCell";
     ContactTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+//    [tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     if (!cell) {
         cell = [[ContactTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
@@ -39,22 +39,10 @@
 {
     _contactModel = contactModel;
     NSString *head = contactModel.head;
-    NSString *placeImage;
-    if ([contactModel.gender intValue] == 1) {
-        placeImage = @"user_place";
-    }else{
-        placeImage = @"user_place";
-    }
+    NSString *placeImage = @"user_place";
     [_headImageV sd_setImageWithURL:[NSURL URLWithString:head] placeholderImage:[UIImage imageNamed:placeImage]];
-    if (contactModel.nickname.length < 1) {
-        if (contactModel.realname.length < 1) {
-            _nickNameLabel.text = contactModel.name;
-        }else{
-            _nickNameLabel.text = contactModel.realname;
-        }
-    }else{
-        _nickNameLabel.text = contactModel.nickname;
-    }
+    
+    _nickNameLabel.text = contactModel.nickname.length >= 1 ? contactModel.nickname : contactModel.realname;
     
 }
 - (void)setupSubViews
@@ -68,7 +56,7 @@
     [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15);
         make.centerY.equalTo(self.mas_centerY);
-        make.width.and.height.equalTo(@35);
+        make.width.and.height.equalTo(@44);
     }];
     // 昵称
     self.nickNameLabel = [[UILabel alloc]init];
@@ -82,13 +70,13 @@
     }];
     
     // 线
-    self.xian = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
-    [self addSubview:self.xian];
-    [self.xian mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
-        make.bottom.equalTo(self.mas_bottom);
-        make.height.equalTo(@1);
-    }];
+//    self.xian = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
+//    [self addSubview:self.xian];
+//    [self.xian mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.mas_left);
+//        make.right.equalTo(self.mas_right);
+//        make.bottom.equalTo(self.mas_bottom);
+//        make.height.equalTo(@1);
+//    }];
 }
 @end

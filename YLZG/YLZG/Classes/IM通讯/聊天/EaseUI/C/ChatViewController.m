@@ -96,7 +96,7 @@
     }
     if (userName.length > 2) {
         FriendDetialController *friendVC = [[FriendDetialController alloc]init];
-        friendVC.userName = userName;
+#warning 查看详情
         friendVC.isRootPush = NO;
         [self.navigationController pushViewController:friendVC animated:YES];
     }
@@ -145,27 +145,20 @@
   didSelectAvatarMessageModel:(id<IMessageModel>)messageModel
 {
     
-    UserInfoModel *model = [[UserInfoManager sharedManager] getUserInfo];
-    if ([messageModel.nickname containsString:model.store_simple_name]) {
-        // 同事
-        if (messageModel.isSender) {
-            // 自己
-            UserInfoViewController *userInfo = [[UserInfoViewController alloc]init];
-            [self.navigationController pushViewController:userInfo animated:YES];
-        }else{
-            // 对方界面
-            
-            FriendDetialController *friendVC = [FriendDetialController new];
-            friendVC.userName = messageModel.message.from;
-            friendVC.isRootPush = YES;
-            [self.navigationController pushViewController:friendVC animated:YES];
-            
-        }
+    // 同事
+    if (messageModel.isSender) {
+        // 自己
+        UserInfoViewController *userInfo = [[UserInfoViewController alloc]init];
+        [self.navigationController pushViewController:userInfo animated:YES];
     }else{
-        // 其他影楼的人
-        FriendDetialController *friendVC = [FriendDetialController new];
-        friendVC.userName = messageModel.message.from;
-        [self.navigationController pushViewController:friendVC animated:YES];
+        // 对方界面
+        [[YLZGDataManager sharedManager] getOneStudioByUserName:messageModel.message.from Block:^(ContactersModel *model) {
+            FriendDetialController *friendVC = [FriendDetialController new];
+            friendVC.contactModel = model;
+            friendVC.isRootPush = NO;
+            [self.navigationController pushViewController:friendVC animated:YES];
+        }];
+        
     }
     
 }

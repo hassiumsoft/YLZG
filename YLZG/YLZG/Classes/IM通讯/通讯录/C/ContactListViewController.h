@@ -14,5 +14,7 @@
 - (void)reloadApplyViewWithBadgeNumber:(NSInteger) number;
 // 刷新未处理好友请求
 - (void)refreshUntreatedApplys;
+/** 数据源 */
+@property (copy,nonatomic) NSArray *array;
 
 @end

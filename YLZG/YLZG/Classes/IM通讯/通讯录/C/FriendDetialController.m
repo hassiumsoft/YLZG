@@ -7,10 +7,10 @@
 //
 
 #import "FriendDetialController.h"
-#import "HuanxinContactManager.h"
-#import "StudioContactManager.h"
+#import "NoDequTableCell.h"
 #import "NormalTableCell.h"
 #import "NSString+StrCategory.h"
+#import "ChatViewController.h"
 
 #import "YLZGDataManager.h"
 #import <MJExtension.h>
@@ -21,15 +21,21 @@
 
 @interface FriendDetialController ()<UITableViewDataSource,UITableViewDelegate>
 
+/** 表格 */
 @property (strong,nonatomic) UITableView *tableView;
-
+/** 数据源 */
 @property (nonatomic, strong) NSArray * nameArray;
-
+/** 基本信息 */
 @property (strong,nonatomic) UIView *headView;
-
+/** 底部 */
 @property (strong,nonatomic) UIView *footView;
+/** 地区 */
+@property (strong,nonatomic) UILabel *locationLabel;
+/** 生日 */
+@property (strong,nonatomic) UILabel *birthLabel;
+/** 部门 */
+@property (strong,nonatomic) UILabel *deptLabel;
 
-@property (strong,nonatomic) ContactersModel *model;
 
 @end
 
@@ -37,147 +43,123 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _nameArray = @[@"昵称 :",@"QQ :",@"生日 :",@"部门 :",@"地址 :"];
-    self.title = self.userName;
+    self.title = @"查看详情";
+    self.title = self.contactModel.realname.length >= 1 ? self.contactModel.realname : self.contactModel.nickname;
+    [self setupSubViews];
+}
+
+- (void)setupSubViews
+{
     
+    self.nameArray = @[@[@"基本信息"],@[@"设置备注"],@[@"地区",@"生日",@"部门"]];
     [self.view addSubview:self.tableView];
-    [self getFriendInfo];
-    self.tableView.tableHeaderView = self.headView;
-    self.tableView.tableFooterView  = self.footView;
     
-}
-
-- (BOOL)canBecomeFirstResponder
-{
-    return YES;
-}
-
-
-#pragma mark - 获取好友详情
-- (void)getFriendInfo
-{
-    NSArray *huanxinArr = [HuanxinContactManager getAllHuanxinContactsInfo];
-    NSArray *studioArr = [StudioContactManager getAllStudiosContactsInfo];
-    NSMutableArray *sumArr = [NSMutableArray arrayWithArray:huanxinArr];
-    for (int i = 0; i < studioArr.count; i++) {
-        ColleaguesModel *colleagus = studioArr[i];
-        for (int j = 0; j < colleagus.member.count; j++) {
-            ContactersModel *model = colleagus.member[j];
-            [sumArr addObject:model];
-        }
-    }
+    self.tableView.tableFooterView = self.footView;
     
-    for (ContactersModel *model in sumArr) {
-        if ([self.userName isEqualToString:model.name]) {
-            self.model = model;
-            self.title = self.model.nickname.length >= 1 ? self.model.nickname : self.model.realname;
-            [self.tableView reloadData];
-        }
-    }
-    
-    if (self.model.name.length < 1) {
-        // 本地没有，请求网络
-        [[YLZGDataManager sharedManager] getOneStudioByUserName:self.userName Block:^(ContactersModel *model) {
-            self.model = model;
-            self.title = self.model.realname.length >= 1 ? self.self.model.realname : self.model.nickname;
-            [self.tableView reloadData];
-        }];
-    }
-
-    
-}
-
-
-
-
-#pragma mark - 发送消息
-- (void)sendMessage
-{
-    if (self.isRootPush) {
-        [self.navigationController popToRootViewControllerAnimated:NO];
-        [YLNotificationCenter postNotificationName:HXRePushToChat object:@"1" userInfo:[self.model mj_keyValues]];
-    }else{
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
-#pragma mark - 打电话
--(void)call{
-    
-    NSString *number = self.model.mobile;
-    NSURL *phoheURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",number]];
-    UIWebView *phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
-    [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoheURL]];
-    [self.view addSubview:phoneWebView];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.nameArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _nameArray.count;
+    return [self.nameArray[section] count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        if(indexPath.row ==0){
-            cell.textLabel.text = _nameArray[indexPath.row];
-            cell.contentLabel.text = self.model.realname.length >= 1 ? self.self.model.realname : self.model.nickname ;
-        }else if(indexPath.row ==1){
-            cell.textLabel.text = _nameArray[indexPath.row];
-            cell.contentLabel.text = self.model.qq;
-        }else if(indexPath.row ==2){
-            cell.textLabel.text = _nameArray[indexPath.row];
-            cell.contentLabel.text = self.model.birth;
-         }else if(indexPath.row ==3){
-            cell.textLabel.text = _nameArray[indexPath.row];
-            cell.contentLabel.text = self.model.dept;
-        }else if(indexPath.row ==4){
-            cell.textLabel.text = _nameArray[indexPath.row];
-            cell.contentLabel.text = self.model.location;
-        
-        }
+    if (indexPath.section == 0) {
+        // 基本信息
+        NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell.label removeFromSuperview];
+        [cell.imageV removeFromSuperview];
+        [cell.contentView addSubview:self.headView];
+        return cell;
+    }else if (indexPath.section == 1){
+        // 备注
+        NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+        [cell.label removeFromSuperview];
+        [cell.imageV removeFromSuperview];
+        cell.textLabel.text = self.nameArray[indexPath.section][indexPath.row];
+        return cell;
+    }else{
+        // 其他信息
+
+        if (indexPath.row == 0) {
+            // 地区
+            NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+            [cell.label removeFromSuperview];
+            [cell.imageV removeFromSuperview];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+            cell.textLabel.textColor = [UIColor grayColor];
+            cell.textLabel.font = [UIFont systemFontOfSize:15];
+            cell.textLabel.text = self.nameArray[indexPath.section][indexPath.row];
+            [cell.contentView addSubview:self.locationLabel];
+            self.locationLabel.text = self.contactModel.location;
             return cell;
-
+        }else if (indexPath.row == 1){
+            // 生日
+            NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+            [cell.label removeFromSuperview];
+            [cell.imageV removeFromSuperview];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+            cell.textLabel.textColor = [UIColor grayColor];
+            cell.textLabel.font = [UIFont systemFontOfSize:15];
+            cell.textLabel.text = self.nameArray[indexPath.section][indexPath.row];
+            [cell.contentView addSubview:self.birthLabel];
+            self.birthLabel.text = self.contactModel.birth;
+            return cell;
+        }else {
+            // 部门
+            NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+            [cell.label removeFromSuperview];
+            [cell.imageV removeFromSuperview];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [cell setAccessoryType:UITableViewCellAccessoryNone];
+            cell.textLabel.textColor = [UIColor grayColor];
+            cell.textLabel.font = [UIFont systemFontOfSize:15];
+            cell.textLabel.text = self.nameArray[indexPath.section][indexPath.row];
+            [cell.contentView addSubview:self.deptLabel];
+            self.deptLabel.text = self.contactModel.dept;
+            return cell;
+        }
+    }
 }
-
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 45;
-    
+    if (indexPath.section == 0) {
+        return 90;
+    }else if (indexPath.section == 1){
+        return 50;
+    }else{
+        return 50;
+    }
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 10;
 }
-
-
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *foot = [UIView new];
-    foot.backgroundColor = self.view.backgroundColor;
-
-    return foot;
-    
-  
+    UIView *footView = [UIView new];
+    footView.backgroundColor = [UIColor clearColor];
+    return footView;
 }
-
-
 #pragma mark - 懒加载
 - (UITableView *)tableView
 {
     if (!_tableView) {
 
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
+        _tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = self.view.backgroundColor;
@@ -192,7 +174,7 @@
         _headView.backgroundColor = [UIColor whiteColor];
         _headView.userInteractionEnabled = YES;
         UIImageView *imageV = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 60, 60)];
-        [imageV sd_setImageWithURL:[NSURL URLWithString:self.model.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
+        [imageV sd_setImageWithURL:[NSURL URLWithString:self.contactModel.head] placeholderImage:[UIImage imageNamed:@"user_place"]];
         imageV.layer.masksToBounds = YES;
         imageV.userInteractionEnabled = YES;
         imageV.layer.cornerRadius = 4;
@@ -203,13 +185,15 @@
         [imageV addGestureRecognizer:tap];
         [_headView addSubview:imageV];
         
+        // 昵称
         UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imageV.frame) + 15, 24, SCREEN_WIDTH - 80, 21)];
-        nameLabel.text = self.model.nickname.length >= 1 ? self.model.nickname : self.model.realname;
+        nameLabel.text = self.contactModel.nickname.length >= 1 ? self.contactModel.nickname : self.contactModel.realname;
         nameLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
         [_headView addSubview:nameLabel];
         
+        // 影楼ID
         UILabel *IDLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(imageV.frame)+15, CGRectGetMaxY(nameLabel.frame), SCREEN_WIDTH - 80, 21)];
-        IDLabel.text = [NSString stringWithFormat:@"影楼ID：%@",self.model.name];
+        IDLabel.text = [NSString stringWithFormat:@"影楼ID：%@",self.contactModel.name];
         IDLabel.userInteractionEnabled = YES;
         IDLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
         IDLabel.textColor = RGBACOLOR(87, 87, 87, 1);
@@ -217,7 +201,7 @@
         
         UILongPressGestureRecognizer *longTap = [[UILongPressGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
             UIPasteboard *pasteBoard = [UIPasteboard generalPasteboard];
-            [pasteBoard setString:self.model.name];
+            [pasteBoard setString:self.contactModel.name];
             [self showSuccessTips:@"已复制此ID"];
         }];
         [IDLabel addGestureRecognizer:longTap];
@@ -226,6 +210,25 @@
     }
     return _headView;
 }
+
+- (void)sendMessage
+{
+    if (self.isRootPush) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [YLNotificationCenter postNotificationName:HXRePushToChat object:@"1" userInfo:[self.contactModel mj_keyValues]];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)call
+{
+    NSString *number = self.contactModel.mobile;
+    NSURL *phoheURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",number]];
+    UIWebView *phoneWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    [phoneWebView loadRequest:[NSURLRequest requestWithURL:phoheURL]];
+    [self.view addSubview:phoneWebView];
+}
 - (UIView *)footView
 {
     if (!_footView) {
@@ -233,7 +236,8 @@
         _footView.userInteractionEnabled = YES;
         _footView.backgroundColor = self.view.backgroundColor;
         
-        UIButton *messageBtn = [[UIButton alloc] initWithFrame:CGRectMake(17, 20, SCREEN_WIDTH - 34, 40)];
+        UIButton *messageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        messageBtn.frame = CGRectMake(17, 20, SCREEN_WIDTH - 34, 40);
         messageBtn.layer.cornerRadius = 5;
         messageBtn.layer.masksToBounds = YES;
         messageBtn.backgroundColor = MainColor;
@@ -245,15 +249,15 @@
         [_footView addSubview:messageBtn];
         
         
-        UIButton *phoneBtn = [[UIButton alloc ] initWithFrame:CGRectMake(17, CGRectGetMaxY(messageBtn.frame) + 12, SCREEN_WIDTH - 34, 40)];
+        UIButton *phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        phoneBtn.frame = CGRectMake(17, CGRectGetMaxY(messageBtn.frame) + 12, SCREEN_WIDTH - 34, 40);
         phoneBtn.layer.cornerRadius = 5;
         phoneBtn.layer.masksToBounds = YES;
         [phoneBtn setTitle:@"拨打电话" forState:UIControlStateNormal];
         phoneBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         phoneBtn.layer.masksToBounds = YES;
         [phoneBtn addTarget:self action:@selector(call) forControlEvents:UIControlEventTouchUpInside];
-        UIColor *color = [[YLZGDataManager sharedManager] isSpringFestival] ? NormalColor : SpringColor;
-        phoneBtn.layer.borderColor = color.CGColor;
+        phoneBtn.layer.borderColor = NormalColor.CGColor;
         phoneBtn.layer.borderWidth = 1.f;
         [phoneBtn setTitleColor:MainColor forState:UIControlStateNormal];
         phoneBtn.backgroundColor = [UIColor whiteColor];
@@ -262,5 +266,36 @@
     }
     return _footView;
 }
+- (UILabel *)locationLabel
+{
+    if (!_locationLabel) {
+        _locationLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.width  - 200, 10, 170, 30)];
+        _locationLabel.textAlignment = NSTextAlignmentRight;
+        _locationLabel.font = [UIFont systemFontOfSize:16];
+        _locationLabel.textColor = RGBACOLOR(45, 45, 45, 1);
+    }
+    return _locationLabel;
+}
+- (UILabel *)birthLabel
+{
+    if (!_birthLabel) {
+        _birthLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.width  - 200, 10, 170, 30)];
+        _birthLabel.textAlignment = NSTextAlignmentRight;
+        _birthLabel.font = [UIFont systemFontOfSize:16];
+        _birthLabel.textColor = RGBACOLOR(45, 45, 45, 1);
+    }
+    return _birthLabel;
+}
+- (UILabel *)deptLabel
+{
+    if (!_deptLabel) {
+        _deptLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.view.width  - 200, 10, 170, 30)];
+        _deptLabel.textAlignment = NSTextAlignmentRight;
+        _deptLabel.font = [UIFont systemFontOfSize:16];
+        _deptLabel.textColor = RGBACOLOR(45, 45, 45, 1);
+    }
+    return _deptLabel;
+}
+
 
 @end

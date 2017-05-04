@@ -113,17 +113,17 @@
 #pragma mark - 操作
 - (void)buttonClick
 {
-//    http://zsylou.wxwkf.com/index.php/home/easemob/invite_to_group?uid=144&sid=9&gid=1467017904457&id=4&members=[{"name":"aermei_ll","sid":"9","uid":"150"}]  // 加人
-//    http://zsylou.wxwkf.com/index.php/home/easemob/kick_out_group?uid=144&sid=9&gid=1467017904457&id=4&members=[{"name":"aermei_ll","sid":"9","uid":"150"}]    踢人  会崩
+//    http://192.168.0.158/index.php/home/easemob/invite_to_group?uid=144&sid=9&gid=1467017904457&id=4&members=[{"name":"aermei_ll","sid":"9","uid":"150"}]  // 加人
+//    http://192.168.0.158/index.php/home/easemob/kick_out_group?uid=144&sid=9&gid=1467017904457&id=4&members=[{"name":"aermei_ll","sid":"9","uid":"150"}]    踢人  会崩
     
     ZCAccount *account = [ZCAccountTool account];
     NSString *url;
     NSArray *dicArr = [ContactersModel mj_keyValuesArrayWithObjectArray:self.selectArray];
     NSString *memberJson = [self toJsonStr:dicArr];
     if (self.type == AddMemberType) {
-        url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/invite_to_group?uid=%@&sid=%@&gid=%@&id=%@&members=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id,memberJson];
+        url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/invite_to_group?uid=%@&sid=%@&gid=%@&id=%@&members=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id,memberJson];
     }else{
-        url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/kick_out_group?uid=%@&sid=%@&gid=%@&id=%@&members=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id,memberJson];
+        url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/kick_out_group?uid=%@&sid=%@&gid=%@&id=%@&members=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id,memberJson];
     }
     
     [MBProgressHUD showMessage:@"请稍后"];

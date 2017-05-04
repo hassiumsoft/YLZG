@@ -11,6 +11,7 @@
 		187075381DC195FA002448C6 /* PushNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075321DC195FA002448C6 /* PushNotificationViewController.m */; };
 		187075391DC195FA002448C6 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187075341DC195FA002448C6 /* SettingViewController.m */; };
 		21C872D3C9D7B0C50893CAF5 /* libPods-YLZGUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86ED1CFA9A80F470DA0E1435 /* libPods-YLZGUITests.a */; };
+		3B03077C1EB839AB004B9F53 /* SearchContacterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B03077B1EB839AB004B9F53 /* SearchContacterController.m */; };
 		3B07D8C81D956B0D00B657F6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8C71D956B0D00B657F6 /* main.m */; };
 		3B07D8CB1D956B0D00B657F6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B07D8CA1D956B0D00B657F6 /* AppDelegate.m */; };
 		3B07D8D31D956B0D00B657F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B07D8D21D956B0D00B657F6 /* Assets.xcassets */; };
@@ -349,6 +350,7 @@
 		3B87BFE91DF54C9700970625 /* QZSortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFE61DF54C9700970625 /* QZSortCell.m */; };
 		3B87BFEE1DF558EC00970625 /* QZConditionFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFEB1DF558EC00970625 /* QZConditionFilterView.m */; };
 		3B87BFEF1DF558EC00970625 /* QZFilterDataTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B87BFED1DF558EC00970625 /* QZFilterDataTableView.m */; };
+		3B888A481EBB33BA00AF1A0C /* AddMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B888A471EBB33BA00AF1A0C /* AddMoreView.m */; };
 		3B88F3DF1E120EE900494032 /* KaoqinInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B88F3DE1E120EE900494032 /* KaoqinInfoView.m */; };
 		3B9099D61E00E1C90090B6DD /* WholeSetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9099D51E00E1C90090B6DD /* WholeSetModel.m */; };
 		3B913AB41E07846D00D7F1E9 /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B913AB31E07846D00D7F1E9 /* UIImage+Category.m */; };
@@ -502,6 +504,8 @@
 		187075321DC195FA002448C6 /* PushNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationViewController.m; sourceTree = "<group>"; };
 		187075331DC195FA002448C6 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		187075341DC195FA002448C6 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		3B03077A1EB839AB004B9F53 /* SearchContacterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchContacterController.h; sourceTree = "<group>"; };
+		3B03077B1EB839AB004B9F53 /* SearchContacterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchContacterController.m; sourceTree = "<group>"; };
 		3B07D8C31D956B0D00B657F6 /* YLZG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YLZG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B07D8C71D956B0D00B657F6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B07D8C91D956B0D00B657F6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1190,6 +1194,8 @@
 		3B87BFEB1DF558EC00970625 /* QZConditionFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZConditionFilterView.m; sourceTree = "<group>"; };
 		3B87BFEC1DF558EC00970625 /* QZFilterDataTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QZFilterDataTableView.h; sourceTree = "<group>"; };
 		3B87BFED1DF558EC00970625 /* QZFilterDataTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QZFilterDataTableView.m; sourceTree = "<group>"; };
+		3B888A461EBB33BA00AF1A0C /* AddMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMoreView.h; sourceTree = "<group>"; };
+		3B888A471EBB33BA00AF1A0C /* AddMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMoreView.m; sourceTree = "<group>"; };
 		3B88F3DD1E120EE900494032 /* KaoqinInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaoqinInfoView.h; sourceTree = "<group>"; };
 		3B88F3DE1E120EE900494032 /* KaoqinInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaoqinInfoView.m; sourceTree = "<group>"; };
 		3B9099D41E00E1C90090B6DD /* WholeSetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WholeSetModel.h; sourceTree = "<group>"; };
@@ -2921,6 +2927,8 @@
 				3B56D7621DC739CE003A57FD /* ChatListHeadView.m */,
 				3B56D7631DC739CE003A57FD /* MessageListTableCell.h */,
 				3B56D7641DC739CE003A57FD /* MessageListTableCell.m */,
+				3B888A461EBB33BA00AF1A0C /* AddMoreView.h */,
+				3B888A471EBB33BA00AF1A0C /* AddMoreView.m */,
 			);
 			path = V;
 			sourceTree = "<group>";
@@ -3914,6 +3922,8 @@
 			children = (
 				3BA603361EA0C4B80001F1DB /* ContactListViewController.h */,
 				3BA603371EA0C4B80001F1DB /* ContactListViewController.m */,
+				3B03077A1EB839AB004B9F53 /* SearchContacterController.h */,
+				3B03077B1EB839AB004B9F53 /* SearchContacterController.m */,
 				3B3BBFD31DB4BF3C00C9E2FD /* FriendDetialController.h */,
 				3B3BBFD41DB4BF3C00C9E2FD /* FriendDetialController.m */,
 				3B3BBFA01DB47B7500C9E2FD /* AddFriendViewController.h */,
@@ -4152,7 +4162,7 @@
 					3B07D8C21D956B0D00B657F6 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = HEG7GWP2LQ;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -4383,6 +4393,7 @@
 				3B535ADE1E0390B20023F618 /* CheckWorkViewController.m in Sources */,
 				3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */,
 				3B4C10A91DC85DDC00827D4F /* YejiDetialViewController.m in Sources */,
+				3B888A481EBB33BA00AF1A0C /* AddMoreView.m in Sources */,
 				3B56D7671DC739CE003A57FD /* ChatViewController.m in Sources */,
 				3BCF39931D9DFA4400BEE236 /* HomeTabbarController.m in Sources */,
 				3B8531991DF8F9B800AB9C4F /* NineDetialModel.m in Sources */,
@@ -4606,6 +4617,7 @@
 				3B343B8E1DEC017A00474549 /* TaskDetialDynamicModel.m in Sources */,
 				3B948B6E1DD993C600D75112 /* MyJobsDetialController.m in Sources */,
 				3B343B361DEBFECC00474549 /* TaskDongtaiController.m in Sources */,
+				3B03077C1EB839AB004B9F53 /* SearchContacterController.m in Sources */,
 				3BCA32551D9CC1F900A0E980 /* Foundation+Log.m in Sources */,
 				3B85318B1DF8F9B800AB9C4F /* NineAllMobanViewController.m in Sources */,
 				3BCF3A071D9E65E800BEE236 /* CityViewController.m in Sources */,
@@ -4960,8 +4972,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YLZG/YLZG.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = HEG7GWP2LQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = $SRCROOT/YLZG/Classes/PCH/YLZGHeader.h;
 				INFOPLIST_FILE = YLZG/Info.plist;
@@ -4975,8 +4987,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiomanager.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8d9176df-030f-4869-93a5-82d8dbee8024";
-				PROVISIONING_PROFILE_SPECIFIER = YLZG_STORE_Profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -4986,8 +4998,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = YLZG/YLZG.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = HEG7GWP2LQ;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = $SRCROOT/YLZG/Classes/PCH/YLZGHeader.h;
 				INFOPLIST_FILE = YLZG/Info.plist;
@@ -5001,8 +5013,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.studiomanager.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8d9176df-030f-4869-93a5-82d8dbee8024";
-				PROVISIONING_PROFILE_SPECIFIER = YLZG_STORE_Profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
