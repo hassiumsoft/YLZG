@@ -58,11 +58,7 @@ static FMDatabase *_db;
         NSString *sql = [NSString stringWithFormat:@"insert into studio_contacts (dept,member) values ('%@','%@')",studiosModel.dept,memberJson];
         
         BOOL result = [_db executeUpdate:sql];
-        if (result) {
-            KGLog(@"保存成功");
-        }else{
-            KGLog(@"保存失败");
-        }
+        
         return result;
     }
     

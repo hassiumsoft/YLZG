@@ -51,6 +51,7 @@ NSString *const HXExitGroup = @"HXExitGroup";
 NSString *const HXRePushToChat = @"HXRePushToChat";
 NSString *const HXCallOutPhoneChatter = @"HXCallOutPhoneChatter";
 NSString *const HXUpdataGroupInfo = @"HXUpdataGroupInfo";
+NSString *const HXCreateNewGroup = @"HXCreateNewGroup";
 
 
 

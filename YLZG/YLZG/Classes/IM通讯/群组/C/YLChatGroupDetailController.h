@@ -20,4 +20,8 @@
 /** 是否从RootVC进来的 */
 @property (assign,nonatomic) BOOL isRootPush;
 
+/** 初始化 */
+- (instancetype)initWithConversation:(EMConversation *)conversation;
+
+
 @end

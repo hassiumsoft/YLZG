@@ -148,8 +148,8 @@ static YLZGChatManager *chatManager = nil;
         }
     }
     
-    // 更新数组缓存
-    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+    // 更新数组缓存updataGroupInfoWithBlock
+    [[YLZGDataManager sharedManager] updataGroupInfoWithBlock:^{
         
     }];
     
@@ -165,7 +165,7 @@ static YLZGChatManager *chatManager = nil;
         [self showAlertMessage:message];
     }];
     
-    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+    [[YLZGDataManager sharedManager] updataGroupInfoWithBlock:^{
         
     }];
     
@@ -206,7 +206,7 @@ static YLZGChatManager *chatManager = nil;
 - (void)joinGroupRequestDidApprove:(EMGroup *)aGroup
 {
     // 群主同意用户A的入群申请后，用户A会接收到该回调
-    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+    [[YLZGDataManager sharedManager] updataGroupInfoWithBlock:^{
         NSString *message = [NSString stringWithFormat:@"同意并已加入%@群",aGroup.subject];
         [self showAlertMessage:message];
     }];
@@ -1108,7 +1108,7 @@ static YLZGChatManager *chatManager = nil;
 - (NSArray *)getJoinedGroups
 {
     // 获取用户所有群组
-    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+    [[YLZGDataManager sharedManager] updataGroupInfoWithBlock:^{
         
     }];
     return 0;

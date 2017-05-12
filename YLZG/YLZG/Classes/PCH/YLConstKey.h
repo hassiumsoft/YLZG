@@ -92,6 +92,8 @@ extern NSString *const HXRePushToChat;
 extern NSString *const HXCallOutPhoneChatter;
 /** 更新群组信息 */
 extern NSString *const HXUpdataGroupInfo;
+/** 新建群组之后的通知 */
+extern NSString *const HXCreateNewGroup;
 
 
 

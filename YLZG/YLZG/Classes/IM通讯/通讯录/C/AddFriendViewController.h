@@ -10,6 +10,6 @@
 
 @interface AddFriendViewController : SuperViewController
 
-
+@property (assign,nonatomic) BOOL isPresent;
 
 @end

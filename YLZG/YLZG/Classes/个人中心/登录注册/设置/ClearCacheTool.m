@@ -11,7 +11,8 @@
 #import "UserInfoManager.h"
 #import "HuanxinContactManager.h"
 #import "StudioContactManager.h"
-#import "GroupListManager.h"
+#import "GroupMsgManager.h"
+
 
 @implementation ClearCacheTool
 
@@ -56,11 +57,13 @@
                 || [fileName isEqualToString:@"zcaccount.archive"]
                 || [fileName isEqualToString:@"studio_contacts.sqlite"]
                 || [fileName isEqualToString:@"huanxin_contacts.sqlite"]
-                || [fileName isEqualToString:@"t_groups.sqlite"]) {
+                || [fileName isEqualToString:@"t_group.sqlite"]) {
+                
                 [[UserInfoManager sharedManager] removeDataSave];
                 [HuanxinContactManager deleteAllInfo];
                 [StudioContactManager deleteAllInfo];
-                [GroupListManager deleteAllGroupInfo];
+                [GroupMsgManager deleteAllGroupInfo];
+                
             }else{
                 NSError *error;
                 NSString *absolutePath=[path stringByAppendingPathComponent:fileName];

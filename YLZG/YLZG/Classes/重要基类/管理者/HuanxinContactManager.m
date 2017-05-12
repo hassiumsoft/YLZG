@@ -53,11 +53,7 @@ static FMDatabase *_db;
         NSString *sql = [NSString stringWithFormat:@"insert into huanxin_contacts (uid,name,sid,nickname,realname,qq,mobile,location,head,gender,dept,birth) values ('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@')",contactModel.uid,contactModel.name,contactModel.sid,contactModel.nickname,contactModel.realname,contactModel.qq,contactModel.mobile,contactModel.location,contactModel.head,contactModel.gender,contactModel.dept,contactModel.birth];
         
         BOOL result = [_db executeUpdate:sql];
-        if (result) {
-            KGLog(@"保存成功");
-        }else{
-            KGLog(@"保存失败");
-        }
+        
         return result;
     }
     

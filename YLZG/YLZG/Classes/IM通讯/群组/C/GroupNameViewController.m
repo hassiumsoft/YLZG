@@ -9,7 +9,7 @@
 #import "GroupNameViewController.h"
 #import "HTTPManager.h"
 #import "ZCAccountTool.h"
-#import "GroupListManager.h"
+#import "GroupMsgManager.h"
 #import "YLZGDataManager.h"
 #import <Masonry.h>
 
@@ -125,8 +125,7 @@
             
             self.title = self.textField.text;
             
-            
-            [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+            [[YLZGDataManager sharedManager] updataGroupInfoWithBlock:^{
                 [MBProgressHUD hideHUD];
                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -177,7 +176,7 @@
             
             
             
-            [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+            [[YLZGDataManager sharedManager] updataGroupInfoWithBlock:^{
                 [MBProgressHUD hideHUD];
                 UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"温馨提示" message:message preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

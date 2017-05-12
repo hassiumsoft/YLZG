@@ -23,7 +23,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = CoverColor;
+        self.backgroundColor = RGBACOLOR(79, 79, 100, 0.1);
         self.userInteractionEnabled = YES;
     }
     return self;
@@ -35,13 +35,19 @@
     
     self.array = @[@"发起群聊",@"添加朋友"];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 10 - 150, 64, 150, 100)];
+    UIImageView *backView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"add_more"]];
+    backView.userInteractionEnabled = YES;
+    backView.frame = CGRectMake(SCREEN_WIDTH - 10 - 150, 64, 150, 110);
+    [self addSubview:backView];
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 10, backView.bounds.size.width, backView.bounds.size.height - 10)];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.backgroundColor = HWRandomColor;
     self.tableView.scrollEnabled = NO;
     self.tableView.rowHeight = 50;
-    [self addSubview:self.tableView];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    [backView addSubview:self.tableView];
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -54,14 +60,27 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSArray *iconArray = @[@"btn_group_chat",@"btn_add"];
     NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+    cell.backgroundColor = [UIColor clearColor];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
+    [cell.xian removeFromSuperview];
+    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     cell.label.text = self.array[indexPath.row];
-    cell.imageV.image = [UIImage imageNamed:@"user_place"];
+    cell.imageV.image = [UIImage imageNamed:iconArray[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.DidSelectBlock) {
+        _DidSelectBlock(indexPath.row);
+        [self removeFromSuperview];
+    }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self removeFromSuperview];
 }

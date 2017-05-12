@@ -35,13 +35,13 @@
     self.textLabel.textColor = RGBACOLOR(20, 20, 20, 1);
     
     self.contentLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-//    self.contentLabel.text = @"参数内容";
     self.contentLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     self.contentLabel.textAlignment = NSTextAlignmentRight;
     self.contentLabel.textColor = RGBACOLOR(67, 67, 67, 1);
     [self addSubview:self.contentLabel];
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
+        make.left.equalTo(self.textLabel.mas_right).offset(5);
         make.right.equalTo(self.mas_right).offset(-30);
         make.height.equalTo(@21);
     }];

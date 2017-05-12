@@ -15,9 +15,15 @@
 #import "ChatViewController.h"
 #import "YLZGDataManager.h"
 #import "ClearCacheTool.h"
-#import "GroupListManager.h"
+#import "GroupMsgManager.h"
+#import "CreateGroupViewController.h"
+#import "AddFriendViewController.h"
 #import "EaseConversationModel.h"
+#import "HomeNavigationController.h"
 #import "AddMoreView.h"
+#import "WorkAssistViewController.h"
+#import "WorkSecretaryViewController.h"
+
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource,EMChatManagerDelegate,EMGroupManagerDelegate>
 
@@ -77,7 +83,7 @@
     
     [self.view addSubview:self.tableView];
     
-//    self.tableView.tableHeaderView = self.headView;
+    self.tableView.tableHeaderView = self.headView;
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getDataFromRAM];
@@ -93,6 +99,22 @@
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
     
     AddMoreView *moreView = [[AddMoreView alloc]initWithFrame:keyWindow.bounds];
+    moreView.DidSelectBlock = ^(ClickIndex index) {
+        if (index == CreateGroupIndex) {
+            CreateGroupViewController *createGroup = [[CreateGroupViewController alloc]initWithAnother:nil];
+            HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:createGroup];
+            [self presentViewController:nav animated:YES completion:^{
+                
+            }];
+        }else if (index == AddFriendIndex){
+            AddFriendViewController *createGroup = [AddFriendViewController new];
+            HomeNavigationController *nav = [[HomeNavigationController alloc]initWithRootViewController:createGroup];
+            createGroup.isPresent = YES;
+            [self presentViewController:nav animated:YES completion:^{
+                
+            }];
+        }
+    };
     [keyWindow addSubview:moreView];
 }
 #pragma mark - 从内存中获取聊天列表
@@ -134,16 +156,6 @@
     }
 }
 
-//NSArray* sorted = [self.array sortedArrayUsingComparator:
-//                   ^(EMConversation *obj1, EMConversation* obj2){
-//                       EMMessage *message1 = obj1.latestMessage;
-//                       EMMessage *message2 = obj2.latestMessage;
-//                       if(message1.timestamp > message2.timestamp) {
-//                           return(NSComparisonResult)NSOrderedAscending;
-//                       }else {
-//                           return(NSComparisonResult)NSOrderedDescending;
-//                       }
-//                   }];
 
 #pragma mark - 表格相关
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -177,10 +189,11 @@
             [self.navigationController pushViewController:chat animated:YES];
         }];
     }else{
-        [GroupListManager getGroupInfoByGroupID:model.conversationId Block:^(YLGroup *groupModel) {
+        [GroupMsgManager getGroupInfoByGroupID:model.conversationId Completion:^(YLGroup *groupModel) {
             chat.groupModel = groupModel;
             [self.navigationController pushViewController:chat animated:YES];
         }];
+        
     }
 }
 - (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -223,17 +236,18 @@
     }
     return _tableView;
 }
-- (UIView *)headView
+- (ChatListHeadView *)headView
 {
     if (!_headView) {
         _headView = [[ChatListHeadView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];
-        _headView.userInteractionEnabled = YES;
-        _headView.backgroundColor = [UIColor clearColor];
+        __weak ChatListViewController *copySelf = self;
         _headView.ClickBlock = ^(ClickType clickType) {
             if (clickType == WorkZhushouType) {
-                [MBProgressHUD showSuccess:@"掌柜工作助手"];
+                WorkAssistViewController *assist = [WorkAssistViewController new];
+                [copySelf.navigationController pushViewController:assist animated:YES];
             }else if (clickType == WorkMishuType){
-                [MBProgressHUD showSuccess:@"掌柜小秘书"];
+                WorkSecretaryViewController *secret = [WorkSecretaryViewController new];
+                [copySelf.navigationController pushViewController:secret animated:YES];
             }
         };
     }

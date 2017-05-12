@@ -13,7 +13,7 @@
 #import "ApplyModel.h"
 #import <MJExtension.h>
 #import "ZCAccountTool.h"
-#import "GroupListManager.h"
+#import "GroupMsgManager.h"
 #import "NSDate+Category.h"
 #import <UMMobClick/MobClick.h>
 #import "ClearCacheTool.h"
@@ -182,26 +182,56 @@ static YLZGDataManager *controller = nil;
     }];
 }
 
-- (void)saveGroupInfoWithBlock:(NoParamBlock)reloadTable
+#pragma mark - 邀请人进群时，看哪些可以进群
+- (void)getIvitersByGroupID:(NSString *)groupID Success:(void (^)(NSArray *))success Fail:(void (^)(NSString *))fail
 {
-    
-    NSArray *groups = [GroupListManager getAllGroupInfo];
-    if (groups.count >= 1) {
-        [GroupListManager deleteAllGroupInfo];
+    ZCAccount *account = [ZCAccountTool account];
+    if (!account) {
+        fail(@"用户未登录");
+        return;
     }
+    
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/group_status?uid=%@&group_id=%@",account.userID,groupID];
+    
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSLog(@"responseObject = %@",responseObject);
+        
+        int code = [[[responseObject objectForKey:@"code"]description] intValue];
+        NSString *message = [[responseObject objectForKey:@"message"] description];
+        if (code == 1) {
+            NSArray *result = responseObject[@"result"];
+            if (result.count > 0) {
+                NSArray *modelArray = [ContactersModel mj_objectArrayWithKeyValuesArray:result];
+                success(modelArray);
+            }else{
+                fail(@"暂无更多联系人");
+            }
+        }else{
+            fail(message);
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        fail(error.localizedDescription);
+    }];
+}
+
+- (void)updataGroupInfoWithBlock:(NoParamBlock)reloadTable
+{
     
     ZCAccount *account = [ZCAccountTool account];
     NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/my_groups_list?uid=%@",account.userID];
-    KGLog(@"url = %@",url);
+    KGLog(@"获取我的群组信息 = %@",url);
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
         int code = [[[responseObject objectForKey:@"code"]description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         NSArray *dictArray = responseObject[@"grouplist"];
         if (code == 1) {
             NSArray *groupArray = [YLGroup mj_objectArrayWithKeyValuesArray:dictArray];
+            [GroupMsgManager deleteAllGroupInfo];
             for (int i = 0; i < groupArray.count; i++) {
                 YLGroup *model = groupArray[i];
-                [GroupListManager saveGroupInfo:model];
+                [GroupMsgManager saveGroupInfo:model];
             }
             reloadTable();
         }else{
@@ -210,8 +240,8 @@ static YLZGDataManager *controller = nil;
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
         [MBProgressHUD showError:error.localizedDescription];
     }];
-    
 }
+
 #pragma mark - 获取通讯录好友
 - (void)refreshContactersSuccess:(void (^)(NSArray *))success Fail:(void (^)(NSString *))fail
 {
@@ -326,11 +356,10 @@ static YLZGDataManager *controller = nil;
     }];
 }
 
+// 获取全部联系人 除了自己
 - (NSMutableArray *)getAllFriendInfo
 {
     
-    
-    // 暂时只收录同事数组
     NSArray *studioArr = [StudioContactManager getAllStudiosContactsInfo];
     
     NSMutableArray *sumArr = [NSMutableArray array];
@@ -398,5 +427,62 @@ static YLZGDataManager *controller = nil;
 //    return YES;
     
 }
+#pragma mark - 发起群聊
+- (void)createGroupWithMembers:(NSArray *)memberArray Success:(void (^)(YLGroup *))success Fail:(void (^)(NSString *))fail
+{
+    ZCAccount *account = [ZCAccountTool account];
+    if (!account) {
+        fail(@"用户未登录");
+        return;
+    }
+    NSMutableArray *tempArray = [NSMutableArray array];
+    for (ContactersModel *model in memberArray) {
+        [tempArray addObject:model.uid];
+    }
+    NSString *memberJson = [self toJsonStr:tempArray];
+    NSString *url = [NSString stringWithFormat:CreaterGroup_url,account.userID,memberJson];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSLog(@"建群返回 = %@",responseObject);
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [responseObject objectForKey:@"message"];
+        if (code == 1) {
+            
+            NSDictionary *result = [responseObject objectForKey:@"result"];
+            
+            // 更新群组缓存，发出通知，到聊天界面
+            [self updataGroupInfoWithBlock:^{
+                [YLNotificationCenter postNotificationName:HXCreateNewGroup object:nil userInfo:result];
+                YLGroup *groupModel = [YLGroup mj_objectWithKeyValues:result];
+                success(groupModel);
+            }];
+            
+        }else{
+            fail(message);
+        }
+        
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        fail(error.localizedDescription);
+    }];
+    
+}
+
+#pragma mark -  将字典或数组转化为JSON串
+- (NSString *)toJsonStr:(id)object
+{
+    NSError *error = nil;
+    // ⚠️ 参数可能是模型数组，需要转字典数组
+    if (object) {
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:object options:NSJSONWritingPrettyPrinted error:&error];
+        if (jsonData.length < 5 || error) {
+            KGLog(@"解析错误");
+        }
+        NSString *jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return jsonString;
+    }else{
+        return nil;
+    }
+}
+
 
 @end

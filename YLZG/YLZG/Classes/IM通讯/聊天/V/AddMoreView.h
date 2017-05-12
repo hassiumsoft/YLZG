@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger,ClickIndex) {
+    CreateGroupIndex = 0, // 发起群聊
+    AddFriendIndex = 1  // 添加朋友
+};
+
 @interface AddMoreView : UIView
+
+@property (copy,nonatomic) void (^DidSelectBlock)(ClickIndex index);
 
 @end

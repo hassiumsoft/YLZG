@@ -47,11 +47,7 @@ static FMDatabase *_db;
         NSString *sql = [NSString stringWithFormat:@"insert into t_notice (noticejson) values ('%@')",memberJson];
         
         BOOL result = [_db executeUpdate:sql];
-        if (result) {
-            KGLog(@"保存成功");
-        }else{
-            KGLog(@"保存失败");
-        }
+        
         return result;
     }
 }

@@ -151,13 +151,15 @@ static ApplyViewController *controller = nil;
     };
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 60;
 }
 #pragma  mark -- UIBar的点击事件
 - (void)addFriendAction
 {
     AddFriendViewController *addController = [[AddFriendViewController alloc] init];
+    addController.isPresent = NO;
     [self.navigationController pushViewController:addController animated:YES];
 }
 #pragma mark -- 懒加载

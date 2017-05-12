@@ -18,6 +18,8 @@ static CGFloat const margin = 2;
 
 @property (strong,nonatomic) UICollectionView *collectionView;
 
+@property (strong,nonatomic) UIImageView *xian;
+
 @end
 
 @implementation GroupMemberView
@@ -27,6 +29,9 @@ static CGFloat const margin = 2;
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.collectionView];
+        self.xian = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
+        self.xian.frame = CGRectMake(0, self.height - 2, self.width, 2);
+        [self addSubview:self.xian];
     }
     return self;
 }
@@ -80,7 +85,9 @@ static CGFloat const margin = 2;
     }else{
         self.height = cellW * 2 + 3;
     }
+    self.xian.frame = CGRectMake(0, self.height - 2, self.width, 2);
 }
+
 - (void)reloadData
 {
     [self.collectionView reloadData];
@@ -96,7 +103,7 @@ static CGFloat const margin = 2;
     flowLayout.minimumInteritemSpacing = 1;
     flowLayout.sectionInset = UIEdgeInsetsMake(1, 1, 1, 1);
     if (_collectionView == nil) {
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.height) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.height - 2) collectionViewLayout:flowLayout];
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         //让collectionView滚动

@@ -7,8 +7,11 @@
 //
 
 #import "SuperViewController.h"
+#import <Masonry.h>
 
 @interface SuperViewController ()
+
+@property (strong,nonatomic) UILabel *messageLabel;
 
 @end
 
@@ -35,5 +38,24 @@
     [super viewWillDisappear:animated];
     [self.view endEditing:YES];
 }
+
+#pragma mark - 数据异常时的处理
+- (void)showEmptyViewWithMessage:(NSString *)message
+{
+    [self.view addSubview:self.messageLabel];
+    [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left).offset((70 * CKproportion));
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.centerY.equalTo(self.view.mas_centerY).offset(-64);
+    }];
+    self.messageLabel.hidden = NO;
+    self.messageLabel.text = message;
+}
+
+- (void)hideMessageAction
+{
+    self.messageLabel.hidden = YES;
+}
+
 
 @end

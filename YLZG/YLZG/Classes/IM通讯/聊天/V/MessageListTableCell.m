@@ -9,12 +9,13 @@
 #import "MessageListTableCell.h"
 #import <Masonry.h>
 #import "YLZGDataManager.h"
-#import "GroupListManager.h"
+#import "GroupMsgManager.h"
 #import <UIImageView+WebCache.h>
 #import "EaseConvertToCommonEmoticonsHelper.h"
 
 
 @interface MessageListTableCell ()
+
 /** 头像 */
 @property (strong,nonatomic) UIImageView *headImageV;
 /** 名字 */
@@ -51,16 +52,6 @@
 }
 - (void)setModel:(EMConversation *)model
 {
-    /**
-    model.conversationId = aermei_admin```````model.ext = {
-        avatarURLPath = ,
-        nickname =
-    }````````model.type = 0`````````lastReciveMsg.ext`````````lastReciveMsg.from = {
-        avatarURLPath = http://192.168.0.158/Uploads/avatar/58031b9aeed58.jpeg,
-        nickname = 管理员,
-        uid = 159
-    }
-     */
     
     _model = model;
     
@@ -118,9 +109,9 @@
             }
         }
         // 通过model.conversationId来获取他信息
-        [GroupListManager getGroupInfoByGroupID:model.conversationId Block:^(YLGroup *groupModel) {
-            _headImageV.image = [UIImage imageNamed:@"group_add_icon"];
-            _nameLabel.text = [NSString stringWithFormat:@"%@·群聊",groupModel.gname];
+        [GroupMsgManager getGroupInfoByGroupID:model.conversationId Completion:^(YLGroup *groupModel) {
+            [_headImageV sd_setImageWithURL:[NSURL URLWithString:groupModel.head_img] placeholderImage:[UIImage imageNamed:@"group_add_icon"]];
+            _nameLabel.text = groupModel.gname;
         }];
     }
 }
@@ -154,20 +145,32 @@
         make.width.and.height.equalTo(@20);
     }];
     
-    // 昵称
-    self.nameLabel = [[UILabel alloc]init];
-    self.nameLabel.text = @"火星人";
-    self.nameLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    [self addSubview:self.nameLabel];
-    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(78);
+    // 时间
+    self.timeLabel = [[UILabel alloc]init];
+    self.timeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
+    self.timeLabel.textColor = [UIColor lightGrayColor];
+    self.timeLabel.textAlignment = NSTextAlignmentRight;
+    [self addSubview:self.timeLabel];
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right).offset(-13);
         make.height.equalTo(@21);
         make.bottom.equalTo(self.mas_centerY);
     }];
     
+    // 昵称
+    self.nameLabel = [[UILabel alloc]init];
+    self.nameLabel.text = @"未知消息";
+    self.nameLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    [self addSubview:self.nameLabel];
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(78);
+        make.right.equalTo(self.timeLabel.mas_left).offset(-5);
+        make.height.equalTo(@21);
+        make.centerY.equalTo(self.timeLabel.mas_centerY);
+    }];
+    
     // 最后一条消息
     self.lastMsgLabel = [[UILabel alloc]init];
-    self.lastMsgLabel.text = @"···";
     self.lastMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     self.lastMsgLabel.textColor = RGBACOLOR(67, 67, 67, 1);
     [self addSubview:self.lastMsgLabel];
@@ -178,17 +181,6 @@
         make.right.equalTo(self.mas_right).offset(-20);
     }];
     
-    // 时间
-    self.timeLabel = [[UILabel alloc]init];
-    self.timeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-    self.timeLabel.textColor = [UIColor lightGrayColor];
-    self.timeLabel.textAlignment = NSTextAlignmentRight;
-    [self addSubview:self.timeLabel];
-    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.mas_right).offset(-13);
-        make.height.equalTo(@21);
-        make.centerY.equalTo(self.nameLabel.mas_centerY);
-    }];
     
     
     

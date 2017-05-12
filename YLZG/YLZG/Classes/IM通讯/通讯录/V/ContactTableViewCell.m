@@ -45,6 +45,7 @@
     _nickNameLabel.text = contactModel.nickname.length >= 1 ? contactModel.nickname : contactModel.realname;
     
 }
+
 - (void)setupSubViews
 {
     // 头像
@@ -69,14 +70,23 @@
         make.centerY.equalTo(self.mas_centerY);
     }];
     
-    // 线
-//    self.xian = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
-//    [self addSubview:self.xian];
-//    [self.xian mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.mas_left);
-//        make.right.equalTo(self.mas_right);
-//        make.bottom.equalTo(self.mas_bottom);
-//        make.height.equalTo(@1);
-//    }];
+    [self.contentView addSubview:self.addFriendLabel];
+   
 }
+
+- (UILabel *)addFriendLabel
+{
+    if (!_addFriendLabel) {
+        _addFriendLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 20, 20, 20)];
+        _addFriendLabel.textColor = [UIColor whiteColor];
+        _addFriendLabel.backgroundColor = WechatRedColor;
+        _addFriendLabel.textAlignment = NSTextAlignmentCenter;
+        _addFriendLabel.font = [UIFont systemFontOfSize:13];
+        _addFriendLabel.layer.masksToBounds = YES;
+        _addFriendLabel.layer.cornerRadius = 10;
+    }
+    return _addFriendLabel;
+}
+
+
 @end

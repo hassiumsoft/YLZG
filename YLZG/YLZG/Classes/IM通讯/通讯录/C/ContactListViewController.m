@@ -20,7 +20,6 @@
 #import "ContactersModel.h"
 #import "ContactHeadView.h"
 #import <Masonry.h>
-#import "AddFriendViewController.h"
 #import "HuanxinContactManager.h"
 #import "StudioContactManager.h"
 #import "UserInfoViewController.h"
@@ -32,10 +31,16 @@
 
 
 @interface ContactListViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+
 /** 表格 */
 @property (strong,nonatomic) UITableView *tableView;
 /** 索引数据源 */
 @property (copy,nonatomic) NSArray *sectionArray;
+/** 新朋友 */
+@property (assign,nonatomic) NSInteger addFriendNum;
+@property (strong,nonatomic) ContactTableViewCell *addFriendCell;
+/** 总共x位联系人 */
+@property (strong,nonatomic) UILabel *sumLabel;
 /** 搜索框 */
 @property (strong,nonatomic) UISearchController *searchController;
 @property (strong,nonatomic) SearchContacterController *searchResultController;
@@ -90,14 +95,21 @@
     self.searchController.searchBar.height = 50.f;
     
     self.tableView.tableHeaderView = self.searchController.searchBar;
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        
-    }];
-    [self.tableView.mj_footer endRefreshingWithNoMoreData];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refreshDataAction];
     }];
+    [self refreshDataAction];
+    
+    UIView *footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
+    footView.backgroundColor = self.view.backgroundColor;
+    self.sumLabel = [[UILabel alloc]initWithFrame:footView.bounds];
+    self.sumLabel.textColor = [UIColor grayColor];
+    self.sumLabel.textAlignment = NSTextAlignmentCenter;
+    self.sumLabel.font = [UIFont systemFontOfSize:19];
+    [footView addSubview:self.sumLabel];
+    self.tableView.tableFooterView = footView;
+    
     
 }
 
@@ -121,6 +133,14 @@
     
     self.sectionArray = tempArr;
     [self.tableView reloadData];
+    
+    NSMutableArray *sumArray = [NSMutableArray array];
+    for (ColleaguesModel *collModel in array) {
+        for (ContactersModel *model in collModel.member) {
+            [sumArray addObject:model];
+        }
+    }
+    self.sumLabel.text = [NSString stringWithFormat:@"%lu位联系人",(unsigned long)sumArray.count];
 }
 // 接受到通知，刷新数据
 - (void)refreshDataAction
@@ -143,9 +163,16 @@
             [tempArr addObject:firstKey];
         }
         
+        NSMutableArray *sumArray = [NSMutableArray array];
+        for (ColleaguesModel *collModel in userArray) {
+            for (ContactersModel *model in collModel.member) {
+                [sumArray addObject:model];
+            }
+        }
+        self.sumLabel.text = [NSString stringWithFormat:@"%lu位联系人",(unsigned long)sumArray.count];
+        
         self.sectionArray = tempArr;
         [self.tableView reloadData];
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
     } Fail:^(NSString *errorMsg) {
         [self.tableView.mj_header endRefreshing];
         [MBProgressHUD showError:errorMsg];
@@ -182,15 +209,30 @@
 {
     if (indexPath.section == 0) {
         NSArray *titleArray = @[@"新的朋友",@"群聊"];
-        ContactTableViewCell *cell = [ContactTableViewCell sharedContactTableViewCell:tableView];
-        cell.headImageV.image = [UIImage imageWithColor:HWRandomColor];
-        cell.nickNameLabel.text = titleArray[indexPath.row];
-        return cell;
+        if (indexPath.row == 0) {
+            self.addFriendCell = [ContactTableViewCell sharedContactTableViewCell:tableView];
+            self.addFriendCell.headImageV.image = [UIImage imageNamed:@"btn_new_friend"];
+            self.addFriendCell.nickNameLabel.text = titleArray[indexPath.row];
+            if (self.addFriendNum > 0) {
+                self.addFriendCell.addFriendLabel.hidden = NO;
+                self.addFriendCell.addFriendLabel.text = [NSString stringWithFormat:@"%ld",(long)self.addFriendNum];
+            }else{
+                self.addFriendCell.addFriendLabel.hidden = YES;
+            }
+            return self.addFriendCell;
+        }else{
+            ContactTableViewCell *cell = [ContactTableViewCell sharedContactTableViewCell:tableView];
+            cell.headImageV.image = [UIImage imageNamed:@"btn_flock"];;
+            cell.nickNameLabel.text = titleArray[indexPath.row];
+            cell.addFriendLabel.hidden = YES;
+            return cell;
+        }
     }else{
         ColleaguesModel *model = self.array[indexPath.section - 1];
         ContactersModel *contactModel = model.member[indexPath.row];
         ContactTableViewCell *cell = [ContactTableViewCell sharedContactTableViewCell:tableView];
         cell.contactModel = contactModel;
+        cell.addFriendLabel.hidden = YES;
         return cell;
     }
 }
@@ -218,6 +260,33 @@
             friend.isRootPush = YES;
             [self.navigationController pushViewController:friend animated:YES];
         }
+    }
+}
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return NULL;
+    }else{
+        ColleaguesModel *model = self.array[indexPath.section - 1];
+        ContactersModel *contactModel = model.member[indexPath.row];
+        UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"📱" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            NSString *phone = [NSString stringWithFormat:@"tel:%@",contactModel.mobile];
+            UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];
+            [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:phone]]];
+            [self.view addSubview:webView];
+        }];
+        action.backgroundColor = WechatRedColor;
+        return @[action];
+    }
+    
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return UITableViewCellEditingStyleNone;
+    }else{
+        return UITableViewCellEditingStyleDelete;
     }
 }
 
@@ -267,15 +336,33 @@
 
 #pragma mark - 系统通知
 //好友请求变化时，更新好友请求未处理的个数
-- (void)reloadApplyViewWithBadgeNumber:(NSInteger)number{
+- (void)reloadApplyViewWithBadgeNumber:(NSInteger)number
+{
+    self.addFriendNum = number;
+    [self.tableView reloadData];
     
-//    self.applyBtn.count = number;
+//    if (number > 0) {
+//        self.addFriendCell.addFriendLabel.hidden = NO;
+//        self.addFriendCell.addFriendLabel.text = [NSString stringWithFormat:@"%ld",(long)number];
+//    }else{
+//        self.addFriendCell.addFriendLabel.hidden = YES;
+//        //self.addFriendCell.addFriendLabel.text = [NSString stringWithFormat:@"%ld",(long)number];
+//    }
+    
 }
 
 - (void)refreshUntreatedApplys
 {
     [[YLZGDataManager sharedManager] loadUnApplyApplyFriendArr:^(NSMutableArray *array) {
-//        self.applyBtn.count = array.count;
+        self.addFriendNum = array.count;
+        [self.tableView reloadData];
+//        if (array.count > 0) {
+//            self.addFriendCell.addFriendLabel.hidden = YES;
+//            self.addFriendCell.addFriendLabel.text = [NSString stringWithFormat:@"%ld",(long)array.count];
+//        }else{
+//            self.addFriendCell.addFriendLabel.hidden = YES;
+//            //self.addFriendCell.addFriendLabel.text = [NSString stringWithFormat:@"%ld",(long)array.count];
+//        }
     }];
 }
 

@@ -79,7 +79,7 @@
     }];
     
     self.workLastMsgLabel = [[UILabel alloc]init];
-    self.workLastMsgLabel.text = @"莫西莫西明星们莫西莫西明细项目项目明星们莫西莫西明细项目";
+    self.workLastMsgLabel.text = @"莫西莫西明星们莫西莫西明细。项目项目明星们莫西莫西明细项目。";
     self.workLastMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     self.workLastMsgLabel.textColor = RGBACOLOR(67, 67, 67, 1);
     [view1 addSubview:self.workLastMsgLabel];

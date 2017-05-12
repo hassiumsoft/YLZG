@@ -11,8 +11,9 @@
 
 @interface GroupTableViewCell : UITableViewCell
 
+/** 群聊信息 */
 @property (strong,nonatomic) YLGroup *model;
-
+/** 初始化 */
 + (instancetype)sharedGroupTableViewCell:(UITableView *)tableView;
 
 @end

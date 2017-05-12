@@ -73,6 +73,12 @@
     [self setupRightBar:self.selectArray];
     
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 1;
+}
+
 - (void)setupRightBar:(NSArray *)memberArr
 {
     NSString *members = [NSString stringWithFormat:@"确定(%ld)",(unsigned long)memberArr.count];
@@ -98,6 +104,7 @@
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (NSMutableArray *)array
 {
     if (!_array) {
@@ -115,10 +122,10 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = 50;
+        _tableView.rowHeight = 60;
         _tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
         _tableView.backgroundColor = self.view.backgroundColor;
     }

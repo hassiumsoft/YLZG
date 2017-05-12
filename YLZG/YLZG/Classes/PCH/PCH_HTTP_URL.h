@@ -184,6 +184,8 @@
 #define ContactList_Url @"http://192.168.0.158/index.php/home/easemob/linkman?uid=%@"
 // 模糊查询通讯录
 #define SearchUser_URL @"http://192.168.0.158/index.php/home/easemob/find_man?uid=%@&nickname=%@"
+// 建立群组,uid：自己，群主，不需要放进members里。members：成员的UID
+#define CreaterGroup_url @"http://192.168.0.158/index.php/home/easemob/setup_group?uid=%@&members=%@"
 // 群组成员
 #define GroupMember_URL @"http://192.168.0.158/index.php/home/easemob/get_group_users_list?uid=%@&gid=%@"
 

@@ -10,6 +10,12 @@
 #import <Masonry.h>
 #import <UIImageView+WebCache.h>
 
+@interface FriendTableViewCell ()
+
+@property (strong,nonatomic) UIButton *button;
+
+@end
+
 @implementation FriendTableViewCell
 + (instancetype)sharedFriendTableViewCell:(UITableView *)tableView
 {
@@ -53,12 +59,26 @@
     }else{
         _nickNameLabel.text = contactModel.nickname;
     }
-    self.loactionNameLabel.text = [NSString stringWithFormat:@"地址:%@",contactModel.location];
+    self.loactionNameLabel.text = [NSString stringWithFormat:@"%@",contactModel.dept];
+    if ([contactModel.dept containsString:@"好友"]) {
+        [self.button setTitle:@"已添加" forState:UIControlStateNormal];
+        [self.button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        self.button.layer.borderColor = [UIColor clearColor].CGColor;
+        self.button.enabled = NO;
+    }else{
+        [self.button setTitle:@"添加" forState:UIControlStateNormal];
+        [self.button setTitleColor:MainColor forState:UIControlStateNormal];
+        self.button.layer.borderColor = NormalColor.CGColor;
+        self.button.enabled = YES;
+    }
+    
 }
 - (void)setupSubViews
 {
     // 头像
     self.headImageV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"user_place"]];
+    self.headImageV.layer.masksToBounds = YES;
+    self.headImageV.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:self.headImageV];
     [self.headImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15);
@@ -96,17 +116,17 @@
         make.height.equalTo(@1);
     }];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setTitle:@"添加" forState:UIControlStateNormal];
-    [button setTitleColor:NormalColor forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(addFriendBtn) forControlEvents:UIControlEventTouchUpInside];
-    button.layer.masksToBounds =YES;
-    button.layer.borderColor = NormalColor.CGColor;
-    button.layer.borderWidth = 1.f;
-    button.layer.cornerRadius = 6.f;
-    button.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    [self addSubview:button];
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.button setTitle:@"添加" forState:UIControlStateNormal];
+    [self.button setTitleColor:NormalColor forState:UIControlStateNormal];
+    [self.button addTarget:self action:@selector(addFriendBtn) forControlEvents:UIControlEventTouchUpInside];
+    self.button.layer.masksToBounds =YES;
+    self.button.layer.borderColor = NormalColor.CGColor;
+    self.button.layer.borderWidth = 1.f;
+    self.button.layer.cornerRadius = 6.f;
+    self.button.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    [self addSubview:self.button];
+    [self.button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
         make.right.equalTo(self.mas_right).offset(-15);
         make.width.equalTo(@50);

@@ -15,9 +15,10 @@
 #import "EaseEmoji.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "UserInfoViewController.h"
+#import "ChatDetialViewController.h"
 #import "FriendDetialController.h"
 #import "YLChatGroupDetailController.h"
-#import "GroupListManager.h"
+#import "GroupMsgManager.h"
 
 @interface ChatViewController ()<EMClientDelegate>
 {
@@ -82,6 +83,7 @@
 - (void)toChatDetialController
 {
     [self.view endEditing:YES];
+    
     NSString *userName = self.contactModel.name; // 聊天界面为空时nil
     for (EaseMessageModel *messageModel in self.dataArray) {
         if (![messageModel isKindOfClass:[NSString class]]) {
@@ -95,10 +97,11 @@
         }
     }
     if (userName.length > 2) {
-        FriendDetialController *friendVC = [[FriendDetialController alloc]init];
-#warning 查看详情
-        friendVC.isRootPush = NO;
-        [self.navigationController pushViewController:friendVC animated:YES];
+        [[YLZGDataManager sharedManager] getOneStudioByUserName:userName Block:^(ContactersModel *model) {
+            ChatDetialViewController *detial = [[ChatDetialViewController alloc]initWithConversation:self.conversation];
+            detial.contactModel = model;
+            [self.navigationController pushViewController:detial animated:YES];
+        }];
     }
     
 }
@@ -108,7 +111,7 @@
     [self.view endEditing:YES];
     
     
-    YLChatGroupDetailController *groupDetial = [YLChatGroupDetailController new];
+    YLChatGroupDetailController *groupDetial = [[YLChatGroupDetailController alloc]initWithConversation:self.conversation];
     groupDetial.GroupModelBlock = ^(YLGroup *groupModel){
         self.groupModel = groupModel;
         self.title = self.groupModel.gname;

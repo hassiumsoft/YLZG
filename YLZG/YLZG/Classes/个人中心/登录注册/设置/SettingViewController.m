@@ -13,7 +13,7 @@
 #import <Masonry.h>
 #import "ClearCacheTool.h"
 #import "UserInfoManager.h"
-#import "GroupListManager.h"
+#import "GroupMsgManager.h"
 #import "StudioContactManager.h"
 #import "HuanxinContactManager.h"
 #import "HTTPManager.h"
@@ -174,17 +174,17 @@
             //如有需要，加入条件，过滤掉不想删除的文件
             if ([fileName isEqualToString:@"studio_contacts.sqlite"]
                 || [fileName isEqualToString:@"huanxin_contacts.sqlite"]
-                || [fileName isEqualToString:@"t_groups.sqlite"]) {
+                || [fileName isEqualToString:@"t_group.sqlite"]) {
                 
                 [HuanxinContactManager deleteAllInfo];
                 [StudioContactManager deleteAllInfo];
-                [GroupListManager deleteAllGroupInfo];
+                [GroupMsgManager deleteAllGroupInfo];
             }
         }
     }
     [[SDImageCache sharedImageCache] cleanDisk];
     [YLNotificationCenter postNotificationName:HXUpdataContacts object:nil];
-    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+    [[YLZGDataManager sharedManager] updataGroupInfoWithBlock:^{
         [MBProgressHUD hideHUD];
         deleBlock();
     }];

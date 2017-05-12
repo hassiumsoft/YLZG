@@ -118,7 +118,7 @@
         imageV.contentMode = UIViewContentModeScaleAspectFill;
         [imageV setContentScaleFactor:[UIScreen mainScreen].scale];
         imageV.layer.masksToBounds = YES;
-        imageV.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        imageV.autoresizingMask = UIViewAutoresizingFlexibleHeight & UIViewAutoresizingFlexibleWidth;
         imageV.tag = i;
         
         

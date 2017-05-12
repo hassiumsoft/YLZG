@@ -63,18 +63,28 @@
     [self.headV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
         make.left.equalTo(self.mas_left).offset(15);
-        make.width.and.height.equalTo(@40);
+        make.width.and.height.equalTo(@44);
     }];
     
-    self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.headV.frame) + 10, 2, 200, 21)];
+    self.nameLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     self.nameLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     [self addSubview:self.nameLabel];
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.contentView.mas_centerY);
+        make.left.equalTo(self.headV.mas_right).offset(12);
+        make.height.equalTo(@21);
+    }];
     
     
-    self.deptLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.headV.frame) + 10, CGRectGetMaxY(self.nameLabel.frame), 150, 21)];
+    self.deptLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     self.deptLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
     self.deptLabel.textColor = RGBACOLOR(87, 87, 87, 1);
     [self addSubview:self.deptLabel];
+    [self.deptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.nameLabel.mas_left);
+        make.top.equalTo(self.nameLabel.mas_bottom);
+        make.height.equalTo(@21);
+    }];
     
     self.selectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.selectBtn setImage:[UIImage imageNamed:@"EditControl"] forState:UIControlStateNormal];

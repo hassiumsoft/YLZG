@@ -15,8 +15,8 @@
 @property (strong,nonatomic) UIImageView *headImageV;
 /** 昵称 */
 @property (strong,nonatomic) UILabel *nickNameLabel;
-/** 线 */
-@property (strong,nonatomic) UIImageView *xian;
+/** 红色通知 */
+@property (strong,nonatomic) UILabel *addFriendLabel;
 
 /** 通讯录好友模型 */
 @property (strong,nonatomic) ContactersModel *contactModel;

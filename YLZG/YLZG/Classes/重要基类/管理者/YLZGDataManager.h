@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "HuanxinContactManager.h"
 #import "StudioContactManager.h"
+#import "YLGroup.h"
 
 
 typedef void (^ApplyFriend)(NSMutableArray * array);
@@ -32,8 +33,8 @@ typedef void(^ShareUrlBlock)(NSString *url);
 /** 获取未处理的申请通知 */
 - (void)loadUnApplyApplyFriendArr:(ApplyFriend)ApplyFriendArr;
 
-/** 把群组信息存进数据库 */
-- (void)saveGroupInfoWithBlock:(NoParamBlock)reloadTable;
+/** 更新群组信息缓存 */
+- (void)updataGroupInfoWithBlock:(NoParamBlock)reloadTable;
 /** 获取本地通讯录全部好友信息 */
 - (NSMutableArray *)getAllFriendInfo;
 /** 通过一个影楼ID获取一个用户的信息 */
@@ -44,8 +45,13 @@ typedef void(^ShareUrlBlock)(NSString *url);
 - (void)searchUserByName:(NSString *)nickName Success:(void (^)(NSArray *userArray))Success Fail:(void (^)(NSString *errorMsg))fail;
 /** 通过一个影楼UID获取一个用户的信息 */
 - (void)getOneStudioByUID:(NSString *)userID Block:(StuduoModelBlock)modelBlock;
+/** 邀请成员进群时，那些可以邀请 */
+- (void)getIvitersByGroupID:(NSString *)groupID Success:(void (^)(NSArray *memberArray))success Fail:(void (^)(NSString *errorMsg))fail;
 /** 获取分享链接 */
 - (void)getShareUrlCompletion:(ShareUrlBlock)shareURL;
+/** 发起群聊：建立群组 */
+- (void)createGroupWithMembers:(NSArray *)memberArray Success:(void (^)(YLGroup *groupModel))success Fail:(void (^)(NSString *errorMsg))fail;
+
 
 /**
  是否为春节期间

@@ -14,12 +14,10 @@
 #import "AppDelegate.h"
 #import <MJExtension.h>
 #import "YLZGDataManager.h"
-#import "YLGroup.h"
 #import "AddFriendViewController.h"
-#import "UIBarButtonItem+Extension.h"
 #import "YLZGChatManager.h"
 #import "ChatViewController.h"
-#import "GroupListManager.h"
+#import "GroupMsgManager.h"
 #import "EMCDDeviceManager.h"
 #import "ClearCacheTool.h"
 #import "HomeNavigationController.h"
@@ -61,11 +59,17 @@ static NSString *kGroupName = @"GroupName";
     [YLNotificationCenter addObserver:self selector:@selector(loadUntreatedApplyCount) name:HXSetupUntreatedApplyCount object:nil];
     // 从主界面进入聊天界面
     [YLNotificationCenter addObserver:self selector:@selector(PushToChatVC:) name:HXRePushToChat object:nil];
+    // 新建群之后从主页面进入群聊界面
+    [YLNotificationCenter addObserver:self selector:@selector(pushToGroupVC:) name:HXCreateNewGroup object:nil];
     
     // 刚进来获取未读消息数
     [self loadUnreadMessageCount];
     // 刚进来获取未处理的审批数
     [self loadUntreatedApplyCount];
+    // 获取群聊最新信息
+    [[YLZGDataManager sharedManager] updataGroupInfoWithBlock:^{
+        
+    }];
     // 获取通讯录信息
     [[YLZGDataManager sharedManager] refreshContactersSuccess:^(NSArray *userArray) {
         _contactVC.array = userArray;
@@ -376,6 +380,7 @@ static NSString *kGroupName = @"GroupName";
     [_homeVC networkChanged:connectionState];
     [_chatListVC networkChanged:connectionState];
 }
+#pragma mark - 去聊天界面
 
 - (void)PushToChatVC:(NSNotification *)noti
 {
@@ -397,6 +402,14 @@ static NSString *kGroupName = @"GroupName";
     }
     
 }
+// 新建群之后去群聊
+- (void)pushToGroupVC:(NSNotification *)noti
+{
+    YLGroup *model = [YLGroup mj_objectWithKeyValues:noti.userInfo];
+    ChatViewController *chatVC = [[ChatViewController alloc]initWithConversationChatter:model.gid conversationType:EMConversationTypeGroupChat];
+    chatVC.groupModel = model;
+    [_chatListVC.navigationController pushViewController:chatVC animated:NO];
+}
 
 - (void)dealloc
 {
@@ -408,6 +421,7 @@ static NSString *kGroupName = @"GroupName";
     [YLNotificationCenter removeObserverBlocksForKeyPath:HXSetupUntreatedApplyCount];
     [YLNotificationCenter removeObserverBlocksForKeyPath:HXSetupUnreadMessageCount];
     [YLNotificationCenter removeObserverBlocksForKeyPath:HXRePushToChat];
+    [YLNotificationCenter removeObserverBlocksForKeyPath:HXCreateNewGroup];
     
 }
 

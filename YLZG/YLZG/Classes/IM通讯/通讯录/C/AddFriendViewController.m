@@ -57,6 +57,11 @@
 - (void)getMyColleges
 {
     
+    if (self.isPresent) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(dismiss)];
+        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    }
+    
     NSMutableArray *tongshiArr = [NSMutableArray array];
     
     NSMutableArray  *listFriend = [StudioContactManager getAllStudiosContactsInfo];
@@ -83,6 +88,13 @@
     }
     self.array = tongshiArr;
     [self.tableView reloadData];
+}
+
+- (void)dismiss
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 #pragma mark -- 创建表格
 - (void)setupSubViews

@@ -12,6 +12,8 @@
 
 // 群组在雷哥服务器的ID
 @property (copy,nonatomic) NSString * id;
+// 群头像
+@property (copy,nonatomic) NSString *head_img;
 //成员人数
 @property (nonatomic, copy) NSString * affiliations;
 //是否允许成员邀请人

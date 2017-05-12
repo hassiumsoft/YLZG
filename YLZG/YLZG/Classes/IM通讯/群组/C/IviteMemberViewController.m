@@ -13,6 +13,7 @@
 #import <MJExtension.h>
 #import "HTTPManager.h"
 #import "ZCAccountTool.h"
+#import <MJRefresh.h>
 
 @interface IviteMemberViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -32,28 +33,34 @@
     [super viewDidLoad];
 //    self.title = @"选择联系人";
     
-    if (self.type == AddMemberType) {
-        NSArray *huanxinArr = [HuanxinContactManager getAllHuanxinContactsInfo];
-        NSArray *studioArr = [StudioContactManager getAllStudiosContactsInfo];
-        self.array = [NSMutableArray arrayWithArray:huanxinArr];
-        for (int i = 0; i < studioArr.count; i++) {
-            ColleaguesModel *colleagus = studioArr[i];
-            for (int j = 0; j < colleagus.member.count; j++) {
-                ContactersModel *model = colleagus.member[j];
-                [self.array addObject:model];
-            }
-        }
-        
-        for (ContactersModel *model in huanxinArr) {
-            [self.array addObject:model];
-        }
-        // 还需要把重复的人去除
-    }else{
-        self.array = [NSMutableArray arrayWithArray:self.groupArr];
-    }
-    
-    
     [self.view addSubview:self.tableView];
+    
+    if (self.type == AddMemberType) {
+        self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [[YLZGDataManager sharedManager] getIvitersByGroupID:self.groupModel.id Success:^(NSArray *memberArray) {
+                
+                NSMutableArray *tempArray = [NSMutableArray array];
+                for (ContactersModel *model in memberArray) {
+                    if (model.status == NO) {
+                        // 未加群的
+                        [tempArray addObject:model];
+                    }
+                }
+                
+                [self.tableView.mj_header endRefreshing];
+                self.array = tempArray;
+                [self.tableView reloadData];
+            } Fail:^(NSString *errorMsg) {
+                [self.tableView.mj_header endRefreshing];
+                [self sendErrorWarning:errorMsg];
+            }];
+        }];
+        self.tableView.mj_header.ignoredScrollViewContentInsetTop = 12;
+        [self.tableView.mj_header beginRefreshing];
+    }else{
+        // 获取可以剔除的人
+        self.array = self.groupArr.mutableCopy;
+    }
     
 }
 
@@ -71,7 +78,6 @@
     IvitMembersTableCell *cell = [IvitMembersTableCell sharedIvitMembersTableCell:tableView];
     cell.model = model;
     
-    
     return cell;
 }
 
@@ -81,8 +87,6 @@
     
     ZCAccount *account = [ZCAccountTool account];
     ContactersModel *model = self.array[indexPath.row];
-    
-    
     
     if (self.type == DeleteMemberType) {
         if ([model.name isEqualToString:account.username]) {
@@ -113,8 +117,6 @@
 #pragma mark - 操作
 - (void)buttonClick
 {
-//    http://192.168.0.158/index.php/home/easemob/invite_to_group?uid=144&sid=9&gid=1467017904457&id=4&members=[{"name":"aermei_ll","sid":"9","uid":"150"}]  // 加人
-//    http://192.168.0.158/index.php/home/easemob/kick_out_group?uid=144&sid=9&gid=1467017904457&id=4&members=[{"name":"aermei_ll","sid":"9","uid":"150"}]    踢人  会崩
     
     ZCAccount *account = [ZCAccountTool account];
     NSString *url;
@@ -128,20 +130,17 @@
     
     [MBProgressHUD showMessage:@"请稍后"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
+        
+        [MBProgressHUD hideHUD];
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];
         if (code == 1) {
             [self showSuccessTips:message];
-//            if (self.type == DeleteMemberType) {
-//                if (_AddMembersBlock) {
-//                    _AddMembersBlock(self.selectArray);
-//                }
-//            }
             
             [self.navigationController popToRootViewControllerAnimated:YES];
             
         }else{
-            [MBProgressHUD hideHUD];
+            
             NSString *kkk = [NSString stringWithFormat:@"[%@]:建议您每次选择一个成员",message];
             [self sendErrorWarning:kkk];
         }
@@ -175,13 +174,17 @@
     footV.backgroundColor = [UIColor clearColor];
     return footV;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 1;
+}
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = 50;
+        _tableView.rowHeight = 60;
         _tableView.contentInset = UIEdgeInsetsMake(12, 0, 0, 0);
     }
     return _tableView;
@@ -192,6 +195,13 @@
         _selectArray = [NSMutableArray array];
     }
     return _selectArray;
+}
+- (NSMutableArray *)array
+{
+    if (!_array) {
+        _array = [NSMutableArray array];
+    }
+    return _array;
 }
 
 @end

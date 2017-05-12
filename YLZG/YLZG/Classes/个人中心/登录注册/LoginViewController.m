@@ -185,6 +185,10 @@
         [xian removeFromSuperview];
     }
     
+    ZCAccount *account = [ZCAccountTool account];
+    self.nameField.text = account.username;
+    self.passField.text = account.password;
+    
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField

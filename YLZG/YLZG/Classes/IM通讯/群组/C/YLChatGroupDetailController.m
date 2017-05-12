@@ -19,12 +19,16 @@
 #import "GroupNameViewController.h"
 #import "NoDequTableCell.h"
 #import <LCActionSheet.h>
-#import "GroupListManager.h"
+#import "GroupMsgManager.h"
 #import "YLZGDataManager.h"
 #import <EMGroup.h>
 #import "IviteMemberViewController.h"
 
 @interface YLChatGroupDetailController ()<UITableViewDelegate,UITableViewDataSource>
+
+/** 会话模型 */
+@property (strong,nonatomic) EMConversation *conversation;
+
 /** 表格 */
 @property (strong,nonatomic) UITableView *tableView;
 /** 头部 */
@@ -48,6 +52,16 @@
 
 @implementation YLChatGroupDetailController
 
+
+- (instancetype)initWithConversation:(EMConversation *)conversation
+{
+    self = [super init];
+    if (self) {
+        self.conversation = conversation;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"群聊详情";
@@ -68,9 +82,9 @@
 - (void)setupSubViews
 {
     if (self.isMyGroup) {
-        self.array = @[@[@"查看全部成员"],@[@"消息免打扰",@"群名称",@"群简介",@"群人数"],@[@"发消息/解散群聊"]];
+        self.array = @[@[@"查看全部成员"],@[@"消息免打扰",@"群名称",@"群简介",@"清空消息"],@[@"发消息/解散群聊"]];
     }else{
-        self.array = @[@[@"查看全部成员"],@[@"消息免打扰",@"群名称",@"群简介",@"群人数"],@[@"发消息/退出群聊"]];
+        self.array = @[@[@"查看全部成员"],@[@"消息免打扰",@"群名称",@"群简介",@"清空消息"],@[@"发消息/退出群聊"]];
     }
     
     [self.view addSubview:self.tableView];
@@ -138,21 +152,24 @@
             [cell addSubview:self.switchV];
             return cell;
         } else if(indexPath.row == 1){
-            // 群聊设置
+            // 群名称设置
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             cell.contentLabel.text = self.groupModel.gname;
             return cell;
         }else if (indexPath.row == 2){
+            // 群简介
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
             cell.contentLabel.text = self.groupModel.dsp;
             return cell;
         }else{
+            // 群人数
             NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
             cell.textLabel.text = self.array[indexPath.section][indexPath.row];
-            cell.contentLabel.text = [NSString stringWithFormat:@"%d/%@",(int)self.memberArr.count,self.groupModel.maxusers];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             return cell;
         }
     }else{
@@ -215,52 +232,27 @@
             changeName.groupModel = self.groupModel;
             [self.navigationController pushViewController:changeName animated:YES];
         }else{
-            // 群人数设置
-            if ([self.groupModel.maxusers intValue] > 100) {
-                [self showWarningTips:@"暂只支持最多200人群"];
-                [self hideHud:1.2];
+            // 清除聊天记录
+            if (!self.conversation) {
                 return;
             }
-            LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"修改群聊人数上限" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+            LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"确定清空消息？" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
+                
                 if (buttonIndex == 1) {
-                    [self changeMaxMembers:@"200"];
+                    EMError *error;
+                    [self.conversation deleteAllMessages:&error];
+                    if (error) {
+                        [MBProgressHUD showError:error.errorDescription];
+                    }else{
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }
                 }
-            } otherButtonTitles:@"200", nil];
+                
+            } otherButtonTitles:@"清空", nil];
+            sheet.destructiveButtonIndexSet = [NSSet setWithObject:@1];
             [sheet show];
         }
     }
-}
-#pragma mark - 修改人数上限
-- (void)changeMaxMembers:(NSString *)count
-{
-    ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&maxusers=%@",account.userID,self.groupModel.id,self.groupModel.gid,count];
-    
-    [MBProgressHUD showMessage:@"请稍后"];
-    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        int code = [[[responseObject objectForKey:@"code"] description] intValue];
-        NSString *message = [[responseObject objectForKey:@"message"] description];
-        if (code == 1) {
-            
-            
-            
-            [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
-                [MBProgressHUD hideHUD];
-                self.groupModel.maxusers = @"200";
-                // 修改缓存
-                [self.tableView reloadData];
-            }];
-            
-        }else{
-            [MBProgressHUD hideHUD];
-            [self showErrorTips:message];
-        }
-        
-    } fail:^(NSURLSessionDataTask *task, NSError *error) {
-        [MBProgressHUD hideHUD];
-        // sendErrorWarning
-        [self sendErrorWarning:error.localizedDescription];
-    }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -279,7 +271,7 @@
 {
     UIView *foot = [[UIView alloc]init];
     if (section == 2) {
-        foot.backgroundColor = [UIColor whiteColor];
+        foot.backgroundColor = [UIColor clearColor];
     }else{
         foot.backgroundColor = self.view.backgroundColor;
     }
@@ -312,28 +304,27 @@
             // 退出群聊
             ZCAccount *account = [ZCAccountTool account];
             NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/quit_group?uid=%@&gid=%@&id=%@",account.userID,self.groupModel.gid,self.groupModel.id];
-            [MBProgressHUD showMessage:@"请稍后"];
             
             [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                 
                 int code = [[[responseObject objectForKey:@"code"] description] intValue];
+                NSString *message = [[responseObject objectForKey:@"message"] description];
                 if (code == 1) {
                     
                     // 清除一些缓存
                     
-                    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
-                        [MBProgressHUD hideHUD];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:HXRemoveAllMessages object:self.groupModel.gid];
+                    [[YLZGDataManager sharedManager] updataGroupInfoWithBlock:^{
+                        
+                        [YLNotificationCenter postNotificationName:HXRemoveAllMessages object:self.groupModel.gid];
                         [self.navigationController popToRootViewControllerAnimated:YES];
                     }];
                     
                 }else{
-                    [MBProgressHUD hideHUD];
-                    
+                    [self sendErrorWarning:message];
                 }
                 
             } fail:^(NSURLSessionDataTask *task, NSError *error) {
-                [self hideHud:1];
+                [self sendErrorWarning:error.localizedDescription];
             }];
         }
     } otherButtonTitles:@"确定退出", nil];
@@ -349,28 +340,28 @@
             // 解散群聊
             ZCAccount *account = [ZCAccountTool account];
             NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/dismiss_group?uid=%@&sid=%@&gid=%@&id=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id];
-            [MBProgressHUD showMessage:@"请稍后"];
             
             [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, NSDictionary *responseObject) {
                 
                 int code = [[[responseObject objectForKey:@"code"] description] intValue];
+                NSString *message = [[responseObject objectForKey:@"message"] description];
+                
                 if (code == 1) {
                     
                     // 清除一些缓存
                     
-                    [[YLZGDataManager sharedManager] saveGroupInfoWithBlock:^{
+                    [[YLZGDataManager sharedManager] updataGroupInfoWithBlock:^{
                         [MBProgressHUD hideHUD];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:HXRemoveAllMessages object:self.groupModel.gid];
+                        [YLNotificationCenter postNotificationName:HXRemoveAllMessages object:self.groupModel.gid];
                         [self.navigationController popToRootViewControllerAnimated:YES];
                     }];
                     
                 }else{
-                    [MBProgressHUD hideHUD];
-                    
+                    [self sendErrorWarning:message];
                 }
                 
             } fail:^(NSURLSessionDataTask *task, NSError *error) {
-                [self hideHud:1];
+                [self sendErrorWarning:error.localizedDescription];
             }];
         }
     } otherButtonTitles:@"确定解散", nil];
@@ -482,7 +473,7 @@
     if (!_returnGroupBtn) {
         _returnGroupBtn = [[UIButton alloc]initWithFrame:CGRectMake(25, 20 + 40 + 10, SCREEN_WIDTH - 50, 40)];
         _returnGroupBtn.layer.cornerRadius = 5;
-        _returnGroupBtn.backgroundColor = RGBACOLOR(187, 23, 34, 1);
+        _returnGroupBtn.backgroundColor = WechatRedColor;
         [_returnGroupBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         if (!self.isMyGroup) {
             [_returnGroupBtn setTitle:@"退出群聊" forState:UIControlStateNormal];

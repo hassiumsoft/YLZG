@@ -13,6 +13,7 @@
 
 @interface ContactersModel : NSObject
 
+
 /** 用户ID */
 @property (copy,nonatomic) NSString *uid;
 /** 店铺的ID */
@@ -40,6 +41,11 @@
 
 /** 是否被选中 */
 @property (assign,nonatomic) BOOL isSelected;
+/** 索引 */
+@property (assign,nonatomic) NSInteger index;
+
+/** 邀请人进群时的状态 */
+@property (assign,nonatomic) BOOL status;
 
 
 @end
