@@ -8,6 +8,7 @@
 
 #import "WorkAssistViewController.h"
 #import "WorkAssistTableCell.h"
+#import <MJRefresh.h>
 
 @interface WorkAssistViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -35,12 +36,27 @@
     self.tableView.backgroundColor = self.view.backgroundColor;
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
     [self.view addSubview:self.tableView];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [[YLZGDataManager sharedManager] getContactersLoginInfoSuccess:^(NSArray *array) {
+            [self.tableView.mj_header endRefreshing];
+            self.array = array;
+            [self.tableView reloadData];
+        } Fail:^(NSString *errorMsg) {
+            [self.tableView.mj_header endRefreshing];
+            [self sendErrorWarning:errorMsg];
+        }];
+    }];
+    self.tableView.mj_header.ignoredScrollViewContentInsetTop = 20;
+    [self.tableView.mj_header beginRefreshing];
 }
+
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //    return self.array.count;
-    return 12;
+        return self.array.count;
+//    return 12;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

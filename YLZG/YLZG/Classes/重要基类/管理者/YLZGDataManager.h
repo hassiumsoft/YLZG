@@ -52,6 +52,8 @@ typedef void(^ShareUrlBlock)(NSString *url);
 /** 发起群聊：建立群组 */
 - (void)createGroupWithMembers:(NSArray *)memberArray Success:(void (^)(YLGroup *groupModel))success Fail:(void (^)(NSString *errorMsg))fail;
 
+/** 查看影楼员工登录情况 */
+- (void)getContactersLoginInfoSuccess:(void (^)(NSArray *array))success Fail:(void (^)(NSString *errorMsg))fail;
 
 /**
  是否为春节期间

@@ -467,6 +467,32 @@ static YLZGDataManager *controller = nil;
     
 }
 
+- (void)getContactersLoginInfoSuccess:(void (^)(NSArray *))success Fail:(void (^)(NSString *))fail
+{
+    ZCAccount *account = [ZCAccountTool account];
+    if (!account) {
+        fail(@"用户未登录");
+        return;
+    }
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/push_info?uid=%@",account.userID];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [responseObject objectForKey:@"message"];
+        if (code == 1) {
+            NSArray *result = [responseObject objectForKey:@"result"];
+//            NSArray *modelArray = [];
+            if (result.count >= 1) {
+                success(result);
+            }else{
+                fail(@"暂无数据");
+            }
+        }else{
+            fail(message);
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        fail(error.localizedDescription);
+    }];
+}
 #pragma mark -  将字典或数组转化为JSON串
 - (NSString *)toJsonStr:(id)object
 {

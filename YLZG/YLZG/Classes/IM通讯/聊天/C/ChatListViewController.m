@@ -243,9 +243,11 @@
         __weak ChatListViewController *copySelf = self;
         _headView.ClickBlock = ^(ClickType clickType) {
             if (clickType == WorkZhushouType) {
+                // 工作助手
                 WorkAssistViewController *assist = [WorkAssistViewController new];
                 [copySelf.navigationController pushViewController:assist animated:YES];
             }else if (clickType == WorkMishuType){
+                // 掌柜小秘书
                 WorkSecretaryViewController *secret = [WorkSecretaryViewController new];
                 [copySelf.navigationController pushViewController:secret animated:YES];
             }
