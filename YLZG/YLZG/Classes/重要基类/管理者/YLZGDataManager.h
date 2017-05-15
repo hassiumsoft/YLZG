@@ -10,6 +10,7 @@
 #import "HuanxinContactManager.h"
 #import "StudioContactManager.h"
 #import "YLGroup.h"
+#import "LoginInfoModel.h"
 
 
 typedef void (^ApplyFriend)(NSMutableArray * array);
@@ -53,7 +54,7 @@ typedef void(^ShareUrlBlock)(NSString *url);
 - (void)createGroupWithMembers:(NSArray *)memberArray Success:(void (^)(YLGroup *groupModel))success Fail:(void (^)(NSString *errorMsg))fail;
 
 /** 查看影楼员工登录情况 */
-- (void)getContactersLoginInfoSuccess:(void (^)(NSArray *array))success Fail:(void (^)(NSString *errorMsg))fail;
+- (void)getContactersLoginInfoSuccess:(void (^)(LoginInfoModel *model))success Fail:(void (^)(NSString *errorMsg))fail;
 
 /**
  是否为春节期间

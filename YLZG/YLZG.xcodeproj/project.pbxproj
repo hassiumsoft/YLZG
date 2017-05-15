@@ -250,6 +250,7 @@
 		3B56D7831DC739CE003A57FD /* IMChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56D75F1DC739CE003A57FD /* IMChatManager.m */; };
 		3B56D7841DC739CE003A57FD /* ChatListHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56D7621DC739CE003A57FD /* ChatListHeadView.m */; };
 		3B56D7851DC739CE003A57FD /* MessageListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56D7641DC739CE003A57FD /* MessageListTableCell.m */; };
+		3B5BA5D11EC963B900A57DBF /* LoginInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BA5D01EC963B900A57DBF /* LoginInfoModel.m */; };
 		3B5DC7101DB870DD000F7A06 /* EaseChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC70B1DB870DD000F7A06 /* EaseChineseToPinyin.m */; };
 		3B5DC7111DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC70D1DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.m */; };
 		3B5DC7121DB870DD000F7A06 /* EaseMessageReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC70F1DB870DD000F7A06 /* EaseMessageReadManager.m */; };
@@ -995,6 +996,8 @@
 		3B56D7621DC739CE003A57FD /* ChatListHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListHeadView.m; sourceTree = "<group>"; };
 		3B56D7631DC739CE003A57FD /* MessageListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListTableCell.h; sourceTree = "<group>"; };
 		3B56D7641DC739CE003A57FD /* MessageListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListTableCell.m; sourceTree = "<group>"; };
+		3B5BA5CF1EC963B900A57DBF /* LoginInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginInfoModel.h; sourceTree = "<group>"; };
+		3B5BA5D01EC963B900A57DBF /* LoginInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInfoModel.m; sourceTree = "<group>"; };
 		3B5DC70A1DB870DD000F7A06 /* EaseChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChineseToPinyin.h; sourceTree = "<group>"; };
 		3B5DC70B1DB870DD000F7A06 /* EaseChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseChineseToPinyin.m; sourceTree = "<group>"; };
 		3B5DC70C1DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConvertToCommonEmoticonsHelper.h; sourceTree = "<group>"; };
@@ -1893,6 +1896,8 @@
 				3B43E18F1EC0194000FAD11F /* WorkAssistViewController.m */,
 				3B43E1941EC0210D00FAD11F /* WorkAssistTableCell.h */,
 				3B43E1951EC0210D00FAD11F /* WorkAssistTableCell.m */,
+				3B5BA5CF1EC963B900A57DBF /* LoginInfoModel.h */,
+				3B5BA5D01EC963B900A57DBF /* LoginInfoModel.m */,
 				3B43E1911EC019BE00FAD11F /* WorkSecretaryViewController.h */,
 				3B43E1921EC019BE00FAD11F /* WorkSecretaryViewController.m */,
 			);
@@ -4720,6 +4725,7 @@
 				3B56D7811DC739CE003A57FD /* EaseTextView.m in Sources */,
 				3B4C13411DC85F4700827D4F /* ChooseAdminsController.m in Sources */,
 				3BCF39751D9DF42100BEE236 /* YLZGDataManager.m in Sources */,
+				3B5BA5D11EC963B900A57DBF /* LoginInfoModel.m in Sources */,
 				3B4C10C81DC85DDC00827D4F /* ShekongBenController.m in Sources */,
 				3B5DC7101DB870DD000F7A06 /* EaseChineseToPinyin.m in Sources */,
 				3B56D77E1DC739CE003A57FD /* EaseRecordView.m in Sources */,

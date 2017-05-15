@@ -58,7 +58,7 @@
     [view1 addSubview:xian1];
     
     
-    UIImageView *iconView1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"reg-fb-bg"]];
+    UIImageView *iconView1 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_work_assistant"]];
     iconView1.layer.masksToBounds = YES;
     iconView1.layer.cornerRadius = 4;
     [view1 addSubview:iconView1];
@@ -104,7 +104,7 @@
     }];
     [view2 addGestureRecognizer:mishu];
     
-    UIImageView *iconView2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"reg-fb-bg"]];
+    UIImageView *iconView2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ico_minisec"]];
     iconView2.layer.masksToBounds = YES;
     iconView2.layer.cornerRadius = 4;
     [view2 addSubview:iconView2];

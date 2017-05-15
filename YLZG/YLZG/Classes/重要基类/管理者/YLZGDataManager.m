@@ -467,7 +467,7 @@ static YLZGDataManager *controller = nil;
     
 }
 
-- (void)getContactersLoginInfoSuccess:(void (^)(NSArray *))success Fail:(void (^)(NSString *))fail
+- (void)getContactersLoginInfoSuccess:(void (^)(LoginInfoModel *))success Fail:(void (^)(NSString *))fail
 {
     ZCAccount *account = [ZCAccountTool account];
     if (!account) {
@@ -479,10 +479,14 @@ static YLZGDataManager *controller = nil;
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [responseObject objectForKey:@"message"];
         if (code == 1) {
-            NSArray *result = [responseObject objectForKey:@"result"];
-//            NSArray *modelArray = [];
+            NSDictionary *result = [responseObject objectForKey:@"result"];
+            NSDictionary *msg = [result objectForKey:@"msg"];
+            NSDictionary *message = [msg objectForKey:@"message"];
+            NSDictionary *details = [message objectForKey:@"details"];
+            NSLog(@"details = %@",details);
+            LoginInfoModel *model = [LoginInfoModel mj_objectWithKeyValues:details];
             if (result.count >= 1) {
-                success(result);
+                success(model);
             }else{
                 fail(@"暂无数据");
             }
