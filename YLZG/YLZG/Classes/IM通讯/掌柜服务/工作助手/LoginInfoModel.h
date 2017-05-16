@@ -10,6 +10,16 @@
 
 @interface LoginInfoModel : NSObject
 
+/** 链接 */
 @property (copy,nonatomic) NSString *url;
+/** ID */
+@property (copy,nonatomic) NSString *id;
+/** 标题 */
+@property (copy,nonatomic) NSString *title;
+/** 描述 */
+@property (copy,nonatomic) NSString *content;
+/** 未登录人数 */
+@property (copy,nonatomic) NSString *not_login;
+
 
 @end

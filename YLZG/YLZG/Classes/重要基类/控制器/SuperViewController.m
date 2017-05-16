@@ -51,10 +51,24 @@
     self.messageLabel.hidden = NO;
     self.messageLabel.text = message;
 }
-
 - (void)hideMessageAction
 {
     self.messageLabel.hidden = YES;
+}
+
+#pragma mark - 懒加载
+- (UILabel *)messageLabel
+{
+    if (!_messageLabel) {
+        _messageLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+        _messageLabel.font = [UIFont boldSystemFontOfSize:24];
+        _messageLabel.numberOfLines = 0;
+        _messageLabel.textAlignment = NSTextAlignmentCenter;
+        _messageLabel.textColor = RGBACOLOR(108, 108, 108, 1);
+        _messageLabel.hidden = YES;
+        
+    }
+    return _messageLabel;
 }
 
 

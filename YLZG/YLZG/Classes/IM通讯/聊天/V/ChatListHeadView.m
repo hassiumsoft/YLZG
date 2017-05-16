@@ -24,7 +24,19 @@
 @implementation ChatListHeadView
 
 
+- (void)setLoginModel:(LoginInfoModel *)loginModel
+{
+    _loginModel = loginModel;
+    
+    _workLastMsgLabel.text = [NSString stringWithFormat:@"%@：%@",loginModel.title,loginModel.content];
+}
 
+- (void)setVersionModel:(VersionInfoModel *)versionModel
+{
+    _versionModel = versionModel;
+    _mishuLastMsgLabel.text = [NSString stringWithFormat:@"%@：%@",versionModel.title,versionModel.content];
+    
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -32,13 +44,12 @@
     if (self) {
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor whiteColor];
-        
+        [self setupSubViews];
     }
     return self;
 }
-- (void)layoutSubviews
+- (void)setupSubViews
 {
-    [super layoutSubviews];
     
     // 掌柜小助手
     UIView *view1 = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height/2)];
@@ -79,7 +90,7 @@
     }];
     
     self.workLastMsgLabel = [[UILabel alloc]init];
-    self.workLastMsgLabel.text = @"莫西莫西明星们莫西莫西明细。项目项目明星们莫西莫西明细项目。";
+    self.workLastMsgLabel.text = @"·······················";
     self.workLastMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     self.workLastMsgLabel.textColor = RGBACOLOR(67, 67, 67, 1);
     [view1 addSubview:self.workLastMsgLabel];
@@ -125,7 +136,7 @@
     }];
     
     self.mishuLastMsgLabel = [[UILabel alloc]init];
-    self.mishuLastMsgLabel.text = @"莫西莫西明星们莫西莫西明细项目项目明星们莫西莫西明细项目";
+    self.mishuLastMsgLabel.text = @"·······················";
     self.mishuLastMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     self.mishuLastMsgLabel.textColor = RGBACOLOR(67, 67, 67, 1);
     [view2 addSubview:self.mishuLastMsgLabel];
@@ -140,6 +151,25 @@
     UIImageView *xian2 = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xian"]];
     xian2.frame = CGRectMake(0, view2.height - 1, self.width, 1);
     [view2 addSubview:xian2];
+    
+    
+//    // 获取掌柜数据
+//    [[YLZGDataManager sharedManager] getLoginInfoPage:1 Success:^(NSArray *array) {
+//        
+//        LoginInfoModel *loginModel = [array firstObject];
+//        self.workLastMsgLabel.text = [NSString stringWithFormat:@"%@：%@",loginModel.title,loginModel.content];;
+//        
+//    } Fail:^(NSString *errorMsg) {
+//        
+//    }];
+//    [[YLZGDataManager sharedManager] getNewVersionPage:1 Success:^(NSArray *array) {
+//        
+//        VersionInfoModel *versionModel = [array firstObject];
+//        self.mishuLastMsgLabel.text = [NSString stringWithFormat:@"%@：%@",versionModel.title,versionModel.content];
+//        
+//    } Fail:^(NSString *errorMsg) {
+//        
+//    }];
 
     
 }

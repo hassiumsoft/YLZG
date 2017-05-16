@@ -158,7 +158,7 @@ static YLZGDataManager *controller = nil;
 - (void)loadUnApplyApplyFriendArr:(ApplyFriend)ApplyFriendArr{
     
     ZCAccount *account = [ZCAccountTool account];
-    NSString *URL = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/get_msg?uid=%@",account.userID];
+    NSString *URL = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/get_msg?uid=%@",account.userID];
     
     UserInfoModel *myModel = [[UserInfoManager sharedManager] getUserInfo];
     [HTTPManager GET:URL params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -191,7 +191,7 @@ static YLZGDataManager *controller = nil;
         return;
     }
     
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/group_status?uid=%@&group_id=%@",account.userID,groupID];
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/group_status?uid=%@&group_id=%@",account.userID,groupID];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -219,7 +219,7 @@ static YLZGDataManager *controller = nil;
 {
     
     ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/my_groups_list?uid=%@",account.userID];
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/my_groups_list?uid=%@",account.userID];
     KGLog(@"获取我的群组信息 = %@",url);
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -466,27 +466,50 @@ static YLZGDataManager *controller = nil;
     }];
     
 }
-
-- (void)getContactersLoginInfoSuccess:(void (^)(LoginInfoModel *))success Fail:(void (^)(NSString *))fail
+// 登录信息列表
+- (void)getLoginInfoPage:(int)page Success:(void (^)(NSArray *))success Fail:(void (^)(NSString *))fail
 {
     ZCAccount *account = [ZCAccountTool account];
     if (!account) {
         fail(@"用户未登录");
         return;
     }
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/push_info?uid=%@",account.userID];
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/helper_list?page=%d&uid=%@",page,account.userID];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [responseObject objectForKey:@"message"];
         if (code == 1) {
             NSDictionary *result = [responseObject objectForKey:@"result"];
-            NSDictionary *msg = [result objectForKey:@"msg"];
-            NSDictionary *message = [msg objectForKey:@"message"];
-            NSDictionary *details = [message objectForKey:@"details"];
-            NSLog(@"details = %@",details);
-            LoginInfoModel *model = [LoginInfoModel mj_objectWithKeyValues:details];
-            if (result.count >= 1) {
-                success(model);
+            NSArray *modelArray = [LoginInfoModel mj_objectArrayWithKeyValuesArray:result];
+            if (modelArray.count >= 1) {
+                success(modelArray);
+            }else{
+                fail(@"暂无数据");
+            }
+        }else{
+            fail(message);
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        fail(error.localizedDescription);
+    }];
+}
+// 版本信息列表
+- (void)getNewVersionPage:(int)page Success:(void (^)(NSArray *))success Fail:(void (^)(NSString *))fail
+{
+    ZCAccount *account = [ZCAccountTool account];
+    if (!account) {
+        fail(@"用户未登录");
+        return;
+    }
+    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/admin/article/secretary_list?page=%d&uid=%@",page,account.userID];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [responseObject objectForKey:@"message"];
+        if (code == 1) {
+            NSDictionary *result = [responseObject objectForKey:@"result"];
+            NSArray *modelArray = [VersionInfoModel mj_objectArrayWithKeyValuesArray:result];
+            if (modelArray.count >= 1) {
+                success(modelArray);
             }else{
                 fail(@"暂无数据");
             }

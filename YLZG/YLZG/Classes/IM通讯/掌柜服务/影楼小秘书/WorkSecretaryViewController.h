@@ -10,4 +10,7 @@
 
 @interface WorkSecretaryViewController : SuperViewController
 
+
+- (instancetype)initWithVersionArray:(NSArray *)versionArray;
+
 @end

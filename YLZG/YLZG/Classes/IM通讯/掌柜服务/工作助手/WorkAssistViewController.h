@@ -10,4 +10,6 @@
 
 @interface WorkAssistViewController : SuperViewController
 
+- (instancetype)initWithLoginArray:(NSArray *)loginArray;
+
 @end

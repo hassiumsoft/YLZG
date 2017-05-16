@@ -123,9 +123,9 @@
     NSArray *dicArr = [ContactersModel mj_keyValuesArrayWithObjectArray:self.selectArray];
     NSString *memberJson = [self toJsonStr:dicArr];
     if (self.type == AddMemberType) {
-        url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/invite_to_group?uid=%@&sid=%@&gid=%@&id=%@&members=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id,memberJson];
+        url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/invite_to_group?uid=%@&sid=%@&gid=%@&id=%@&members=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id,memberJson];
     }else{
-        url = [NSString stringWithFormat:@"http://192.168.0.158/index.php/home/easemob/kick_out_group?uid=%@&sid=%@&gid=%@&id=%@&members=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id,memberJson];
+        url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/kick_out_group?uid=%@&sid=%@&gid=%@&id=%@&members=%@",account.userID,self.groupModel.sid,self.groupModel.gid,self.groupModel.id,memberJson];
     }
     
     [MBProgressHUD showMessage:@"请稍后"];

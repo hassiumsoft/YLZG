@@ -36,6 +36,10 @@
 /** 断网时的红色提示 */
 @property (nonatomic, strong) UIView *networkStateView;
 
+/** 掌柜工作助手(登录信息) */
+@property (copy,nonatomic) NSArray *loginArray;
+/** 掌柜小秘书(版本信息) */
+@property (copy,nonatomic) NSArray *versionArray;
 
 @end
 
@@ -52,6 +56,8 @@
     [super viewWillAppear:animated];
     [self registerNotifications];
     [self getDataFromRAM];
+    
+    
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -92,6 +98,27 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addMoreAction)];
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
+    
+    
+    // 获取掌柜数据
+    [[YLZGDataManager sharedManager] getLoginInfoPage:1 Success:^(NSArray *array) {
+        
+        LoginInfoModel *loginModel = [array firstObject];
+        self.headView.loginModel = loginModel;
+        self.loginArray = array;
+        
+    } Fail:^(NSString *errorMsg) {
+        self.loginArray = nil;
+    }];
+    [[YLZGDataManager sharedManager] getNewVersionPage:1 Success:^(NSArray *array) {
+        
+        VersionInfoModel *versionModel = [array firstObject];
+        self.headView.versionModel = versionModel;
+        self.versionArray = array;
+        
+    } Fail:^(NSString *errorMsg) {
+        self.versionArray = nil;
+    }];
     
 }
 - (void)addMoreAction
@@ -214,10 +241,10 @@
 {
     if (connectionState == EMConnectionDisconnected) {
         // 失去连接
-        
+        self.title = @"消息（未连接）";
     }else{
         // 获得连接
-        
+        self.title = @"消息";
     }
     
 }
@@ -244,11 +271,11 @@
         _headView.ClickBlock = ^(ClickType clickType) {
             if (clickType == WorkZhushouType) {
                 // 工作助手
-                WorkAssistViewController *assist = [WorkAssistViewController new];
+                WorkAssistViewController *assist = [[WorkAssistViewController alloc]initWithLoginArray:copySelf.loginArray];
                 [copySelf.navigationController pushViewController:assist animated:YES];
             }else if (clickType == WorkMishuType){
                 // 掌柜小秘书
-                WorkSecretaryViewController *secret = [WorkSecretaryViewController new];
+                WorkSecretaryViewController *secret = [[WorkSecretaryViewController alloc]initWithVersionArray:copySelf.versionArray];
                 [copySelf.navigationController pushViewController:secret animated:YES];
             }
         };

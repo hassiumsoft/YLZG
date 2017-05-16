@@ -95,9 +95,6 @@
 		3B3BBFC91DB48BEB00C9E2FD /* GroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFC81DB48BEB00C9E2FD /* GroupTableViewCell.m */; };
 		3B3BBFD51DB4BF3C00C9E2FD /* FriendDetialController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFD41DB4BF3C00C9E2FD /* FriendDetialController.m */; };
 		3B3BBFE21DB4D2F800C9E2FD /* CallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3BBFE11DB4D2F800C9E2FD /* CallViewController.m */; };
-		3B43E1901EC0194000FAD11F /* WorkAssistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E18F1EC0194000FAD11F /* WorkAssistViewController.m */; };
-		3B43E1931EC019BE00FAD11F /* WorkSecretaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E1921EC019BE00FAD11F /* WorkSecretaryViewController.m */; };
-		3B43E1961EC0210D00FAD11F /* WorkAssistTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B43E1951EC0210D00FAD11F /* WorkAssistTableCell.m */; };
 		3B447B191DC98C0B00316E3C /* ForgetSecretController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B447B181DC98C0B00316E3C /* ForgetSecretController.m */; };
 		3B4C10331DC85DDC00827D4F /* MonthFinanceVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E861DC85DDB00827D4F /* MonthFinanceVController.m */; };
 		3B4C10341DC85DDC00827D4F /* MonthInComeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C0E881DC85DDB00827D4F /* MonthInComeController.m */; };
@@ -250,7 +247,6 @@
 		3B56D7831DC739CE003A57FD /* IMChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56D75F1DC739CE003A57FD /* IMChatManager.m */; };
 		3B56D7841DC739CE003A57FD /* ChatListHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56D7621DC739CE003A57FD /* ChatListHeadView.m */; };
 		3B56D7851DC739CE003A57FD /* MessageListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B56D7641DC739CE003A57FD /* MessageListTableCell.m */; };
-		3B5BA5D11EC963B900A57DBF /* LoginInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BA5D01EC963B900A57DBF /* LoginInfoModel.m */; };
 		3B5DC7101DB870DD000F7A06 /* EaseChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC70B1DB870DD000F7A06 /* EaseChineseToPinyin.m */; };
 		3B5DC7111DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC70D1DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.m */; };
 		3B5DC7121DB870DD000F7A06 /* EaseMessageReadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5DC70F1DB870DD000F7A06 /* EaseMessageReadManager.m */; };
@@ -408,6 +404,12 @@
 		3BA8D9781DEECB9B00645405 /* OpenOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D9771DEECB9B00645405 /* OpenOrderTableCell.m */; };
 		3BAFF49F1EC45A1400D81AD5 /* SearchMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAFF49E1EC45A1400D81AD5 /* SearchMessageViewController.m */; };
 		3BB1F9111EC2B8AD0008A776 /* GroupMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1F9101EC2B8AD0008A776 /* GroupMsgManager.m */; };
+		3BB8E06C1ECAB8FE004BDE09 /* LoginInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E0601ECAB8FE004BDE09 /* LoginInfoModel.m */; };
+		3BB8E06D1ECAB8FE004BDE09 /* WorkAssistTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E0611ECAB8FE004BDE09 /* WorkAssistTableCell.m */; };
+		3BB8E06E1ECAB8FE004BDE09 /* WorkAssistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E0631ECAB8FE004BDE09 /* WorkAssistViewController.m */; };
+		3BB8E06F1ECAB8FE004BDE09 /* VersionInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E0671ECAB8FE004BDE09 /* VersionInfoModel.m */; };
+		3BB8E0701ECAB8FE004BDE09 /* WorkSecretaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E0691ECAB8FE004BDE09 /* WorkSecretaryViewController.m */; };
+		3BB8E0711ECAB8FE004BDE09 /* WorkSecretTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E06B1ECAB8FE004BDE09 /* WorkSecretTableCell.m */; };
 		3BB8F5A01EC560650045C8A2 /* HistoryMessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8F59F1EC560650045C8A2 /* HistoryMessageTableCell.m */; };
 		3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6C5061DC042C8008346BD /* NewFutherModel.m */; };
 		3BCA323A1D9CC07600A0E980 /* YLConstKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32391D9CC07600A0E980 /* YLConstKey.m */; };
@@ -681,12 +683,6 @@
 		3B3BBFD41DB4BF3C00C9E2FD /* FriendDetialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendDetialController.m; sourceTree = "<group>"; };
 		3B3BBFE01DB4D2F800C9E2FD /* CallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallViewController.h; sourceTree = "<group>"; };
 		3B3BBFE11DB4D2F800C9E2FD /* CallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallViewController.m; sourceTree = "<group>"; };
-		3B43E18E1EC0194000FAD11F /* WorkAssistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkAssistViewController.h; sourceTree = "<group>"; };
-		3B43E18F1EC0194000FAD11F /* WorkAssistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkAssistViewController.m; sourceTree = "<group>"; };
-		3B43E1911EC019BE00FAD11F /* WorkSecretaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkSecretaryViewController.h; sourceTree = "<group>"; };
-		3B43E1921EC019BE00FAD11F /* WorkSecretaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkSecretaryViewController.m; sourceTree = "<group>"; };
-		3B43E1941EC0210D00FAD11F /* WorkAssistTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkAssistTableCell.h; sourceTree = "<group>"; };
-		3B43E1951EC0210D00FAD11F /* WorkAssistTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkAssistTableCell.m; sourceTree = "<group>"; };
 		3B447B171DC98C0B00316E3C /* ForgetSecretController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetSecretController.h; sourceTree = "<group>"; };
 		3B447B181DC98C0B00316E3C /* ForgetSecretController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetSecretController.m; sourceTree = "<group>"; };
 		3B4C0E851DC85DDB00827D4F /* MonthFinanceVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonthFinanceVController.h; sourceTree = "<group>"; };
@@ -996,8 +992,6 @@
 		3B56D7621DC739CE003A57FD /* ChatListHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListHeadView.m; sourceTree = "<group>"; };
 		3B56D7631DC739CE003A57FD /* MessageListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageListTableCell.h; sourceTree = "<group>"; };
 		3B56D7641DC739CE003A57FD /* MessageListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageListTableCell.m; sourceTree = "<group>"; };
-		3B5BA5CF1EC963B900A57DBF /* LoginInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginInfoModel.h; sourceTree = "<group>"; };
-		3B5BA5D01EC963B900A57DBF /* LoginInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInfoModel.m; sourceTree = "<group>"; };
 		3B5DC70A1DB870DD000F7A06 /* EaseChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseChineseToPinyin.h; sourceTree = "<group>"; };
 		3B5DC70B1DB870DD000F7A06 /* EaseChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EaseChineseToPinyin.m; sourceTree = "<group>"; };
 		3B5DC70C1DB870DD000F7A06 /* EaseConvertToCommonEmoticonsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EaseConvertToCommonEmoticonsHelper.h; sourceTree = "<group>"; };
@@ -1316,6 +1310,18 @@
 		3BAFF49E1EC45A1400D81AD5 /* SearchMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMessageViewController.m; sourceTree = "<group>"; };
 		3BB1F90F1EC2B8AD0008A776 /* GroupMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMsgManager.h; sourceTree = "<group>"; };
 		3BB1F9101EC2B8AD0008A776 /* GroupMsgManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupMsgManager.m; sourceTree = "<group>"; };
+		3BB8E05F1ECAB8FE004BDE09 /* LoginInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginInfoModel.h; sourceTree = "<group>"; };
+		3BB8E0601ECAB8FE004BDE09 /* LoginInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInfoModel.m; sourceTree = "<group>"; };
+		3BB8E0611ECAB8FE004BDE09 /* WorkAssistTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkAssistTableCell.m; sourceTree = "<group>"; };
+		3BB8E0621ECAB8FE004BDE09 /* WorkAssistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkAssistViewController.h; sourceTree = "<group>"; };
+		3BB8E0631ECAB8FE004BDE09 /* WorkAssistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkAssistViewController.m; sourceTree = "<group>"; };
+		3BB8E0661ECAB8FE004BDE09 /* VersionInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionInfoModel.h; sourceTree = "<group>"; };
+		3BB8E0671ECAB8FE004BDE09 /* VersionInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionInfoModel.m; sourceTree = "<group>"; };
+		3BB8E0681ECAB8FE004BDE09 /* WorkAssistTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkAssistTableCell.h; sourceTree = "<group>"; };
+		3BB8E0691ECAB8FE004BDE09 /* WorkSecretaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkSecretaryViewController.m; sourceTree = "<group>"; };
+		3BB8E06A1ECAB8FE004BDE09 /* WorkSecretTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkSecretTableCell.h; sourceTree = "<group>"; };
+		3BB8E06B1ECAB8FE004BDE09 /* WorkSecretTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkSecretTableCell.m; sourceTree = "<group>"; };
+		3BB8E0721ECABCA2004BDE09 /* WorkSecretaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkSecretaryViewController.h; sourceTree = "<group>"; };
 		3BB8F59E1EC560650045C8A2 /* HistoryMessageTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryMessageTableCell.h; sourceTree = "<group>"; };
 		3BB8F59F1EC560650045C8A2 /* HistoryMessageTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryMessageTableCell.m; sourceTree = "<group>"; };
 		3BC6C5051DC042C8008346BD /* NewFutherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFutherModel.h; sourceTree = "<group>"; };
@@ -1892,14 +1898,8 @@
 		3B43E18D1EC018E600FAD11F /* 掌柜服务 */ = {
 			isa = PBXGroup;
 			children = (
-				3B43E18E1EC0194000FAD11F /* WorkAssistViewController.h */,
-				3B43E18F1EC0194000FAD11F /* WorkAssistViewController.m */,
-				3B43E1941EC0210D00FAD11F /* WorkAssistTableCell.h */,
-				3B43E1951EC0210D00FAD11F /* WorkAssistTableCell.m */,
-				3B5BA5CF1EC963B900A57DBF /* LoginInfoModel.h */,
-				3B5BA5D01EC963B900A57DBF /* LoginInfoModel.m */,
-				3B43E1911EC019BE00FAD11F /* WorkSecretaryViewController.h */,
-				3B43E1921EC019BE00FAD11F /* WorkSecretaryViewController.m */,
+				3BB8E05E1ECAB8FE004BDE09 /* 工作助手 */,
+				3BB8E0651ECAB8FE004BDE09 /* 影楼小秘书 */,
 			);
 			path = "掌柜服务";
 			sourceTree = "<group>";
@@ -3756,6 +3756,32 @@
 			path = "套系信息";
 			sourceTree = "<group>";
 		};
+		3BB8E05E1ECAB8FE004BDE09 /* 工作助手 */ = {
+			isa = PBXGroup;
+			children = (
+				3BB8E05F1ECAB8FE004BDE09 /* LoginInfoModel.h */,
+				3BB8E0601ECAB8FE004BDE09 /* LoginInfoModel.m */,
+				3BB8E0611ECAB8FE004BDE09 /* WorkAssistTableCell.m */,
+				3BB8E0621ECAB8FE004BDE09 /* WorkAssistViewController.h */,
+				3BB8E0631ECAB8FE004BDE09 /* WorkAssistViewController.m */,
+			);
+			path = "工作助手";
+			sourceTree = "<group>";
+		};
+		3BB8E0651ECAB8FE004BDE09 /* 影楼小秘书 */ = {
+			isa = PBXGroup;
+			children = (
+				3BB8E0661ECAB8FE004BDE09 /* VersionInfoModel.h */,
+				3BB8E0671ECAB8FE004BDE09 /* VersionInfoModel.m */,
+				3BB8E0681ECAB8FE004BDE09 /* WorkAssistTableCell.h */,
+				3BB8E0721ECABCA2004BDE09 /* WorkSecretaryViewController.h */,
+				3BB8E0691ECAB8FE004BDE09 /* WorkSecretaryViewController.m */,
+				3BB8E06A1ECAB8FE004BDE09 /* WorkSecretTableCell.h */,
+				3BB8E06B1ECAB8FE004BDE09 /* WorkSecretTableCell.m */,
+			);
+			path = "影楼小秘书";
+			sourceTree = "<group>";
+		};
 		3BCA323B1D9CC14100A0E980 /* 管理者 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4424,6 +4450,7 @@
 			files = (
 				3B0DE65D1DFFDDF300CB55A4 /* YuanCurrentTimeView.m in Sources */,
 				3BCF3A371D9E6CF800BEE236 /* NSData+SDDataCache.m in Sources */,
+				3BB8E0701ECAB8FE004BDE09 /* WorkSecretaryViewController.m in Sources */,
 				3B7ABCF31DB6176600F3D12B /* EMCDDeviceManager+Remind.m in Sources */,
 				3BCF3A231D9E6A4800BEE236 /* SuggestController.m in Sources */,
 				3B7ABCA21DB5B31D00F3D12B /* YLChatGroupDetailController.m in Sources */,
@@ -4565,7 +4592,6 @@
 				3B7ABCA11DB5B31D00F3D12B /* IviteMemberViewController.m in Sources */,
 				3B87BFE91DF54C9700970625 /* QZSortCell.m in Sources */,
 				3BCF3A0B1D9E65E800BEE236 /* FRegionModel.m in Sources */,
-				3B43E1901EC0194000FAD11F /* WorkAssistViewController.m in Sources */,
 				3B87BFEE1DF558EC00970625 /* QZConditionFilterView.m in Sources */,
 				3B4C136C1DC85F4700827D4F /* WaitApperTableCell.m in Sources */,
 				3BCA326C1D9CC2F100A0E980 /* LoginViewController.m in Sources */,
@@ -4610,7 +4636,6 @@
 				3B0DE64E1DFFA5C200CB55A4 /* TodayDakaLocationsModel.m in Sources */,
 				3B9E17031DD2F32C0028C72F /* CaiwuDetialCell.m in Sources */,
 				3B4C135E1DC85F4700827D4F /* ChangeRulesController.m in Sources */,
-				3B43E1961EC0210D00FAD11F /* WorkAssistTableCell.m in Sources */,
 				3B4C10381DC85DDC00827D4F /* FinalTableViewCell.m in Sources */,
 				3B4C135B1DC85F4700827D4F /* TimePickerView.m in Sources */,
 				3B4C10D81DC85DDC00827D4F /* ChooseTimeView.m in Sources */,
@@ -4682,7 +4707,6 @@
 				3B3BBFD51DB4BF3C00C9E2FD /* FriendDetialController.m in Sources */,
 				3BCF3A0D1D9E65E800BEE236 /* SuperTableViewController.m in Sources */,
 				3B4C10D71DC85DDC00827D4F /* SearchOrderModel.m in Sources */,
-				3B43E1931EC019BE00FAD11F /* WorkSecretaryViewController.m in Sources */,
 				3B4C10D11DC85DDC00827D4F /* SearchViewModel.m in Sources */,
 				3B343B491DEBFECC00474549 /* TaskProductsController.m in Sources */,
 				3B8531981DF8F9B800AB9C4F /* NineDetialImageModel.m in Sources */,
@@ -4707,6 +4731,7 @@
 				3B0DE6481DFFA18700CB55A4 /* TodayDakaWholeModel.m in Sources */,
 				3B4C103A1DC85DDC00827D4F /* NoColorTableViewCell.m in Sources */,
 				3B2C7E3C1EBC0D3C003C271A /* CreateGroupViewController.m in Sources */,
+				3BB8E06D1ECAB8FE004BDE09 /* WorkAssistTableCell.m in Sources */,
 				3BA8D96C1DEECA4E00645405 /* RightBadgeView.m in Sources */,
 				3B9EF3BB1DEFBF0300C66888 /* MutableSpotTableCell.m in Sources */,
 				3B8531941DF8F9B800AB9C4F /* NineTopViewReusableView.m in Sources */,
@@ -4714,6 +4739,7 @@
 				3B4C13671DC85F4700827D4F /* ShenpiSuggestController.m in Sources */,
 				3B4C10CB1DC85DDC00827D4F /* ShekongbenModel.m in Sources */,
 				3B4C10D01DC85DDC00827D4F /* SearchModel.m in Sources */,
+				3BB8E06C1ECAB8FE004BDE09 /* LoginInfoModel.m in Sources */,
 				3B1483FB1E1C980400D334F3 /* DongtaiListModel.m in Sources */,
 				3B4C10CF1DC85DDC00827D4F /* SearchDBManager.m in Sources */,
 				3B343B421DEBFECC00474549 /* AddNewTaskProController.m in Sources */,
@@ -4725,7 +4751,6 @@
 				3B56D7811DC739CE003A57FD /* EaseTextView.m in Sources */,
 				3B4C13411DC85F4700827D4F /* ChooseAdminsController.m in Sources */,
 				3BCF39751D9DF42100BEE236 /* YLZGDataManager.m in Sources */,
-				3B5BA5D11EC963B900A57DBF /* LoginInfoModel.m in Sources */,
 				3B4C10C81DC85DDC00827D4F /* ShekongBenController.m in Sources */,
 				3B5DC7101DB870DD000F7A06 /* EaseChineseToPinyin.m in Sources */,
 				3B56D77E1DC739CE003A57FD /* EaseRecordView.m in Sources */,
@@ -4733,6 +4758,7 @@
 				3B343B7D1DEC016F00474549 /* ProduceTaskModel.m in Sources */,
 				3B56D77F1DC739CE003A57FD /* EaseChatToolbar.m in Sources */,
 				3B9EF3BE1DEFBF2400C66888 /* MutableSelectedModel.m in Sources */,
+				3BB8E06E1ECAB8FE004BDE09 /* WorkAssistViewController.m in Sources */,
 				3B4C136A1DC85F4700827D4F /* AppearHeadView.m in Sources */,
 				3B70BB2F1E612E8300C19901 /* FSActionSheetCell.m in Sources */,
 				3B4C10A21DC85DDC00827D4F /* HomeViewController.m in Sources */,
@@ -4743,6 +4769,7 @@
 				3BCF3A211D9E6A4800BEE236 /* MyStudioVController.m in Sources */,
 				3B6E0AD61DCB0C3100309037 /* SaleToolModel.m in Sources */,
 				3B7ABCA91DB5B33400F3D12B /* GroupMemberCollectionCell.m in Sources */,
+				3BB8E0711ECAB8FE004BDE09 /* WorkSecretTableCell.m in Sources */,
 				3B5DC71E1DB87107000F7A06 /* EaseEmotionManager.m in Sources */,
 				3B4C13581DC85F4700827D4F /* MutliChoceStaffCell.m in Sources */,
 				3BCF397C1D9DF44500BEE236 /* UserInfoModel.m in Sources */,
@@ -4817,6 +4844,7 @@
 				3BCF3A0C1D9E65E800BEE236 /* FSort.m in Sources */,
 				3BCF3A081D9E65E800BEE236 /* FCityGroup.m in Sources */,
 				3BA8D9691DEEC1B900645405 /* LixianOrderController.m in Sources */,
+				3BB8E06F1ECAB8FE004BDE09 /* VersionInfoModel.m in Sources */,
 				3B4C13711DC85F4700827D4F /* WaichuViewController.m in Sources */,
 				3BCF3A091D9E65E800BEE236 /* FCityModel.m in Sources */,
 				3B8531BF1DF9190F00AB9C4F /* JFImagePickerViewCell.m in Sources */,

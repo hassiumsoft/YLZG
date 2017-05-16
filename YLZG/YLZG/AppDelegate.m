@@ -197,6 +197,9 @@
 }
 
 - (void)goToMssageViewControllerWith:(NSDictionary*)dic{
+    
+    NSLog(@"推送消息 = %@",dic);
+    
     NSDictionary * dict = nil;
     if ([dic[@"action"] intValue] == 1) {
         dict = @{@"num" : @"1"};
@@ -218,6 +221,7 @@
         [YLNotificationCenter postNotificationName:@"PUSH" object:dict];
     }
 }
+
 // 将得到的deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
