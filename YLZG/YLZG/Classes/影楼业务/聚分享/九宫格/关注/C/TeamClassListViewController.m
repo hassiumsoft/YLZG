@@ -108,7 +108,7 @@
 - (void)deleteClassActionClassID:(NSString *)classID
 {
     
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/wei/retransmission/del_category?uid=%@&id=%@",[ZCAccountTool account].userID,classID];
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/wei/retransmission/del_category?uid=%@&id=%@",[ZCAccountTool account].userID,classID];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [[responseObject objectForKey:@"message"] description];

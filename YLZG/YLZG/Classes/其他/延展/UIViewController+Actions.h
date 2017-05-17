@@ -42,6 +42,9 @@
 
 #pragma mark -当前时间
 - (NSString *)getCurrentTime;
+/** 数组随机排序 */
+- (NSArray *)randomizedArrayWithArray:(NSArray *)array;
+
 
 /** 获取一个模型的全部属性和方法 */
 - (void)getAllProtyActions:(id)ModelClass;

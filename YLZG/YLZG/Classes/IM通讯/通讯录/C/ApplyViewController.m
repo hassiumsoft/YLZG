@@ -54,7 +54,7 @@ static ApplyViewController *controller = nil;
 - (void)getData
 {
     ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/get_msg?uid=%@",account.userID];
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/get_msg?uid=%@",account.userID];
     
     UserInfoModel *myModel = [[UserInfoManager sharedManager] getUserInfo];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -142,7 +142,7 @@ static ApplyViewController *controller = nil;
             _status = 3;
             [YLNotificationCenter postNotificationName:HXSetupUntreatedApplyCount object:nil];
         }
-        NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/handle_ask?uid=%@&auid=%@&msg=%@&id=%@&status=%d",myModel.uid,applyModel.auid,self.message,applyModel.id,self.status];
+        NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/handle_ask?uid=%@&auid=%@&msg=%@&id=%@&status=%d",myModel.uid,applyModel.auid,self.message,applyModel.id,self.status];
         
         [self putData:indexPath.row URL:url];
         

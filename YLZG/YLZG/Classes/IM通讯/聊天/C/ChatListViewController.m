@@ -100,6 +100,13 @@
     [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
     
     
+    [self getNewestWorkData];
+    
+}
+
+#pragma mark - 获取最新的工作信息
+- (void)getNewestWorkData
+{
     // 获取掌柜数据
     [[YLZGDataManager sharedManager] getLoginInfoPage:1 Success:^(NSArray *array) {
         
@@ -119,8 +126,8 @@
     } Fail:^(NSString *errorMsg) {
         self.versionArray = nil;
     }];
-    
 }
+
 - (void)addMoreAction
 {
     UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -245,6 +252,7 @@
     }else{
         // 获得连接
         self.title = @"消息";
+        [self getNewestWorkData];
     }
     
 }
@@ -276,6 +284,18 @@
             }else if (clickType == WorkMishuType){
                 // 掌柜小秘书
                 WorkSecretaryViewController *secret = [[WorkSecretaryViewController alloc]initWithVersionArray:copySelf.versionArray];
+                secret.RefrashBlock = ^{
+                  // 刷新数据
+                    [[YLZGDataManager sharedManager] getNewVersionPage:1 Success:^(NSArray *array) {
+                        
+                        VersionInfoModel *versionModel = [array firstObject];
+                        copySelf.headView.versionModel = versionModel;
+                        copySelf.versionArray = array;
+                        
+                    } Fail:^(NSString *errorMsg) {
+                        copySelf.versionArray = nil;
+                    }];
+                };
                 [copySelf.navigationController pushViewController:secret animated:YES];
             }
         };

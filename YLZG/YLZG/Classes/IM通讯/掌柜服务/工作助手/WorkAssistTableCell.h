@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginInfoModel.h"
 
 @interface WorkAssistTableCell : UITableViewCell
+
+@property (strong,nonatomic) LoginInfoModel *loginModel;
 
 + (instancetype)sharedWorkAssistCell:(UITableView *)tableView;
 

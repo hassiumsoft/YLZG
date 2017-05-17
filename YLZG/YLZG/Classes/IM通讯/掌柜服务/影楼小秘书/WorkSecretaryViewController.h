@@ -10,7 +10,9 @@
 
 @interface WorkSecretaryViewController : SuperViewController
 
-
+/** 初始化 */
 - (instancetype)initWithVersionArray:(NSArray *)versionArray;
+/** 发送消息之后的回调，更新最后一条消息 */
+@property (copy,nonatomic) void (^RefrashBlock)();
 
 @end

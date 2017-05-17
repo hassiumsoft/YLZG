@@ -30,6 +30,7 @@
 		3B1483FB1E1C980400D334F3 /* DongtaiListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1483FA1E1C980400D334F3 /* DongtaiListModel.m */; };
 		3B1483FE1E1C990F00D334F3 /* TodayDongtaiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1483FD1E1C990F00D334F3 /* TodayDongtaiModel.m */; };
 		3B1484011E1CAC2200D334F3 /* DongtaiListTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1484001E1CAC2200D334F3 /* DongtaiListTableCell.m */; };
+		3B1710321ECBE43D00779F75 /* FromUserTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1710311ECBE43D00779F75 /* FromUserTableCell.m */; };
 		3B1FD3E21E7A2B2600DA6EE9 /* TeamClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD3E11E7A2B2600DA6EE9 /* TeamClassViewController.m */; };
 		3B1FD3E51E7A3AD200DA6EE9 /* TeamClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD3E41E7A3AD200DA6EE9 /* TeamClassModel.m */; };
 		3B1FD3E81E7A646500DA6EE9 /* SelectClassesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B1FD3E71E7A646500DA6EE9 /* SelectClassesController.m */; };
@@ -410,6 +411,9 @@
 		3BB8E06F1ECAB8FE004BDE09 /* VersionInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E0671ECAB8FE004BDE09 /* VersionInfoModel.m */; };
 		3BB8E0701ECAB8FE004BDE09 /* WorkSecretaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E0691ECAB8FE004BDE09 /* WorkSecretaryViewController.m */; };
 		3BB8E0711ECAB8FE004BDE09 /* WorkSecretTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E06B1ECAB8FE004BDE09 /* WorkSecretTableCell.m */; };
+		3BB8E0771ECAE425004BDE09 /* LoginWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E0761ECAE425004BDE09 /* LoginWebViewController.m */; };
+		3BB8E07A1ECAE460004BDE09 /* SecreterWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E0791ECAE460004BDE09 /* SecreterWebViewController.m */; };
+		3BB8E07D1ECB02C6004BDE09 /* FromSystermTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E07C1ECB02C6004BDE09 /* FromSystermTableCell.m */; };
 		3BB8F5A01EC560650045C8A2 /* HistoryMessageTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8F59F1EC560650045C8A2 /* HistoryMessageTableCell.m */; };
 		3BC6C5071DC042C8008346BD /* NewFutherModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6C5061DC042C8008346BD /* NewFutherModel.m */; };
 		3BCA323A1D9CC07600A0E980 /* YLConstKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCA32391D9CC07600A0E980 /* YLConstKey.m */; };
@@ -553,6 +557,8 @@
 		3B1483FD1E1C990F00D334F3 /* TodayDongtaiModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayDongtaiModel.m; sourceTree = "<group>"; };
 		3B1483FF1E1CAC2200D334F3 /* DongtaiListTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DongtaiListTableCell.h; sourceTree = "<group>"; };
 		3B1484001E1CAC2200D334F3 /* DongtaiListTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DongtaiListTableCell.m; sourceTree = "<group>"; };
+		3B1710301ECBE43D00779F75 /* FromUserTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FromUserTableCell.h; sourceTree = "<group>"; };
+		3B1710311ECBE43D00779F75 /* FromUserTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FromUserTableCell.m; sourceTree = "<group>"; };
 		3B1FD3E01E7A2B2600DA6EE9 /* TeamClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamClassViewController.h; sourceTree = "<group>"; };
 		3B1FD3E11E7A2B2600DA6EE9 /* TeamClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamClassViewController.m; sourceTree = "<group>"; };
 		3B1FD3E31E7A3AD200DA6EE9 /* TeamClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamClassModel.h; sourceTree = "<group>"; };
@@ -1317,11 +1323,17 @@
 		3BB8E0631ECAB8FE004BDE09 /* WorkAssistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkAssistViewController.m; sourceTree = "<group>"; };
 		3BB8E0661ECAB8FE004BDE09 /* VersionInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionInfoModel.h; sourceTree = "<group>"; };
 		3BB8E0671ECAB8FE004BDE09 /* VersionInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionInfoModel.m; sourceTree = "<group>"; };
-		3BB8E0681ECAB8FE004BDE09 /* WorkAssistTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkAssistTableCell.h; sourceTree = "<group>"; };
 		3BB8E0691ECAB8FE004BDE09 /* WorkSecretaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkSecretaryViewController.m; sourceTree = "<group>"; };
 		3BB8E06A1ECAB8FE004BDE09 /* WorkSecretTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkSecretTableCell.h; sourceTree = "<group>"; };
 		3BB8E06B1ECAB8FE004BDE09 /* WorkSecretTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkSecretTableCell.m; sourceTree = "<group>"; };
 		3BB8E0721ECABCA2004BDE09 /* WorkSecretaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkSecretaryViewController.h; sourceTree = "<group>"; };
+		3BB8E0741ECAE0BB004BDE09 /* WorkAssistTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkAssistTableCell.h; sourceTree = "<group>"; };
+		3BB8E0751ECAE425004BDE09 /* LoginWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginWebViewController.h; sourceTree = "<group>"; };
+		3BB8E0761ECAE425004BDE09 /* LoginWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWebViewController.m; sourceTree = "<group>"; };
+		3BB8E0781ECAE460004BDE09 /* SecreterWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecreterWebViewController.h; sourceTree = "<group>"; };
+		3BB8E0791ECAE460004BDE09 /* SecreterWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecreterWebViewController.m; sourceTree = "<group>"; };
+		3BB8E07B1ECB02C6004BDE09 /* FromSystermTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FromSystermTableCell.h; sourceTree = "<group>"; };
+		3BB8E07C1ECB02C6004BDE09 /* FromSystermTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FromSystermTableCell.m; sourceTree = "<group>"; };
 		3BB8F59E1EC560650045C8A2 /* HistoryMessageTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryMessageTableCell.h; sourceTree = "<group>"; };
 		3BB8F59F1EC560650045C8A2 /* HistoryMessageTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryMessageTableCell.m; sourceTree = "<group>"; };
 		3BC6C5051DC042C8008346BD /* NewFutherModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFutherModel.h; sourceTree = "<group>"; };
@@ -3761,9 +3773,12 @@
 			children = (
 				3BB8E05F1ECAB8FE004BDE09 /* LoginInfoModel.h */,
 				3BB8E0601ECAB8FE004BDE09 /* LoginInfoModel.m */,
+				3BB8E0741ECAE0BB004BDE09 /* WorkAssistTableCell.h */,
 				3BB8E0611ECAB8FE004BDE09 /* WorkAssistTableCell.m */,
 				3BB8E0621ECAB8FE004BDE09 /* WorkAssistViewController.h */,
 				3BB8E0631ECAB8FE004BDE09 /* WorkAssistViewController.m */,
+				3BB8E0751ECAE425004BDE09 /* LoginWebViewController.h */,
+				3BB8E0761ECAE425004BDE09 /* LoginWebViewController.m */,
 			);
 			path = "工作助手";
 			sourceTree = "<group>";
@@ -3773,11 +3788,16 @@
 			children = (
 				3BB8E0661ECAB8FE004BDE09 /* VersionInfoModel.h */,
 				3BB8E0671ECAB8FE004BDE09 /* VersionInfoModel.m */,
-				3BB8E0681ECAB8FE004BDE09 /* WorkAssistTableCell.h */,
-				3BB8E0721ECABCA2004BDE09 /* WorkSecretaryViewController.h */,
-				3BB8E0691ECAB8FE004BDE09 /* WorkSecretaryViewController.m */,
 				3BB8E06A1ECAB8FE004BDE09 /* WorkSecretTableCell.h */,
 				3BB8E06B1ECAB8FE004BDE09 /* WorkSecretTableCell.m */,
+				3BB8E0721ECABCA2004BDE09 /* WorkSecretaryViewController.h */,
+				3BB8E0691ECAB8FE004BDE09 /* WorkSecretaryViewController.m */,
+				3BB8E07B1ECB02C6004BDE09 /* FromSystermTableCell.h */,
+				3BB8E07C1ECB02C6004BDE09 /* FromSystermTableCell.m */,
+				3B1710301ECBE43D00779F75 /* FromUserTableCell.h */,
+				3B1710311ECBE43D00779F75 /* FromUserTableCell.m */,
+				3BB8E0781ECAE460004BDE09 /* SecreterWebViewController.h */,
+				3BB8E0791ECAE460004BDE09 /* SecreterWebViewController.m */,
 			);
 			path = "影楼小秘书";
 			sourceTree = "<group>";
@@ -4609,6 +4629,7 @@
 				3B4C10CC1DC85DDC00827D4F /* ShekongbenCell.m in Sources */,
 				3B4C13621DC85F4700827D4F /* SuperSettingController.m in Sources */,
 				3B9099D61E00E1C90090B6DD /* WholeSetModel.m in Sources */,
+				3B1710321ECBE43D00779F75 /* FromUserTableCell.m in Sources */,
 				3B5DC71D1DB87107000F7A06 /* EaseEmotionEscape.m in Sources */,
 				3B3BBF961DB475FA00C9E2FD /* ContactTableViewCell.m in Sources */,
 				3B5DC7121DB870DD000F7A06 /* EaseMessageReadManager.m in Sources */,
@@ -4700,6 +4721,7 @@
 				3B9E16F41DD2C11E0028C72F /* TodayFinaceDetialModel.m in Sources */,
 				3B343B7B1DEC016F00474549 /* ProduceFileModel.m in Sources */,
 				3B56D7731DC739CE003A57FD /* EaseBubbleView+Gif.m in Sources */,
+				3BB8E07D1ECB02C6004BDE09 /* FromSystermTableCell.m in Sources */,
 				3B56D7681DC739CE003A57FD /* EaseMessageViewController.m in Sources */,
 				3B343B481DEBFECC00474549 /* ProduceTaskVController.m in Sources */,
 				3B4C13321DC85F4700827D4F /* CheckInfoViewController.m in Sources */,
@@ -4780,6 +4802,7 @@
 				3B4C103B1DC85DDC00827D4F /* OutComeColorCell.m in Sources */,
 				3B56D76A1DC739CE003A57FD /* ReSendViewController.m in Sources */,
 				3B948B6F1DD993C600D75112 /* MyJobsViewController.m in Sources */,
+				3BB8E07A1ECAE460004BDE09 /* SecreterWebViewController.m in Sources */,
 				3B9EF3D91DEFD11900C66888 /* AllTaoxiProductModel.m in Sources */,
 				3B4C10401DC85DDC00827D4F /* TitleLabel.m in Sources */,
 				3B4C10331DC85DDC00827D4F /* MonthFinanceVController.m in Sources */,
@@ -4875,6 +4898,7 @@
 				3B3BBFE21DB4D2F800C9E2FD /* CallViewController.m in Sources */,
 				3BCF39721D9DF42100BEE236 /* HuanxinContactManager.m in Sources */,
 				3B8531971DF8F9B800AB9C4F /* NineCareModel.m in Sources */,
+				3BB8E0771ECAE425004BDE09 /* LoginWebViewController.m in Sources */,
 				3BA6033B1EA0CA8B0001F1DB /* CareMobanModel.m in Sources */,
 				3BA06F261DCC512C000886A8 /* ToolsTableViewCell.m in Sources */,
 				3B3BBFC31DB4861400C9E2FD /* GroupNameViewController.m in Sources */,

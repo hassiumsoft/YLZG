@@ -10,6 +10,10 @@
 #import "WorkAssistTableCell.h"
 #import <LCActionSheet.h>
 #import "WXApi.h"
+#import "HTTPManager.h"
+#import <MJExtension.h>
+#import "ZCAccountTool.h"
+#import "LoginWebViewController.h"
 #import <MJRefresh.h>
 
 @interface WorkAssistViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>
@@ -46,15 +50,6 @@
     
 }
 
-#pragma mark - 网页相关
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [self hideMessageAction];
-}
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
-    [self showEmptyViewWithMessage:error.localizedDescription];
-}
 
 #pragma mark - 表格相关
 - (void)setupSubViews
@@ -64,34 +59,72 @@
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - 64)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.rowHeight = 35 + 75 + 2 + 46 + 10;
+    self.tableView.rowHeight = 35 + 55 + 2 + 46 + 10;
     self.tableView.backgroundColor = self.view.backgroundColor;
     self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
     [self.view addSubview:self.tableView];
     
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [[YLZGDataManager sharedManager] getLoginInfoPage:currentPage Success:^(NSArray *array) {
-            [self.tableView.mj_header endRefreshing];
-            self.tableView.hidden = NO;
-            [self hideMessageAction];
-            [self.array addObject:array];
+    
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self getFootLoginSuccess:^(int page, NSArray *array) {
+            [self.tableView.mj_footer endRefreshing];
+            [self.array addObjectsFromArray:array];
             [self.tableView reloadData];
         } Fail:^(NSString *errorMsg) {
-            [self.tableView.mj_header endRefreshing];
-            self.tableView.hidden = YES;
-            [self showEmptyViewWithMessage:errorMsg];
+            
+            [MBProgressHUD showError:errorMsg];
         }];
     }];
     
-    self.tableView.mj_header.ignoredScrollViewContentInsetTop = 20;
 }
 
+- (void)getFootLoginSuccess:(void (^)(int page,NSArray *array))success Fail:(void (^)(NSString *errorMsg))fail
+{
+    ZCAccount *account = [ZCAccountTool account];
+    if (!account) {
+        fail(@"用户未登录");
+        return;
+    }
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/helper_list?page=%d&uid=%@",currentPage,account.userID];
+    
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [responseObject objectForKey:@"message"];
+        if (code == 1) {
+            NSDictionary *result = [responseObject objectForKey:@"result"];
+            int page = [[[responseObject objectForKey:@"page"] description] intValue];
+            if (page > currentPage) {
+                [self.tableView.mj_footer endRefreshing];
+                [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//                fail(@"暂无更多");
+            }else{
+                currentPage++;
+                NSArray *modelArray = [LoginInfoModel mj_objectArrayWithKeyValuesArray:result];
+                success(page,modelArray);
+                
+                if (modelArray.count >= 1) {
+                    success(page,modelArray);
+                }else{
+                    [self.tableView.mj_footer endRefreshing];
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+                }
+            }
+            
+        }else{
+            [self.tableView.mj_footer endRefreshing];
+            fail(message);
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        [self.tableView.mj_footer endRefreshing];
+        fail(error.localizedDescription);
+    }];
+    
+}
 
 #pragma mark - 表格相关
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-        return self.array.count;
-//    return 12;
+    return self.array.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -100,12 +133,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WorkAssistTableCell *cell = [WorkAssistTableCell sharedWorkAssistCell:tableView];
-    
+    cell.loginModel = self.array[indexPath.section];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LoginInfoModel *model = self.array[indexPath.section];
+    LoginWebViewController *web = [[LoginWebViewController alloc]initWithLoginModel:model];
+    [self.navigationController pushViewController:web animated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -119,39 +155,6 @@
 }
 
 
-- (void)shareAction
-{
-    
-    LCActionSheet *sheet = [LCActionSheet sheetWithTitle:@"" cancelButtonTitle:@"取消" clicked:^(LCActionSheet *actionSheet, NSInteger buttonIndex) {
-        if (buttonIndex == 1) {
-            [self shareWebPagetoWechat:self.loginModel.url Type:0];
-        }else if(buttonIndex == 2){
-            [self shareWebPagetoWechat:self.loginModel.url Type:1];
-        }
-        
-    } otherButtonTitles:@"微信好友",@"朋友圈", nil];
-    [sheet show];
-}
-
-#pragma mark - 分享网页链接
-- (void)shareWebPagetoWechat:(NSString *)url Type:(int)shareType
-{
-    WXMediaMessage *message = [WXMediaMessage message];
-    message.title = self.loginModel.title;
-    message.description = [NSString stringWithFormat:@"未登录人数：%@",self.loginModel.not_login];
-    [message setThumbImage:[UIImage imageNamed:@"app_logo"]];
-    
-    WXWebpageObject *webObject = [WXWebpageObject object];
-    webObject.webpageUrl = url;
-    message.mediaObject = webObject;
-    
-    SendMessageToWXReq *req = [[SendMessageToWXReq alloc]init];
-    req.bText = NO;
-    req.message = message;
-    req.scene = shareType;
-    [WXApi sendReq:req];
-    
-}
 
 
 

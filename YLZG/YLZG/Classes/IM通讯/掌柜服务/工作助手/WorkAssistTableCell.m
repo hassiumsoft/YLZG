@@ -41,10 +41,15 @@
     }
     return self;
 }
-
+- (void)setLoginModel:(LoginInfoModel *)loginModel
+{
+    _loginModel = loginModel;
+    _titleLabel.text = loginModel.title;
+    _contentLabel.text = loginModel.content;
+}
 - (void)setupSubViews
 {
-    UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(18, 0, SCREEN_WIDTH - 36, 45 + 80 + 2 + 46)];
+    UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(18, 0, SCREEN_WIDTH - 36, 45 + 60 + 2 + 46)];
     bottomView.layer.masksToBounds = YES;
     bottomView.layer.cornerRadius = 5;
     bottomView.backgroundColor = [UIColor whiteColor];
@@ -55,7 +60,7 @@
     self.titleLabel.font = [UIFont systemFontOfSize:17];
     [bottomView addSubview:self.titleLabel];
     
-    self.contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.x, CGRectGetMaxY(self.titleLabel.frame) + 5, self.titleLabel.width, 70)];
+    self.contentLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.x, CGRectGetMaxY(self.titleLabel.frame) + 5, self.titleLabel.width, 50)];
     self.contentLabel.numberOfLines = 3;
     self.contentLabel.text = @"昨日未登录人数12人，已登录7人，使用比率35%。\r其中摄影部登录比率最高，财务部登录比率最低。";
     self.contentLabel.textColor = RGBACOLOR(108, 108, 108, 1);
@@ -67,7 +72,7 @@
     [bottomView addSubview:xian];
     
     UILabel *visitLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.titleLabel.x, CGRectGetMaxY(xian.frame) - 3, self.titleLabel.width - 40, 46)];
-    visitLabel.text = @"查看昨日员工使用情况";
+    visitLabel.text = @"查看当天员工使用情况";
     visitLabel.font = [UIFont systemFontOfSize:15];
     visitLabel.textColor = MainColor;
     visitLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
@@ -79,5 +84,6 @@
     jiantou.frame = CGRectMake(bottomView.width - 20 - 10, visitLabel.y + 10, 10, 20);
     [bottomView addSubview:jiantou];
 }
+
 
 @end

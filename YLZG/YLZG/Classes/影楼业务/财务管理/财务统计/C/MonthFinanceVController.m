@@ -77,7 +77,7 @@ static CGFloat const EYWTitleHeight = 44;
     
     [MBProgressHUD showMessage:@"加载中···"];
     ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/monthfinance/query?date=%@&uid=%@",self.changeMonth,account.userID];
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/monthfinance/query?date=%@&uid=%@",self.changeMonth,account.userID];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int status = [[[responseObject objectForKey:@"code"] description] intValue];
         [MBProgressHUD hideHUD];

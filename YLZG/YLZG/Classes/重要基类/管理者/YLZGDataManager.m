@@ -158,7 +158,7 @@ static YLZGDataManager *controller = nil;
 - (void)loadUnApplyApplyFriendArr:(ApplyFriend)ApplyFriendArr{
     
     ZCAccount *account = [ZCAccountTool account];
-    NSString *URL = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/get_msg?uid=%@",account.userID];
+    NSString *URL = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/get_msg?uid=%@",account.userID];
     
     UserInfoModel *myModel = [[UserInfoManager sharedManager] getUserInfo];
     [HTTPManager GET:URL params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -191,7 +191,7 @@ static YLZGDataManager *controller = nil;
         return;
     }
     
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/group_status?uid=%@&group_id=%@",account.userID,groupID];
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/group_status?uid=%@&group_id=%@",account.userID,groupID];
     
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -219,7 +219,7 @@ static YLZGDataManager *controller = nil;
 {
     
     ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/my_groups_list?uid=%@",account.userID];
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/my_groups_list?uid=%@",account.userID];
     KGLog(@"获取我的群组信息 = %@",url);
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -474,7 +474,7 @@ static YLZGDataManager *controller = nil;
         fail(@"用户未登录");
         return;
     }
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/helper_list?page=%d&uid=%@",page,account.userID];
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/helper_list?page=%d&uid=%@",page,account.userID];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [responseObject objectForKey:@"message"];
@@ -501,7 +501,7 @@ static YLZGDataManager *controller = nil;
         fail(@"用户未登录");
         return;
     }
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/admin/article/secretary_list?page=%d&uid=%@",page,account.userID];
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/admin/article/secretary_list?page=%d&uid=%@",page,account.userID];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         int code = [[[responseObject objectForKey:@"code"] description] intValue];
         NSString *message = [responseObject objectForKey:@"message"];
@@ -519,6 +519,31 @@ static YLZGDataManager *controller = nil;
     } fail:^(NSURLSessionDataTask *task, NSError *error) {
         fail(error.localizedDescription);
     }];
+}
+
+- (void)sendToSecretWithMessage:(NSString *)message Success:(void (^)(VersionInfoModel *))success Fail:(void (^)(NSString *))fail
+{
+    ZCAccount *account = [ZCAccountTool account];
+    if (!account) {
+        fail(@"用户未登录");
+        return;
+    }
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/reply?uid=%@&content=%@",account.userID,message];
+    [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        int code = [[[responseObject objectForKey:@"code"] description] intValue];
+        NSString *message = [responseObject objectForKey:@"message"];
+        if (code == 1) {
+            NSDictionary *result = [responseObject objectForKey:@"result"];
+            VersionInfoModel *model = [VersionInfoModel mj_objectWithKeyValues:result];
+            success(model);
+        }else{
+            fail(message);
+        }
+    } fail:^(NSURLSessionDataTask *task, NSError *error) {
+        fail(error.localizedDescription);
+    }];
+    
+    
 }
 #pragma mark -  将字典或数组转化为JSON串
 - (NSString *)toJsonStr:(id)object

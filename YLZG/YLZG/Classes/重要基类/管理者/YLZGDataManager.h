@@ -58,6 +58,8 @@ typedef void(^ShareUrlBlock)(NSString *url);
 - (void)getLoginInfoPage:(int)page Success:(void (^)(NSArray *array))success Fail:(void (^)(NSString *errorMsg))fail;
 /** 获取新版本信息 */
 - (void)getNewVersionPage:(int)page Success:(void (^)(NSArray *array))success Fail:(void (^)(NSString *errorMsg))fail;
+/** 小秘书里发送消息 */
+- (void)sendToSecretWithMessage:(NSString *)message Success:(void (^)(VersionInfoModel *versionModel))success Fail:(void (^)(NSString *errorMsg))fail;
 
 /**
  是否为春节期间

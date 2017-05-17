@@ -170,6 +170,26 @@
     
 }
 
+#pragma mark - 数组随机排序
+- (NSArray *)randomizedArrayWithArray:(NSArray *)array
+{
+    NSMutableArray *results = [[NSMutableArray alloc]initWithArray:array];
+    
+    NSUInteger i = [results count];
+    
+    while(--i > 0) {
+        
+        int j = rand() % (i+1);
+        
+        [results exchangeObjectAtIndex:i withObjectAtIndex:j];
+        
+    }
+    NSArray *resultArray = results;
+    return resultArray;
+}
+
+
+
 - (void)getAllProtyActions:(id)ModelClass
 {
     unsigned int propertyCount;

@@ -115,7 +115,7 @@
     
     [self.view endEditing:YES];
     ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&name=%@",account.userID,self.groupModel.id,self.groupModel.gid,self.textField.text];
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&name=%@",account.userID,self.groupModel.id,self.groupModel.gid,self.textField.text];
     
     [MBProgressHUD showMessage:@"请稍后"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -166,7 +166,7 @@
     }
     [self.view endEditing:YES];
     ZCAccount *account = [ZCAccountTool account];
-    NSString *url = [NSString stringWithFormat:@"http://192.168.0.160/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&dsp=%@",account.userID,self.groupModel.id,self.groupModel.gid,self.textField.text];
+    NSString *url = [NSString stringWithFormat:@"http://zsylou.wxwkf.com/index.php/home/easemob/edit_group_info?uid=%@&id=%@&gid=%@&dsp=%@",account.userID,self.groupModel.id,self.groupModel.gid,self.textField.text];
     
     [MBProgressHUD showMessage:@"请稍后"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {

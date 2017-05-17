@@ -90,7 +90,6 @@
     }];
     
     self.workLastMsgLabel = [[UILabel alloc]init];
-    self.workLastMsgLabel.text = @"·······················";
     self.workLastMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     self.workLastMsgLabel.textColor = RGBACOLOR(67, 67, 67, 1);
     [view1 addSubview:self.workLastMsgLabel];
@@ -136,7 +135,6 @@
     }];
     
     self.mishuLastMsgLabel = [[UILabel alloc]init];
-    self.mishuLastMsgLabel.text = @"·······················";
     self.mishuLastMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
     self.mishuLastMsgLabel.textColor = RGBACOLOR(67, 67, 67, 1);
     [view2 addSubview:self.mishuLastMsgLabel];
@@ -153,24 +151,6 @@
     [view2 addSubview:xian2];
     
     
-//    // 获取掌柜数据
-//    [[YLZGDataManager sharedManager] getLoginInfoPage:1 Success:^(NSArray *array) {
-//        
-//        LoginInfoModel *loginModel = [array firstObject];
-//        self.workLastMsgLabel.text = [NSString stringWithFormat:@"%@：%@",loginModel.title,loginModel.content];;
-//        
-//    } Fail:^(NSString *errorMsg) {
-//        
-//    }];
-//    [[YLZGDataManager sharedManager] getNewVersionPage:1 Success:^(NSArray *array) {
-//        
-//        VersionInfoModel *versionModel = [array firstObject];
-//        self.mishuLastMsgLabel.text = [NSString stringWithFormat:@"%@：%@",versionModel.title,versionModel.content];
-//        
-//    } Fail:^(NSString *errorMsg) {
-//        
-//    }];
-
     
 }
 
