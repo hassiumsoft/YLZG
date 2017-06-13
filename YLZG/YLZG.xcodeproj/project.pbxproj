@@ -198,7 +198,6 @@
 		3B4C13631DC85F4700827D4F /* WaichuTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C12E11DC85F4700827D4F /* WaichuTableCell.m */; };
 		3B4C13641DC85F4700827D4F /* ApproveDetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C12E61DC85F4700827D4F /* ApproveDetialViewController.m */; };
 		3B4C13651DC85F4700827D4F /* ApproveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C12E81DC85F4700827D4F /* ApproveListViewController.m */; };
-		3B4C13661DC85F4700827D4F /* MyApproveVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C12EA1DC85F4700827D4F /* MyApproveVController.m */; };
 		3B4C13671DC85F4700827D4F /* ShenpiSuggestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C12EC1DC85F4700827D4F /* ShenpiSuggestController.m */; };
 		3B4C13681DC85F4700827D4F /* ApproveDetialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C12EF1DC85F4700827D4F /* ApproveDetialModel.m */; };
 		3B4C13691DC85F4700827D4F /* ApproveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B4C12F11DC85F4700827D4F /* ApproveModel.m */; };
@@ -403,6 +402,7 @@
 		3BA8D9721DEECA6400645405 /* OffLineOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D9701DEECA6400645405 /* OffLineOrder.m */; };
 		3BA8D9751DEECB4A00645405 /* CusTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D9741DEECB4A00645405 /* CusTypeViewController.m */; };
 		3BA8D9781DEECB9B00645405 /* OpenOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8D9771DEECB9B00645405 /* OpenOrderTableCell.m */; };
+		3BAD0AD71EEFBB4700903EF3 /* MyApproveVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD0AD51EEFBB4700903EF3 /* MyApproveVController.m */; };
 		3BAFF49F1EC45A1400D81AD5 /* SearchMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAFF49E1EC45A1400D81AD5 /* SearchMessageViewController.m */; };
 		3BB1F9111EC2B8AD0008A776 /* GroupMsgManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB1F9101EC2B8AD0008A776 /* GroupMsgManager.m */; };
 		3BB8E06C1ECAB8FE004BDE09 /* LoginInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB8E0601ECAB8FE004BDE09 /* LoginInfoModel.m */; };
@@ -893,8 +893,6 @@
 		3B4C12E61DC85F4700827D4F /* ApproveDetialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApproveDetialViewController.m; sourceTree = "<group>"; };
 		3B4C12E71DC85F4700827D4F /* ApproveListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApproveListViewController.h; sourceTree = "<group>"; };
 		3B4C12E81DC85F4700827D4F /* ApproveListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApproveListViewController.m; sourceTree = "<group>"; };
-		3B4C12E91DC85F4700827D4F /* MyApproveVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApproveVController.h; sourceTree = "<group>"; };
-		3B4C12EA1DC85F4700827D4F /* MyApproveVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyApproveVController.m; sourceTree = "<group>"; };
 		3B4C12EB1DC85F4700827D4F /* ShenpiSuggestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShenpiSuggestController.h; sourceTree = "<group>"; };
 		3B4C12EC1DC85F4700827D4F /* ShenpiSuggestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShenpiSuggestController.m; sourceTree = "<group>"; };
 		3B4C12EE1DC85F4700827D4F /* ApproveDetialModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApproveDetialModel.h; sourceTree = "<group>"; };
@@ -1312,6 +1310,8 @@
 		3BA8D9741DEECB4A00645405 /* CusTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CusTypeViewController.m; sourceTree = "<group>"; };
 		3BA8D9761DEECB9B00645405 /* OpenOrderTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenOrderTableCell.h; sourceTree = "<group>"; };
 		3BA8D9771DEECB9B00645405 /* OpenOrderTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenOrderTableCell.m; sourceTree = "<group>"; };
+		3BAD0AD51EEFBB4700903EF3 /* MyApproveVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyApproveVController.m; sourceTree = "<group>"; };
+		3BAD0AD61EEFBB4700903EF3 /* MyApproveVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApproveVController.h; sourceTree = "<group>"; };
 		3BAFF49D1EC45A1400D81AD5 /* SearchMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMessageViewController.h; sourceTree = "<group>"; };
 		3BAFF49E1EC45A1400D81AD5 /* SearchMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMessageViewController.m; sourceTree = "<group>"; };
 		3BB1F90F1EC2B8AD0008A776 /* GroupMsgManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupMsgManager.h; sourceTree = "<group>"; };
@@ -2706,8 +2706,8 @@
 		3B4C12E41DC85F4700827D4F /* C */ = {
 			isa = PBXGroup;
 			children = (
-				3B4C12E91DC85F4700827D4F /* MyApproveVController.h */,
-				3B4C12EA1DC85F4700827D4F /* MyApproveVController.m */,
+				3BAD0AD61EEFBB4700903EF3 /* MyApproveVController.h */,
+				3BAD0AD51EEFBB4700903EF3 /* MyApproveVController.m */,
 				3B4C12E71DC85F4700827D4F /* ApproveListViewController.h */,
 				3B4C12E81DC85F4700827D4F /* ApproveListViewController.m */,
 				3B4C12E51DC85F4700827D4F /* ApproveDetialViewController.h */,
@@ -4598,7 +4598,6 @@
 				3B56D7721DC739CE003A57FD /* EaseBubbleView+File.m in Sources */,
 				3B4C135A1DC85F4700827D4F /* SubTitleView.m in Sources */,
 				3B4C133F1DC85F4700827D4F /* MineKaoqinView.m in Sources */,
-				3B4C13661DC85F4700827D4F /* MyApproveVController.m in Sources */,
 				3B343B931DEC077C00474549 /* TaskDiscussTableCell.m in Sources */,
 				3B4C13651DC85F4700827D4F /* ApproveListViewController.m in Sources */,
 				3B8531CC1DF9194600AB9C4F /* WSImageBroserCell.m in Sources */,
@@ -4755,6 +4754,7 @@
 				3B2C7E3C1EBC0D3C003C271A /* CreateGroupViewController.m in Sources */,
 				3BB8E06D1ECAB8FE004BDE09 /* WorkAssistTableCell.m in Sources */,
 				3BA8D96C1DEECA4E00645405 /* RightBadgeView.m in Sources */,
+				3BAD0AD71EEFBB4700903EF3 /* MyApproveVController.m in Sources */,
 				3B9EF3BB1DEFBF0300C66888 /* MutableSpotTableCell.m in Sources */,
 				3B8531941DF8F9B800AB9C4F /* NineTopViewReusableView.m in Sources */,
 				3BCA32561D9CC1F900A0E980 /* HomeNavigationController+RightGesture.m in Sources */,

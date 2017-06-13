@@ -8,11 +8,12 @@
 
 #import "MyApproveVController.h"
 #import "ZCAccountTool.h"
-#import "NoDequTableCell.h"
+#import "NormalTableCell.h"
 #import "AppearHeadView.h"
 #import "HTTPManager.h"
 #import "ApproveModel.h"
 #import <MJExtension.h>
+#import <Masonry.h>
 #import "QingjiaViewController.h"
 #import "WaichuViewController.h"
 #import "WuPingViewController.h"
@@ -197,8 +198,17 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NoDequTableCell *cell = [NoDequTableCell sharedNoDequTableCell];
-    cell.textLabel.text = self.array[indexPath.row];
+    NSArray *iconArr = @[@"btn_leave",@"btn_go_out",@"btn_items_of_recipients",@"btn_general"];
+    NormalTableCell *cell = [NormalTableCell sharedNormalTableCell:tableView];
+    [cell.xian removeFromSuperview];
+    cell.imageV.image = [UIImage imageNamed:iconArr[indexPath.row]];
+    [cell.imageV mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(cell.mas_left).offset(15);
+        make.centerY.equalTo(cell.mas_centerY);
+        make.width.and.height.equalTo(@40);
+    }];
+    cell.label.text = self.array[indexPath.row];
+    [tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -239,7 +249,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = self.view.backgroundColor;
-        _tableView.rowHeight = 50;
+        _tableView.rowHeight = 60;
     }
     return _tableView;
 }
