@@ -40,7 +40,7 @@
 
 #pragma mark - 搭建UI
 - (void)creatTeamZhengchangDakaControllerUI{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.backgroundColor = self.view.backgroundColor;
     _tableView.dataSource = self;

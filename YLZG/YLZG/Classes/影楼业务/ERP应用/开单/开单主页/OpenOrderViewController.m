@@ -625,6 +625,9 @@
     }else{
         beizhu = self.beizhuField.text;
     }
+    if (self.cardNumStr.length == 0) {
+        self.cardNumStr = @"";
+    }
     
     NSMutableArray *dictArray = [NSMutableArray arrayWithCapacity:1];
     NSMutableArray *copyProductArr = [NSMutableArray arrayWithArray:self.productArray];
@@ -636,6 +639,7 @@
     NSString *productJsonStr = [self toJsonStr:dictArray];
     
     NSString *allUrl = [NSString stringWithFormat:OpenOrder_Url_New,[ZCAccountTool account].userID,self.taoxiPriceField.text,self.taoxiNameStr,self.cusNameField.text,beizhu,self.cusPhoneField.text,productJsonStr,self.spotJsonStr,self.rudiField.text,self.ruceField.text,self.taoxiClassStr,self.cusTypeStr,self.cardNumStr,self.cusNameField2.text,self.cusPhoneField2.text];
+    NSLog(@"开单URL = %@",allUrl);
     [MBProgressHUD showMessage:@"上传订单中···"];
     [HTTPManager GET:allUrl params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];

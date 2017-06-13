@@ -290,6 +290,7 @@
         checkStr = @"";
     }
     NSString *url = [NSString stringWithFormat:CreateNewTask_Url,[ZCAccountTool account].userID,self.produceID,self.nameField.text,self.fuzerID,self.endDateStr,checkStr,self.guanzhuArrJson,self.taskDescField.text];
+    
     [MBProgressHUD showMessage:@"创建中···"];
     [HTTPManager GET:url params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         [MBProgressHUD hideHUD];

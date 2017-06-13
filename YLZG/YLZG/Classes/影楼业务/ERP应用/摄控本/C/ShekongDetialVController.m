@@ -29,7 +29,7 @@
 - (void)setupSubViews
 {
     NSDictionary *dict = [self.model mj_keyValues];
-    KGLog(@"dict = %@",dict);
+    NSLog(@"dict = %@",dict);
     
     // 修饰图+客户名称
     UILabel *guestLabel = [[UILabel alloc]init];
@@ -148,22 +148,17 @@
         make.centerY.equalTo(phLabel.mas_centerY);
     }];
     
-    UserInfoModel *userModel = [[UserInfoManager sharedManager] getUserInfo];
-    if ([userModel.type intValue] == 1) {
-        phoneLabel.text = [NSString stringWithFormat:@"%@(点击拨打)",self.model.paphone];
-        phoneLabel.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
-            NSString *phoneNum = self.model.paphone;
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
-            UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];
-            [webView loadRequest:[NSURLRequest requestWithURL:url]];
-            [self.view addSubview:webView];
-        }];
-        [phoneLabel addGestureRecognizer:tap];
-    }else{
-        phoneLabel.text = @"电话号码保密(您暂无权限，可求助管理员)";
-    }
     
+    phoneLabel.text = [NSString stringWithFormat:@"%@(点击拨打)",self.model.paphone];
+    phoneLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithActionBlock:^(id  _Nonnull sender) {
+        NSString *phoneNum = self.model.paphone;
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneNum]];
+        UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectZero];
+        [webView loadRequest:[NSURLRequest requestWithURL:url]];
+        [self.view addSubview:webView];
+    }];
+    [phoneLabel addGestureRecognizer:tap];
     
     
     // 分割线

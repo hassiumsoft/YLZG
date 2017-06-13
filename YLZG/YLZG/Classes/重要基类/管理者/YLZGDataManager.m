@@ -99,6 +99,7 @@ static YLZGDataManager *controller = nil;
             
             // 极光推送
             [JPUSHService setTags:[NSSet setWithObject:userModel.sid] aliasInbackground:userModel.uid];
+            
             [[EMClient sharedClient] setApnsNickname:userModel.realname];
             
             ZCAccount *account = [ZCAccount accountWithDict:newDic];

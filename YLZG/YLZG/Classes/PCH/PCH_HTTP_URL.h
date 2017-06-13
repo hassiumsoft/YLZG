@@ -206,7 +206,7 @@
 // 删除任务里的项目
 #define DeleteTaskProduce_Url @"http://zsylou.wxwkf.com/index.php/home/project/delete?uid=%@&id=%@"
 // 创建新任务
-#define CreateNewTask_Url @"http://zsylou.wxwkf.comm/index.php/home/task/create?uid=%@&pid=%@&name=%@&manager=%@&deadline=%@&check=%@&care=%@&description=%@"
+#define CreateNewTask_Url @"http://zsylou.wxwkf.com/index.php/home/task/create?uid=%@&pid=%@&name=%@&manager=%@&deadline=%@&check=%@&care=%@&description=%@"
 // 任务-任务列表
 #define TaskList_Url @"http://zsylou.wxwkf.com/index.php/home/task/lists?uid=%@"
 // 任务-详细信息

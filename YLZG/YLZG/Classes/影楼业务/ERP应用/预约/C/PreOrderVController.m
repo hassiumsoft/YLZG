@@ -181,7 +181,7 @@
             calendar.overlayTextColor = MainColor;
             calendar.weekdayHeaderEnabled = YES;
             calendar.firstDate = [NSDate date];
-            calendar.lastDate = [NSDate dateWithHoursFromNow:2*30*24]; // 8个月
+            calendar.lastDate = [NSDate dateWithHoursFromNow:8*30*24]; // 8个月
             
             [self.navigationController pushViewController:calendar animated:YES];
         }

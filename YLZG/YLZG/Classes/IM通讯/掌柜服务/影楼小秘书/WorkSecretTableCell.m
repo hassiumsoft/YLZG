@@ -55,7 +55,8 @@
     _titleLabel.text = versionModel.title;
     _contentLabel.text = versionModel.content;
     _timeLabel.text = versionModel.date;
-    [_backImgView sd_setImageWithURL:[NSURL URLWithString:versionModel.imageurl] placeholderImage:[UIImage imageWithColor:HWRandomColor]];
+    [_backImgView sd_setImageWithURL:[NSURL URLWithString:versionModel.imageurl] placeholderImage:[UIImage imageWithColor:[UIColor whiteColor]]];
+    
 }
 
 - (void)setupSubViews

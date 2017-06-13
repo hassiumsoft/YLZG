@@ -15,6 +15,7 @@
 #import "ZCAccountTool.h"
 #import "LoginWebViewController.h"
 #import <MJRefresh.h>
+#import "UserInfoManager.h"
 
 @interface WorkAssistViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>
 {
@@ -46,7 +47,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"工作助手";
-    [self setupSubViews];
+    UserInfoModel *userModel = [[UserInfoManager sharedManager] getUserInfo];
+    if ([userModel.type intValue] == 1) {
+        [self setupSubViews];
+    }else{
+        [self showEmptyViewWithMessage:@"该功能暂只对影楼管理员开放"];
+    }
     
 }
 
